@@ -1,0 +1,191 @@
+- name: 'test play'
+  hosts: datapower
+  connection: local
+  vars: 
+    ansible_connection: httpapi
+    ansible_httpapi_port: 5554
+    ansible_httpapi_use_ssl: yes
+    ansible_network_os: datapower
+    ansible_user: admin
+    ansible_httpapi_password: admin
+    ansible_httpapi_validate_certs: false
+
+
+  tasks:
+  - name: Create a datapower domains
+    community.datapower.create:
+      domains:
+      - default
+      definitions:
+      - Domain:
+          name: test_domain1
+          mAdminState: enabled
+          NeighborDomain:
+            value: default
+          FileMap:
+            CopyFrom: 'on'
+            CopyTo: 'on'
+            Delete: 'on'
+            Display: 'on'
+            Exec: 'on'
+            Subdir: 'on'
+          MonitoringMap:
+            Audit: 'off'
+            Log: 'off'
+          ConfigMode: local
+          ImportFormat: ZIP
+          LocalIPRewrite: 'on'
+          MaxChkpoints: 3
+          ConfigPermissionsMode: scope-domain
+      
+  - name: Create a datapower FSH in domains 
+    community.datapower.create:
+      domains:
+      - test_domain1
+      - test_domain2
+      definitions:
+      - HTTPSourceProtocolHandler:
+          name: testFSH1
+          mAdminState: enabled
+          LocalAddress: 0.0.0.0
+          LocalPort: 80
+          HTTPVersion: HTTP/1.1
+          AllowedFeatures:
+            HTTP-1.0: 'on'
+            HTTP-1.1: 'on'
+            HTTP-2.0: 'off'
+            POST: 'on'
+            GET: 'off'
+            PUT: 'on'
+            PATCH: 'off'
+            HEAD: 'off'
+            OPTIONS: 'off'
+            TRACE: 'off'
+            DELETE: 'off'
+            CONNECT: 'off'
+            CustomMethods: 'off'
+            QueryString: 'on'
+            FragmentIdentifiers: 'on'
+            DotDot: 'off'
+            DotDotInPath: 'off'
+            DotDotInQueryString: 'off'
+            CmdExe: 'off'
+          PersistentConnections: 'on'
+          MaxPersistentConnectionsReuse: 0
+          AllowCompression: 'off'
+          AllowWebSocketUpgrade: 'off'
+          WebSocketIdleTimeout: 0
+          MaxURLLen: 16384
+          MaxTotalHdrLen: 128000
+          MaxHdrCount: 0
+          MaxNameHdrLen: 0
+          MaxValueHdrLen: 0
+          MaxQueryStringLen: 0
+          CredentialCharset: protocol
+          HTTP2MaxStreams: 100
+          HTTP2MaxFrameSize: 16384
+          HTTP2StreamHeader: 'off'
+          ChunkedEncoding: 'on'
+      - HTTPSourceProtocolHandler:
+          name: testFSH2
+          mAdminState: enabled
+          LocalAddress: 0.0.0.0
+          LocalPort: 80
+          HTTPVersion: HTTP/1.1
+          AllowedFeatures:
+            HTTP-1.0: 'on'
+            HTTP-1.1: 'on'
+            HTTP-2.0: 'off'
+            POST: 'on'
+            GET: 'off'
+            PUT: 'on'
+            PATCH: 'off'
+            HEAD: 'off'
+            OPTIONS: 'off'
+            TRACE: 'off'
+            DELETE: 'off'
+            CONNECT: 'off'
+            CustomMethods: 'off'
+            QueryString: 'on'
+            FragmentIdentifiers: 'on'
+            DotDot: 'off'
+            DotDotInPath: 'off'
+            DotDotInQueryString: 'off'
+            CmdExe: 'off'
+          PersistentConnections: 'on'
+          MaxPersistentConnectionsReuse: 0
+          AllowCompression: 'off'
+          AllowWebSocketUpgrade: 'off'
+          WebSocketIdleTimeout: 0
+          MaxURLLen: 16384
+          MaxTotalHdrLen: 128000
+          MaxHdrCount: 0
+          MaxNameHdrLen: 0
+          MaxValueHdrLen: 0
+          MaxQueryStringLen: 0
+          CredentialCharset: protocol
+          HTTP2MaxStreams: 100
+          HTTP2MaxFrameSize: 16384
+          HTTP2StreamHeader: 'off'
+          ChunkedEncoding: 'on'
+ 
+  - name: Get some objects we just created
+    community.datapower.get:
+      domains:
+      - test_domain1
+      - test_domain2
+      object_class: HTTPSourceProtocolHandler
+  - name: Get some objects we just created
+    community.datapower.get:
+      domains:
+      - test_domain1
+      - test_domain2
+      object_class: HTTPSourceProtocolHandler    
+      name: testFSH1
+  - name: 'Disable testFSH1 & 2 in test_domain1 & 2'
+    community.datapower.modify:
+      domains:
+      - test_domain1
+      - test_domain2
+      definitions:
+      - HTTPSourceProtocolHandler:
+          name: testFSH1
+          mAdminState: disabled
+      - HTTPSourceProtocolHandler:
+          name: testFSH2
+          mAdminState: disabled
+  - name: Delete a datapower object
+    community.datapower.delete:
+      domains:
+      - test_domain1
+      - test_domain2
+      object_class: HTTPSourceProtocolHandler
+      name: testFSH1
+  - name: Delete a datapower object
+    community.datapower.delete:
+      domains:
+      - test_domain1
+      - test_domain2
+      object_class: HTTPSourceProtocolHandler
+      name: testFSH2
+  - name: Delete a datapower object
+    community.datapower.delete:
+      domains:
+      - default
+      object_class: Domain
+      name: test_domain1
+  - name: Delete a datapower object
+    community.datapower.delete:
+      domains:
+      - default
+      object_class: Domain
+      name: test_domain2
+  - name: Get list of all Data
+    community.datapower.get:
+      domains: 
+      - default
+      object_class: Domain
+    register: dp_facts_results
+  
+  - debug:
+      var: dp_facts_results.datapower_facts

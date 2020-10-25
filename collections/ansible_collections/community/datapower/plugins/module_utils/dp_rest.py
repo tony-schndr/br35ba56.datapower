@@ -9,12 +9,10 @@ from ansible_collections.community.datapower.plugins.module_utils import (
     config,
 )
 
-
-
-
 GET_CONFIG_URI = '/mgmt/config/{0}/{1}' 
 GET_CONFIG_NAME_URI = '/mgmt/config/{0}/{1}/{2}'
 MOD_CONFIG_URI = '/mgmt/config/{0}/{1}/{2}'
+CREATE_CONFIG_URI = '/mgmt/config/{0}/{1}'
 
 def get_config(module):
     object_class = module.params['object_class']
@@ -42,12 +40,13 @@ def create_config(module):
         for dict_ in module.params['definitions']:
             object_class = dict_.keys()[0]
             body = dict_
-            path = '/mgmt/config/' + domain + '/' + object_class
+
+            path = CREATE_CONFIG_URI.format(domain, object_class)
             try:
                 result = connection.send_request(body, path=path, method="POST")
                 results.append(result)
             except Exception as e:
-                results.append({"body": body,"path": path, "method": "POST"})               
+                results.append({"body": body,"path": path, "method": "POST", "e": e})               
             
     return format_results({'results': results})
 

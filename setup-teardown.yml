@@ -5,7 +5,7 @@
     ansible_connection: httpapi
     ansible_httpapi_port: 5554
     ansible_httpapi_use_ssl: yes
-    ansible_network_os: datapower
+    ansible_network_os: community.datapower.datapower
     ansible_user: admin
     ansible_httpapi_password: admin
     ansible_httpapi_validate_certs: false
@@ -42,7 +42,6 @@
     community.datapower.create:
       domains:
       - test_domain1
-      - test_domain2
       definitions:
       - HTTPSourceProtocolHandler:
           name: testFSH1
@@ -133,20 +132,17 @@
     community.datapower.get:
       domains:
       - test_domain1
-      - test_domain2
       object_class: HTTPSourceProtocolHandler
   - name: Get some objects we just created
     community.datapower.get:
       domains:
       - test_domain1
-      - test_domain2
       object_class: HTTPSourceProtocolHandler    
       name: testFSH1
   - name: 'Disable testFSH1 & 2 in test_domain1 & 2'
     community.datapower.modify:
       domains:
       - test_domain1
-      - test_domain2
       definitions:
       - HTTPSourceProtocolHandler:
           name: testFSH1
@@ -158,14 +154,12 @@
     community.datapower.delete:
       domains:
       - test_domain1
-      - test_domain2
       object_class: HTTPSourceProtocolHandler
       name: testFSH1
   - name: Delete a datapower object
     community.datapower.delete:
       domains:
       - test_domain1
-      - test_domain2
       object_class: HTTPSourceProtocolHandler
       name: testFSH2
   - name: Delete a datapower object
@@ -174,18 +168,3 @@
       - default
       object_class: Domain
       name: test_domain1
-  - name: Delete a datapower object
-    community.datapower.delete:
-      domains:
-      - default
-      object_class: Domain
-      name: test_domain2
-  - name: Get list of all Data
-    community.datapower.get:
-      domains: 
-      - default
-      object_class: Domain
-    register: dp_facts_results
-  
-  - debug:
-      var: dp_facts_results.datapower_facts

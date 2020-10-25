@@ -1,4 +1,4 @@
-`#!/usr/bin/env python
+#!/usr/bin/env python
 
 # Copyright: (c) 2020, Your Name <YourName@example.org>
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
@@ -65,7 +65,7 @@ my_useful_info:
         'foo': 'bar',
         'answer': 42,
     }
-'''`
+'''
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils import dp_rest 

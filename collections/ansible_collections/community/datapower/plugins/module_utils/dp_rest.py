@@ -3,11 +3,13 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 from ansible.module_utils.connection import Connection
-from ansible.module_utils.network.datapower import (
+from ansible_collections.community.datapower.plugins.module_utils import (
     actionqueue,
     filestore,
     config,
 )
+
+
 
 
 GET_CONFIG_URI = '/mgmt/config/{0}/{1}' 

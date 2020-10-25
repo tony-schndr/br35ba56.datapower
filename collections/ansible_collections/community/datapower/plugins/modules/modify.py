@@ -68,7 +68,7 @@ my_useful_info:
 '''`
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.network.datapower import dp_rest 
+from ansible_collections.community.datapower.plugins.module_utils import dp_rest 
 
 def run_module():
     # define available arguments/parameters a user can pass to the module

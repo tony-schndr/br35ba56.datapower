@@ -1,11 +1,11 @@
 - name: 'test play'
-  hosts: datapower
+  hosts: dp1
   connection: local
   vars: 
     ansible_connection: httpapi
     ansible_httpapi_port: 5554
     ansible_httpapi_use_ssl: yes
-    ansible_network_os: datapower
+    ansible_network_os: community.datapower.datapower
     ansible_user: admin
     ansible_httpapi_password: admin
     ansible_httpapi_validate_certs: false

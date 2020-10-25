@@ -21,11 +21,11 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 DOCUMENTATION = """
-author: Ansible Networking Team
-httpapi: restconf
-short_description: HttpApi Plugin for devices supporting Restconf API
+author: Anthony Schneider
+httpapi: datapower
+short_description: HttpApi Plugin for IBM DataPower
 description:
-- This HttpApi plugin provides methods to connect to Restconf API endpoints.
+- This HttpApi plugin provides methods to connect to IMB DataPower REST management interface.
 version_added: 1.0.0
 options:
   root_path:

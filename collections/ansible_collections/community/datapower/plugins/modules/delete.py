@@ -71,8 +71,8 @@ def run_module():
     # define available arguments/parameters a user can pass to the module
     module_args = dict(
         domains = dict(type='list', required=True),
-        object_class = dict(type='str', required=True),
-        name = dict(type='str', required=True)
+        class_name = dict(type='str', required=True),
+        object_name = dict(type='str', required=True)
     )
     
     # seed the result dict in the object

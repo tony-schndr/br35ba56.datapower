@@ -5,7 +5,7 @@
     ansible_connection: httpapi
     ansible_httpapi_port: 5554
     ansible_httpapi_use_ssl: yes
-    ansible_network_os: community.datapower.datapower
+    ansible_network_os: community.datapower.rest_mgmt
     ansible_user: admin
     ansible_httpapi_password: admin
     ansible_httpapi_validate_certs: false
@@ -18,11 +18,19 @@
           AddPasswordMap:
             AliasName: SecretPassword
             Password: goodpassword
+    - name: Execute a Add Password Map action
+      community.datapower.action:
+        domains:
+        - default
+        action:
+          AddPasswordMap:
+            AliasName: SecretPassword2
+            Password: goodpassword
     - name: Get SecretPassword
       community.datapower.get:
         domains:
         - default
-        object_class: PasswordAlias
+        class_name: PasswordAlias
     - name: Modify SecretPassword
       community.datapower.modify:
         domains:

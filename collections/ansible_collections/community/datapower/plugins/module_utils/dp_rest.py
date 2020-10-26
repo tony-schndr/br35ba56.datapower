@@ -20,20 +20,15 @@ MODIFY_URI = '/mgmt/config/{0}/{1}/{2}'
 
 
 def get_config(module):
-    object_class = module.params['object_class']
-    if module.params['name']:
-        name = module.params['name']
-        uri = GET_CONFIG_NAME_URI
-    else:
-        uri = GET_CONFIG_URI
+    class_name = module.params['class_name']
     results = []
     for domain in module.params['domains']:
-        if module.params['name']:
-            path = uri.format(domain, object_class, module.params['name'])
+        if module.params['object_name']:
+            path = GET_CONFIG_NAME_URI.format(domain, class_name, module.params['object_name'])
         else:
-            path = uri.format(domain, object_class)
-        result = process_request(module, domain, None, path=path, method="GET")
-        results.append(result)
+            path = GET_CONFIG_URI.format(domain, class_name)
+            result = process_request(module, domain, None, path=path, method="GET")
+            results.append(result)
     return results
 
 
@@ -42,21 +37,20 @@ def create_config(module):
     results = []
     for domain in module.params['domains']:
         for body in module.params['definitions']:
-            object_class = dict_.keys()[0]
-            path = CREATE_CONFIG_URI.format(domain, object_class)
+            class_name = dict_.keys()[0]
+            path = CREATE_CONFIG_URI.format(domain, class_name)
             result = process_request(module, domain, body, path=path, method="POST")
         results.append(result)
     return results
             
-    return _format_config_results({'results': results})
 
 
 def modify_config(module):
     results = []
     for domain in module.params['domains']:
         for body in module.params['definitions']:
-            object_class = body.keys()[0]
-            path = MODIFY_URI.format(domain, object_class, body[object_class]['name'])
+            class_name = body.keys()[0]
+            path = MODIFY_URI.format(domain, class_name, body[class_name]['name'])
             result = process_request(module, domain, body, path=path, method="PUT")
         results.append(result)
     return results
@@ -66,7 +60,7 @@ def delete_config(module):
     connection = Connection(module._socket_path)
     results = []
     for domain in module.params['domains']:
-        path = DELETE_URI.format(domain, module.params['object_class'], module.params['name'])
+        path = DELETE_URI.format(domain, module.params['class_name'], module.params['object_name'])
         result = process_request(module, domain, None, path=path, method="DELETE")
         results.append(result)
     return results

@@ -132,13 +132,13 @@
     community.datapower.get:
       domains:
       - test_domain1
-      object_class: HTTPSourceProtocolHandler
+      class_name: HTTPSourceProtocolHandler
   - name: Get some objects we just created
     community.datapower.get:
       domains:
       - test_domain1
-      object_class: HTTPSourceProtocolHandler    
-      name: testFSH1
+      class_name: HTTPSourceProtocolHandler    
+      object_name: testFSH1
   - name: 'Disable testFSH1 & 2 in test_domain1 & 2'
     community.datapower.modify:
       domains:
@@ -154,17 +154,17 @@
     community.datapower.delete:
       domains:
       - test_domain1
-      object_class: HTTPSourceProtocolHandler
-      name: testFSH1
+      class_name: HTTPSourceProtocolHandler
+      object_name: testFSH1
   - name: Delete a datapower object
     community.datapower.delete:
       domains:
       - test_domain1
-      object_class: HTTPSourceProtocolHandler
-      name: testFSH2
+      class_name: HTTPSourceProtocolHandler
+      object_name: testFSH2
   - name: Delete a datapower object
     community.datapower.delete:
       domains:
       - default
-      object_class: Domain
-      name: test_domain1
+      class_name: Domain
+      object_name: test_domain1

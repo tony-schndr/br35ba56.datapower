@@ -41,7 +41,7 @@ import json
 
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError
-from ansible.module_utils.six.moves.urllib.error import HTTPError
+from ansible.module_utils.six.moves.urllib.error import HTTPError, URLError
 from ansible.plugins.httpapi import HttpApiBase
 
 
@@ -60,9 +60,7 @@ class HttpApi(HttpApiBase):
         response, response_data = self.connection.send(
             path, data, headers=headers, method=method
         )
-
         return handle_response(response, response_data)
-
     def get(self):
       return 'stuff'
 
@@ -71,19 +69,17 @@ def handle_response(response, response_data):
     try:
         response_data = json.loads(response_data.read())
     except ValueError:
-        response_data = response_data.read()
+        response_data = 'Invalid JSON returned from the DataPower REST management interface.'
 
     if isinstance(response, HTTPError):
         if response_data:
-            if "errors" in response_data:
-                errors = response_data["errors"]["error"]
-                error_text = "\n".join(
-                    (error["error-message"] for error in errors)
-                )
-            else:
-                error_text = response_data
+            response_err = []
+            i = 0
+            for error in response_data['error']:
+                response_err.append({'Message-{0}'.format(i): to_text(error)})
+                i = i + 1
+            return {'error': { 'error_messages': response_err}}
+    elif isinstance(response, URLError):
+        raise ConnectionError(to_text(response_data))
 
-            raise ConnectionError(error_text, code=response.code)
-        raise ConnectionError(to_text(response), code=response.code)
-
-    return response_data
+    return {'data': response_data }

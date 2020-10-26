@@ -2,7 +2,8 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-from ansible.module_utils.connection import Connection
+from ansible.module_utils.connection import Connection, ConnectionError
+from ansible.module_utils._text import to_text
 from ansible_collections.community.datapower.plugins.module_utils import (
     actionqueue,
     filestore,
@@ -13,6 +14,10 @@ GET_CONFIG_URI = '/mgmt/config/{0}/{1}'
 GET_CONFIG_NAME_URI = '/mgmt/config/{0}/{1}/{2}'
 MOD_CONFIG_URI = '/mgmt/config/{0}/{1}/{2}'
 CREATE_CONFIG_URI = '/mgmt/config/{0}/{1}'
+ACTION_QUEUE_URI = '/mgmt/actionqueue/{0}'
+DELETE_URI = '/mgmt/config/{0}/{1}/{2}'
+MODIFY_URI = '/mgmt/config/{0}/{1}/{2}'
+
 
 def get_config(module):
     object_class = module.params['object_class']
@@ -21,85 +26,74 @@ def get_config(module):
         uri = GET_CONFIG_NAME_URI
     else:
         uri = GET_CONFIG_URI
-    
+    results = []
     for domain in module.params['domains']:
         if module.params['name']:
             path = uri.format(domain, object_class, module.params['name'])
         else:
             path = uri.format(domain, object_class)
-    connection = Connection(module._socket_path)
-    
-    results = connection.send_request(None, path=path, method="GET")
-    return format_results(results)
+        result = process_request(module, domain, None, path=path, method="GET")
+        results.append(result)
+    return results
 
 
 def create_config(module):
     connection = Connection(module._socket_path)
     results = []
     for domain in module.params['domains']:
-        for dict_ in module.params['definitions']:
+        for body in module.params['definitions']:
             object_class = dict_.keys()[0]
-            body = dict_
-
             path = CREATE_CONFIG_URI.format(domain, object_class)
-            try:
-                result = connection.send_request(body, path=path, method="POST")
-                results.append(result)
-            except Exception as e:
-                results.append({"body": body,"path": path, "method": "POST", "e": e})               
+            result = process_request(module, domain, body, path=path, method="POST")
+        results.append(result)
+    return results
             
-    return format_results({'results': results})
+    return _format_config_results({'results': results})
 
 
 def modify_config(module):
-    connection = Connection(module._socket_path)
     results = []
     for domain in module.params['domains']:
-        for dict_ in module.params['definitions']:
-            object_class = dict_.keys()[0]
-            body = dict_
-            path = '/mgmt/config/' + domain + '/' + object_class + '/' + dict_[object_class]['name']
-            try:
-                result = connection.send_request(body, path=path, method="PUT")
-                results.append(result)
-            except Exception as e:
-                results.append({"body": body,"path": path, "method": "PUT", "exception": e})               
-            
-    return format_results({'results': results})
+        for body in module.params['definitions']:
+            object_class = body.keys()[0]
+            path = MODIFY_URI.format(domain, object_class, body[object_class]['name'])
+            result = process_request(module, domain, body, path=path, method="PUT")
+        results.append(result)
+    return results
 
 
 def delete_config(module):
-    if module.params['object_class'] in config.dp_objects:
-        object_class = module.params['object_class']
-
     connection = Connection(module._socket_path)
     results = []
     for domain in module.params['domains']:
-        path = '/mgmt/config/' + domain + '/' + object_class + '/' + module.params['name']
-        results.append(connection.send_request(None, path=path, method="DELETE"))
+        path = DELETE_URI.format(domain, module.params['object_class'], module.params['name'])
+        result = process_request(module, domain, None, path=path, method="DELETE")
+        results.append(result)
+    return results
 
-    return format_results({'results': results})
 
 
-def do_action(module):
-    if module.params['action'] in dp_object_list.dp_objects:
-        action = module.params['action']
-   
-    body = { 
-            object_class: { 
-                'name': module.params['name'] 
-            }
-    }
-  
-    connection = Connection(module._socket_path)
+def action(module):
+    body = module.params['action']
     results = []
     for domain in module.params['domains']:
-        path = '/mgmt/actionqueue/' + domain + '/' + object_class 
-        results.append(connection.send_request(body, path=path, method="POST"))
-    return format_results({'results': results})
+        path = ACTION_QUEUE_URI.format(domain)
+        result = process_request(module, domain, body, path, method="POST")
+        results.append(result)
+    return results
 
 
-def format_results(dict_):
+def process_request(module, domain, body, path, method):
+    try:
+        connection = Connection(module._socket_path)
+        result = connection.send_request(body, path, method)
+        _scrub(result, '_links')
+    except ConnectionError as ce:
+        return {'Domain': domain, 'CONN_ERR': to_text(ce)}
+    return result
+
+
+def _format_config_results(dict_):
     dp_objects = []
     for key, value in dict_.items():
         if key != '_links' and key != '_embedded':
@@ -108,7 +102,19 @@ def format_results(dict_):
     if '_embedded' in dict_.keys():
         for dp_object in dict_['_embedded']['descendants']:
             dp_objects.append(dp_object)
-    _scrub(dp_objects, 'href')
+    _scrub(dp_objects, '_links')
+    return dp_objects
+
+
+def _format_action_results(dict_):
+    dp_objects = []
+    for key, value in dict_.items():
+        if key != '_links' and key != '_embedded':
+            app_dict = { key : value }
+            dp_objects.append(app_dict)
+    if '_embedded' in dict_.keys():
+        for dp_object in dict_['_embedded']['descendants']:
+            dp_objects.append(dp_object)
     _scrub(dp_objects, '_links')
     return dp_objects
 

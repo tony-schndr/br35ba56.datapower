@@ -1,7 +1,9 @@
 #PUT configuration management helper code here
 
+def is_valid_object_class(obj):
+    return obj in valid_objects
 
-dp_objects = [ 
+valid_objects = [ 
     'AAAPolicy',
     'Domain',
     'LDAPSearchParameters',
@@ -282,33 +284,17 @@ dp_objects = [
     'ZosNSSClient',
 ]
 
-'''
-def domain(obj_kwargs):
+def _format_config_results(dict_):
+    dp_objects = []
+    for key, value in dict_.items():
+        if key != '_links' and key != '_embedded':
+            app_dict = { key : value }
+            dp_objects.append(app_dict)
+    if '_embedded' in dict_.keys():
+        for dp_object in dict_['_embedded']['descendants']:
+            dp_objects.append(dp_object)
+    _scrub(dp_objects, 'href')
+    _scrub(dp_objects, '_links')
+    return dp_objects
 
-    return {
-        "Domain": {
-                "name": obj_kwargs['name'],
-                "mAdminState": "enabled",
-                "NeighborDomain": {
-                        "value": "default"
-                },
-                "FileMap": {
-                        "CopyFrom": "on",
-                        "CopyTo": "on",
-                        "Delete": "on",
-                        "Display": "on",
-                        "Exec": "on",
-                        "Subdir": "on"
-                },
-                "MonitoringMap": {
-                        "Audit": "off",
-                        "Log": "off"
-                },
-                "ConfigMode": "local",
-                "ImportFormat": "ZIP",
-                "LocalIPRewrite": "on",
-                "MaxChkpoints": 3,
-                "ConfigPermissionsMode": "scope-domain"
-        }
-}
-'''
+

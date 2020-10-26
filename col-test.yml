@@ -10,10 +10,72 @@
     ansible_httpapi_password: admin
     ansible_httpapi_validate_certs: false
   tasks:
-  - name: Get default domain config
-    community.datapower.get:
-      domains:
-      - default
-      object_class: Domain    
-      name: default
-
+    - name: Execute a Add Password Map action
+      community.datapower.action:
+        domains:
+        - default
+        action:
+          AddPasswordMap:
+            AliasName: SecretPassword
+            Password: goodpassword
+    - name: Get SecretPassword
+      community.datapower.get:
+        domains:
+        - default
+        object_class: PasswordAlias
+    - name: Modify SecretPassword
+      community.datapower.modify:
+        domains:
+        - default
+        definitions:
+          - PasswordAlias:
+              name: SecretPassword
+              mAdminState: disabled
+    - name: Save Domain 
+      community.datapower.action:
+        domains:
+        - default
+        action:
+          SaveConfig: {}
+    #- name: Delete SecretPassword
+    #  community.datapower.delete:
+    #    domains:
+    #    - default
+    #    object_class: PasswordAlias
+    #    name: SecretPassword
+      
+  #- name: Exectue a save action on target domains
+  #  community.datapower.action:
+  #    domains:
+  #    - default
+  #    action:
+  #      SaveConfig: {}
+  #- name: Quiesce datapower
+  #  community.datapower.action:
+  #    domains:
+  #    - default
+  #    action:
+  #      QuiesceDP:
+  #        timeout: 60
+  #- name: Quiesce datapower
+  #  community.datapower.action:
+  #    domains:
+  #    - default
+  #    action:
+  #      UnquiesceDP: {}
+  #- name: Test connectivity to remote system
+  #  community.datapower.action:
+  #    domains:
+  #    - default
+  #    action:
+  #      TCPConnectionTest:
+  #        RemoteHost: 127.0.0.1
+  #        RemotePort: 9090
+  #- name: Ping a remote system
+  #  community.datapower.action:
+  #    domains:
+  #    - default
+  #    action:
+  #      Ping:
+  #        RemoteHost: google.com
+          

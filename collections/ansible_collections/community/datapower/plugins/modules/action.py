@@ -86,12 +86,13 @@ my_useful_info:
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils import dp_rest 
+from ansible_collections.community.datapower.plugins.module_utils.datapower import DPAction
 
 
 def run_module():
     # define available arguments/parameters a user can pass to the module
     module_args = dict(
-        domains = dict(type='list', required=True),
+        domain = dict(type='str', required=True),
         action = dict(type='dict', required=True)
     )
     
@@ -122,8 +123,8 @@ def run_module():
     result = dict(
         changed=False
     )
-
-    result['action_results'] = dp_rest.action(module)
+    dp_act = DPAction(module)
+    result['action_results'] = dp_act.execute_task()
 
     # in the event of a successful module execution, you will want to
     # simple AnsibleModule.exit_json(), passing the key/value results

@@ -10,32 +10,57 @@
     ansible_httpapi_password: admin
     ansible_httpapi_validate_certs: false
   tasks:
-    - name: Create Object
+    - name: Create New Domain
       community.datapower.create:
         domain: default
         definition:
-            Domain:
-              name: test_domain1
-              mAdminState: enabled
-              NeighborDomain:
-                value: default
-              FileMap:
-                CopyFrom: 'on'
-                CopyTo: 'on'
-                Delete: 'on'
-                Display: 'on'
-                Exec: 'on'
-                Subdir: 'on'
-              MonitoringMap:
-                Audit: 'off'
-                Log: 'off'
-              ConfigMode: local
-              ImportFormat: ZIP
-              LocalIPRewrite: 'on'
-              MaxChkpoints: 3
-              ConfigPermissionsMode: scope-domain
+          Domain:
+            name: test_domain1
+            mAdminState: enabled
+            NeighborDomain:
+              value: default
+            FileMap:
+              CopyFrom: 'on'
+              CopyTo: 'on'
+              Delete: 'on'
+              Display: 'on'
+              Exec: 'on'
+              Subdir: 'on'
+            MonitoringMap:
+              Audit: 'off'
+              Log: 'off'
+            ConfigMode: local
+            ImportFormat: ZIP
+            LocalIPRewrite: 'on'
+            MaxChkpoints: 3
+            ConfigPermissionsMode: scope-domain
           
-
-  #      Ping:
-  #        RemoteHost: google.com
+    - name: Save Domain 
+      community.datapower.action:
+        domain: default
+        action:
+          SaveConfig: {}
+    
+    - name: Disable domain just created 
+      community.datapower.modify:
+        domain: default
+        definition:
+          Domain:
+            name: test_domain1
+            mAdminState: disabled
+    - name: Get the domain we created.
+      community.datapower.get:
+        domain: default
+        class_name: Domain
+        name: test_domain1
+    - name: Delete domain just modified.
+      community.datapower.delete:
+        domain: default
+        class_name: Domain
+        name: test_domain1
+    - name: Save Domain 
+      community.datapower.action:
+        domain: default
+        action:
+          SaveConfig: {}    
           

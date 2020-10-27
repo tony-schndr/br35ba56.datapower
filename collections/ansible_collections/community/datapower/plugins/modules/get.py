@@ -70,7 +70,7 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower impo
 def run_module():
     # define available arguments/parameters a user can pass to the module
     module_args = dict(
-        domain=dict(type='list', required=True),
+        domain=dict(type='str', required=True),
         class_name=dict(type='str', required=True),
         name=dict(type='str', required=False)
     )

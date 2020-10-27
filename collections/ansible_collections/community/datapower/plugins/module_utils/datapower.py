@@ -25,10 +25,9 @@ ACTION_QUEUE_URI = '/mgmt/actionqueue/{0}'
 def is_valid_class(class_name):
     return config.val_obj_dict['_links'].get(class_name) or False
 
-def has_definition(module):
-    return 'definition' in module.params
+def has_body(module):
+    return 'body' in module.params
     
-
 
 class DPDomain():
 
@@ -38,18 +37,14 @@ class DPDomain():
             self.domain = module.params.get('domain')
         else:
             raise AttributeError('Missing domain')
-        if isinstance(self, DPAction):
-            pass
-        elif isinstance(self, DPCreate):
-            self.init_definition()
-        elif isinstance(self, DPModify):
-            self.init_definition()
-        elif isinstance(self, DPDelete):
+        if isinstance(self, DPCreate) or isinstance(self, DPModify) or isinstance(self, DPAction):
+            self.init_body()
+        elif isinstance(self, DPDelete) or  isinstance(self, DPGet):
             self.init_other()
-        elif isinstance(self, DPGet):
-            self.init_other()
+      
         self.connection = Connection(module._socket_path)
     
+
     def init_other(self):
         if self.module.params['class_name'] is not None: 
             self.class_name = self.module.params['class_name']
@@ -57,24 +52,21 @@ class DPDomain():
             raise AttributeError('Missing class_name.')
         if self.module.params['name'] is not None:
             self.name = self.module.params['name']
-        
-
-    def init_action(self):
-        if self.module.params['action']:
-            self.action = self.module.params['action']
 
 
-    def init_definition(self):
-        if has_definition(self.module):
-            self.definition = self.module.params.get('definition')
-        if is_valid_class(list(self.definition.keys())[0]):
-            self.class_name = list(self.definition.keys())[0]
-        else:
-            raise AttributeError('Missing class_name or Invalid class_name, ref GET /mgmt/config/')
-        if 'name' in  self.definition.get(self.class_name):
-            self.name = self.definition.get(self.class_name).get('name')
-        else:
-            raise AttributeError('missing name, ref GET /mgmt/config/')
+    def init_body(self):
+        if has_body(self.module):
+            self.body = self.module.params.get('body')
+        if isinstance(self, DPModify) or isinstance(self, DPCreate):
+            if is_valid_class(list(self.body.keys())[0]):
+                self.class_name = list(self.body.keys())[0]
+            else:
+                raise AttributeError('Missing class_name or Invalid class_name, ref GET /mgmt/config/')
+        if isinstance(self, DPModify) or isinstance(self, DPCreate):
+            if 'name' in  self.body.get(self.class_name):
+                self.name = self.body.get(self.class_name).get('name')
+            else:
+                raise AttributeError('missing name, ref GET /mgmt/config/')
 
 
     def _process_request(self, method, path, body):
@@ -87,8 +79,8 @@ class DPDomain():
 
 
     def execute_task(self):
-        if hasattr(self, 'definition'):
-            return self._process_request(self.method, self.path, self.definition)
+        if hasattr(self, 'body'):
+            return self._process_request(self.method, self.path, self.body)
         else:
             return self._process_request(self.method, self.path, None)
             
@@ -130,7 +122,7 @@ class DPAction(DPDomain):
     def __init__(self, module):
         super(DPAction, self).__init__(module)
         self.path = ACTION_QUEUE_URI.format(self.domain)
-        self.method = 'PUT'
+        self.method = 'POST'
 
 def _scrub(obj, bad_key):
     """

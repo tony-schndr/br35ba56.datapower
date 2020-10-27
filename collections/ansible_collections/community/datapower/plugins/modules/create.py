@@ -85,14 +85,16 @@ my_useful_info:
 '''
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils import dp_rest 
+from ansible_collections.community.datapower.plugins.module_utils.datapower import (
+    DPCreate
+)
 
 
 def run_module():
     # define available arguments/parameters a user can pass to the module
     module_args = dict(
-        domains = dict(type='list', required=True),
-        definitions = dict(type='list', required=True)
+        domain = dict(type='str', required=True),
+        definition = dict(type='dict', required=True)
     )
     
     # seed the result dict in the object
@@ -122,7 +124,9 @@ def run_module():
     result = dict(
         changed=False
     )
-    result['datapower_result'] = dp_rest.create_config(module)
+    dp_create = DPCreate(module)
+    create_result = dp_create.execute_task()
+    result['result'] = create_result
 
     # in the event of a successful module execution, you will want to
     # simple AnsibleModule.exit_json(), passing the key/value results

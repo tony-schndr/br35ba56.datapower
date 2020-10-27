@@ -1,0 +1,41 @@
+- name: 'test play'
+  hosts: dp1
+  connection: local
+  vars: 
+    ansible_connection: httpapi
+    ansible_httpapi_port: 5554
+    ansible_httpapi_use_ssl: yes
+    ansible_network_os: community.datapower.rest_mgmt
+    ansible_user: admin
+    ansible_httpapi_password: admin
+    ansible_httpapi_validate_certs: false
+  tasks:
+    - name: Create Object
+      community.datapower.create:
+        domain: default
+        definition:
+            Domain:
+              name: test_domain1
+              mAdminState: enabled
+              NeighborDomain:
+                value: default
+              FileMap:
+                CopyFrom: 'on'
+                CopyTo: 'on'
+                Delete: 'on'
+                Display: 'on'
+                Exec: 'on'
+                Subdir: 'on'
+              MonitoringMap:
+                Audit: 'off'
+                Log: 'off'
+              ConfigMode: local
+              ImportFormat: ZIP
+              LocalIPRewrite: 'on'
+              MaxChkpoints: 3
+              ConfigPermissionsMode: scope-domain
+          
+
+  #      Ping:
+  #        RemoteHost: google.com
+          

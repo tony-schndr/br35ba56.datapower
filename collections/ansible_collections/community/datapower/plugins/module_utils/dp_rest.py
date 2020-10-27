@@ -14,9 +14,10 @@ GET_CONFIG_URI = '/mgmt/config/{0}/{1}'
 GET_CONFIG_NAME_URI = '/mgmt/config/{0}/{1}/{2}'
 MOD_CONFIG_URI = '/mgmt/config/{0}/{1}/{2}'
 CREATE_CONFIG_URI = '/mgmt/config/{0}/{1}'
-ACTION_QUEUE_URI = '/mgmt/actionqueue/{0}'
 DELETE_URI = '/mgmt/config/{0}/{1}/{2}'
 MODIFY_URI = '/mgmt/config/{0}/{1}/{2}'
+
+ACTION_QUEUE_URI = '/mgmt/actionqueue/{0}'
 
 
 def get_config(module):
@@ -33,11 +34,10 @@ def get_config(module):
 
 
 def create_config(module):
-    connection = Connection(module._socket_path)
     results = []
     for domain in module.params['domains']:
         for body in module.params['definitions']:
-            class_name = dict_.keys()[0]
+            class_name = body.keys()[0]
             path = CREATE_CONFIG_URI.format(domain, class_name)
             result = process_request(module, domain, body, path=path, method="POST")
         results.append(result)
@@ -64,7 +64,6 @@ def delete_config(module):
         result = process_request(module, domain, None, path=path, method="DELETE")
         results.append(result)
     return results
-
 
 
 def action(module):

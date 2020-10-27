@@ -85,9 +85,7 @@ my_useful_info:
 '''
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower import (
-    DPCreate
-)
+from ansible_collections.community.datapower.plugins.module_utils.datapower import DPCreate
 
 
 def run_module():

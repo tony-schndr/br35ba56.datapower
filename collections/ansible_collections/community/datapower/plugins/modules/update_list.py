@@ -7,44 +7,24 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: community.datapower.get
+module: community.datapower.create
 
-short_description: Use for geting objects on IBM DataPower
+short_description: Use for modifying various objects on IBM DataPower
 
 
 version_added: "1.0.0"
 
-description: Use for getting object configuration
+description: Use for modifying configuration.
 
 options:
-    domain:
-        description: Target domain
-        required: True
-        type: str
-    object_class:
-        description: DataPower objects object_class.  Determine object_class by...
+    domains:
+        description: List of domains to execute on.
         required: true
-        type: str
-    name:
-        description: Name of object as seen in DataPwer
-    options:
-        description: Options for uri???
-        required: False
-        type: dict
-        recursive:
-            description: Get target objects referenced objects.
-            required: False
-            type: bool
-        depth:
-            description: Set the depth of the recursion.
-            required: False
-            type: int
-            default: 7
-        state:
-            description: If true return state information on all returned objects.
-            required: False
-            type: bool
-            default: False
+        type: list
+    defintions:
+        description: DataPower object config defined in yaml.  Determine fromat using a GET and then convert to YAML.
+        required: true
+        type: list of YAML dictionaries.
 
 
 author:
@@ -52,16 +32,17 @@ author:
 '''
 
 EXAMPLES = r'''
-# Get a datapower object.  Determine object_class by ...
+# Modify a datapower object.  This example simply disables test_domain1.  
+  
   - name: Create a datapower domain(s)
-    community.datapower.get:
-      domain: default
-      object_class: Domain
-      name: SNAFU
-      options:
-        recursive: True 
-        depth: 3
-        state: True     
+    community.datapower.modify:
+      domains:
+      - default
+      definitions:
+      - Domain:
+          name: test_domain1
+          mAdminState: disabled
+      
 '''
 
 RETURN = r'''
@@ -87,20 +68,16 @@ my_useful_info:
 '''
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower import DPGet
+from ansible_collections.community.datapower.plugins.module_utils.datapower import DPModify
 
 def run_module():
     # define available arguments/parameters a user can pass to the module
     module_args = dict(
-        domain=dict(type='str', required=True),
+        domain = dict(type='str', required=True),
+        body = dict(type='dict', required=True),
         class_name=dict(type='str', required=True),
-        name=dict(type='str', required=False),
-        obj_field=dict(type='str', required=False),
-        options=dict(type='dict', required=False,
-            recursive=dict(type='bool', required=False),
-            depth=dict(type='int', required=False),
-            state=dict(type='bool', required=False)
-        )
+        name = dict(type='str', required=True),
+        obj_field = dict(type='str', required=True)
     )
     
     # seed the result dict in the object
@@ -128,10 +105,10 @@ def run_module():
     # manipulate or modify the state as needed (this is going to be the
     # part where your module will do what it needs to do)
     result = dict(
-        changed=False,
+        changed=False
     )
-    dp_get = DPGet(module)
-    result['datapower_config'] = dp_get.send_request()
+    dp_mod = DPModify(module)
+    result['modify_result'] = dp_mod.send_request()
 
     # in the event of a successful module execution, you will want to
     # simple AnsibleModule.exit_json(), passing the key/value results

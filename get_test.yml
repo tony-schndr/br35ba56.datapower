@@ -1,0 +1,35 @@
+- name: 'test play'
+  hosts: dp1
+  connection: local
+  vars: 
+    ansible_connection: httpapi
+    ansible_httpapi_port: 5554
+    ansible_httpapi_use_ssl: yes
+    ansible_network_os: community.datapower.rest_mgmt
+    ansible_user: admin
+    ansible_httpapi_password: admin
+    ansible_httpapi_validate_certs: false
+    domain_name: SNAFU
+  tasks:
+    - name: Get all domains.
+      community.datapower.modify:
+        domain: default
+        class_name: CryptoValCred
+        obj_field: Certificate
+        name: valcred
+        body:
+          Certificate:
+            value: Test2
+      #name: "{{ domain_name }}"
+    - name: Get all Valcred
+      community.datapower.get:
+        domain: default
+        class_name: CryptoValCred
+        #obj_field: Certificate
+        name: valcred
+        options:
+          state: True
+          recursive: True
+          depth: 4
+        #name: "{{ domain_name }}"
+    

@@ -82,7 +82,7 @@ class DPGet(DPRequest):
         super(DPGet, self).__init__(module)
         if not is_valid_class(self.class_name): 
             raise ValueError('Invalid class_name.')
-        if hasattr(self, 'name'):
+        if self.name:
             self.path = GET_CONFIG_NAME_URI.format(self.domain, self.class_name, self.name)
         else:
             self.path = CREATE_CONFIG_URI.format(self.domain, self.class_name)

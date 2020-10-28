@@ -1,0 +1,28 @@
+- name: 'test play'
+  hosts: localhost
+  connection: local
+  vars: 
+    ansible_connection: httpapi
+    ansible_httpapi_port: 5554
+    ansible_httpapi_use_ssl: yes
+    ansible_network_os: community.datapower.rest_mgmt
+    ansible_user: admin
+    ansible_httpapi_password: admin
+    ansible_httpapi_validate_certs: false
+    #user_data_file: "/Users/anthonyschneider/ansible/dp-ansible-dev/develop/ansible-datapower/up_file.yml"
+  tasks:
+  #- name: Load data
+  #  slurp:
+  #    src: "{{ user_data_file }}"
+  #  register: slurped_user_data
+  - name: Upload a file
+    community.datapower.upload_file:
+      domain: default
+      top_dir: local
+      overwrite: True
+      src: "dp_hosts"
+      dst: "dp_hosts"
+          
+
+        
+          

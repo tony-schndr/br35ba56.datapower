@@ -9,12 +9,12 @@ DOCUMENTATION = r'''
 ---
 module: community.datapower.create
 
-short_description: Use for creating various objects on IBM DataPower
+short_description: Use for modifying various objects on IBM DataPower
 
 
 version_added: "1.0.0"
 
-description: Use for creating configuration, this won't succeed if the object already exists protecting from overwrite.
+description: Use for modifying configuration.
 
 options:
     domains:
@@ -24,7 +24,7 @@ options:
     defintions:
         description: DataPower object config defined in yaml.  Determine fromat using a GET and then convert to YAML.
         required: true
-        type: list of dictionaries (in YAML)
+        type: list of YAML dictionaries.
 
 
 author:
@@ -32,33 +32,16 @@ author:
 '''
 
 EXAMPLES = r'''
-# Create a datapower object.  You can determine the correct definition by performing a datapower.get after creating it in the WebGUI.
+# Modify a datapower object.  This example simply disables test_domain1.  
   
   - name: Create a datapower domain(s)
-    community.datapower.create:
+    community.datapower.upload_file:
       domains:
       - default
       definitions:
       - Domain:
           name: test_domain1
-          mAdminState: enabled
-          NeighborDomain:
-            value: default
-          FileMap:
-            CopyFrom: 'on'
-            CopyTo: 'on'
-            Delete: 'on'
-            Display: 'on'
-            Exec: 'on'
-            Subdir: 'on'
-          MonitoringMap:
-            Audit: 'off'
-            Log: 'off'
-          ConfigMode: local
-          ImportFormat: ZIP
-          LocalIPRewrite: 'on'
-          MaxChkpoints: 3
-          ConfigPermissionsMode: scope-domain
+          mAdminState: disabled
       
 '''
 
@@ -85,14 +68,17 @@ my_useful_info:
 '''
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower import DPCreate
-
+from ansible_collections.community.datapower.plugins.module_utils.datapower import DPUploadFile
 
 def run_module():
     # define available arguments/parameters a user can pass to the module
     module_args = dict(
         domain = dict(type='str', required=True),
-        body = dict(type='dict', required=True)
+        top_dir = dict(type='str', choices=['local', 'cert', 'sharedcert'], required=True),
+        src = dict(type='str', required=True),
+        dst = dict(type='str', required=True),
+        overwrite = dict(type='bool', required=True),
+        
     )
     
     # seed the result dict in the object
@@ -122,9 +108,10 @@ def run_module():
     result = dict(
         changed=False
     )
-    dp_create = DPCreate(module)
-    create_result = dp_create.send_request()
-    result['result'] = create_result
+
+    dp_up = DPUploadFile(module)
+    #dp_up.send_request()
+    result['upload_file_result'] = dp_up.send_request()
 
     # in the event of a successful module execution, you will want to
     # simple AnsibleModule.exit_json(), passing the key/value results

@@ -103,7 +103,7 @@ def run_module():
         changed=False
     )
     dp_del = DPDelete(module)
-    result['datapower_result'] = dp_del.execute_task()
+    result['datapower_result'] = dp_del.send_request()
 
     # in the event of a successful module execution, you will want to
     # simple AnsibleModule.exit_json(), passing the key/value results

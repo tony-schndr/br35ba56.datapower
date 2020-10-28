@@ -35,11 +35,6 @@
             MaxChkpoints: 3
             ConfigPermissionsMode: scope-domain
           
-    - name: Save Domain 
-      community.datapower.action:
-        domain: default
-        body:
-          SaveConfig: {}
     
     - name: Disable domain just created 
       community.datapower.modify:
@@ -49,18 +44,18 @@
             name: test_domain1
             mAdminState: disabled
 
-    - name: Get the domain we created.
+    - name: Get all domains.
       community.datapower.get:
         domain: default
         class_name: Domain
-        name: test_domain1
+        #name: test_domain1
 
     - name: Delete domain just modified.
       community.datapower.delete:
         domain: default
         class_name: Domain
         name: test_domain1
-        
+         
     - name: Save Domain 
       community.datapower.action:
         domain: default

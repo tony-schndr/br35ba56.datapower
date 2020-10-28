@@ -2,6 +2,8 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
+#from urllib.parse import quote
+#from urllib.parse import urlencode
 
 from ansible.module_utils.connection import Connection, ConnectionError
 from ansible.module_utils._text import to_text
@@ -19,17 +21,18 @@ DELETE_URI = '/mgmt/config/{0}/{1}/{2}'
 MODIFY_URI = '/mgmt/config/{0}/{1}/{2}'
 CREATE_CONFIG_URI = '/mgmt/config/{0}/{1}'
 ACTION_QUEUE_URI = '/mgmt/actionqueue/{0}'
-
+FILESTORE_URI = '/mgmt/filestore/{0}/{1}/{2}'
 
 
 def is_valid_class(class_name):
     return config.val_obj_dict['_links'].get(class_name) or False
 
-def has_body(module):
-    return 'body' in module.params
-    
+# TODO  Should this stay here?  
+def _body_has_name(body):
+    return 'name' in  body.get(list(body.keys())[0])
 
-class DPDomain():
+
+class DPRequest():
 
     def __init__(self, module):
         self.module = module
@@ -37,37 +40,17 @@ class DPDomain():
             self.domain = module.params.get('domain')
         else:
             raise AttributeError('Missing domain')
-        if isinstance(self, DPCreate) or isinstance(self, DPModify) or isinstance(self, DPAction):
-            self.init_body()
-        elif isinstance(self, DPDelete) or  isinstance(self, DPGet):
-            self.init_other()
-      
+        for k, v in module.params.items():
+            setattr(self, k, v)
         self.connection = Connection(module._socket_path)
-    
+                
 
-    def init_other(self):
-        if self.module.params['class_name'] is not None: 
-            self.class_name = self.module.params['class_name']
+    def get_class_name(self):
+        if hasattr(self, 'body'):
+            return list(self.body.keys())[0]
         else:
-            raise AttributeError('Missing class_name.')
-        if self.module.params['name'] is not None:
-            self.name = self.module.params['name']
-
-
-    def init_body(self):
-        if has_body(self.module):
-            self.body = self.module.params.get('body')
-        if isinstance(self, DPModify) or isinstance(self, DPCreate):
-            if is_valid_class(list(self.body.keys())[0]):
-                self.class_name = list(self.body.keys())[0]
-            else:
-                raise AttributeError('Missing class_name or Invalid class_name, ref GET /mgmt/config/')
-        if isinstance(self, DPModify) or isinstance(self, DPCreate):
-            if 'name' in  self.body.get(self.class_name):
-                self.name = self.body.get(self.class_name).get('name')
-            else:
-                raise AttributeError('missing name, ref GET /mgmt/config/')
-
+            return None
+            
 
     def _process_request(self, method, path, body):
         try:
@@ -78,23 +61,27 @@ class DPDomain():
         return result
 
 
-    def execute_task(self):
+    def send_request(self):
         if hasattr(self, 'body'):
             return self._process_request(self.method, self.path, self.body)
         else:
             return self._process_request(self.method, self.path, None)
             
 
-class DPCreate(DPDomain):
+class DPCreate(DPRequest):
     def __init__(self, module):
         super(DPCreate, self).__init__(module)
+        if is_valid_class(self.get_class_name()):
+            self.class_name = self.get_class_name()
         self.path = CREATE_CONFIG_URI.format(self.domain, self.class_name)
         self.method = 'POST'
 
 
-class DPGet(DPDomain):
+class DPGet(DPRequest):
     def __init__(self, module):
         super(DPGet, self).__init__(module)
+        if not is_valid_class(self.class_name): 
+            raise ValueError('Invalid class_name.')
         if hasattr(self, 'name'):
             self.path = GET_CONFIG_NAME_URI.format(self.domain, self.class_name, self.name)
         else:
@@ -102,27 +89,48 @@ class DPGet(DPDomain):
         self.method = 'GET'
 
 
-class DPModify(DPDomain):
+class DPDelete(DPRequest):
+    def __init__(self, module):
+        super(DPDelete, self).__init__(module)
+        if not is_valid_class(self.class_name): 
+            raise ValueError('Invalid class_name.')
+        if not hasattr(self, 'name'):
+            raise AttributeError('DPDelete() requires name')
+        self.path = DELETE_URI.format(self.domain, self.class_name, self.name)
+        self.method = 'DELETE'
+
+
+class DPModify(DPRequest):
     def __init__(self, module):
         super(DPModify, self).__init__(module)
+        if _body_has_name(self.body):
+            self.name = self.body.get(self.get_class_name()).get('name')
+        if is_valid_class(self.get_class_name()):
+            self.class_name = self.get_class_name()
         self.path = MODIFY_URI.format(self.domain, self.class_name, self.name)
         self.method = 'PUT'
 
 
-class DPDelete(DPDomain):
-    def __init__(self, module):
-        super(DPDelete, self).__init__(module)
-        if hasattr(self, 'name'):
-            self.path = DELETE_URI.format(self.domain, self.class_name, self.name)
-        else: 
-            raise AttributeError('DPDelete task requires name')
-        self.method = 'DELETE'
-
-class DPAction(DPDomain):
+class DPAction(DPRequest):
     def __init__(self, module):
         super(DPAction, self).__init__(module)
         self.path = ACTION_QUEUE_URI.format(self.domain)
         self.method = 'POST'
+
+
+
+class DPUploadFile(DPRequest):
+    def __init__(self, module):
+        super(DPUploadFile, self).__init__(module)
+        if self.dir == '/':
+            self.path = FILESTORE_URI.format(self.domain, self.top_dir, "").rstrip('/')
+        else:
+            self.path = FILESTORE_URI.format(self.domain, self.top_dir, self.dir).rstrip('/')
+        if self.overwrite:
+            self.method = 'PUT'
+        else:
+            self.method = 'POST'
+
 
 def _scrub(obj, bad_key):
     """

@@ -105,7 +105,7 @@ def run_module():
         changed=False
     )
     dp_mod = DPModify(module)
-    result['result'] = dp_mod.execute_task()
+    result['modify_result'] = dp_mod.send_request()
 
     # in the event of a successful module execution, you will want to
     # simple AnsibleModule.exit_json(), passing the key/value results

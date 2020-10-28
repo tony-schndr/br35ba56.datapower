@@ -103,7 +103,7 @@ def run_module():
         changed=False
     )
     dp_act = DPAction(module)
-    result['action_results'] = dp_act.execute_task()
+    result['action_results'] = dp_act.send_request()
 
     # in the event of a successful module execution, you will want to
     # simple AnsibleModule.exit_json(), passing the key/value results

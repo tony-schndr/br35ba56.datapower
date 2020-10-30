@@ -1,0 +1,70 @@
+- name: 'test play'
+  hosts: dp1
+  connection: local
+  vars: 
+    ansible_connection: httpapi
+    ansible_httpapi_port: 5554
+    ansible_httpapi_use_ssl: yes
+    ansible_network_os: community.datapower.rest_mgmt
+    ansible_user: admin
+    ansible_httpapi_password: admin
+    ansible_httpapi_validate_certs: false
+  tasks:
+    - name: Create certificate
+      community.datapower.create:
+        domain: default
+        body:
+          CryptoCertificate:
+            name: Test2
+            mAdminState: enabled
+            Filename: cert:///webgui-sscert.pem
+            PasswordAlias: 'off'
+            IgnoreExpiration: 'off'
+
+    - name: Get the cert object Test2
+      community.datapower.get:
+        domain: default
+        class_name: Domain
+        name: Test2
+
+    - name: Modify the valcred Certificate list
+      community.datapower.modify:
+        domain: default
+        class_name: CryptoValCred
+        name: valcred
+        obj_field: Certificate
+        body:
+          Certificate:
+            - value: Test2
+         
+    - name: Delete Test2 cert
+      community.datapower.delete:
+        domain: default
+        class_name: CryptoCertificate
+        name: Test2
+
+
+    - name: Save Domain 
+      community.datapower.action:
+        domain: default
+        body:
+          SaveConfig: {}    
+    
+    - name: Export ValCred
+      community.datapower.export:
+        domain: default
+        body:
+          Export:
+            Format: JSON
+            AllFiles: 'off'
+            Persisted: 'off'
+            IncludeInternalFiles: 'off'
+            Objects:
+              - name: valcred
+                class: CryptoValCred
+                
+    - name: Raw request example, this will return Config Items
+      community.datapower.request:
+        path: /mgmt/config/
+        method: GET
+    

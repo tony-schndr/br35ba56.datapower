@@ -41,19 +41,12 @@ class DPRequest():
         for k, v in module.params.items():
             setattr(self, k, v)
         self.connection = Connection(module._socket_path)
-                
-
-    def get_class_name(self):
-        if hasattr(self, 'class_name'):
-            return self.class_name
-        elif hasattr(self, 'body'):
-            return list(self.body.keys())[0]
-        else:
-            return None
-            
+                            
 
     def _process_request(self, method, path, body):
         result = {}
+        _scrub(body, '_links')
+        _scrub(body, 'href')
         try:
             result['request_details'] = {'body': body, 'path': path, 'method': method,}
             result['request_result'] = self.connection.send_request(body, path, method)
@@ -61,66 +54,45 @@ class DPRequest():
             return {'CONN_ERR': to_text(ce ), 'result': result}
         return result
 
-    def _get_uri(self):
-        pass
-
 
     def send_request(self):
         if hasattr(self, 'body'):
             return self._process_request(self.method, self.path, self.body)
         else:
             return self._process_request(self.method, self.path, None)
-            
 
+    def get_class_name(self):
+        if hasattr(self, 'class_name') and self.class_name is not None:
+            return self.class_name
+        else:# hasattr(self, 'body'):
+            return list(self.body.keys())[0]
+                    
 
-
-class DPExportDomain():
-
-    def __init__(self):
-        pass
-
-
-class DPExportObject():
-
-    def __init__(self, objects):
-        for obj in objects:
-            for k,v in obj.items():
-                # Need a couple strips here to accomadate for - and _ in python code.
-                # Keys need to match DP REST interface.
-                obj[k.replace('_', '-').strip('_').strip('-')] = v
-                del obj[k]
-        self.objects = objects
-
-    def _get_export_list(self):
-        return self.objects
-
-
-
-class DPExportAll():
-
-    def __init__(self):
-        pass
-
-class DPExport(DPRequest):
-
+class DPModify(DPRequest):
     def __init__(self, module):
-        super(DPExport, self).__init__(module)
-        if self.body.get('Export').get('Domain') and self.body.get('Export').get('Object'):
-            raise AttributeError('Domain and Object are mutually exclusive')
+        super(DPModify, self).__init__(module)
+        self.class_name = self.get_class_name()
+        if not is_valid_class(self.class_name):
+            raise AttributeError('Class name %s is not a valid DataPower class_name' % self.class_name)
+        if self.class_name and self.name and self.obj_field:
+            pass
+        elif _body_has_name(self.body):
+            self.name = self.body.get(
+                 self.class_name
+            ).get('name')
+        else:
+            raise AttributeError('DPModify miscombination, if your targeting the object, body is all you need.  If your targeting a list property in an object, you need to pass class_name, name and obj_field')
+        
         self.path = self._get_uri()
-        self.method = 'POST'
-        dp_exports = []
-        if self.body.get('Export').get('Domain'):
-            self.dp_exports = DPExportAll(module.params.get('Export').get('Domain'))._get_export_list()
-        elif self.body.get('Export').get('Object'):
-            self.dp_exports = DPExportAll(module.params.get('Export').get('Object'))._get_export_list()
-
-#       self.body.get('Export') = self.dp_exports
 
 
     def _get_uri(self):
-        return ACTION_QUEUE_URI.format(self.domain)
-
+        if self.obj_field:
+            self.method = 'POST'
+            return MOD_CONFIG_FIELD_URI.format(self.domain, self.class_name, self.name, self.obj_field)
+        else:
+            self.method = 'PUT'
+            return MOD_CONFIG_URI.format(self.domain, self.class_name, self.name)
 
 class DPGet(DPRequest):
     def __init__(self, module):
@@ -185,30 +157,6 @@ class DPCreate(DPRequest):
         self.method = 'POST'
 
 
-class DPModify(DPRequest):
-    def __init__(self, module):
-        super(DPModify, self).__init__(module)
-        if self.class_name and self.name and self.obj_field:
-            pass
-        elif _body_has_name(self.body):
-             self.name = self.body.get(self.get_class_name()).get('name')
-        else:
-            raise AttributeError('DPModify miscombination, if your targeting the object, body is all you need.  If your targeting a list property in an object, you need to pass class_name, name and obj_field')
-        if is_valid_class(self.get_class_name()):
-            self.class_name = self.get_class_name()
-        self.path = self._get_uri()
-        #self.method = 'PUT'
-
-
-    def _get_uri(self):
-        if self.obj_field:
-            self.method = 'POST'
-            return MOD_CONFIG_FIELD_URI.format(self.domain, self.class_name, self.name, self.obj_field)
-        else:
-            self.method = 'PUT'
-            return MOD_CONFIG_URI.format(self.domain, self.class_name, self.name)
-
-
 class DPAction(DPRequest):
     def __init__(self, module):
         super(DPAction, self).__init__(module)
@@ -228,6 +176,46 @@ class DPUploadFile(DPRequest):
         else:
             self.method = 'POST'
 
+
+class DPExportList():
+
+    def __init__(self, objects):
+        for obj in objects:
+            for k,v in obj.items():
+                if k == 'name' or k == 'class':
+                    continue
+                # Need a couple strips here to accomadate for - and _ in python code.
+                # Keys need to match DP REST interface.
+                obj[k.replace('_', '-')] = v
+                del obj[k]
+        self.objects = objects
+
+    def _get_export_list(self):
+        return self.objects
+
+
+class DPExport(DPRequest):
+
+    def __init__(self, module):
+        super(DPExport, self).__init__(module)
+        if self.body.get('Export').get('Domain') and self.body.get('Export').get('Object'):
+            raise AttributeError('Domain and Object are mutually exclusive')
+        if self.body.get('Export').get('Domain', None):
+            list_type = 'Domain'
+        elif self.body.get('Export').get('Object', None):
+            list_type = 'Object'
+        else: 
+            list_type = 'All'
+        self.path = self._get_uri()
+        self.method = 'POST'
+        if list_type != 'All':
+            dp_exports = DPExportList(
+                self.body.get('Export').get(list_type)
+            )._get_export_list()
+            self.body['Export'][list_type] = dp_exports
+
+    def _get_uri(self):
+        return ACTION_QUEUE_URI.format(self.domain)
 
 def _scrub(obj, bad_key):
     """

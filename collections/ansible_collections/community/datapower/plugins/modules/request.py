@@ -14,19 +14,17 @@ short_description: Use for creating various objects on IBM DataPower
 
 version_added: "1.0.0"
 
-description: Use for deleting configuration.
+description: Use for creating configuration, this won't succeed if the object already exists protecting from overwrite.
 
 options:
     domains:
         description: List of domains to execute on.
         required: true
         type: list
-    object_Class:
-        description: DataPower objects object_class.  Determine object_class by...
+    defintions:
+        description: DataPower object config defined in yaml.  Determine fromat using a GET and then convert to YAML.
         required: true
-        type: str
-    name:
-        description: Name of object as seen in DataPwer
+        type: list of dictionaries (in YAML)
 
 
 author:
@@ -34,13 +32,34 @@ author:
 '''
 
 EXAMPLES = r'''
-# Delete a datapower object.  Determine object_class by ...
+# Create a datapower object.  You can determine the correct definition by performing a datapower.get after creating it in the WebGUI.
+  
   - name: Create a datapower domain(s)
-    community.datapower.delete:
+    community.datapower.create:
       domains:
       - default
-      object_class: Domain
-      name: test_domain     
+      definitions:
+      - Domain:
+          name: test_domain1
+          mAdminState: enabled
+          NeighborDomain:
+            value: default
+          FileMap:
+            CopyFrom: 'on'
+            CopyTo: 'on'
+            Delete: 'on'
+            Display: 'on'
+            Exec: 'on'
+            Subdir: 'on'
+          MonitoringMap:
+            Audit: 'off'
+            Log: 'off'
+          ConfigMode: local
+          ImportFormat: ZIP
+          LocalIPRewrite: 'on'
+          MaxChkpoints: 3
+          ConfigPermissionsMode: scope-domain
+      
 '''
 
 RETURN = r'''
@@ -64,19 +83,30 @@ my_useful_info:
         'answer': 42,
     }
 '''
+
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower import DPDelete 
+from ansible_collections.community.datapower.plugins.module_utils.datapower import DPRequest
+
 
 def run_module():
     # define available arguments/parameters a user can pass to the module
     module_args = dict(
-        domain = dict(type='str', required=True),
-        class_name = dict(type='str', required=True),
-        name = dict(type='str', required=True),
-        obj_field = dict(type='str', required=False),
+        path = dict(type='str', required=True),
+        body = dict(type='dict', required=False),
+        method = dict(type='str', choices=['PUT', 'POST', 'GET', 'DELETE'])
     )
     
+    # seed the result dict in the object
+    # we primarily care about changed and state
+    # changed is if this module effectively modified the target
+    # state will include any data that you want your module to pass back
+    # for consumption, for example, in a subsequent task
+  
 
+    # the AnsibleModule object will be our abstraction working with Ansible
+    # this includes instantiation, a couple of common attr would be the
+    # args/params passed to the execution, as well as if the module
+    # supports check mode
     module = AnsibleModule(
         argument_spec=module_args,
         supports_check_mode=True
@@ -93,8 +123,9 @@ def run_module():
     result = dict(
         changed=False
     )
-    dp_del = DPDelete(module)
-    result['delete_result'] = dp_del.send_request()
+    dp_req = DPRequest(module)
+    req_result = dp_req.send_request()
+    result['result'] = req_result
 
     # in the event of a successful module execution, you will want to
     # simple AnsibleModule.exit_json(), passing the key/value results

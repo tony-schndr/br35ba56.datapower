@@ -11,7 +11,7 @@
     ansible_httpapi_validate_certs: false
   tasks:
     - name: Create certificate
-      community.datapower.create:
+      community.datapower.create_conf:
         domain: default
         body:
           CryptoCertificate:
@@ -22,13 +22,13 @@
             IgnoreExpiration: 'off'
 
     - name: Get the cert object Test2
-      community.datapower.get:
+      community.datapower.get_conf:
         domain: default
-        class_name: Domain
+        class_name: CryptoCertificate
         name: Test2
 
     - name: Modify the valcred Certificate list
-      community.datapower.modify:
+      community.datapower.mod_conf:
         domain: default
         class_name: CryptoValCred
         name: valcred
@@ -38,7 +38,7 @@
             - value: Test2
          
     - name: Delete Test2 cert
-      community.datapower.delete:
+      community.datapower.del_conf:
         domain: default
         class_name: CryptoCertificate
         name: Test2

@@ -79,13 +79,12 @@ def run_module():
         name = dict(type='str', required=False),
         obj_field = dict(type='str', required=False)
     )
+    #mutually_exclusive= ['class_name']
+    required_together = [
+        ['class_name', 'name', 'obj_field']
+    ]
     
-    # seed the result dict in the object
-    # we primarily care about changed and state
-    # changed is if this module effectively modified the target
-    # state will include any data that you want your module to pass back
-    # for consumption, for example, in a subsequent task
-  
+
 
     # the AnsibleModule object will be our abstraction working with Ansible
     # this includes instantiation, a couple of common attr would be the
@@ -93,6 +92,7 @@ def run_module():
     # supports check mode
     module = AnsibleModule(
         argument_spec=module_args,
+        required_together=required_together,
         supports_check_mode=True
     )
     

@@ -68,24 +68,47 @@ my_useful_info:
 '''
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower import DPModify
+from ansible_collections.community.datapower.plugins.module_utils.datapower import DPExport
 
 def run_module():
     # define available arguments/parameters a user can pass to the module
     module_args = dict(
         domain = dict(type='str', required=True),
-        body = dict(type='dict', required=True),
-        class_name=dict(type='str', required=True),
-        name = dict(type='str', required=True),
-        obj_field = dict(type='str', required=True)
+        body = dict(type='dict', required=True,
+            Export = dict(type='dict', required=True,
+                Format = dict(choices=['JSON', 'XML', 'ZIP'], required=True),
+                UserComments = dict(type='str', required=False),
+                AllFiles = dict(type='bool', required=True),
+                Persisted = dict(type='bool', required=True),
+                IncludeInternalFiles = dict(type='bool', required=True),
+                DeploymentPolicy = dict(type='str', required=False),
+                Domain = dict(
+                    type='list', required=False,
+                    name=dict(type='str', required=True),
+                    ref_objects=dict(type='bool', required=True),
+                    ref_files=dict(type='bool', required=True),
+                    include_debug=dict(type='bool', required=False)
+                    
+                ),
+                Object = dict(
+                    type='list', required=False,
+                    class_=dict(type='str', required=True),
+                    name=dict(type='str', required=True),
+                    ref_objects=dict(type='bool', required=True),
+                    ref_files=dict(type='bool', required=True),
+                    include_debug=dict(type='bool', required=False)
+                )
+            )
+        )
     )
-    
-    # seed the result dict in the object
-    # we primarily care about changed and state
-    # changed is if this module effectively modified the target
-    # state will include any data that you want your module to pass back
-    # for consumption, for example, in a subsequent task
-  
+    mutually_exclusive = [
+        ['Domain','Object']
+        ]
+    #required_together = [
+    #   ['class_name', 'name', 'obj_field']
+    #]
+
+
 
     # the AnsibleModule object will be our abstraction working with Ansible
     # this includes instantiation, a couple of common attr would be the
@@ -93,7 +116,8 @@ def run_module():
     # supports check mode
     module = AnsibleModule(
         argument_spec=module_args,
-        supports_check_mode=True
+        supports_check_mode=True,
+        mutually_exclusive=mutually_exclusive
     )
     
     # if the user is working with this module in only check mode we do not
@@ -107,8 +131,8 @@ def run_module():
     result = dict(
         changed=False
     )
-    dp_mod = DPModify(module)
-    result['modify_result'] = dp_mod.send_request()
+    dp_exp = DPExport(module)
+    result['export_result'] = dp_exp.send_request()
 
     # in the event of a successful module execution, you will want to
     # simple AnsibleModule.exit_json(), passing the key/value results

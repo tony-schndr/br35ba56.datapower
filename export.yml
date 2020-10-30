@@ -1,0 +1,35 @@
+- name: 'test play'
+  hosts: dp1
+  connection: local
+  vars: 
+    ansible_connection: httpapi
+    ansible_httpapi_port: 5554
+    ansible_httpapi_use_ssl: yes
+    ansible_network_os: community.datapower.rest_mgmt
+    ansible_user: admin
+    ansible_httpapi_password: admin
+    ansible_httpapi_validate_certs: false
+    #domain_name: defau
+  tasks:
+    #- name: Create SNAFU domain to export
+    #  community.datapower.create:
+    #    domain: default
+    #    body:
+    #      Domain:
+
+    - name: Export domain configuration
+      community.datapower.export:
+        domain: default
+        body:
+          Export:
+            Format: ZIP
+            UserComment: comments
+            AllFiles: 'off'
+            Persisted: 'off'
+            IncludeInternalFiles: 'off'
+            Object:
+            - name: default
+              class: Domain
+              ref_objects: 'off'
+              ref_files: 'off'
+              include_debug: 'off'

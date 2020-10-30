@@ -9,9 +9,9 @@
     ansible_user: admin
     ansible_httpapi_password: admin
     ansible_httpapi_validate_certs: false
-    domain_name: SNAFU
+    #domain_name: defau
   tasks:
-    - name: Get all domains.
+    - name: Add cert to valcred.
       community.datapower.modify:
         domain: default
         class_name: CryptoValCred
@@ -19,17 +19,23 @@
         name: valcred
         body:
           Certificate:
-            value: Test2
+            #value: Test2
+            value: Test1
       #name: "{{ domain_name }}"
     - name: Get all Valcred
       community.datapower.get:
         domain: default
         class_name: CryptoValCred
-        #obj_field: Certificate
+        obj_field: Certificate
         name: valcred
-        options:
-          state: True
-          recursive: True
-          depth: 4
+        state: True
+        #recursive: True
+        depth: 4
         #name: "{{ domain_name }}"
-    
+    - name: Remove Certs from valcred
+      community.datapower.delete:
+        domain: default
+        class_name: CryptoValCred
+        obj_field: Certificate
+        name: valcred
+       

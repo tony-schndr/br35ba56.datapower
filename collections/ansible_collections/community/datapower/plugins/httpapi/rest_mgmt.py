@@ -61,8 +61,7 @@ class HttpApi(HttpApiBase):
             path, data, headers=headers, method=method
         )
         return handle_response(response, response_data)
-    def get(self):
-      return 'stuff'
+
 
 
 def handle_response(response, response_data):

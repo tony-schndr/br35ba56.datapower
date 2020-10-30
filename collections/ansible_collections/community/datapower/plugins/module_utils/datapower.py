@@ -19,6 +19,7 @@ GET_CONFIG_NAME_FIELD_URI = '/mgmt/config/{0}/{1}/{2}/{3}'
 MOD_CONFIG_URI = '/mgmt/config/{0}/{1}/{2}'
 MOD_CONFIG_FIELD_URI = '/mgmt/config/{0}/{1}/{2}/{3}'
 DELETE_URI = '/mgmt/config/{0}/{1}/{2}'
+DELETE_FIELD_URI = '/mgmt/config/{0}/{1}/{2}/{3}'
 MODIFY_URI = '/mgmt/config/{0}/{1}/{2}'
 CREATE_CONFIG_URI = '/mgmt/config/{0}/{1}'
 ACTION_QUEUE_URI = '/mgmt/actionqueue/{0}'
@@ -37,29 +38,31 @@ class DPRequest():
 
     def __init__(self, module):
         self.module = module
-        if module.params.get('domain') is not None:
-            self.domain = module.params.get('domain')
-        else:
-            raise AttributeError('Missing domain')
         for k, v in module.params.items():
             setattr(self, k, v)
         self.connection = Connection(module._socket_path)
                 
 
     def get_class_name(self):
-        if hasattr(self, 'body'):
+        if hasattr(self, 'class_name'):
+            return self.class_name
+        elif hasattr(self, 'body'):
             return list(self.body.keys())[0]
         else:
             return None
             
 
     def _process_request(self, method, path, body):
+        result = {}
         try:
-            result = self.connection.send_request(body, path, method)
-            result['request_details'] = {'body': body, 'path': path, 'method': method, 'options': self.options}
+            result['request_details'] = {'body': body, 'path': path, 'method': method,}
+            result['request_result'] = self.connection.send_request(body, path, method)
         except ConnectionError as ce:
-            return {'CONN_ERR': to_text(ce)}
+            return {'CONN_ERR': to_text(ce ), 'result': result}
         return result
+
+    def _get_uri(self):
+        pass
 
 
     def send_request(self):
@@ -68,6 +71,56 @@ class DPRequest():
         else:
             return self._process_request(self.method, self.path, None)
             
+
+
+
+class DPExportDomain():
+
+    def __init__(self):
+        pass
+
+
+class DPExportObject():
+
+    def __init__(self, objects):
+        for obj in objects:
+            for k,v in obj.items():
+                # Need a couple strips here to accomadate for - and _ in python code.
+                # Keys need to match DP REST interface.
+                obj[k.replace('_', '-').strip('_').strip('-')] = v
+                del obj[k]
+        self.objects = objects
+
+    def _get_export_list(self):
+        return self.objects
+
+
+
+class DPExportAll():
+
+    def __init__(self):
+        pass
+
+class DPExport(DPRequest):
+
+    def __init__(self, module):
+        super(DPExport, self).__init__(module)
+        if self.body.get('Export').get('Domain') and self.body.get('Export').get('Object'):
+            raise AttributeError('Domain and Object are mutually exclusive')
+        self.path = self._get_uri()
+        self.method = 'POST'
+        dp_exports = []
+        if self.body.get('Export').get('Domain'):
+            self.dp_exports = DPExportAll(module.params.get('Export').get('Domain'))._get_export_list()
+        elif self.body.get('Export').get('Object'):
+            self.dp_exports = DPExportAll(module.params.get('Export').get('Object'))._get_export_list()
+
+#       self.body.get('Export') = self.dp_exports
+
+
+    def _get_uri(self):
+        return ACTION_QUEUE_URI.format(self.domain)
+
 
 class DPGet(DPRequest):
     def __init__(self, module):
@@ -90,29 +143,37 @@ class DPGet(DPRequest):
 
     
     def _get_options(self):
-        if not self.options:
-            return ''
         url_params = {}
-        if self.options.get('state', None):
+        if self.state:
             url_params['state'] = '1'
-        if self.options.get('recursive', None):
+        if self.recursive:
             url_params['view'] = 'recursive'
-            if self.options.get('depth', None):
-                url_params['depth'] = self.options.get('depth')
+            if self.depth:
+                url_params['depth'] = self.depth
             else:
                 url_params['depth'] = '5'
         return urlencode(url_params, doseq=0)
 
 
 class DPDelete(DPRequest):
+    
     def __init__(self, module):
         super(DPDelete, self).__init__(module)
         if not is_valid_class(self.class_name): 
             raise ValueError('Invalid class_name.')
         if not hasattr(self, 'name'):
             raise AttributeError('DPDelete() requires name')
-        self.path = DELETE_URI.format(self.domain, self.class_name, self.name)
+        self.path = self._get_uri()
         self.method = 'DELETE'
+
+    def _get_uri(self):
+        if self.name:
+            if self.obj_field:
+                return DELETE_FIELD_URI.format(self.domain, self.class_name, self.name, self.obj_field).rstrip('/')
+            else:
+                return DELETE_URI.format(self.domain, self.class_name, self.name).rstrip('/')
+        else:
+            raise AttributeError('DPDelete requires name to target a resouce.')
 
 
 class DPCreate(DPRequest):
@@ -127,37 +188,25 @@ class DPCreate(DPRequest):
 class DPModify(DPRequest):
     def __init__(self, module):
         super(DPModify, self).__init__(module)
-        if _body_has_name(self.body):
-            self.name = self.body.get(self.get_class_name()).get('name')
+        if self.class_name and self.name and self.obj_field:
+            pass
+        elif _body_has_name(self.body):
+             self.name = self.body.get(self.get_class_name()).get('name')
+        else:
+            raise AttributeError('DPModify miscombination, if your targeting the object, body is all you need.  If your targeting a list property in an object, you need to pass class_name, name and obj_field')
         if is_valid_class(self.get_class_name()):
             self.class_name = self.get_class_name()
-        self.path = self._get_uri(self)
-        self.method = 'PUT'
+        self.path = self._get_uri()
+        #self.method = 'PUT'
 
 
     def _get_uri(self):
         if self.obj_field:
-            MOD_CONFIG_FIELD_URI.format(self.domain, self.class_name, self.name, self.obj_field)
+            self.method = 'POST'
+            return MOD_CONFIG_FIELD_URI.format(self.domain, self.class_name, self.name, self.obj_field)
         else:
-            MOD_CONFIG_URI.format(self.domain, self.class_name, self.name)
-
-
-class DPUpdateList(DPRequest):
-    def __init__(self, module):
-        super(DPModify, self).__init__(module)
-        if is_valid_class(self.get_class_name()):
-            self.class_name = self.get_class_name()
-            
-        self.path = self._get_uri(self)
-        self.method = 'PUT'
-
-
-    def _get_uri(self):
-        if self.obj_field:
-            MOD_CONFIG_FIELD_URI.format(self.domain, self.class_name, self.name, self.obj_field)
-        else:
-            MOD_CONFIG_URI.format(self.domain, self.class_name, self.name)
-
+            self.method = 'PUT'
+            return MOD_CONFIG_URI.format(self.domain, self.class_name, self.name)
 
 
 class DPAction(DPRequest):

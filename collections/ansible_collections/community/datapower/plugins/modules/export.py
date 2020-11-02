@@ -22,7 +22,7 @@ options:
         required: true
         type: list
     defintions:
-        description: DataPower object config defined in yaml.  Determine fromat using a GET and then convert to YAML.
+        description: DataPower object config defined in yaml.  Determine format using a GET and then convert to YAML.
         required: true
         type: list of YAML dictionaries.
 
@@ -73,24 +73,23 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower impo
 def run_module():
     # define available arguments/parameters a user can pass to the module
     module_args = dict(
-        domain = dict(type='str', required=True),
-        body = dict(type='dict', required=True,
-            Export = dict(type='dict', required=True,
-                Format = dict(choices=['JSON', 'XML', 'ZIP'], required=True),
-                UserComments = dict(type='str', required=False),
-                AllFiles = dict(type='bool', required=True),
-                Persisted = dict(type='bool', required=True),
-                IncludeInternalFiles = dict(type='bool', required=True),
-                DeploymentPolicy = dict(type='str', required=False),
-                Domain = dict(
+        domain=dict(type='str', required=True),
+        body=dict(type='dict', required=True,
+            Export=dict(type='dict', required=True,
+                Format=dict(choices=['JSON', 'XML', 'ZIP'], required=True),
+                UserComments=dict(type='str', required=False),
+                AllFiles=dict(type='bool', required=True),
+                Persisted=dict(type='bool', required=True),
+                IncludeInternalFiles=dict(type='bool', required=True),
+                DeploymentPolicy=dict(type='str', required=False),
+                Domain=dict(
                     type='list', required=False,
                     name=dict(type='str', required=True),
                     ref_objects=dict(type='bool', required=True),
                     ref_files=dict(type='bool', required=True),
                     include_debug=dict(type='bool', required=False)
-                    
                 ),
-                Object = dict(
+                Object=dict(
                     type='list', required=False,
                     class_=dict(type='str', required=True),
                     name=dict(type='str', required=True),
@@ -102,7 +101,7 @@ def run_module():
         )
     )
     mutually_exclusive = [
-        ['Domain','Object']
+        ['Domain', 'Object']
         ]
     #required_together = [
     #   ['class_name', 'name', 'obj_field']

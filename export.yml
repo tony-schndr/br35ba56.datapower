@@ -9,21 +9,37 @@
     ansible_user: admin
     ansible_httpapi_password: admin
     ansible_httpapi_validate_certs: false
-    #domain_name: defau
   tasks:
-    #- name: Create SNAFU domain to export
-    #  community.datapower.create:
-    #    domain: default
-    #    body:
-    #      Domain:
 
-    - name: Export domain configuration
+    - name: Export object configuration
       community.datapower.export:
         domain: default
         body:
           Export:
-            Format: ZIP
+            Format: JSON
             UserComment: comments
             AllFiles: 'off'
             Persisted: 'off'
             IncludeInternalFiles: 'off'
+            Object:
+              - name: valcred
+                class: CryptoValCred
+    - name: Load object configuration
+      community.datapower.load_conf:
+        domain: default
+        body:
+          LoadConfiguration:
+            CryptoValCred:
+              CRLDPHandling: ignore
+              CertValidationMode: legacy
+              Certificate:
+                - Test1
+                - Test2
+              CheckDates: 'on'
+              ExplicitPolicy: 'off'
+              InitialPolicySet: 2.5.29.32.0
+              RequireCRL: 'off'
+              UseCRL: 'on'
+              mAdminState: enabled
+              name: valcred
+

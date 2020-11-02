@@ -3,6 +3,7 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 #from urllib.parse import quote
+import time
 from ansible.module_utils.six.moves.urllib.parse import urlencode
 from ansible.module_utils.connection import Connection, ConnectionError
 from ansible.module_utils._text import to_text
@@ -25,35 +26,37 @@ CREATE_CONFIG_URI = '/mgmt/config/{0}/{1}'
 ACTION_QUEUE_URI = '/mgmt/actionqueue/{0}'
 FILESTORE_URI = '/mgmt/filestore/{0}/{1}/{2}'
 
+#Define the keys that get returned to the modules.  REQUEST_DETAILS_KEY is here for debugging purposes.
+RESPONSE_KEY = 'response'
+REQUEST_DETAILS_KEY = 'request'
 
 def is_valid_class(class_name):
     return config.val_obj_dict['_links'].get(class_name) or False
+
 
 # TODO  Should this stay here?  
 def _body_has_name(body):
     return 'name' in  body.get(list(body.keys())[0])
 
 
-class DPRequest():
+class DPRequest:
 
     def __init__(self, module):
         self.module = module
         for k, v in module.params.items():
             setattr(self, k, v)
         self.connection = Connection(module._socket_path)
-                            
 
     def _process_request(self, method, path, body):
         result = {}
         _scrub(body, '_links')
         _scrub(body, 'href')
         try:
-            result['request_details'] = {'body': body, 'path': path, 'method': method,}
-            result['request_result'] = self.connection.send_request(body, path, method)
+            result[REQUEST_DETAILS_KEY] = {'body': body, 'path': path, 'method': method,}
+            result[RESPONSE_KEY] = self.connection.send_request(body, path, method)
         except ConnectionError as ce:
-            return {'CONN_ERR': to_text(ce ), 'result': result}
+            return {'CONN_ERR': to_text(ce), 'result': result}
         return result
-
 
     def send_request(self):
         if hasattr(self, 'body'):
@@ -81,10 +84,10 @@ class DPModify(DPRequest):
                  self.class_name
             ).get('name')
         else:
-            raise AttributeError('DPModify miscombination, if your targeting the object, body is all you need.  If your targeting a list property in an object, you need to pass class_name, name and obj_field')
+            raise AttributeError('DPModify miscombination, if your targeting the object, body is all you need.  \
+            If your targeting a list property in an object, you need to pass class_name, name and obj_field')
         
         self.path = self._get_uri()
-
 
     def _get_uri(self):
         if self.obj_field:
@@ -94,6 +97,7 @@ class DPModify(DPRequest):
             self.method = 'PUT'
             return MOD_CONFIG_URI.format(self.domain, self.class_name, self.name)
 
+
 class DPGet(DPRequest):
     def __init__(self, module):
         super(DPGet, self).__init__(module)
@@ -102,18 +106,28 @@ class DPGet(DPRequest):
         self.path = self._get_uri()
         self.method = 'GET'
 
-
     def _get_uri(self):
         opt_str = self._get_options()
         if self.name:
             if self.obj_field:
-                return GET_CONFIG_NAME_FIELD_URI.format(self.domain, self.class_name, self.name, self.obj_field) + '?' + opt_str
+                return GET_CONFIG_NAME_FIELD_URI.format(
+                                                        self.domain,
+                                                        self.class_name,
+                                                        self.name,
+                                                        self.obj_field
+                                                        ) + '?' + opt_str
             else:
-                return GET_CONFIG_NAME_URI.format(self.domain, self.class_name, self.name).rstrip('/') + '?' + opt_str
+                return GET_CONFIG_NAME_URI.format(
+                                                  self.domain,
+                                                  self.class_name,
+                                                  self.name
+                                                  ).rstrip('/') + '?' + opt_str
         else:
-            return CREATE_CONFIG_URI.format(self.domain, self.class_name).rstrip('/') + '?' + opt_str
+            return CREATE_CONFIG_URI.format(
+                                            self.domain,
+                                            self.class_name
+                                            ).rstrip('/') + '?' + opt_str
 
-    
     def _get_options(self):
         url_params = {}
         if self.state:
@@ -177,14 +191,14 @@ class DPUploadFile(DPRequest):
             self.method = 'POST'
 
 
-class DPExportList():
+class DPExportList:
 
     def __init__(self, objects):
         for obj in objects:
-            for k,v in obj.items():
+            for k, v in obj.items():
                 if k == 'name' or k == 'class':
                     continue
-                # Need a couple strips here to accomadate for - and _ in python code.
+                # Need a couple strips here to accommodate for - and _ in python code.
                 # Keys need to match DP REST interface.
                 obj[k.replace('_', '-')] = v
                 del obj[k]
@@ -214,12 +228,53 @@ class DPExport(DPRequest):
             )._get_export_list()
             self.body['Export'][list_type] = dp_exports
 
+    def _process_request(self, method, path, body):
+        result = super(DPExport, self)._process_request(method, path, body)
+        #return result
+        export_path = None
+        if result.get(RESPONSE_KEY).get('_links', None):
+            export_path = result.get(RESPONSE_KEY)['_links']['location']['href']
+        else:
+            return result
+        if export_path:
+            count = 0
+            while True:
+                exp_res = super(DPExport, self)._process_request('GET', export_path, body=None)
+                if exp_res.get(RESPONSE_KEY)['status'] == 'completed':
+                    return exp_res
+                time.sleep(2)
+        return result
+
     def _get_uri(self):
         return ACTION_QUEUE_URI.format(self.domain)
 
+
+class DPLoadConfig(DPRequest):
+    def __init__(self, module):
+        super(DPLoadConfig, self).__init__(module)
+        self.path = ACTION_QUEUE_URI.format(self.domain)
+        self.method = 'POST'
+
+    def _process_request(self, method, path, body):
+        result = super(DPLoadConfig, self)._process_request(method, path, body)
+        export_path = None
+        if result.get(RESPONSE_KEY).get('_links', None):
+            export_path = result.get(RESPONSE_KEY)['_links']['location']['href']
+        else:
+            return result
+        if export_path:
+            count = 0
+            while True:
+                exp_res = super(DPLoadConfig, self)._process_request('GET', export_path, body=None)
+                if exp_res.get(RESPONSE_KEY)['status'] == 'completed':
+                    return exp_res
+                time.sleep(2)
+        return result
+
+
 def _scrub(obj, bad_key):
     """
-    Removes specified key from the dictioary in place.
+    Removes specified key from the dictionary in place.
     :param obj: dict, dictionary from DataPowers get object config rest call
     :param bad_key: str, key to remove from the dictionary
     """

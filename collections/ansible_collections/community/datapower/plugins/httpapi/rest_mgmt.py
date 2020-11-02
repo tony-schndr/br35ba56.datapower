@@ -25,16 +25,8 @@ author: Anthony Schneider
 httpapi: datapower
 short_description: HttpApi Plugin for IBM DataPower
 description:
-- This HttpApi plugin provides methods to connect to IMB DataPower REST management interface.
+- This HttpApi plugin provides methods to connect to IBM DataPower REST management interface.
 version_added: 1.0.0
-options:
-  root_path:
-    type: str
-    description:
-    - Specifies the location of the Restconf root.
-    default: /restconf
-    vars:
-    - name: ansible_httpapi_restconf_root
 """
 
 import json
@@ -45,7 +37,7 @@ from ansible.module_utils.six.moves.urllib.error import HTTPError, URLError
 from ansible.plugins.httpapi import HttpApiBase
 
 
-CONTENT_TYPE = "application/yang-data+json"
+CONTENT_TYPE = "application/json"
 
 
 class HttpApi(HttpApiBase):
@@ -81,4 +73,4 @@ def handle_response(response, response_data):
     elif isinstance(response, URLError):
         raise ConnectionError(to_text(response_data))
 
-    return {'data': response_data }
+    return response_data

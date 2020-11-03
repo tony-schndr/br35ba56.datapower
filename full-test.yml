@@ -7,7 +7,7 @@
     ansible_httpapi_use_ssl: yes
     ansible_network_os: community.datapower.rest_mgmt
     ansible_user: admin
-    ansible_httpapi_password: admin
+    ansible_httpapi_password: "admin"
     ansible_httpapi_validate_certs: false
   tasks:
     - name: Create certificate
@@ -42,7 +42,6 @@
         domain: default
         class_name: CryptoCertificate
         name: Test2
-
 
     - name: Save Domain 
       community.datapower.action:

@@ -208,7 +208,28 @@ class DPExportList:
         return self.objects
 
 
-class DPExport(DPRequest):
+class DPConfigActions(DPRequest):
+
+    def __init__(self, module):
+        super(DPConfigActions, self).__init__(module)
+
+    def _process_request(self, method, path, body):
+        result = super(DPConfigActions, self)._process_request(method, path, body)
+        export_path = None
+        if result.get(RESPONSE_KEY).get('_links', None):
+            export_path = result.get(RESPONSE_KEY)['_links']['location']['href']
+        else:
+            return result
+        if export_path:
+            while True:
+                exp_res = super(DPConfigActions, self)._process_request('GET', export_path, body=None)
+                if exp_res.get(RESPONSE_KEY)['status'] == 'completed':
+                    return exp_res
+                time.sleep(2)
+        return result
+
+
+class DPExport(DPConfigActions):
 
     def __init__(self, module):
         super(DPExport, self).__init__(module)
@@ -228,48 +249,17 @@ class DPExport(DPRequest):
             )._get_export_list()
             self.body['Export'][list_type] = dp_exports
 
-    def _process_request(self, method, path, body):
-        result = super(DPExport, self)._process_request(method, path, body)
-        #return result
-        export_path = None
-        if result.get(RESPONSE_KEY).get('_links', None):
-            export_path = result.get(RESPONSE_KEY)['_links']['location']['href']
-        else:
-            return result
-        if export_path:
-            count = 0
-            while True:
-                exp_res = super(DPExport, self)._process_request('GET', export_path, body=None)
-                if exp_res.get(RESPONSE_KEY)['status'] == 'completed':
-                    return exp_res
-                time.sleep(2)
-        return result
 
     def _get_uri(self):
         return ACTION_QUEUE_URI.format(self.domain)
 
 
 class DPLoadConfig(DPRequest):
+
     def __init__(self, module):
         super(DPLoadConfig, self).__init__(module)
         self.path = ACTION_QUEUE_URI.format(self.domain)
         self.method = 'POST'
-
-    def _process_request(self, method, path, body):
-        result = super(DPLoadConfig, self)._process_request(method, path, body)
-        export_path = None
-        if result.get(RESPONSE_KEY).get('_links', None):
-            export_path = result.get(RESPONSE_KEY)['_links']['location']['href']
-        else:
-            return result
-        if export_path:
-            count = 0
-            while True:
-                exp_res = super(DPLoadConfig, self)._process_request('GET', export_path, body=None)
-                if exp_res.get(RESPONSE_KEY)['status'] == 'completed':
-                    return exp_res
-                time.sleep(2)
-        return result
 
 
 def _scrub(obj, bad_key):

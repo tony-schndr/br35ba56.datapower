@@ -1,19 +1,12 @@
 - name: 'test play'
   hosts: dp1
   connection: local
-  vars: 
-    ansible_connection: httpapi
-    ansible_httpapi_port: 5554
-    ansible_httpapi_use_ssl: yes
-    ansible_network_os: community.datapower.rest_mgmt
-    ansible_user: admin
-    ansible_httpapi_password: admin
-    ansible_httpapi_validate_certs: false
+  vars:
+    domain: default
   tasks:
-
     - name: Export object configuration
       community.datapower.export:
-        domain: default
+        domain: "{{ domain }}"
         body:
           Export:
             Format: JSON
@@ -26,7 +19,7 @@
                 class: CryptoValCred
     - name: Load object configuration
       community.datapower.load_conf:
-        domain: default
+        domain: "{{ domain }}"
         body:
           LoadConfiguration:
             CryptoValCred:

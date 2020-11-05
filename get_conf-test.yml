@@ -1,0 +1,26 @@
+- name: 'test play'
+  hosts: dp1
+  connection: local
+  vars:
+    domain: default
+  tasks:
+    - name: Get the cert Test2
+      community.datapower.get_conf:
+        domain: "{{ domain }}"
+        class_name: CryptoCertificate
+        name: Test2
+    - name: Get the valcred recursively
+      community.datapower.get_conf:
+        domain: "{{ domain }}"
+        class_name: CryptoValCred
+        name: valcred
+        recursive: True
+        state: True
+        depth: 3
+    - name: Get all valcreds
+      community.datapower.get_conf:
+        domain: "{{ domain }}"
+        class_name: CryptoValCred
+
+
+

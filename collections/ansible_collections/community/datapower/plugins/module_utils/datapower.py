@@ -29,6 +29,7 @@ FILESTORE_URI = '/mgmt/filestore/{0}/{1}/{2}'
 #Define the keys that get returned to the modules.  REQUEST_DETAILS_KEY is here for debugging purposes.
 RESPONSE_KEY = 'response'
 REQUEST_DETAILS_KEY = 'request'
+CONNECTION_ERROR_KEY = 'ConnectionError'
 
 def is_valid_class(class_name):
     return config.val_obj_dict['_links'].get(class_name) or False
@@ -37,6 +38,14 @@ def is_valid_class(class_name):
 # TODO  Should this stay here?  
 def _body_has_name(body):
     return 'name' in  body.get(list(body.keys())[0])
+
+
+def check_for_error(response):
+    for k in response.get(RESPONSE_KEY).keys():
+        if 'error' in k.lower():
+            return True
+    else:
+        return False
 
 
 class DPRequest:
@@ -52,10 +61,10 @@ class DPRequest:
         _scrub(body, '_links')
         _scrub(body, 'href')
         try:
-            result[REQUEST_DETAILS_KEY] = {'body': body, 'path': path, 'method': method,}
+            result[REQUEST_DETAILS_KEY] = {'body': body, 'path': path, 'method': method}
             result[RESPONSE_KEY] = self.connection.send_request(body, path, method)
         except ConnectionError as ce:
-            return {'CONN_ERR': to_text(ce), 'result': result}
+            return {CONNECTION_ERROR_KEY: to_text(ce), 'result': result}
         return result
 
     def send_request(self):
@@ -254,7 +263,7 @@ class DPExport(DPConfigActions):
         return ACTION_QUEUE_URI.format(self.domain)
 
 
-class DPLoadConfig(DPRequest):
+class DPLoadConfig(DPConfigActions):
 
     def __init__(self, module):
         super(DPLoadConfig, self).__init__(module)

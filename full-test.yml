@@ -1,18 +1,12 @@
 - name: 'test play'
   hosts: dp1
   connection: local
-  vars: 
-    ansible_connection: httpapi
-    ansible_httpapi_port: 5554
-    ansible_httpapi_use_ssl: yes
-    ansible_network_os: community.datapower.rest_mgmt
-    ansible_user: admin
-    ansible_httpapi_password: "admin"
-    ansible_httpapi_validate_certs: false
+  vars:
+    domain: default
   tasks:
     - name: Create certificate
       community.datapower.create_conf:
-        domain: default
+        domain: "{{ domain }}"
         body:
           CryptoCertificate:
             name: Test2
@@ -23,13 +17,14 @@
 
     - name: Get the cert object Test2
       community.datapower.get_conf:
-        domain: default
+        domain: "{{ domain }}"
         class_name: CryptoCertificate
         name: Test2
 
+
     - name: Modify the valcred Certificate list
       community.datapower.mod_conf:
-        domain: default
+        domain: "{{ domain }}"
         class_name: CryptoValCred
         name: valcred
         obj_field: Certificate
@@ -39,22 +34,23 @@
          
     - name: Delete Test2 cert
       community.datapower.del_conf:
-        domain: default
+        domain: "{{ domain }}"
         class_name: CryptoCertificate
         name: Test2
 
     - name: Save Domain 
       community.datapower.action:
-        domain: default
+        domain: "{{ domain }}"
         body:
           SaveConfig: {}    
     
-    - name: Export ValCred
+    - name: Export object configuration
       community.datapower.export:
-        domain: default
+        domain: "{{ domain }}"
         body:
           Export:
             Format: JSON
+            UserComment: comments
             AllFiles: 'off'
             Persisted: 'off'
             IncludeInternalFiles: 'off'

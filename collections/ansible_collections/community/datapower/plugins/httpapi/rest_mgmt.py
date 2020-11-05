@@ -69,8 +69,8 @@ def handle_response(response, response_data):
             for error in response_data['error']:
                 response_err.append({'Message-{0}'.format(i): to_text(error)})
                 i = i + 1
-            return {'error': { 'error_messages': response_err}}
+            return {'HTTPError': {'error_messages': response_err}}
     elif isinstance(response, URLError):
-        raise ConnectionError(to_text(response_data))
+        return {'URLError': to_text(response_data) }
 
     return response_data

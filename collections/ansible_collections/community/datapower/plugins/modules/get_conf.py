@@ -28,7 +28,7 @@ options:
     name:
         description: Name of object as seen in DataPwer
     options:
-        description: Options for uri???
+        description: Options for retrieving objects.
         required: False
         type: dict
         recursive:
@@ -53,41 +53,69 @@ author:
 
 EXAMPLES = r'''
 # Get a datapower object.  Determine object_class by ...
-  - name: Create a datapower domain(s)
-    community.datapower.get:
-      domain: default
-      object_class: Domain
-      name: SNAFU
-      options:
-        recursive: True 
-        depth: 3
-        state: True     
+- name: Get the cert Test2
+  community.datapower.get_conf:
+    domain: "{{ domain }}"
+    class_name: CryptoCertificate
+    name: Test2
+- name: Get the valcred and referenced objects recursively, return state of all objects as well.
+  community.datapower.get_conf:
+    domain: "{{ domain }}"
+    class_name: CryptoValCred
+    name: valcred
+    recursive: True
+    state: True
+    depth: 3
+- name: Get all valcreds
+  community.datapower.get_conf:
+    domain: "{{ domain }}"
+    class_name: CryptoValCred
 '''
 
 RETURN = r'''
 # These are examples of possible return values, and in general should use other names for return values.
-original_message:
-    description: The original name param that was passed in.
-    type: str
-    returned: always
-    sample: 'hello world'
-message:
-    description: The output message that the test module generates.
-    type: str
-    returned: always
-    sample: 'goodbye'
-my_useful_info:
-    description: The dictionary containing information about your system.
+request:
+    description: The request that was sent to DataPower
     type: dict
     returned: always
     sample: {
-        'foo': 'bar',
-        'answer': 42,
+        "body": null,
+        "method": "GET",
+        "path": "/mgmt/config/default/CryptoValCred?"
+    }
+
+response:
+    description: A Dictionary representing the response returned from DataPowers Rest MGMT Interface
+    type: dict
+    returned: on success
+    sample:  {
+        "CryptoCertificate": {
+            "Filename": "cert:///webgui-sscert.pem",
+            "IgnoreExpiration": "off",
+            "PasswordAlias": "off",
+            "mAdminState": "disabled",
+            "name": "Test2"
+        },
+        "_links": {
+            "doc": {
+                "href": "/mgmt/docs/config/CryptoCertificate"
+            },
+            "self": {
+                "href": "/mgmt/config/default/CryptoCertificate/Test2"
+            }
+        }
+    }
+URLError | HTTPError | ConnectionError:
+    description: The error message(s) returned by DataPower
+    type: dict
+    returned: on failure
+    sample: {
+        "URLError": "message",
     }
 '''
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower import DPGet
+from ansible_collections.community.datapower.plugins.module_utils.datapower import DPGet, check_for_error
 
 def run_module():
     # define available arguments/parameters a user can pass to the module
@@ -119,11 +147,13 @@ def run_module():
 
     # manipulate or modify the state as needed (this is going to be the
     # part where your module will do what it needs to do)
-    result = dict(
-        changed=False,
-    )
     dp_get = DPGet(module)
-    result['datapower_config'] = dp_get.send_request()
+    result = dp_get.send_request()
+
+    if check_for_error(result):
+        module.fail_json(msg="Failed to retrieve configuration", **result)
+
+    result['changed'] = False
 
     # in the event of a successful module execution, you will want to
     # simple AnsibleModule.exit_json(), passing the key/value results

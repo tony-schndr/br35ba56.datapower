@@ -7,92 +7,110 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: community.datapower.create
+module: community.datapower.get
 
-short_description: Use for creating various objects on IBM DataPower
+short_description: Use for geting objects on IBM DataPower
 
 
 version_added: "1.0.0"
 
-description: Use for creating configuration, this won't succeed if the object already exists protecting from overwrite.
+description: Use for getting object configuration
 
 options:
-    domains:
-        description: List of domains to execute on.
+    domain:
+        description: Target domain
+        required: True
+        type: str
+    object_class:
+        description: DataPower objects object_class.  Determine object_class by...
         required: true
-        type: list
-    defintions:
-        description: DataPower object config defined in yaml.  Determine fromat using a GET and then convert to YAML.
-        required: true
-        type: list of dictionaries (in YAML)
-
-
+        type: str
+    name:
+        description: Name of object as seen in DataPwer
+    body:
+        description: The configuration of the object as determined from a GET request.  
+            Typically you will create the object in the GUI first.  Then you can retrieve the configuration via JSON with a GET.
+        required: True
+        type: dict
 author:
     - Your Name (anthonyschneider)
 '''
 
 EXAMPLES = r'''
-# Create a datapower object.  You can determine the correct definition by performing a datapower.get after creating it in the WebGUI.
-  
-  - name: Create a datapower domain(s)
-    community.datapower.create:
-      domains:
-      - default
-      definitions:
-      - Domain:
-          name: test_domain1
-          mAdminState: enabled
-          NeighborDomain:
-            value: default
-          FileMap:
-            CopyFrom: 'on'
-            CopyTo: 'on'
-            Delete: 'on'
-            Display: 'on'
-            Exec: 'on'
-            Subdir: 'on'
-          MonitoringMap:
-            Audit: 'off'
-            Log: 'off'
-          ConfigMode: local
-          ImportFormat: ZIP
-          LocalIPRewrite: 'on'
-          MaxChkpoints: 3
-          ConfigPermissionsMode: scope-domain
-      
+# Create a datapower object.  Determine object_class by ...
+- name: Create certificate
+  community.datapower.create_conf:
+    domain: "{{ domain }}"
+    body:
+      CryptoCertificate:
+        name: Test2
+        mAdminState: enabled
+        Filename: cert:///webgui-sscert.pem
+        PasswordAlias: 'off'
+        IgnoreExpiration: 'off'
+
 '''
 
 RETURN = r'''
 # These are examples of possible return values, and in general should use other names for return values.
-original_message:
-    description: The original name param that was passed in.
-    type: str
-    returned: always
-    sample: 'hello world'
-message:
-    description: The output message that the test module generates.
-    type: str
-    returned: always
-    sample: 'goodbye'
-my_useful_info:
-    description: The dictionary containing information about your system.
+request:
+    description: The request that was sent to DataPower
     type: dict
     returned: always
     sample: {
-        'foo': 'bar',
-        'answer': 42,
+        "body": {
+            "CryptoCertificate": {
+                "Filename": "cert:///webgui-sscert.pem",
+                "IgnoreExpiration": "off",
+                "PasswordAlias": "off",
+                "mAdminState": "enabled",
+                "name": "Test2"
+            }
+        },
+        "method": "POST",
+        "path": "/mgmt/config/default/CryptoCertificate"
+    }
+
+
+response:
+    description: A Dictionary representing the response returned from DataPowers Rest MGMT Interface
+    type: dict
+    returned: on success
+    sample:  {
+        "Test2": "Configuration was created.",
+        "_links": {
+            "doc": {
+                "href": "/mgmt/docs/config/CryptoCertificate"
+            },
+            "location": {
+                "href": "/mgmt/config/default/CryptoCertificate/Test2"
+            },
+            "self": {
+                "href": "/mgmt/config/default/CryptoCertificate"
+            }
+        }
+    }
+
+URLError | HTTPError | CONN_ERR:
+    description: The error message(s) returned by DataPower
+    type: dict
+    returned: on failure
+    sample: {
+        "URLError": "message",
     }
 '''
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower import DPCreate
-
+from ansible_collections.community.datapower.plugins.module_utils.datapower import (
+    DPCreate,
+    check_for_error
+)
 
 def run_module():
     # define available arguments/parameters a user can pass to the module
     module_args = dict(
-        domain = dict(type='str', required=True),
-        body = dict(type='dict', required=True)
+        domain=dict(type='str', required=True),
+        body=dict(type='dict', required=True)
     )
     
     # seed the result dict in the object
@@ -119,12 +137,13 @@ def run_module():
 
     # manipulate or modify the state as needed (this is going to be the
     # part where your module will do what it needs to do)
-    result = dict(
-        changed=False
-    )
+
     dp_create = DPCreate(module)
-    create_result = dp_create.send_request()
-    result['result'] = create_result
+    result = dp_create.send_request()
+    if check_for_error(result):
+        module.fail_json(msg="Failed to create configuration.", **result)
+
+    result['changed'] = True
 
     # in the event of a successful module execution, you will want to
     # simple AnsibleModule.exit_json(), passing the key/value results

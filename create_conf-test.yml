@@ -1,0 +1,17 @@
+- name: 'test create_conf play'
+  hosts: dp1
+  connection: local
+  vars:
+    domain: default
+  tasks:
+    - name: Create certificate
+      community.datapower.create_conf:
+        domain: "{{ domain }}"
+        body:
+          CryptoCertificate:
+            name: Test2
+            mAdminState: enabled
+            Filename: cert:///webgui-sscert.pem
+            PasswordAlias: 'off'
+            IgnoreExpiration: 'off'
+

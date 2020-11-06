@@ -7,9 +7,9 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: community.datapower.create
+module: community.datapower.delete
 
-short_description: Use for creating various objects on IBM DataPower
+short_description: Use for delete various objects on IBM DataPower
 
 
 version_added: "1.0.0"
@@ -112,8 +112,6 @@ def run_module():
     # state with no modifications
     if module.check_mode:
         module.exit_json(**result)
-
-
 
     dp_del = DPDelete(module)
     result = dp_del.send_request()

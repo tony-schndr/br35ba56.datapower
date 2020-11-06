@@ -7,14 +7,14 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: community.datapower.get
+module: community.datapower.create
 
-short_description: Use for geting objects on IBM DataPower
+short_description: Use for creating objects on IBM DataPower
 
 
 version_added: "1.0.0"
 
-description: Use for getting object configuration
+description: Use for creating objects on IBM DataPower
 
 options:
     domain:
@@ -22,7 +22,7 @@ options:
         required: True
         type: str
     object_class:
-        description: DataPower objects object_class.  Determine object_class by...
+        description: DataPower objects object_class.  Valid object_cass can be determined via GET at URI /mgmt/config/
         required: true
         type: str
     name:
@@ -33,7 +33,7 @@ options:
         required: True
         type: dict
 author:
-    - Your Name (anthonyschneider)
+    - (anthonyschneider)
 '''
 
 EXAMPLES = r'''
@@ -90,14 +90,6 @@ response:
             }
         }
     }
-
-URLError | HTTPError | CONN_ERR:
-    description: The error message(s) returned by DataPower
-    type: dict
-    returned: on failure
-    sample: {
-        "URLError": "message",
-    }
 '''
 
 from ansible.module_utils.basic import AnsibleModule
@@ -134,9 +126,6 @@ def run_module():
     # state with no modifications
     if module.check_mode:
         module.exit_json(**result)
-
-    # manipulate or modify the state as needed (this is going to be the
-    # part where your module will do what it needs to do)
 
     dp_create = DPCreate(module)
     result = dp_create.send_request()

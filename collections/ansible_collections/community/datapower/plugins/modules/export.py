@@ -1,48 +1,75 @@
 #!/usr/bin/env python
 
-# Copyright: (c) 2020, Your Name <YourName@example.org>
+# Copyright: (c) 2020, Your Name <tonyyschndr@gmail.com>
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: community.datapower.create
+module: community.datapower.export
 
-short_description: Use for modifying various objects on IBM DataPower
+short_description: Use for exporting configuration from IBM DataPower
 
 
 version_added: "1.0.0"
 
-description: Use for modifying configuration.
+description: Use for exporting configuration.
 
 options:
-    domains:
-        description: List of domains to execute on.
+    domain:
+        description: Target domain
+        required: True
+        type: str
+    body:
+        description: Valid export request at the Domain, Object, or Appliance level. 
         required: true
-        type: list
-    defintions:
-        description: DataPower object config defined in yaml.  Determine format using a GET and then convert to YAML.
-        required: true
-        type: list of YAML dictionaries.
-
-
+        type: dictionary
 author:
-    - Your Name (anthonyschneider)
+    - Anthony Schneider
 '''
 
 EXAMPLES = r'''
-# Modify a datapower object.  This example simply disables test_domain1.  
-  
-  - name: Create a datapower domain(s)
-    community.datapower.modify:
-      domains:
-      - default
-      definitions:
-      - Domain:
-          name: test_domain1
-          mAdminState: disabled
+# Export DataPower configuration.  
       
+    - name: Export object configuration
+      community.datapower.export:
+        domain: "{{ domain }}"
+        body:
+          Export:
+            Format: JSON
+            UserComment: comments
+            AllFiles: 'off'
+            Persisted: 'off'
+            IncludeInternalFiles: 'off'
+            Object:
+              - name: valcred
+                class: CryptoValCred
+    - name: Export object config in xml format (Shows up as base64 in response payload)
+      community.datapower.export:
+        domain: "{{ domain }}"
+        body:
+          Export:
+            Format: XML
+            UserComment: comments
+            AllFiles: 'off'
+            Persisted: 'off'
+            IncludeInternalFiles: 'off'
+            Object:
+              - name: valcred
+                class: CryptoValCred
+    - name: Export domain config in ZIP format.
+      community.datapower.export:
+        domain: "{{ domain }}"
+        body:
+          Export:
+            Format: ZIP
+            UserComment: comments
+            AllFiles: 'off'
+            Persisted: 'off'
+            IncludeInternalFiles: 'off'
+
+
 '''
 
 RETURN = r'''
@@ -52,24 +79,73 @@ original_message:
     type: str
     returned: always
     sample: 'hello world'
-message:
-    description: The output message that the test module generates.
-    type: str
-    returned: always
-    sample: 'goodbye'
-my_useful_info:
-    description: The dictionary containing information about your system.
+    
+request:
+    description: The request sent to DataPower that yielded the response value.
+        This request is unique in which it does not return the original request from the module.  
+        This is because the original request from the user does not generate the export, it simply queues the action.
+        Thefore the underlying module logic loops until the export is complete, then returns that via a GET.
     type: dict
     returned: always
     sample: {
-        'foo': 'bar',
-        'answer': 42,
+        "body": null,
+        "method": "GET",
+        "path": "/mgmt/actionqueue/default/pending/Export-20201105T215918Z-7"
+    }
+response:
+    description: Response from DataPower
+    type: dict
+    returned: always
+    sample:  {
+        "_links": {
+            "self": {
+                "href": "/mgmt/actionqueue/default/pending/Export-20201105T221931Z-1"
+            }
+        },
+        "result": {
+            "LoadConfiguration": {
+                "CryptoValCred": {
+                    "CRLDPHandling": "ignore",
+                    "CertValidationMode": "legacy",
+                    "Certificate": [
+                        "Test1",
+                        "Test2"
+                    ],
+                    "CheckDates": "on",
+                    "ExplicitPolicy": "off",
+                    "InitialPolicySet": "2.5.29.32.0",
+                    "RequireCRL": "off",
+                    "UseCRL": "on",
+                    "mAdminState": "enabled",
+                    "name": "valcred"
+                }
+            }
+        },
+        "status": "completed"
+    }
+
+
+    
+URLError | HTTPError | ConnectionError:
+    description: The error message(s) returned by DataPower
+    type: dict
+    returned: on failure
+    sample:  {
+        "HTTPError": {
+            "error_messages": [
+                {
+                    "Message-0": "Resource already exists."
+                }
+            ]
+        }
     }
 '''
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower import DPExport
-
+from ansible_collections.community.datapower.plugins.module_utils.datapower import (
+    DPExport,
+    check_for_error
+)
 def run_module():
     # define available arguments/parameters a user can pass to the module
     module_args = dict(
@@ -100,41 +176,19 @@ def run_module():
             )
         )
     )
-    mutually_exclusive = [
-        ['Domain', 'Object']
-        ]
-    #required_together = [
-    #   ['class_name', 'name', 'obj_field']
-    #]
 
-
-
-    # the AnsibleModule object will be our abstraction working with Ansible
-    # this includes instantiation, a couple of common attr would be the
-    # args/params passed to the execution, as well as if the module
-    # supports check mode
     module = AnsibleModule(
         argument_spec=module_args,
-        supports_check_mode=True,
-        mutually_exclusive=mutually_exclusive
+        supports_check_mode=False, # Exporting objects does not change state.
     )
-    
-    # if the user is working with this module in only check mode we do not
-    # want to make any changes to the environment, just return the current
-    # state with no modifications
-    if module.check_mode:
-        module.exit_json(**result)
 
-    # manipulate or modify the state as needed (this is going to be the
-    # part where your module will do what it needs to do)
-    result = dict(
-        changed=False
-    )
     dp_exp = DPExport(module)
-    result['export_result'] = dp_exp.send_request()
+    result = dp_exp.send_request()
+    result['changed'] = False
 
-    # in the event of a successful module execution, you will want to
-    # simple AnsibleModule.exit_json(), passing the key/value results
+    if check_for_error(result):
+        module.fail_json(msg="Failed to export configuration", **result)
+
     module.exit_json(**result)
 
 

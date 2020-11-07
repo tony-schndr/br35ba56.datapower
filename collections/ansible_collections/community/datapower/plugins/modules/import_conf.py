@@ -7,14 +7,14 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: community.datapower.create
+module: community.datapower.load_conf
 
-short_description: Use for creating objects on IBM DataPower
+short_description: Use for importing configuration to IBM DataPower
 
 
 version_added: "1.0.0"
 
-description: Use for creating objects on IBM DataPower
+description: Use for importing configuration to IBM DataPower, specifically this request 
 
 options:
     domain:
@@ -39,7 +39,7 @@ author:
 EXAMPLES = r'''
 # Create a datapower object.  Determine object_class by ...
 - name: Create certificate
-  community.datapower.create_conf:
+  community.datapower._conf:
     domain: "{{ domain }}"
     body:
       CryptoCertificate:

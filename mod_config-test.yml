@@ -1,0 +1,22 @@
+- name: 'test play'
+  hosts: dp1
+  connection: local
+  vars:
+    domain: default
+  tasks:
+    - name: Modify the valcred Certificate list
+      community.datapower.mod_conf:
+        domain: "{{ domain }}"
+        class_name: CryptoValCred
+        name: valcred
+        obj_field: Certificate
+        body:
+          Certificate:
+            - value: Test2
+    - name: Modify the valcred Certificate list
+      community.datapower.mod_conf:
+        domain: "{{ domain }}"
+        body:
+          CryptoValCred:
+            name: valcred
+            mAdminState: disabled

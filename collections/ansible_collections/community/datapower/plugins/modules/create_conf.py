@@ -14,7 +14,7 @@ short_description: Use for creating objects on IBM DataPower
 
 version_added: "1.0.0"
 
-description: Use for creating objects on IBM DataPower
+description: Use for creating objects on IBM DataPower, this request will fail if the object already exists, preventing you from overwriting config.
 
 options:
     domain:
@@ -25,15 +25,13 @@ options:
         description: DataPower objects object_class.  Valid object_cass can be determined via GET at URI /mgmt/config/
         required: true
         type: str
-    name:
-        description: Name of object as seen in DataPwer
     body:
         description: The configuration of the object as determined from a GET request.  
             Typically you will create the object in the GUI first.  Then you can retrieve the configuration via JSON with a GET.
         required: True
         type: dict
 author:
-    - (anthonyschneider)
+    - Anthony Schneider
 '''
 
 EXAMPLES = r'''
@@ -70,7 +68,6 @@ request:
         "method": "POST",
         "path": "/mgmt/config/default/CryptoCertificate"
     }
-
 
 response:
     description: A Dictionary representing the response returned from DataPowers Rest MGMT Interface
@@ -128,8 +125,11 @@ def run_module():
         module.exit_json(**result)
 
     dp_create = DPCreate(module)
-    result = dp_create.send_request()
-    if check_for_error(result):
+    try:
+        result = dp_create.send_request()
+    except ConnectionError as ce:
+        result = dict()
+        result['changed'] = False
         module.fail_json(msg="Failed to create configuration.", **result)
 
     result['changed'] = True

@@ -1,0 +1,33 @@
+- name: 'test play'
+  hosts: dp1
+  connection: local
+  vars:
+    domain: default
+  tasks:
+    - name: Import object configuration
+      community.datapower.import_conf:
+        domain: "{{ domain }}"
+        body: | 
+          {
+            "LoadConfiguration": {
+              "CryptoValCred": {
+                  "CRLDPHandling": "ignore",
+                  "CertValidationMode": "legacy",
+                  "Certificate": [
+                      "Test1",
+                      "Test2"
+                  ],
+                  "CheckDates": "on",
+                  "ExplicitPolicy": "off",
+                  "InitialPolicySet": "2.5.29.32.0",
+                  "RequireCRL": "off",
+                  "UseCRL": "on",
+                  "mAdminState": "disabled",
+                  "name": "valcred"
+              }
+            }
+          }
+
+
+
+        

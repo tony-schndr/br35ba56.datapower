@@ -18,34 +18,27 @@ description: Use for deleting configuration.
 
 options:
     domain:
-        description: List of domains to execute on.
-        required: true
-        type: list
-    object_Class:
+        description: Target domain
+        required: True
+        type: str
+    object_class:
         description: DataPower objects object_class.  Determine object_class by...
         required: true
         type: str
     name:
         description: Name of object as seen in DataPower
 
-
 author:
-    - Your Name (anthonyschneider)
+    - Anthony Schneider
 '''
 
 EXAMPLES = r'''
 # Delete a datapower object.  Determine object_class by ...
-- name: Delete valcred
-  community.datapower.del_conf:
-    domain: "{{ domain }}"
-    class_name: CryptoValCred
-    name: valcred
-
 - name: Delete Password Map Alias
-  community.datapower.del_conf:
+    community.datapower.del_conf:
     domain: "{{ domain }}"
     class_name: PasswordAlias
-    name: SecretPassword2
+    name: SecretPassword
    
 '''
 
@@ -73,18 +66,11 @@ response:
                 "href": "/mgmt/docs/config/PasswordAlias"
             },
             "self": {
-                "href": "/mgmt/config/default/PasswordAlias/SecretPassword2"
+                "href": "/mgmt/config/default/PasswordAlias/SecretPassword"
             }
         }
     }
 
-URLError | HTTPError | Connection_Error:
-    description: The error message(s) returned by DataPower
-    type: dict
-    returned: on failure
-    sample: {
-        "URLError": "message",
-    }
 '''
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils.datapower import (

@@ -7,14 +7,15 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: community.datapower.create
+module: community.datapower.request
 
-short_description: Use for creating various objects on IBM DataPower
+short_description: Use for generic requests to DataPower
 
 
 version_added: "1.0.0"
 
-description: Use for creating configuration, this won't succeed if the object already exists protecting from overwrite.
+description: Use this module incase some functionality is not implemented.  This allows you to pass path, method, body
+    directly to DataPower REST Mgmt Interface
 
 options:
     domains:
@@ -33,57 +34,34 @@ author:
 
 EXAMPLES = r'''
 # Create a datapower object.  You can determine the correct definition by performing a datapower.get after creating it in the WebGUI.
-  
-  - name: Create a datapower domain(s)
-    community.datapower.create:
-      domains:
-      - default
-      definitions:
-      - Domain:
-          name: test_domain1
-          mAdminState: enabled
-          NeighborDomain:
-            value: default
-          FileMap:
-            CopyFrom: 'on'
-            CopyTo: 'on'
-            Delete: 'on'
-            Display: 'on'
-            Exec: 'on'
-            Subdir: 'on'
-          MonitoringMap:
-            Audit: 'off'
-            Log: 'off'
-          ConfigMode: local
-          ImportFormat: ZIP
-          LocalIPRewrite: 'on'
-          MaxChkpoints: 3
-          ConfigPermissionsMode: scope-domain
-      
+- name: Request example, this will return Config Items
+  community.datapower.request:
+    path: /mgmt/config/
+    method: GET
 '''
 
 RETURN = r'''
-# These are examples of possible return values, and in general should use other names for return values.
-original_message:
-    description: The original name param that was passed in.
-    type: str
+
+request:
+    description: The request sent to DataPower that yielded the response value.
+    
     returned: always
-    sample: 'hello world'
-message:
-    description: The output message that the test module generates.
-    type: str
-    returned: always
-    sample: 'goodbye'
-my_useful_info:
-    description: The dictionary containing information about your system.
-    type: dict
-    returned: always
-    sample: {
-        'foo': 'bar',
-        'answer': 42,
+    sample:  {
+        "_links": {
+            "AAAJWTGenerator": {
+                "href": "/mgmt/config/{domain}/AAAJWTGenerator"
+            },
+            "AAAJWTValidator": {
+                "href": "/mgmt/config/{domain}/AAAJWTValidator"
+            },
+            "AAAPolicy": {
+                "href": "/mgmt/config/{domain}/AAAPolicy"
+            } ...
+        }
     }
 '''
-
+from ansible.module_utils._text import to_text
+from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils.datapower import DPRequest
 
@@ -118,17 +96,17 @@ def run_module():
     if module.check_mode:
         module.exit_json(**result)
 
-    # manipulate or modify the state as needed (this is going to be the
-    # part where your module will do what it needs to do)
-    result = dict(
-        changed=False
-    )
+    
     dp_req = DPRequest(module)
-    req_result = dp_req.send_request()
-    result['result'] = req_result
+    try:
+        result = dp_req.send_request()
+    except ConnectionError as ce:
+        result = dict()
+        result['changed'] = False
+        module.fail_json(msg=to_text(ce))
 
-    # in the event of a successful module execution, you will want to
-    # simple AnsibleModule.exit_json(), passing the key/value results
+    result['changed'] = False # Place holder, need to build logic to determine if something was changed.
+
     module.exit_json(**result)
 
 

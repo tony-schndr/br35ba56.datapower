@@ -22,11 +22,11 @@ options:
         required: True
         type: str
     object_class:
-        description: DataPower objects object_class.  Determine object_class by...
+        description: DataPower objects object_class.  Valid Object class can be determined with a GET on URI /mgmt/config/
         required: true
         type: str
     name:
-        description: Name of object as seen in DataPwer
+        description: Name of object as seen in DataPower
     options:
         description: Options for retrieving objects.
         required: False
@@ -48,7 +48,7 @@ options:
 
 
 author:
-    - Your Name (anthonyschneider)
+    - Anthony Schneider
 '''
 
 EXAMPLES = r'''
@@ -105,16 +105,11 @@ response:
             }
         }
     }
-URLError | HTTPError | ConnectionError:
-    description: The error message(s) returned by DataPower
-    type: dict
-    returned: on failure
-    sample: {
-        "URLError": "message",
-    }
 '''
-
+from ansible.module_utils._text import to_text
+from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils.basic import AnsibleModule
+
 from ansible_collections.community.datapower.plugins.module_utils.datapower import DPGet, check_for_error
 
 def run_module():
@@ -146,13 +141,15 @@ def run_module():
     #    module.exit_json(**result)
 
     dp_get = DPGet(module)
-    result = dp_get.send_request()
 
-    if check_for_error(result):
-        module.fail_json(msg="Failed to retrieve configuration", **result)
+    try:
+        result = dp_get.send_request()
+    except ConnectionError as ce:
+        result = dict()
+        result['changed'] = False
+        module.fail_json(msg=to_text(ce))
 
     result['changed'] = False
-
 
     module.exit_json(**result)
 

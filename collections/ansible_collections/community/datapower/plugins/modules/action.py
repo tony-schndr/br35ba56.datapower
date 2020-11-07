@@ -14,56 +14,63 @@ short_description: Use for creating various objects on IBM DataPower
 
 version_added: "1.0.0"
 
-description: Use for creating configuration, this won't succeed if the object already exists protecting from overwrite.
+description: Use for performing actions such as quiesce, save config, reboot, etc...  Get a list of actions from URI /mgmt/actionqueue/{domain}/operations
 
 options:
     domains:
         description: List of domains to execute on.
         required: true
         type: list
-    defintions:
-        description: DataPower object config defined in yaml.  Determine fromat using a GET and then convert to YAML.
+    body:
+        description: The action to be performed
         required: true
-        type: list of dictionaries (in YAML)
+        type: dict
 
 
 author:
-    - Your Name (anthonyschneider)
+    - Anthony Schneider
 '''
 
 EXAMPLES = r'''
 # action a datapower object.  You can determine the correct definition by performing a datapower.get after creating it in the WebGUI.
   
-  - name: action a datapower domain(s)
+  - name: Save a domains configuration.
     community.datapower.action:
-      domains:
-      - default
-      action:
+      domain: "{{ domain }}
+      body:
         SaveConfig: {}
 '''
 
 RETURN = r'''
 # These are examples of possible return values, and in general should use other names for return values.
-original_message:
-    description: The original name param that was passed in.
-    type: str
-    returned: always
-    sample: 'hello world'
-message:
-    description: The output message that the test module generates.
-    type: str
-    returned: always
-    sample: 'goodbye'
-my_useful_info:
-    description: The dictionary containing information about your system.
+request:
+    description: The request that was sent to DataPower
     type: dict
     returned: always
     sample: {
-        'foo': 'bar',
-        'answer': 42,
+        "body": null,
+        "method": "GET",
+        "path": "/mgmt/config/default/CryptoValCred?"
     }
+response:
+    description: The response from DataPower
+    type: dict
+    returned: on success
+    sample: {
+        "SaveConfig": "Operation completed.",
+        "_links": {
+            "doc": {
+                "href": "/mgmt/docs/actionqueue"
+            },
+            "self": {
+                "href": "/mgmt/actionqueue/default"
+            }
+        }
+    }
+            
 '''
-
+from ansible.module_utils._text import to_text
+from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils.datapower import DPAction
 
@@ -88,25 +95,20 @@ def run_module():
     # supports check mode
     module = AnsibleModule(
         argument_spec=module_args,
-        supports_check_mode=True
+        supports_check_mode=False
     )
     
-    # if the user is working with this module in only check mode we do not
-    # want to make any changes to the environment, just return the current
-    # state with no modifications
-    if module.check_mode:
-        module.exit_json(**result)
 
-    # manipulate or modify the state as needed (this is going to be the
-    # part where your module will do what it needs to do)
-    result = dict(
-        changed=False
-    )
     dp_act = DPAction(module)
-    result['action_results'] = dp_act.send_request()
+    try:
+        result = dp_act.send_request()
+    except ConnectionError as ce:
+        result = dict()
+        result['changed'] = False
+        module.fail_json(msg=to_text(ce))
 
-    # in the event of a successful module execution, you will want to
-    # simple AnsibleModule.exit_json(), passing the key/value results
+    result['changed'] = False 
+
     module.exit_json(**result)
 
 

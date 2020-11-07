@@ -140,7 +140,8 @@ URLError | HTTPError | ConnectionError:
         }
     }
 '''
-
+from ansible.module_utils._text import to_text
+from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils.datapower import (
     DPExport,
@@ -179,14 +180,15 @@ def run_module():
 
     module = AnsibleModule(
         argument_spec=module_args,
-        supports_check_mode=False, # Exporting objects does not change state.
+        supports_check_mode=False, # Should we check the objects/domains exist for exporting?
     )
 
     dp_exp = DPExport(module)
-    result = dp_exp.send_request()
-    result['changed'] = False
-
-    if check_for_error(result):
+    try:
+        result = dp_exp.send_request()
+    except ConnectionError as ce:
+        result = dict()
+        result['changed'] = False
         module.fail_json(msg="Failed to export configuration", **result)
 
     module.exit_json(**result)

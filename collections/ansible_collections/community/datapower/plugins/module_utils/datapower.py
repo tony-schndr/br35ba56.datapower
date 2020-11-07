@@ -4,6 +4,7 @@ __metaclass__ = type
 
 #from urllib.parse import quote
 import time
+from ansible.module_utils._text import to_text
 from ansible.module_utils.six.moves.urllib.parse import urlencode
 from ansible.module_utils.connection import Connection, ConnectionError
 from ansible.module_utils._text import to_text
@@ -63,15 +64,18 @@ class DPRequest:
         try:
             result[REQUEST_DETAILS_KEY] = {'body': body, 'path': path, 'method': method}
             result[RESPONSE_KEY] = self.connection.send_request(body, path, method)
-        except ConnectionError as ce:
-            return {CONNECTION_ERROR_KEY: to_text(ce), 'result': result}
+        except ConnectionError:
+            raise
         return result
 
     def send_request(self):
-        if hasattr(self, 'body'):
-            return self._process_request(self.method, self.path, self.body)
-        else:
-            return self._process_request(self.method, self.path, None)
+        try:
+            if hasattr(self, 'body'):
+                return self._process_request(self.method, self.path, self.body)
+            else:
+                return self._process_request(self.method, self.path, None)
+        except ConnectionError:
+            raise
 
     def get_class_name(self):
         if hasattr(self, 'class_name') and self.class_name is not None:

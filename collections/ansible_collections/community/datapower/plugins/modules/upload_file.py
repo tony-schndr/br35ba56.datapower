@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
-# Copyright: (c) 2020, Your Name <YourName@example.org>
+# Copyright: (c) 2020, YAnthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: community.datapower.create
+module: community.datapower.upload_file
 
 short_description: Use for modifying various objects on IBM DataPower
 
@@ -28,7 +28,7 @@ options:
 
 
 author:
-    - Your Name (anthonyschneider)
+    - Anthony Schneider
 '''
 
 EXAMPLES = r'''
@@ -66,7 +66,8 @@ my_useful_info:
         'answer': 42,
     }
 '''
-
+from ansible.module_utils._text import to_text
+from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils.datapower import DPUploadFile
 

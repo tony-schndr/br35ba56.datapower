@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright: (c) 2020, Your Name <YourName@example.org>
+# Copyright: (c) 2020, Anthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
@@ -18,22 +18,22 @@ description: Use this module incase some functionality is not implemented.  This
     directly to DataPower REST Mgmt Interface
 
 options:
-    domains:
-        description: List of domains to execute on.
-        required: true
-        type: list
-    defintions:
-        description: DataPower object config defined in yaml.  Determine fromat using a GET and then convert to YAML.
-        required: true
-        type: list of dictionaries (in YAML)
-
+    path:
+        description: URI to be called.
+        required: True
+        type: str
+    method:
+        description: GET | POST | PUT | DELETE 
+    body:
+        description:  Body of request in JSON/YAML
+        required: True
+        type: dict
 
 author:
-    - Your Name (anthonyschneider)
+    - Anthony Schneider
 '''
 
 EXAMPLES = r'''
-# Create a datapower object.  You can determine the correct definition by performing a datapower.get after creating it in the WebGUI.
 - name: Request example, this will return Config Items
   community.datapower.request:
     path: /mgmt/config/
@@ -41,7 +41,6 @@ EXAMPLES = r'''
 '''
 
 RETURN = r'''
-
 request:
     description: The request sent to DataPower that yielded the response value.
     
@@ -60,6 +59,7 @@ request:
         }
     }
 '''
+
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils.basic import AnsibleModule
@@ -103,7 +103,7 @@ def run_module():
     except ConnectionError as ce:
         result = dict()
         result['changed'] = False
-        module.fail_json(msg=to_text(ce))
+        module.fail_json(msg=to_text(ce), **result)
 
     result['changed'] = False # Place holder, need to build logic to determine if something was changed.
 

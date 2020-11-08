@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright: (c) 2020, Your Name <tonyyschndr@gmail.com>
+# Copyright: (c) 2020, Anthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
@@ -30,56 +30,47 @@ author:
 '''
 
 EXAMPLES = r'''
-# Export DataPower configuration.  
-      
-    - name: Export object configuration
-      community.datapower.export:
-        domain: "{{ domain }}"
-        body:
-          Export:
-            Format: JSON
-            UserComment: comments
-            AllFiles: 'off'
-            Persisted: 'off'
-            IncludeInternalFiles: 'off'
-            Object:
-              - name: valcred
-                class: CryptoValCred
-    - name: Export object config in xml format (Shows up as base64 in response payload)
-      community.datapower.export:
-        domain: "{{ domain }}"
-        body:
-          Export:
-            Format: XML
-            UserComment: comments
-            AllFiles: 'off'
-            Persisted: 'off'
-            IncludeInternalFiles: 'off'
-            Object:
-              - name: valcred
-                class: CryptoValCred
-    - name: Export domain config in ZIP format.
-      community.datapower.export:
-        domain: "{{ domain }}"
-        body:
-          Export:
-            Format: ZIP
-            UserComment: comments
-            AllFiles: 'off'
-            Persisted: 'off'
-            IncludeInternalFiles: 'off'
+- name: Export object configuration
+    community.datapower.export:
+    domain: "{{ domain }}"
+    body:
+        Export:
+        Format: JSON
+        UserComment: comments
+        AllFiles: 'off'
+        Persisted: 'off'
+        IncludeInternalFiles: 'off'
+        Object:
+            - name: valcred
+            class: CryptoValCred
 
+- name: Export object config in xml format (Shows up as base64 in response payload)
+    community.datapower.export:
+    domain: "{{ domain }}"
+    body:
+        Export:
+        Format: XML
+        UserComment: comments
+        AllFiles: 'off'
+        Persisted: 'off'
+        IncludeInternalFiles: 'off'
+        Object:
+            - name: valcred
+            class: CryptoValCred
 
+- name: Export domain config in ZIP format.
+    community.datapower.export:
+    domain: "{{ domain }}"
+    body:
+        Export:
+        Format: ZIP
+        UserComment: comments
+        AllFiles: 'off'
+        Persisted: 'off'
+        IncludeInternalFiles: 'off'
 '''
 
 RETURN = r'''
-# These are examples of possible return values, and in general should use other names for return values.
-original_message:
-    description: The original name param that was passed in.
-    type: str
-    returned: always
-    sample: 'hello world'
-    
 request:
     description: The request sent to DataPower that yielded the response value.
         This request is unique in which it does not return the original request from the module.  
@@ -123,32 +114,14 @@ response:
         },
         "status": "completed"
     }
-
-
-    
-URLError | HTTPError | ConnectionError:
-    description: The error message(s) returned by DataPower
-    type: dict
-    returned: on failure
-    sample:  {
-        "HTTPError": {
-            "error_messages": [
-                {
-                    "Message-0": "Resource already exists."
-                }
-            ]
-        }
-    }
 '''
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower import (
-    DPExport,
-    check_for_error
-)
+from ansible_collections.community.datapower.plugins.module_utils.datapower import DPExport
+
+
 def run_module():
-    # define available arguments/parameters a user can pass to the module
     module_args = dict(
         domain=dict(type='str', required=True),
         body=dict(type='dict', required=True,
@@ -184,12 +157,13 @@ def run_module():
     )
 
     dp_exp = DPExport(module)
+
     try:
         result = dp_exp.send_request()
     except ConnectionError as ce:
         result = dict()
         result['changed'] = False
-        module.fail_json(msg="Failed to export configuration", **result)
+        module.fail_json(msg=to_text(ce), **result)
 
     module.exit_json(**result)
 

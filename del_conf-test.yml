@@ -4,23 +4,12 @@
   vars:
     domain: default
   tasks:
-    - name: Delete a CryptoCertificate
+    - name: Delete Object
       community.datapower.del_conf:
         domain: "{{ domain }}"
         class_name: CryptoCertificate
         name: Test2
 
-    - name: Delete CrptoCert
-      community.datapower.del_conf:
-        domain: "{{ domain }}"
-        class_name: CryptoCertificate
-        name: Test1
-
-    - name: Delete Password Map Alias
-      community.datapower.del_conf:
-        domain: "{{ domain }}"
-        class_name: PasswordAlias
-        name: SecretPassword
 
 
 

@@ -1,20 +1,20 @@
 #!/usr/bin/env python
 
-# Copyright: (c) 2020, Your Name <YourName@example.org>
+# Copyright: (c) 2020, Anthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: community.datapower.load_conf
+module: community.datapower.import_conf
 
 short_description: Use for importing configuration to IBM DataPower
 
 
 version_added: "1.0.0"
 
-description: Use for importing configuration to IBM DataPower, specifically this request 
+description: Use for importing configuration to IBM DataPower.
 
 options:
     domain:
@@ -33,11 +33,10 @@ options:
         required: True
         type: dict
 author:
-    - (anthonyschneider)
+    - Anthony Schneider
 '''
 
 EXAMPLES = r'''
-# Create a datapower object.  Determine object_class by ...
 - name: Create certificate
   community.datapower._conf:
     domain: "{{ domain }}"
@@ -52,7 +51,6 @@ EXAMPLES = r'''
 '''
 
 RETURN = r'''
-# These are examples of possible return values, and in general should use other names for return values.
 request:
     description: The request that was sent to DataPower
     type: dict
@@ -70,7 +68,6 @@ request:
         "method": "POST",
         "path": "/mgmt/config/default/CryptoCertificate"
     }
-
 
 response:
     description: A Dictionary representing the response returned from DataPowers Rest MGMT Interface
@@ -92,12 +89,13 @@ response:
     }
 '''
 
+from ansible.module_utils._text import to_text
+from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils.datapower import DPLoadConfig
 
 
 def run_module():
-    # define available arguments/parameters a user can pass to the module
     module_args = dict(
         domain=dict(type='str', required=True),
         body=dict(
@@ -106,32 +104,26 @@ def run_module():
         )
     )
 
-
-    # the AnsibleModule object will be our abstraction working with Ansible
-    # this includes instantiation, a couple of common attr would be the
-    # args/params passed to the execution, as well as if the module
-    # supports check mode
     module = AnsibleModule(
         argument_spec=module_args,
         supports_check_mode=True
     )
 
-    # if the user is working with this module in only check mode we do not
-    # want to make any changes to the environment, just return the current
-    # state with no modifications
     if module.check_mode:
         module.exit_json(**result)
 
-    # manipulate or modify the state as needed (this is going to be the
-    # part where your module will do what it needs to do)
     result = dict(
         changed=False
     )
-    dp_load_config = DPLoadConfig(module)
-    result['export_result'] = dp_load_config.send_request()
 
-    # in the event of a successful module execution, you will want to
-    # simple AnsibleModule.exit_json(), passing the key/value results
+    dp_load_config = DPLoadConfig(module)
+    try:
+        result = dp_load_config.send_request()
+    except ConnectionError as ce:
+        result = dict()
+        result['changed'] = False
+        module.fail_json(msg=to_text(ce), **result)
+
     module.exit_json(**result)
 
 

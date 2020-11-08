@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
-# Copyright: (c) 2020, Your Name <YourName@example.org>
+# Copyright: (c) 2020, Anthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: community.datapower.delete
+module: community.datapower.del_conf
 
 short_description: Use for delete various objects on IBM DataPower
 
@@ -22,7 +22,7 @@ options:
         required: True
         type: str
     object_class:
-        description: DataPower objects object_class.  Determine object_class by...
+        description: DataPower objects object_class.
         required: true
         type: str
     name:
@@ -33,17 +33,15 @@ author:
 '''
 
 EXAMPLES = r'''
-# Delete a datapower object.  Determine object_class by ...
+# Delete a datapower object.
 - name: Delete Password Map Alias
     community.datapower.del_conf:
     domain: "{{ domain }}"
     class_name: PasswordAlias
     name: SecretPassword
-   
 '''
 
 RETURN = r'''
-# These are examples of possible return values, and in general should use other names for return values.
 request:
     description: The request that was sent to DataPower
     type: dict
@@ -53,7 +51,6 @@ request:
         "method": "DELETE",
         "path": "/mgmt/config/default/PasswordAlias/SecretPassword2"
     }
-
 
 response:
     description: A Dictionary representing the response returned from DataPowers Rest MGMT Interface
@@ -70,13 +67,12 @@ response:
             }
         }
     }
-
 '''
+
+from ansible.module_utils._text import to_text
+from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower import (
-    DPDelete,
-    check_for_error
-)
+from ansible_collections.community.datapower.plugins.module_utils.datapower import DPDelete
 
 def run_module():
     # define available arguments/parameters a user can pass to the module
@@ -86,24 +82,24 @@ def run_module():
         name = dict(type='str', required=True),
         obj_field = dict(type='str', required=False),
     )
-    
 
     module = AnsibleModule(
         argument_spec=module_args,
         supports_check_mode=True
     )
-    
-    # if the user is working with this module in only check mode we do not
-    # want to make any changes to the environment, just return the current
-    # state with no modifications
+
     if module.check_mode:
         module.exit_json(**result)
 
     dp_del = DPDelete(module)
-    result = dp_del.send_request()
 
-    if check_for_error(result):
-        module.fail_json(msg="Failed to delete configuration", **result)
+    try:
+        result = dp_del.send_request()
+    except ConnectionError as ce:
+        result = dict()
+        result['changed'] = False
+        module.fail_json(msg=to_text(ce), **result)
+
 
     result['changed'] = True
 

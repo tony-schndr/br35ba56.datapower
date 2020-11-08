@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
-# Copyright: (c) 2020, Your Name <YourName@example.org>
+# Copyright: (c) 2020, Anthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: community.datapower.get
+module: community.datapower.get_conf
 
 short_description: Use for geting objects on IBM DataPower
 
@@ -106,14 +106,13 @@ response:
         }
     }
 '''
+
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils.basic import AnsibleModule
-
-from ansible_collections.community.datapower.plugins.module_utils.datapower import DPGet, check_for_error
+from ansible_collections.community.datapower.plugins.module_utils.datapower import DPGet
 
 def run_module():
-    # define available arguments/parameters a user can pass to the module
     module_args = dict(
         domain=dict(type='str', required=True),
         class_name=dict(type='str', required=True),
@@ -122,8 +121,8 @@ def run_module():
         recursive=dict(type='bool', required=False),
         depth=dict(type='int', required=False),
         state=dict(type='bool', required=False)
-        
     )
+
     mutually_exclusive = [
         ['obj_field', 'recursive'],
     ]
@@ -134,9 +133,6 @@ def run_module():
         mutually_exclusive=mutually_exclusive
     )
     
-    # if the user is working with this module in only check mode we do not
-    # want to make any changes to the environment, just return the current
-    # state with no modifications
     #if module.check_mode:
     #    module.exit_json(**result)
 
@@ -147,7 +143,7 @@ def run_module():
     except ConnectionError as ce:
         result = dict()
         result['changed'] = False
-        module.fail_json(msg=to_text(ce))
+        module.fail_json(msg=to_text(ce), **result)
 
     result['changed'] = False
 

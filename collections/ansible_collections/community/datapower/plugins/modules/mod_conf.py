@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
-# Copyright: (c) 2020, Your Name <YourName@example.org>
+# Copyright: (c) 2020, Anthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: community.datapower.create
+module: community.datapower.mod_conf
 
 short_description: Use for modifying various objects on IBM DataPower
 
@@ -60,7 +60,6 @@ EXAMPLES = r'''
 '''
 
 RETURN = r'''
-# These are examples of possible return values, and in general should use other names for return values.
 request:
     description: The request that was sent to DataPower
     type: dict
@@ -94,11 +93,12 @@ response:
     }
 '''
 
+from ansible.module_utils._text import to_text
+from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils.datapower import DPModify
 
 def run_module():
-    # define available arguments/parameters a user can pass to the module
     module_args = dict(
         domain = dict(type='str', required=True),
         body = dict(type='dict', required=True),
@@ -106,26 +106,17 @@ def run_module():
         name = dict(type='str', required=False),
         obj_field = dict(type='str', required=False)
     )
-    #mutually_exclusive= ['class_name']
+
     required_together = [
         ['class_name', 'name', 'obj_field']
     ]
     
-
-
-    # the AnsibleModule object will be our abstraction working with Ansible
-    # this includes instantiation, a couple of common attr would be the
-    # args/params passed to the execution, as well as if the module
-    # supports check mode
     module = AnsibleModule(
         argument_spec=module_args,
         required_together=required_together,
         supports_check_mode=True
     )
-    
-    # if the user is working with this module in only check mode we do not
-    # want to make any changes to the environment, just return the current
-    # state with no modifications
+   
     if module.check_mode:
         module.exit_json(**result)
 
@@ -136,7 +127,7 @@ def run_module():
     except ConnectionError as ce:
         result = dict()
         result['changed'] = False
-        module.fail_json(msg="Failed to create configuration.", **result)
+        module.fail_json(msg=to_text(ce), **result)
 
     result['changed'] = True
 

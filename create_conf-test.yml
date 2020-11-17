@@ -15,3 +15,20 @@
             PasswordAlias: 'off'
             IgnoreExpiration: 'off'
 
+    - name: Modify CryptoValCred to add the cert object, target the list to minimize the change footprint.
+      community.datapower.mod_conf:
+        domain: "{{ domain }}"
+        class_name: CrytoValCred
+        name: valcred
+        obj_field: Certificate
+        body: >
+          { "Certificate": [
+                  {
+                      "href": "/mgmt/config/default/CryptoCertificate/Test1",
+                      "value": "Test1"
+                  }
+            ]
+          }
+          
+ 
+

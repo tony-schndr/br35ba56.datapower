@@ -4,11 +4,6 @@
   vars:
     domain: default
   tasks:
-    - name: Get the cert Test2
-      community.datapower.get_conf:
-        domain: "{{ domain }}"
-        class_name: CryptoCertificate
-        name: Tes
     - name: Get the valcred recursively
       community.datapower.get_conf:
         domain: "{{ domain }}"

@@ -51,16 +51,24 @@ def check_for_error(response):
 
 class DPRequest:
 
-    def __init__(self, module):
-        self.module = module
-        for k, v in module.params.items():
-            setattr(self, k, v)
+    def __init__(self, module, **kwargs):
+        if module:
+            self.module = module
+            for k, v in module.params.items():
+                setattr(self, k, v)
+        else:
+            for k, v in kwargs.items():
+                setattr(self, k, v)
         self.connection = Connection(module._socket_path)
 
     def _process_request(self, method, path, body):
         result = {}
+        # If the payload is being generated and modified from a get request you will have these keys in the payload
+        # For convineince remove these so its a valid payload being sent back to DataPower REST Interface
+
         _scrub(body, '_links')
         _scrub(body, 'href')
+        _scrub(body, 'state')
         try:
             result[REQUEST_DETAILS_KEY] = {'body': body, 'path': path, 'method': method}
             result[RESPONSE_KEY] = self.connection.send_request(body, path, method)
@@ -101,6 +109,9 @@ class DPModify(DPRequest):
             If your targeting a list property in an object, you need to pass class_name, name and obj_field')
         
         self.path = self._get_uri()
+        if module.check_mode:
+            self.method = 'GET'
+            self.body = None
 
     def _get_uri(self):
         if self.obj_field:
@@ -143,6 +154,8 @@ class DPGet(DPRequest):
 
     def _get_options(self):
         url_params = {}
+        if not hasattr(self, 'state') and not hasattr(self,'recursive'):
+            return ''
         if self.state:
             url_params['state'] = '1'
         if self.recursive:

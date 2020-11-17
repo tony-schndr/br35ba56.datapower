@@ -96,7 +96,14 @@ response:
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower import DPModify
+from ansible_collections.community.datapower.plugins.module_utils.datapower import (
+    DPModify,
+    DPRequest,
+    GET_CONFIG_NAME_URI
+)
+from ansible_collections.ansible.netcommon.plugins.module_utils.network.common.utils import (
+    dict_diff,
+)
 
 def run_module():
     module_args = dict(
@@ -116,9 +123,21 @@ def run_module():
         required_together=required_together,
         supports_check_mode=True
     )
-   
+    
+    # Modify check mode
+    # GET the targeted object
+    # generate a dict diff
+    # return the difference
     if module.check_mode:
-        module.exit_json(**result)
+        dp_mod = DPModify(module)
+        try:
+            result = dp_mod.send_request()
+        except ConnectionError as ce:
+            result = dict()
+            result['changed'] = False
+            module.fail_json(msg=to_text(ce), **result)
+        #diff = dict_diff(, module.params.get('body'))
+        module.exit_json(msg='dict diff' , **result.get('response'))
 
 
     dp_mod = DPModify(module)

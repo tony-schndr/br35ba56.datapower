@@ -2,33 +2,61 @@
   hosts: dp1
   connection: local
   vars:
-    domain: default
+    domains: 
+      - foo
+      - bar
+      - snafu
+    ca_names:
+      - foo-ca
+      - bar-ca
+      - snafu-ca
   tasks:
-    - name: Create certificate
-      community.datapower.create_conf:
-        domain: "{{ domain }}"
-        body:
-          CryptoCertificate:
-            name: Test2
-            mAdminState: enabled
-            Filename: cert:///webgui-sscert.pem
-            PasswordAlias: 'off'
-            IgnoreExpiration: 'off'
 
-    - name: Modify CryptoValCred to add the cert object, target the list to minimize the change footprint.
-      community.datapower.mod_conf:
-        domain: "{{ domain }}"
-        class_name: CrytoValCred
-        name: valcred
-        obj_field: Certificate
-        body: >
-          { "Certificate": [
-                  {
-                      "href": "/mgmt/config/default/CryptoCertificate/Test1",
-                      "value": "Test1"
-                  }
-            ]
-          }
-          
- 
+    - name: Create fake certs for demo
+      shell:
+        cmd: |
+          openssl req -newkey rsa:4096 -x509 -sha256 -days 3650 \
+          -nodes -out /DEV/{{ item }}.crt \
+          -subj "/C=US/O=VerySecure/OU=IT CN=ansible.{{ item }}.demo"
+        chdir: /DEV/
+      with_items: "{{ ca_names }}"
+  
+    - name: Read local cert file
+      slurp:
+        src: /DEV/{{ item }}.crt
+      register: local_files
+      loop: "{{ ca_names }}"
 
+    #- name: Create domains for demo
+    #  community.datapower.mod_conf:
+    #    domain: default
+    #    body:
+    #      Domain:
+    #        name: "{{ item }}"
+    #        mAdminState: enabled
+    #        UserSummary: Default System Domain
+    #        FileMap:
+    #          CopyFrom: 'on'
+    #          CopyTo: 'on'
+    #          Delete: 'on'
+    ##          Display: 'on'
+     #         Exec: 'on'
+     #         Subdir: 'on'
+     #       MonitoringMap:
+     #         Audit: 'off'
+     #         Log: 'off'
+     #       ConfigMode: local
+     #       ImportFormat: ZIP
+     #       LocalIPRewrite: 'on'
+     #       MaxChkpoints: 3
+     #       ConfigPermissionsMode: scope-domain
+     # with_items: "{{ domains }}"
+      
+    - name: Upload cert to default domain
+      debug:
+        var: "{{ item.file }}"
+        
+      with_items: 
+      - { 
+          file : "{{ local_files.results }}"
+        }

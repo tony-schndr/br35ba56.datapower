@@ -1,0 +1,80 @@
+  - name: 'test play'
+    hosts: dp1
+    connection: local
+    vars:
+      domain: 'default'
+    tasks:
+      - name: Create cert/key pair for demo purposes.
+        shell:
+          cmd: |
+            openssl req -newkey rsa:4096 -x509 -sha256 -days 3650 \
+            -nodes -out /DEV/demo.crt \
+            -keyout /DEV/demo.pem \
+            -subj "/C=US/O=VerySecure/OU=IT CN=ansible.datapower.demo"
+          chdir: /DEV/
+        delegate_to: localhost
+      - name: Read local cert file
+        slurp:
+          src: /DEV/demo.crt
+        register: cert
+      
+      - name: Read local key file
+        slurp:
+          src: /DEV/demo.pem
+        register: key
+        
+      - name: Upload cert to default domain
+        community.datapower.upload_file:
+          domain: "{{ domain }}"
+          content: "{{ cert.content }}"
+          top_dir: cert
+          file_path: /demo.crt
+          overwrite: True
+      
+      - name: Upload key to default domain
+        community.datapower.upload_file:
+          domain: "{{ domain }}"
+          content: "{{ key.content }}"
+          top_dir: cert
+          file_path: /demo.pem
+          overwrite: True
+      
+      - name: Create cert Object
+        community.datapower.mod_conf:
+          domain: "{{ domain }}"
+          body:
+            CryptoCertificate:
+              name: demo_Cert
+              mAdminState: enabled
+              Filename: cert:///demo.crt
+              PasswordAlias: 'off'
+              IgnoreExpiration: 'off'
+      
+      - name: Create key Object
+        community.datapower.mod_conf:
+          domain: "{{ domain }}"
+          body:
+            CryptoKey:
+              name: demo_Key
+              mAdminState: enabled
+              Filename: cert:///demo.pem
+              PasswordAlias: 'off'
+              IgnoreExpiration: 'off'
+
+      - name: Create ID Cred
+        community.datapower.mod_conf:
+          domain: "{{ domain }}"
+          body: 
+            CryptoIdentCred:
+              name: demo_IDCred
+              mAdminState: enabled
+              Key:
+                value: demo_Key
+              Certificate:
+                value: demo_Cert
+
+      - name: Save domain config
+        community.datapower.action:
+          domain: "{{ domain }}"
+          body:
+            SaveConfig: {}

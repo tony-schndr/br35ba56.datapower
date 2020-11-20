@@ -206,19 +206,24 @@ class DPAction(DPRequest):
 
 class DPUploadFile(DPRequest):
     def __init__(self, module):
-        super(DPUploadFile, self).__init__(module)
-        if self.dir == '/':
-            self.path = FILESTORE_URI.format(self.domain, self.top_dir, "").rstrip('/')
-        else:
-            self.path = FILESTORE_URI.format(self.domain, self.top_dir, self.dir).rstrip('/')
+        super(DPUploadFile, self).__init__(module)  
+        #self.path = '/mgmt/filestore/default/cert/demo.crt'
+        self.path = FILESTORE_URI.format(self.domain, self.top_dir, self.file_path.strip('/'))
+        self.body = self.build_body()
         if self.overwrite:
             self.method = 'PUT'
         else:
             self.method = 'POST'
 
+    def build_body(self):
+        return {
+            'file': {
+                'name': self.path.split('/')[-1],
+                'content': self.content
+            }
+        }
 
 class DPExportList:
-
     def __init__(self, objects):
         for obj in objects:
             for k, v in obj.items():

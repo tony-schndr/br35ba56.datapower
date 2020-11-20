@@ -75,11 +75,10 @@ def run_module():
     # define available arguments/parameters a user can pass to the module
     module_args = dict(
         domain = dict(type='str', required=True),
+        content = dict(type='str', required=True),
         top_dir = dict(type='str', choices=['local', 'cert', 'sharedcert'], required=True),
-        src = dict(type='str', required=True),
-        dst = dict(type='str', required=True),
-        overwrite = dict(type='bool', required=True),
-        
+        file_path = dict(type='str', required=True),
+        overwrite = dict(type='bool', required=False, default=False),   
     )
     
     # seed the result dict in the object
@@ -109,11 +108,16 @@ def run_module():
     result = dict(
         changed=False
     )
-
+    
     dp_up = DPUploadFile(module)
     #dp_up.send_request()
-    result['upload_file_result'] = dp_up.send_request()
-
+    try:
+        result = dp_up.send_request()
+    except ConnectionError as ce:
+        result = dict()
+        result['changed'] = False
+        module.fail_json(msg="Check if the file exists and if you intend to overwrite it. Also verify your path is correct.  " + to_text(ce), **result)
+    result['changed'] = True
     # in the event of a successful module execution, you will want to
     # simple AnsibleModule.exit_json(), passing the key/value results
     module.exit_json(**result)

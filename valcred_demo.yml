@@ -58,11 +58,20 @@
         content: "{{ item[1].content }}"
         top_dir: cert
         file_path: "{{ item[1].item }}.crt"
-        overwrite: False
+        overwrite: True
       with_nested: 
         - "{{ domains }}"
         - "{{local_files.results}}"
 
-    #- name: Create Cert Objects
-    #  community.datapower.upload_file:
-    #    domain: "{{item}}"
+    - name: Create Cert Objects
+      community.datapower.mod_conf:
+        domain: "{{ item[0] }}"
+        body:
+          CryptoCertificate:
+            name: "{{ item[1].item }}"
+            Filename: "cert:///{{ item[1].item }}.crt"
+
+      with_nested: 
+        - "{{ domains }}"
+        - "{{local_files.results}}"
+  

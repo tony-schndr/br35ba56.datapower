@@ -90,7 +90,16 @@ class DPRequest:
             return self.class_name
         else:# hasattr(self, 'body'):
             return list(self.body.keys())[0]
+   
                     
+class DPCreate(DPRequest):
+    def __init__(self, module):
+        super(DPCreate, self).__init__(module)
+        if is_valid_class(self.get_class_name()):
+            self.class_name = self.get_class_name()
+        self.path = CREATE_CONFIG_URI.format(self.domain, self.class_name)
+        self.method = 'POST'
+
 
 class DPModify(DPRequest):
     def __init__(self, module):
@@ -187,14 +196,6 @@ class DPDelete(DPRequest):
         else:
             raise AttributeError('DPDelete requires name to target a resouce.')
 
-
-class DPCreate(DPRequest):
-    def __init__(self, module):
-        super(DPCreate, self).__init__(module)
-        if is_valid_class(self.get_class_name()):
-            self.class_name = self.get_class_name()
-        self.path = CREATE_CONFIG_URI.format(self.domain, self.class_name)
-        self.method = 'POST'
 
 
 class DPAction(DPRequest):

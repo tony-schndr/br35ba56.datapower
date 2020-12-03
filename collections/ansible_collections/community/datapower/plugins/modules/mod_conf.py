@@ -29,7 +29,7 @@ options:
     body:
         description: The configuration of the object as determined from a GET request.  
             Typically you will create the object in the GUI first.  Then you can retrieve the configuration via JSON with a GET.
-            For list properties the body should represent that particiluar portion of the GET reponse, not the entire object.
+            For list properties the object should represent that particiluar portion of the GET reponse, not the entire object.
         required: True
         type: dict
 author:
@@ -65,7 +65,7 @@ request:
     type: dict
     returned: always
     sample: {
-        "body": {
+        "object": {
             "Certificate": [
                 {
                     "value": "Test2"
@@ -108,7 +108,7 @@ from ansible_collections.ansible.netcommon.plugins.module_utils.network.common.u
 def run_module():
     module_args = dict(
         domain = dict(type='str', required=True),
-        body = dict(type='dict', required=True),
+        object = dict(type='dict', required=True),
         class_name=dict(type='str', required=False),
         name = dict(type='str', required=False),
         obj_field = dict(type='str', required=False)

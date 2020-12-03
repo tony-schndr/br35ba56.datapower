@@ -25,7 +25,8 @@ DELETE_FIELD_URI = '/mgmt/config/{0}/{1}/{2}/{3}'
 MODIFY_URI = '/mgmt/config/{0}/{1}/{2}'
 CREATE_CONFIG_URI = '/mgmt/config/{0}/{1}'
 ACTION_QUEUE_URI = '/mgmt/actionqueue/{0}'
-FILESTORE_URI = '/mgmt/filestore/{0}/{1}/{2}'
+FILESTORE_URI_PUT = '/mgmt/filestore/{0}/{1}/{2}'
+FILESTORE_URI_POST = '/mgmt/filestore/{0}/{1}'
 
 #Define the keys that get returned to the modules.  REQUEST_DETAILS_KEY is here for debugging purposes.
 RESPONSE_KEY = 'response'
@@ -99,11 +100,19 @@ class DPCreate(DPRequest):
             self.class_name = self.get_class_name()
         self.path = CREATE_CONFIG_URI.format(self.domain, self.class_name)
         self.method = 'POST'
+        self.body = self.object
+    
+    
+    def get_class_name(self):
+        if hasattr(self, 'class_name') and self.class_name is not None:
+            return self.class_name
+        else:# hasattr(self, 'body'):
+            return list(self.object.keys())[0]
 
-
-class DPModify(DPRequest):
+'''
+class DPManageConfig(DPRequest):
     def __init__(self, module):
-        super(DPModify, self).__init__(module)
+        super(DPManageConfig, self).__init__(module)
         self.class_name = self.get_class_name()
         if not is_valid_class(self.class_name):
             raise AttributeError('Class name %s is not a valid DataPower class_name' % self.class_name)
@@ -121,6 +130,42 @@ class DPModify(DPRequest):
         if module.check_mode:
             self.method = 'GET'
             self.body = None
+
+    def _get_uri(self):
+        if self.obj_field:
+            self.method = 'POST'
+            return MOD_CONFIG_FIELD_URI.format(self.domain, self.class_name, self.name, self.obj_field)
+        else:
+            self.method = 'PUT'
+            return MOD_CONFIG_URI.format(self.domain, self.class_name, self.name)
+'''
+
+
+class DPModify(DPRequest):
+    def __init__(self, module):
+        super(DPModify, self).__init__(module)
+        if module.check_mode:
+            self.method = 'GET'
+            self.body = None
+        else:
+            self.body = self.object
+            
+        self.class_name = self.get_class_name()
+        if not is_valid_class(self.class_name):
+            raise AttributeError('Class name %s is not a valid DataPower class_name' % self.class_name)
+        if self.class_name and self.name and self.obj_field:
+            pass
+        elif _body_has_name(self.object):
+            self.name = self.object.get(
+                 self.class_name
+            ).get('name')
+        else:
+            raise AttributeError('DPModify miscombination, if your targeting the object, body is all you need.  \
+            If your targeting a list property in an object, you need to pass class_name, name and obj_field')
+        
+        self.path = self._get_uri()
+        
+
 
     def _get_uri(self):
         if self.obj_field:
@@ -208,21 +253,22 @@ class DPAction(DPRequest):
 class DPUploadFile(DPRequest):
     def __init__(self, module):
         super(DPUploadFile, self).__init__(module)  
-        #self.path = '/mgmt/filestore/default/cert/demo.crt'
-        self.path = FILESTORE_URI.format(self.domain, self.top_dir, self.file_path.strip('/'))
-        self.body = self.build_body()
+        # Always strip /
+        self.dir = self.dir.rstrip('/').lstrip('/')
         if self.overwrite:
             self.method = 'PUT'
+            self.path = FILESTORE_URI_PUT.format(self.domain, self.dir, self.filename)
         else:
             self.method = 'POST'
-
-    def build_body(self):
-        return {
+            self.path = FILESTORE_URI_POST.format(self.domain, self.dir)
+       
+        self.body = {
             'file': {
-                'name': self.path.split('/')[-1],
+                'name': self.filename,
                 'content': self.content
             }
         }
+
 
 class DPExportList:
     def __init__(self, objects):

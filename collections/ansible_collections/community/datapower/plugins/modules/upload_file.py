@@ -76,8 +76,8 @@ def run_module():
     module_args = dict(
         domain = dict(type='str', required=True),
         content = dict(type='str', required=True),
-        top_dir = dict(type='str', choices=['local', 'cert', 'sharedcert'], required=True),
-        file_path = dict(type='str', required=True),
+        dir = dict(type='str', required=True),
+        filename = dict(type='str', required=True),
         overwrite = dict(type='bool', required=False, default=False),   
     )
     

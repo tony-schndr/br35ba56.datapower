@@ -12,14 +12,14 @@
       - snafu-ca
   tasks:
 
-    - name: Create fake certs for demo
-      shell:
-        cmd: |
-          openssl req -newkey rsa:4096 -x509 -sha256 -days 3650 \
-          -nodes -out /DEV/{{ item }}.crt \
-          -subj "/C=US/O=VerySecure/OU=IT CN=ansible.{{ item }}.demo"
-        chdir: /DEV/
-      with_items: "{{ ca_names }}"
+    #- name: Create fake certs for demo
+    #  shell:
+    #    cmd: |
+    #      openssl req -newkey rsa:4096 -x509 -sha256 -days 3650 \
+    #      -nodes -out /DEV/{{ item }}.crt \
+    #      -subj "/C=US/O=VerySecure/OU=IT CN=ansible.{{ item }}.demo"
+    #    chdir: /DEV/
+    #  with_items: "{{ ca_names }}"
   
     - name: Read local cert file
       slurp:
@@ -28,9 +28,11 @@
       loop: "{{ ca_names }}"
 
     - name: Create domains for demo
-      community.datapower.mod_conf:
+      ignore_errors: yes
+      community.datapower.create_conf:
+        
         domain: default
-        body:
+        object:
           Domain:
             name: "{{ item }}"
             mAdminState: enabled
@@ -54,11 +56,11 @@
     - name: Upload certs to domains
       ignore_errors: yes
       community.datapower.upload_file:
-        domain: "{{ item[0] }}"
+        domain: bar #"{{ item[0] }}"
         content: "{{ item[1].content }}"
-        top_dir: cert
-        file_path: "{{ item[1].item }}.crt"
-        overwrite: True
+        dir: /cert/
+        filename: "{{ item[1].item }}.crt"
+        overwrite: False
       with_nested: 
         - "{{ domains }}"
         - "{{local_files.results}}"
@@ -66,7 +68,7 @@
     - name: Create Cert Objects
       community.datapower.mod_conf:
         domain: "{{ item[0] }}"
-        body:
+        object:
           CryptoCertificate:
             name: "{{ item[1].item }}"
             Filename: "cert:///{{ item[1].item }}.crt"
@@ -75,3 +77,19 @@
         - "{{ domains }}"
         - "{{local_files.results}}"
   
+    - name: Create ValCred
+      community.datapower.mod_conf:
+        domain: "{{ item }}"
+        object:
+          CryptoValCred:
+            name: valcred
+            mAdminState: enabled
+            CertValidationMode: legacy
+            UseCRL: 'on'
+            RequireCRL: 'off'
+            CRLDPHandling: ignore
+            InitialPolicySet: 2.5.29.32.0
+            ExplicitPolicy: 'off'
+            CheckDates: 'on'
+      with_items: 
+        - "{{ domains }}"

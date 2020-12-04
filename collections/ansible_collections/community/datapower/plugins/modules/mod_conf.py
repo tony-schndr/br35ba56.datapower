@@ -98,6 +98,7 @@ from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils.datapower import (
     DPModify,
+    DPChangeHandler,
     RESPONSE_KEY
 )
 
@@ -123,22 +124,13 @@ def run_module():
         supports_check_mode=True
     )
     
-    dp_mod = DPModify(module)
+    dp_proc = DPChangeHandler(DPModify(module))
 
     try:
-        result = dp_mod.send_request()
+        result = dp_proc.get_result()
+        module.exit_json(**result)
     except ConnectionError as ce:
-        result = dict()
-        result['request_body'] = dp_mod.body
-        result['request_method'] = dp_mod.method
-        result['request_uri'] =  dp_mod.path
-        if module.check_mode and 'Resource not found.' in to_text(ce):
-            #Resource wasn't found therefore would be created so changed = True
-            result['changed'] = True 
-        else:
-            result['changed'] = False
-            module.fail_json(msg=to_text(ce), **result)
-    module.exit_json(**result)
+        module.fail_json(msg=to_text(ce), **result)
 
 
 def main():

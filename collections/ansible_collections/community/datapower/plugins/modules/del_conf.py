@@ -72,7 +72,10 @@ response:
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower import DPDelete, RESPONSE_KEY
+from ansible_collections.community.datapower.plugins.module_utils.datapower import (
+    DPDelete,
+    DPChangeHandler
+)
 
 def run_module():
     # define available arguments/parameters a user can pass to the module
@@ -88,28 +91,13 @@ def run_module():
         supports_check_mode=True
     )
 
-
-    dp_del = DPDelete(module)
-
+    dp_proc = DPChangeHandler(DPDelete(module))
+    
     try:
-        result = dp_del.send_request()
+        result = dp_proc.get_result()
+        module.exit_json(**result)
     except ConnectionError as ce:
-        result = dict()
-        result['request_body'] = dp_del.body
-        result['request_method'] = dp_del.method
-        result['request_uri'] =  dp_del.path
-        if 'Resource not found.' in to_text(ce):
-            result[RESPONSE_KEY] = 'Resource not found.'
-        else:
-            module.fail_json(msg=to_text(ce), **result)
         module.fail_json(msg=to_text(ce), **result)
-
-
-    if module.check_mode:
-        result['changed'] = False
-    else:
-        result['changed'] = True
-
     module.exit_json(**result)
 
 

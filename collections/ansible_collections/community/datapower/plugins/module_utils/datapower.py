@@ -10,8 +10,8 @@ from ansible.module_utils.connection import Connection, ConnectionError
 from ansible.module_utils._text import to_text
 from ansible_collections.community.datapower.plugins.module_utils import (
     actionqueue,
-    filestore,
     config,
+    config_diff
 )
 MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI = '/mgmt/config/{0}/{1}' 
 MGMT_CONFIG_WITH_NAME_URI = '/mgmt/config/{0}/{1}/{2}'
@@ -25,6 +25,49 @@ FILESTORE_URI_POST = '/mgmt/filestore/{0}/{1}'
 RESPONSE_KEY = 'response'
 REQUEST_DETAILS_KEY = 'request'
 
+# This class is all about handling "Change" on the DataPower Appliance.
+# Prior to sending a PUT/POST/DELETE request on a /mgmt/config/ resource
+# we send a GET request and use config_diff.py to determine if a change is
+# required.  If a change is required the http method will set to the module 
+# related method. b
+class DPChangeHandler():
+    
+    def __init__(self, dp_req):
+        self.dp_req = dp_req
+
+    def is_change_required(self, dep_req):
+        current_state = self.dp_req._process_request(method='GET')
+        #check that that the body "types" match by checking the 
+        # first key in the dictionary, typically this key is the class_name
+        # or the target of a object field
+
+
+    def make_change(self):
+        if self.dp_req.check_mode:
+            self.dp_req.method = 'GET'
+
+        result = dict(
+            request_body=self.dp_req.body,
+            request_method=self.dp_req.method,
+            request_uri=self.dp_req.path
+        )
+        try:
+            result['result'] = self.dp_req.send_request()
+        except ConnectionError as ce:
+            result['error'] = to_text(ce)
+        return result
+
+    def get_result(self):
+        return self.make_change()
+   
+    '''
+    if module.check_mode and 'Resource not found.' in to_text(ce):
+        #Resource wasn't found therefore would be created so changed = True
+        result['changed'] = True 
+    else:
+        result['changed'] = False
+        
+    '''
 class DPRequest:
 
     def __init__(self, module, **kwargs):
@@ -103,9 +146,7 @@ class DPManageConfigRequest(DPRequest):
 
     # If checkmode then we are setting method to GET, if not the method passed into the function.
     def set_method(self, method):
-        if self.check_mode: 
-            self.method = 'GET'
-        elif method == "GET" or method == "POST" or method == "PUT" or method == "DELETE":
+        if method == "GET" or method == "POST" or method == "PUT" or method == "DELETE":
             self.method = method
         else:
             raise ConnectionError('Method not supported, choose from GET, PUT, POST, DELETE')

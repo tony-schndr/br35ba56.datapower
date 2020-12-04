@@ -85,7 +85,10 @@ response:
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower import DPCreate
+from ansible_collections.community.datapower.plugins.module_utils.datapower import (
+    DPCreate,
+    DPChangeHandler
+)
 
 def run_module():
     module_args = dict(
@@ -98,24 +101,13 @@ def run_module():
         supports_check_mode=True
     )
     
-    if module.check_mode:
-        result = dict()
-        module.exit_json(**result)
+    dp_proc = DPChangeHandler(DPCreate(module))
 
-    dp_create = DPCreate(module)
-    
     try:
-        result = dp_create.send_request()
-        result['changed'] = True
+        result = dp_proc.get_result()
+        module.exit_json(**result)
     except ConnectionError as ce:
-        result = dict()
-        result['changed'] = False
-        result['request_body'] = dp_create.body
-        result['request_method'] = dp_create.method
-        result['request_uri'] =  dp_create.path
         module.fail_json(msg=to_text(ce), **result)
-
-    
 
     module.exit_json(**result)
 

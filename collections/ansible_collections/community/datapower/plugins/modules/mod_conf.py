@@ -98,8 +98,6 @@ from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils.datapower import (
     DPModify,
-    DPRequest,
-    GET_CONFIG_NAME_URI,
     RESPONSE_KEY
 )
 

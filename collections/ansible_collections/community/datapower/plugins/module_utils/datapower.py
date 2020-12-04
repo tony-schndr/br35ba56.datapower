@@ -14,46 +14,17 @@ from ansible_collections.community.datapower.plugins.module_utils import (
     config,
 )
 #import config
-#TODO Replace all /mgmt/config/ with this base set for simplicity.
 MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI = '/mgmt/config/{0}/{1}' 
 MGMT_CONFIG_WITH_NAME_URI = '/mgmt/config/{0}/{1}/{2}'
 MGMT_CONFIG_WITH_FIELD_URI = '/mgmt/config/{0}/{1}/{2}/{3}'
-
-
-GET_CONFIG_URI = '/mgmt/config/{0}/{1}' 
-GET_CONFIG_NAME_URI = '/mgmt/config/{0}/{1}/{2}'
-GET_CONFIG_NAME_FIELD_URI = '/mgmt/config/{0}/{1}/{2}/{3}'
-MOD_CONFIG_URI = '/mgmt/config/{0}/{1}/{2}'
-MOD_CONFIG_FIELD_URI = '/mgmt/config/{0}/{1}/{2}/{3}'
-DELETE_URI = '/mgmt/config/{0}/{1}/{2}'
-DELETE_FIELD_URI = '/mgmt/config/{0}/{1}/{2}/{3}'
-MODIFY_URI = '/mgmt/config/{0}/{1}/{2}'
-CREATE_CONFIG_URI = '/mgmt/config/{0}/{1}'
 ACTION_QUEUE_URI = '/mgmt/actionqueue/{0}'
 FILESTORE_URI_PUT = '/mgmt/filestore/{0}/{1}/{2}'
 FILESTORE_URI_POST = '/mgmt/filestore/{0}/{1}'
 
-#Define the keys that get returned to the modules.  REQUEST_DETAILS_KEY is here for debugging purposes.
+# Define the keys that get returned to the modules.  
+# REQUEST_DETAILS_KEY is helps for debugging.
 RESPONSE_KEY = 'response'
 REQUEST_DETAILS_KEY = 'request'
-CONNECTION_ERROR_KEY = 'ConnectionError'
-
-def is_valid_class(class_name):
-    return config.val_obj_dict['_links'].get(class_name) or False
-
-
-# TODO  Should this stay here?  
-def _body_has_name(body):
-    return 'name' in  body.get(list(body.keys())[0])
-
-
-def check_for_error(response):
-    for k in response.get(RESPONSE_KEY).keys():
-        if 'error' in k.lower():
-            return True
-    else:
-        return False
-
 
 class DPRequest:
 
@@ -71,14 +42,13 @@ class DPRequest:
 
     def _process_request(self, method, path, body):
         result = {}
-        # If the payload is being generated and modified from a get request you will have these keys in the payload
-        # For convineince remove these so its a valid payload being sent back to DataPower REST Interface
-
+        # If the payload is being generated and modified from a get request from an earlier task,
+        #  you will probably have these keys in the payload.
+        # For convenience remove these so its a valid payload being sent back to DataPower REST Interface
         _scrub(body, '_links')
         _scrub(body, 'href')
         _scrub(body, 'state')
         try:
-            result[REQUEST_DETAILS_KEY] = {'body': body, 'path': path, 'method': method}
             result[RESPONSE_KEY] = self.connection.send_request(body, path, method)
         except ConnectionError:
             raise
@@ -93,11 +63,6 @@ class DPRequest:
         except ConnectionError:
             raise
 
-    def get_class_name(self):
-        if hasattr(self, 'class_name') and self.class_name is not None:
-            return self.class_name
-        elif hasattr(self, 'object'):
-            return list(self.object.keys())[0]
 
 class DPManageConfigRequest(DPRequest):
 
@@ -127,10 +92,9 @@ class DPManageConfigRequest(DPRequest):
                 self.get_class_name()
             ).get('name')
 
-    def set_uri(self):
+    def set_path(self):
         if not self.get_class_name():
             raise AttributeError('class_name field is required.')
-
         if hasattr(self, 'obj_field') and self.obj_field:
             self.path = MGMT_CONFIG_WITH_FIELD_URI.format(self.domain, self.class_name, self.get_object_name(), self.obj_field)
         elif hasattr(self, 'name') and self.obj_field == None:
@@ -140,10 +104,12 @@ class DPManageConfigRequest(DPRequest):
 
     # If checkmode then we are setting method to GET, if not the method passed into the function.
     def set_method(self, method):
-        if self.check_mode:
+        if self.check_mode: 
             self.method = 'GET'
-        else:
+        elif method == "GET" or method == "POST" or method == "PUT" or method == "DELETE":
             self.method = method
+        else:
+            raise ConnectionError('Method not supported, choose from GET, PUT, POST, DELETE')
 
 
 class DPCreate(DPManageConfigRequest):
@@ -151,7 +117,7 @@ class DPCreate(DPManageConfigRequest):
         super(DPCreate, self).__init__(module)
         if is_valid_class(self.get_class_name()):
             self.class_name = self.get_class_name()
-        self.set_uri()
+        self.set_path()
         self.set_method('POST')
         self.set_body()
     
@@ -173,7 +139,7 @@ class DPModify(DPManageConfigRequest):
         #    raise AttributeError('DPModify miscombination, if your targeting the object, body is all you need. \
          #   If your targeting a list property in an object, you need to pass class_name, name and obj_field')
         
-        self.set_uri()
+        self.set_path()
         if hasattr(self, 'obj_field') and self.obj_field is not None:
             self.set_method('POST')
         else:
@@ -186,13 +152,13 @@ class DPGet(DPManageConfigRequest):
         super(DPGet, self).__init__(module)
         if not is_valid_class(self.class_name):
             raise ValueError('Invalid class_name.')
-        self.set_uri()
+        self.set_path()
         self.method = 'GET'
 
-    def set_uri(self):
-        super(DPGet, self).set_uri()
+    def set_path(self):
+        super(DPGet, self).set_path()
         opt_str = self._get_options()
-        self.path = self.path + '?' + opt_stra
+        self.path = self.path + '?' + opt_str
 
     def _get_options(self):
         url_params = {}
@@ -213,7 +179,7 @@ class DPDelete(DPManageConfigRequest):
     
     def __init__(self, module):
         super(DPDelete, self).__init__(module)
-        self.set_uri()
+        self.set_path()
         self.set_method('DELETE')
         self.set_body()
 
@@ -257,7 +223,6 @@ class DPExportList:
                 obj[k.replace('_', '-')] = v
                 del obj[k]
         self.objects = objects
-
     def _get_export_list(self):
         return self.objects
 
@@ -295,7 +260,7 @@ class DPExport(DPConfigActions):
             list_type = 'Object'
         else: 
             list_type = 'All'
-        self.path = self._get_uri()
+        self.path = self.get_path()
         self.method = 'POST'
         if list_type != 'All':
             dp_exports = DPExportList(
@@ -304,7 +269,7 @@ class DPExport(DPConfigActions):
             self.body['Export'][list_type] = dp_exports
 
 
-    def _get_uri(self):
+    def get_path(self):
         return ACTION_QUEUE_URI.format(self.domain)
 
 
@@ -337,6 +302,12 @@ def _scrub(obj, bad_key):
     else:
         # neither a dict nor a list, do nothing
         pass
-        
-def handle_check_mode():
-    pass
+
+
+# TODO
+# This is hardcoded, pinned to DataPower v 10.0.1.0.
+# This could be greatly improved by having it check an AnsibleFact.
+# Would need to add a fact Module that gathers valid config object types
+# from GET /mgmt/config/ and store it as a fact.
+def is_valid_class(class_name):
+    return config.val_obj_dict['_links'].get(class_name) or False

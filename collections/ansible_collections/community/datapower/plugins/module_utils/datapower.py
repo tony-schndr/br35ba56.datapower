@@ -25,6 +25,14 @@ FILESTORE_URI_POST = '/mgmt/filestore/{0}/{1}'
 RESPONSE_KEY = 'response'
 REQUEST_DETAILS_KEY = 'request'
 
+def is_matching_class_names(from_dict, to_dict):
+    # ensures we are comparing equivalent objects.
+    # if the object is going to or from a datapower and it is a valid /mgmt/config payload,
+    # there will always be a single key identifying the class_name or field
+    if list(from_dict.keys())[0] == list(to_dict.keys())[0]:
+        return True
+    else:
+        return False
 # This class is all about handling "Change" on the DataPower Appliance.
 # Prior to sending a PUT/POST/DELETE request on a /mgmt/config/ resource
 # we send a GET request and use config_diff.py to determine if a change is
@@ -35,12 +43,43 @@ class DPChangeHandler():
     def __init__(self, dp_req):
         self.dp_req = dp_req
 
-    def is_change_required(self, dep_req):
-        current_state = self.dp_req._process_request(method='GET')
-        #check that that the body "types" match by checking the 
-        # first key in the dictionary, typically this key is the class_name
-        # or the target of a object field
+    def get_current_state(self):
+        return self.dp_req._process_request(method='GET', path=self.dp_req.path, body=None)
 
+
+    def is_change_required(self):
+        from_dict = self.get_current_state()
+        if from_dict.get('result', None) == "No configuration retrieved." or from_dict.get('error', None) == 'Resource not found.':
+            # No configuration was found, unless this is the DELETE method a change 
+            # needs to be made to acheive desired state.
+            return True
+
+        to_dict = self.dp_req.body
+        if is_matching_class_names(from_dict, to_dict):
+            return len(
+                config_diff.get_diff_keys(
+                    from_dict[
+                        list(
+                            from_dict.keys()
+                        )[0]
+                    ], 
+                    to_dict[
+                        list(
+                            to_dict.keys()
+                        )[0]
+                    ]
+                )
+            ) > 0
+        else:
+            return False
+
+    def get_result(self):
+        if self.is_change_required():
+            result = self.make_change()
+        else:
+            result =  {'response':'no change made.'}
+
+        return result
 
     def make_change(self):
         if self.dp_req.check_mode:
@@ -57,8 +96,15 @@ class DPChangeHandler():
             result['error'] = to_text(ce)
         return result
 
-    def get_result(self):
-        return self.make_change()
+
+    def did_change(self, result):
+        if hasattr(result, 'error') and not self.dp_req.check_mode:
+            return False #change did not happen due to some error
+        else:
+            return True
+        
+            
+
    
     '''
     if module.check_mode and 'Resource not found.' in to_text(ce):
@@ -68,6 +114,12 @@ class DPChangeHandler():
         result['changed'] = False
         
     '''
+def clean_dp_dict(dict_):
+    _scrub(dict_, '_links')
+    _scrub(dict_, 'href')
+    _scrub(dict_, 'state')
+
+
 class DPRequest:
 
     def __init__(self, module, **kwargs):

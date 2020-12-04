@@ -127,6 +127,7 @@ def run_module():
     dp_proc = DPChangeHandler(DPModify(module))
 
     try:
+        result = dict()
         result = dp_proc.get_result()
         module.exit_json(**result)
     except ConnectionError as ce:

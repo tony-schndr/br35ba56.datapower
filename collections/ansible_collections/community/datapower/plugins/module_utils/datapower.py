@@ -13,7 +13,6 @@ from ansible_collections.community.datapower.plugins.module_utils import (
     filestore,
     config,
 )
-#import config
 MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI = '/mgmt/config/{0}/{1}' 
 MGMT_CONFIG_WITH_NAME_URI = '/mgmt/config/{0}/{1}/{2}'
 MGMT_CONFIG_WITH_FIELD_URI = '/mgmt/config/{0}/{1}/{2}/{3}'

@@ -99,18 +99,23 @@ def run_module():
     )
     
     if module.check_mode:
+        result = dict()
         module.exit_json(**result)
 
     dp_create = DPCreate(module)
     
     try:
         result = dp_create.send_request()
+        result['changed'] = True
     except ConnectionError as ce:
         result = dict()
         result['changed'] = False
+        result['request_body'] = dp_create.body
+        result['request_method'] = dp_create.method
+        result['request_uri'] =  dp_create.path
         module.fail_json(msg=to_text(ce), **result)
 
-    result['changed'] = True
+    
 
     module.exit_json(**result)
 

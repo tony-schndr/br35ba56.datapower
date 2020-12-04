@@ -14,6 +14,11 @@ from ansible_collections.community.datapower.plugins.module_utils import (
     config,
 )
 #import config
+#TODO Replace all /mgmt/config/ with this base set for simplicity.
+MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI = '/mgmt/config/{0}/{1}' 
+MGMT_CONFIG_WITH_NAME_URI = '/mgmt/config/{0}/{1}/{2}'
+MGMT_CONFIG_WITH_FIELD_URI = '/mgmt/config/{0}/{1}/{2}/{3}'
+
 
 GET_CONFIG_URI = '/mgmt/config/{0}/{1}' 
 GET_CONFIG_NAME_URI = '/mgmt/config/{0}/{1}/{2}'
@@ -60,6 +65,8 @@ class DPRequest:
         else:
             for k, v in kwargs.items():
                 setattr(self, k, v)
+        if hasattr(module, 'check_mode'):
+            self.check_mode = module.check_mode
         self.connection = Connection(module._socket_path)
 
     def _process_request(self, method, path, body):
@@ -89,122 +96,103 @@ class DPRequest:
     def get_class_name(self):
         if hasattr(self, 'class_name') and self.class_name is not None:
             return self.class_name
-        else:# hasattr(self, 'body'):
-            return list(self.body.keys())[0]
-   
-                    
-class DPCreate(DPRequest):
+        elif hasattr(self, 'object'):
+            return list(self.object.keys())[0]
+
+class DPManageConfigRequest(DPRequest):
+
+    def get_class_name(self):
+        if hasattr(self, 'class_name') and self.class_name is not None:
+            return self.class_name
+        elif hasattr(self, 'object') and self.object is not None:
+            return list(self.object.keys())[0]
+        else:
+            return None
+
+    # If checkmode then we are not using a request body.
+    def set_body(self):
+        if self.check_mode:
+            self.body = None
+        elif hasattr(self, 'object'):
+            self.body = self.object
+        else:
+            self.body = None
+
+    def get_object_name(self):
+        # If there is an object name you should always find it in the value of the object_class key
+        if self.name is not None:
+            return self.name
+        else:
+            return self.object.get(
+                self.get_class_name()
+            ).get('name')
+
+    def set_uri(self):
+        if not self.get_class_name():
+            raise AttributeError('class_name field is required.')
+
+        if hasattr(self, 'obj_field') and self.obj_field:
+            self.path = MGMT_CONFIG_WITH_FIELD_URI.format(self.domain, self.class_name, self.get_object_name(), self.obj_field)
+        elif hasattr(self, 'name') and self.obj_field == None:
+            self.path = MGMT_CONFIG_WITH_NAME_URI.format(self.domain, self.class_name, self.get_object_name())
+        else:
+            self.path = MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI.format(self.domain, self.class_name)
+
+    # If checkmode then we are setting method to GET, if not the method passed into the function.
+    def set_method(self, method):
+        if self.check_mode:
+            self.method = 'GET'
+        else:
+            self.method = method
+
+
+class DPCreate(DPManageConfigRequest):
     def __init__(self, module):
         super(DPCreate, self).__init__(module)
         if is_valid_class(self.get_class_name()):
             self.class_name = self.get_class_name()
-        self.path = CREATE_CONFIG_URI.format(self.domain, self.class_name)
-        self.method = 'POST'
-        self.body = self.object
+        self.set_uri()
+        self.set_method('POST')
+        self.set_body()
     
-    
-    def get_class_name(self):
-        if hasattr(self, 'class_name') and self.class_name is not None:
-            return self.class_name
-        else:# hasattr(self, 'body'):
-            return list(self.object.keys())[0]
 
-'''
-class DPManageConfig(DPRequest):
-    def __init__(self, module):
-        super(DPManageConfig, self).__init__(module)
-        self.class_name = self.get_class_name()
-        if not is_valid_class(self.class_name):
-            raise AttributeError('Class name %s is not a valid DataPower class_name' % self.class_name)
-        if self.class_name and self.name and self.obj_field:
-            pass
-        elif _body_has_name(self.body):
-            self.name = self.body.get(
-                 self.class_name
-            ).get('name')
-        else:
-            raise AttributeError('DPModify miscombination, if your targeting the object, body is all you need.  \
-            If your targeting a list property in an object, you need to pass class_name, name and obj_field')
-        
-        self.path = self._get_uri()
-        if module.check_mode:
-            self.method = 'GET'
-            self.body = None
-
-    def _get_uri(self):
-        if self.obj_field:
-            self.method = 'POST'
-            return MOD_CONFIG_FIELD_URI.format(self.domain, self.class_name, self.name, self.obj_field)
-        else:
-            self.method = 'PUT'
-            return MOD_CONFIG_URI.format(self.domain, self.class_name, self.name)
-'''
-
-
-class DPModify(DPRequest):
+class DPModify(DPManageConfigRequest):
     def __init__(self, module):
         super(DPModify, self).__init__(module)
-        if module.check_mode:
-            self.method = 'GET'
-            self.body = None
+        if hasattr(self, 'name') and self.name is not None:
+            pass
         else:
-            self.body = self.object
-            
+            self.name = self.get_object_name()
+
         self.class_name = self.get_class_name()
+        #TODO bring this into a parent class
         if not is_valid_class(self.class_name):
             raise AttributeError('Class name %s is not a valid DataPower class_name' % self.class_name)
-        if self.class_name and self.name and self.obj_field:
-            pass
-        elif _body_has_name(self.object):
-            self.name = self.object.get(
-                 self.class_name
-            ).get('name')
-        else:
-            raise AttributeError('DPModify miscombination, if your targeting the object, body is all you need.  \
-            If your targeting a list property in an object, you need to pass class_name, name and obj_field')
         
-        self.path = self._get_uri()
         
-
-
-    def _get_uri(self):
-        if self.obj_field:
-            self.method = 'POST'
-            return MOD_CONFIG_FIELD_URI.format(self.domain, self.class_name, self.name, self.obj_field)
+        #    raise AttributeError('DPModify miscombination, if your targeting the object, body is all you need. \
+         #   If your targeting a list property in an object, you need to pass class_name, name and obj_field')
+        
+        self.set_uri()
+        if hasattr(self, 'obj_field') and self.obj_field is not None:
+            self.set_method('POST')
         else:
-            self.method = 'PUT'
-            return MOD_CONFIG_URI.format(self.domain, self.class_name, self.name)
+            self.set_method('PUT')
+        self.set_body()
 
 
-class DPGet(DPRequest):
+class DPGet(DPManageConfigRequest):
     def __init__(self, module):
         super(DPGet, self).__init__(module)
         if not is_valid_class(self.class_name):
             raise ValueError('Invalid class_name.')
-        self.path = self._get_uri()
+        self.set_uri()
         self.method = 'GET'
 
-    def _get_uri(self):
+    def set_uri(self):
+        super(DPGet, self).set_uri()
         opt_str = self._get_options()
-        if self.name:
-            if self.obj_field:
-                return GET_CONFIG_NAME_FIELD_URI.format(
-                                                        self.domain,
-                                                        self.class_name,
-                                                        self.name,
-                                                        self.obj_field
-                                                        ) + '?' + opt_str
-            else:
-                return GET_CONFIG_NAME_URI.format(
-                                                  self.domain,
-                                                  self.class_name,
-                                                  self.name
-                                                  ).rstrip('/') + '?' + opt_str
-        else:
-            return CREATE_CONFIG_URI.format(
-                                            self.domain,
-                                            self.class_name
-                                            ).rstrip('/') + '?' + opt_str
+        self.path = self.path + '?' + opt_stra
 
     def _get_options(self):
         url_params = {}
@@ -221,25 +209,13 @@ class DPGet(DPRequest):
         return urlencode(url_params, doseq=0)
 
 
-class DPDelete(DPRequest):
+class DPDelete(DPManageConfigRequest):
     
     def __init__(self, module):
         super(DPDelete, self).__init__(module)
-        if not is_valid_class(self.class_name): 
-            raise ValueError('Invalid class_name.')
-        if not hasattr(self, 'name'):
-            raise AttributeError('DPDelete() requires name')
-        self.path = self._get_uri()
-        self.method = 'DELETE'
-
-    def _get_uri(self):
-        if self.name:
-            if self.obj_field:
-                return DELETE_FIELD_URI.format(self.domain, self.class_name, self.name, self.obj_field).rstrip('/')
-            else:
-                return DELETE_URI.format(self.domain, self.class_name, self.name).rstrip('/')
-        else:
-            raise AttributeError('DPDelete requires name to target a resouce.')
+        self.set_uri()
+        self.set_method('DELETE')
+        self.set_body()
 
 
 
@@ -361,3 +337,6 @@ def _scrub(obj, bad_key):
     else:
         # neither a dict nor a list, do nothing
         pass
+        
+def handle_check_mode():
+    pass

@@ -26,7 +26,7 @@ options:
         description: DataPower objects object_class.  Valid object_cass can be determined via GET at URI /mgmt/config/
         required: Only when targeting a list property
         type: str
-    body:
+    object:
         description: The configuration of the object as determined from a GET request.  
             Typically you will create the object in the GUI first.  Then you can retrieve the configuration via JSON with a GET.
             For list properties the object should represent that particiluar portion of the GET reponse, not the entire object.
@@ -45,7 +45,7 @@ EXAMPLES = r'''
     class_name: CryptoValCred
     name: valcred
     obj_field: Certificate
-    body:
+    object:
         Certificate:
         - value: Test2
 
@@ -53,7 +53,7 @@ EXAMPLES = r'''
 - name: Disable the valcred
     community.datapower.mod_conf:
     domain: "{{ domain }}"
-    body:
+    object:
         CryptoValCred:
             name: valcred
             mAdminState: disabled
@@ -99,12 +99,13 @@ from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils.datapower import (
     DPModify,
     DPRequest,
-    GET_CONFIG_NAME_URI
-)
-from ansible_collections.ansible.netcommon.plugins.module_utils.network.common.utils import (
-    dict_diff,
+    GET_CONFIG_NAME_URI,
+    RESPONSE_KEY
 )
 
+from ansible_collections.community.datapower.plugins.module_utils import (
+    config_diff
+)
 def run_module():
     module_args = dict(
         domain = dict(type='str', required=True),
@@ -124,32 +125,21 @@ def run_module():
         supports_check_mode=True
     )
     
-    # Modify check mode
-    # GET the targeted object
-    # generate a dict diff
-    # return the difference
-    if module.check_mode:
-        dp_mod = DPModify(module)
-        try:
-            result = dp_mod.send_request()
-        except ConnectionError as ce:
-            result = dict()
-            result['changed'] = False
-            module.fail_json(msg=to_text(ce), **result)
-        #diff = dict_diff(, module.params.get('body'))
-        module.exit_json(msg='dict diff' , **result.get('response'))
-
-
     dp_mod = DPModify(module)
+
     try:
         result = dp_mod.send_request()
     except ConnectionError as ce:
         result = dict()
-        result['changed'] = False
-        module.fail_json(msg=to_text(ce), **result)
-
-    result['changed'] = True
-
+        result['request_body'] = dp_mod.body
+        result['request_method'] = dp_mod.method
+        result['request_uri'] =  dp_mod.path
+        if module.check_mode and 'Resource not found.' in to_text(ce):
+            #Resource wasn't found therefore would be created so changed = True
+            result['changed'] = True 
+        else:
+            result['changed'] = False
+            module.fail_json(msg=to_text(ce), **result)
     module.exit_json(**result)
 
 

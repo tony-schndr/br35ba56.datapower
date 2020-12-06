@@ -3,7 +3,6 @@
 
 
 
-
 def _format_action_results(dict_):
     dp_objects = []
     for key, value in dict_.items():

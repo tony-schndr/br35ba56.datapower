@@ -96,43 +96,31 @@ response:
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower import (
-    DPModify,
-    DPChangeHandler,
-    RESPONSE_KEY
+from ansible_collections.community.datapower.plugins.module_utils.datapower.dp_obj import (
+    DPConfigObject
 )
 
-from ansible_collections.community.datapower.plugins.module_utils import (
-    config_diff
-)
 def run_module():
     module_args = dict(
         domain = dict(type='str', required=True),
-        object = dict(type='dict', required=True),
-        class_name=dict(type='str', required=False),
-        name = dict(type='str', required=False),
-        obj_field = dict(type='str', required=False)
+        config = dict(type='dict', required=True),
+        class_name=dict(type='str', required=True),
+        obj_name = dict(type='str', required=True),
+        obj_field = dict(type='str', required=False),
+        overwrite = dict(type='bool', required=False, default=False)
     )
-
-    required_together = [
-        ['class_name', 'name', 'obj_field']
-    ]
-    
+   
     module = AnsibleModule(
         argument_spec=module_args,
-        required_together=required_together,
-        supports_check_mode=True
+        supports_check_mode=True 
     )
     
-    dp_proc = DPChangeHandler(DPModify(module))
+    dp_obj = DPConfigObject(**module.params)
 
-    try:
-        result = dict()
-        result = dp_proc.get_result()
-        module.exit_json(**result)
-    except ConnectionError as ce:
-        module.fail_json(msg=to_text(ce), **result)
+    result = {}
+    result['dp_obj'] = vars(dp_obj)
 
+    module.exit_json(**result)
 
 def main():
     run_module()

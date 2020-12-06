@@ -72,9 +72,8 @@ response:
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower import (
-    DPDelete,
-    DPChangeHandler
+from ansible_collections.community.datapower.plugins.module_utils.datapower.dp_obj import (
+    DPConfigObject
 )
 
 def run_module():
@@ -91,13 +90,12 @@ def run_module():
         supports_check_mode=True
     )
 
-    dp_proc = DPChangeHandler(DPDelete(module))
     
-    try:
-        result = dp_proc.get_result()
-        module.exit_json(**result)
-    except ConnectionError as ce:
-        module.fail_json(msg=to_text(ce), **result)
+    dp_obj = DPConfigObject(**module.params)
+
+    result = {}
+    result['dp_obj'] = vars(dp_obj)
+
     module.exit_json(**result)
 
 

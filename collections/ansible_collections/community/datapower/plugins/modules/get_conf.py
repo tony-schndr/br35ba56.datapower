@@ -110,7 +110,9 @@ response:
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower import DPGet
+from ansible_collections.community.datapower.plugins.module_utils.datapower.dp_obj import (
+    DPConfigObject
+)
 
 def run_module():
     module_args = dict(
@@ -129,23 +131,15 @@ def run_module():
     
     module = AnsibleModule(
         argument_spec=module_args,
-        supports_check_mode=True,
+        supports_check_mode=False,
         mutually_exclusive=mutually_exclusive
     )
     
-    #if module.check_mode:
-    #    module.exit_json(**result)
-
-    dp_get = DPGet(module)
-
-    try:
-        result = dp_get.send_request()
-    except ConnectionError as ce:
-        result = dict()
-        result['changed'] = False
-        module.fail_json(msg=to_text(ce), **result)
-
-    result['changed'] = False
+    dp_obj = DPConfigObject(**module.params)
+    
+    
+    result = {}
+    result['dp_obj'] = vars(dp_obj)
 
     module.exit_json(**result)
 

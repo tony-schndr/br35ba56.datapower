@@ -8,9 +8,7 @@ from ansible.module_utils._text import to_text
 from ansible.module_utils.six.moves.urllib.parse import urlencode
 from ansible.module_utils.connection import Connection, ConnectionError
 from ansible.module_utils._text import to_text
-from ansible_collections.community.datapower.plugins.module_utils import (
-    config
-)
+
 
 MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI = '/mgmt/config/{0}/{1}' 
 MGMT_CONFIG_WITH_NAME_URI = '/mgmt/config/{0}/{1}/{2}'
@@ -25,6 +23,19 @@ RESPONSE_KEY = 'response'
 REQUEST_DETAILS_KEY = 'request'
 VALID_METHODS = ['GET', 'POST', 'PUT', 'DELETE']
 
+URI_OPTIONS = {
+    'recursive' : {
+        'view': True
+    },
+    'state' : {
+        'state': 1
+    },
+    'depth': {
+        'depth' : 2
+    }
+}
+
+
 def _make_request(connection, method, path,  body=None):
     return connection.send_request(body, path, method)
 
@@ -37,90 +48,74 @@ def clean_dp_dict(dict_):
 
 class DPRequest:
 
-    def __init__(self, path=None, method=None, body=None):
-        self.path = path
-        self.method = method
-        self.body = body
-    
-    def set_body(self, body):
-        self.body = body
-    
-    def set_path(self, path):
-        self.path = path
+    def __init__(self):
+        pass
 
-    def set_method(self, method):
-        if method in VALID_METHODS:
-            self.method = method
-        else:
-            raise ConnectionError('Method not supported, choose from \
-                                    GET, POST, PUT, DELETE')
+
+
 
 class DPManageConfigRequest(DPRequest):
 
+    def __init__(self, dp_mgmt_conf):
+        super(DPManageConfigRequest, self).__init__()
+        self.body = {}
+        if dp_mgmt_conf.overwrite and not dp_mgmt_conf.object_field:
+            self.method = 'PUT'
+            self.set_path(
+                dp_mgmt_conf.domain,
+                dp_mgmt_conf.class_name,
+                dp_mgmt_conf.object_name
+            )
+            self.body = dp_mgmt_conf.config
+        elif not dp_mgmt_conf.overwrite and not dp_mgmt_conf.object_field:
+            self.method = 'POST'
+            self.set_path(
+                dp_mgmt_conf.domain,
+                dp_mgmt_conf.class_name,
+            )
+            self.body.update(dp_mgmt_conf.config)
+            #Need to ensure name is include for POST requests.
+            self.body['name'] = dp_mgmt_conf.object_name
+        elif dp_mgmt_conf.object_field: 
+            self.method = 'PUT'
+            self.set_path(
+                dp_mgmt_conf.domain,
+                dp_mgmt_conf.class_name,
+                dp_mgmt_conf.object_name,
+                dp_mgmt_conf.object_field
+            )
+            self.body.update(dp_mgmt_conf.config)
+        
 
-    def set_path(self):
-        if not self.get_class_name():
-            raise AttributeError('class_name field is required.')
-        if hasattr(self, 'obj_field') and self.obj_field:
-            self.path = MGMT_CONFIG_WITH_FIELD_URI.format(self.domain, self.class_name, self.get_object_name(), self.obj_field)
-        elif hasattr(self, 'name') and self.obj_field == None:
-            self.path = MGMT_CONFIG_WITH_NAME_URI.format(self.domain, self.class_name, self.get_object_name())
+
+    def set_path(self, domain, class_name=None, object_name=None, object_field=None):
+        if class_name and not object_name and not object_field:
+            self.path = MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI.format(domain, class_name)
+        elif class_name and object_name and not object_field:
+            self.path = MGMT_CONFIG_WITH_NAME_URI.format(domain, class_name, object_name)
+        elif class_name and object_name and object_field:
+            self.path = MGMT_CONFIG_WITH_FIELD_URI.format(domain, class_name, object_name, object_field)
         else:
-            self.path = MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI.format(self.domain, self.class_name)
+            raise AttributeError('no valid URI could be derived')
 
-
-class DPUpdateConfig(DPManageConfigRequest):
-    def __init__(self, module):
-        super(DPUpdateConfig, self).__init__(module)
-  
-URI_OPTIONS = [
-    'recursive' : {
-        view : True
-    }
-    'state' : {
-        'state': 1
-    },
-    'depth' 
-]
 
 class DPGetConfigRequest(DPManageConfigRequest):
-    def __init__(self, **kwargs):
-        super(DPGetGetConfigRequest, self).__init__(**kwargs)
-        if not is_valid_class(self.class_name):
-            raise ValueError('Invalid class_name.')
-
-        self.set_uri_options(kwargs.get('options'))
-        self.set_path()
+    def __init__(self, dp_mgmt_conf):
+        super(DPGetConfigRequest, self).__init__(dp_mgmt_conf)
         self.method = 'GET'
+        self.options = {}
+        if hasattr(dp_mgmt_conf, 'recursive') and dp_mgmt_conf.recursive:
+            self.options.update(URI_OPTIONS['recursive'])
+            self.options.update(URI_OPTIONS['depth'])
+        if hasattr(dp_mgmt_conf, 'state') and dp_mgmt_conf.state:
+            self.options.update(URI_OPTIONS['state'])
+        if hasattr(dp_mgmt_conf, 'depth') and dp_mgmt_conf.depth:
+            self.options['depth'] = dp_mgmt_conf.depth
+        self.path = self.path + '?' + urlencode(self.options, doseq=0)
 
-    def set_path(self, **kwargs):
-        super(DPGet, self).set_path()
-        opt_str = self._get_options()
-        self.path = self.path + '?' + opt_str
+    def get_path(self, **kwargs):
+        return self.path + '?' + urlencode(self.options, doseq=0)
 
-    def set_depth_option(self, depth):
-        if depth > 0 and depth <= 7:
-            self.options.append({'depth': depth})
-        else:
-            raise AttributeError('depth must be 1-7.')
-        
-    def set_uri_options(self, **kwargs):
-        for k,v in kwargs.items():
-            if k in URL_OPTIONS
-
-    def _get_options(self):
-        url_params = {}
-        if not hasattr(self, 'state') and not hasattr(self,'recursive'):
-            return ''
-        if self.state:
-            url_params['state'] = '1'
-        if self.recursive:
-            url_params['view'] = 'recursive'
-            if self.depth:
-                url_params['depth'] = self.depth
-            else:
-                url_params['depth'] = '3'
-        return urlencode(url_params, doseq=0)
 
 
 class DPDeleteConfig(DPManageConfigRequest):
@@ -249,12 +244,3 @@ def _scrub(obj, bad_key):
     else:
         # neither a dict nor a list, do nothing
         pass
-
-
-# TODO
-# This is hardcoded, pinned to DataPower v 10.0.1.0.
-# This could be greatly improved by having it check an AnsibleFact.
-# Would need to add a fact Module that gathers valid config object types
-# from GET /mgmt/config/ and store it as a fact.
-def is_valid_class(class_name):
-    return config.val_obj_dict['_links'].get(class_name) or False

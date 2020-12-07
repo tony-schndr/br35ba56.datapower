@@ -118,8 +118,8 @@ def run_module():
     module_args = dict(
         domain=dict(type='str', required=True),
         class_name=dict(type='str', required=True),
-        name=dict(type='str', required=False),
-        obj_field=dict(type='str', required=False),
+        object_name=dict(type='str', required=False),
+        object_field=dict(type='str', required=False),
         recursive=dict(type='bool', required=False),
         depth=dict(type='int', required=False),
         state=dict(type='bool', required=False)

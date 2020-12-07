@@ -4,17 +4,6 @@
   vars:
     domain: default
   tasks:
-    - name: Create the CrytpoValCred valcred
-     # ignore_errors: yes
-      community.datapower.apply_conf:
-        domain: "{{ domain }}"
-        obj_name: valcred
-        class_name: CryptoValCred
-        overwrite: no
-        config:
-          CryptoValCred:
-            mAdminState: enabled
-
     - name: Get the ValCred 
       community.datapower.get_conf:
         domain: "{{ domain }}"

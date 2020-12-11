@@ -105,10 +105,10 @@ def run_module():
         domain = dict(type='str', required=True),
         config = dict(type='dict', required=True),
         class_name=dict(type='str', required=False),
-        object_name = dict(type='str', required=False),
+        name = dict(type='str', required=False),
         object_field = dict(type='str', required=False),
-        overwrite = dict(type='bool', required=False, default=False)
-        state = dict(type='str', choices=['present', 'absent'], required=True)
+        overwrite = dict(type='bool', required=False, default=False),
+        
     )
    
     module = AnsibleModule(

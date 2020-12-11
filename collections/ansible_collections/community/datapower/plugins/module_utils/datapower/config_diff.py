@@ -25,62 +25,6 @@ def dict_diff(from_dict, to_dict):
         diff_[k] = {'from' : from_dict[k], 'to' : to_dict[k]}
     return diff_
 
-'''
-
-from_dict = {
-  "CryptoValCred": {
-    "name": "valcred",
-    "UseCRL": "on",
-    "RequireCRL": "off",
-    "Certificate": [
-            {
-                "value": "bar-ca",
-                "href": "/mgmt/config/bar/CryptoCertificate/bar-ca"
-            },
-            {
-                "value": "foo-ca",
-                "href": "/mgmt/config/bar/CryptoCertificate/foo-ca"
-            },
-            {
-                "value": "snafu-ca",
-                "href": "/mgmt/config/bar/CryptoCertificate/bar-ca"
-            },
-        ],
-    "CRLDPHandling": "ignore",
-    "ExplicitPolicy": "off",
-    "CheckDates": "on"
-  }
-}
-
-to_dict = {
-  "CryptoValCred": {
-    "name": "valcred",
-    "mAdminState": "enabled",
-    "CertValidationMode": "legacy",
-    "Certificate": [
-            {
-                "value": "bar-ca",
-                "href": "/mgmt/config/bar/CryptoCertificate/bar-ca"
-            },
-            {
-                "value": "snafu-ca",
-                "href": "/mgmt/config/bar/CryptoCertificate/bar-ca"
-            }
-           
-        ],
-    "UseCRL": "off",
-    "RequireCRL": "on",
-    "CRLDPHandling": "ignore",
-    "InitialPolicySet": "2.5.29.32.0",
-    "ExplicitPolicy": "off",
-    "CheckDates": "off"
-  }
-}
-
-get_duplicate_keys(dict1['CryptoValCred'], dict2['CryptoValCred'])
-
-dict_diff(dict1['CryptoValCred'], dict2['CryptoValCred'])
-
-mismatch = {key for key in dict1['CryptoValCred'].keys() & dict2['CryptoValCred'] if dict1['CryptoValCred'][key] != dict2['CryptoValCred'][key]}
-
-'''
+def matching_prim_keys(from_dict, to_dict):
+    return list(from_dict.keys())[0] == list(to_dict.keys())[0]
+   

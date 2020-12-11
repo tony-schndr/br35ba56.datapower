@@ -4,11 +4,11 @@ __metaclass__ = type
 
 #from urllib.parse import quote
 import time
+from copy import copy
 from ansible.module_utils._text import to_text
 from ansible.module_utils.six.moves.urllib.parse import urlencode
 from ansible.module_utils.connection import Connection, ConnectionError
 from ansible.module_utils._text import to_text
-
 
 MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI = '/mgmt/config/{0}/{1}' 
 MGMT_CONFIG_WITH_NAME_URI = '/mgmt/config/{0}/{1}/{2}'
@@ -25,7 +25,7 @@ VALID_METHODS = ['GET', 'POST', 'PUT', 'DELETE']
 
 URI_OPTIONS = {
     'recursive' : {
-        'view': True
+        'view': 'recursive'
     },
     'state' : {
         'state': 1
@@ -35,79 +35,134 @@ URI_OPTIONS = {
     }
 }
 
-
-def _make_request(connection, method, path,  body=None):
-    return connection.send_request(body, path, method)
-
-   
-def clean_dp_dict(dict_):
-    _scrub(dict_, '_links')
-    _scrub(dict_, 'href')
-    _scrub(dict_, 'state')
-
-
 class DPRequest:
-
     def __init__(self):
         pass
 
 
-
-
 class DPManageConfigRequest(DPRequest):
-
-    def __init__(self, dp_mgmt_conf):
+     
+    #Need to check against the object schema to determine the correct method.
+    # Only POST can be used against field Array Property to append a list item.
+    # Appending to a list should also require overwrite being set to false as a 
+    # put against a list results in the list being overwritten.
+    def __init__(self, dp_mgmt_conf, schema=None):
         super(DPManageConfigRequest, self).__init__()
         self.body = {}
-        if dp_mgmt_conf.overwrite and not dp_mgmt_conf.object_field:
+        # At this time schema is only used to check if a DataPower object
+        # field is an array.  This could be utilized further to validate
+        # other or all portions of a object passed to ansible prior to the 
+        # request to DataPower.
+        self.schema = schema
+
+        if self.schema and self.check_for_array(dp_mgmt_conf.config, dp_mgmt_conf.class_name):
+            self.set_body_for_array_field(dp_mgmt_conf.config, dp_mgmt_conf.class_name)
+            self.set_path(
+                dp_mgmt_conf.domain,
+                dp_mgmt_conf.class_name,
+                dp_mgmt_conf.name,
+                list(self.body.keys())[0]
+            )
+            #Sets array list update behaivior, POST appends, PUT overwrites.
+            if dp_mgmt_conf.overwrite:
+                self.method = 'PUT'
+            else:
+                self.method = 'POST'
+
+        elif dp_mgmt_conf.overwrite:
             self.method = 'PUT'
             self.set_path(
                 dp_mgmt_conf.domain,
                 dp_mgmt_conf.class_name,
-                dp_mgmt_conf.object_name
+                dp_mgmt_conf.name
             )
-            self.body = dp_mgmt_conf.config
-        elif not dp_mgmt_conf.overwrite and not dp_mgmt_conf.object_field:
+            self.build_valid_body(dp_mgmt_conf)
+        elif not dp_mgmt_conf.overwrite:
             self.method = 'POST'
             self.set_path(
                 dp_mgmt_conf.domain,
                 dp_mgmt_conf.class_name,
             )
-            self.body.update(dp_mgmt_conf.config)
+            self.build_valid_body(dp_mgmt_conf)
             #Need to ensure name is include for POST requests.
-            self.body['name'] = dp_mgmt_conf.object_name
-        elif dp_mgmt_conf.object_field: 
-            self.method = 'PUT'
-            self.set_path(
-                dp_mgmt_conf.domain,
-                dp_mgmt_conf.class_name,
-                dp_mgmt_conf.object_name,
-                dp_mgmt_conf.object_field
-            )
-            self.body.update(dp_mgmt_conf.config)
-        
+        else:
+            raise AttributeError('Could not build request object from parsed module parameters.')
 
+    def build_valid_body(self, dp_mgmt_conf):
+        # For all requests except for array updates, use this to build a valid body that will work for 
+        # POST and PUT methods.
+        self.body = { 
+            dp_mgmt_conf.class_name: {
+                'name': dp_mgmt_conf.name
+            }
+        }
+        self.body[dp_mgmt_conf.class_name].update(dp_mgmt_conf.config)
 
-    def set_path(self, domain, class_name=None, object_name=None, object_field=None):
-        if class_name and not object_name and not object_field:
+    def set_path(self, domain, class_name=None, name=None, field=None):
+        if class_name and not name and not field:
             self.path = MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI.format(domain, class_name)
-        elif class_name and object_name and not object_field:
-            self.path = MGMT_CONFIG_WITH_NAME_URI.format(domain, class_name, object_name)
-        elif class_name and object_name and object_field:
-            self.path = MGMT_CONFIG_WITH_FIELD_URI.format(domain, class_name, object_name, object_field)
+        elif class_name and name and not field:
+            self.path = MGMT_CONFIG_WITH_NAME_URI.format(domain, class_name, name)
+        elif class_name and name and field:
+            self.path = MGMT_CONFIG_WITH_FIELD_URI.format(domain, class_name, name, field)
         else:
             raise AttributeError('no valid URI could be derived')
 
+    def check_for_array(self, config, class_name):
+        if class_name in config:
+            if len(config[class_name]) == 2 and 'name' in config[class_name]:
+                for k in list(config[class_name].keys()):
+                    if k != 'name':
+                        prop = self.schema.get_prop(k)
+                        if hasattr(prop, 'array'):
+                            return prop.array
+                return False
+            elif len(config[class_name]) == 1:
+                k = list(config[class_name].keys())[0] 
+                if k != 'name':
+                    prop = self.schema.get_prop(k)
+                    if hasattr(prop, 'array'):
+                        return prop.array
+                    else:
+                        return False
+                else:
+                    return False
+        if len(config.keys()) == 1:
+            k = list(config.keys())[0] 
+            prop = self.schema.get_prop(k)
+            if hasattr(prop, 'array'):
+                return prop.array
+            else:
+                return False
+        
+        return False
 
+    def set_body_for_array_field(self, config, class_name):
+        body = {}
+        if class_name in config:
+            body = copy(config.get(class_name))
+        else:
+            body = copy(config)
+        if 'name' in body:
+            del body['name']
+        if len(list(body.keys())) != 1:
+            raise AttributeError('If this error is thrown there may be a bug, at this point the body/config should only have 1 key in it.')
+        self.body = body
+   
 class DPGetConfigRequest(DPManageConfigRequest):
     def __init__(self, dp_mgmt_conf):
-        super(DPGetConfigRequest, self).__init__(dp_mgmt_conf)
+        #super(DPGetConfigRequest, self).__init__(dp_mgmt_conf)
         self.method = 'GET'
         self.options = {}
+        self.set_path(
+                dp_mgmt_conf.domain,
+                dp_mgmt_conf.class_name,
+                dp_mgmt_conf.name
+            )
         if hasattr(dp_mgmt_conf, 'recursive') and dp_mgmt_conf.recursive:
             self.options.update(URI_OPTIONS['recursive'])
             self.options.update(URI_OPTIONS['depth'])
-        if hasattr(dp_mgmt_conf, 'state') and dp_mgmt_conf.state:
+        if hasattr(dp_mgmt_conf, 'status') and dp_mgmt_conf.status:
             self.options.update(URI_OPTIONS['state'])
         if hasattr(dp_mgmt_conf, 'depth') and dp_mgmt_conf.depth:
             self.options['depth'] = dp_mgmt_conf.depth
@@ -117,15 +172,7 @@ class DPGetConfigRequest(DPManageConfigRequest):
         return self.path + '?' + urlencode(self.options, doseq=0)
 
 
-
-class DPDeleteConfig(DPManageConfigRequest):
-    
-    def __init__(self, module):
-        super(DPDelete, self).__init__(module)
-        self.set_path()
-        self.set_method('DELETE')
-
-
+'''
 class DPAction(DPRequest):
     def __init__(self, module):
         super(DPAction, self).__init__(module)
@@ -221,26 +268,4 @@ class DPLoadConfig(DPConfigActions):
         super(DPLoadConfig, self).__init__(module)
         self.path = ACTION_QUEUE_URI.format(self.domain)
         self.method = 'POST'
-
-
-def _scrub(obj, bad_key):
-    """
-    Removes specified key from the dictionary in place.
-    :param obj: dict, dictionary from DataPowers get object config rest call
-    :param bad_key: str, key to remove from the dictionary
-    """
-    if isinstance(obj, dict):
-        for key in list(obj.keys()):
-            if key == bad_key:
-                del obj[key]
-            else:
-                _scrub(obj[key], bad_key)
-    elif isinstance(obj, list):
-        for i in reversed(range(len(obj))):
-            if obj[i] == bad_key:
-                del obj[i]
-            else:
-                _scrub(obj[i], bad_key)
-    else:
-        # neither a dict nor a list, do nothing
-        pass
+'''

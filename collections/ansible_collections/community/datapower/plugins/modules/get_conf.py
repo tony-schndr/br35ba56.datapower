@@ -122,7 +122,7 @@ def run_module():
         object_field=dict(type='str', required=False),
         recursive=dict(type='bool', required=False),
         depth=dict(type='int', required=False),
-        state=dict(type='bool', required=False)
+        state=dict(type='str', choices=['present', 'absent'], required=True)
     )
 
     mutually_exclusive = [

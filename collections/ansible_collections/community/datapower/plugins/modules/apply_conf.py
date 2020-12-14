@@ -94,10 +94,23 @@ response:
 '''
 
 from ansible.module_utils._text import to_text
-from ansible.module_utils.connection import ConnectionError
+from ansible.module_utils.connection import (
+    ConnectionError, 
+    Connection
+) 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower.dp_obj import (
-    DPApplyConfig
+from ansible_collections.community.datapower.plugins.module_utils.datapower.dp_config import (
+    DPManageConfigObject,
+    DPManageConfigSchema,
+)
+from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
+    DPManageConfigRequest
+)
+from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
+    DPManageConfigRequestHandler
+)
+from ansible_collections.community.datapower.plugins.module_utils.datapower.dp_change import (
+    DPChange
 )
 
 def run_module():
@@ -106,7 +119,6 @@ def run_module():
         config = dict(type='dict', required=True),
         class_name=dict(type='str', required=False),
         name = dict(type='str', required=False),
-        object_field = dict(type='str', required=False),
         overwrite = dict(type='bool', required=False, default=False),
     )
    
@@ -114,17 +126,25 @@ def run_module():
         argument_spec=module_args,
         supports_check_mode=True 
     )
-    
-    dp_obj = DPConfigObject(**module.params)
 
+    connection = Connection(module._socket_path)
+    dp_obj = DPManageConfigObject(**module.params)
+    dp_handler = DPManageConfigRequestHandler(connection)
+    schema_resp = dp_handler.get_schema(dp_obj.domain, dp_obj.class_name, dp_obj.name)
+    dp_schema = DPManageConfigSchema(schema_resp)
+    dp_req = DPManageConfigRequest(dp_obj, dp_schema)
+    dp_state_resp = dp_handler.get_current_state(dp_req)
+    #dp_change = DPChange.state_diff(dp_state_resp, dp_req.body)
+    dp_mk_chg_resp = dp_handler.make_change(dp_req)
     result = {}
-    result['dp_obj'] = vars(dp_obj)
-
+    result['dp_state_resp'] = dp_state_resp
+    result['dp_body'] = dp_req.body
+    result['dp_mk_chg_resp'] = dp_mk_chg_resp
+    #result['dp_change'] = dp_change
     module.exit_json(**result)
 
 def main():
     run_module()
-
 
 if __name__ == '__main__':
     main()

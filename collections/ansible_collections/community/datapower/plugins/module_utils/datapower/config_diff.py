@@ -8,17 +8,26 @@ __metaclass__ = type
 # from dict should always be DataPower config, to dict should always be ansible.  
  
 def get_duplicate_keys(from_dict, to_dict):
-    return to_dict.keys() & from_dict.keys()
+    common_keys = set()
+    for k in from_dict.keys():
+        if k in to_dict:
+            common_keys.add(k)
+    return common_keys
 
 def get_diff_keys(from_dict, to_dict):
-    return { key for key in to_dict.keys() & from_dict if to_dict[key] != from_dict[key] }
+    from_set = set(from_dict.items())
+    to_set = set(to_dict.items())
+    diff_keys = set()
+    for item in from_set ^ to_set:
+        diff_keys.add(item[0])
+    return diff_keys
+
 
 def dict_diff(from_dict, to_dict):
     diff_ = dict()
     # sort lists for compare later
     for k in get_duplicate_keys(to_dict, from_dict):
         if isinstance(from_dict[k], list):
-            print(k)
             from_dict[k] = sorted(from_dict[k], key = lambda i: i['value'])
             to_dict[k] = sorted(to_dict[k], key = lambda i: i['value'])
     for k in get_diff_keys(to_dict, from_dict):

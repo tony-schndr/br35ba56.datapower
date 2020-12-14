@@ -14,13 +14,11 @@ MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI = '/mgmt/config/{0}/{1}'
 MGMT_CONFIG_WITH_NAME_URI = '/mgmt/config/{0}/{1}/{2}'
 MGMT_CONFIG_WITH_FIELD_URI = '/mgmt/config/{0}/{1}/{2}/{3}'
 ACTION_QUEUE_URI = '/mgmt/actionqueue/{0}'
+ACTION_QUEUE_SCHEMA_URI = '/mgmt/actionqueue/{0}/{1}?schema-format=datapower'
+ACTION_QUEUE_OPERATIONS_URI = '/mgmt/actionqueue/{0}/operations'
 FILESTORE_URI_PUT = '/mgmt/filestore/{0}/{1}/{2}'
 FILESTORE_URI_POST = '/mgmt/filestore/{0}/{1}'
 
-# Define the keys that get returned to the modules.  
-# REQUEST_DETAILS_KEY is helps for debugging.
-RESPONSE_KEY = 'response'
-REQUEST_DETAILS_KEY = 'request'
 VALID_METHODS = ['GET', 'POST', 'PUT', 'DELETE']
 
 URI_OPTIONS = {
@@ -40,6 +38,13 @@ class DPRequest:
         pass
 
 
+class DPActionQueueRequest(DPRequest):
+    def __init__(self, dp_action):
+        super(DPActionQueueRequest, self).__init__()
+        self.path = ACTION_QUEUE_URI.format(dp_action.domain)
+        self.body = dp_action.action
+        self.method = 'POST'
+
 class DPManageConfigRequest(DPRequest):
      
     #Need to check against the object schema to determine the correct method.
@@ -48,14 +53,13 @@ class DPManageConfigRequest(DPRequest):
     # put against a list results in the list being overwritten.
     def __init__(self, dp_mgmt_conf, schema=None):
         super(DPManageConfigRequest, self).__init__()
-        self.body = {}
         # At this time schema is only used to check if a DataPower object
         # field is an array.  This could be utilized further to validate
         # other or all portions of a object passed to ansible prior to the 
         # request to DataPower.
         self.schema = schema
 
-        if self.schema and self.check_for_array(dp_mgmt_conf.config, dp_mgmt_conf.class_name):
+        '''if self.schema and self.check_for_array(dp_mgmt_conf.config, dp_mgmt_conf.class_name):
             self.set_body_for_array_field(dp_mgmt_conf.config, dp_mgmt_conf.class_name)
             self.set_path(
                 dp_mgmt_conf.domain,
@@ -68,35 +72,41 @@ class DPManageConfigRequest(DPRequest):
                 self.method = 'PUT'
             else:
                 self.method = 'POST'
-
-        elif dp_mgmt_conf.overwrite:
+        '''
+        if dp_mgmt_conf.overwrite:
             self.method = 'PUT'
             self.set_path(
                 dp_mgmt_conf.domain,
                 dp_mgmt_conf.class_name,
                 dp_mgmt_conf.name
             )
-            self.build_valid_body(dp_mgmt_conf)
+            self.set_body(dp_mgmt_conf)
         elif not dp_mgmt_conf.overwrite:
             self.method = 'POST'
             self.set_path(
                 dp_mgmt_conf.domain,
                 dp_mgmt_conf.class_name,
             )
-            self.build_valid_body(dp_mgmt_conf)
+            self.set_body(dp_mgmt_conf)
             #Need to ensure name is include for POST requests.
         else:
             raise AttributeError('Could not build request object from parsed module parameters.')
 
-    def build_valid_body(self, dp_mgmt_conf):
+    def set_body(self, dp_mgmt_conf):
         # For all requests except for array updates, use this to build a valid body that will work for 
         # POST and PUT methods.
-        self.body = { 
-            dp_mgmt_conf.class_name: {
-                'name': dp_mgmt_conf.name
+        if dp_mgmt_conf.class_name in dp_mgmt_conf.config:
+            if dp_mgmt_conf.name in dp_mgmt_conf.config[dp_mgmt_conf.class_name]:
+                self.body = dp_mgmt_conf.config
+            else:
+                dp_mgmt_conf.config[dp_mgmt_conf.class_name]['name'] = dp_mgmt_conf.name
+                self.body = dp_mgmt_conf.config
+        else:
+            if dp_mgmt_conf.name not in dp_mgmt_conf.config:
+                dp_mgmt_conf.config['name'] = dp_mgmt_conf.name
+            self.body = {
+                dp_mgmt_conf.class_name: dp_mgmt_conf.config
             }
-        }
-        self.body[dp_mgmt_conf.class_name].update(dp_mgmt_conf.config)
 
     def set_path(self, domain, class_name=None, name=None, field=None):
         if class_name and not name and not field:
@@ -167,9 +177,6 @@ class DPGetConfigRequest(DPManageConfigRequest):
         if hasattr(dp_mgmt_conf, 'depth') and dp_mgmt_conf.depth:
             self.options['depth'] = dp_mgmt_conf.depth
         self.path = self.path + '?' + urlencode(self.options, doseq=0)
-
-    def get_path(self, **kwargs):
-        return self.path + '?' + urlencode(self.options, doseq=0)
 
 
 '''

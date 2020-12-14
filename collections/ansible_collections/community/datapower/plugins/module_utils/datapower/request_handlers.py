@@ -8,9 +8,6 @@ from ansible.module_utils._text import to_text
 from ansible.module_utils.six.moves.urllib.parse import urlencode
 from ansible.module_utils.connection import Connection, ConnectionError
 from ansible.module_utils._text import to_text
-from ansible_collections.community.datapower.plugins.module_utils import (
-    requests
-)
 
 
 class DPRequestHandler:
@@ -18,17 +15,13 @@ class DPRequestHandler:
     def __init__(self, connection):
         self.connection = connection
 
-    def make_request(self, path, method, body):
+    def _make_request(self, path, method, body):
         if body is not None:
             _scrub(body, '_links')
             _scrub(body, 'href')
             _scrub(body, 'state')
         try:
-            response = self.connection(
-                path=path,
-                method=method,
-                body=body
-            )
+            response = self.connection.send_request(body,path,method)
         except ConnectionError:
             raise
         return response
@@ -36,40 +29,47 @@ class DPRequestHandler:
     def process_request(self, **kwargs):
         pass
 
+METADATA_URI = '/mgmt/metadata/{0}/{1}'
 
 class DPManageConfigRequestHandler(DPRequestHandler):
-    METADATA_URI = '/mgmt/metadata/{0}/{1}'
-    def __init__(self, req, connection, check_mode, diff_mode):
-        super(DPManageConfigRequestHandler, self).__init__(connection)
-        self.req = req
-        self.check_mode = check_mode
-        self.diff_mode = diff_mode
     
-    def process_request(self):
-        pass
-
-    def process_change_status(self):
-        pass
+    def __init__(self, connection):
+        super(DPManageConfigRequestHandler, self).__init__(connection)
 
     def get_schema(self, domain, class_name, name):
+        path = METADATA_URI.format(domain, class_name, name)
+        resp = self._make_request(path, 'GET', body=None)
+        return resp
 
+    def make_change(self, req):
+        resp = self._make_request(req.path, req.method, req.body)
+        return resp
 
     def get_current_state(self, req):
-        resp = self.make_request(req.path, 'GET', None)
-        
-        
-        
-        
+        resp = self._make_request(req.path, 'GET', None)
+        clean_dp_dict(resp)
+        return resp
+
+
+class DPGetConfigRequestHandler(DPRequestHandler):
+    
+    def __init__(self, connection):
+        super(DPGetConfigRequestHandler, self).__init__(connection)
+
+    def get_config(self, dp_req):
+        resp = self._make_request(dp_req.path, 'GET', body=None)
+        return resp
 
 
 class DPActionQueueRequestHandler(DPRequestHandler):
     def __init__(self, connection):
-        super(DPFileStoreRequestHandler, self).__init__(connection)
+        super(DPActionQueueRequestHandler, self).__init__(connection)
 
 
 class DPFileStoreRequestHandler(DPRequestHandler):
     def __init__(self, connection):
         super(DPFileStoreRequestHandler, self).__init__(connection)
+        
 
 def _scrub(obj, bad_key):
     """
@@ -93,9 +93,7 @@ def _scrub(obj, bad_key):
         # neither a dict nor a list, do nothing
         pass
 
-   
 def clean_dp_dict(dict_):
     _scrub(dict_, '_links')
     _scrub(dict_, 'href')
     _scrub(dict_, 'state')
-

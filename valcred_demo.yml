@@ -1,0 +1,18 @@
+- name: 'Demo apply_conf'
+  hosts: dp1
+  connection: local
+  vars:
+  tasks:
+    - name: Explosion
+      community.datapower.apply_conf:
+        overwrite: yes
+        domain: default
+        name: valcred
+        class_name: CryptoValCred
+        config: {}
+    - name: get valcred
+      community.datapower.get_conf:
+        domain: default
+        class_name: CryptoValCred
+        recursive: True
+        status: True

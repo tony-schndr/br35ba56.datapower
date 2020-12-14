@@ -8,18 +8,38 @@ import pytest
 
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     DPManageConfigRequest,
-    DPGetConfigRequest
+    DPGetConfigRequest,
+    DPActionQueueRequest
 )
-
-from ansible_collections.community.datapower.plugins.module_utils.datapower.dp_mgmt_conf import (
+from ansible_collections.community.datapower.plugins.module_utils.datapower.config import (
     DPManageConfigObject,
     DPManageConfigSchema
 )
-
+from ansible_collections.community.datapower.plugins.module_utils.datapower.actionqueue import (
+    DPActionQueue
+)
 from ansible_collections.community.datapower.tests.unit.module_utils.test_data import (
-    dp_mgmt_test_data as test_data
+    dp_mgmt_test_data as test_data,
+    dp_actionq_test_data as action_test_data
 )
 # Tests building requests objects from the DPManageConfigObject.
+
+def test_DPActionQueueRequest():
+    task_args = {
+        'domain':'default',
+        'action': {
+            'SaveConfig' : {}
+        }
+    }
+    valid_actions = action_test_data.valid_actions
+
+    dp_action = DPActionQueue(**task_args)
+    dp_action_req = DPActionQueueRequest(dp_action)
+    assert dp_action_req.path == '/mgmt/actionqueue/default'
+    assert dp_action_req.body == {
+            'SaveConfig' : {}
+        }
+
 
 '''
 def test_DPManageConfigRequest_w_field():
@@ -40,6 +60,31 @@ def test_DPManageConfigRequest_w_field():
    # assert list(dp_mgmt_conf.config.keys())[0]  in dp_req.path
     assert dp_req.body == dp_mgmt_conf.config
 '''
+
+def test_DPManageConfigRequest_mod_args():
+    task_args = {
+        "class_name": None,
+        "config": {
+            "CryptoValCred": {
+                "mAdminState": "enabled",
+                "name": "valcred"
+            }
+        },
+        "domain": "default",
+        "name": None,
+        "overwrite": False
+    }
+    dp_mgmt_conf = DPManageConfigObject(**task_args)
+    dp_req = DPManageConfigRequest(dp_mgmt_conf)
+    assert dp_req.path ==  '/mgmt/config/default/CryptoValCred'
+    assert dp_req.method == 'POST'
+    assert dp_req.body == {
+            "CryptoValCred": {
+                "mAdminState": "enabled",
+                "name": "valcred"
+            }
+        }
+
 def test_DPManageConfigRequest_min():
     task_args = {
         'domain':'snafu',
@@ -70,7 +115,7 @@ def test_DPManageConfigRequest_w_name():
     dp_mgmt_conf = DPManageConfigObject(**task_args)
     dp_req = DPManageConfigRequest(dp_mgmt_conf)
     assert dp_req.path ==  '/mgmt/config/snafu/CryptoValCred/valcred'
-
+'''
 def test_DPManageConfigRequest_schema_array_1():
     task_args = {
         'domain':'snafu',
@@ -205,7 +250,7 @@ def test_DPManageConfigRequest_schema_not_array_4():
     req = DPManageConfigRequest(dp_mgmt_conf, schema)
     assert req.check_for_array(dp_mgmt_conf.config, dp_mgmt_conf.class_name) == False
 
-
+'''
 def test_DPManageConfigRequest_invalid_class():
     task_args_w_invalid_class = {
         'domain':'snafu',

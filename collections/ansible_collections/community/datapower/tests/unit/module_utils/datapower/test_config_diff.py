@@ -5,7 +5,7 @@ __metaclass__ = type
 import re
 
 import pytest
-
+'''
 from ansible_collections.community.datapower.plugins.module_utils.datapower import (
     config_diff
 )
@@ -136,4 +136,4 @@ def test_config_diff_mismatch_objects():
         }
     }
     assert config_diff.matching_prim_keys(dict1, dict2) == False
-    
+'''

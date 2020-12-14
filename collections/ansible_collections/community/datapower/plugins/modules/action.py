@@ -76,7 +76,7 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower impo
 def run_module():
     module_args = dict(
         domain = dict(type='str', required=True),
-        body = dict(type='dict', required=True)
+        action = dict(type='dict', required=True)
     )
     
     module = AnsibleModule(

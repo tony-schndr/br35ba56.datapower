@@ -11,7 +11,7 @@ from ansible.module_utils.connection import Connection, ConnectionError
 from ansible.module_utils._text import to_text
 from ansible_collections.community.datapower.plugins.module_utils.datapower import (
     config_diff,
-    dp_mgmt_conf
+    config
 )
 #import config_diff
 class DPChange():

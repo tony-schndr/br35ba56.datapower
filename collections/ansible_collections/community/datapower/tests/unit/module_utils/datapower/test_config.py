@@ -6,7 +6,7 @@ import re
 
 import pytest
 
-from ansible_collections.community.datapower.plugins.module_utils.datapower.dp_mgmt_conf import (
+from ansible_collections.community.datapower.plugins.module_utils.datapower.config import (
     DPManageConfigObject,
     DPManageConfigSchema,
     DPProperty
@@ -18,19 +18,22 @@ from ansible_collections.community.datapower.tests.unit.module_utils.test_data i
 # Tests building requests objects from the DPManageConfigObject.  Request objects are 
 # passed to the request handlers
 
+
+
 def test_DPManageConfigObject():
-    task_args = {
-        'domain':'snafu',
-        'config': {
-            'CryptoValCred' : {
-                'name':'valcred'
+    task_args =  {
+        "class_name": None,
+        "config": {
+            "CryptoValCred": {
+                "mAdminState": "enabled",
+                "name": "valcred"
             }
         },
-        'overwrite': True
+        "domain": "default",
+        "name": None,
+        "overwrite": False
     }
-    schema_resp = test_data.valcred_schema_resp
-    mgmt_conf_schema = DPManageConfigSchema(schema_resp)
-
+    
     dp_mgmt_conf = DPManageConfigObject(**task_args)
     assert dp_mgmt_conf.class_name == 'CryptoValCred'
     assert dp_mgmt_conf.name == 'valcred'

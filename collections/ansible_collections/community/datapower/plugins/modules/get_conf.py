@@ -108,21 +108,32 @@ response:
 '''
 
 from ansible.module_utils._text import to_text
-from ansible.module_utils.connection import ConnectionError
+from ansible.module_utils.connection import (
+    ConnectionError, 
+    Connection
+)
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower.dp_obj import (
-    DPConfigObject
+from ansible_collections.community.datapower.plugins.module_utils.datapower.config import (
+    DPGetConfigObject
+)
+from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
+    DPGetConfigRequest
+)
+from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
+    DPGetConfigRequestHandler
 )
 
 def run_module():
+    
+
     module_args = dict(
         domain=dict(type='str', required=True),
         class_name=dict(type='str', required=True),
-        object_name=dict(type='str', required=False),
+        name=dict(type='str', required=False),
         object_field=dict(type='str', required=False),
         recursive=dict(type='bool', required=False),
         depth=dict(type='int', required=False),
-        state=dict(type='str', choices=['present', 'absent'], required=True)
+        status=dict(type='bool', required=False)
     )
 
     mutually_exclusive = [
@@ -135,11 +146,13 @@ def run_module():
         mutually_exclusive=mutually_exclusive
     )
     
-    dp_obj = DPConfigObject(**module.params)
-    
-    
+    connection = Connection(module._socket_path)
+    dp_obj = DPGetConfigObject(**module.params)
+    dp_req = DPGetConfigRequest(dp_obj)
+    dp_handler = DPGetConfigRequestHandler(connection)
+    dp_resp = dp_handler.get_config(dp_req)
     result = {}
-    result['dp_obj'] = vars(dp_obj)
+    result['dp_resp'] = dp_resp
 
     module.exit_json(**result)
 

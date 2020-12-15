@@ -6,7 +6,7 @@ import re
 
 import pytest
 
-from ansible_collections.community.datapower.plugins.module_utils.datapower.config import (
+from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     DPManageConfigObject,
     DPManageConfigSchema,
     DPProperty

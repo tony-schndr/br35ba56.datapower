@@ -99,7 +99,7 @@ from ansible.module_utils.connection import (
     Connection
 ) 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower.dp_config import (
+from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     DPManageConfigObject,
     DPManageConfigSchema,
 )
@@ -135,7 +135,7 @@ def run_module():
     dp_req = DPManageConfigRequest(dp_obj, dp_schema)
     dp_state_resp = dp_handler.get_current_state(dp_req)
     #dp_change = DPChange.state_diff(dp_state_resp, dp_req.body)
-    dp_mk_chg_resp = dp_handler.make_change(dp_req)
+    dp_mk_chg_resp = dp_handler.process_request(dp_req)
     result = {}
     result['dp_state_resp'] = dp_state_resp
     result['dp_body'] = dp_req.body

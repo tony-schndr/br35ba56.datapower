@@ -10,8 +10,7 @@ from ansible.module_utils.six.moves.urllib.parse import urlencode
 from ansible.module_utils.connection import Connection, ConnectionError
 from ansible.module_utils._text import to_text
 from ansible_collections.community.datapower.plugins.module_utils.datapower import (
-    config_diff,
-    config
+    config_diff
 )
 #import config_diff
 class DPChange():

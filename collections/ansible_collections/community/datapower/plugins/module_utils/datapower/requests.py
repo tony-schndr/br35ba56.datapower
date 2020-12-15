@@ -14,7 +14,7 @@ MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI = '/mgmt/config/{0}/{1}'
 MGMT_CONFIG_WITH_NAME_URI = '/mgmt/config/{0}/{1}/{2}'
 MGMT_CONFIG_WITH_FIELD_URI = '/mgmt/config/{0}/{1}/{2}/{3}'
 ACTION_QUEUE_URI = '/mgmt/actionqueue/{0}'
-ACTION_QUEUE_SCHEMA_URI = '/mgmt/actionqueue/{0}/{1}?schema-format=datapower'
+ACTION_QUEUE_SCHEMA_URI = '/mgmt/actionqueue/{0}/operations/{1}?schema-format=datapower'
 ACTION_QUEUE_OPERATIONS_URI = '/mgmt/actionqueue/{0}/operations'
 FILESTORE_URI_PUT = '/mgmt/filestore/{0}/{1}/{2}'
 FILESTORE_URI_POST = '/mgmt/filestore/{0}/{1}'
@@ -35,15 +35,26 @@ URI_OPTIONS = {
 
 class DPRequest:
     def __init__(self):
-        pass
-
+        self.body = None
+        self.path = None
+        self.method = None
 
 class DPActionQueueRequest(DPRequest):
     def __init__(self, dp_action):
         super(DPActionQueueRequest, self).__init__()
         self.path = ACTION_QUEUE_URI.format(dp_action.domain)
-        self.body = dp_action.action
+        if hasattr(dp_action, 'parameters'):
+            if dp_action.parameters is None:
+                self.body = { dp_action.action : {} }
+            else:
+                 self.body = { dp_action.action : dp_action.parameters }
+        else:
+            self.body = None
         self.method = 'POST'
+        if dp_action.action is not None:
+            self.info_path = ACTION_QUEUE_SCHEMA_URI.format(dp_action.domain, dp_action.action)
+        else:
+            self.info_path = ACTION_QUEUE_OPERATIONS_URI.format(dp_action.domain)
 
 class DPManageConfigRequest(DPRequest):
      
@@ -59,7 +70,7 @@ class DPManageConfigRequest(DPRequest):
         # request to DataPower.
         self.schema = schema
 
-        '''if self.schema and self.check_for_array(dp_mgmt_conf.config, dp_mgmt_conf.class_name):
+        if self.schema and self.check_for_array(dp_mgmt_conf.config, dp_mgmt_conf.class_name):
             self.set_body_for_array_field(dp_mgmt_conf.config, dp_mgmt_conf.class_name)
             self.set_path(
                 dp_mgmt_conf.domain,
@@ -72,7 +83,7 @@ class DPManageConfigRequest(DPRequest):
                 self.method = 'PUT'
             else:
                 self.method = 'POST'
-        '''
+        
         if dp_mgmt_conf.overwrite:
             self.method = 'PUT'
             self.set_path(
@@ -161,7 +172,8 @@ class DPManageConfigRequest(DPRequest):
    
 class DPGetConfigRequest(DPManageConfigRequest):
     def __init__(self, dp_mgmt_conf):
-        #super(DPGetConfigRequest, self).__init__(dp_mgmt_conf)
+        #super(DPGetConfigRequest, self).__init__()
+        self.body = None
         self.method = 'GET'
         self.options = {}
         self.set_path(

@@ -11,7 +11,7 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
     DPGetConfigRequest,
     DPActionQueueRequest
 )
-from ansible_collections.community.datapower.plugins.module_utils.datapower.config import (
+from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     DPManageConfigObject,
     DPManageConfigSchema
 )
@@ -24,12 +24,11 @@ from ansible_collections.community.datapower.tests.unit.module_utils.test_data i
 )
 # Tests building requests objects from the DPManageConfigObject.
 
-def test_DPActionQueueRequest():
+def test_DPActionQueueRequest_1():
     task_args = {
         'domain':'default',
-        'action': {
-            'SaveConfig' : {}
-        }
+        'action': 'SaveConfig',
+        'parameters': None
     }
     valid_actions = action_test_data.valid_actions
 
@@ -39,6 +38,30 @@ def test_DPActionQueueRequest():
     assert dp_action_req.body == {
             'SaveConfig' : {}
         }
+    assert dp_action_req.info_path == '/mgmt/actionqueue/default/operations/SaveConfig?schema-format=datapower'
+    
+    #ACTION_QUEUE_SCHEMA_URI = '/mgmt/actionqueue/{0}/{1}?schema-format=datapower'
+    #ACTION_QUEUE_OPERATIONS_URI = '/mgmt/actionqueue/{0}/operations'
+def test_DPActionQueueRequest_2():
+    task_args = {
+        'domain':'default',
+        'action': 'TraceRoute',
+        'parameters': {
+            'RemoteHost': 'www.google.com'
+        }
+    }
+    valid_actions = action_test_data.valid_actions
+
+    dp_action = DPActionQueue(**task_args)
+    dp_action_req = DPActionQueueRequest(dp_action)
+    assert dp_action_req.path == '/mgmt/actionqueue/default'
+    assert dp_action_req.body == {
+            'TraceRoute' : {'RemoteHost': 'www.google.com'}
+        }
+    assert dp_action_req.info_path == '/mgmt/actionqueue/default/operations/TraceRoute?schema-format=datapower'
+    
+    #ACTION_QUEUE_SCHEMA_URI = '/mgmt/actionqueue/{0}/{1}?schema-format=datapower'
+    #ACTION_QUEUE_OPERATIONS_URI = '/mgmt/actionqueue/{0}/operations'
 
 
 '''

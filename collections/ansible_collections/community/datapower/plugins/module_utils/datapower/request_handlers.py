@@ -2,12 +2,7 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-#from urllib.parse import quote
-import time
-from ansible.module_utils._text import to_text
-from ansible.module_utils.six.moves.urllib.parse import urlencode
 from ansible.module_utils.connection import Connection, ConnectionError
-from ansible.module_utils._text import to_text
 
 
 class DPRequestHandler:
@@ -26,8 +21,9 @@ class DPRequestHandler:
             raise
         return response
 
-    def process_request(self, **kwargs):
-        pass
+    def process_request(self, req):
+        resp = self._make_request(req.path, req.method, req.body)
+        return resp
 
 METADATA_URI = '/mgmt/metadata/{0}/{1}'
 
@@ -39,10 +35,6 @@ class DPManageConfigRequestHandler(DPRequestHandler):
     def get_schema(self, domain, class_name, name):
         path = METADATA_URI.format(domain, class_name, name)
         resp = self._make_request(path, 'GET', body=None)
-        return resp
-
-    def make_change(self, req):
-        resp = self._make_request(req.path, req.method, req.body)
         return resp
 
     def get_current_state(self, req):
@@ -65,6 +57,9 @@ class DPActionQueueRequestHandler(DPRequestHandler):
     def __init__(self, connection):
         super(DPActionQueueRequestHandler, self).__init__(connection)
 
+    def process_request(self, path, method, body=None):
+        resp = self._make_request(path, method, body)
+        return resp
 
 class DPFileStoreRequestHandler(DPRequestHandler):
     def __init__(self, connection):

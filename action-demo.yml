@@ -1,0 +1,17 @@
+- name: 'test play'
+  hosts: dp1
+  connection: local
+  vars:
+    domain: default
+  tasks:
+    - name: Get details on available actions in the chosen domain
+      community.datapower.action_info:
+        domain: default
+    - name: Get details on ResetThisDomain action
+      community.datapower.action_info:
+        domain: default
+        action: RestartThisDomain
+    - name: Shutdown Reboot
+      community.datapower.action:
+        domain: snafu
+        action: RestartThisDomain

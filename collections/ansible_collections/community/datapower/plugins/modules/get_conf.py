@@ -113,7 +113,7 @@ from ansible.module_utils.connection import (
     Connection
 )
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower.config import (
+from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     DPGetConfigObject
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
@@ -150,7 +150,7 @@ def run_module():
     dp_obj = DPGetConfigObject(**module.params)
     dp_req = DPGetConfigRequest(dp_obj)
     dp_handler = DPGetConfigRequestHandler(connection)
-    dp_resp = dp_handler.get_config(dp_req)
+    dp_resp = dp_handler.process_request(dp_req)
     result = {}
     result['dp_resp'] = dp_resp
 

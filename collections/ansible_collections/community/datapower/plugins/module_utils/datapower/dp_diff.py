@@ -15,12 +15,9 @@ def get_duplicate_keys(from_dict, to_dict):
     return common_keys
 
 def get_diff_keys(from_dict, to_dict):
-    from_set = set(from_dict.items())
-    to_set = set(to_dict.items())
-    diff_keys = set()
-    for item in from_set ^ to_set:
-        diff_keys.add(item[0])
-    return diff_keys
+    for k in to_dict.keys():
+        if k in from_dict:
+            pass
 
 
 def dict_diff(from_dict, to_dict):

@@ -109,8 +109,8 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
 from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
     DPManageConfigRequestHandler
 )
-from ansible_collections.community.datapower.plugins.module_utils.datapower.dp_change import (
-    DPChange
+from ansible_collections.community.datapower.plugins.module_utils.datapower import (
+    dp_change
 )
 
 def run_module():
@@ -130,12 +130,11 @@ def run_module():
     connection = Connection(module._socket_path)
     dp_obj = DPManageConfigObject(**module.params)
     dp_handler = DPManageConfigRequestHandler(connection)
-    schema_resp = dp_handler.get_schema(dp_obj.domain, dp_obj.class_name, dp_obj.name)
+    schema_resp = dp_handler.config_info(dp_obj.domain, dp_obj.class_name)
     dp_schema = DPManageConfigSchema(schema_resp)
     dp_req = DPManageConfigRequest(dp_obj, dp_schema)
-    dp_state_resp = dp_handler.get_current_state(dp_req)
-    #dp_change = DPChange.state_diff(dp_state_resp, dp_req.body)
-    dp_mk_chg_resp = dp_handler.process_request(dp_req)
+    dp_state_resp = dp_handler.process_request(dp_req.path, 'GET')
+    dp_mk_chg_resp = dp_handler.process_request(dp_req.path, dp_req.method, dp_req.body)
     result = {}
     result['dp_state_resp'] = dp_state_resp
     result['dp_body'] = dp_req.body

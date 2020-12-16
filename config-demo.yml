@@ -3,15 +3,21 @@
   connection: local
   vars:
   tasks:
+    - name: Get object config info
+      community.datapower.config_info:
+    - name: Get details on a specific object
+      community.datapower.config_info:
+        class_name: CryptoValCred
     - name: Explosion
-      community.datapower.apply_conf:
+      community.datapower.apply_config:
         overwrite: yes
         domain: default
         name: valcred
         class_name: CryptoValCred
-        config: {}
+        config: 
+          mAdminState: disabled
     - name: get valcred
-      community.datapower.get_conf:
+      community.datapower.get_config:
         domain: default
         class_name: CryptoValCred
         recursive: True

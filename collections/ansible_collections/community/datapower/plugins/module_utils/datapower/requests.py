@@ -13,6 +13,8 @@ from ansible.module_utils._text import to_text
 MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI = '/mgmt/config/{0}/{1}' 
 MGMT_CONFIG_WITH_NAME_URI = '/mgmt/config/{0}/{1}/{2}'
 MGMT_CONFIG_WITH_FIELD_URI = '/mgmt/config/{0}/{1}/{2}/{3}'
+MGMT_CONFIG_METADATA_URI = '/mgmt/metadata/{0}/{1}'
+MGMT_CONFIG_URI = '/mgmt/config/'
 ACTION_QUEUE_URI = '/mgmt/actionqueue/{0}'
 ACTION_QUEUE_SCHEMA_URI = '/mgmt/actionqueue/{0}/operations/{1}?schema-format=datapower'
 ACTION_QUEUE_OPERATIONS_URI = '/mgmt/actionqueue/{0}/operations'
@@ -58,7 +60,7 @@ class DPActionQueueRequest(DPRequest):
 
 class DPManageConfigRequest(DPRequest):
      
-    #Need to check against the object schema to determine the correct method.
+    # Need to check against the objects schema to determine the correct method.
     # Only POST can be used against field Array Property to append a list item.
     # Appending to a list should also require overwrite being set to false as a 
     # put against a list results in the list being overwritten.
@@ -69,7 +71,6 @@ class DPManageConfigRequest(DPRequest):
         # other or all portions of a object passed to ansible prior to the 
         # request to DataPower.
         self.schema = schema
-
         if self.schema and self.check_for_array(dp_mgmt_conf.config, dp_mgmt_conf.class_name):
             self.set_body_for_array_field(dp_mgmt_conf.config, dp_mgmt_conf.class_name)
             self.set_path(
@@ -181,6 +182,7 @@ class DPGetConfigRequest(DPManageConfigRequest):
                 dp_mgmt_conf.class_name,
                 dp_mgmt_conf.name
             )
+        
         if hasattr(dp_mgmt_conf, 'recursive') and dp_mgmt_conf.recursive:
             self.options.update(URI_OPTIONS['recursive'])
             self.options.update(URI_OPTIONS['depth'])

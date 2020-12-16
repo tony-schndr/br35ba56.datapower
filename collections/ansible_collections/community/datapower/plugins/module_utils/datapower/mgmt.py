@@ -90,6 +90,7 @@ class DPManageConfigSchema:
             
 class DPProperty:
     pass
+
 def is_valid_object_class(obj):
     return obj in valid_objects
 

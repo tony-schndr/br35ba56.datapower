@@ -7,7 +7,7 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: community.datapower.import_conf
+module: community.datapower.import
 
 short_description: Use for importing configuration to IBM DataPower
 

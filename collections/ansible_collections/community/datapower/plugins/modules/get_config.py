@@ -150,7 +150,7 @@ def run_module():
     dp_obj = DPGetConfigObject(**module.params)
     dp_req = DPGetConfigRequest(dp_obj)
     dp_handler = DPGetConfigRequestHandler(connection)
-    dp_resp = dp_handler.process_request(dp_req)
+    dp_resp = dp_handler.process_request(dp_req.path, dp_req.method)
     result = {}
     result['dp_resp'] = dp_resp
 

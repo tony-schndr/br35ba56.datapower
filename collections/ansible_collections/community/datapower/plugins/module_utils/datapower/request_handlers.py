@@ -2,8 +2,14 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
+import time
 from ansible.module_utils.connection import Connection, ConnectionError
-
+from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
+    DPManageConfigRequest,
+    MGMT_CONFIG_METADATA_URI,
+    MGMT_CONFIG_URI
+)
+ACTION_QUEUE_TIMEOUT = 300
 
 class DPRequestHandler:
     
@@ -21,37 +27,37 @@ class DPRequestHandler:
             raise
         return response
 
-    def process_request(self, req):
-        resp = self._make_request(req.path, req.method, req.body)
+    def process_request(self, path, method='GET', body=None):
+        resp = self._make_request(path, method, body)
         return resp
 
-METADATA_URI = '/mgmt/metadata/{0}/{1}'
 
 class DPManageConfigRequestHandler(DPRequestHandler):
     
     def __init__(self, connection):
         super(DPManageConfigRequestHandler, self).__init__(connection)
 
-    def get_schema(self, domain, class_name, name):
-        path = METADATA_URI.format(domain, class_name, name)
+    def get_schema(self, domain, class_name):
+        path = MGMT_CONFIG_METADATA_URI.format(domain, class_name)
+
+    def config_info(self, domain='default', class_name=None):
+        if class_name is None:
+            path = MGMT_CONFIG_URI
+        else:
+            path = MGMT_CONFIG_METADATA_URI.format(domain, class_name)
         resp = self._make_request(path, 'GET', body=None)
-        return resp
-
-    def get_current_state(self, req):
-        resp = self._make_request(req.path, 'GET', None)
-        clean_dp_dict(resp)
-        return resp
-
+        if resp['_links']['self']['href'] == MGMT_CONFIG_URI:
+            resp = list(resp['_links'].keys())
+            resp.sort()
+        return resp 
 
 class DPGetConfigRequestHandler(DPRequestHandler):
     
     def __init__(self, connection):
         super(DPGetConfigRequestHandler, self).__init__(connection)
 
-    def get_config(self, dp_req):
-        resp = self._make_request(dp_req.path, 'GET', body=None)
-        return resp
-
+class ActionQueueTimeoutError(Exception):
+    pass
 
 class DPActionQueueRequestHandler(DPRequestHandler):
     def __init__(self, connection):
@@ -59,7 +65,24 @@ class DPActionQueueRequestHandler(DPRequestHandler):
 
     def process_request(self, path, method, body=None):
         resp = self._make_request(path, method, body)
+        if self.is_completed(resp):
+            return resp
+        else:
+            path = resp['_links']['location']['href']
+            start_time = time.time()
+            while not self.is_completed(resp):
+                if (time.time() - start_time) > ACTION_QUEUE_TIMEOUT:
+                    raise ActionQueueTimeoutError('Could not retrieve status within defined time out' + path)
+                time.sleep(2)
+                resp = self._make_request(path, 'GET', None)     
         return resp
+
+    def is_completed(self, resp):
+        for k, v in resp.items():
+            if v == 'Operation completed.' or v == 'completed':
+                return True
+        else:
+            return False
 
 class DPFileStoreRequestHandler(DPRequestHandler):
     def __init__(self, connection):

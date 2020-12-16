@@ -9,7 +9,7 @@ DOCUMENTATION = r'''
 ---
 module: community.datapower.action
 
-short_description: Use for creating various objects on IBM DataPower
+short_description: Use for executing actions on IBM DataPower
 
 
 version_added: "1.0.0"
@@ -17,13 +17,17 @@ version_added: "1.0.0"
 description: Use for performing actions such as quiesce, save config, reboot, etc...  Get a list of actions from URI /mgmt/actionqueue/{domain}/operations
 
 options:
-    domains:
-        description: List of domains to execute on.
+    domain:
+        description: Domain to execute action on.
         required: true
-        type: list
-    body:
+        type: str
+    action:
         description: The action to be performed
         required: true
+        type: str
+    parameters:
+        description: parameters, if any, that the action requires
+        required: false
         type: dict
 
 
@@ -35,8 +39,7 @@ EXAMPLES = r'''
 - name: Save a domains configuration.
 community.datapower.action:
     domain: "{{ domain }}
-    body:
-    SaveConfig: {}
+    action: SaveConfig
 '''
 
 RETURN = r'''

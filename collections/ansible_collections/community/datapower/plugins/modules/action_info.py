@@ -76,7 +76,7 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
     DPActionQueueRequest
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
-    DPActionQueueRequestHandler
+    DPRequestHandler
 )
 
 def run_module():
@@ -93,8 +93,9 @@ def run_module():
     
     dp_act = DPActionQueue(**module.params)
     dp_act_req = DPActionQueueRequest(dp_act)
-    req_handler =  DPActionQueueRequestHandler(connection)
+    req_handler =  DPRequestHandler(connection)
     resp = req_handler.process_request(dp_act_req.info_path, 'GET')
+    
     result = {}
     result['resp'] = resp
     module.exit_json(**result)

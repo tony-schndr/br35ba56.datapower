@@ -95,12 +95,12 @@ def test_DPManageConfigRequest_mod_args():
         },
         "domain": "default",
         "name": None,
-        "overwrite": False
+        "state": 'present'
     }
     dp_mgmt_conf = DPManageConfigObject(**task_args)
     dp_req = DPManageConfigRequest(dp_mgmt_conf)
-    assert dp_req.path ==  '/mgmt/config/default/CryptoValCred'
-    assert dp_req.method == 'POST'
+    assert dp_req.path ==  '/mgmt/config/default/CryptoValCred/valcred'
+    assert dp_req.method == 'PUT'
     assert dp_req.body == {
             "CryptoValCred": {
                 "mAdminState": "enabled",
@@ -117,13 +117,13 @@ def test_DPManageConfigRequest_min():
                 'mAdminState':'disabled'
             }
         },
-        'overwrite': False
+        'state': 'present'
     }
 
     dp_mgmt_conf = DPManageConfigObject(**task_args)
     dp_req = DPManageConfigRequest(dp_mgmt_conf)
-    assert dp_req.path ==  '/mgmt/config/snafu/CryptoValCred'
-    assert dp_req.method == 'POST'
+    assert dp_req.path ==  '/mgmt/config/snafu/CryptoValCred/valcred'
+    assert dp_req.method == 'PUT'
 
 def test_DPManageConfigRequest_w_name():
     task_args = {
@@ -133,7 +133,7 @@ def test_DPManageConfigRequest_w_name():
                 'name':'valcred'
             }
         },
-        'overwrite': True
+        'state': 'present'
     }
     dp_mgmt_conf = DPManageConfigObject(**task_args)
     dp_req = DPManageConfigRequest(dp_mgmt_conf)
@@ -282,7 +282,7 @@ def test_DPManageConfigRequest_invalid_class():
                 'name':'valcred'
             }
         },
-        'overwrite': True
+        'state': 'present'
     }
     try:
         DPManageConfigObject(**task_args_w_invalid_class)

@@ -86,7 +86,7 @@ def run_module():
     module_args = dict(
         domain = dict(type='str', required=True),
         action = dict(type='str', required=True),
-        parameters = dict(type='dict', required=False)
+        parameters = dict(type='dict', required=False, alias=['config'])
     )
     
     module = AnsibleModule(

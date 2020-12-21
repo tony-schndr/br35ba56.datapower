@@ -9,15 +9,61 @@ import pytest
 from ansible_collections.community.datapower.plugins.module_utils.datapower import (
     dp_diff
 )
+from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
+    DPManageConfigObject,
+    DPManageConfigSchema
+)
 
-def test_dp_valcred_state():
-    dp_state_resp =  {
+from ansible_collections.community.datapower.tests.unit.module_utils.test_data import (
+    dp_mgmt_test_data as test_data,
+    dp_actionq_test_data as action_test_data
+)
+
+
+def test_get_change_dict():
+    from_dict =  {
+        "CryptoValCred": {
+            "CRLDPHandling": "ignore",
+            "CertValidationMode": "legacy",
+            "CheckDates": "on",
+            "ExplicitPolicy": "off",
+            "InitialPolicySet": "2.5.29.32.0",
+            "RequireCRL": "off",
+            "UseCRL": "on",
+            "mAdminState": "enabled",
+            "name": "valcred"
+        }
+    }
+
+    to_dict = {
+        "CryptoValCred": {
+            "name": "valcred",
+            "mAdminState": "enabled",
+            "CheckDates": "on",
+            "ExplicitPolicy": "on",
+            "InitialPolicySet": "2.5.29.32.0",
+            "RequireCRL": "on",
+            "UseCRL": "on"
+        }
+    }
+    change_dict = {
+        "CryptoValCred": {
+            "name": "valcred",
+            "RequireCRL": "on",
+            "ExplicitPolicy": "on",
+        }
+    }
+    schema = DPManageConfigSchema(test_data.valcred_schema_resp)
+    assert dp_diff.get_change_dict(from_dict, to_dict, schema) == change_dict
+
+#Handles case where DataPower returns dictionary and the user passes a list with 1 item.
+def test_get_change_dict_to_array_from_dict():
+    from_dict =  {
         "CryptoValCred": {
             "CRLDPHandling": "ignore",
             "CertValidationMode": "legacy",
             "Certificate": {
-                "href": "/mgmt/config/default/CryptoCertificate/Test1",
-                "value": "Test1"
+                 "value": "Test1"
             },
             "CheckDates": "on",
             "ExplicitPolicy": "off",
@@ -26,36 +72,106 @@ def test_dp_valcred_state():
             "UseCRL": "on",
             "mAdminState": "enabled",
             "name": "valcred"
-        },
-        "_links": {
-            "doc": {
-                "href": "/mgmt/docs/config/CryptoValCred"
-            },
-            "self": {
-                "href": "/mgmt/config/default/CryptoValCred/valcred"
-            }
         }
     }
-    proposed_valcred = {
+
+    to_dict = {
         "CryptoValCred": {
             "name": "valcred",
-            "mAdminState": "disabled"
+            "mAdminState": "enabled",
+            "CheckDates": "on",
+            "ExplicitPolicy": "on",
+            "InitialPolicySet": "2.5.29.32.0",
+            "RequireCRL": "on",
+            "UseCRL": "on",
+            "Certificate": [
+                {
+                    "value": "Test1"
+                }
+            ],
         }
     }
-    compared_valcred = {
+    change_dict = {
         "CryptoValCred": {
-            'name':'valcred',
-            'mAdminState': {
-                'from': 'enabled',
-                'to':'disabled'
-            }
+            "name": "valcred",
+            "RequireCRL": "on",
+            "ExplicitPolicy": "on",
         }
     }
-        
-    assert dp_diff.matching_prim_keys(dp_state_resp, proposed_valcred)
-    dup_keys = dp_diff.get_duplicate_keys(dp_state_resp['CryptoValCred'], proposed_valcred['CryptoValCred'])
-    assert dup_keys == {'name', 'mAdminState'}
+    schema = DPManageConfigSchema(test_data.valcred_schema_resp)
+    assert dp_diff.get_change_dict(from_dict, to_dict, schema) == change_dict
 
 
-    diff_keys = dp_diff.get_diff_keys(dp_state_resp['CryptoValCred'], proposed_valcred['CryptoValCred'])
-    assert diff_keys == {'mAdminState'}
+def test_get_change_dict_user_passes_arrays_not_equal():
+    from_dict =  {
+        "CryptoValCred": {
+            "CRLDPHandling": "ignore",
+            "CertValidationMode": "legacy",
+            "Certificate": 
+            [
+                {
+                 "value": "Test2"
+                },
+                {
+                 "value": "Test1"
+                },
+                {
+                 "value": "Test3"
+                }  
+            ],
+            "CheckDates": "on",
+            "ExplicitPolicy": "off",
+            "InitialPolicySet": "2.5.29.32.0",
+            "RequireCRL": "off",
+            "UseCRL": "on",
+            "mAdminState": "enabled",
+            "name": "valcred"
+        }
+    }
+
+    to_dict = {
+        "CryptoValCred": {
+            "CRLDPHandling": "ignore",
+            "CertValidationMode": "legacy",
+            "Certificate": 
+            [
+                {
+                 "value": "Test2"
+                },
+                {
+                 "value": "Test4"
+                },
+                {
+                 "value": "Test3"
+                }  
+            ],
+            "CheckDates": "on",
+            "ExplicitPolicy": "on",
+            "InitialPolicySet": "2.5.29.32.0",
+            "RequireCRL": "off",
+            "UseCRL": "on",
+            "mAdminState": "enabled",
+            "name": "valcred"
+        }
+    }
+    change_dict = {
+        "CryptoValCred": {
+            "name": "valcred",
+            "ExplicitPolicy": "on",
+            "Certificate": [
+                {
+                 "value": "Test2"
+                },
+                {
+                 "value": "Test4"
+                },
+                {
+                 "value": "Test3"
+                }  
+            ],
+        }
+    }
+    schema = DPManageConfigSchema(test_data.valcred_schema_resp)
+    assert dp_diff.get_change_dict(from_dict, to_dict, schema) == change_dict
+
+

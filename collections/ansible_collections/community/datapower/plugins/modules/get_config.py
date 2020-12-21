@@ -150,7 +150,10 @@ def run_module():
     dp_obj = DPGetConfigObject(**module.params)
     dp_req = DPGetConfigRequest(dp_obj)
     dp_handler = DPGetConfigRequestHandler(connection)
-    dp_resp = dp_handler.process_request(dp_req.path, dp_req.method)
+    try:
+        dp_resp = dp_handler.process_request(dp_req.path, dp_req.method)
+    except ConnectionError as e:
+        dp_resp = to_text(e)
     result = {}
     result['dp_resp'] = dp_resp
 

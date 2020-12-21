@@ -21,14 +21,14 @@ class DPRequestHandler:
             _scrub(body, '_links')
             _scrub(body, 'href')
             _scrub(body, 'state')
-        try:
-            response = self.connection.send_request(body,path,method)
-        except ConnectionError:
-            raise
-        return response
+     
+        return self.connection.send_request(body,path,method)
 
     def process_request(self, path, method='GET', body=None):
-        resp = self._make_request(path, method, body)
+        try:
+            resp = self._make_request(path, method, body)
+        except ConnectionError:
+            raise
         return resp
 
 

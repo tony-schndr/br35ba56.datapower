@@ -5,7 +5,7 @@ __metaclass__ = type
 # Helper functions for comparing dictionairies.
 
 # When using this to determine what will be changed on a DataPower the 
-# from dict should always be DataPower config, to dict should always be ansible.  
+# from_dict should always be DataPower config, to_dict should always be ansible.
  
 def get_duplicate_keys(from_dict, to_dict):
     common_keys = set()
@@ -15,22 +15,44 @@ def get_duplicate_keys(from_dict, to_dict):
     return common_keys
 
 def get_diff_keys(from_dict, to_dict):
-    for k in to_dict.keys():
-        if k in from_dict:
-            pass
+    diff_keys = set()
+    for k,v in to_dict.items():
+        if k in from_dict and k in to_dict:
+            if v != from_dict[k]:
+                diff_keys.add(k)
+    return diff_keys
 
 
-def dict_diff(from_dict, to_dict):
-    diff_ = dict()
-    # sort lists for compare later
-    for k in get_duplicate_keys(to_dict, from_dict):
-        if isinstance(from_dict[k], list):
-            from_dict[k] = sorted(from_dict[k], key = lambda i: i['value'])
-            to_dict[k] = sorted(to_dict[k], key = lambda i: i['value'])
-    for k in get_diff_keys(to_dict, from_dict):
-        diff_[k] = {'from' : from_dict[k], 'to' : to_dict[k]}
-    return diff_
+def get_change_dict(from_dict, to_dict, schema):
+    pri_key = get_prim_key(from_dict, to_dict)
+    change_dict = dict({'name': from_dict[pri_key]['name']})
+    for to_key,to_val in to_dict[pri_key].items():
+        if to_key in from_dict[pri_key]:
+            if type(to_val) == type(from_dict[pri_key][to_key]) and isinstance(to_val, list):
+                if sorted(to_val, key = lambda i: i['value']) != sorted(from_dict[pri_key][to_key],  key = lambda i: i['value']):
+                    change_dict[to_key] = to_val
+            elif type(to_val) == type(from_dict[pri_key][to_key]):
+                if to_val != from_dict[pri_key][to_key]:
+                    change_dict[to_key] = to_val
+            else:
+                prop = schema.get_prop(to_key)
+                if hasattr(prop, 'array') and prop.array:
+                    if to_val[0] != from_dict[pri_key][to_key]:
+                        change_dict[to_key] = to_val  
+                    
+        else:#Should check the schema to ensure it is a valid option
+            if schema.get_prop(to_key):
+                change_dict[to_key] = to_val
+            else:
+                raise AttributeError('Invalid key passed to DataPower config object.')
 
-def matching_prim_keys(from_dict, to_dict):
-    return list(from_dict.keys())[0] == list(to_dict.keys())[0]
+    return {pri_key: change_dict}
+    
+
+def get_prim_key(from_dict, to_dict):
+    if list(from_dict.keys())[0] == list(to_dict.keys())[0]:
+        return list(from_dict.keys())[0]
+    else:
+        raise AttributeError('Cannot compare dictionaries without matching primary keys.')
+     
    

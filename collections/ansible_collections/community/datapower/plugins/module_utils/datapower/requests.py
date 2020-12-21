@@ -64,28 +64,13 @@ class DPManageConfigRequest(DPRequest):
     # Only POST can be used against field Array Property to append a list item.
     # Appending to a list should also require overwrite being set to false as a 
     # put against a list results in the list being overwritten.
-    def __init__(self, dp_mgmt_conf, schema=None):
+    def __init__(self, dp_mgmt_conf):
         super(DPManageConfigRequest, self).__init__()
         # At this time schema is only used to check if a DataPower object
         # field is an array.  This could be utilized further to validate
         # other or all portions of a object passed to ansible prior to the 
         # request to DataPower.
-        self.schema = schema
-        if self.schema and self.check_for_array(dp_mgmt_conf.config, dp_mgmt_conf.class_name):
-            self.set_body_for_array_field(dp_mgmt_conf.config, dp_mgmt_conf.class_name)
-            self.set_path(
-                dp_mgmt_conf.domain,
-                dp_mgmt_conf.class_name,
-                dp_mgmt_conf.name,
-                list(self.body.keys())[0]
-            )
-            #Sets array list update behaivior, POST appends, PUT overwrites.
-            if dp_mgmt_conf.overwrite:
-                self.method = 'PUT'
-            else:
-                self.method = 'POST'
-        
-        if dp_mgmt_conf.overwrite:
+        if dp_mgmt_conf.state == 'present':
             self.method = 'PUT'
             self.set_path(
                 dp_mgmt_conf.domain,
@@ -93,14 +78,13 @@ class DPManageConfigRequest(DPRequest):
                 dp_mgmt_conf.name
             )
             self.set_body(dp_mgmt_conf)
-        elif not dp_mgmt_conf.overwrite:
-            self.method = 'POST'
+        elif dp_mgmt_conf.state == 'absent':
+            self.method = 'DELETE'
             self.set_path(
                 dp_mgmt_conf.domain,
                 dp_mgmt_conf.class_name,
+                dp_mgmt_conf.name
             )
-            self.set_body(dp_mgmt_conf)
-            #Need to ensure name is include for POST requests.
         else:
             raise AttributeError('Could not build request object from parsed module parameters.')
 

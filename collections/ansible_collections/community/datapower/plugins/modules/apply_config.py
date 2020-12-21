@@ -107,10 +107,11 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
     DPManageConfigRequest
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
-    DPManageConfigRequestHandler
+    DPManageConfigRequestHandler,
+    clean_dp_dict
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower import (
-    dp_change
+    dp_diff
 )
 
 def run_module():
@@ -119,9 +120,8 @@ def run_module():
         config = dict(type='dict', required=True),
         class_name=dict(type='str', required=False),
         name = dict(type='str', required=False),
-        overwrite = dict(type='bool', required=False, default=False),
+        state = dict(type='str', choices=['present', 'absent'], required=True)
     )
-   
     module = AnsibleModule(
         argument_spec=module_args,
         supports_check_mode=True 
@@ -130,16 +130,38 @@ def run_module():
     connection = Connection(module._socket_path)
     dp_obj = DPManageConfigObject(**module.params)
     dp_handler = DPManageConfigRequestHandler(connection)
+    dp_req = DPManageConfigRequest(dp_obj)
+    result = dict()
+    try:
+        dp_state_resp = dp_handler.process_request(dp_req.path, 'GET')
+    except ConnectionError as e:
+        dp_state_resp = to_text(e)
+        if 'Resource not found' not in dp_state_resp:        
+            result['changed'] = False
+            module.fail_json(msg=dp_state_resp, **result)
+        elif dp_obj.state == 'absent' and 'Resource not found' in dp_state_resp:
+            result['dp_resp'] = 'Resource not found'
+            result['changed'] = False
+            module.exit_json(**result)
+
+    #Gets rid of keys we don't want to compare (_links, href, state)
+    clean_dp_dict(dp_state_resp)
+    #We need the schema of the object so we can handle arrays correctly.
     schema_resp = dp_handler.config_info(dp_obj.domain, dp_obj.class_name)
     dp_schema = DPManageConfigSchema(schema_resp)
-    dp_req = DPManageConfigRequest(dp_obj, dp_schema)
-    dp_state_resp = dp_handler.process_request(dp_req.path, 'GET')
-    dp_mk_chg_resp = dp_handler.process_request(dp_req.path, dp_req.method, dp_req.body)
-    result = {}
-    result['dp_state_resp'] = dp_state_resp
-    result['dp_body'] = dp_req.body
-    result['dp_mk_chg_resp'] = dp_mk_chg_resp
-    #result['dp_change'] = dp_change
+    change_dict = dp_diff.get_change_dict(dp_state_resp, dp_req.body, dp_schema)
+    if len(change_dict[dp_obj.class_name]) == 1: # Means only the name is in the body, nothing is changing
+        result['changed'] = False
+        module.exit_json(**result)
+    try:
+        dp_mk_chg_resp = dp_handler.process_request(dp_req.path, dp_req.method, change_dict)
+    except ConnectionError as e:
+        dp_mk_chg_resp = to_text(e)
+    
+  
+    result['applied_change'] = change_dict
+    result['datapower_response'] = dp_mk_chg_resp
+    result['changed'] = True
     module.exit_json(**result)
 
 def main():

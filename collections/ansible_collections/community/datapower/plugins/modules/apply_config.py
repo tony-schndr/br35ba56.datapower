@@ -157,8 +157,10 @@ def run_module():
         dp_mk_chg_resp = dp_handler.process_request(dp_req.path, dp_req.method, change_dict)
     except ConnectionError as e:
         dp_mk_chg_resp = to_text(e)
-    
-  
+        result['datapower_response'] = dp_mk_chg_resp
+        result['changed'] = False
+        module.fail_json(msg=to_text(e), **result)
+
     result['applied_change'] = change_dict
     result['datapower_response'] = dp_mk_chg_resp
     result['changed'] = True

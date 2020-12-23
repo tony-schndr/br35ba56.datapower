@@ -63,33 +63,38 @@ class DPManageConfigObject:
 class DPManageConfigSchema:
     
     def __init__(self, schema_resp):
+        self.build(schema_resp)
+        
+    def build(self, schema_resp):
         self.set_props(schema_resp)
+    
+    def set_props(self, schema_resp):
+        self.props = []
+        for dp_prop in schema_resp['parent']['object']['properties']['property']:
+            prop_type = self.get_prop_type(schema_resp, dp_prop['type']['href'])
+            dp_prop['type'] = prop_type
+            self.props.append(dp_prop)
 
-    def get_prop(self, field):
+    def get_prop_href(self, prop):
+        return prop['type']['href']
+
+    def get_prop_type(self, schema_resp, href):
+        for prop_type in schema_resp['children']:
+            if prop_type['_links']['self']['href'] == href:
+                return prop_type['type']
+        else:
+            raise AttributeError('Property not found, debug...')
+
+    def get_prop(self, name):
         for prop in self.props:
-            if prop.name == field:
+            if prop['name'] == name:
                 return prop
         else:
             return None
 
-    # Create a property array to store the property objects, these are retrieved from the METADATA_URI
-    # and store useful data like name of the feild, type, and if its an array or not.
-    def set_props(self, schema_resp):
-        self.props = []
-        for dp_prop in schema_resp['object']['properties']['property']:
-            prop = DPProperty()
-            for k,v in dp_prop.items():
-                if k == 'array':
-                    if v == 'true':
-                        setattr(prop, k, True)
-                    else:
-                        setattr(prop, k, False)
-                else:
-                    setattr(prop, k, v)
-                self.props.append(prop)
-            
-class DPProperty:
-    pass
+    def is_valid_param(self, param):
+        prop = self.get_prop(param)
+        return prop
 
 
 def is_valid_object_class(obj):

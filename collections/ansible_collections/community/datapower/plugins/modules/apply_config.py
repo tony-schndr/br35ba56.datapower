@@ -148,7 +148,8 @@ def run_module():
     clean_dp_dict(dp_state_resp)
     #We need the schema of the object so we can handle arrays correctly.
     schema_resp = dp_handler.config_info(dp_obj.domain, dp_obj.class_name)
-    dp_schema = DPManageConfigSchema(schema_resp)
+    #dp_schema = DPManageConfigSchema(schema_resp)
+    module.exit_json(result={'schema' : schema_resp})
     change_dict = dp_diff.get_change_dict(dp_state_resp, dp_req.body, dp_schema)
     if len(change_dict[dp_obj.class_name]) == 1: # Means only the name is in the body, nothing is changing
         result['changed'] = False

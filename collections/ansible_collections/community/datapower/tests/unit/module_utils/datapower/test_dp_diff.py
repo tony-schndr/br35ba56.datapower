@@ -53,7 +53,7 @@ def test_get_change_dict_user_passes_none_prop():
             "Certificate" : None,
         }
     }
-    schema = DPManageConfigSchema(test_data.valcred_schema_resp)
+    schema = DPManageConfigSchema(test_data.config_info_schema_response)
     try:
         dp_diff.get_change_dict(from_dict, to_dict, schema)
     except:
@@ -106,7 +106,7 @@ def test_get_change_dict_user_passes_Value():
         }
     }
     
-    schema = DPManageConfigSchema(test_data.valcred_schema_resp)
+    schema = DPManageConfigSchema(test_data.config_info_schema_response)
     try:
         dp_diff.get_change_dict(from_dict, to_dict, schema) 
     except:
@@ -156,7 +156,7 @@ def test_get_change_dict_user_passes_empty_prop():
             "Certificate" : {}
         }
     }
-    schema = DPManageConfigSchema(test_data.valcred_schema_resp)
+    schema = DPManageConfigSchema(test_data.config_info_schema_response)
     assert dp_diff.get_change_dict(from_dict, to_dict, schema) == change_dict
 
 
@@ -194,7 +194,7 @@ def test_get_change_dict():
             "ExplicitPolicy": "on",
         }
     }
-    schema = DPManageConfigSchema(test_data.valcred_schema_resp)
+    schema = DPManageConfigSchema(test_data.config_info_schema_response)
     assert dp_diff.get_change_dict(from_dict, to_dict, schema) == change_dict
 
 #Handles case where DataPower returns dictionary and the user passes a list with 1 item.
@@ -239,7 +239,7 @@ def test_get_change_dict_to_array_from_dict():
             "ExplicitPolicy": "on"
         }
     }
-    schema = DPManageConfigSchema(test_data.valcred_schema_resp)
+    schema = DPManageConfigSchema(test_data.config_info_schema_response)
     assert dp_diff.get_change_dict(from_dict, to_dict, schema) == change_dict
 
 #Handles case where DataPower returns dictionary and the user passes a list with 1 item.
@@ -295,7 +295,7 @@ def test_get_change_dict_to_array_from_dict_not_equal():
             ]
         }
     }
-    schema = DPManageConfigSchema(test_data.valcred_schema_resp)
+    schema = DPManageConfigSchema(test_data.config_info_schema_response)
     assert dp_diff.get_change_dict(from_dict, to_dict, schema) == change_dict
 
 
@@ -368,7 +368,7 @@ def test_get_change_dict_user_passes_arrays_not_equal():
             ],
         }
     }
-    schema = DPManageConfigSchema(test_data.valcred_schema_resp)
+    schema = DPManageConfigSchema(test_data.config_info_schema_response)
     assert dp_diff.get_change_dict(from_dict, to_dict, schema) == change_dict
 
 

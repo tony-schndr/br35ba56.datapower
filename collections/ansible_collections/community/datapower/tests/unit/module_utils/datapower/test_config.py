@@ -8,8 +8,7 @@ import pytest
 
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     DPManageConfigObject,
-    DPManageConfigSchema,
-    DPProperty
+    DPManageConfigSchema
 )
 
 from ansible_collections.community.datapower.tests.unit.module_utils.test_data import (
@@ -41,21 +40,6 @@ def test_DPManageConfigObject():
     assert dp_mgmt_conf.domain == task_args['domain']
     assert dp_mgmt_conf.overwrite == task_args['overwrite']
 
-def test_DPManageConfigObject_schema():
-    
-    schema_resp = test_data.valcred_schema_resp
-    mgmt_conf_schema = DPManageConfigSchema(schema_resp)
-    for prop in mgmt_conf_schema.props:
-        assert isinstance(prop, DPProperty)
-        if hasattr(prop, 'array'):
-            assert prop.array
-        assert hasattr(prop, 'name')
-        assert hasattr(prop, 'type')
-
-def test_DPManageConfigObject_schema_get_prop():   
-    dp_schema = DPManageConfigSchema(test_data.valcred_schema_resp)
-    assert dp_schema.get_prop('Certificate')
-    assert dp_schema.get_prop('nothing') == None
 
 
 

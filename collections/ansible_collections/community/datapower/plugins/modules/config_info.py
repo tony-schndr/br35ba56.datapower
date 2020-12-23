@@ -74,7 +74,7 @@ def run_module():
         argument_spec=module_args,
         supports_check_mode=True 
     )
-
+    
     connection = Connection(module._socket_path)
     
     dp_handler = DPManageConfigRequestHandler(connection)

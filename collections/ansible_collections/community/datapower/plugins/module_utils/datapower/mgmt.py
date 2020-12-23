@@ -71,8 +71,9 @@ class DPManageConfigSchema:
     def set_props(self, schema_resp):
         self.props = []
         for dp_prop in schema_resp['parent']['object']['properties']['property']:
-            prop_type = self.get_prop_type(schema_resp, dp_prop['type']['href'])
-            dp_prop['type'] = prop_type
+            prop_href = dp_prop['type']['href']
+            prop_type = self.get_prop_type(schema_resp, prop_href)
+            dp_prop[prop_href] = prop_type
             self.props.append(dp_prop)
 
     def get_prop_href(self, prop):
@@ -81,7 +82,7 @@ class DPManageConfigSchema:
     def get_prop_type(self, schema_resp, href):
         for prop_type in schema_resp['children']:
             if prop_type['_links']['self']['href'] == href:
-                return prop_type['type']
+                return prop_type
         else:
             raise AttributeError('Property not found, debug...')
 
@@ -92,9 +93,35 @@ class DPManageConfigSchema:
         else:
             return None
 
-    def is_valid_param(self, param):
-        prop = self.get_prop(param)
-        return prop
+    @staticmethod
+    def get_type_int_boundries(type_):
+        if isinstance(type_['minimum'], int):
+            minimum = type_['minimum']
+        else:
+            minimum = int(type_['minimum'], 0)
+        if isinstance(type_['maximum'], int):
+            maximum = type_['maximum']
+        else:
+            maximum = int(type_['maximum'], 0)
+        return minimum, maximum
+
+
+    def is_valid_param(self, key, value):
+        prop = self.get_prop(key)
+        href = self.get_prop_href(prop)
+        if prop[href]['type']['name'] == 'dmReference':
+            if 'value' in value:
+                return True
+        elif 'value-list' in prop[href]['type']:
+            for val in prop[href]['type']['value-list']['value']:
+                if val['name'] == value:
+                    return True
+        elif prop[href]['type']['name'] == 'dmString':
+            return isinstance(value, str)
+        else:
+            return False
+        
+        return False
 
 
 def is_valid_object_class(obj):

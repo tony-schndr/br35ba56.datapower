@@ -3,24 +3,31 @@
   connection: local
   vars:
   tasks:
+    - name: Get all supported objects
+      community.datapower.config_info:
+        domain: default
+      register: config_info_result
+        
     - name: Apply a change to valcred
       community.datapower.apply_config:
         state: present
         domain: default
-        name: valcred
-        class_name: CryptoValCred
+        name: Something
+        class_name: "{{ item }}"
         config: 
           mAdminState: enabled
           UseCRL: "off"
           Certificate: 
             - value: Test1
             - value: Test2
-
+      loop: "{{ config_info_result['config_info'] }}"
+        
     - name: get valcred
       community.datapower.get_config:
         domain: default
         class_name: CryptoValCred
         name: valcred
+
     - name: save domain
       community.datapower.action:
         domain: default

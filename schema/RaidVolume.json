@@ -1,134 +1,269 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "description": "A descriptive summary for the configuration.", 
-            "cli-alias": "summary", 
-            "summary": "Enter a descriptive summary for the configuration.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments", 
-            "name": "UserSummary"
-        }, 
-        {
-            "name": "ReadOnly", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Set the access permission to files on the storage volume.", 
-            "products": {
-                "product": "xb60"
-            }, 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
+                                "name": "on",
                                 "display": "on"
-                            }, 
+                            },
                             {
-                                "name": "off", 
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "cli-alias": "read-only", 
-            "display": "Set to read-only", 
-            "hoverhelp": "&lt;p>Set the access permission to files on the storage volume.&lt;/p>&lt;ul>&lt;li>When enabled, access permission is read-only. On appliances with the B2B feature, access permission must be read/write, the appliance will ignore this setting if B2B feature enabled.&lt;/li>&lt;li>When disabled, the default value, access permission is read/write.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The access permission to files on the storage volume.&lt;/p>&lt;ul>&lt;li>When enabled, access permission is read-only. On appliances with the B2B feature, access permission must be read/write, the appliance will ignore this setting if B2B feature enabled.&lt;/li>&lt;li>When disabled, the default value, access permission is read/write.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "RaidVolume",
+                "name": "RaidVolume",
+                "display": "RAID Array",
+                "uri": "system/raid-disk-volume",
+                "actions": {
+                    "action": [
+                        {
+                            "name": "RaidInitialize",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "VolumeName",
+                                    "select": "dmObjectName"
+                                }
+                            },
+                            "display": "Initialize array"
+                        },
+                        {
+                            "name": "RaidRebuild",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "VolumeName",
+                                    "select": "dmObjectName"
+                                }
+                            },
+                            "display": "Synchronize array"
+                        },
+                        {
+                            "name": "RaidMakeHotSpare",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "VolumeName",
+                                    "select": "dmObjectName"
+                                }
+                            },
+                            "display": "Make hot spare"
+                        },
+                        {
+                            "name": "RaidLearnBattery",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "VolumeName",
+                                    "select": "dmObjectName"
+                                }
+                            },
+                            "display": "Perform battery-learning"
+                        },
+                        {
+                            "name": "RaidDelete",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "VolumeName",
+                                    "select": "dmObjectName"
+                                }
+                            },
+                            "display": "Delete array"
+                        },
+                        {
+                            "name": "RaidActivate",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "VolumeName",
+                                    "select": "dmObjectName"
+                                }
+                            },
+                            "display": "Activate array"
+                        },
+                        {
+                            "name": "InitializeRaidVolumeFilesystem",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "VolumeName",
+                                    "select": "dmObjectName"
+                                }
+                            },
+                            "display": "Initialize file system"
+                        },
+                        {
+                            "name": "InitializeRaidVolumeFilesystemNoEncryptionMpt2Sas",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "VolumeName",
+                                    "select": "dmObjectName"
+                                }
+                            },
+                            "display": "Initialize File System"
+                        },
+                        {
+                            "name": "InitializeRaidVolumeFilesystem2",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "VolumeName",
+                                    "select": "dmObjectName"
+                                }
+                            }
+                        },
+                        {
+                            "name": "RepairRaidVolumeFilesystem",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "VolumeName",
+                                    "select": "dmObjectName"
+                                }
+                            },
+                            "display": "Repair file system"
+                        },
+                        {
+                            "name": "RaidChangeEncryptionSettings2",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "VolumeName",
+                                    "select": "dmObjectName"
+                                }
+                            },
+                            "display": "Change Partition Encryption"
+                        },
+                        {
+                            "name": "RaidReconcileEncryptionSettings2",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "VolumeName",
+                                    "select": "dmObjectName"
+                                }
+                            },
+                            "display": "Reconcile Partition Encryption"
+                        }
+                    ]
+                },
+                "summary": "Configure the RAID array for data storage.",
+                "cmd-group": "device-management",
+                "cli-alias": "raid-volume",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "A descriptive summary for the configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter a descriptive summary for the configuration.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "ReadOnly",
+                            "default": "off",
+                            "cli-alias": "read-only",
+                            "summary": "Set the access permission to files on the storage volume.",
+                            "products": {
+                                "product": "xb60"
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "display": "Set to read-only",
+                            "hoverhelp": "&lt;p>Set the access permission to files on the storage volume.&lt;/p>&lt;ul>&lt;li>When enabled, access permission is read-only. On appliances with the B2B feature, access permission must be read/write, the appliance will ignore this setting if B2B feature enabled.&lt;/li>&lt;li>When disabled, the default value, access permission is read/write.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The access permission to files on the storage volume.&lt;/p>&lt;ul>&lt;li>When enabled, access permission is read-only. On appliances with the B2B feature, access permission must be read/write, the appliance will ignore this setting if B2B feature enabled.&lt;/li>&lt;li>When disabled, the default value, access permission is read/write.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "Directory",
+                            "valid-regexp": "^[-_a-zA-Z0-9][-_a-zA-Z0-9.]{0,63}$",
+                            "summary": "Enter the name of the subdirectory.",
+                            "cli-alias": "directory",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Directory",
+                            "hoverhelp": "Enter the name of the subdirectory where the files on the storage volume are available. The name can be up to 64 characters long. The name cannot start with a period. The name can use all alphanumeric characters and the following special characters: . - _.",
+                            "description": "The subdirectory where the files on the storage volume are available. The name can be up to 64 characters long. The name cannot start with a period. The name can use all alphanumeric characters and the following special characters: . - _."
+                        }
+                    ]
+                },
+                "description": "&lt;p>Configure a RAID volume for data storage. The RAID volume consists of two or more hard disk drives in a RAID configuration.&lt;/p>&lt;p>The subdirectory specified is available in the &lt;tt>local:&lt;/tt> and &lt;tt>logstore:&lt;/tt> directories. Each domain contains these subdirectories, and they are not shared across domains.&lt;/p>&lt;p>For access permission, the following behavior exists. &lt;ol>&lt;li>For XB62 appliances, this property is not available.&lt;/li>&lt;li>On appliances with the B2B feature, access permission must be read/write. Although the appliance ignores this setting, read-only permission generates a warning. B2B storage requires write access to the RAID volume.&lt;/li>&lt;/ol>&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/RaidVolume"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/RaidVolume"
                 }
-            }, 
-            "name": "Directory", 
-            "valid-regexp": "^[-_a-zA-Z0-9][-_a-zA-Z0-9.]{0,63}$", 
-            "summary": "Enter the name of the subdirectory.", 
-            "cli-alias": "directory", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Directory", 
-            "hoverhelp": "Enter the name of the subdirectory where the files on the storage volume are available. The name can be up to 64 characters long. The name cannot start with a period. The name can use all alphanumeric characters and the following special characters: . - _.", 
-            "description": "The subdirectory where the files on the storage volume are available. The name can be up to 64 characters long. The name cannot start with a period. The name can use all alphanumeric characters and the following special characters: . - _."
+            }
         }
-    ]
+    }
 }

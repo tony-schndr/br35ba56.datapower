@@ -1,326 +1,323 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmLocalIPHostAddress": {
-                "type": {
-                    "cli-arg": "dotted-ip or 0 for any", 
-                    "name": "dmLocalIPHostAddress", 
-                    "format": "(a.b.c.d or 0 for any)"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmLocalIPHostAddress"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmLocalIPHostAddress"
                     }
-                }
-            }, 
-            "name": "LocalAddress", 
-            "default": "0.0.0.0", 
-            "type": {
-                "href": "/mgmt/types/default/dmLocalIPHostAddress"
-            }, 
-            "required": "true", 
-            "summary": "Enter the local IP address or host alias.", 
-            "cli-alias": "ip-address", 
-            "display": "Local address", 
-            "description": "&lt;p>Enter a host alias or the IP address that the service listens on. Host aliases can ease migration tasks among appliances.&lt;/p>&lt;ul>&lt;li>0 or 0.0.0.0 indicates all configured IPv4 addresses.&lt;/li>&lt;li>:: indicates all configured IPv4 and IPv6 addresses.&lt;/li>&lt;/ul>&lt;p>&lt;b>Attention:&lt;/b> For management services, the value of 0.0.0.0 or :: is a security risk. Use an explicit IP address to isolate management traffic from application data traffic.&lt;/p>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+                    "cli-arg": "dotted-ip or 0 for any",
+                    "name": "dmLocalIPHostAddress",
+                    "format": "(a.b.c.d or 0 for any)"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "name": "LocalPort", 
-            "default": 5554, 
-            "cli-alias": "port", 
-            "required": "true", 
-            "maximum": "0xFFFF", 
-            "summary": "Change the listening port for the REST management interface", 
-            "minimum": 1, 
-            "type": {
-                "href": "/mgmt/types/default/dmIPPort"
-            }, 
-            "/mgmt/types/default/dmIPPort": {
+                },
                 "type": {
-                    "cli-arg": "ip-port", 
-                    "minimum": 0, 
-                    "name": "dmIPPort", 
-                    "maximum": "0xFFFF"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmIPPort"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmIPPort"
                     }
-                }
-            }, 
-            "display": "Port Number", 
-            "description": "Changes the listening port for the REST management interface. The default value is 5554."
-        }, 
-        {
-            "name": "SSLProxy", 
-            "required-when": {
-                "condition": {
-                    "property-name": "SSLConfigType", 
-                    "evaluation": "property-equals", 
-                    "value": "proxy"
-                }
-            }, 
-            "summary": "The custom TLS proxy profile is deprecated. Use a custom TLS server profile or custom TLS SNI server profile.", 
-            "cli-alias": "ssl", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLProxyProfile"
-                }
-            }, 
-            "display": "Custom TLS Proxy Profile (deprecated)", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "description": "Allows users to specify an existing TLS proxy profile and assign the TLS proxy profile to rest-mgmt (REST Management Interface) instead of the default profile, or create a new TLS proxy profile and assign that TLS proxy profile to rest-mgmt instead of the default profile."
-        }, 
-        {
-            "name": "ACL", 
-            "default": "rest-mgmt", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/AccessControlList"
-                }
-            }, 
-            "summary": "Modify the rest-mgmt access control list", 
-            "cli-alias": "acl", 
-            "display": "Access Control List", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
+                    "cli-arg": "object",
                     "name": "dmReference"
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                        "href": "/mgmt/docs/types/dmSSLConfigType"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmReference"
+                        "href": "/mgmt/types/default/dmSSLConfigType"
                     }
-                }
-            }, 
-            "description": "Modifies the rest-mgmt access control list to allow or deny access based on the IP address of the client."
-        }, 
-        {
-            "/mgmt/types/default/dmSSLConfigType": {
+                },
                 "type": {
-                    "name": "dmSSLConfigType", 
+                    "name": "dmSSLConfigType",
                     "value-list": {
                         "value": [
                             {
-                                "name": "proxy", 
+                                "name": "proxy",
                                 "display": "Proxy Profile"
-                            }, 
+                            },
                             {
-                                "name": "server", 
+                                "name": "server",
                                 "display": "Server Profile"
-                            }, 
+                            },
                             {
-                                "name": "sni", 
+                                "name": "sni",
                                 "display": "SNI Server Profile"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmSSLConfigType"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmSSLConfigType"
-                    }
                 }
-            }, 
-            "name": "SSLConfigType", 
-            "default": "server", 
-            "cli-alias": "ssl-config-type", 
-            "summary": "Set the TLS profile type to secure connections between clients and the DataPower Gateway", 
-            "type": {
-                "href": "/mgmt/types/default/dmSSLConfigType"
-            }, 
-            "display": "Custom TLS server type", 
-            "description": "The TLS profile type to secure connections between clients and the DataPower Gateway."
-        }, 
-        {
-            "name": "SSLServer", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLServerProfile"
-                }
-            }, 
-            "summary": "Assign a custom TLS server profile.", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "SSLConfigType", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "server"
-                }
-            }, 
-            "cli-alias": "ssl-server", 
-            "display": "Custom TLS server profile", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "The TLS server profile that the REST management service uses to secure connections. If you do not assign one, the service uses one with a self-signed certificate."
-        }, 
-        {
-            "name": "SSLSNIServer", 
-            "required-when": {
-                "condition": {
-                    "property-name": "SSLConfigType", 
-                    "evaluation": "property-equals", 
-                    "value": "sni"
-                }
-            }, 
-            "summary": "Set the TLS SNI server profile to secure connections between clients and the DataPower Gateway", 
-            "cli-alias": "ssl-sni-server", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLSNIServerProfile"
-                }
-            }, 
-            "display": "Custom TLS SNI server profile", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "The TLS SNI server profile to secure connections between clients and the DataPower Gateway."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/MultiProtocolGateway"
-                }
-            }, 
-            "name": "MPGateway", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "name": "RestMgmtInterface",
+                "property-group": {
+                    "member": [
+                        {
+                            "name": "mAdminState"
+                        },
+                        {
+                            "name": "LocalAddress"
+                        },
+                        {
+                            "name": "LocalPort"
+                        },
+                        {
+                            "name": "SSLConfigType"
+                        },
+                        {
+                            "name": "SSLProxy"
+                        },
+                        {
+                            "name": "SSLServer"
+                        },
+                        {
+                            "name": "SSLSNIServer"
+                        },
+                        {
+                            "name": "ACL"
+                        }
+                    ],
+                    "name": "main"
+                },
+                "uri": "mgmt/rest-mgmt",
+                "display": "REST Management Interface",
+                "cmd-group": "device-management",
+                "cli-alias": "rest-mgmt",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "LocalAddress",
+                            "default": "0.0.0.0",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                            },
+                            "required": "true",
+                            "summary": "Enter the local IP address or host alias.",
+                            "cli-alias": "ip-address",
+                            "display": "Local address",
+                            "description": "&lt;p>Enter a host alias or the IP address that the service listens on. Host aliases can ease migration tasks among appliances.&lt;/p>&lt;ul>&lt;li>0 or 0.0.0.0 indicates all configured IPv4 addresses.&lt;/li>&lt;li>:: indicates all configured IPv4 and IPv6 addresses.&lt;/li>&lt;/ul>&lt;p>&lt;b>Attention:&lt;/b> For management services, the value of 0.0.0.0 or :: is a security risk. Use an explicit IP address to isolate management traffic from application data traffic.&lt;/p>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "LocalPort",
+                            "default": 5554,
+                            "cli-alias": "port",
+                            "required": "true",
+                            "maximum": "0xFFFF",
+                            "summary": "Change the listening port for the REST management interface",
+                            "minimum": 1,
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPPort"
+                            },
+                            "display": "Port Number",
+                            "description": "Changes the listening port for the REST management interface. The default value is 5554."
+                        },
+                        {
+                            "name": "SSLProxy",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "SSLConfigType",
+                                    "evaluation": "property-equals",
+                                    "value": "proxy"
+                                }
+                            },
+                            "summary": "The custom TLS proxy profile is deprecated. Use a custom TLS server profile or custom TLS SNI server profile.",
+                            "cli-alias": "ssl",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                                }
+                            },
+                            "display": "Custom TLS Proxy Profile (deprecated)",
+                            "description": "Allows users to specify an existing TLS proxy profile and assign the TLS proxy profile to rest-mgmt (REST Management Interface) instead of the default profile, or create a new TLS proxy profile and assign that TLS proxy profile to rest-mgmt instead of the default profile."
+                        },
+                        {
+                            "name": "ACL",
+                            "default": "rest-mgmt",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/AccessControlList"
+                                }
+                            },
+                            "summary": "Modify the rest-mgmt access control list",
+                            "cli-alias": "acl",
+                            "display": "Access Control List",
+                            "description": "Modifies the rest-mgmt access control list to allow or deny access based on the IP address of the client."
+                        },
+                        {
+                            "name": "SSLConfigType",
+                            "default": "server",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSLConfigType"
+                            },
+                            "summary": "Set the TLS profile type to secure connections between clients and the DataPower Gateway",
+                            "cli-alias": "ssl-config-type",
+                            "display": "Custom TLS server type",
+                            "description": "The TLS profile type to secure connections between clients and the DataPower Gateway."
+                        },
+                        {
+                            "name": "SSLServer",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLServerProfile"
+                                }
+                            },
+                            "summary": "Assign a custom TLS server profile.",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SSLConfigType",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "server"
+                                }
+                            },
+                            "cli-alias": "ssl-server",
+                            "display": "Custom TLS server profile",
+                            "description": "The TLS server profile that the REST management service uses to secure connections. If you do not assign one, the service uses one with a self-signed certificate."
+                        },
+                        {
+                            "name": "SSLSNIServer",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "SSLConfigType",
+                                    "evaluation": "property-equals",
+                                    "value": "sni"
+                                }
+                            },
+                            "summary": "Set the TLS SNI server profile to secure connections between clients and the DataPower Gateway",
+                            "cli-alias": "ssl-sni-server",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLSNIServerProfile"
+                                }
+                            },
+                            "display": "Custom TLS SNI server profile",
+                            "description": "The TLS SNI server profile to secure connections between clients and the DataPower Gateway."
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/MultiProtocolGateway"
+                                }
+                            },
+                            "name": "MPGateway"
+                        }
+                    ]
+                },
+                "description": "Configure the REST management interface."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/RestMgmtInterface"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/RestMgmtInterface"
                 }
             }
         }
-    ]
+    }
 }

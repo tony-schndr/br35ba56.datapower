@@ -1,305 +1,289 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Deprecated - Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "name": "RemoteAddress", 
-            "cli-alias": "remote-address", 
-            "required": "true", 
-            "summary": "Deprecated - Host name or IPv4 address", 
-            "/mgmt/types/default/dmHostname": {
+                },
                 "type": {
-                    "cli-arg": "dotted-ip or hostname", 
-                    "name": "dmHostname", 
-                    "format": "(a.b.c.d or hostname)"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmHostname"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmHostname"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmHostname"
-            }, 
-            "display": "Remote Host", 
-            "description": "Deprecated - Specifies the host name or IPv4 address of the cloud server instance for Secure Cloud Connector communications."
-        }, 
-        {
-            "name": "RemotePort", 
-            "default": 22, 
-            "cli-alias": "remote-port", 
-            "required": "true", 
-            "maximum": "0xFFFF", 
-            "summary": "Deprecated - Port number", 
-            "minimum": 1, 
-            "type": {
-                "href": "/mgmt/types/default/dmIPPort"
-            }, 
-            "/mgmt/types/default/dmIPPort": {
+                },
                 "type": {
-                    "cli-arg": "ip-port", 
-                    "minimum": 0, 
-                    "name": "dmIPPort", 
-                    "maximum": "0xFFFF"
-                }, 
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmIPPort"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmIPPort"
                     }
-                }
-            }, 
-            "display": "Remote Port", 
-            "description": "Deprecated - Specifies the remote TCP port number of the cloud server instance's SSH server."
-        }, 
-        {
-            "name": "SSHClientProfileRef", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSHClientProfile"
-                }
-            }, 
-            "required": "true", 
-            "summary": "Deprecated - SSH Client Profile", 
-            "cli-alias": "ssh-client-profile", 
-            "display": "SSH Client Profile", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "description": "Deprecated - Specifies the name of an SSH Client Profile to be used by this Secure Cloud Connector connection."
-        }, 
-        {
-            "name": "LocalTunnelIP", 
-            "/mgmt/types/default/dmIPHostAddress": {
+                },
                 "type": {
-                    "cli-arg": "dotted-ip", 
-                    "name": "dmIPHostAddress", 
-                    "format": "(a.b.c.d)"
-                }, 
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmIPHostAddress"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmIPHostAddress"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmIPHostAddress"
-            }, 
-            "required": "true", 
-            "summary": "Deprecated - The configured local IPv4 address.", 
-            "cli-alias": "local-tun-ip", 
-            "display": "Local Tunnel IPv4 Address", 
-            "description": "Deprecated - Specifies the IPv4 address of the local tunnel endpoint."
-        }, 
-        {
-            "name": "RemoteTunnelIP", 
-            "/mgmt/types/default/dmIPHostAddress": {
+                },
                 "type": {
-                    "cli-arg": "dotted-ip", 
-                    "name": "dmIPHostAddress", 
+                    "cli-arg": "dotted-ip",
+                    "name": "dmIPHostAddress",
                     "format": "(a.b.c.d)"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmIPHostAddress"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmIPHostAddress"
-                    }
                 }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmIPHostAddress"
-            }, 
-            "required": "true", 
-            "summary": "Deprecated - The configured remote IPv4 address.", 
-            "cli-alias": "remote-tun-ip", 
-            "display": "Remote Tunnel IPv4 Address", 
-            "description": "Deprecated - Specifies the IPv4 address of the remote tunnel endpoint."
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmUInt32"
                     }
-                }
-            }, 
-            "name": "RemoteTunnelID", 
-            "default": 0, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 2147483645, 
-            "summary": "Deprecated - Optional remote tunnel identifier.", 
-            "minimum": 0, 
-            "cli-alias": "remote-tun-id", 
-            "display": "Remote Tunnel Identifier", 
-            "description": "Deprecated - Specifies an optional remote tunnel identifier. When specified this value must be in the range of 0 and 2,147,483,645 inclusive. A value of 0 indicates that the remote tunnel identifier will be generated internally when the Secure Cloud Connection is enabled."
-        }, 
-        {
-            "name": "RemoteAutoConfig", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Deprecated - Optional remote auto configuration.", 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
+                                "name": "on",
                                 "display": "on"
-                            }, 
+                            },
                             {
-                                "name": "off", 
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "cli-alias": "remote-auto-config", 
-            "display": "Remote Auto Configuration", 
-            "description": "Deprecated - Specifies whether to automatically configure the remote tunnel and remote routing rules on the remote host."
-        }, 
-        {
-            "name": "ICMPLivenessCheck", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Deprecated - Optional ICMP liveness check.", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "AppOpt",
+                "name": "SecureCloudConnector",
+                "uri": "scc/scc-deprecated",
+                "display": "Cloud Instance (deprecated)",
+                "cmd-group": "configuration",
+                "cli-alias": "scc",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Deprecated - Brief summary for user annotation."
+                        },
+                        {
+                            "name": "RemoteAddress",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHostname"
+                            },
+                            "required": "true",
+                            "summary": "Deprecated - Host name or IPv4 address",
+                            "cli-alias": "remote-address",
+                            "display": "Remote Host",
+                            "description": "Deprecated - Specifies the host name or IPv4 address of the cloud server instance for Secure Cloud Connector communications."
+                        },
+                        {
+                            "name": "RemotePort",
+                            "default": 22,
+                            "cli-alias": "remote-port",
+                            "required": "true",
+                            "maximum": "0xFFFF",
+                            "summary": "Deprecated - Port number",
+                            "minimum": 1,
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPPort"
+                            },
+                            "display": "Remote Port",
+                            "description": "Deprecated - Specifies the remote TCP port number of the cloud server instance's SSH server."
+                        },
+                        {
+                            "name": "SSHClientProfileRef",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSHClientProfile"
+                                }
+                            },
+                            "required": "true",
+                            "summary": "Deprecated - SSH Client Profile",
+                            "cli-alias": "ssh-client-profile",
+                            "display": "SSH Client Profile",
+                            "description": "Deprecated - Specifies the name of an SSH Client Profile to be used by this Secure Cloud Connector connection."
+                        },
+                        {
+                            "name": "LocalTunnelIP",
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPHostAddress"
+                            },
+                            "required": "true",
+                            "summary": "Deprecated - The configured local IPv4 address.",
+                            "cli-alias": "local-tun-ip",
+                            "display": "Local Tunnel IPv4 Address",
+                            "description": "Deprecated - Specifies the IPv4 address of the local tunnel endpoint."
+                        },
+                        {
+                            "name": "RemoteTunnelIP",
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPHostAddress"
+                            },
+                            "required": "true",
+                            "summary": "Deprecated - The configured remote IPv4 address.",
+                            "cli-alias": "remote-tun-ip",
+                            "display": "Remote Tunnel IPv4 Address",
+                            "description": "Deprecated - Specifies the IPv4 address of the remote tunnel endpoint."
+                        },
+                        {
+                            "name": "RemoteTunnelID",
+                            "default": 0,
+                            "cli-alias": "remote-tun-id",
+                            "maximum": 2147483645,
+                            "summary": "Deprecated - Optional remote tunnel identifier.",
+                            "minimum": 0,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Remote Tunnel Identifier",
+                            "description": "Deprecated - Specifies an optional remote tunnel identifier. When specified this value must be in the range of 0 and 2,147,483,645 inclusive. A value of 0 indicates that the remote tunnel identifier will be generated internally when the Secure Cloud Connection is enabled."
+                        },
+                        {
+                            "name": "RemoteAutoConfig",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Deprecated - Optional remote auto configuration.",
+                            "cli-alias": "remote-auto-config",
+                            "display": "Remote Auto Configuration",
+                            "description": "Deprecated - Specifies whether to automatically configure the remote tunnel and remote routing rules on the remote host."
+                        },
+                        {
+                            "name": "ICMPLivenessCheck",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Deprecated - Optional ICMP liveness check.",
+                            "cli-alias": "icmp-liveness-check",
+                            "display": "ICMP Liveness Check",
+                            "description": "Deprecated - Specifies whether an icmp liveness check should be periodically performed to test the health of the Secure Cloud Connectior. When enabled icmp echo requests will be sent periodically over the Secure Cloud Connector. If the icmp echo requests go unanswered the Secure Cloud Connector will be deemed unresponsive. The Secure Cloud Connector will be terminated and an attempt will be made to restart the Secure Cloud Connector."
+                        }
+                    ]
+                },
+                "description": "Deprecated - Use this page to configure and manage a Secure Cloud Connector for a single cloud server instance."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/SecureCloudConnector"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/SecureCloudConnector"
                 }
-            }, 
-            "cli-alias": "icmp-liveness-check", 
-            "display": "ICMP Liveness Check", 
-            "description": "Deprecated - Specifies whether an icmp liveness check should be periodically performed to test the health of the Secure Cloud Connectior. When enabled icmp echo requests will be sent periodically over the Secure Cloud Connector. If the icmp echo requests go unanswered the Secure Cloud Connector will be deemed unresponsive. The Secure Cloud Connector will be terminated and an attempt will be made to restart the Secure Cloud Connector."
+            }
         }
-    ]
+    }
 }

@@ -1,91 +1,116 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "name": "Mode", 
-            "default": "off", 
-            "cli-alias": "mode", 
-            "summary": "File Capture Mode", 
-            "/mgmt/types/default/dmXMLTracingMode": {
-                "type": {
-                    "summary": "XML Tracing Mode", 
-                    "display": "XML Tracing Mode", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Disable", 
-                                "display": "None", 
-                                "name": "off", 
-                                "description": "Disables the file capture trace utility."
-                            }, 
-                            {
-                                "summary": "Capture all traffic", 
-                                "display": "All", 
-                                "name": "always", 
-                                "description": "Enables the file capture trace utility and provides a trace of all device traffic."
-                            }, 
-                            {
-                                "summary": "Capture failures only", 
-                                "display": "Errors", 
-                                "name": "errors", 
-                                "description": "Enables the file capture trace utility and provides a trace for failed transactions."
-                            }
-                        ]
-                    }, 
-                    "name": "dmXMLTracingMode"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmXMLTracingMode"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmXMLTracingMode"
                     }
+                },
+                "type": {
+                    "display": "XML Tracing Mode",
+                    "name": "dmXMLTracingMode",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "None",
+                                "description": "Disables the file capture trace utility.",
+                                "name": "off",
+                                "summary": "Disable"
+                            },
+                            {
+                                "display": "All",
+                                "description": "Enables the file capture trace utility and provides a trace of all device traffic.",
+                                "name": "always",
+                                "summary": "Capture all traffic"
+                            },
+                            {
+                                "display": "Errors",
+                                "description": "Enables the file capture trace utility and provides a trace for failed transactions.",
+                                "name": "errors",
+                                "summary": "Capture failures only"
+                            }
+                        ]
+                    },
+                    "summary": "XML Tracing Mode"
                 }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmXMLTracingMode"
-            }, 
-            "display": "Mode", 
-            "description": "Selects the File Capturing diagnostic mode. The default is None."
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "xmltrace",
+                "uri": "system/file-capture",
+                "display": "XML File Capture",
+                "cmd-group": "system",
+                "cli-alias": "file-capture",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "Mode",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmXMLTracingMode"
+                            },
+                            "summary": "File Capture Mode",
+                            "cli-alias": "mode",
+                            "display": "Mode",
+                            "description": "Selects the File Capturing diagnostic mode. The default is None."
+                        }
+                    ]
+                },
+                "description": "The device can record all, or a subset, of documents that pass through it for later inspection. This should not be turned on in production environments except for problem resolution. File capture can fill the available storage space. Files are cycled FIFO when the available space is exhausted."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/xmltrace"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/xmltrace"
+                }
+            }
         }
-    ]
+    }
 }

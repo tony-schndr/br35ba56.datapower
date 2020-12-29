@@ -1,334 +1,252 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for Assembly action.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
+                    "cli-arg": "string",
                     "name": "dmString"
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmString"
+                        "href": "/mgmt/types/default/dmToggle"
                     }
-                }
-            }, 
-            "name": "Title", 
-            "cli-alias": "title", 
-            "summary": "The title for Assembly action.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Title"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "description": "The correlation path specifies the part of the API definition that correlates with the assembly action. This path is exposed in the debug data by the API Gateway for use by debugging tools. For example, for an API configuration that is retrieved from API Connect and specified in an OpenAPI (Swagger 2.0) document with IBM extensions, this path is the JSON path to the assembly policy in the IBM extensions section of the document. The path can be expressed in any form that the debugging tool can correlate to the API definition.", 
-            "cli-alias": "correlation-path", 
-            "summary": "The path which correlates the assembly action to a specific part of the API specification.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Correlation path", 
-            "name": "CorrelationPath"
-        }, 
-        {
-            "name": "ActionDebug", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to enable GatewayScript debugger in assembly actions", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
+                                "name": "on",
                                 "display": "on"
-                            }, 
+                            },
                             {
-                                "name": "off", 
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
+                        "href": "/mgmt/docs/types/dmDynamicParseSettingsReference"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmToggle"
+                        "href": "/mgmt/types/default/dmDynamicParseSettingsReference"
                     }
-                }
-            }, 
-            "cli-alias": "debug", 
-            "display": "Enable debugging", 
-            "description": "&lt;p>Controls whether to enable the GatewayScript debugger to troubleshoot the following GatewayScript file or script. &lt;ul>&lt;li>Troubleshoot the GatewayScript file that is called from the assembly GatewayScript action.&lt;/li>&lt;li>Troubleshoot the GatewayScript file that is invoked by the GatewayScript associated XSLT extension functions or elements, such as the &lt;tt>gatewayscript()&lt;/tt> extension function, from the assembly XSLT action.&lt;/li>&lt;li>Troubleshoot the GatewayScript script that is invoked through the &lt;tt>value&lt;/tt> or the &lt;tt>default&lt;/tt> property in the JSON file from the assembly map action.&lt;/li>&lt;/ul>&lt;/p>&lt;p>To debug a file or script, the following conditions must be met:&lt;/p>&lt;ul>&lt;li>The file contains one or more &lt;tt>debugger;&lt;/tt> statements at the points in your script where you want to start debugging.&lt;/li>&lt;li>The GatewayScript debugger is enabled.&lt;/li>&lt;/ul>&lt;p>Then you can run the &lt;tt>debug-action&lt;/tt> command to debug.&lt;/p>"
-        }, 
-        {
-            "description": "A parse settings configuration defines the constraints on the documents to parse. You can configure the constraints by specifying a URL reference from which to retrieve the constraints definition. You can also specify a literal configuration string in XML management interface or REST management interface format that contains the constraints definition. You can also select a parse settings configuration from the list in Object reference to retrieve constraints definition. Precedence rules apply when the constraint for the same aspect of an input document is configured with more than one method.", 
-            "type": {
-                "href": "/mgmt/types/default/dmDynamicParseSettingsReference"
-            }, 
-            "summary": "Specifies the parse settings configuration for the parse action", 
-            "/mgmt/types/default/dmDynamicParseSettingsReference": {
+                },
                 "type": {
-                    "name": "dmDynamicParseSettingsReference", 
+                    "name": "dmDynamicParseSettingsReference",
                     "properties": {
                         "property": [
                             {
-                                "name": "URL", 
-                                "cli-alias": "url", 
-                                "summary": "Specifies the URL of a resource with one or more properties for the dynamic object", 
-                                "subtype": "dmURLorContext", 
+                                "name": "URL",
+                                "cli-alias": "url",
+                                "summary": "Specifies the URL of a resource with one or more properties for the dynamic object",
+                                "subtype": "dmURLorContext",
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "URL reference", 
+                                },
+                                "display": "URL reference",
                                 "description": "Specifies a URL to a file that contains serialized XML or JSON properties to be merged into the dynamic object. These properties override any existing literal or default properties. The URL can contain variable references, and fields within the associated file can also contain variable references."
-                            }, 
+                            },
                             {
-                                "description": "Specifies a literal string that defines serialized XML or JSON properties for merging into the dynamic object. These properties override the existing default properties. The literal string can contain variable references.", 
+                                "description": "Specifies a literal string that defines serialized XML or JSON properties for merging into the dynamic object. These properties override the existing default properties. The literal string can contain variable references.",
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "summary": "Specifies a literal configuration string with one or more properties for the dynamic object", 
-                                "cli-alias": "literal", 
-                                "display": "Literal configuration", 
+                                },
+                                "summary": "Specifies a literal configuration string with one or more properties for the dynamic object",
+                                "cli-alias": "literal",
+                                "display": "Literal configuration",
                                 "name": "Literal"
-                            }, 
+                            },
                             {
-                                "description": "Specifies an existing object from which to retrieve default property values for the dynamic object. If an object is not specified, then the URL reference, the literal configuration, or the combination of URL reference and literal configuration fully define the action.", 
+                                "description": "Specifies an existing object from which to retrieve default property values for the dynamic object. If an object is not specified, then the URL reference, the literal configuration, or the combination of URL reference and literal configuration fully define the action.",
                                 "type": {
-                                    "href": "/mgmt/types/default/dmReference", 
+                                    "href": "/mgmt/types/default/dmReference",
                                     "reference-to": {
                                         "href": "/mgmt/metadata/default/ParseSettings"
                                     }
-                                }, 
-                                "summary": "Specifies an existing object with default property values for the dynamic object", 
-                                "cli-alias": "default", 
-                                "display": "Object reference", 
+                                },
+                                "summary": "Specifies an existing object with default property values for the dynamic object",
+                                "cli-alias": "default",
+                                "display": "Object reference",
                                 "name": "Default"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmDynamicParseSettingsReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmDynamicParseSettingsReference"
-                    }
                 }
-            }, 
-            "cli-alias": "parse-settings-reference", 
-            "display": "Parse Settings", 
-            "name": "ParseSettingsReference"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "AssemblyActionParse",
+                "display": "Assembly Parse Action",
+                "uri": "assembly/parse",
+                "summary": "Configure and manage the parse action for the assembly",
+                "cmd-group": "assembly",
+                "cli-alias": "assembly-parse",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for Assembly action."
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Title",
+                            "cli-alias": "title",
+                            "name": "Title",
+                            "summary": "The title for Assembly action."
+                        },
+                        {
+                            "description": "The correlation path specifies the part of the API definition that correlates with the assembly action. This path is exposed in the debug data by the API Gateway for use by debugging tools. For example, for an API configuration that is retrieved from API Connect and specified in an OpenAPI (Swagger 2.0) document with IBM extensions, this path is the JSON path to the assembly policy in the IBM extensions section of the document. The path can be expressed in any form that the debugging tool can correlate to the API definition.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The path which correlates the assembly action to a specific part of the API specification.",
+                            "cli-alias": "correlation-path",
+                            "display": "Correlation path",
+                            "name": "CorrelationPath"
+                        },
+                        {
+                            "name": "ActionDebug",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to enable GatewayScript debugger in assembly actions",
+                            "cli-alias": "debug",
+                            "display": "Enable debugging",
+                            "description": "&lt;p>Controls whether to enable the GatewayScript debugger to troubleshoot the following GatewayScript file or script. &lt;ul>&lt;li>Troubleshoot the GatewayScript file that is called from the assembly GatewayScript action.&lt;/li>&lt;li>Troubleshoot the GatewayScript file that is invoked by the GatewayScript associated XSLT extension functions or elements, such as the &lt;tt>gatewayscript()&lt;/tt> extension function, from the assembly XSLT action.&lt;/li>&lt;li>Troubleshoot the GatewayScript script that is invoked through the &lt;tt>value&lt;/tt> or the &lt;tt>default&lt;/tt> property in the JSON file from the assembly map action.&lt;/li>&lt;/ul>&lt;/p>&lt;p>To debug a file or script, the following conditions must be met:&lt;/p>&lt;ul>&lt;li>The file contains one or more &lt;tt>debugger;&lt;/tt> statements at the points in your script where you want to start debugging.&lt;/li>&lt;li>The GatewayScript debugger is enabled.&lt;/li>&lt;/ul>&lt;p>Then you can run the &lt;tt>debug-action&lt;/tt> command to debug.&lt;/p>"
+                        },
+                        {
+                            "description": "A parse settings configuration defines the constraints on the documents to parse. You can configure the constraints by specifying a URL reference from which to retrieve the constraints definition. You can also specify a literal configuration string in XML management interface or REST management interface format that contains the constraints definition. You can also select a parse settings configuration from the list in Object reference to retrieve constraints definition. Precedence rules apply when the constraint for the same aspect of an input document is configured with more than one method.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmDynamicParseSettingsReference"
+                            },
+                            "summary": "Specifies the parse settings configuration for the parse action",
+                            "cli-alias": "parse-settings-reference",
+                            "display": "Parse Settings",
+                            "name": "ParseSettingsReference"
+                        },
+                        {
+                            "name": "Input",
+                            "default": "message",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The name of a variable in the API context. Data represented by the variable can be parsed.",
+                            "cli-alias": "input",
+                            "display": "Input message",
+                            "description": "Specifies the name of a variable in the API context. The content of the &lt;tt>body&lt;/tt> field of the variable is the input to the parse action. The default variable name is &lt;tt>message&lt;/tt> ."
+                        },
+                        {
+                            "name": "WarnOnEmptyInput",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to generate a warning-level log message instead of an error when the payload of the input message is empty.",
+                            "cli-alias": "warn-on-empty-input",
+                            "display": "Warn on empty input",
+                            "description": "Specifies whether to generate a warning-level log message instead of an error when the payload of the input message is empty."
+                        },
+                        {
+                            "name": "UseContentType",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to attempt a parse with the specified content-type",
+                            "cli-alias": "use-content-type",
+                            "display": "Use Content Type",
+                            "description": "Specifies whether to attempt a parse with the specified content-type. This is only applicable if the expected content-type is either json or xml. With this option enabled, a parse action will result in failure if content-type does not match the parse-settings (i.e Content-type:application/json and parse-settings is configured for xml). If the parse-setting is configured to detect input content, it will be forced to the specified content-type."
+                        },
+                        {
+                            "description": "Specifies the name of a variable in the API context. The content of the &lt;tt>body&lt;/tt> field of the variable represents the parse result. The parse metrics of the parsed document can be stored in different parts of the message. The default variable name is the same as that of the variable specified in the &lt;tt>Input message&lt;/tt> property. Therefore, by default, the input message for parsing is overwritten by the output message.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The name of a variable in the API context where the result of parsed data is stored.",
+                            "cli-alias": "output",
+                            "display": "Output message",
+                            "name": "Output"
+                        }
+                    ]
+                },
+                "description": "You use the parse action to parse a request or a message as XML or JSON, or parse binary data into a binary large object (BLOB)."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/AssemblyActionParse"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/AssemblyActionParse"
                 }
-            }, 
-            "name": "Input", 
-            "default": "message", 
-            "cli-alias": "input", 
-            "summary": "The name of a variable in the API context. Data represented by the variable can be parsed.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Input message", 
-            "description": "Specifies the name of a variable in the API context. The content of the &lt;tt>body&lt;/tt> field of the variable is the input to the parse action. The default variable name is &lt;tt>message&lt;/tt> ."
-        }, 
-        {
-            "name": "WarnOnEmptyInput", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to generate a warning-level log message instead of an error when the payload of the input message is empty.", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "warn-on-empty-input", 
-            "display": "Warn on empty input", 
-            "description": "Specifies whether to generate a warning-level log message instead of an error when the payload of the input message is empty."
-        }, 
-        {
-            "name": "UseContentType", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to attempt a parse with the specified content-type", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "use-content-type", 
-            "display": "Use Content Type", 
-            "description": "Specifies whether to attempt a parse with the specified content-type. This is only applicable if the expected content-type is either json or xml. With this option enabled, a parse action will result in failure if content-type does not match the parse-settings (i.e Content-type:application/json and parse-settings is configured for xml). If the parse-setting is configured to detect input content, it will be forced to the specified content-type."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "description": "Specifies the name of a variable in the API context. The content of the &lt;tt>body&lt;/tt> field of the variable represents the parse result. The parse metrics of the parsed document can be stored in different parts of the message. The default variable name is the same as that of the variable specified in the &lt;tt>Input message&lt;/tt> property. Therefore, by default, the input message for parsing is overwritten by the output message.", 
-            "cli-alias": "output", 
-            "summary": "The name of a variable in the API context where the result of parsed data is stored.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Output message", 
-            "name": "Output"
+            }
         }
-    ]
+    }
 }

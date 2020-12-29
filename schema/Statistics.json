@@ -1,73 +1,99 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "name": "LoadInterval", 
-            "default": 1000, 
-            "type": {
-                "href": "/mgmt/types/default/dmTimeInterval"
-            }, 
-            "maximum": 5000, 
-            "summary": "Statistics sampling interval", 
-            "/mgmt/types/default/dmTimeInterval": {
-                "type": {
-                    "cli-arg": "seconds", 
-                    "minimum": 0, 
-                    "name": "dmTimeInterval", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmTimeInterval"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmTimeInterval"
                     }
+                },
+                "type": {
+                    "cli-arg": "seconds",
+                    "minimum": 0,
+                    "name": "dmTimeInterval",
+                    "maximum": "0xFFFFFFFF"
                 }
-            }, 
-            "minimum": 500, 
-            "units": "ms", 
-            "cli-alias": "load-interval", 
-            "display": "Load Interval", 
-            "description": "The load interval may have a minimum of 500 msec and a maximum of 5000 msec."
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "Statistics",
+                "display": "Statistic Settings",
+                "uri": "system/statistics",
+                "summary": "Statistics settings",
+                "cmd-group": "configuration",
+                "cli-alias": "statistics",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "LoadInterval",
+                            "default": 1000,
+                            "cli-alias": "load-interval",
+                            "maximum": 5000,
+                            "summary": "Statistics sampling interval",
+                            "minimum": 500,
+                            "units": "ms",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimeInterval"
+                            },
+                            "display": "Load Interval",
+                            "description": "The load interval may have a minimum of 500 msec and a maximum of 5000 msec."
+                        }
+                    ]
+                },
+                "description": "Use this page to establish Statistics settings. Statistics must be enabled for some of the monitors to work correctly."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/Statistics"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/Statistics"
+                }
+            }
         }
-    ]
+    }
 }

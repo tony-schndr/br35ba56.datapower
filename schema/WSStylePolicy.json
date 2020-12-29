@@ -1,229 +1,246 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "description": "Enter a comment. This appears on the Policy catalog page.", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments", 
-            "name": "UserSummary"
-        }, 
-        {
-            "name": "DefStylesheetForSoap", 
-            "default": "store:///filter-reject-all.xsl", 
-            "cli-alias": "filter", 
-            "summary": "Identify the default stylesheet used for SOAP filtering.", 
-            "/mgmt/types/default/dmURL": {
+                },
                 "type": {
-                    "cli-arg": "url", 
-                    "name": "dmURL"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmURL"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmURL"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmURL"
-            }, 
-            "display": "Default Stylesheet for SOAP", 
-            "description": "Identify the default stylesheet used for SOAP filtering. The default rejects all SOAP documents."
-        }, 
-        {
-            "name": "DefStylesheetForXsl", 
-            "default": "store:///identity.xsl", 
-            "cli-alias": "xsldefault", 
-            "summary": "Identify the default stylesheet used for XSL transformation", 
-            "/mgmt/types/default/dmURL": {
+                },
                 "type": {
-                    "cli-arg": "url", 
+                    "cli-arg": "url",
                     "name": "dmURL"
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmURL"
-                    }, 
+                        "href": "/mgmt/docs/types/dmWSMPolicyMap"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmURL"
+                        "href": "/mgmt/types/default/dmWSMPolicyMap"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmURL"
-            }, 
-            "display": "Default Stylesheet for XSL Transforms", 
-            "description": "Identify the default stylesheet used for XSL transformation. The default mirrors all documents."
-        }, 
-        {
-            "description": "A list of Policy Rules and corresponding Matching Rules that this policy will execute. If a Match is found, the corresponding Rule runs. The policy executes the first Rule with a successful Match. The order in this list is therefore important.", 
-            "type": {
-                "href": "/mgmt/types/default/dmWSMPolicyMap"
-            }, 
-            "/mgmt/types/default/dmWSMPolicyMap": {
+                },
                 "type": {
-                    "name": "dmWSMPolicyMap", 
+                    "name": "dmWSMPolicyMap",
                     "properties": {
                         "property": [
                             {
-                                "name": "WSDLComponentType", 
-                                "default": "all", 
-                                "required": "true", 
-                                "summary": "Type of WSDL component", 
+                                "name": "WSDLComponentType",
+                                "default": "all",
+                                "required": "true",
+                                "summary": "Type of WSDL component",
                                 "type": {
                                     "href": "/mgmt/types/default/dmWSDLComponentType"
-                                }, 
-                                "display": "WSDL Component Type", 
+                                },
+                                "display": "WSDL Component Type",
                                 "description": "Select a type of WSDL Component. The default is All."
-                            }, 
+                            },
                             {
-                                "description": "Enter the name of a WSDL-defined component of the type selected in the WSDL Component Type field. The selected rule will be run only if the component named here would be used in processing the client request.", 
-                                "summary": "The name of the WSDL Component", 
+                                "description": "Enter the name of a WSDL-defined component of the type selected in the WSDL Component Type field. The selected rule will be run only if the component named here would be used in processing the client request.",
+                                "summary": "The name of the WSDL Component",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "WSDLComponentType", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "WSDLComponentType",
+                                        "evaluation": "property-equals",
                                         "value": "subscription"
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "WSDL Component Value", 
+                                },
+                                "display": "WSDL Component Value",
                                 "name": "WSDLComponentValue"
-                            }, 
+                            },
                             {
-                                "description": "Select an existing Matching Rule.", 
-                                "required": "true", 
-                                "summary": "Matching Rule to select the transaction for processing", 
+                                "description": "Select an existing Matching Rule.",
+                                "required": "true",
+                                "summary": "Matching Rule to select the transaction for processing",
                                 "type": {
-                                    "href": "/mgmt/types/default/dmReference", 
+                                    "href": "/mgmt/types/default/dmReference",
                                     "reference-to": {
                                         "href": "/mgmt/metadata/default/Matching"
                                     }
-                                }, 
-                                "display": "Match Rule", 
+                                },
+                                "display": "Match Rule",
                                 "name": "Match"
-                            }, 
+                            },
                             {
-                                "description": "Select a WS-Proxy Processing Rule to run for matching transactions.", 
-                                "required": "true", 
-                                "summary": "A WS-Proxy Processing Rule", 
+                                "description": "Select a WS-Proxy Processing Rule to run for matching transactions.",
+                                "required": "true",
+                                "summary": "A WS-Proxy Processing Rule",
                                 "type": {
-                                    "href": "/mgmt/types/default/dmReference", 
+                                    "href": "/mgmt/types/default/dmReference",
                                     "reference-to": {
                                         "href": "/mgmt/metadata/default/WSStylePolicyRule"
                                     }
-                                }, 
-                                "display": "Stylepolicy Rule", 
+                                },
+                                "display": "Stylepolicy Rule",
                                 "name": "Rule"
-                            }, 
+                            },
                             {
-                                "name": "Subscription", 
+                                "name": "Subscription",
                                 "required-when": {
                                     "condition": {
-                                        "property-name": "WSDLComponentType", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "WSDLComponentType",
+                                        "evaluation": "property-equals",
                                         "value": "subscription"
                                     }
-                                }, 
-                                "summary": "Subscription", 
+                                },
+                                "summary": "Subscription",
                                 "ignored-when": {
                                     "condition": {
                                         "evaluation": "logical-true"
                                     }
-                                }, 
+                                },
                                 "type": {
-                                    "href": "/mgmt/types/default/dmReference", 
+                                    "href": "/mgmt/types/default/dmReference",
                                     "reference-to": {
                                         "base-class": "WebServiceSubscription"
                                     }
-                                }, 
-                                "display": "Subscription", 
+                                },
+                                "display": "Subscription",
                                 "description": "Select a subscription. The selected rule will be run for requests that correspond to services that belong to this subscription."
-                            }, 
+                            },
                             {
+                                "display": "Fragment Identifier",
                                 "type": {
                                     "href": "/mgmt/types/default/dmFragmentID"
-                                }, 
-                                "display": "Fragment Identifier", 
-                                "name": "WSDLFragmentID", 
-                                "description": "Matches Fragment Identifier"
+                                },
+                                "description": "Matches Fragment Identifier",
+                                "name": "WSDLFragmentID"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmWSMPolicyMap"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmWSMPolicyMap"
-                    }
                 }
-            }, 
-            "array": "true", 
-            "cli-alias": "match", 
-            "display": "Policy Maps", 
-            "name": "PolicyMaps"
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "WSStylePolicy",
+                "property-group": {
+                    "member": {
+                        "name": "UserSummary"
+                    },
+                    "name": "summary"
+                },
+                "uri": "wsm/wsm-stylepolicy",
+                "display": "WS-Proxy Processing Policy",
+                "cmd-group": "stylesheetpolicy",
+                "cli-alias": "wsm-stylepolicy",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "Enter a comment. This appears on the Policy catalog page.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Brief summary for user annotation.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "DefStylesheetForSoap",
+                            "default": "store:///filter-reject-all.xsl",
+                            "type": {
+                                "href": "/mgmt/types/default/dmURL"
+                            },
+                            "summary": "Identify the default stylesheet used for SOAP filtering.",
+                            "cli-alias": "filter",
+                            "display": "Default Stylesheet for SOAP",
+                            "description": "Identify the default stylesheet used for SOAP filtering. The default rejects all SOAP documents."
+                        },
+                        {
+                            "name": "DefStylesheetForXsl",
+                            "default": "store:///identity.xsl",
+                            "type": {
+                                "href": "/mgmt/types/default/dmURL"
+                            },
+                            "summary": "Identify the default stylesheet used for XSL transformation",
+                            "cli-alias": "xsldefault",
+                            "display": "Default Stylesheet for XSL Transforms",
+                            "description": "Identify the default stylesheet used for XSL transformation. The default mirrors all documents."
+                        },
+                        {
+                            "description": "A list of Policy Rules and corresponding Matching Rules that this policy will execute. If a Match is found, the corresponding Rule runs. The policy executes the first Rule with a successful Match. The order in this list is therefore important.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmWSMPolicyMap"
+                            },
+                            "array": "true",
+                            "cli-alias": "match",
+                            "display": "Policy Maps",
+                            "name": "PolicyMaps"
+                        }
+                    ]
+                },
+                "description": "Create, Edit or Delete a Processing Policy. A policy consists of one or more Processing Rules. Rules execute depending upon the direction of the message and on whether or not a corresponding matching rule selects the document for processing. A service may have only one policy active at a time. Click Services in the left-hand navigation menu and then click the appropriate policy link to use the graphical interface to create and edit policies."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/WSStylePolicy"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/WSStylePolicy"
+                }
+            }
         }
-    ]
+    }
 }

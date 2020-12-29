@@ -119,6 +119,10 @@ class TestDPManageConfigObject:
         dp_schema = self.eth_schema
         assert dp_schema.is_valid_param('IPAddress', '10.0.1.1')
 
+    def test_DPManageConfigSchema_get_is_valid_param_9(self):
+        dp_schema = self.eth_schema
+        assert dp_schema.is_valid_param('IPAddress', '10.0.1.1/24')
+
     def test_DPManageConfigSchema_with_EthernetInterface_type(self):
         dp_schema = self.eth_schema
         assert dp_schema.is_valid_param('mAdminState', 'disabled')

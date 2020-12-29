@@ -1,190 +1,216 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "name": "Type", 
-            "default": "log-only", 
-            "type": {
-                "href": "/mgmt/types/default/dmSLMActionType"
-            }, 
-            "required": "true", 
-            "summary": "Control procedure to trigger", 
-            "/mgmt/types/default/dmSLMActionType": {
+                },
                 "type": {
-                    "summary": "SLM Action Type", 
-                    "display": "SLM Action Type", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "display": "Log Only", 
-                                "name": "log-only", 
-                                "description": "No action. Attempt to process subsequent transactions."
-                            }, 
-                            {
-                                "display": "Reject", 
-                                "name": "reject", 
-                                "description": "Discard transactions until the monitored entity is within conformance levels."
-                            }, 
-                            {
-                                "display": "Shape", 
-                                "name": "shape", 
-                                "description": "Queue the next 2500 transactions for later transmission when the monitored entity is within conformance levels. After queuing 2500 transactions, discard subsequent transactions."
-                            }
-                        ]
-                    }, 
-                    "name": "dmSLMActionType"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmSLMActionType"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmSLMActionType"
                     }
-                }
-            }, 
-            "cli-alias": "type", 
-            "display": "Type", 
-            "description": "The control procedure (action) to trigger in addition to generating a log message for transactions in excess of the maximum rate."
-        }, 
-        {
-            "name": "LogLevel", 
-            "default": "debug", 
-            "cli-alias": "log-priority", 
-            "summary": "Log message priority", 
-            "/mgmt/types/default/dmLogLevel": {
+                },
                 "type": {
-                    "summary": "Log level", 
-                    "display": "Log Level", 
+                    "display": "SLM Action Type",
+                    "name": "dmSLMActionType",
                     "value-list": {
                         "value": [
                             {
-                                "summary": "System unusable", 
-                                "display": "emergency", 
-                                "name": "emerg", 
-                                "description": "An emergency-level message. The system is unusable."
-                            }, 
+                                "display": "Log Only",
+                                "description": "No action. Attempt to process subsequent transactions.",
+                                "name": "log-only"
+                            },
                             {
-                                "summary": "Immediate action required", 
-                                "display": "alert", 
-                                "name": "alert", 
-                                "description": "An alert-level message. Immediate action must be taken."
-                            }, 
+                                "display": "Reject",
+                                "description": "Discard transactions until the monitored entity is within conformance levels.",
+                                "name": "reject"
+                            },
                             {
-                                "summary": "Critical condition", 
-                                "display": "critical", 
-                                "name": "critic", 
-                                "description": "A critical message. Immediate action should be taken."
-                            }, 
-                            {
-                                "summary": "Error condition", 
-                                "display": "error", 
-                                "name": "error", 
-                                "description": "An error message. Processing might continue, but action should be taken."
-                            }, 
-                            {
-                                "summary": "Warning condition", 
-                                "display": "warning", 
-                                "name": "warn", 
-                                "description": "A warning message. Processing should continue, but action should be taken."
-                            }, 
-                            {
-                                "summary": "Normal but significant condition", 
-                                "display": "notice", 
-                                "name": "notice", 
-                                "description": "A notice message. Processing continues, but action might need to be taken."
-                            }, 
-                            {
-                                "summary": "Informational message", 
-                                "display": "information", 
-                                "name": "info", 
-                                "description": "An information message. No action required."
-                            }, 
-                            {
-                                "summary": "Debug message", 
-                                "display": "debug", 
-                                "name": "debug", 
-                                "description": "A debug message for processing information to help during troubleshooting."
+                                "display": "Shape",
+                                "description": "Queue the next 2500 transactions for later transmission when the monitored entity is within conformance levels. After queuing 2500 transactions, discard subsequent transactions.",
+                                "name": "shape"
                             }
                         ]
-                    }, 
-                    "name": "dmLogLevel"
-                }, 
+                    },
+                    "summary": "SLM Action Type"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmLogLevel"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmLogLevel"
                     }
+                },
+                "type": {
+                    "display": "Log Level",
+                    "name": "dmLogLevel",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "emergency",
+                                "description": "An emergency-level message. The system is unusable.",
+                                "name": "emerg",
+                                "summary": "System unusable"
+                            },
+                            {
+                                "display": "alert",
+                                "description": "An alert-level message. Immediate action must be taken.",
+                                "name": "alert",
+                                "summary": "Immediate action required"
+                            },
+                            {
+                                "display": "critical",
+                                "description": "A critical message. Immediate action should be taken.",
+                                "name": "critic",
+                                "summary": "Critical condition"
+                            },
+                            {
+                                "display": "error",
+                                "description": "An error message. Processing might continue, but action should be taken.",
+                                "name": "error",
+                                "summary": "Error condition"
+                            },
+                            {
+                                "display": "warning",
+                                "description": "A warning message. Processing should continue, but action should be taken.",
+                                "name": "warn",
+                                "summary": "Warning condition"
+                            },
+                            {
+                                "display": "notice",
+                                "description": "A notice message. Processing continues, but action might need to be taken.",
+                                "name": "notice",
+                                "summary": "Normal but significant condition"
+                            },
+                            {
+                                "display": "information",
+                                "description": "An information message. No action required.",
+                                "name": "info",
+                                "summary": "Informational message"
+                            },
+                            {
+                                "display": "debug",
+                                "description": "A debug message for processing information to help during troubleshooting.",
+                                "name": "debug",
+                                "summary": "Debug message"
+                            }
+                        ]
+                    },
+                    "summary": "Log level"
                 }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmLogLevel"
-            }, 
-            "display": "Log Priority", 
-            "description": "The priority (severity) of the generated message when a monitored transaction type exceeds its threshold."
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "SLMAction",
+                "display": "SLM Action",
+                "uri": "monitor/slm-action",
+                "summary": "SLM Action",
+                "cmd-group": "webservice",
+                "cli-alias": "slm-action",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "Type",
+                            "default": "log-only",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSLMActionType"
+                            },
+                            "required": "true",
+                            "summary": "Control procedure to trigger",
+                            "cli-alias": "type",
+                            "display": "Type",
+                            "description": "The control procedure (action) to trigger in addition to generating a log message for transactions in excess of the maximum rate."
+                        },
+                        {
+                            "name": "LogLevel",
+                            "default": "debug",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLogLevel"
+                            },
+                            "summary": "Log message priority",
+                            "cli-alias": "log-priority",
+                            "display": "Log Priority",
+                            "description": "The priority (severity) of the generated message when a monitored transaction type exceeds its threshold."
+                        }
+                    ]
+                },
+                "description": "An SLM action defines the control procedure to trigger for transactions in excess of the maximum transaction rate. As part of any control procedure, the monitor writes an event to the log for each transaction that exceeds a threshold."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/SLMAction"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/SLMAction"
+                }
+            }
         }
-    ]
+    }
 }

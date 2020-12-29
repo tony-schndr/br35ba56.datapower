@@ -1,217 +1,240 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "description": "Brief summary for user annotation.", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments", 
-            "name": "UserSummary"
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
+                },
                 "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmUInt32"
                     }
-                }
-            }, 
-            "name": "JSONMaxNestingDepth", 
-            "default": 64, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 256, 
-            "summary": "Maximum number of levels to nest label-value pairs.", 
-            "minimum": 64, 
-            "units": "levels", 
-            "cli-alias": "max-nesting-depth", 
-            "display": "Maximum nesting depth", 
-            "description": "The maximum nesting depth provides threat protection by limiting the number of nested label-value pairs allowed in the JSON message. Enter a value in the range 64 - 256. The default value is 64."
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
+                },
                 "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
                     "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
                 }
-            }, 
-            "name": "JSONMaxLabelLength", 
-            "default": 256, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 8192, 
-            "summary": "Maximum length of the label portion of label-value pairs.", 
-            "minimum": 256, 
-            "units": "bytes", 
-            "cli-alias": "max-label-string-length", 
-            "display": "Maximum label length", 
-            "description": "The maximum label length limits the number of bytes in the label portion of the JSON label-value pair. The length includes any white space that is contained between quotation marks. Enter a value in the range 256 - 8192. The default value is 256."
-        }, 
-        {
-            "name": "JSONMaxValueLength", 
-            "default": 8192, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt64"
-            }, 
-            "/mgmt/types/default/dmUInt64": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt64", 
-                    "maximum": "0xFFFFFFFFFFFFFFFF"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmUInt64"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmUInt64"
                     }
-                }
-            }, 
-            "maximum": 5368709121, 
-            "summary": "Maximum number of bytes for string values of label-value pairs.", 
-            "minimum": 8192, 
-            "units": "bytes", 
-            "cli-alias": "max-value-string-length", 
-            "display": "Maximum value length for strings", 
-            "description": "The maximum value length limits the number of bytes in the value portion of a label-value pair when the value is a string. The length includes any white space that is contained between quotation marks. Enter a value in the range 8192 - 5368709121. The default value is 8192."
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
+                },
                 "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
-                }
-            }, 
-            "name": "JSONMaxNumberLength", 
-            "default": 128, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 256, 
-            "summary": "Maximum number of bytes for number values of label-value pairs.", 
-            "minimum": 128, 
-            "units": "bytes", 
-            "cli-alias": "max-number-length", 
-            "display": "Maximum value length for numbers", 
-            "description": "The maximum number length limits the number of bytes in the value portion of a label-value pair when the value is a number. The number must be a contiguous string of bytes that contain no white space. The number can include a minus sign and a positive or negative exponent. Enter a value in the range 128 - 256. The default value is 128."
-        }, 
-        {
-            "name": "JSONDocumentSize", 
-            "default": 4194304, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt64"
-            }, 
-            "/mgmt/types/default/dmUInt64": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt64", 
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt64",
                     "maximum": "0xFFFFFFFFFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt64"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt64"
-                    }
                 }
-            }, 
-            "maximum": 5368709121, 
-            "summary": "Maximum size of the JSON message in bytes.", 
-            "minimum": 4194304, 
-            "units": "bytes", 
-            "cli-alias": "max-document-size", 
-            "display": "Maximum document size", 
-            "description": "The maximum document size provides threat protection by limiting the number of bytes in the body of the JSON message. If the message is converted to JSONx, the maximum document size specifies the size before conversion to JSONx. Note that the document size of the JSON message and the size of the JSONx equivalent might differ. Enter a value in the range 4194304 - 5368709121. The default value is 4194304."
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "JSONSettings",
+                "display": "JSON Settings",
+                "property-group": {
+                    "property-group": [
+                        {
+                            "member": [
+                                {
+                                    "name": "mAdminState"
+                                },
+                                {
+                                    "name": "UserSummary"
+                                }
+                            ],
+                            "name": "general",
+                            "display": "General"
+                        },
+                        {
+                            "member": [
+                                {
+                                    "name": "JSONMaxLabelLength"
+                                },
+                                {
+                                    "name": "JSONMaxValueLength"
+                                },
+                                {
+                                    "name": "JSONMaxNumberLength"
+                                }
+                            ],
+                            "name": "pairs",
+                            "display": "Label-Value pairs"
+                        },
+                        {
+                            "member": [
+                                {
+                                    "name": "JSONMaxNestingDepth"
+                                },
+                                {
+                                    "name": "JSONDocumentSize"
+                                }
+                            ],
+                            "name": "threat-protection",
+                            "display": "Threat Protection"
+                        }
+                    ],
+                    "name": "main",
+                    "display": "Main"
+                },
+                "uri": "json/json-settings",
+                "summary": "JSON Settings",
+                "cmd-group": "configuration",
+                "cli-alias": "json-settings",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "Brief summary for user annotation.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Brief summary for user annotation",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "JSONMaxNestingDepth",
+                            "default": 64,
+                            "cli-alias": "max-nesting-depth",
+                            "maximum": 256,
+                            "summary": "Maximum number of levels to nest label-value pairs.",
+                            "minimum": 64,
+                            "units": "levels",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Maximum nesting depth",
+                            "description": "The maximum nesting depth provides threat protection by limiting the number of nested label-value pairs allowed in the JSON message. Enter a value in the range 64 - 256. The default value is 64."
+                        },
+                        {
+                            "name": "JSONMaxLabelLength",
+                            "default": 256,
+                            "cli-alias": "max-label-string-length",
+                            "maximum": 8192,
+                            "summary": "Maximum length of the label portion of label-value pairs.",
+                            "minimum": 256,
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Maximum label length",
+                            "description": "The maximum label length limits the number of bytes in the label portion of the JSON label-value pair. The length includes any white space that is contained between quotation marks. Enter a value in the range 256 - 8192. The default value is 256."
+                        },
+                        {
+                            "name": "JSONMaxValueLength",
+                            "default": 8192,
+                            "cli-alias": "max-value-string-length",
+                            "maximum": 5368709121,
+                            "summary": "Maximum number of bytes for string values of label-value pairs.",
+                            "minimum": 8192,
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt64"
+                            },
+                            "display": "Maximum value length for strings",
+                            "description": "The maximum value length limits the number of bytes in the value portion of a label-value pair when the value is a string. The length includes any white space that is contained between quotation marks. Enter a value in the range 8192 - 5368709121. The default value is 8192."
+                        },
+                        {
+                            "name": "JSONMaxNumberLength",
+                            "default": 128,
+                            "cli-alias": "max-number-length",
+                            "maximum": 256,
+                            "summary": "Maximum number of bytes for number values of label-value pairs.",
+                            "minimum": 128,
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Maximum value length for numbers",
+                            "description": "The maximum number length limits the number of bytes in the value portion of a label-value pair when the value is a number. The number must be a contiguous string of bytes that contain no white space. The number can include a minus sign and a positive or negative exponent. Enter a value in the range 128 - 256. The default value is 128."
+                        },
+                        {
+                            "name": "JSONDocumentSize",
+                            "default": 4194304,
+                            "cli-alias": "max-document-size",
+                            "maximum": 5368709121,
+                            "summary": "Maximum size of the JSON message in bytes.",
+                            "minimum": 4194304,
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt64"
+                            },
+                            "display": "Maximum document size",
+                            "description": "The maximum document size provides threat protection by limiting the number of bytes in the body of the JSON message. If the message is converted to JSONx, the maximum document size specifies the size before conversion to JSONx. Note that the document size of the JSON message and the size of the JSONx equivalent might differ. Enter a value in the range 4194304 - 5368709121. The default value is 4194304."
+                        }
+                    ]
+                },
+                "description": "The JSON settings specify constraints for parsing JSON messages. JSON settings work in conjunction with the parser limits specified in the XML Manager. The more restrictive limits apply."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/JSONSettings"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/JSONSettings"
+                }
+            }
         }
-    ]
+    }
 }

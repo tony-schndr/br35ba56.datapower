@@ -1,347 +1,358 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "description": "A Message Monitor observes traffic that is incuded by the Message Type definition (which in turn is a collection of Message Matching objects). The Monitor measures only that traffic selected by the Measure field. On the Filters page, traffic which meets the filter criteria causes the Monitor to take the corresponding action (which is defined by a Message Filter Type object).", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments", 
-            "name": "UserSummary"
-        }, 
-        {
-            "name": "MessageType", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/MessageType"
-                }
-            }, 
-            "required": "true", 
-            "summary": "Message type", 
-            "cli-alias": "message-type", 
-            "display": "Message Type", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "description": "Select the message type monitored by this message-count monitor."
-        }, 
-        {
-            "name": "Measure", 
-            "default": "requests", 
-            "type": {
-                "href": "/mgmt/types/default/dmCountMonitorType"
-            }, 
-            "required": "true", 
-            "/mgmt/types/default/dmCountMonitorType": {
+                },
                 "type": {
-                    "name": "dmCountMonitorType", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Increase on client request", 
-                                "display": "Requests", 
-                                "name": "requests", 
-                                "description": "Increases the counter on the receipt of a client request of the target message type."
-                            }, 
-                            {
-                                "summary": "Increase on server response", 
-                                "display": "Responses", 
-                                "name": "responses", 
-                                "description": "Increases the counter on the receipt of a server response of the target message type."
-                            }, 
-                            {
-                                "summary": "Increase on function call", 
-                                "display": "XPath", 
-                                "name": "xpath", 
-                                "description": "Increases the counter on a call to the dp:increment-integer extension function from a custom stylesheet."
-                            }, 
-                            {
-                                "summary": "Increase on error", 
-                                "display": "Errors", 
-                                "name": "errors", 
-                                "description": "Increases the counter on specific error responses. Responses that increment the counter are: connection errors, errors returned from the server and error rules from a multistep process."
-                            }
-                        ]
-                    }, 
-                    "summary": "Count Monitor Type"
-                }, 
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmCountMonitorType"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmCountMonitorType"
                     }
-                }
-            }, 
-            "summary": "Increment methods", 
-            "cli-alias": "measure", 
-            "display": "Measure", 
-            "description": "Select the action that advances the counter. The default is Requests."
-        }, 
-        {
-            "name": "Source", 
-            "default": "all", 
-            "type": {
-                "href": "/mgmt/types/default/dmCountMonitorSource"
-            }, 
-            "required": "true", 
-            "summary": "Aggregate/disaggregate IP addresses", 
-            "/mgmt/types/default/dmCountMonitorSource": {
+                },
                 "type": {
-                    "name": "dmCountMonitorSource", 
+                    "name": "dmCountMonitorType",
                     "value-list": {
                         "value": [
                             {
-                                "display": "All", 
-                                "name": "all", 
-                                "description": "Source address monitoring and information gathering is aggregated for the address range."
-                            }, 
+                                "display": "Requests",
+                                "description": "Increases the counter on the receipt of a client request of the target message type.",
+                                "name": "requests",
+                                "summary": "Increase on client request"
+                            },
                             {
-                                "display": "Each IP", 
-                                "name": "each-ip", 
-                                "description": "Source address monitoring and information gathering is individualized for all IP addresses in the address range."
-                            }, 
+                                "display": "Responses",
+                                "description": "Increases the counter on the receipt of a server response of the target message type.",
+                                "name": "responses",
+                                "summary": "Increase on server response"
+                            },
                             {
-                                "display": "IP from Header", 
-                                "name": "ip-from-header", 
-                                "description": "Source address monitoring and information gathering is individualized for all IP addresses in the address range. IP addresses are determined by the value of the specified HTTP header."
+                                "display": "XPath",
+                                "description": "Increases the counter on a call to the dp:increment-integer extension function from a custom stylesheet.",
+                                "name": "xpath",
+                                "summary": "Increase on function call"
+                            },
+                            {
+                                "display": "Errors",
+                                "description": "Increases the counter on specific error responses. Responses that increment the counter are: connection errors, errors returned from the server and error rules from a multistep process.",
+                                "name": "errors",
+                                "summary": "Increase on error"
                             }
                         ]
-                    }, 
-                    "summary": "Count Monitor Source"
-                }, 
+                    },
+                    "summary": "Count Monitor Type"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmCountMonitorSource"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmCountMonitorSource"
                     }
-                }
-            }, 
-            "cli-alias": "source", 
-            "display": "Source", 
-            "description": "Select how monitoring is applied to IP addresses. This setting is meaningful only if an associated traffic definition contains and inclusive or exclusive IP address criterion. The default is All."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+                    "name": "dmCountMonitorSource",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "All",
+                                "description": "Source address monitoring and information gathering is aggregated for the address range.",
+                                "name": "all"
+                            },
+                            {
+                                "display": "Each IP",
+                                "description": "Source address monitoring and information gathering is individualized for all IP addresses in the address range.",
+                                "name": "each-ip"
+                            },
+                            {
+                                "display": "IP from Header",
+                                "description": "Source address monitoring and information gathering is individualized for all IP addresses in the address range. IP addresses are determined by the value of the specified HTTP header.",
+                                "name": "ip-from-header"
+                            }
+                        ]
+                    },
+                    "summary": "Count Monitor Source"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
+                        "href": "/mgmt/docs/types/dmCountMonitorFilter"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmString"
+                        "href": "/mgmt/types/default/dmCountMonitorFilter"
                     }
-                }
-            }, 
-            "name": "Header", 
-            "default": "X-Client-IP", 
-            "required-when": {
-                "condition": {
-                    "property-name": "source", 
-                    "evaluation": "property-equals", 
-                    "value": "ip-from-header"
-                }
-            }, 
-            "summary": "The name of the header to extract IP address", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "cli-alias": "header", 
-            "display": "Header", 
-            "description": "The name of the HTTP header to read to determine the value of the source IP address."
-        }, 
-        {
-            "description": "Click this tab to define a message-count monitor threshold and assign an action (Message Filter Action) that is taken when the threshold is reached.", 
-            "type": {
-                "href": "/mgmt/types/default/dmCountMonitorFilter"
-            }, 
-            "/mgmt/types/default/dmCountMonitorFilter": {
+                },
                 "type": {
-                    "name": "dmCountMonitorFilter", 
+                    "name": "dmCountMonitorFilter",
                     "properties": {
                         "property": [
                             {
-                                "description": "Enter the name of the threshold. This name appears in the log files when the threshold is reached.", 
-                                "required": "true", 
-                                "summary": "The threshold name", 
+                                "description": "Enter the name of the threshold. This name appears in the log files when the threshold is reached.",
+                                "required": "true",
+                                "summary": "The threshold name",
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Name", 
+                                },
+                                "display": "Name",
                                 "name": "Name"
-                            }, 
+                            },
                             {
-                                "name": "Interval", 
-                                "required": "true", 
-                                "summary": "The measurementinterval", 
-                                "units": "ms", 
+                                "name": "Interval",
+                                "required": "true",
+                                "summary": "The measurementinterval",
+                                "units": "ms",
                                 "type": {
                                     "href": "/mgmt/types/default/dmTimeInterval"
-                                }, 
-                                "display": "Interval", 
+                                },
+                                "display": "Interval",
                                 "description": "Enter the measurement interval in milliseconds. One second is expressed as 1000 here."
-                            }, 
+                            },
                             {
-                                "name": "RateLimit", 
-                                "required": "true", 
-                                "summary": "The threshold value", 
-                                "minimum": 1, 
-                                "units": "messages", 
+                                "name": "RateLimit",
+                                "required": "true",
+                                "summary": "The threshold value",
+                                "minimum": 1,
+                                "units": "messages",
                                 "type": {
                                     "href": "/mgmt/types/default/dmUInt32"
-                                }, 
-                                "display": "Rate Limit", 
+                                },
+                                "display": "Rate Limit",
                                 "description": "Specify the threshold value as a number of messages. A monitored message type that exceeds this value over the measurement interval specified by the Interval property is subject to the policy identified by the Action values list."
-                            }, 
+                            },
                             {
-                                "name": "BurstLimit", 
-                                "required": "true", 
-                                "summary": "Maximum allowed burst", 
-                                "units": "messages", 
+                                "name": "BurstLimit",
+                                "required": "true",
+                                "summary": "Maximum allowed burst",
+                                "units": "messages",
                                 "type": {
                                     "href": "/mgmt/types/default/dmUInt32"
-                                }, 
-                                "display": "Burst Limit", 
+                                },
+                                "display": "Burst Limit",
                                 "description": "Specify the maximum allowed message burst. Use a value approximately twice the value of Rate Limit."
-                            }, 
+                            },
                             {
-                                "description": "Select the monitor policy implemented by the monitor when the target message type exceeds the threshold value. This is a list of Message Filter Actions. Click the + button to create a new action.", 
-                                "required": "true", 
-                                "summary": "Monitor policy", 
+                                "description": "Select the monitor policy implemented by the monitor when the target message type exceeds the threshold value. This is a list of Message Filter Actions. Click the + button to create a new action.",
+                                "required": "true",
+                                "summary": "Monitor policy",
                                 "type": {
-                                    "href": "/mgmt/types/default/dmReference", 
+                                    "href": "/mgmt/types/default/dmReference",
                                     "reference-to": {
                                         "href": "/mgmt/metadata/default/FilterAction"
                                     }
-                                }, 
-                                "display": "Action", 
+                                },
+                                "display": "Action",
                                 "name": "Action"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmCountMonitorFilter"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmCountMonitorFilter"
-                    }
                 }
-            }, 
-            "array": "true", 
-            "cli-alias": "filter", 
-            "display": "Thresholds/Filters", 
-            "name": "Filter"
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmUInt32"
                     }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
                 }
-            }, 
-            "default": 10000, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "required": "true", 
-            "name": "MaxSources", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "Source", 
-                    "evaluation": "property-value-not-in-list", 
-                    "value": [
-                        "each-ip", 
-                        "ip-from-header"
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "CountMonitor",
+                "uri": "monitor/monitor-count",
+                "display": "Message Count Monitor",
+                "cmd-group": "monitors",
+                "cli-alias": "monitor-count",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "A Message Monitor observes traffic that is incuded by the Message Type definition (which in turn is a collection of Message Matching objects). The Monitor measures only that traffic selected by the Measure field. On the Filters page, traffic which meets the filter criteria causes the Monitor to take the corresponding action (which is defined by a Message Filter Type object).",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Brief summary for user annotation.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "MessageType",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/MessageType"
+                                }
+                            },
+                            "required": "true",
+                            "summary": "Message type",
+                            "cli-alias": "message-type",
+                            "display": "Message Type",
+                            "description": "Select the message type monitored by this message-count monitor."
+                        },
+                        {
+                            "name": "Measure",
+                            "default": "requests",
+                            "type": {
+                                "href": "/mgmt/types/default/dmCountMonitorType"
+                            },
+                            "required": "true",
+                            "summary": "Increment methods",
+                            "cli-alias": "measure",
+                            "display": "Measure",
+                            "description": "Select the action that advances the counter. The default is Requests."
+                        },
+                        {
+                            "name": "Source",
+                            "default": "all",
+                            "type": {
+                                "href": "/mgmt/types/default/dmCountMonitorSource"
+                            },
+                            "required": "true",
+                            "summary": "Aggregate/disaggregate IP addresses",
+                            "cli-alias": "source",
+                            "display": "Source",
+                            "description": "Select how monitoring is applied to IP addresses. This setting is meaningful only if an associated traffic definition contains and inclusive or exclusive IP address criterion. The default is All."
+                        },
+                        {
+                            "name": "Header",
+                            "default": "X-Client-IP",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "source",
+                                    "evaluation": "property-equals",
+                                    "value": "ip-from-header"
+                                }
+                            },
+                            "summary": "The name of the header to extract IP address",
+                            "cli-alias": "header",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Header",
+                            "description": "The name of the HTTP header to read to determine the value of the source IP address."
+                        },
+                        {
+                            "description": "Click this tab to define a message-count monitor threshold and assign an action (Message Filter Action) that is taken when the threshold is reached.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmCountMonitorFilter"
+                            },
+                            "array": "true",
+                            "cli-alias": "filter",
+                            "display": "Thresholds/Filters",
+                            "name": "Filter"
+                        },
+                        {
+                            "name": "MaxSources",
+                            "default": 10000,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "required": "true",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Source",
+                                    "evaluation": "property-value-not-in-list",
+                                    "value": [
+                                        "each-ip",
+                                        "ip-from-header"
+                                    ]
+                                }
+                            },
+                            "cli-alias": "distinct-sources",
+                            "display": "Maximum Distinct Sources",
+                            "description": "When utilizing the each-ip aggregate addressing policy the system organizes the counts per address by the addresses most recently used. When too many distinct counts have been observed, the Addresses not seen in the longest time are discarded. This parameter specifies how many distinct addresses are tracked."
+                        }
                     ]
+                },
+                "description": "On-Line Help for Message-Count Monitors"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/CountMonitor"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/CountMonitor"
                 }
-            }, 
-            "cli-alias": "distinct-sources", 
-            "display": "Maximum Distinct Sources", 
-            "description": "When utilizing the each-ip aggregate addressing policy the system organizes the counts per address by the addresses most recently used. When too many distinct counts have been observed, the Addresses not seen in the longest time are discarded. This parameter specifies how many distinct addresses are tracked."
+            }
         }
-    ]
+    }
 }

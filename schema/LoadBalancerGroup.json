@@ -1,1495 +1,1409 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Contains a brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "name": "Algorithm", 
-            "default": "round-robin", 
-            "type": {
-                "href": "/mgmt/types/default/dmLoadBalanceAlgorithm"
-            }, 
-            "required": "true", 
-            "summary": "Algorithm to balance the real servers.", 
-            "/mgmt/types/default/dmLoadBalanceAlgorithm": {
+                },
                 "type": {
-                    "name": "dmLoadBalanceAlgorithm", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Rotate the servers in order", 
-                                "display": "Round Robin", 
-                                "name": "round-robin", 
-                                "description": "Maintains a simple list of servers and forwards a new connection to the next server in the list."
-                            }, 
-                            {
-                                "summary": "Balance the servers proportionally according to weight", 
-                                "display": "Weighted Round Robin", 
-                                "name": "weighted-round-robin", 
-                                "description": "Maintains a weighted list of servers and forwards new connections in proportion to the weight that is assigned to each server."
-                            }, 
-                            {
-                                "summary": "Base on IP address or HTTP header of the client", 
-                                "display": "Hash", 
-                                "name": "hash", 
-                                "description": "&lt;p>Uses the IP address of the client or the value of an HTTP header as the basis for server selection.&lt;/p>&lt;p>With the hash algorithm, the same client is served by the same server. Use this algorithm only when clients access applications that require the storage of server-side state information, such as cookies. Hashing algorithms cannot ensure even distribution.&lt;/p>&lt;p>The HTTP header approach is applicable with only Multi-Protocol Gateway and Web Service Proxy services.&lt;/p>"
-                            }, 
-                            {
-                                "summary": "Server with fewest outstanding connections", 
-                                "display": "Least Connections", 
-                                "name": "least-connections", 
-                                "description": "Maintains a record of current active server connections and creates a new connection to the server with the least number of active connections."
-                            }, 
-                            {
-                                "summary": "First live server", 
-                                "display": "First Alive", 
-                                "name": "first-alive", 
-                                "description": "Based on the concept of a primary and some number of backup servers. Assuming that the primary server is up, all connections are forwarded to this server. Connections are forwarded to backup servers only if the health state of the primary server is down or softdown."
-                            }, 
-                            {
-                                "summary": "Server with fewest weighted outstanding connections", 
-                                "display": "Weighted Least Connections", 
-                                "name": "weighted-least-connections", 
-                                "description": "Maintains a record of the number of active server connections and creates a new connection to the server with the least number of current connections. The weighting provides a distribution of connections whereby the percentage of connections sent to any given server will match the relative weight assigned to that server. When 'persistent connections' is disabled, the number of connections in use is roughly equal to the number of requests that are outstanding. Therefore, the distribution of the requests will closely follow the weight distribution. When 'persistent connections' are enabled, the long lived connection may be reused many times before a new connection is established. In the case of persistent connections, the number of individual requests to any given server may not match the weight distribution."
-                            }
-                        ]
-                    }
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmLoadBalanceAlgorithm"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmLoadBalanceAlgorithm"
                     }
-                }
-            }, 
-            "cli-alias": "algorithm", 
-            "display": "Algorithm", 
-            "description": "Select the algorithm to use to balance the real servers."
-        }, 
-        {
-            "name": "RetrieveInfo", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "required": "true", 
-            "summary": "Retrieve Workload Management Information", 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "name": "dmLoadBalanceAlgorithm",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
+                                "display": "Round Robin",
+                                "description": "Maintains a simple list of servers and forwards a new connection to the next server in the list.",
+                                "name": "round-robin",
+                                "summary": "Rotate the servers in order"
+                            },
                             {
-                                "name": "off", 
+                                "display": "Weighted Round Robin",
+                                "description": "Maintains a weighted list of servers and forwards new connections in proportion to the weight that is assigned to each server.",
+                                "name": "weighted-round-robin",
+                                "summary": "Balance the servers proportionally according to weight"
+                            },
+                            {
+                                "display": "Hash",
+                                "description": "&lt;p>Uses the IP address of the client or the value of an HTTP header as the basis for server selection.&lt;/p>&lt;p>With the hash algorithm, the same client is served by the same server. Use this algorithm only when clients access applications that require the storage of server-side state information, such as cookies. Hashing algorithms cannot ensure even distribution.&lt;/p>&lt;p>The HTTP header approach is applicable with only Multi-Protocol Gateway and Web Service Proxy services.&lt;/p>",
+                                "name": "hash",
+                                "summary": "Base on IP address or HTTP header of the client"
+                            },
+                            {
+                                "display": "Least Connections",
+                                "description": "Maintains a record of current active server connections and creates a new connection to the server with the least number of active connections.",
+                                "name": "least-connections",
+                                "summary": "Server with fewest outstanding connections"
+                            },
+                            {
+                                "display": "First Alive",
+                                "description": "Based on the concept of a primary and some number of backup servers. Assuming that the primary server is up, all connections are forwarded to this server. Connections are forwarded to backup servers only if the health state of the primary server is down or softdown.",
+                                "name": "first-alive",
+                                "summary": "First live server"
+                            },
+                            {
+                                "display": "Weighted Least Connections",
+                                "description": "Maintains a record of the number of active server connections and creates a new connection to the server with the least number of current connections. The weighting provides a distribution of connections whereby the percentage of connections sent to any given server will match the relative weight assigned to that server. When 'persistent connections' is disabled, the number of connections in use is roughly equal to the number of requests that are outstanding. Therefore, the distribution of the requests will closely follow the weight distribution. When 'persistent connections' are enabled, the long lived connection may be reused many times before a new connection is established. In the case of persistent connections, the number of individual requests to any given server may not match the weight distribution.",
+                                "name": "weighted-least-connections",
+                                "summary": "Server with fewest weighted outstanding connections"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "cli-alias": "retrieve-wlm-info", 
-            "display": "Retrieve Workload Management Information", 
-            "description": "Use this setting to control whether this Load Balancer Group has membership and weight information automatically retrieved from the work load management repository WebSphere Cell. When disabled, the static configuration is used."
-        }, 
-        {
-            "name": "WLMRetrieval", 
-            "/mgmt/types/default/dmWLMRetrieval": {
-                "type": {
-                    "name": "dmWLMRetrieval", 
-                    "value-list": {
-                        "value": {
-                            "summary": "WebSphere Cell", 
-                            "display": "WebSphere Cell", 
-                            "name": "use-websphere", 
-                            "description": "Specifies that the method and format of the information to be retrieved will be that of a WebSphere Cell."
-                        }
-                    }
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmWLMRetrieval"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmWLMRetrieval"
                     }
-                }
-            }, 
-            "default": "use-websphere", 
-            "type": {
-                "href": "/mgmt/types/default/dmWLMRetrieval"
-            }, 
-            "summary": "Workload Management Retrieval", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "RetrieveInfo", 
-                    "evaluation": "property-equals", 
-                    "value": "off"
-                }
-            }, 
-            "cli-alias": "wlm-type", 
-            "display": "Workload Management Retrieval", 
-            "description": "Contains the back end work load management repository selection type. Select 'WebSphere Cell' if your back-end is a WebSphere Application Server (WAS) Network Deployment (ND) or WAS Virtual Enterprise (VE)."
-        }, 
-        {
-            "name": "WebSphereCellConfig", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/WCCService"
-                }
-            }, 
-            "summary": "WebSphere Cell", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "RetrieveInfo", 
-                            "evaluation": "property-equals", 
-                            "value": "off"
-                        }, 
-                        {
-                            "property-name": "WLMRetrieval", 
-                            "evaluation": "property-value-not-in-list", 
-                            "value": "use-websphere"
-                        }
-                    ]
-                }
-            }, 
-            "cli-alias": "websphere-cell", 
-            "display": "WebSphere Cell", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+                    "name": "dmWLMRetrieval",
+                    "value-list": {
+                        "value": {
+                            "display": "WebSphere Cell",
+                            "description": "Specifies that the method and format of the information to be retrieved will be that of a WebSphere Cell.",
+                            "name": "use-websphere",
+                            "summary": "WebSphere Cell"
+                        }
+                    }
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "description": "If you selected 'WebSphere Cell' for Workload Management Retrieval, you need to select a WebSphere Cell object that retrieves this information. If no objects are available in the pull down, you must create one."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
+                    "cli-arg": "object",
+                    "name": "dmReference"
                 }
-            }, 
-            "name": "WLMGroup", 
-            "cli-alias": "wlm-group", 
-            "summary": "Workload Management Group Name", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "RetrieveInfo", 
-                    "evaluation": "property-equals", 
-                    "value": "off"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Workload Management Group Name", 
-            "description": "The Workload Management Group Name is used to define a group. In a WebSphere Application Server environment, the back end group is a cluster name. Once specified, the Load Balancer Group will be populated with the members and weights retrieved from the back end."
-        }, 
-        {
-            "/mgmt/types/default/dmWLMTransport": {
-                "type": {
-                    "name": "dmWLMTransport", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Use HTTP transport", 
-                                "display": "HTTP", 
-                                "name": "http", 
-                                "description": "Use the HTTP protocol as the transport protocol to members."
-                            }, 
-                            {
-                                "summary": "Use HTTPS transport", 
-                                "display": "HTTPS", 
-                                "name": "https", 
-                                "description": "The HTTPS protocol as the transport protocol to members."
-                            }
-                        ]
-                    }
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmWLMTransport"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmWLMTransport"
                     }
-                }
-            }, 
-            "name": "WLMTransport", 
-            "default": "http", 
-            "type": {
-                "href": "/mgmt/types/default/dmWLMTransport"
-            }, 
-            "summary": "Protocol used for this Load Balancer Group", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "RetrieveInfo", 
-                            "evaluation": "property-equals", 
-                            "value": "off"
-                        }, 
-                        {
-                            "property-name": "WLMRetrieval", 
-                            "evaluation": "property-value-not-in-list", 
-                            "value": "use-websphere"
-                        }
-                    ]
-                }
-            }, 
-            "cli-alias": "wlm-transport", 
-            "display": "Protocol", 
-            "description": "Specify either HTTP or HTTPS for the Load Balancer Group protocol. This protocol is used to forward traffic between the DataPower Gateway and the members of the Load Balancer Group."
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
+                },
                 "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
-                }
-            }, 
-            "name": "Damp", 
-            "default": 120, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "required": "true", 
-            "maximum": 86400, 
-            "summary": "Timeout for down server", 
-            "minimum": 1, 
-            "units": "Seconds", 
-            "cli-alias": "damp", 
-            "display": "Damp Time", 
-            "description": "When a real server is observed to be non-functioning, it is temporarily disabled. When the damp time has elapsed, it is re-enabled. Allowable values are in the range 1 - 86400."
-        }, 
-        {
-            "name": "NeverReturnSickMember", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Block Connection Attempt When All Members Are Down", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "name": "dmWLMTransport",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
+                                "display": "HTTP",
+                                "description": "Use the HTTP protocol as the transport protocol to members.",
+                                "name": "http",
+                                "summary": "Use HTTP transport"
+                            },
                             {
-                                "name": "off", 
-                                "display": "off"
+                                "display": "HTTPS",
+                                "description": "The HTTPS protocol as the transport protocol to members.",
+                                "name": "https",
+                                "summary": "Use HTTPS transport"
                             }
                         ]
                     }
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmToggle"
+                        "href": "/mgmt/types/default/dmUInt32"
                     }
-                }
-            }, 
-            "cli-alias": "giveup-when-all-members-down", 
-            "display": "Do not Bypass Down State", 
-            "description": "During normal operation, when all members of the load-balancing group are down and a new request for that group is made, the first member of the group is automatically selected. If this property is turned on, no attempt will be made to connect under these circumstances."
-        }, 
-        {
-            "/mgmt/types/default/dmLBGroupMember": {
+                },
                 "type": {
-                    "summary": "Group Membership", 
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLBGroupMember"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLBGroupMember"
+                    }
+                },
+                "type": {
                     "properties": {
                         "property": [
                             {
-                                "name": "Server", 
+                                "name": "Server",
                                 "type": {
                                     "href": "/mgmt/types/default/dmHostname"
-                                }, 
-                                "required": "true", 
-                                "summary": "Host name or IP address", 
-                                "cli-alias": "server", 
-                                "display": "Actual Host", 
+                                },
+                                "required": "true",
+                                "summary": "Host name or IP address",
+                                "cli-alias": "server",
+                                "display": "Actual Host",
                                 "description": "Specifies the host name or IP address of the real server."
-                            }, 
+                            },
                             {
-                                "name": "Weight", 
-                                "default": 1, 
+                                "name": "Weight",
+                                "default": 1,
+                                "cli-alias": "weight",
+                                "maximum": 65000,
+                                "summary": "Weight",
+                                "minimum": 1,
                                 "type": {
                                     "href": "/mgmt/types/default/dmUInt32"
-                                }, 
-                                "maximum": 65000, 
-                                "summary": "Weight", 
-                                "minimum": 1, 
-                                "cli-alias": "weight", 
-                                "display": "Weight", 
+                                },
+                                "display": "Weight",
                                 "description": "&lt;p>When balancing with Weighted Round Robin, the weight property indicates the relative priority of this server versus the other members of the group. The greater the weight indicates the higher the preference. Use an integer between 1 and 65000.&lt;/p>&lt;p>For example, assume three server pool members, A, B, and C, with assigned weights of 5, 3, and 2 respectively. As a result of this weighting, server A can expect to receive approximately 50% of client requests, server B can expect to receive approximately 30% of client requests, with server C receiving the remaining 20%.&lt;/p>"
-                            }, 
+                            },
                             {
-                                "description": "&lt;p>Specifies the port on the real server. If non-zero, the associated real server is contacted on this port. Normally the real server is contacted on the same port number as that of the virtual server and this should not be set to a value other than zero. However, if you have services that run on different ports for different members of the group, you might need to define this value.&lt;/p>&lt;p>The DataPower Gateway checks this port when the health check type is IMS Connect.&lt;/p>", 
-                                "default": 0, 
-                                "summary": "Port number", 
+                                "description": "&lt;p>Specifies the port on the real server. If non-zero, the associated real server is contacted on this port. Normally the real server is contacted on the same port number as that of the virtual server and this should not be set to a value other than zero. However, if you have services that run on different ports for different members of the group, you might need to define this value.&lt;/p>&lt;p>The DataPower Gateway checks this port when the health check type is IMS Connect.&lt;/p>",
+                                "default": 0,
+                                "summary": "Port number",
                                 "type": {
                                     "href": "/mgmt/types/default/dmIPPort"
-                                }, 
-                                "display": "Mapped Server Port", 
+                                },
+                                "display": "Mapped Server Port",
                                 "name": "MappedPort"
-                            }, 
+                            },
                             {
-                                "display": "Status", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "description": "DEPRECATED.", 
-                                "name": "Activity", 
                                 "ignored-when": {
                                     "condition": {
                                         "evaluation": "logical-true"
                                     }
-                                }
-                            }, 
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "description": "DEPRECATED.",
+                                "name": "Activity",
+                                "display": "Status"
+                            },
                             {
-                                "description": "Specifies the TCP Port number to test.", 
-                                "default": 0, 
-                                "summary": "Port number", 
+                                "description": "Specifies the TCP Port number to test.",
+                                "default": 0,
+                                "summary": "Port number",
                                 "type": {
                                     "href": "/mgmt/types/default/dmIPPort"
-                                }, 
-                                "display": "Health Port", 
+                                },
+                                "display": "Health Port",
                                 "name": "HealthPort"
-                            }, 
+                            },
                             {
-                                "name": "LBMemberState", 
-                                "default": "enabled", 
+                                "name": "LBMemberState",
+                                "default": "enabled",
                                 "type": {
                                     "href": "/mgmt/types/default/dmAdminState"
-                                }, 
-                                "summary": "Administrative State of the Load Balancer Member", 
-                                "cli-alias": "admin-state", 
-                                "display": "Administrative State", 
+                                },
+                                "summary": "Administrative State of the Load Balancer Member",
+                                "cli-alias": "admin-state",
+                                "display": "Administrative State",
                                 "description": "Enable or Disable the Load Balancer Member. If the Administrative State is disabled, the member are not used in health or forwarding checks."
                             }
                         ]
-                    }, 
-                    "name": "dmLBGroupMember"
-                }, 
+                    },
+                    "name": "dmLBGroupMember",
+                    "summary": "Group Membership"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmLBGroupMember"
-                    }, 
+                        "href": "/mgmt/docs/types/dmLBGroupCheck"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmLBGroupMember"
+                        "href": "/mgmt/types/default/dmLBGroupCheck"
                     }
-                }
-            }, 
-            "name": "LBGroupMembers", 
-            "type": {
-                "href": "/mgmt/types/default/dmLBGroupMember"
-            }, 
-            "summary": "Group Membership", 
-            "array": "true", 
-            "cli-alias": "server", 
-            "display": "Members"
-        }, 
-        {
-            "name": "TryEveryServerBeforeFailing", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Try Every Server In Group Before Failing", 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "try-every-server", 
-            "display": "Try Every Server Before Failing", 
-            "description": "This property applies only when none of the group members are in the \"up\" state. If this value is set, every server in the group is tried before failing the connection attempt. It is a \"last best-effort\" attempt."
-        }, 
-        {
-            "/mgmt/types/default/dmLBGroupCheck": {
-                "type": {
-                    "summary": "Health Check", 
                     "properties": {
                         "property": [
                             {
-                                "name": "Active", 
-                                "default": "off", 
+                                "name": "Active",
+                                "default": "off",
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "required": "true", 
-                                "summary": "Enable this health check?", 
-                                "cli-alias": "admin-state", 
-                                "display": "Enabled", 
+                                },
+                                "required": "true",
+                                "summary": "Enable this health check?",
+                                "cli-alias": "admin-state",
+                                "display": "Enabled",
                                 "description": "Enables or disables a health check. The check will not run unless enabled"
-                            }, 
+                            },
                             {
-                                "name": "URI", 
-                                "default": "/", 
+                                "name": "URI",
+                                "default": "/",
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "summary": "XXX in http://www.foobar.com/XXX", 
+                                },
+                                "summary": "XXX in http://www.foobar.com/XXX",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "SSL", 
-                                        "evaluation": "property-value-in-list", 
+                                        "property-name": "SSL",
+                                        "evaluation": "property-value-in-list",
                                         "value": [
-                                            "LDAP", 
-                                            "IMSConnect", 
+                                            "LDAP",
+                                            "IMSConnect",
                                             "TCPConnection"
                                         ]
                                     }
-                                }, 
-                                "cli-alias": "target-uri", 
-                                "display": "URI", 
+                                },
+                                "cli-alias": "target-uri",
+                                "display": "URI",
                                 "description": "The relative URI to test for each member of the group. XXX in http://www.foobar.com/XXX."
-                            }, 
+                            },
                             {
-                                "name": "Port", 
-                                "default": 80, 
+                                "name": "Port",
+                                "default": 80,
                                 "type": {
                                     "href": "/mgmt/types/default/dmIPPort"
-                                }, 
-                                "required": "true", 
-                                "summary": "Port to test", 
-                                "cli-alias": "target-port", 
-                                "display": "Remote Port", 
+                                },
+                                "required": "true",
+                                "summary": "Port to test",
+                                "cli-alias": "target-port",
+                                "display": "Remote Port",
                                 "description": "Enter the TCP Port number to test. The remote port and the member server health port interact differently depending on the type of the health check. &lt;ul>&lt;li>Standard: The member server health port is used if specified. If not specified, the remote port in the load balancer group health check is used.&lt;/li>&lt;li>LDAP: The remote port in the load balancer group health check only is used. A specification of a health port for the member server is ignored.&lt;/li>&lt;li>IMS: The health port of the member only is used. The remote port in the load balancer group health check is ignored.&lt;/li>&lt;/ul>"
-                            }, 
+                            },
                             {
-                                "name": "SSL", 
+                                "name": "SSL",
                                 "type": {
                                     "href": "/mgmt/types/default/dmLBHealthCheckType"
-                                }, 
-                                "required": "true", 
-                                "summary": "Type of health check operation", 
-                                "cli-alias": "type", 
-                                "display": "Health Check Type", 
+                                },
+                                "required": "true",
+                                "summary": "Type of health check operation",
+                                "cli-alias": "type",
+                                "display": "Health Check Type",
                                 "description": "Type of health check to perform. In TCP mode (TCP Connection health check type), a health check is performed with a TCP connection request. In HTTP mode (Standard health check type), a health check is performed with an HTTP GET or HTTP POST."
-                            }, 
+                            },
                             {
-                                "name": "Post", 
-                                "default": "on", 
+                                "name": "Post",
+                                "default": "on",
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "summary": "Send SOAP Request?", 
+                                },
+                                "summary": "Send SOAP Request?",
                                 "ignored-when": {
                                     "condition": {
-                                        "evaluation": "logical-or", 
+                                        "evaluation": "logical-or",
                                         "condition": [
                                             {
-                                                "property-name": "SSL", 
-                                                "evaluation": "property-value-in-list", 
+                                                "property-name": "SSL",
+                                                "evaluation": "property-value-in-list",
                                                 "value": [
-                                                    "LDAP", 
-                                                    "IMSConnect", 
+                                                    "LDAP",
+                                                    "IMSConnect",
                                                     "TCPConnection"
                                                 ]
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "GatewayScriptChecks", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "GatewayScriptChecks",
+                                                "evaluation": "property-equals",
                                                 "value": "on"
                                             }
                                         ]
                                     }
-                                }, 
-                                "cli-alias": "use-soap", 
-                                "display": "Send SOAP Request?", 
+                                },
+                                "cli-alias": "use-soap",
+                                "display": "Send SOAP Request?",
                                 "description": "When set to on, the SOAP Request Document will be submitted to the web service via an HTTP POST operation. When set to off (without a request document), an HTTP Get operation is sent. The expected response is always valid XML and it is then analyzed using the Xpath Expression to verify the state of health of the server."
-                            }, 
+                            },
                             {
-                                "name": "Input", 
-                                "default": "store:///healthcheck.xml", 
+                                "name": "Input",
+                                "default": "store:///healthcheck.xml",
                                 "type": {
                                     "href": "/mgmt/types/default/dmURL"
-                                }, 
-                                "summary": "The SOAP Request Document is only used if the send SOAP request is true.", 
+                                },
+                                "summary": "The SOAP Request Document is only used if the send SOAP request is true.",
                                 "ignored-when": {
                                     "condition": {
-                                        "evaluation": "logical-or", 
+                                        "evaluation": "logical-or",
                                         "condition": [
                                             {
-                                                "property-name": "Post", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "Post",
+                                                "evaluation": "property-equals",
                                                 "value": "off"
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "GatewayScriptChecks", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "GatewayScriptChecks",
+                                                "evaluation": "property-equals",
                                                 "value": "on"
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "SSL", 
-                                                "evaluation": "property-value-in-list", 
+                                                "property-name": "SSL",
+                                                "evaluation": "property-value-in-list",
                                                 "value": [
-                                                    "LDAP", 
-                                                    "IMSConnect", 
+                                                    "LDAP",
+                                                    "IMSConnect",
                                                     "TCPConnection"
                                                 ]
                                             }
                                         ]
                                     }
-                                }, 
-                                "cli-alias": "send-soap", 
-                                "display": "SOAP Request Document", 
+                                },
+                                "cli-alias": "send-soap",
+                                "display": "SOAP Request Document",
                                 "description": "Enter the URL of the SOAP Request Document. This may be a file on the local flash filesystem (for example, local:///healthcheck.xml). This document is POSTed to the server if Send SOAP Request is on."
-                            }, 
+                            },
                             {
-                                "name": "Timeout", 
-                                "default": 10, 
+                                "name": "Timeout",
+                                "default": 10,
+                                "cli-alias": "timeout",
+                                "required": "true",
+                                "maximum": 86400,
+                                "summary": "Number of seconds to allocate for check",
+                                "minimum": 2,
+                                "units": "seconds",
                                 "type": {
                                     "href": "/mgmt/types/default/dmUInt32"
-                                }, 
-                                "required": "true", 
-                                "maximum": 86400, 
-                                "summary": "Number of seconds to allocate for check", 
-                                "minimum": 2, 
-                                "units": "seconds", 
-                                "cli-alias": "timeout", 
-                                "display": "Timeout", 
+                                },
+                                "display": "Timeout",
                                 "description": "Enter an integer between 2 and 86400 to indicate the number of seconds to wait for a response to a health check post. The default is 10."
-                            }, 
+                            },
                             {
-                                "name": "Frequency", 
-                                "default": 180, 
+                                "name": "Frequency",
+                                "default": 180,
+                                "cli-alias": "frequency",
+                                "required": "true",
+                                "maximum": 86400,
+                                "summary": "Number of seconds between checks",
+                                "minimum": 5,
+                                "units": "seconds",
                                 "type": {
                                     "href": "/mgmt/types/default/dmUInt32"
-                                }, 
-                                "required": "true", 
-                                "maximum": 86400, 
-                                "summary": "Number of seconds between checks", 
-                                "minimum": 5, 
-                                "units": "seconds", 
-                                "cli-alias": "frequency", 
-                                "display": "Frequency", 
+                                },
+                                "display": "Frequency",
                                 "description": "Enter an integer between 5 and 86400 to indicate the number of seconds to wait between health check posts. The default is 180."
-                            }, 
+                            },
                             {
-                                "name": "XPath", 
-                                "default": "/", 
+                                "name": "XPath",
+                                "default": "/",
                                 "type": {
                                     "href": "/mgmt/types/default/dmXPathExpr"
-                                }, 
-                                "summary": "An XPath Expression for a healthy SOAP response", 
+                                },
+                                "summary": "An XPath Expression for a healthy SOAP response",
                                 "ignored-when": {
                                     "condition": {
-                                        "evaluation": "logical-or", 
+                                        "evaluation": "logical-or",
                                         "condition": [
                                             {
-                                                "property-name": "SSL", 
-                                                "evaluation": "property-value-in-list", 
+                                                "property-name": "SSL",
+                                                "evaluation": "property-value-in-list",
                                                 "value": [
-                                                    "LDAP", 
-                                                    "IMSConnect", 
+                                                    "LDAP",
+                                                    "IMSConnect",
                                                     "TCPConnection"
                                                 ]
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "GatewayScriptChecks", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "GatewayScriptChecks",
+                                                "evaluation": "property-equals",
                                                 "value": "on"
                                             }
                                         ]
                                     }
-                                }, 
-                                "cli-alias": "xpath", 
-                                "display": "XPath Expression", 
+                                },
+                                "cli-alias": "xpath",
+                                "display": "XPath Expression",
                                 "description": "Enter an XPath Expression that verifies the health of the server. The expression is applied to the server's response to the health check POST. If the expression is true, the server is healthy. Otherwise, the server health state is softdown until it passes a health check."
-                            }, 
+                            },
                             {
-                                "name": "Filter", 
-                                "default": "store:///healthcheck.xsl", 
+                                "name": "Filter",
+                                "default": "store:///healthcheck.xsl",
                                 "type": {
                                     "href": "/mgmt/types/default/dmURL"
-                                }, 
-                                "summary": "Filter that analyzes response", 
+                                },
+                                "summary": "Filter that analyzes response",
                                 "ignored-when": {
                                     "condition": {
-                                        "evaluation": "logical-or", 
+                                        "evaluation": "logical-or",
                                         "condition": [
                                             {
-                                                "property-name": "SSL", 
-                                                "evaluation": "property-value-in-list", 
+                                                "property-name": "SSL",
+                                                "evaluation": "property-value-in-list",
                                                 "value": [
-                                                    "LDAP", 
-                                                    "IMSConnect", 
+                                                    "LDAP",
+                                                    "IMSConnect",
                                                     "TCPConnection"
                                                 ]
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "GatewayScriptChecks", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "GatewayScriptChecks",
+                                                "evaluation": "property-equals",
                                                 "value": "on"
                                             }
                                         ]
                                     }
-                                }, 
-                                "cli-alias": "filter", 
-                                "display": "XSL Health Check Filter", 
+                                },
+                                "cli-alias": "filter",
+                                "display": "XSL Health Check Filter",
                                 "description": "Enter the URL of the stylesheet that evaluates the server response using the XPath Expression entered above. The default is supplied on this DataPower device."
-                            }, 
+                            },
                             {
-                                "name": "SSLProxyProfile", 
+                                "name": "SSLProxyProfile",
                                 "type": {
-                                    "href": "/mgmt/types/default/dmReference", 
+                                    "href": "/mgmt/types/default/dmReference",
                                     "reference-to": {
                                         "href": "/mgmt/metadata/default/SSLProxyProfile"
                                     }
-                                }, 
-                                "summary": "The TLS proxy profile is deprecated. Use a TLS client profile.", 
+                                },
+                                "summary": "The TLS proxy profile is deprecated. Use a TLS client profile.",
                                 "ignored-when": {
                                     "condition": {
-                                        "evaluation": "logical-or", 
+                                        "evaluation": "logical-or",
                                         "condition": [
                                             {
-                                                "property-name": "SSLClientConfigType", 
-                                                "evaluation": "property-does-not-equal", 
+                                                "property-name": "SSLClientConfigType",
+                                                "evaluation": "property-does-not-equal",
                                                 "value": "proxy"
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "SSL", 
-                                                "evaluation": "property-does-not-equal", 
+                                                "property-name": "SSL",
+                                                "evaluation": "property-does-not-equal",
                                                 "value": "Standard"
                                             }
                                         ]
                                     }
-                                }, 
-                                "cli-alias": "sslproxy", 
-                                "display": "TLS proxy profile (deprecated)", 
+                                },
+                                "cli-alias": "sslproxy",
+                                "display": "TLS proxy profile (deprecated)",
                                 "description": "Select an existing TLS proxy profile for use with this health check. This is required if the back end server is using TLS communications with the DataPower device."
-                            }, 
+                            },
                             {
-                                "name": "EnforceTimeout", 
-                                "default": "off", 
+                                "name": "EnforceTimeout",
+                                "default": "off",
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "summary": "Enforce Health Check Timeouts", 
+                                },
+                                "summary": "Enforce Health Check Timeouts",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "SSL", 
-                                        "evaluation": "property-value-in-list", 
+                                        "property-name": "SSL",
+                                        "evaluation": "property-value-in-list",
                                         "value": [
-                                            "LDAP", 
-                                            "IMSConnect", 
+                                            "LDAP",
+                                            "IMSConnect",
                                             "TCPConnection"
                                         ]
                                     }
-                                }, 
-                                "cli-alias": "enforce-timeout", 
-                                "display": "Enforce Health Check Timeouts", 
+                                },
+                                "cli-alias": "enforce-timeout",
+                                "display": "Enforce Health Check Timeouts",
                                 "description": "Indicates whether the health check timeout value is used to interrupt and end a health transaction. By default, the health check timeout only compares the actual time that the request took. With the default behavior, the health check timeout is not used to interrupt the transaction."
-                            }, 
+                            },
                             {
-                                "name": "IndependentChecks", 
-                                "default": "off", 
+                                "name": "IndependentChecks",
+                                "default": "off",
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "summary": "Independent Health Checks", 
+                                },
+                                "summary": "Independent Health Checks",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "SSL", 
-                                        "evaluation": "property-value-in-list", 
+                                        "property-name": "SSL",
+                                        "evaluation": "property-value-in-list",
                                         "value": [
-                                            "LDAP", 
-                                            "IMSConnect", 
+                                            "LDAP",
+                                            "IMSConnect",
                                             "TCPConnection"
                                         ]
                                     }
-                                }, 
-                                "cli-alias": "independent-checks", 
-                                "display": "Independent Health Checks", 
+                                },
+                                "cli-alias": "independent-checks",
+                                "display": "Independent Health Checks",
                                 "description": "Indicates whether the health checks within a Load Balancer Group run independently of one another. By default, health checks within a Load Balancer Group run sequentially. With the default behavior, if a server hangs, all the other health checks for the other members are delayed."
-                            }, 
+                            },
                             {
-                                "name": "GatewayScriptChecks", 
-                                "default": "off", 
+                                "name": "GatewayScriptChecks",
+                                "default": "off",
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "summary": "Enable GatewayScript Health Check Processing", 
+                                },
+                                "summary": "Enable GatewayScript Health Check Processing",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "SSL", 
-                                        "evaluation": "property-value-in-list", 
+                                        "property-name": "SSL",
+                                        "evaluation": "property-value-in-list",
                                         "value": [
-                                            "LDAP", 
-                                            "IMSConnect", 
+                                            "LDAP",
+                                            "IMSConnect",
                                             "TCPConnection"
                                         ]
                                     }
-                                }, 
-                                "cli-alias": "gatewayscript-checks", 
-                                "display": "Process with GatewayScript", 
+                                },
+                                "cli-alias": "gatewayscript-checks",
+                                "display": "Process with GatewayScript",
                                 "description": "Enables or disables GatewayScript health check processing. If enabled, content of health check requests and responses can be of any type and the response evaluator will be a GatewayScript file."
-                            }, 
+                            },
                             {
-                                "name": "GatewayScriptReqMethod", 
+                                "name": "GatewayScriptReqMethod",
                                 "type": {
                                     "href": "/mgmt/types/default/dmLBHealthCheckGSMethod"
-                                }, 
-                                "summary": "Set the HTTP method for health check requests", 
+                                },
+                                "summary": "Set the HTTP method for health check requests",
                                 "ignored-when": {
                                     "condition": {
-                                        "evaluation": "logical-or", 
+                                        "evaluation": "logical-or",
                                         "condition": [
                                             {
-                                                "property-name": "SSL", 
-                                                "evaluation": "property-value-in-list", 
+                                                "property-name": "SSL",
+                                                "evaluation": "property-value-in-list",
                                                 "value": [
-                                                    "LDAP", 
-                                                    "IMSConnect", 
+                                                    "LDAP",
+                                                    "IMSConnect",
                                                     "TCPConnection"
                                                 ]
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "GatewayScriptChecks", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "GatewayScriptChecks",
+                                                "evaluation": "property-equals",
                                                 "value": "off"
                                             }
                                         ]
                                     }
-                                }, 
-                                "cli-alias": "request-method", 
-                                "display": "HTTP Method", 
+                                },
+                                "cli-alias": "request-method",
+                                "display": "HTTP Method",
                                 "description": "The HTTP method to use for Standard health checks with GatewayScript. If Custom is selected, a custom method name must also be specified."
-                            }, 
+                            },
                             {
-                                "name": "GatewayScriptCustomReqMethod", 
+                                "name": "GatewayScriptCustomReqMethod",
                                 "required-when": {
                                     "condition": {
-                                        "evaluation": "logical-and", 
+                                        "evaluation": "logical-and",
                                         "condition": [
                                             {
-                                                "property-name": "SSL", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "SSL",
+                                                "evaluation": "property-equals",
                                                 "value": "Standard"
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "GatewayScriptChecks", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "GatewayScriptChecks",
+                                                "evaluation": "property-equals",
                                                 "value": "on"
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "GatewayScriptReqMethod", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "GatewayScriptReqMethod",
+                                                "evaluation": "property-equals",
                                                 "value": "Custom"
                                             }
                                         ]
                                     }
-                                }, 
-                                "summary": "Enter the custom method", 
-                                "cli-alias": "request-custom-method", 
+                                },
+                                "summary": "Enter the custom method",
+                                "cli-alias": "request-custom-method",
                                 "ignored-when": {
                                     "condition": {
-                                        "evaluation": "logical-or", 
+                                        "evaluation": "logical-or",
                                         "condition": [
                                             {
-                                                "property-name": "SSL", 
-                                                "evaluation": "property-value-in-list", 
+                                                "property-name": "SSL",
+                                                "evaluation": "property-value-in-list",
                                                 "value": [
-                                                    "LDAP", 
-                                                    "IMSConnect", 
+                                                    "LDAP",
+                                                    "IMSConnect",
                                                     "TCPConnection"
                                                 ]
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "GatewayScriptChecks", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "GatewayScriptChecks",
+                                                "evaluation": "property-equals",
                                                 "value": "off"
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "GatewayScriptReqMethod", 
-                                                "evaluation": "property-value-in-list", 
+                                                "property-name": "GatewayScriptReqMethod",
+                                                "evaluation": "property-value-in-list",
                                                 "value": [
-                                                    "GET", 
-                                                    "POST", 
-                                                    "PUT", 
+                                                    "GET",
+                                                    "POST",
+                                                    "PUT",
                                                     "HEAD"
                                                 ]
                                             }
                                         ]
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Custom Method", 
+                                },
+                                "display": "Custom Method",
                                 "description": "The name of the custom method to use for Standard health check requests when GatewayScript processing is enabled."
-                            }, 
+                            },
                             {
-                                "cli-alias": "request-doc", 
-                                "name": "GatewayScriptReqDoc", 
-                                "default": "store:///healthcheck.json", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmURL"
+                                },
+                                "name": "GatewayScriptReqDoc",
+                                "default": "store:///healthcheck.json",
                                 "required-when": {
                                     "condition": {
-                                        "evaluation": "logical-and", 
+                                        "evaluation": "logical-and",
                                         "condition": [
                                             {
-                                                "property-name": "SSL", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "SSL",
+                                                "evaluation": "property-equals",
                                                 "value": "Standard"
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "GatewayScriptChecks", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "GatewayScriptChecks",
+                                                "evaluation": "property-equals",
                                                 "value": "on"
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "GatewayScriptReqMethod", 
-                                                "evaluation": "property-value-in-list", 
+                                                "property-name": "GatewayScriptReqMethod",
+                                                "evaluation": "property-value-in-list",
                                                 "value": [
-                                                    "POST", 
+                                                    "POST",
                                                     "PUT"
                                                 ]
                                             }
                                         ]
                                     }
-                                }, 
-                                "summary": "The Request Document is only used if the HTTP method is POST, PUT, or Custom", 
-                                "subtype": "dmURLProtocol", 
+                                },
+                                "summary": "The Request Document is only used if the HTTP method is POST, PUT, or Custom",
+                                "subtype": "dmURLProtocol",
                                 "ignored-when": {
                                     "condition": {
-                                        "evaluation": "logical-or", 
+                                        "evaluation": "logical-or",
                                         "condition": [
                                             {
-                                                "property-name": "SSL", 
-                                                "evaluation": "property-value-in-list", 
+                                                "property-name": "SSL",
+                                                "evaluation": "property-value-in-list",
                                                 "value": [
-                                                    "LDAP", 
-                                                    "IMSConnect", 
+                                                    "LDAP",
+                                                    "IMSConnect",
                                                     "TCPConnection"
                                                 ]
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "GatewayScriptChecks", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "GatewayScriptChecks",
+                                                "evaluation": "property-equals",
                                                 "value": "off"
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "GatewayScriptReqMethod", 
-                                                "evaluation": "property-value-in-list", 
+                                                "property-name": "GatewayScriptReqMethod",
+                                                "evaluation": "property-value-in-list",
                                                 "value": [
-                                                    "GET", 
+                                                    "GET",
                                                     "HEAD"
                                                 ]
                                             }
                                         ]
                                     }
-                                }, 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmURL"
-                                }, 
-                                "display": "Request Document", 
+                                },
+                                "cli-alias": "request-doc",
+                                "display": "Request Document",
                                 "description": "Enter the URL of the Request Document. This might be a file on the local flash filesystem (for example, local:///healthcheck.xml). This document is included in the request to the server if the POST, PUT, or Custom method is selected for Standard health checks with GatewayScript. If the HTTP method is Custom, the request document is optional."
-                            }, 
+                            },
                             {
-                                "name": "GatewayScriptReqContentType", 
-                                "default": "application/json", 
+                                "name": "GatewayScriptReqContentType",
+                                "default": "application/json",
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "summary": "The content type of the Request Document", 
+                                },
+                                "summary": "The content type of the Request Document",
                                 "ignored-when": {
                                     "condition": {
-                                        "evaluation": "logical-or", 
+                                        "evaluation": "logical-or",
                                         "condition": [
                                             {
-                                                "property-name": "SSL", 
-                                                "evaluation": "property-value-in-list", 
+                                                "property-name": "SSL",
+                                                "evaluation": "property-value-in-list",
                                                 "value": [
-                                                    "LDAP", 
-                                                    "IMSConnect", 
+                                                    "LDAP",
+                                                    "IMSConnect",
                                                     "TCPConnection"
                                                 ]
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "GatewayScriptChecks", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "GatewayScriptChecks",
+                                                "evaluation": "property-equals",
                                                 "value": "off"
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "GatewayScriptReqMethod", 
-                                                "evaluation": "property-value-in-list", 
+                                                "property-name": "GatewayScriptReqMethod",
+                                                "evaluation": "property-value-in-list",
                                                 "value": [
-                                                    "GET", 
+                                                    "GET",
                                                     "HEAD"
                                                 ]
                                             }
                                         ]
                                     }
-                                }, 
-                                "cli-alias": "request-content-type", 
-                                "display": "Content Type", 
+                                },
+                                "cli-alias": "request-content-type",
+                                "display": "Content Type",
                                 "description": "Enter the content type of the Request Document for Standard health checks with GatewayScript."
-                            }, 
+                            },
                             {
-                                "name": "GatewayScriptRspHandlerMetadata", 
+                                "name": "GatewayScriptRspHandlerMetadata",
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "summary": "Metadata used by the GatewayScript response evaluator", 
+                                },
+                                "summary": "Metadata used by the GatewayScript response evaluator",
                                 "ignored-when": {
                                     "condition": {
-                                        "evaluation": "logical-or", 
+                                        "evaluation": "logical-or",
                                         "condition": [
                                             {
-                                                "property-name": "SSL", 
-                                                "evaluation": "property-value-in-list", 
+                                                "property-name": "SSL",
+                                                "evaluation": "property-value-in-list",
                                                 "value": [
-                                                    "LDAP", 
-                                                    "IMSConnect", 
+                                                    "LDAP",
+                                                    "IMSConnect",
                                                     "TCPConnection"
                                                 ]
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "GatewayScriptChecks", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "GatewayScriptChecks",
+                                                "evaluation": "property-equals",
                                                 "value": "off"
                                             }
                                         ]
                                     }
-                                }, 
-                                "cli-alias": "response-evaluator-metadata", 
-                                "display": "Response Evaluator Metadata", 
+                                },
+                                "cli-alias": "response-evaluator-metadata",
+                                "display": "Response Evaluator Metadata",
                                 "description": [
-                                    "Enter a string to be used by the GatewayScript Response Evaluator to help determine the state of the server's health.", 
+                                    "Enter a string to be used by the GatewayScript Response Evaluator to help determine the state of the server's health.",
                                     "Enter a string (UTF-8). The value entered can be accessed via the evaluator session parameter. The GatewayScript Response Evaluator must issue the following: \"session.parameters.evaluator\" to retrieve this data."
                                 ]
-                            }, 
+                            },
                             {
-                                "type": {
-                                    "href": "/mgmt/types/default/dmFSFile"
-                                }, 
-                                "name": "GatewayScriptRspHandler", 
-                                "default": "store:///healthcheck.js", 
+                                "name": "GatewayScriptRspHandler",
+                                "default": "store:///healthcheck.js",
                                 "required-when": {
                                     "condition": {
-                                        "evaluation": "logical-and", 
+                                        "evaluation": "logical-and",
                                         "condition": [
                                             {
-                                                "property-name": "GatewayScriptChecks", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "GatewayScriptChecks",
+                                                "evaluation": "property-equals",
                                                 "value": "on"
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "SSL", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "SSL",
+                                                "evaluation": "property-equals",
                                                 "value": "Standard"
                                             }
                                         ]
                                     }
-                                }, 
+                                },
                                 "locations": {
                                     "location": [
-                                        "local", 
-                                        "store", 
+                                        "local",
+                                        "store",
                                         "temporary"
                                     ]
-                                }, 
-                                "summary": "The GatewayScript file used to evaluate the health check response", 
+                                },
+                                "summary": "The GatewayScript file used to evaluate the health check response",
+                                "cli-alias": "response-evaluator",
                                 "ignored-when": {
                                     "condition": {
-                                        "evaluation": "logical-or", 
+                                        "evaluation": "logical-or",
                                         "condition": [
                                             {
-                                                "property-name": "SSL", 
-                                                "evaluation": "property-value-in-list", 
+                                                "property-name": "SSL",
+                                                "evaluation": "property-value-in-list",
                                                 "value": [
-                                                    "LDAP", 
-                                                    "IMSConnect", 
+                                                    "LDAP",
+                                                    "IMSConnect",
                                                     "TCPConnection"
                                                 ]
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "GatewayScriptChecks", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "GatewayScriptChecks",
+                                                "evaluation": "property-equals",
                                                 "value": "off"
                                             }
                                         ]
                                     }
-                                }, 
-                                "cli-alias": "response-evaluator", 
-                                "display": "GatewayScript Response Evaluator", 
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmFSFile"
+                                },
+                                "display": "GatewayScript Response Evaluator",
                                 "description": "Enter the URL of the GatewayScript file that evaluates the server response using the Response Evaluator Metadata. The default GatewayScript file is supplied on the DataPower Gateway."
-                            }, 
+                            },
                             {
-                                "name": "TCPConnectionType", 
+                                "name": "TCPConnectionType",
                                 "required-when": {
                                     "condition": {
-                                        "property-name": "SSL", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "SSL",
+                                        "evaluation": "property-equals",
                                         "value": "TCPConnection"
                                     }
-                                }, 
-                                "summary": "Type of TCP connection to attempt for health check operation", 
-                                "cli-alias": "tcp-conn-type", 
+                                },
+                                "summary": "Type of TCP connection to attempt for health check operation",
+                                "cli-alias": "tcp-conn-type",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "SSL", 
-                                        "evaluation": "property-value-in-list", 
+                                        "property-name": "SSL",
+                                        "evaluation": "property-value-in-list",
                                         "value": [
-                                            "LDAP", 
-                                            "IMSConnect", 
+                                            "LDAP",
+                                            "IMSConnect",
                                             "Standard"
                                         ]
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmLBHealthCheckTCPConnType"
-                                }, 
-                                "display": "TCP Connection Type", 
+                                },
+                                "display": "TCP Connection Type",
                                 "description": "When set to full, a TCP Connection health check will perform a complete three-way handshake to establish a connection, followed by a four-way handshake to close the connection. When set to partial, a TCP Connection health check will perform a half-open connection to check a member's health. The three-way handshake to establish a connection will not be completed for partial connection types."
-                            }, 
+                            },
                             {
-                                "name": "SSLClientConfigType", 
-                                "default": "proxy", 
+                                "name": "SSLClientConfigType",
+                                "default": "proxy",
                                 "type": {
                                     "href": "/mgmt/types/default/dmSSLClientConfigType"
-                                }, 
-                                "summary": "Set the TLS profile type to secure connections between the DataPower Gateway and its targets", 
+                                },
+                                "summary": "Set the TLS profile type to secure connections between the DataPower Gateway and its targets",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "SSL", 
-                                        "evaluation": "property-does-not-equal", 
+                                        "property-name": "SSL",
+                                        "evaluation": "property-does-not-equal",
                                         "value": "Standard"
                                     }
-                                }, 
-                                "cli-alias": "ssl-client-type", 
-                                "display": "TLS client type", 
+                                },
+                                "cli-alias": "ssl-client-type",
+                                "display": "TLS client type",
                                 "description": "The TLS profile type to secure connections between the DataPower Gateway and its targets."
-                            }, 
+                            },
                             {
-                                "name": "SSLClient", 
+                                "name": "SSLClient",
                                 "type": {
-                                    "href": "/mgmt/types/default/dmReference", 
+                                    "href": "/mgmt/types/default/dmReference",
                                     "reference-to": {
                                         "href": "/mgmt/metadata/default/SSLClientProfile"
                                     }
-                                }, 
-                                "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and its targets", 
+                                },
+                                "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and its targets",
                                 "ignored-when": {
                                     "condition": {
-                                        "evaluation": "logical-or", 
+                                        "evaluation": "logical-or",
                                         "condition": [
                                             {
-                                                "property-name": "SSLClientConfigType", 
-                                                "evaluation": "property-does-not-equal", 
+                                                "property-name": "SSLClientConfigType",
+                                                "evaluation": "property-does-not-equal",
                                                 "value": "client"
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "SSL", 
-                                                "evaluation": "property-does-not-equal", 
+                                                "property-name": "SSL",
+                                                "evaluation": "property-does-not-equal",
                                                 "value": "Standard"
                                             }
                                         ]
                                     }
-                                }, 
-                                "cli-alias": "ssl-client", 
-                                "display": "TLS client profile", 
+                                },
+                                "cli-alias": "ssl-client",
+                                "display": "TLS client profile",
                                 "description": "The TLS client profile to secure connections between the DataPower Gateway and its targets."
                             }
                         ]
-                    }, 
-                    "name": "dmLBGroupCheck"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmLBGroupCheck"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmLBGroupCheck"
-                    }
+                    },
+                    "name": "dmLBGroupCheck",
+                    "summary": "Health Check"
                 }
-            }, 
-            "description": "The members of a Load Balancer Group can be periodically polled to verify the health of the server. If the server is found to be unresponsive, it is removed from the list of actively available servers until the unresponsive server passes a health check.", 
-            "cli-alias": "health-check", 
-            "summary": "Periodically Executed Health Check", 
-            "type": {
-                "href": "/mgmt/types/default/dmLBGroupCheck"
-            }, 
-            "display": "Health Checks", 
-            "name": "LBGroupChecks"
-        }, 
-        {
-            "description": "If you set this value, the host name presented to the server will be the name of the group instead of the name of the member being used for that specific transaction.", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "masquerade", 
-            "display": "Masquerade As Group Name", 
-            "name": "MasqueradeMember"
-        }, 
-        {
-            "name": "ApplicationRouting", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Enables application routing with a WebSphere Cluster", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "RetrieveInfo", 
-                            "evaluation": "property-equals", 
-                            "value": "off"
-                        }, 
-                        {
-                            "property-name": "WLMRetrieval", 
-                            "evaluation": "property-value-not-in-list", 
-                            "value": "use-websphere"
-                        }
-                    ]
-                }
-            }, 
-            "cli-alias": "appl-routing", 
-            "display": "Enable Application Routing", 
-            "description": "&lt;p>If set to on, the load balancer group will route to the back end cluster depending on the following conditions.&lt;/p>&lt;ul>&lt;li>the application for which this request is targeted&lt;/li>&lt;li>the application status on the back end servers&lt;/li>&lt;/ul>&lt;p>Application Routing is required for Application Edition (group or atomic) rollout. If you need Application Edition support, set the Update Type to Subscribe in the WebSphere Cell object.&lt;/p>"
-        }, 
-        {
-            "description": "Session affinity allows applications to maintain sessions with clients.", 
-            "/mgmt/types/default/dmLBGroupAffinity": {
-                "type": {
-                    "summary": "LB Group Affinity", 
-                    "properties": {
-                        "property": [
-                            {
-                                "name": "EnableSA", 
-                                "default": "on", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "required": "true", 
-                                "summary": "Enable Session Affinity", 
-                                "cli-alias": "enable-affinity", 
-                                "display": "Enable Session Affinity", 
-                                "description": "Enables or disables session affinity operations."
-                            }, 
-                            {
-                                "name": "InsertionCookieName", 
-                                "default": "DPJSESSIONID", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "summary": "Insertion Cookie Name", 
-                                "cli-alias": "i-cookie-name", 
-                                "display": "Insertion Cookie Name", 
-                                "description": "Name of the cookie inserted into the response when active or active-conditional session affinity is required."
-                            }, 
-                            {
-                                "name": "InsertionPath", 
-                                "default": "/", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "summary": "Insertion Path", 
-                                "cli-alias": "i-path", 
-                                "display": "Insertion Path", 
-                                "description": "The path added to the insertion cookie in the response when active or active-conditional session affinity is required."
-                            }, 
-                            {
-                                "name": "InsertionDomain", 
-                                "default": "datapower.com", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "summary": "Insertion Domain", 
-                                "cli-alias": "i-domain", 
-                                "display": "Insertion Domain", 
-                                "description": "The domain added to the insertion cookie in the response when active or active-conditional session affinity is required. The domain name cannot begin with a dot."
-                            }, 
-                            {
-                                "name": "AffinityWLMOverride", 
-                                "default": "off", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "summary": "Override WebSphere Cell Session Affinity", 
-                                "cli-alias": "override-wlm-affinity", 
-                                "display": "Override WebSphere Cell Session Affinity", 
-                                "description": "Overrides the WebSphere Cell Session Affinity cluster configuration with the DataPower Gateway configuration information below."
-                            }, 
-                            {
-                                "name": "AffinityMode", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmAffinityMode"
-                                }, 
-                                "summary": "Set the session affinity mode", 
-                                "ignored-when": {
-                                    "condition": {
-                                        "property-name": "AffinityWLMOverride", 
-                                        "evaluation": "property-equals", 
-                                        "value": "off"
-                                    }
-                                }, 
-                                "cli-alias": "affinity-mode", 
-                                "display": "Mode", 
-                                "description": "The mode of session affinity applied to this load balancer group."
-                            }, 
-                            {
-                                "name": "InsertionAttributes", 
-                                "default": "", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmInsertionAttributes"
-                                }, 
-                                "summary": "Which attributes to insert in the cookie", 
-                                "cli-alias": "i-cookie-attributes", 
-                                "display": "Insert cookie attributes", 
-                                "description": "Specifies the attributes to insert in the cookie in the response when active or active-conditional session affinity is required."
-                            }
-                        ]
-                    }, 
-                    "name": "dmLBGroupAffinity"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmLBGroupAffinity"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmLBGroupAffinity"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmLBGroupAffinity"
-            }, 
-            "summary": "Session Affinity", 
-            "cli-alias": "session-affinity", 
-            "display": "Session Affinity", 
-            "name": "LBGroupAffinityConf"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
+                    "properties": {
+                        "property": [
+                            {
+                                "name": "EnableSA",
+                                "default": "on",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "required": "true",
+                                "summary": "Enable Session Affinity",
+                                "cli-alias": "enable-affinity",
+                                "display": "Enable Session Affinity",
+                                "description": "Enables or disables session affinity operations."
+                            },
+                            {
+                                "name": "InsertionCookieName",
+                                "default": "DPJSESSIONID",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "summary": "Insertion Cookie Name",
+                                "cli-alias": "i-cookie-name",
+                                "display": "Insertion Cookie Name",
+                                "description": "Name of the cookie inserted into the response when active or active-conditional session affinity is required."
+                            },
+                            {
+                                "name": "InsertionPath",
+                                "default": "/",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "summary": "Insertion Path",
+                                "cli-alias": "i-path",
+                                "display": "Insertion Path",
+                                "description": "The path added to the insertion cookie in the response when active or active-conditional session affinity is required."
+                            },
+                            {
+                                "name": "InsertionDomain",
+                                "default": "datapower.com",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "summary": "Insertion Domain",
+                                "cli-alias": "i-domain",
+                                "display": "Insertion Domain",
+                                "description": "The domain added to the insertion cookie in the response when active or active-conditional session affinity is required. The domain name cannot begin with a dot."
+                            },
+                            {
+                                "name": "AffinityWLMOverride",
+                                "default": "off",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "summary": "Override WebSphere Cell Session Affinity",
+                                "cli-alias": "override-wlm-affinity",
+                                "display": "Override WebSphere Cell Session Affinity",
+                                "description": "Overrides the WebSphere Cell Session Affinity cluster configuration with the DataPower Gateway configuration information below."
+                            },
+                            {
+                                "name": "AffinityMode",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmAffinityMode"
+                                },
+                                "summary": "Set the session affinity mode",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "AffinityWLMOverride",
+                                        "evaluation": "property-equals",
+                                        "value": "off"
+                                    }
+                                },
+                                "cli-alias": "affinity-mode",
+                                "display": "Mode",
+                                "description": "The mode of session affinity applied to this load balancer group."
+                            },
+                            {
+                                "name": "InsertionAttributes",
+                                "default": "",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmInsertionAttributes"
+                                },
+                                "summary": "Which attributes to insert in the cookie",
+                                "cli-alias": "i-cookie-attributes",
+                                "display": "Insert cookie attributes",
+                                "description": "Specifies the attributes to insert in the cookie in the response when active or active-conditional session affinity is required."
+                            }
+                        ]
+                    },
+                    "name": "dmLBGroupAffinity",
+                    "summary": "LB Group Affinity"
                 }
-            }, 
-            "name": "MonitoredCookies", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "summary": "Monitored Cookies", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
+            }
+        ],
+        "metadata": {
+            "object": {
+                "name": "LoadBalancerGroup",
+                "display": "Load Balancer Group",
+                "property-group": [
+                    {
+                        "member": {
+                            "name": "LBGroupChecks"
+                        },
+                        "name": "Health",
+                        "display": "Health"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "LBGroupAffinityConf"
+                            },
+                            {
+                                "name": "MonitoredCookies"
+                            }
+                        ],
+                        "name": "SessionAffinity",
+                        "display": "Session Affinity"
+                    }
+                ],
+                "uri": "network/loadbalancer-group",
+                "summary": "Configure the members of a virtual group",
+                "cmd-group": "load-balancer",
+                "cli-alias": "loadbalancer-group",
+                "properties": {
+                    "property": [
                         {
-                            "property-name": "AffinityWLMOverride", 
-                            "evaluation": "property-equals", 
-                            "value": "off"
-                        }, 
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
                         {
-                            "property-name": "AffinityMode", 
-                            "evaluation": "property-value-not-in-list", 
-                            "value": "activeConditional"
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Contains a brief summary for user annotation."
+                        },
+                        {
+                            "name": "Algorithm",
+                            "default": "round-robin",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLoadBalanceAlgorithm"
+                            },
+                            "required": "true",
+                            "summary": "Algorithm to balance the real servers.",
+                            "cli-alias": "algorithm",
+                            "display": "Algorithm",
+                            "description": "Select the algorithm to use to balance the real servers."
+                        },
+                        {
+                            "name": "RetrieveInfo",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "required": "true",
+                            "summary": "Retrieve Workload Management Information",
+                            "cli-alias": "retrieve-wlm-info",
+                            "display": "Retrieve Workload Management Information",
+                            "description": "Use this setting to control whether this Load Balancer Group has membership and weight information automatically retrieved from the work load management repository WebSphere Cell. When disabled, the static configuration is used."
+                        },
+                        {
+                            "name": "WLMRetrieval",
+                            "default": "use-websphere",
+                            "type": {
+                                "href": "/mgmt/types/default/dmWLMRetrieval"
+                            },
+                            "summary": "Workload Management Retrieval",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "RetrieveInfo",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "cli-alias": "wlm-type",
+                            "display": "Workload Management Retrieval",
+                            "description": "Contains the back end work load management repository selection type. Select 'WebSphere Cell' if your back-end is a WebSphere Application Server (WAS) Network Deployment (ND) or WAS Virtual Enterprise (VE)."
+                        },
+                        {
+                            "name": "WebSphereCellConfig",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/WCCService"
+                                }
+                            },
+                            "summary": "WebSphere Cell",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "RetrieveInfo",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "WLMRetrieval",
+                                            "evaluation": "property-value-not-in-list",
+                                            "value": "use-websphere"
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "websphere-cell",
+                            "display": "WebSphere Cell",
+                            "description": "If you selected 'WebSphere Cell' for Workload Management Retrieval, you need to select a WebSphere Cell object that retrieves this information. If no objects are available in the pull down, you must create one."
+                        },
+                        {
+                            "name": "WLMGroup",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Workload Management Group Name",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "RetrieveInfo",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "cli-alias": "wlm-group",
+                            "display": "Workload Management Group Name",
+                            "description": "The Workload Management Group Name is used to define a group. In a WebSphere Application Server environment, the back end group is a cluster name. Once specified, the Load Balancer Group will be populated with the members and weights retrieved from the back end."
+                        },
+                        {
+                            "name": "WLMTransport",
+                            "default": "http",
+                            "type": {
+                                "href": "/mgmt/types/default/dmWLMTransport"
+                            },
+                            "summary": "Protocol used for this Load Balancer Group",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "RetrieveInfo",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "WLMRetrieval",
+                                            "evaluation": "property-value-not-in-list",
+                                            "value": "use-websphere"
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "wlm-transport",
+                            "display": "Protocol",
+                            "description": "Specify either HTTP or HTTPS for the Load Balancer Group protocol. This protocol is used to forward traffic between the DataPower Gateway and the members of the Load Balancer Group."
+                        },
+                        {
+                            "name": "Damp",
+                            "default": 120,
+                            "cli-alias": "damp",
+                            "required": "true",
+                            "maximum": 86400,
+                            "summary": "Timeout for down server",
+                            "minimum": 1,
+                            "units": "Seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Damp Time",
+                            "description": "When a real server is observed to be non-functioning, it is temporarily disabled. When the damp time has elapsed, it is re-enabled. Allowable values are in the range 1 - 86400."
+                        },
+                        {
+                            "name": "NeverReturnSickMember",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Block Connection Attempt When All Members Are Down",
+                            "cli-alias": "giveup-when-all-members-down",
+                            "display": "Do not Bypass Down State",
+                            "description": "During normal operation, when all members of the load-balancing group are down and a new request for that group is made, the first member of the group is automatically selected. If this property is turned on, no attempt will be made to connect under these circumstances."
+                        },
+                        {
+                            "name": "LBGroupMembers",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLBGroupMember"
+                            },
+                            "summary": "Group Membership",
+                            "array": "true",
+                            "cli-alias": "server",
+                            "display": "Members"
+                        },
+                        {
+                            "name": "TryEveryServerBeforeFailing",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Try Every Server In Group Before Failing",
+                            "cli-alias": "try-every-server",
+                            "display": "Try Every Server Before Failing",
+                            "description": "This property applies only when none of the group members are in the \"up\" state. If this value is set, every server in the group is tried before failing the connection attempt. It is a \"last best-effort\" attempt."
+                        },
+                        {
+                            "description": "The members of a Load Balancer Group can be periodically polled to verify the health of the server. If the server is found to be unresponsive, it is removed from the list of actively available servers until the unresponsive server passes a health check.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLBGroupCheck"
+                            },
+                            "summary": "Periodically Executed Health Check",
+                            "cli-alias": "health-check",
+                            "display": "Health Checks",
+                            "name": "LBGroupChecks"
+                        },
+                        {
+                            "description": "If you set this value, the host name presented to the server will be the name of the group instead of the name of the member being used for that specific transaction.",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "cli-alias": "masquerade",
+                            "display": "Masquerade As Group Name",
+                            "name": "MasqueradeMember"
+                        },
+                        {
+                            "name": "ApplicationRouting",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Enables application routing with a WebSphere Cluster",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "RetrieveInfo",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "WLMRetrieval",
+                                            "evaluation": "property-value-not-in-list",
+                                            "value": "use-websphere"
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "appl-routing",
+                            "display": "Enable Application Routing",
+                            "description": "&lt;p>If set to on, the load balancer group will route to the back end cluster depending on the following conditions.&lt;/p>&lt;ul>&lt;li>the application for which this request is targeted&lt;/li>&lt;li>the application status on the back end servers&lt;/li>&lt;/ul>&lt;p>Application Routing is required for Application Edition (group or atomic) rollout. If you need Application Edition support, set the Update Type to Subscribe in the WebSphere Cell object.&lt;/p>"
+                        },
+                        {
+                            "description": "Session affinity allows applications to maintain sessions with clients.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLBGroupAffinity"
+                            },
+                            "summary": "Session Affinity",
+                            "cli-alias": "session-affinity",
+                            "display": "Session Affinity",
+                            "name": "LBGroupAffinityConf"
+                        },
+                        {
+                            "name": "MonitoredCookies",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Monitored Cookies",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "AffinityWLMOverride",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "AffinityMode",
+                                            "evaluation": "property-value-not-in-list",
+                                            "value": "activeConditional"
+                                        }
+                                    ]
+                                }
+                            },
+                            "array": "true",
+                            "cli-alias": "monitored-cookie",
+                            "display": "Monitored Cookies",
+                            "description": "The DataPower Gateway enforces session affinity when the application server attempts to establish session affinity using one of these cookie names."
                         }
                     ]
+                },
+                "description": "&lt;p>The DataPower device distributes traffic to members of a Load Balancer Group. These are back end servers and not additional DataPower devices. A Load Balancer Group lists members of a virtual server group and sets the algorithm for balancing them. Periodic health checks can be performed. Load Balancers may also be used to provide redundant LDAP server access.&lt;/p>&lt;p>When created, a DataPower service can use a Load Balancer Group by associating it with an XML manager that is associated with this service.&lt;/p>&lt;p>The back end destination URL is set to the name of the Load Balancer Group (example: \"BackEndServers\").&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/LoadBalancerGroup"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/LoadBalancerGroup"
                 }
-            }, 
-            "array": "true", 
-            "cli-alias": "monitored-cookie", 
-            "display": "Monitored Cookies", 
-            "description": "The DataPower Gateway enforces session affinity when the application server attempts to establish session affinity using one of these cookie names."
+            }
         }
-    ]
+    }
 }

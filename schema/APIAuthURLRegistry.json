@@ -1,119 +1,163 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "description": "A descriptive summary for the API authentication URL registry.", 
-            "cli-alias": "summary", 
-            "summary": "Enter a brief descriptive summary for the API authentication URL registry.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments", 
-            "name": "UserSummary"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
+                    "cli-arg": "string",
                     "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
                 }
-            }, 
-            "name": "AuthURL", 
-            "cli-alias": "auth-url", 
-            "required": "true", 
-            "summary": "Enter the URL of the authentication endpoint to authenticate credentials.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Authentication URL", 
-            "description": "The URL of the authentication endpoint to authenticate credentials. The user credentials in the authorization header are validated by the endpoint that is specified in the URL. When the user is authenticated, DataPower expects the authentication endpoint to return an HTTP 200 OK response status code. All other HTTP response status codes result in an authentication failure and access is denied."
-        }, 
-        {
-            "description": "Set the TLS client profile to secure connections between the DataPower Gateway and the authentication URL.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLClientProfile"
-                }
-            }, 
-            "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and the authentication URL.", 
-            "cli-alias": "tls-client", 
-            "display": "TLS client profile", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
                 }
-            }, 
-            "name": "TLSClientProfile"
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "APIAuthURLRegistry",
+                "display": "API Authentication URL Registry",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            }
+                        ],
+                        "name": "summary",
+                        "display": "Summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "AuthURL"
+                            },
+                            {
+                                "name": "TLSClientProfile"
+                            }
+                        ],
+                        "name": "main",
+                        "display": "Main"
+                    }
+                ],
+                "uri": "config/api-auth-url-reg",
+                "summary": "Configure and manage the API authentication URL registry",
+                "cmd-group": "configuration",
+                "cli-alias": "api-auth-url-reg",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "A descriptive summary for the API authentication URL registry.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter a brief descriptive summary for the API authentication URL registry.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "AuthURL",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "summary": "Enter the URL of the authentication endpoint to authenticate credentials.",
+                            "cli-alias": "auth-url",
+                            "display": "Authentication URL",
+                            "description": "The URL of the authentication endpoint to authenticate credentials. The user credentials in the authorization header are validated by the endpoint that is specified in the URL. When the user is authenticated, DataPower expects the authentication endpoint to return an HTTP 200 OK response status code. All other HTTP response status codes result in an authentication failure and access is denied."
+                        },
+                        {
+                            "description": "Set the TLS client profile to secure connections between the DataPower Gateway and the authentication URL.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                                }
+                            },
+                            "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and the authentication URL.",
+                            "cli-alias": "tls-client",
+                            "display": "TLS client profile",
+                            "name": "TLSClientProfile"
+                        }
+                    ]
+                },
+                "description": ""
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/APIAuthURLRegistry"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/APIAuthURLRegistry"
+                }
+            }
         }
-    ]
+    }
 }

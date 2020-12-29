@@ -1,1438 +1,1256 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "description": "A descriptive summary for the API Collection configuration.", 
-            "cli-alias": "summary", 
-            "summary": "Enter a brief descriptive summary for the API Collection configuration.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments", 
-            "name": "UserSummary"
-        }, 
-        {
-            "name": "Sandbox", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether the type of the catalog is sandbox", 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
+                                "name": "on",
                                 "display": "on"
-                            }, 
+                            },
                             {
-                                "name": "off", 
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "cli-alias": "sandbox", 
-            "display": "Sandbox", 
-            "description": "Indicates whether the APIs in this catalog is for test purposes only. By default, a catalog is not for test purposes."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "OrgID", 
-            "cli-alias": "organization-id", 
-            "required": "true", 
-            "summary": "Identifier of the organization that the API collection belongs to", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Organization ID", 
-            "description": "Specifies the ID for the organization that the API collection belongs to."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "OrgName", 
-            "cli-alias": "organization-name", 
-            "required": "true", 
-            "summary": "Name of the organization that the API collection belongs to", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Organization name", 
-            "description": "Specifies the name for the organization that the API collection belongs to."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "CatalogID", 
-            "default": "default-catalog-id", 
-            "cli-alias": "catalog-id", 
-            "summary": "Catalog ID of the API collection", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Catalog ID", 
-            "description": "Specifies the ID of the catalog that the API collection corresponds to."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "CatalogName", 
-            "default": "default", 
-            "cli-alias": "catalog-name", 
-            "summary": "Catalog name of the API collection", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Catalog Name", 
-            "description": "Specifies the name of the catalog that the API collection corresponds to."
-        }, 
-        {
-            "name": "EnableCache", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to cache subscriber data", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "enable-cache", 
-            "display": "Enable caching of subscribers", 
-            "description": "Specifies whether to cache subscriber entries that are retrieved from the API manager. When enabled, retrieved entries are cached on the API Gateway. Future inquiries search the cache before querying from the API manager."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmUInt32"
                     }
-                }
-            }, 
-            "name": "CacheCapacity", 
-            "default": 128, 
-            "required-when": {
-                "condition": {
-                    "property-name": "EnableCache", 
-                    "evaluation": "property-equals", 
-                    "value": "on"
-                }
-            }, 
-            "maximum": 51200, 
-            "summary": "Maximum number of subscriber entries allowed in the cache", 
-            "minimum": 8, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "EnableCache", 
-                    "evaluation": "property-equals", 
-                    "value": "off"
-                }
-            }, 
-            "cli-alias": "cache-capacity", 
-            "display": "Subscriber cache capacity", 
-            "description": "Specifies the maximum number of subscriber entries that can be cached. Enter a value in the range 8 - 51200. The default value is 128. When the limit is exceeded, the least recently used (LRU) entry is removed."
-        }, 
-        {
-            "name": "RoutingPrefix", 
-            "type": {
-                "href": "/mgmt/types/default/dmRoutingPrefix"
-            }, 
-            "required": "true", 
-            "summary": "Prefixes of the routing path", 
-            "array": "true", 
-            "/mgmt/types/default/dmRoutingPrefix": {
+                },
                 "type": {
-                    "summary": "Prefixes of the routing path", 
-                    "properties": {
-                        "property": [
-                            {
-                                "summary": "Type of the routing prefix", 
-                                "required": "true", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmRoutingPrefixType"
-                                }, 
-                                "display": "Type", 
-                                "name": "Type"
-                            }, 
-                            {
-                                "description": "Specifies the routing prefix that is used for API collection routing. &lt;ul>&lt;li>When the type is URI, the routing prefix is case sensitive and must begin but not end with slash (/).&lt;/li>&lt;li>When the type is host name, the prefix must not start or end with period (.). You need to specify only the first part of the host name (with domain name excluded), however, the request must use the complete URL with domain name included.&lt;/li>&lt;/ul>", 
-                                "required-when": {
-                                    "condition": {
-                                        "property-name": "Type", 
-                                        "evaluation": "property-equals", 
-                                        "value": "uri"
-                                    }
-                                }, 
-                                "summary": "Routing prefix", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Prefix", 
-                                "name": "Name"
-                            }
-                        ]
-                    }, 
-                    "name": "dmRoutingPrefix", 
-                    "display": "Routing prefix"
-                }, 
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmRoutingPrefix"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmRoutingPrefix"
                     }
-                }
-            }, 
-            "cli-alias": "routing-prefix", 
-            "display": "Routing prefixes", 
-            "description": "The API Gateway uses the routing prefix to determine which API collection to route the request to. &lt;p>You can use routing prefixes to organize your APIs and plans into collections and subcollections. For example, if you have a collection of APIs serving for a certain purpose, and the APIs are to be used by two segments of your organization, you might create two API collections with the organization name, purpose name, and segment name in the routing prefix. If the organization name is &lt;tt>myorg&lt;/tt> , the APIs serve for purpose &lt;tt>purpose1&lt;/tt> , and the two segments under the organization is &lt;tt>section1&lt;/tt> and &lt;tt>section2&lt;/tt> , the resulting URL routing prefixes are &lt;tt>/myorg/purpose1/section1&lt;/tt> and &lt;tt>/myorg/purpose1/section2&lt;/tt> . The resulting host name routing prefixes are &lt;tt>section1.purpose1.myorg&lt;/tt> and &lt;tt>section2.purpose1.myorg&lt;/tt> .&lt;/p>&lt;p>The API Gateway uses the routing prefix to form the complete URI &lt;tt>&amp;lt;routing prefix>&amp;lt;base path>&amp;lt;operation path>&lt;/tt> and accepts only the incoming requests with this URI. In the complete URI, &amp;lt;base path> is the base path on which the API is served, and &amp;lt;operation path> is the relative path to the base path where the operations are available.&lt;/p>&lt;p>The default routing prefix is slash (/) when the type is URI and blank when the type is host name. An API collection becomes the default API collection in the API Gateway when the API collection has a default routing prefix. The API Gateway routes a request to the default API collection when other API collections do not match. An API Gateway can have only one default API collection; therefore, regardless of the prefix type, only one API collection can be configured with the default routing prefix.&lt;/p>"
-        }, 
-        {
-            "name": "DefaultRateLimit", 
-            "type": {
-                "href": "/mgmt/types/default/dmAPIRateLimit"
-            }, 
-            "summary": "Default rate limit for API requests with no API key", 
-            "/mgmt/types/default/dmAPIRateLimit": {
+                },
                 "type": {
-                    "name": "dmAPIRateLimit", 
                     "properties": {
                         "property": [
                             {
-                                "description": "Indicates the name of the rate limit scheme.", 
-                                "required": "true", 
-                                "summary": "Name of the rate limit", 
+                                "display": "Type",
+                                "required": "true",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmRoutingPrefixType"
+                                },
+                                "name": "Type",
+                                "summary": "Type of the routing prefix"
+                            },
+                            {
+                                "description": "Specifies the routing prefix that is used for API collection routing. &lt;ul>&lt;li>When the type is URI, the routing prefix is case sensitive and must begin but not end with slash (/).&lt;/li>&lt;li>When the type is host name, the prefix must not start or end with period (.). You need to specify only the first part of the host name (with domain name excluded), however, the request must use the complete URL with domain name included.&lt;/li>&lt;/ul>",
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "Type",
+                                        "evaluation": "property-equals",
+                                        "value": "uri"
+                                    }
+                                },
+                                "summary": "Routing prefix",
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Name", 
+                                },
+                                "display": "Prefix",
                                 "name": "Name"
-                            }, 
+                            }
+                        ]
+                    },
+                    "display": "Routing prefix",
+                    "name": "dmRoutingPrefix",
+                    "summary": "Prefixes of the routing path"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAPIRateLimit"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAPIRateLimit"
+                    }
+                },
+                "type": {
+                    "name": "dmAPIRateLimit",
+                    "properties": {
+                        "property": [
                             {
-                                "description": "Indicates the maximum number of requests that the API Gateway can handle within a time interval. The value of 0 indicates no limit.", 
-                                "required": "true", 
-                                "summary": "Maximum number of requests to handle", 
+                                "description": "Indicates the name of the rate limit scheme.",
+                                "required": "true",
+                                "summary": "Name of the rate limit",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Name",
+                                "name": "Name"
+                            },
+                            {
+                                "description": "Indicates the maximum number of requests that the API Gateway can handle within a time interval. The value of 0 indicates no limit.",
+                                "required": "true",
+                                "summary": "Maximum number of requests to handle",
                                 "type": {
                                     "href": "/mgmt/types/default/dmUInt32"
-                                }, 
-                                "display": "Rate", 
+                                },
+                                "display": "Rate",
                                 "name": "Rate"
-                            }, 
+                            },
                             {
-                                "name": "Interval", 
-                                "default": 1, 
-                                "summary": "Time interval for the rate limit", 
-                                "minimum": 1, 
+                                "name": "Interval",
+                                "default": 1,
+                                "summary": "Time interval for the rate limit",
+                                "minimum": 1,
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "Rate", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Rate",
+                                        "evaluation": "property-equals",
                                         "value": 0
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmUInt16"
-                                }, 
-                                "display": "Interval", 
+                                },
+                                "display": "Interval",
                                 "description": "Indicates the time interval for the rate limit. Specify a value that is greater than or equal to 1. The default value is 1."
-                            }, 
+                            },
                             {
-                                "name": "Unit", 
-                                "default": "second", 
-                                "summary": "Time unit for the rate limit", 
+                                "name": "Unit",
+                                "default": "second",
+                                "summary": "Time unit for the rate limit",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "Rate", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Rate",
+                                        "evaluation": "property-equals",
                                         "value": 0
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmAPIRateLimitUnit"
-                                }, 
-                                "display": "Unit", 
+                                },
+                                "display": "Unit",
                                 "description": "Indicates the time unit for the rate limit. The default value is second."
-                            }, 
+                            },
                             {
-                                "name": "HardLimit", 
-                                "default": "off", 
-                                "summary": "Whether to enable hard limit", 
+                                "name": "HardLimit",
+                                "default": "off",
+                                "summary": "Whether to enable hard limit",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "Rate", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Rate",
+                                        "evaluation": "property-equals",
                                         "value": 0
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Enable hard limit", 
+                                },
+                                "display": "Enable hard limit",
                                 "description": "&lt;p>Indicates whether to reject requests when the specified rate limit is reached.&lt;/p>&lt;ul>&lt;li>When enabled, the API Gateway rejects requests when the limit is exceeded.&lt;/li>&lt;li>When disabled, the API Gateway still handles the requests but produces a warning message.&lt;/li>&lt;/ul>&lt;p>By default, the API Gateway does not reject requests when the limit is exceeded.&lt;/p>"
-                            }, 
+                            },
                             {
-                                "name": "CacheOnly", 
-                                "default": "on", 
-                                "summary": "Use the local cache first to enforce the rate limit", 
+                                "name": "CacheOnly",
+                                "default": "on",
+                                "summary": "Use the local cache first to enforce the rate limit",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "Rate", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Rate",
+                                        "evaluation": "property-equals",
                                         "value": 0
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Cache only", 
+                                },
+                                "display": "Cache only",
                                 "description": "Specifies whether to use the local cache first to enforce the rate limit. In peer group mode, using the local cache first can prevent transaction delays if communication problems arise across the peer group. However, the transaction count is less precise when this setting is enabled."
-                            }, 
+                            },
                             {
-                                "name": "IsClient", 
-                                "default": "on", 
-                                "summary": "Whether to apply the rate limit to the client", 
+                                "name": "IsClient",
+                                "default": "on",
+                                "summary": "Whether to apply the rate limit to the client",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "Rate", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Rate",
+                                        "evaluation": "property-equals",
                                         "value": 0
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Is Client", 
+                                },
+                                "display": "Is Client",
                                 "description": "Indicates whether to apply the rate limit to the client or to an internal component. Client rate limits return a 429 error when exceeded. Non-client rate limits return a 503 error when exceeded. When set to &lt;tt>off&lt;/tt> , rate limit information is not included in the response header."
-                            }, 
+                            },
                             {
-                                "name": "UseApiName", 
-                                "default": "off", 
-                                "summary": "Whether to use the API name as part of the rate limit key", 
+                                "name": "UseApiName",
+                                "default": "off",
+                                "summary": "Whether to use the API name as part of the rate limit key",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "Rate", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Rate",
+                                        "evaluation": "property-equals",
                                         "value": 0
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Use API Name", 
+                                },
+                                "display": "Use API Name",
                                 "description": "Indicates whether to use the API name as part of the rate limit key."
-                            }, 
+                            },
                             {
-                                "name": "UseAppId", 
-                                "default": "off", 
-                                "summary": "Whether to use the application ID as part of the rate limit key", 
+                                "name": "UseAppId",
+                                "default": "off",
+                                "summary": "Whether to use the application ID as part of the rate limit key",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "Rate", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Rate",
+                                        "evaluation": "property-equals",
                                         "value": 0
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Use Application ID", 
+                                },
+                                "display": "Use Application ID",
                                 "description": "Indicates whether to use the application ID as part of the rate limit key."
-                            }, 
+                            },
                             {
-                                "name": "UseClientId", 
-                                "default": "off", 
-                                "summary": "Whether to use the client ID as part of the rate limit key", 
+                                "name": "UseClientId",
+                                "default": "off",
+                                "summary": "Whether to use the client ID as part of the rate limit key",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "Rate", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Rate",
+                                        "evaluation": "property-equals",
                                         "value": 0
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Use Client ID", 
+                                },
+                                "display": "Use Client ID",
                                 "description": "Indicates whether to use the client ID as part of the rate limit key."
-                            }, 
+                            },
                             {
-                                "name": "DynamicValue", 
-                                "default": "", 
-                                "summary": "The dynamic value for the rate limit", 
+                                "name": "DynamicValue",
+                                "default": "",
+                                "summary": "The dynamic value for the rate limit",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "Rate", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Rate",
+                                        "evaluation": "property-equals",
                                         "value": 0
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Dynamic Value", 
+                                },
+                                "display": "Dynamic Value",
                                 "description": "Indicates the dynamic value string for the rate limit, which should contain one or more context variables. The dynamic value makes it possible to use a context variable to enforce the rate limit based on parameters other than those defined in the rate limit scheme, such as a user name, incoming IP address, or server name. The context variable can be set in a GatewayScript action and then included in the dynamic value. &lt;p>The following example uses the context object in a GatewayScript action to add the &lt;tt>my.server&lt;/tt> variable to the API context.&lt;/p>&lt;p>&lt;tt>context.set(\"my.server\", \"server34\")&lt;/tt>&lt;/p>&lt;p>The dynamic value can then include the variable &lt;tt>my.server&lt;/tt> , which resolves to the server name &lt;tt>server34&lt;/tt> .&lt;/p>&lt;p>The default value is an empty string.&lt;/p>"
-                            }, 
+                            },
                             {
-                                "name": "Weight", 
-                                "default": 1, 
-                                "summary": "Expression determining how much weight to apply to the limit.", 
+                                "name": "Weight",
+                                "default": 1,
+                                "summary": "Expression determining how much weight to apply to the limit.",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "Rate", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Rate",
+                                        "evaluation": "property-equals",
                                         "value": 0
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Weight expression", 
+                                },
+                                "display": "Weight expression",
                                 "description": "Specifies a JSONata expression that assigns a weight value to the transaction. For each API call, the value computed by the weight expression is applied to the rate limit. The default value is 1. If the weight expression evaluates to a value that is less than or equal to 0, it is set to 1. An empty string results in an error."
                             }
                         ]
                     }
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmAPIRateLimit"
-                    }, 
+                        "href": "/mgmt/docs/types/dmAPIBurstLimit"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmAPIRateLimit"
+                        "href": "/mgmt/types/default/dmAPIBurstLimit"
                     }
-                }
-            }, 
-            "array": "true", 
-            "cli-alias": "default-rate-limit", 
-            "display": "Default rate limit", 
-            "description": "Defines the rate limit scheme for the API requests that do not carry API key credentials for client identification. When not defined, requests without API keys are rejected."
-        }, 
-        {
-            "name": "AssemblyBurstLimit", 
-            "type": {
-                "href": "/mgmt/types/default/dmAPIBurstLimit"
-            }, 
-            "summary": "Burst limit to be used by assembly rate limit action.", 
-            "/mgmt/types/default/dmAPIBurstLimit": {
+                },
                 "type": {
-                    "name": "dmAPIBurstLimit", 
+                    "name": "dmAPIBurstLimit",
                     "properties": {
                         "property": [
                             {
-                                "description": "Indicates the name of the burst limit scheme.", 
-                                "required": "true", 
-                                "summary": "Name of the burst limit scheme", 
+                                "description": "Indicates the name of the burst limit scheme.",
+                                "required": "true",
+                                "summary": "Name of the burst limit scheme",
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Name", 
+                                },
+                                "display": "Name",
                                 "name": "Name"
-                            }, 
+                            },
                             {
-                                "description": "Indicates the maximum allowed burst rate. The value of 0 indicates no limit. A message is rejected when the burst limit is exceeded.", 
-                                "required": "true", 
-                                "summary": "Maximum allowed burst rate", 
+                                "description": "Indicates the maximum allowed burst rate. The value of 0 indicates no limit. A message is rejected when the burst limit is exceeded.",
+                                "required": "true",
+                                "summary": "Maximum allowed burst rate",
                                 "type": {
                                     "href": "/mgmt/types/default/dmUInt32"
-                                }, 
-                                "display": "Burst", 
+                                },
+                                "display": "Burst",
                                 "name": "Burst"
-                            }, 
+                            },
                             {
-                                "name": "Interval", 
-                                "default": 1, 
-                                "summary": "Time interval for the burst limit", 
-                                "minimum": 1, 
+                                "name": "Interval",
+                                "default": 1,
+                                "summary": "Time interval for the burst limit",
+                                "minimum": 1,
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "Burst", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Burst",
+                                        "evaluation": "property-equals",
                                         "value": 0
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmUInt16"
-                                }, 
-                                "display": "Interval", 
+                                },
+                                "display": "Interval",
                                 "description": "Indicates the time interval for the burst limit. Specify a value that is greater than or equal to 1. The default value is 1."
-                            }, 
+                            },
                             {
-                                "name": "Unit", 
-                                "default": "second", 
-                                "summary": "Time unit for the burst limit", 
+                                "name": "Unit",
+                                "default": "second",
+                                "summary": "Time unit for the burst limit",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "Burst", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Burst",
+                                        "evaluation": "property-equals",
                                         "value": 0
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmAPIBurstLimitUnit"
-                                }, 
-                                "display": "Unit", 
+                                },
+                                "display": "Unit",
                                 "description": "Indicates the time unit for the burst limit. The default value is second."
-                            }, 
+                            },
                             {
-                                "name": "CacheOnly", 
-                                "default": "on", 
-                                "summary": "Use the local cache first to enforce the burst limit", 
+                                "name": "CacheOnly",
+                                "default": "on",
+                                "summary": "Use the local cache first to enforce the burst limit",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "Burst", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Burst",
+                                        "evaluation": "property-equals",
                                         "value": 0
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Cache only", 
+                                },
+                                "display": "Cache only",
                                 "description": "Specifies whether to use the local cache first to enforce the burst limit. In peer group mode, using the local cache first can prevent transaction delays if communication problems arise across the peer group. However, the transaction count is less precise when this setting is enabled."
-                            }, 
+                            },
                             {
-                                "name": "IsClient", 
-                                "default": "on", 
-                                "summary": "Whether to apply the burst limit to the client", 
+                                "name": "IsClient",
+                                "default": "on",
+                                "summary": "Whether to apply the burst limit to the client",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "Burst", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Burst",
+                                        "evaluation": "property-equals",
                                         "value": 0
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Is Client", 
+                                },
+                                "display": "Is Client",
                                 "description": "Indicates whether to apply the burst limit to the client or to an internal component. Client burst limits return a 429 error when exceeded. Non-client burst limits return a 503 error when exceeded. When set to &lt;tt>off&lt;/tt> , burst limit information is not included in the response header."
-                            }, 
+                            },
                             {
-                                "name": "UseApiName", 
-                                "default": "off", 
-                                "summary": "Whether to use the API name as part of the burst limit key", 
+                                "name": "UseApiName",
+                                "default": "off",
+                                "summary": "Whether to use the API name as part of the burst limit key",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "Burst", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Burst",
+                                        "evaluation": "property-equals",
                                         "value": 0
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Use API Name", 
+                                },
+                                "display": "Use API Name",
                                 "description": "Indicates whether to use the API name as part of the burst limit key."
-                            }, 
+                            },
                             {
-                                "name": "UseAppId", 
-                                "default": "off", 
-                                "summary": "Whether to use the application ID as part of the burst limit key", 
+                                "name": "UseAppId",
+                                "default": "off",
+                                "summary": "Whether to use the application ID as part of the burst limit key",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "Burst", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Burst",
+                                        "evaluation": "property-equals",
                                         "value": 0
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Use Application ID", 
+                                },
+                                "display": "Use Application ID",
                                 "description": "Indicates whether to use the application ID as part of the burst limit key."
-                            }, 
+                            },
                             {
-                                "name": "UseClientId", 
-                                "default": "off", 
-                                "summary": "Whether to use the client ID as part of the burst limit key", 
+                                "name": "UseClientId",
+                                "default": "off",
+                                "summary": "Whether to use the client ID as part of the burst limit key",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "Burst", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Burst",
+                                        "evaluation": "property-equals",
                                         "value": 0
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Use Client ID", 
+                                },
+                                "display": "Use Client ID",
                                 "description": "Indicates whether to use the client ID as part of the burst limit key."
-                            }, 
+                            },
                             {
-                                "name": "DynamicValue", 
-                                "default": "", 
-                                "summary": "The dynamic value for the burst limit", 
+                                "name": "DynamicValue",
+                                "default": "",
+                                "summary": "The dynamic value for the burst limit",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "Burst", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Burst",
+                                        "evaluation": "property-equals",
                                         "value": 0
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Dynamic Value", 
+                                },
+                                "display": "Dynamic Value",
                                 "description": "Indicates the dynamic value string for the burst limit, which should contain one or more context variables. The dynamic value makes it possible to use a context variable to enforce the burst limit based on parameters other than those defined in the burst limit scheme, such as a user name, incoming IP address, or server name. The context variable can be set in a GatewayScript action and then included in the dynamic value. &lt;p>The following example uses the context object in a GatewayScript action to add the &lt;tt>my.server&lt;/tt> variable to the API context.&lt;/p>&lt;p>&lt;tt>context.set(\"my.server\", \"server34\")&lt;/tt>&lt;/p>&lt;p>The dynamic value can then include the variable &lt;tt>my.server&lt;/tt> , which resolves to the server name &lt;tt>server34&lt;/tt> .&lt;/p>&lt;p>The default value is an empty string.&lt;/p>"
-                            }, 
+                            },
                             {
-                                "name": "Weight", 
-                                "default": 1, 
-                                "summary": "Expression determining how much weight to apply to the limit.", 
+                                "name": "Weight",
+                                "default": 1,
+                                "summary": "Expression determining how much weight to apply to the limit.",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "Burst", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Burst",
+                                        "evaluation": "property-equals",
                                         "value": 0
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Weight expression", 
+                                },
+                                "display": "Weight expression",
                                 "description": "Specifies a JSONata expression that assigns a weight value to the transaction. For each API call, the value computed by the weight expression is applied to the burst limit. The default value is 1. If the weight expression evaluates to a value that is less than or equal to 0, it is set to 1. An empty string results in an error."
                             }
                         ]
                     }
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmAPIBurstLimit"
-                    }, 
+                        "href": "/mgmt/docs/types/dmAPICountLimit"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmAPIBurstLimit"
+                        "href": "/mgmt/types/default/dmAPICountLimit"
                     }
-                }
-            }, 
-            "array": "true", 
-            "cli-alias": "assembly-burst-limit", 
-            "display": "Assembly burst limit", 
-            "description": "Defines the scheme for burst limits to be used by the rate limit assembly action."
-        }, 
-        {
-            "name": "AssemblyRateLimit", 
-            "type": {
-                "href": "/mgmt/types/default/dmAPIRateLimit"
-            }, 
-            "summary": "Rate limit to be used by assembly rate limit action.", 
-            "/mgmt/types/default/dmAPIRateLimit": {
+                },
                 "type": {
-                    "name": "dmAPIRateLimit", 
+                    "name": "dmAPICountLimit",
                     "properties": {
                         "property": [
                             {
-                                "description": "Indicates the name of the rate limit scheme.", 
-                                "required": "true", 
-                                "summary": "Name of the rate limit", 
+                                "description": "Indicates the name of the count limit scheme.",
+                                "required": "true",
+                                "summary": "Name of the count limit",
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Name", 
+                                },
+                                "display": "Name",
                                 "name": "Name"
-                            }, 
+                            },
                             {
-                                "description": "Indicates the maximum number of requests that the API Gateway can handle within a time interval. The value of 0 indicates no limit.", 
-                                "required": "true", 
-                                "summary": "Maximum number of requests to handle", 
+                                "description": "Indicates the maximum count that this limit will allow.",
+                                "required": "true",
+                                "summary": "Maximum count allowed",
                                 "type": {
                                     "href": "/mgmt/types/default/dmUInt32"
-                                }, 
-                                "display": "Rate", 
-                                "name": "Rate"
-                            }, 
-                            {
-                                "name": "Interval", 
-                                "default": 1, 
-                                "summary": "Time interval for the rate limit", 
-                                "minimum": 1, 
-                                "ignored-when": {
-                                    "condition": {
-                                        "property-name": "Rate", 
-                                        "evaluation": "property-equals", 
-                                        "value": 0
-                                    }
-                                }, 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmUInt16"
-                                }, 
-                                "display": "Interval", 
-                                "description": "Indicates the time interval for the rate limit. Specify a value that is greater than or equal to 1. The default value is 1."
-                            }, 
-                            {
-                                "name": "Unit", 
-                                "default": "second", 
-                                "summary": "Time unit for the rate limit", 
-                                "ignored-when": {
-                                    "condition": {
-                                        "property-name": "Rate", 
-                                        "evaluation": "property-equals", 
-                                        "value": 0
-                                    }
-                                }, 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmAPIRateLimitUnit"
-                                }, 
-                                "display": "Unit", 
-                                "description": "Indicates the time unit for the rate limit. The default value is second."
-                            }, 
-                            {
-                                "name": "HardLimit", 
-                                "default": "off", 
-                                "summary": "Whether to enable hard limit", 
-                                "ignored-when": {
-                                    "condition": {
-                                        "property-name": "Rate", 
-                                        "evaluation": "property-equals", 
-                                        "value": 0
-                                    }
-                                }, 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Enable hard limit", 
-                                "description": "&lt;p>Indicates whether to reject requests when the specified rate limit is reached.&lt;/p>&lt;ul>&lt;li>When enabled, the API Gateway rejects requests when the limit is exceeded.&lt;/li>&lt;li>When disabled, the API Gateway still handles the requests but produces a warning message.&lt;/li>&lt;/ul>&lt;p>By default, the API Gateway does not reject requests when the limit is exceeded.&lt;/p>"
-                            }, 
-                            {
-                                "name": "CacheOnly", 
-                                "default": "on", 
-                                "summary": "Use the local cache first to enforce the rate limit", 
-                                "ignored-when": {
-                                    "condition": {
-                                        "property-name": "Rate", 
-                                        "evaluation": "property-equals", 
-                                        "value": 0
-                                    }
-                                }, 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Cache only", 
-                                "description": "Specifies whether to use the local cache first to enforce the rate limit. In peer group mode, using the local cache first can prevent transaction delays if communication problems arise across the peer group. However, the transaction count is less precise when this setting is enabled."
-                            }, 
-                            {
-                                "name": "IsClient", 
-                                "default": "on", 
-                                "summary": "Whether to apply the rate limit to the client", 
-                                "ignored-when": {
-                                    "condition": {
-                                        "property-name": "Rate", 
-                                        "evaluation": "property-equals", 
-                                        "value": 0
-                                    }
-                                }, 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Is Client", 
-                                "description": "Indicates whether to apply the rate limit to the client or to an internal component. Client rate limits return a 429 error when exceeded. Non-client rate limits return a 503 error when exceeded. When set to &lt;tt>off&lt;/tt> , rate limit information is not included in the response header."
-                            }, 
-                            {
-                                "name": "UseApiName", 
-                                "default": "off", 
-                                "summary": "Whether to use the API name as part of the rate limit key", 
-                                "ignored-when": {
-                                    "condition": {
-                                        "property-name": "Rate", 
-                                        "evaluation": "property-equals", 
-                                        "value": 0
-                                    }
-                                }, 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Use API Name", 
-                                "description": "Indicates whether to use the API name as part of the rate limit key."
-                            }, 
-                            {
-                                "name": "UseAppId", 
-                                "default": "off", 
-                                "summary": "Whether to use the application ID as part of the rate limit key", 
-                                "ignored-when": {
-                                    "condition": {
-                                        "property-name": "Rate", 
-                                        "evaluation": "property-equals", 
-                                        "value": 0
-                                    }
-                                }, 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Use Application ID", 
-                                "description": "Indicates whether to use the application ID as part of the rate limit key."
-                            }, 
-                            {
-                                "name": "UseClientId", 
-                                "default": "off", 
-                                "summary": "Whether to use the client ID as part of the rate limit key", 
-                                "ignored-when": {
-                                    "condition": {
-                                        "property-name": "Rate", 
-                                        "evaluation": "property-equals", 
-                                        "value": 0
-                                    }
-                                }, 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Use Client ID", 
-                                "description": "Indicates whether to use the client ID as part of the rate limit key."
-                            }, 
-                            {
-                                "name": "DynamicValue", 
-                                "default": "", 
-                                "summary": "The dynamic value for the rate limit", 
-                                "ignored-when": {
-                                    "condition": {
-                                        "property-name": "Rate", 
-                                        "evaluation": "property-equals", 
-                                        "value": 0
-                                    }
-                                }, 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Dynamic Value", 
-                                "description": "Indicates the dynamic value string for the rate limit, which should contain one or more context variables. The dynamic value makes it possible to use a context variable to enforce the rate limit based on parameters other than those defined in the rate limit scheme, such as a user name, incoming IP address, or server name. The context variable can be set in a GatewayScript action and then included in the dynamic value. &lt;p>The following example uses the context object in a GatewayScript action to add the &lt;tt>my.server&lt;/tt> variable to the API context.&lt;/p>&lt;p>&lt;tt>context.set(\"my.server\", \"server34\")&lt;/tt>&lt;/p>&lt;p>The dynamic value can then include the variable &lt;tt>my.server&lt;/tt> , which resolves to the server name &lt;tt>server34&lt;/tt> .&lt;/p>&lt;p>The default value is an empty string.&lt;/p>"
-                            }, 
-                            {
-                                "name": "Weight", 
-                                "default": 1, 
-                                "summary": "Expression determining how much weight to apply to the limit.", 
-                                "ignored-when": {
-                                    "condition": {
-                                        "property-name": "Rate", 
-                                        "evaluation": "property-equals", 
-                                        "value": 0
-                                    }
-                                }, 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Weight expression", 
-                                "description": "Specifies a JSONata expression that assigns a weight value to the transaction. For each API call, the value computed by the weight expression is applied to the rate limit. The default value is 1. If the weight expression evaluates to a value that is less than or equal to 0, it is set to 1. An empty string results in an error."
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAPIRateLimit"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAPIRateLimit"
-                    }
-                }
-            }, 
-            "array": "true", 
-            "cli-alias": "assembly-rate-limit", 
-            "display": "Assembly rate limit", 
-            "description": "Defines the scheme for rate limits to be used by the rate limit assembly action."
-        }, 
-        {
-            "name": "AssemblyCountLimit", 
-            "type": {
-                "href": "/mgmt/types/default/dmAPICountLimit"
-            }, 
-            "summary": "Count limit to be used by assembly rate limit action.", 
-            "array": "true", 
-            "/mgmt/types/default/dmAPICountLimit": {
-                "type": {
-                    "name": "dmAPICountLimit", 
-                    "properties": {
-                        "property": [
-                            {
-                                "description": "Indicates the name of the count limit scheme.", 
-                                "required": "true", 
-                                "summary": "Name of the count limit", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Name", 
-                                "name": "Name"
-                            }, 
-                            {
-                                "description": "Indicates the maximum count that this limit will allow.", 
-                                "required": "true", 
-                                "summary": "Maximum count allowed", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmUInt32"
-                                }, 
-                                "display": "Count", 
+                                },
+                                "display": "Count",
                                 "name": "Count"
-                            }, 
+                            },
                             {
-                                "description": "&lt;p>Indicates whether to reject requests when the specified count limit is reached.&lt;/p>&lt;ul>&lt;li>When enabled, the API Gateway rejects requests when the limit is exceeded.&lt;/li>&lt;li>When disabled, the API Gateway still handles the requests but produces a warning message.&lt;/li>&lt;/ul>&lt;p>By default, the API Gateway rejects requests when the limit is exceeded.&lt;/p>", 
-                                "default": "on", 
-                                "summary": "Whether to enable hard limit", 
+                                "description": "&lt;p>Indicates whether to reject requests when the specified count limit is reached.&lt;/p>&lt;ul>&lt;li>When enabled, the API Gateway rejects requests when the limit is exceeded.&lt;/li>&lt;li>When disabled, the API Gateway still handles the requests but produces a warning message.&lt;/li>&lt;/ul>&lt;p>By default, the API Gateway rejects requests when the limit is exceeded.&lt;/p>",
+                                "default": "on",
+                                "summary": "Whether to enable hard limit",
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Enable hard limit", 
+                                },
+                                "display": "Enable hard limit",
                                 "name": "HardLimit"
-                            }, 
+                            },
                             {
-                                "description": "Specifies whether to use the local cache first to enforce the count limit. In peer group mode, using the local cache first can prevent transaction delays if communication problems arise across the peer group. However, the transaction count is less precise when this setting is enabled.", 
-                                "default": "on", 
-                                "summary": "Use the local cache first to enforce the count limit", 
+                                "description": "Specifies whether to use the local cache first to enforce the count limit. In peer group mode, using the local cache first can prevent transaction delays if communication problems arise across the peer group. However, the transaction count is less precise when this setting is enabled.",
+                                "default": "on",
+                                "summary": "Use the local cache first to enforce the count limit",
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Cache only", 
+                                },
+                                "display": "Cache only",
                                 "name": "CacheOnly"
-                            }, 
+                            },
                             {
-                                "description": "Indicates whether to apply the count limit to the client or to an internal component. Client count limits return a 429 error when exceeded. Non-client count limits return a 503 error when exceeded. When set to &lt;tt>off&lt;/tt> , count limit information is not included in the response header.", 
-                                "default": "off", 
-                                "summary": "Whether to apply the count limit to the client", 
+                                "description": "Indicates whether to apply the count limit to the client or to an internal component. Client count limits return a 429 error when exceeded. Non-client count limits return a 503 error when exceeded. When set to &lt;tt>off&lt;/tt> , count limit information is not included in the response header.",
+                                "default": "off",
+                                "summary": "Whether to apply the count limit to the client",
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Is Client", 
+                                },
+                                "display": "Is Client",
                                 "name": "IsClient"
-                            }, 
+                            },
                             {
-                                "description": "Indicates whether to use the API name as part of the count limit key.", 
-                                "default": "off", 
-                                "summary": "Whether to use the API name as part of the count limit key", 
+                                "description": "Indicates whether to use the API name as part of the count limit key.",
+                                "default": "off",
+                                "summary": "Whether to use the API name as part of the count limit key",
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Use API Name", 
+                                },
+                                "display": "Use API Name",
                                 "name": "UseApiName"
-                            }, 
+                            },
                             {
-                                "description": "Indicates whether to use the application ID as part of the count limit key.", 
-                                "default": "off", 
-                                "summary": "Whether to use the application ID as part of the count limit key", 
+                                "description": "Indicates whether to use the application ID as part of the count limit key.",
+                                "default": "off",
+                                "summary": "Whether to use the application ID as part of the count limit key",
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Use Application ID", 
+                                },
+                                "display": "Use Application ID",
                                 "name": "UseAppId"
-                            }, 
+                            },
                             {
-                                "description": "Indicates whether to use the client ID as part of the count limit key.", 
-                                "default": "off", 
-                                "summary": "Whether to use the client ID as part of the count limit key", 
+                                "description": "Indicates whether to use the client ID as part of the count limit key.",
+                                "default": "off",
+                                "summary": "Whether to use the client ID as part of the count limit key",
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Use Client ID", 
+                                },
+                                "display": "Use Client ID",
                                 "name": "UseClientId"
-                            }, 
+                            },
                             {
-                                "description": "Indicates the dynamic value string for the count limit, which should contain one or more context variables. The default value is an empty string.", 
-                                "default": "", 
-                                "summary": "The dynamic value for the count limit", 
+                                "description": "Indicates the dynamic value string for the count limit, which should contain one or more context variables. The default value is an empty string.",
+                                "default": "",
+                                "summary": "The dynamic value for the count limit",
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Dynamic Value", 
+                                },
+                                "display": "Dynamic Value",
                                 "name": "DynamicValue"
-                            }, 
+                            },
                             {
-                                "description": "Specifies a JSONata expression that assigns a weight value to the transaction. For each API call, the value computed by the weight expression is applied to the count limit. The default value is 1. If the weight expression evaluates to a value that is less than or equal to 0, it is set to 1. An empty string results in an error.", 
-                                "default": 1, 
-                                "summary": "Expression determining how much weight to apply to the limit.", 
+                                "description": "Specifies a JSONata expression that assigns a weight value to the transaction. For each API call, the value computed by the weight expression is applied to the count limit. The default value is 1. If the weight expression evaluates to a value that is less than or equal to 0, it is set to 1. An empty string results in an error.",
+                                "default": 1,
+                                "summary": "Expression determining how much weight to apply to the limit.",
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Weight expression", 
+                                },
+                                "display": "Weight expression",
                                 "name": "Weight"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAPICountLimit"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAPICountLimit"
-                    }
                 }
-            }, 
-            "cli-alias": "assembly-count-limit", 
-            "display": "Assembly count limit", 
-            "description": "Defines the scheme for count limits to be used by the rate limit assembly action."
-        }, 
-        {
-            "name": "EnforcePreAssemblyRateLimits", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Enforce the API rate and burst limits defined in the plan.", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "enforce-pre-assembly-rate-limits", 
-            "display": "Enforce pre-assembly Rate Limits", 
-            "description": "When this toggle is off, only the limits specified in a Rate Limit action in the assembly will be applied to this API."
-        }, 
-        {
-            "name": "APIProcessingRule", 
-            "default": "default-api-rule", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/APIRule"
-                }
-            }, 
-            "required": "true", 
-            "summary": "Processing rule to process the API request", 
-            "cli-alias": "processing-rule", 
-            "display": "API processing rule", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "description": "Defines the processing rule that matches the target API, enforces the rate limiting and security rules of using the API, executes the assembly of the API, and responds to the client."
-        }, 
-        {
-            "name": "APIErrorRule", 
-            "default": "default-api-error-rule", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/APIRule"
-                }
-            }, 
-            "summary": "Processing rule to handle the errors during API request processing", 
-            "cli-alias": "error-rule", 
-            "display": "API error rule", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
+                    "cli-arg": "object",
                     "name": "dmReference"
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                        "href": "/mgmt/docs/types/dmDynamicParseSettingsReference"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmReference"
+                        "href": "/mgmt/types/default/dmDynamicParseSettingsReference"
                     }
-                }
-            }, 
-            "description": "Defines the error rule that prepares fault messages for errors that occur during API request processing."
-        }, 
-        {
-            "description": "Defines the preprocessing assembly to run before the assembly rule.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/Assembly"
-                }
-            }, 
-            "summary": "Processing rule before the API assembly rule", 
-            "cli-alias": "assembly-preprocessing", 
-            "display": "Assembly preprocessing", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "AssemblyPreflow"
-        }, 
-        {
-            "description": "Defines the postprocessing assembly to run after the assembly rule.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/Assembly"
-                }
-            }, 
-            "summary": "Processing rule after the API assembly rule", 
-            "cli-alias": "assembly-postprocessing", 
-            "display": "Assembly postprocessing", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "AssemblyPostflow"
-        }, 
-        {
-            "name": "Plan", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/APIPlan"
-                }
-            }, 
-            "required": "true", 
-            "summary": "Available API plans", 
-            "array": "true", 
-            "cli-alias": "plan", 
-            "display": "Plans", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "Associates a list of plans that are available in the API collection. Each plan contains a list of APIs and defines the rate limit settings for the API operations."
-        }, 
-        {
-            "description": "Associates an Elasticsearch server to offload analytics data that is logged for API transactions occurred by invoking APIs in this collection.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/AnalyticsEndpoint"
-                }
-            }, 
-            "summary": "Endpoint to offload analytics data", 
-            "cli-alias": "analytics-endpoint", 
-            "display": "Analytics endpoint", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "AnalyticsEndpoint"
-        }, 
-        {
-            "name": "EnableAPIMutualTLS", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Enable mutual TLS API protection", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "enable-api-mutual-tls", 
-            "display": "API Protection", 
-            "description": "Make mutual TLS protection available for APIs in this collection"
-        }, 
-        {
-            "name": "ApplicationType", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/APIApplicationType"
-                }
-            }, 
-            "summary": "Application types supported", 
-            "array": "true", 
-            "cli-alias": "application-type", 
-            "display": "Application Types", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "A list of supported application types that provide configurable properties for applications."
-        }, 
-        {
-            "description": "A parse settings configuration defines the constraints on the documents to parse. You can configure the constraints by specifying a URL reference from which to retrieve the constraints definition. You can also specify a literal configuration string in XML management interface or REST management interface format that contains the constraints definition. You can also select a parse settings configuration object from the list in Object reference to retrieve constraints definition. Precedence rules apply when the constraint for the same aspect of an input document is configured with more than one method.", 
-            "type": {
-                "href": "/mgmt/types/default/dmDynamicParseSettingsReference"
-            }, 
-            "summary": "Use any or all of the following ways to define the parse settings configuration.", 
-            "/mgmt/types/default/dmDynamicParseSettingsReference": {
-                "type": {
-                    "name": "dmDynamicParseSettingsReference", 
+                    "name": "dmDynamicParseSettingsReference",
                     "properties": {
                         "property": [
                             {
-                                "name": "URL", 
-                                "cli-alias": "url", 
-                                "summary": "Specifies the URL of a resource with one or more properties for the dynamic object", 
-                                "subtype": "dmURLorContext", 
+                                "name": "URL",
+                                "cli-alias": "url",
+                                "summary": "Specifies the URL of a resource with one or more properties for the dynamic object",
+                                "subtype": "dmURLorContext",
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "URL reference", 
+                                },
+                                "display": "URL reference",
                                 "description": "Specifies a URL to a file that contains serialized XML or JSON properties to be merged into the dynamic object. These properties override any existing literal or default properties. The URL can contain variable references, and fields within the associated file can also contain variable references."
-                            }, 
+                            },
                             {
-                                "description": "Specifies a literal string that defines serialized XML or JSON properties for merging into the dynamic object. These properties override the existing default properties. The literal string can contain variable references.", 
+                                "description": "Specifies a literal string that defines serialized XML or JSON properties for merging into the dynamic object. These properties override the existing default properties. The literal string can contain variable references.",
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "summary": "Specifies a literal configuration string with one or more properties for the dynamic object", 
-                                "cli-alias": "literal", 
-                                "display": "Literal configuration", 
+                                },
+                                "summary": "Specifies a literal configuration string with one or more properties for the dynamic object",
+                                "cli-alias": "literal",
+                                "display": "Literal configuration",
                                 "name": "Literal"
-                            }, 
+                            },
                             {
-                                "description": "Specifies an existing object from which to retrieve default property values for the dynamic object. If an object is not specified, then the URL reference, the literal configuration, or the combination of URL reference and literal configuration fully define the action.", 
+                                "description": "Specifies an existing object from which to retrieve default property values for the dynamic object. If an object is not specified, then the URL reference, the literal configuration, or the combination of URL reference and literal configuration fully define the action.",
                                 "type": {
-                                    "href": "/mgmt/types/default/dmReference", 
+                                    "href": "/mgmt/types/default/dmReference",
                                     "reference-to": {
                                         "href": "/mgmt/metadata/default/ParseSettings"
                                     }
-                                }, 
-                                "summary": "Specifies an existing object with default property values for the dynamic object", 
-                                "cli-alias": "default", 
-                                "display": "Object reference", 
+                                },
+                                "summary": "Specifies an existing object with default property values for the dynamic object",
+                                "cli-alias": "default",
+                                "display": "Object reference",
                                 "name": "Default"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmDynamicParseSettingsReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmDynamicParseSettingsReference"
-                    }
                 }
-            }, 
-            "cli-alias": "parse-settings-reference", 
-            "display": "Parse Settings", 
-            "name": "ParseSettingsReference"
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "APICollection",
+                "display": "API Collection",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "Organization"
+                            },
+                            {
+                                "name": "Catalog"
+                            },
+                            {
+                                "name": "RoutingPrefix"
+                            },
+                            {
+                                "name": "APIConnectGatewayService"
+                            },
+                            {
+                                "name": "GatewayPeeringManager"
+                            }
+                        ],
+                        "name": "summary",
+                        "display": "Summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "Sandbox"
+                            },
+                            {
+                                "name": "OrgID"
+                            },
+                            {
+                                "name": "OrgName"
+                            },
+                            {
+                                "name": "CatalogID"
+                            },
+                            {
+                                "name": "CatalogName"
+                            },
+                            {
+                                "name": "RoutingPrefix"
+                            },
+                            {
+                                "name": "DefaultRateLimit"
+                            },
+                            {
+                                "name": "AssemblyRateLimit"
+                            },
+                            {
+                                "name": "AssemblyBurstLimit"
+                            },
+                            {
+                                "name": "AssemblyCountLimit"
+                            },
+                            {
+                                "name": "EnforcePreAssemblyRateLimits"
+                            },
+                            {
+                                "name": "APIProcessingRule"
+                            },
+                            {
+                                "name": "APIErrorRule"
+                            },
+                            {
+                                "name": "AssemblyPreflow"
+                            },
+                            {
+                                "name": "AssemblyPostflow"
+                            },
+                            {
+                                "name": "Plan"
+                            },
+                            {
+                                "name": "AnalyticsEndpoint"
+                            },
+                            {
+                                "name": "EnableAPIMutualTLS"
+                            },
+                            {
+                                "name": "ApplicationType"
+                            },
+                            {
+                                "name": "APIConnectGatewayService"
+                            },
+                            {
+                                "name": "GatewayPeeringManager"
+                            },
+                            {
+                                "name": "CacheCapacity"
+                            }
+                        ],
+                        "name": "main",
+                        "display": "Main"
+                    },
+                    {
+                        "member": {
+                            "name": "ParseSettingsReference"
+                        },
+                        "name": "parsesettings",
+                        "display": "Parse Settings"
+                    }
+                ],
+                "uri": "config/api-collection",
+                "actions": {
+                    "action": [
+                        {
+                            "name": "FlushAPISubscriberCache",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "APICollection",
+                                    "select": "dmObjectName"
+                                }
+                            },
+                            "display": "Flush Cache"
+                        },
+                        {
+                            "name": "AddAPIApplication",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "APICollection",
+                                        "select": "dmObjectName"
+                                    },
+                                    {
+                                        "name": "AppID"
+                                    },
+                                    {
+                                        "name": "AppName"
+                                    },
+                                    {
+                                        "name": "Enabled"
+                                    },
+                                    {
+                                        "name": "LifecycleState"
+                                    },
+                                    {
+                                        "name": "ApplicationType"
+                                    },
+                                    {
+                                        "name": "OrgID"
+                                    },
+                                    {
+                                        "name": "OrgName"
+                                    },
+                                    {
+                                        "name": "OrgTitle"
+                                    },
+                                    {
+                                        "name": "RedirectURLs"
+                                    },
+                                    {
+                                        "name": "Certificates"
+                                    },
+                                    {
+                                        "name": "Metadata"
+                                    }
+                                ]
+                            },
+                            "display": "Add Application"
+                        },
+                        {
+                            "name": "AddAPIClient",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "APICollection",
+                                        "select": "dmObjectName"
+                                    },
+                                    {
+                                        "name": "ClientID"
+                                    },
+                                    {
+                                        "name": "ClientSecret"
+                                    },
+                                    {
+                                        "name": "Title"
+                                    },
+                                    {
+                                        "name": "AppID"
+                                    }
+                                ]
+                            },
+                            "display": "Add Client"
+                        },
+                        {
+                            "name": "UpdateAPISubscription",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "APICollection",
+                                        "select": "dmObjectName"
+                                    },
+                                    {
+                                        "name": "AppID"
+                                    },
+                                    {
+                                        "name": "Plans"
+                                    },
+                                    {
+                                        "name": "Status"
+                                    }
+                                ]
+                            },
+                            "display": "Update Subscription"
+                        }
+                    ]
+                },
+                "summary": "Configure and manage the API collection",
+                "cmd-group": "configuration",
+                "cli-alias": "api-collection",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "A descriptive summary for the API Collection configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter a brief descriptive summary for the API Collection configuration.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "Sandbox",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether the type of the catalog is sandbox",
+                            "cli-alias": "sandbox",
+                            "display": "Sandbox",
+                            "description": "Indicates whether the APIs in this catalog is for test purposes only. By default, a catalog is not for test purposes."
+                        },
+                        {
+                            "name": "OrgID",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "summary": "Identifier of the organization that the API collection belongs to",
+                            "cli-alias": "organization-id",
+                            "display": "Organization ID",
+                            "description": "Specifies the ID for the organization that the API collection belongs to."
+                        },
+                        {
+                            "name": "OrgName",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "summary": "Name of the organization that the API collection belongs to",
+                            "cli-alias": "organization-name",
+                            "display": "Organization name",
+                            "description": "Specifies the name for the organization that the API collection belongs to."
+                        },
+                        {
+                            "name": "CatalogID",
+                            "default": "default-catalog-id",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Catalog ID of the API collection",
+                            "cli-alias": "catalog-id",
+                            "display": "Catalog ID",
+                            "description": "Specifies the ID of the catalog that the API collection corresponds to."
+                        },
+                        {
+                            "name": "CatalogName",
+                            "default": "default",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Catalog name of the API collection",
+                            "cli-alias": "catalog-name",
+                            "display": "Catalog Name",
+                            "description": "Specifies the name of the catalog that the API collection corresponds to."
+                        },
+                        {
+                            "name": "EnableCache",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to cache subscriber data",
+                            "cli-alias": "enable-cache",
+                            "display": "Enable caching of subscribers",
+                            "description": "Specifies whether to cache subscriber entries that are retrieved from the API manager. When enabled, retrieved entries are cached on the API Gateway. Future inquiries search the cache before querying from the API manager."
+                        },
+                        {
+                            "name": "CacheCapacity",
+                            "default": 128,
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "EnableCache",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "maximum": 51200,
+                            "summary": "Maximum number of subscriber entries allowed in the cache",
+                            "cli-alias": "cache-capacity",
+                            "minimum": 8,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "EnableCache",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Subscriber cache capacity",
+                            "description": "Specifies the maximum number of subscriber entries that can be cached. Enter a value in the range 8 - 51200. The default value is 128. When the limit is exceeded, the least recently used (LRU) entry is removed."
+                        },
+                        {
+                            "name": "RoutingPrefix",
+                            "type": {
+                                "href": "/mgmt/types/default/dmRoutingPrefix"
+                            },
+                            "required": "true",
+                            "summary": "Prefixes of the routing path",
+                            "array": "true",
+                            "cli-alias": "routing-prefix",
+                            "display": "Routing prefixes",
+                            "description": "The API Gateway uses the routing prefix to determine which API collection to route the request to. &lt;p>You can use routing prefixes to organize your APIs and plans into collections and subcollections. For example, if you have a collection of APIs serving for a certain purpose, and the APIs are to be used by two segments of your organization, you might create two API collections with the organization name, purpose name, and segment name in the routing prefix. If the organization name is &lt;tt>myorg&lt;/tt> , the APIs serve for purpose &lt;tt>purpose1&lt;/tt> , and the two segments under the organization is &lt;tt>section1&lt;/tt> and &lt;tt>section2&lt;/tt> , the resulting URL routing prefixes are &lt;tt>/myorg/purpose1/section1&lt;/tt> and &lt;tt>/myorg/purpose1/section2&lt;/tt> . The resulting host name routing prefixes are &lt;tt>section1.purpose1.myorg&lt;/tt> and &lt;tt>section2.purpose1.myorg&lt;/tt> .&lt;/p>&lt;p>The API Gateway uses the routing prefix to form the complete URI &lt;tt>&amp;lt;routing prefix>&amp;lt;base path>&amp;lt;operation path>&lt;/tt> and accepts only the incoming requests with this URI. In the complete URI, &amp;lt;base path> is the base path on which the API is served, and &amp;lt;operation path> is the relative path to the base path where the operations are available.&lt;/p>&lt;p>The default routing prefix is slash (/) when the type is URI and blank when the type is host name. An API collection becomes the default API collection in the API Gateway when the API collection has a default routing prefix. The API Gateway routes a request to the default API collection when other API collections do not match. An API Gateway can have only one default API collection; therefore, regardless of the prefix type, only one API collection can be configured with the default routing prefix.&lt;/p>"
+                        },
+                        {
+                            "name": "DefaultRateLimit",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAPIRateLimit"
+                            },
+                            "summary": "Default rate limit for API requests with no API key",
+                            "array": "true",
+                            "cli-alias": "default-rate-limit",
+                            "display": "Default rate limit",
+                            "description": "Defines the rate limit scheme for the API requests that do not carry API key credentials for client identification. When not defined, requests without API keys are rejected."
+                        },
+                        {
+                            "name": "AssemblyBurstLimit",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAPIBurstLimit"
+                            },
+                            "summary": "Burst limit to be used by assembly rate limit action.",
+                            "array": "true",
+                            "cli-alias": "assembly-burst-limit",
+                            "display": "Assembly burst limit",
+                            "description": "Defines the scheme for burst limits to be used by the rate limit assembly action."
+                        },
+                        {
+                            "name": "AssemblyRateLimit",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAPIRateLimit"
+                            },
+                            "summary": "Rate limit to be used by assembly rate limit action.",
+                            "array": "true",
+                            "cli-alias": "assembly-rate-limit",
+                            "display": "Assembly rate limit",
+                            "description": "Defines the scheme for rate limits to be used by the rate limit assembly action."
+                        },
+                        {
+                            "name": "AssemblyCountLimit",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAPICountLimit"
+                            },
+                            "summary": "Count limit to be used by assembly rate limit action.",
+                            "array": "true",
+                            "cli-alias": "assembly-count-limit",
+                            "display": "Assembly count limit",
+                            "description": "Defines the scheme for count limits to be used by the rate limit assembly action."
+                        },
+                        {
+                            "name": "EnforcePreAssemblyRateLimits",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Enforce the API rate and burst limits defined in the plan.",
+                            "cli-alias": "enforce-pre-assembly-rate-limits",
+                            "display": "Enforce pre-assembly Rate Limits",
+                            "description": "When this toggle is off, only the limits specified in a Rate Limit action in the assembly will be applied to this API."
+                        },
+                        {
+                            "name": "APIProcessingRule",
+                            "default": "default-api-rule",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/APIRule"
+                                }
+                            },
+                            "required": "true",
+                            "summary": "Processing rule to process the API request",
+                            "cli-alias": "processing-rule",
+                            "display": "API processing rule",
+                            "description": "Defines the processing rule that matches the target API, enforces the rate limiting and security rules of using the API, executes the assembly of the API, and responds to the client."
+                        },
+                        {
+                            "name": "APIErrorRule",
+                            "default": "default-api-error-rule",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/APIRule"
+                                }
+                            },
+                            "summary": "Processing rule to handle the errors during API request processing",
+                            "cli-alias": "error-rule",
+                            "display": "API error rule",
+                            "description": "Defines the error rule that prepares fault messages for errors that occur during API request processing."
+                        },
+                        {
+                            "description": "Defines the preprocessing assembly to run before the assembly rule.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/Assembly"
+                                }
+                            },
+                            "summary": "Processing rule before the API assembly rule",
+                            "cli-alias": "assembly-preprocessing",
+                            "display": "Assembly preprocessing",
+                            "name": "AssemblyPreflow"
+                        },
+                        {
+                            "description": "Defines the postprocessing assembly to run after the assembly rule.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/Assembly"
+                                }
+                            },
+                            "summary": "Processing rule after the API assembly rule",
+                            "cli-alias": "assembly-postprocessing",
+                            "display": "Assembly postprocessing",
+                            "name": "AssemblyPostflow"
+                        },
+                        {
+                            "name": "Plan",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/APIPlan"
+                                }
+                            },
+                            "required": "true",
+                            "summary": "Available API plans",
+                            "array": "true",
+                            "cli-alias": "plan",
+                            "display": "Plans",
+                            "description": "Associates a list of plans that are available in the API collection. Each plan contains a list of APIs and defines the rate limit settings for the API operations."
+                        },
+                        {
+                            "description": "Associates an Elasticsearch server to offload analytics data that is logged for API transactions occurred by invoking APIs in this collection.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/AnalyticsEndpoint"
+                                }
+                            },
+                            "summary": "Endpoint to offload analytics data",
+                            "cli-alias": "analytics-endpoint",
+                            "display": "Analytics endpoint",
+                            "name": "AnalyticsEndpoint"
+                        },
+                        {
+                            "name": "EnableAPIMutualTLS",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Enable mutual TLS API protection",
+                            "cli-alias": "enable-api-mutual-tls",
+                            "display": "API Protection",
+                            "description": "Make mutual TLS protection available for APIs in this collection"
+                        },
+                        {
+                            "name": "ApplicationType",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/APIApplicationType"
+                                }
+                            },
+                            "summary": "Application types supported",
+                            "array": "true",
+                            "cli-alias": "application-type",
+                            "display": "Application Types",
+                            "description": "A list of supported application types that provide configurable properties for applications."
+                        },
+                        {
+                            "description": "A parse settings configuration defines the constraints on the documents to parse. You can configure the constraints by specifying a URL reference from which to retrieve the constraints definition. You can also specify a literal configuration string in XML management interface or REST management interface format that contains the constraints definition. You can also select a parse settings configuration object from the list in Object reference to retrieve constraints definition. Precedence rules apply when the constraint for the same aspect of an input document is configured with more than one method.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmDynamicParseSettingsReference"
+                            },
+                            "summary": "Use any or all of the following ways to define the parse settings configuration.",
+                            "cli-alias": "parse-settings-reference",
+                            "display": "Parse Settings",
+                            "name": "ParseSettingsReference"
+                        }
+                    ]
+                },
+                "description": "An API collection is a logical partition of an API Gateway that packages the plans and subscribers to make APIs available to a specific group of clients. An API collection in the API Gateway corresponds to a catalog in the API manager."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/APICollection"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/APICollection"
+                }
+            }
         }
-    ]
+    }
 }

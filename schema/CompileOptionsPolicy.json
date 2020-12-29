@@ -1,758 +1,560 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "description": "Select the XSLT processor version.", 
-            "default": "XSLT10", 
-            "type": {
-                "href": "/mgmt/types/default/dmXSLTVersion"
-            }, 
-            "/mgmt/types/default/dmXSLTVersion": {
+                },
                 "type": {
-                    "name": "dmXSLTVersion", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "XSLT10", 
-                                "display": "XSLT 1.0"
-                            }, 
-                            {
-                                "name": "XSLT10_IT23272", 
-                                "display": "XSLT 1.0 (IT23272)"
-                            }, 
-                            {
-                                "name": "XSLT20", 
-                                "display": "XSLT 2.0"
-                            }, 
-                            {
-                                "summary": "As specified by each stylesheet", 
-                                "display": "Stylesheet-Specified", 
-                                "name": "StylesheetSpecified"
-                            }
-                        ]
-                    }
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmXSLTVersion"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmXSLTVersion"
                     }
-                }
-            }, 
-            "cli-alias": "xslt-version", 
-            "display": "XSLT Version", 
-            "name": "XSLTVersion"
-        }, 
-        {
-            "description": "Enable strict XSLT error-checking; non-strict operation attempts to recover from certain errors such as use of undeclared variables, calling undeclared templates, and so forth.", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "name": "dmXSLTVersion",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
+                                "name": "XSLT10",
+                                "display": "XSLT 1.0"
+                            },
                             {
-                                "name": "off", 
+                                "name": "XSLT10_IT23272",
+                                "display": "XSLT 1.0 (IT23272)"
+                            },
+                            {
+                                "name": "XSLT20",
+                                "display": "XSLT 2.0"
+                            },
+                            {
+                                "display": "Stylesheet-Specified",
+                                "name": "StylesheetSpecified",
+                                "summary": "As specified by each stylesheet"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "cli-alias": "strict", 
-            "display": "Strict", 
-            "name": "Strict"
-        }, 
-        {
-            "description": "Designates a set of stylesheets to be profiled based on their URL. This should not be used in production environments.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/URLMap"
-                }
-            }, 
-            "cli-alias": "profile", 
-            "display": "Profile Rule", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "name": "Profile"
-        }, 
-        {
-            "description": "Designates a set of stylesheets, XQuery scripts, and JSONiq scripts to be run in debug mode. When a stylesheet, XQuery script, or JSONiq script is run in debug mode, it generates a custom web page instead of displaying its normal output. The web page details exactly what occurred during execution, including the values of variables and where particular pieces of the output came from. This should not be used in production environments.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/URLMap"
-                }
-            }, 
-            "cli-alias": "debug", 
-            "display": "Debug Rule", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
+                    "cli-arg": "object",
                     "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
                 }
-            }, 
-            "name": "Debug"
-        }, 
-        {
-            "description": "Designates a set of stylesheets which must be run in streaming mode. Transformation of the document begins before the input is fully parsed. Not all stylesheets can be streamed; if a stylesheet cannot be streamed, an error will be issued and the input will not be processed. See the DataPower manual for suggestions on producing streamable stylesheets.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/URLMap"
-                }
-            }, 
-            "cli-alias": "stream", 
-            "display": "Streaming Rule", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "Stream"
-        }, 
-        {
-            "description": "Designates a set of stylesheets to attempt to run in streaming mode. Transformation of the document begins before the input is fully parsed. Not all stylesheets can be streamed; if a stylesheet cannot be streamed, a warning will be issued during compilation and the stylesheet will read in the entire input as normal at execution time. See the DataPower manual for suggestions on producing streamable stylesheets.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/URLMap"
-                }
-            }, 
-            "cli-alias": "try-stream", 
-            "display": "Attempt Streaming Rule", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "TryStream"
-        }, 
-        {
-            "description": "Select a URL Map from the list. Output produced from stylesheets that meet the URL map criteria are not escaped during processing. Escaping is enabled by default. Minimal escaping is particularly useful when handling non-English character sets.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/URLMap"
-                }
-            }, 
-            "cli-alias": "minesc", 
-            "display": "Minimum Output Escaping Rule", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "MinimumEscaping"
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmUInt32"
                     }
-                }
-            }, 
-            "default": 524288, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 104857600, 
-            "name": "StackSize", 
-            "minimum": 10240, 
-            "units": "bytes", 
-            "cli-alias": "stack-size", 
-            "display": "Maximum Stack Size", 
-            "description": "Indicates the maximum number of bytes the stack is allowed to use while executing a stylesheet or other compiled content. This blocks infinite recursion. The minimum value is 10 kilobytes, or 10,240 bytes. The default is half a megabyte, or 524,288 bytes."
-        }, 
-        {
-            "description": "&lt;p>Designates a set of stylesheets or schemas that must use XML hardware acceleration when possible. XML hardware acceleration will be used only if the first action in a processing policy is a schema validation against a fixed schema. Any schemas specified here will use XML hardware acceleration if hardware resources are available. Schemas not specified here may also use XML hardware acceleration, but those schemas will be displaced in favor of schemas specified here.&lt;/p>&lt;p>When XML hardware acceleration is disabled in the Systems Settings, the XML Hardware Acceleration Preferred Rule has no effect.&lt;/p>", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/URLMap"
-                }
-            }, 
-            "cli-alias": "prefer-xg4", 
-            "display": "XML Hardware Acceleration Preferred Rule", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
                 }
-            }, 
-            "name": "PreferXG4"
-        }, 
-        {
-            "description": "&lt;p>Designates a set of stylesheets or schemas that will never use XML hardware acceleration. XML hardware acceleration will be used only if the first action in a processing policy is a schema validation against a fixed schema. Any schemas specified here will not use XML hardware acceleration even if hardware resources are available.&lt;/p>&lt;p>When XML hardware acceleration is disabled in the Systems Settings, the XML Hardware Acceleration Disallowed Rule has no effect.&lt;/p>", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/URLMap"
-                }
-            }, 
-            "cli-alias": "disallow-xg4", 
-            "display": "XML Hardware Acceleration Disallowed Rule", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "DisallowXG4"
-        }, 
-        {
-            "/mgmt/types/default/dmWSIValidationMode": {
-                "type": {
-                    "summary": "WS-I basic Profile Validation mode", 
-                    "display": "WS-I Basic Profile Validation Mode", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Disable checking", 
-                                "display": "Ignore", 
-                                "name": "ignore", 
-                                "description": "Disables conformance checking."
-                            }, 
-                            {
-                                "summary": "Log warnings", 
-                                "display": "Warn", 
-                                "name": "warn", 
-                                "description": "Logs warnings for violations."
-                            }, 
-                            {
-                                "summary": "Force compliance", 
-                                "display": "Fail", 
-                                "name": "fail", 
-                                "description": "Forces conformance. Fails if the file contains any violation."
-                            }
-                        ]
-                    }, 
-                    "name": "dmWSIValidationMode"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmWSIValidationMode"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmWSIValidationMode"
                     }
-                }
-            }, 
-            "description": "Select the validation behavior to apply to WSDL files that are checked for conformance to section 5 of WS-I Basic Profile (version 1.0, April 2004). The default is Ignore.", 
-            "default": "ignore", 
-            "type": {
-                "href": "/mgmt/types/default/dmWSIValidationMode"
-            }, 
-            "cli-alias": "wsi-validate", 
-            "display": "WS-I Basic Profile Validation", 
-            "name": "WSIValidation"
-        }, 
-        {
-            "description": "Select the validation behavior for the soap:Body. The default is Strict.", 
-            "default": "strict", 
-            "type": {
-                "href": "/mgmt/types/default/dmWSDLValidationMode"
-            }, 
-            "/mgmt/types/default/dmWSDLValidationMode": {
+                },
                 "type": {
-                    "summary": "Validation behavior against parts of WSDL messages", 
-                    "display": "WSDL Message Part Validation Mode", 
+                    "display": "WS-I Basic Profile Validation Mode",
+                    "name": "dmWSIValidationMode",
                     "value-list": {
                         "value": [
                             {
-                                "summary": "Disallow message unless it is a match.", 
-                                "display": "Strict", 
-                                "name": "strict", 
-                                "description": "Validates this part of the message against the WSDL definition. Allows only messages that contain this part and that match the WSDL definition."
-                            }, 
+                                "display": "Ignore",
+                                "description": "Disables conformance checking.",
+                                "name": "ignore",
+                                "summary": "Disable checking"
+                            },
                             {
-                                "summary": "Allow message if the WSDL definition is absent. If the definition is present, disallow the message unless it is a match.", 
-                                "display": "Lax", 
-                                "name": "lax", 
-                                "description": "Validates this part of the message against the WSDL definition. If the message contains this part and the WSDL definition does not define this part, allow the message. If the message contains this part and the WSDL definition defines this part, allow the message only when there is a match."
-                            }, 
+                                "display": "Warn",
+                                "description": "Logs warnings for violations.",
+                                "name": "warn",
+                                "summary": "Log warnings"
+                            },
                             {
-                                "summary": "Disable validation.", 
-                                "display": "Skip", 
-                                "name": "skip", 
-                                "description": "Disables validation of this part of the message."
+                                "display": "Fail",
+                                "description": "Forces conformance. Fails if the file contains any violation.",
+                                "name": "fail",
+                                "summary": "Force compliance"
                             }
                         ]
-                    }, 
-                    "name": "dmWSDLValidationMode"
-                }, 
+                    },
+                    "summary": "WS-I basic Profile Validation mode"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmWSDLValidationMode"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmWSDLValidationMode"
                     }
-                }
-            }, 
-            "cli-alias": "wsdl-validate-body", 
-            "display": "Validate Message Body", 
-            "name": "WSDLValidateBody"
-        }, 
-        {
-            "description": "Select the validation behavior for the soap:Header. The default is Lax.", 
-            "default": "lax", 
-            "type": {
-                "href": "/mgmt/types/default/dmWSDLValidationMode"
-            }, 
-            "/mgmt/types/default/dmWSDLValidationMode": {
+                },
                 "type": {
-                    "summary": "Validation behavior against parts of WSDL messages", 
-                    "display": "WSDL Message Part Validation Mode", 
+                    "display": "WSDL Message Part Validation Mode",
+                    "name": "dmWSDLValidationMode",
                     "value-list": {
                         "value": [
                             {
-                                "summary": "Disallow message unless it is a match.", 
-                                "display": "Strict", 
-                                "name": "strict", 
-                                "description": "Validates this part of the message against the WSDL definition. Allows only messages that contain this part and that match the WSDL definition."
-                            }, 
+                                "display": "Strict",
+                                "description": "Validates this part of the message against the WSDL definition. Allows only messages that contain this part and that match the WSDL definition.",
+                                "name": "strict",
+                                "summary": "Disallow message unless it is a match."
+                            },
                             {
-                                "summary": "Allow message if the WSDL definition is absent. If the definition is present, disallow the message unless it is a match.", 
-                                "display": "Lax", 
-                                "name": "lax", 
-                                "description": "Validates this part of the message against the WSDL definition. If the message contains this part and the WSDL definition does not define this part, allow the message. If the message contains this part and the WSDL definition defines this part, allow the message only when there is a match."
-                            }, 
+                                "display": "Lax",
+                                "description": "Validates this part of the message against the WSDL definition. If the message contains this part and the WSDL definition does not define this part, allow the message. If the message contains this part and the WSDL definition defines this part, allow the message only when there is a match.",
+                                "name": "lax",
+                                "summary": "Allow message if the WSDL definition is absent. If the definition is present, disallow the message unless it is a match."
+                            },
                             {
-                                "summary": "Disable validation.", 
-                                "display": "Skip", 
-                                "name": "skip", 
-                                "description": "Disables validation of this part of the message."
+                                "display": "Skip",
+                                "description": "Disables validation of this part of the message.",
+                                "name": "skip",
+                                "summary": "Disable validation."
                             }
                         ]
-                    }, 
-                    "name": "dmWSDLValidationMode"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmWSDLValidationMode"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmWSDLValidationMode"
-                    }
+                    },
+                    "summary": "Validation behavior against parts of WSDL messages"
                 }
-            }, 
-            "cli-alias": "wsdl-validate-headers", 
-            "display": "Validate Message Headers", 
-            "name": "WSDLValidateHeaders"
-        }, 
-        {
-            "description": "Select the validation behavior for the fault detail. The default is Strict.", 
-            "default": "strict", 
-            "type": {
-                "href": "/mgmt/types/default/dmWSDLValidationMode"
-            }, 
-            "/mgmt/types/default/dmWSDLValidationMode": {
-                "type": {
-                    "summary": "Validation behavior against parts of WSDL messages", 
-                    "display": "WSDL Message Part Validation Mode", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Disallow message unless it is a match.", 
-                                "display": "Strict", 
-                                "name": "strict", 
-                                "description": "Validates this part of the message against the WSDL definition. Allows only messages that contain this part and that match the WSDL definition."
-                            }, 
-                            {
-                                "summary": "Allow message if the WSDL definition is absent. If the definition is present, disallow the message unless it is a match.", 
-                                "display": "Lax", 
-                                "name": "lax", 
-                                "description": "Validates this part of the message against the WSDL definition. If the message contains this part and the WSDL definition does not define this part, allow the message. If the message contains this part and the WSDL definition defines this part, allow the message only when there is a match."
-                            }, 
-                            {
-                                "summary": "Disable validation.", 
-                                "display": "Skip", 
-                                "name": "skip", 
-                                "description": "Disables validation of this part of the message."
-                            }
-                        ]
-                    }, 
-                    "name": "dmWSDLValidationMode"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmWSDLValidationMode"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmWSDLValidationMode"
-                    }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "CompileOptionsPolicy",
+                "property-group": {
+                    "member": [
+                        {
+                            "name": "WSIValidation"
+                        },
+                        {
+                            "name": "WSDLStrictSOAPVersion"
+                        },
+                        {
+                            "name": "WSDLValidateBody"
+                        },
+                        {
+                            "name": "WSDLValidateHeaders"
+                        },
+                        {
+                            "name": "WSDLValidateFaults"
+                        },
+                        {
+                            "name": "WSDLWrappedFaults"
+                        }
+                    ],
+                    "display": "WSDL Compiler Options",
+                    "name": "WSDLOptions",
+                    "summary": "Click Tab to display WSDL Compiler settings"
+                },
+                "uri": "xml/compile-options",
+                "actions": {
+                    "action": [
+                        {
+                            "name": "TestURLMap",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "URLMap",
+                                    "select": "Profile"
+                                }
+                            },
+                            "display": "Test URL"
+                        },
+                        {
+                            "name": "TestURLMap",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "URLMap",
+                                    "select": "Debug"
+                                }
+                            },
+                            "display": "Test URL"
+                        },
+                        {
+                            "name": "TestURLMap",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "URLMap",
+                                    "select": "Stream"
+                                }
+                            },
+                            "display": "Test URL"
+                        },
+                        {
+                            "name": "TestURLMap",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "URLMap",
+                                    "select": "TryStream"
+                                }
+                            },
+                            "display": "Test URL"
+                        }
+                    ]
+                },
+                "display": "Compile Options Policy",
+                "cmd-group": "compile-options",
+                "cli-alias": "compile-options",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "description": "Select the XSLT processor version.",
+                            "default": "XSLT10",
+                            "type": {
+                                "href": "/mgmt/types/default/dmXSLTVersion"
+                            },
+                            "cli-alias": "xslt-version",
+                            "display": "XSLT Version",
+                            "name": "XSLTVersion"
+                        },
+                        {
+                            "description": "Enable strict XSLT error-checking; non-strict operation attempts to recover from certain errors such as use of undeclared variables, calling undeclared templates, and so forth.",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "cli-alias": "strict",
+                            "display": "Strict",
+                            "name": "Strict"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/URLMap"
+                                }
+                            },
+                            "display": "Profile Rule",
+                            "cli-alias": "profile",
+                            "description": "Designates a set of stylesheets to be profiled based on their URL. This should not be used in production environments.",
+                            "name": "Profile"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/URLMap"
+                                }
+                            },
+                            "display": "Debug Rule",
+                            "cli-alias": "debug",
+                            "description": "Designates a set of stylesheets, XQuery scripts, and JSONiq scripts to be run in debug mode. When a stylesheet, XQuery script, or JSONiq script is run in debug mode, it generates a custom web page instead of displaying its normal output. The web page details exactly what occurred during execution, including the values of variables and where particular pieces of the output came from. This should not be used in production environments.",
+                            "name": "Debug"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/URLMap"
+                                }
+                            },
+                            "display": "Streaming Rule",
+                            "cli-alias": "stream",
+                            "description": "Designates a set of stylesheets which must be run in streaming mode. Transformation of the document begins before the input is fully parsed. Not all stylesheets can be streamed; if a stylesheet cannot be streamed, an error will be issued and the input will not be processed. See the DataPower manual for suggestions on producing streamable stylesheets.",
+                            "name": "Stream"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/URLMap"
+                                }
+                            },
+                            "display": "Attempt Streaming Rule",
+                            "cli-alias": "try-stream",
+                            "description": "Designates a set of stylesheets to attempt to run in streaming mode. Transformation of the document begins before the input is fully parsed. Not all stylesheets can be streamed; if a stylesheet cannot be streamed, a warning will be issued during compilation and the stylesheet will read in the entire input as normal at execution time. See the DataPower manual for suggestions on producing streamable stylesheets.",
+                            "name": "TryStream"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/URLMap"
+                                }
+                            },
+                            "display": "Minimum Output Escaping Rule",
+                            "cli-alias": "minesc",
+                            "description": "Select a URL Map from the list. Output produced from stylesheets that meet the URL map criteria are not escaped during processing. Escaping is enabled by default. Minimal escaping is particularly useful when handling non-English character sets.",
+                            "name": "MinimumEscaping"
+                        },
+                        {
+                            "name": "StackSize",
+                            "default": 524288,
+                            "cli-alias": "stack-size",
+                            "maximum": 104857600,
+                            "minimum": 10240,
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Maximum Stack Size",
+                            "description": "Indicates the maximum number of bytes the stack is allowed to use while executing a stylesheet or other compiled content. This blocks infinite recursion. The minimum value is 10 kilobytes, or 10,240 bytes. The default is half a megabyte, or 524,288 bytes."
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/URLMap"
+                                }
+                            },
+                            "display": "XML Hardware Acceleration Preferred Rule",
+                            "cli-alias": "prefer-xg4",
+                            "description": "&lt;p>Designates a set of stylesheets or schemas that must use XML hardware acceleration when possible. XML hardware acceleration will be used only if the first action in a processing policy is a schema validation against a fixed schema. Any schemas specified here will use XML hardware acceleration if hardware resources are available. Schemas not specified here may also use XML hardware acceleration, but those schemas will be displaced in favor of schemas specified here.&lt;/p>&lt;p>When XML hardware acceleration is disabled in the Systems Settings, the XML Hardware Acceleration Preferred Rule has no effect.&lt;/p>",
+                            "name": "PreferXG4"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/URLMap"
+                                }
+                            },
+                            "display": "XML Hardware Acceleration Disallowed Rule",
+                            "cli-alias": "disallow-xg4",
+                            "description": "&lt;p>Designates a set of stylesheets or schemas that will never use XML hardware acceleration. XML hardware acceleration will be used only if the first action in a processing policy is a schema validation against a fixed schema. Any schemas specified here will not use XML hardware acceleration even if hardware resources are available.&lt;/p>&lt;p>When XML hardware acceleration is disabled in the Systems Settings, the XML Hardware Acceleration Disallowed Rule has no effect.&lt;/p>",
+                            "name": "DisallowXG4"
+                        },
+                        {
+                            "description": "Select the validation behavior to apply to WSDL files that are checked for conformance to section 5 of WS-I Basic Profile (version 1.0, April 2004). The default is Ignore.",
+                            "default": "ignore",
+                            "type": {
+                                "href": "/mgmt/types/default/dmWSIValidationMode"
+                            },
+                            "cli-alias": "wsi-validate",
+                            "display": "WS-I Basic Profile Validation",
+                            "name": "WSIValidation"
+                        },
+                        {
+                            "description": "Select the validation behavior for the soap:Body. The default is Strict.",
+                            "default": "strict",
+                            "type": {
+                                "href": "/mgmt/types/default/dmWSDLValidationMode"
+                            },
+                            "cli-alias": "wsdl-validate-body",
+                            "display": "Validate Message Body",
+                            "name": "WSDLValidateBody"
+                        },
+                        {
+                            "description": "Select the validation behavior for the soap:Header. The default is Lax.",
+                            "default": "lax",
+                            "type": {
+                                "href": "/mgmt/types/default/dmWSDLValidationMode"
+                            },
+                            "cli-alias": "wsdl-validate-headers",
+                            "display": "Validate Message Headers",
+                            "name": "WSDLValidateHeaders"
+                        },
+                        {
+                            "description": "Select the validation behavior for the fault detail. The default is Strict.",
+                            "default": "strict",
+                            "type": {
+                                "href": "/mgmt/types/default/dmWSDLValidationMode"
+                            },
+                            "cli-alias": "wsdl-validate-faults",
+                            "display": "Validate Message Fault details",
+                            "name": "WSDLValidateFaults"
+                        },
+                        {
+                            "description": "For compatibility, require a rpc-style wrapper around fault details that are specified by type.",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "cli-alias": "wsdl-wrapped-faults",
+                            "display": "Require wrappers on fault-details specified by type",
+                            "name": "WSDLWrappedFaults"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/URLMap"
+                                }
+                            },
+                            "display": "Specifically Allow xsi:type='SOAP-ENC:Array' Rule",
+                            "cli-alias": "allow-soap-enc-array",
+                            "description": "Designates a set of schemas that will accept most uses of elements with xsi:type='SOAP-ENC:Array' consistent with SOAP 1.1 Section 5, even when these attributes violate the XML Schema specification. Normally the xsi:type attribute must name a type equal to or derived from the actual type of the element. For schemas compiled with this option, xsi:type is accepted specifically for the SOAP 1.1 Encoding 'Array' complex type if the element's type is derived from SOAP-ENC:Array; this is the opposite of the normal allowable case.",
+                            "name": "AllowSoapEncArray"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/URLMap"
+                                }
+                            },
+                            "display": "Validate SOAP 1.1 Encoding Rule",
+                            "cli-alias": "validate-soap-enc-array",
+                            "description": "Designates a set of schemas that will do extra validation following the encoding rules in SOAP 1.1 Section 5. This validates members of SOAP arrays, allows attributes such as @id and @href even if not allowed by the schema, and checks that @href values have a corresponding @id element.",
+                            "name": "ValidateSoapEncArray"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/URLMap"
+                                }
+                            },
+                            "display": "Wildcards Ignore xsi:type Rule",
+                            "cli-alias": "wildcards-ignore-xsi-type",
+                            "description": "Designates a set of schemas where wildcards (xs:any elements) only validate children by element name. The XML Schema specification requires that, if a wildcard matches an element but that element does not have an element declaration, the element is instead validated according to an xsi:type attribute on it. This option ignores those xsi:type attributes. It should be used for cases such as SOAP envelope validation where a further validation step will validate the contents matching the wildcard, possibly using the SOAP 1.1 encoding rules.",
+                            "name": "WildcardsIgnoreXsiType"
+                        },
+                        {
+                            "description": "When on, follow the version of the SOAP Binding in the WSDL, allowing only messages bound to SOAP 1.2 to appear in SOAP 1.2 envelopes and messages bound to SOAP 1.1 to appear in SOAP 1.1 envelopes. The default is off.",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "cli-alias": "wsdl-strict-soap-version",
+                            "display": "Strict SOAP Envelope Version",
+                            "name": "WSDLStrictSOAPVersion"
+                        },
+                        {
+                            "name": "XACMLDebug",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Compile XACML Policy with Debug Info",
+                            "cli-alias": "xacml-debug",
+                            "display": "Debug XACML Policy",
+                            "description": "Setting to \"on\" to make the XACML compiler to put more debugging information when evaluate a policy. Note that the XACML debugging messages are also controlled by the log event in the 'XACML' category. Use the \"debug\" log level to view the full XACML debugging messages."
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/URLMap"
+                                }
+                            },
+                            "display": "Accept MTOM/XOP Optimized Messages",
+                            "cli-alias": "allow-xop-include",
+                            "description": "&lt;p>Designates a set of schema or WSDL documents that accept messages where base64-encoded binary content was optimized according to the MTOM/XOP specifications. XOP binary-optimization replaces base64-encoded binary data with an xop:Include reference element that references the unencoded binary data located in an attachment.&lt;/p>&lt;ul>&lt;li>When disabled, such optimized messages are rejected by validation of the optimized form. Rejection occurs because the schema specifies a simple type that accepts base64-encoded data, such as xs:base64Binary or xs:string, but the message contains an xop:Include element instead.&lt;/li>&lt;li>When enabled, an xop:Include element can optionally appear in place of content for any XML Schema simple type that validates base64-encoded binary data. The xop:Include element itself will be validated according to the built-in schema in store:///schemas/xop.xsd.&lt;/li>&lt;/ul>",
+                            "name": "AllowXOPInclude"
+                        }
+                    ]
+                },
+                "description": "Configure/Edit Compile Option Policies"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/CompileOptionsPolicy"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/CompileOptionsPolicy"
                 }
-            }, 
-            "cli-alias": "wsdl-validate-faults", 
-            "display": "Validate Message Fault details", 
-            "name": "WSDLValidateFaults"
-        }, 
-        {
-            "description": "For compatibility, require a rpc-style wrapper around fault details that are specified by type.", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "wsdl-wrapped-faults", 
-            "display": "Require wrappers on fault-details specified by type", 
-            "name": "WSDLWrappedFaults"
-        }, 
-        {
-            "description": "Designates a set of schemas that will accept most uses of elements with xsi:type='SOAP-ENC:Array' consistent with SOAP 1.1 Section 5, even when these attributes violate the XML Schema specification. Normally the xsi:type attribute must name a type equal to or derived from the actual type of the element. For schemas compiled with this option, xsi:type is accepted specifically for the SOAP 1.1 Encoding 'Array' complex type if the element's type is derived from SOAP-ENC:Array; this is the opposite of the normal allowable case.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/URLMap"
-                }
-            }, 
-            "cli-alias": "allow-soap-enc-array", 
-            "display": "Specifically Allow xsi:type='SOAP-ENC:Array' Rule", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "AllowSoapEncArray"
-        }, 
-        {
-            "description": "Designates a set of schemas that will do extra validation following the encoding rules in SOAP 1.1 Section 5. This validates members of SOAP arrays, allows attributes such as @id and @href even if not allowed by the schema, and checks that @href values have a corresponding @id element.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/URLMap"
-                }
-            }, 
-            "cli-alias": "validate-soap-enc-array", 
-            "display": "Validate SOAP 1.1 Encoding Rule", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "ValidateSoapEncArray"
-        }, 
-        {
-            "description": "Designates a set of schemas where wildcards (xs:any elements) only validate children by element name. The XML Schema specification requires that, if a wildcard matches an element but that element does not have an element declaration, the element is instead validated according to an xsi:type attribute on it. This option ignores those xsi:type attributes. It should be used for cases such as SOAP envelope validation where a further validation step will validate the contents matching the wildcard, possibly using the SOAP 1.1 encoding rules.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/URLMap"
-                }
-            }, 
-            "cli-alias": "wildcards-ignore-xsi-type", 
-            "display": "Wildcards Ignore xsi:type Rule", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "WildcardsIgnoreXsiType"
-        }, 
-        {
-            "description": "When on, follow the version of the SOAP Binding in the WSDL, allowing only messages bound to SOAP 1.2 to appear in SOAP 1.2 envelopes and messages bound to SOAP 1.1 to appear in SOAP 1.1 envelopes. The default is off.", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "wsdl-strict-soap-version", 
-            "display": "Strict SOAP Envelope Version", 
-            "name": "WSDLStrictSOAPVersion"
-        }, 
-        {
-            "name": "XACMLDebug", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Compile XACML Policy with Debug Info", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "xacml-debug", 
-            "display": "Debug XACML Policy", 
-            "description": "Setting to \"on\" to make the XACML compiler to put more debugging information when evaluate a policy. Note that the XACML debugging messages are also controlled by the log event in the 'XACML' category. Use the \"debug\" log level to view the full XACML debugging messages."
-        }, 
-        {
-            "description": "&lt;p>Designates a set of schema or WSDL documents that accept messages where base64-encoded binary content was optimized according to the MTOM/XOP specifications. XOP binary-optimization replaces base64-encoded binary data with an xop:Include reference element that references the unencoded binary data located in an attachment.&lt;/p>&lt;ul>&lt;li>When disabled, such optimized messages are rejected by validation of the optimized form. Rejection occurs because the schema specifies a simple type that accepts base64-encoded data, such as xs:base64Binary or xs:string, but the message contains an xop:Include element instead.&lt;/li>&lt;li>When enabled, an xop:Include element can optionally appear in place of content for any XML Schema simple type that validates base64-encoded binary data. The xop:Include element itself will be validated according to the built-in schema in store:///schemas/xop.xsd.&lt;/li>&lt;/ul>", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/URLMap"
-                }
-            }, 
-            "cli-alias": "allow-xop-include", 
-            "display": "Accept MTOM/XOP Optimized Messages", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "AllowXOPInclude"
+            }
         }
-    ]
+    }
 }

@@ -1,545 +1,617 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "description": "Enter a descriptive summary for the configuration.", 
-            "cli-alias": "summary", 
-            "summary": "Enter a descriptive summary for the configuration.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments", 
-            "name": "UserSummary"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
+                    "cli-arg": "string",
                     "name": "dmString"
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmString"
+                        "href": "/mgmt/types/default/dmToggle"
                     }
-                }
-            }, 
-            "description": "Enter the password for the account. The password must comply to the password policy in RBM settings.", 
-            "minimum-length": 1, 
-            "required-when": {
-                "condition": {
-                    "evaluation": "is-edit-new-object"
-                }
-            }, 
-            "summary": "Enter the password for the user account.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "maximum-length": 128, 
-            "cli-alias": "password", 
-            "display": "Password", 
-            "name": "Password"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "HashedPassword", 
-            "valid-regexp": "^\\$1\\$.+|^\\$5\\$.+$", 
-            "cli-alias": "password-hashed", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }
-        }, 
-        {
-            "name": "SuppressPasswordChange", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Indicate whether to force a change to the account password after the first ever successful login.", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
+                                "name": "on",
                                 "display": "on"
-                            }, 
+                            },
                             {
-                                "name": "off", 
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-not", 
-                    "condition": {
-                        "evaluation": "is-edit-new-object"
-                    }
-                }
-            }, 
-            "cli-alias": "suppress-password-change", 
-            "display": "Suppress initial password change", 
-            "description": "&lt;p>Indicate whether to force a change to the account password after the first ever successful login.&lt;/p>&lt;ul>&lt;li>When enabled, the account owner does not need to change the account password.&lt;/li>&lt;li>When disabled, the account owner must change the account password. This setting is the default behavior.&lt;/li>&lt;/ul>&lt;p>This property is available only when you create the configuration.&lt;/p>"
-        }, 
-        {
-            "name": "AccessLevel", 
-            "default": "group-defined", 
-            "type": {
-                "href": "/mgmt/types/default/dmUserAccess"
-            }, 
-            "required": "true", 
-            "/mgmt/types/default/dmUserAccess": {
-                "type": {
-                    "name": "dmUserAccess", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "The user account is a privileged account.", 
-                                "display": "Privileged", 
-                                "name": "privileged", 
-                                "description": "Grant access to all system functions."
-                            }, 
-                            {
-                                "summary": "The user account is a group defined account.", 
-                                "display": "Group defined", 
-                                "name": "group-defined", 
-                                "description": "Assign the user account to a user group."
-                            }
-                        ]
-                    }
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmUserAccess"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmUserAccess"
                     }
-                }
-            }, 
-            "summary": "Set the access level of the user account.", 
-            "cli-alias": "access-level", 
-            "display": "Access level", 
-            "description": "Set the access level for the user account."
-        }, 
-        {
-            "name": "GroupName", 
-            "required-when": {
-                "condition": {
-                    "property-name": "AccessLevel", 
-                    "evaluation": "property-equals", 
-                    "value": "group-defined"
-                }
-            }, 
-            "summary": "Set the user group for the user account.", 
-            "cli-alias": "group", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/UserGroup"
-                }
-            }, 
-            "display": "User group", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+                    "name": "dmUserAccess",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Privileged",
+                                "description": "Grant access to all system functions.",
+                                "name": "privileged",
+                                "summary": "The user account is a privileged account."
+                            },
+                            {
+                                "display": "Group defined",
+                                "description": "Assign the user account to a user group.",
+                                "name": "group-defined",
+                                "summary": "The user account is a group defined account."
+                            }
+                        ]
+                    }
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "description": "Set the user group for the user account. Each user group has an access profile to manage access rights. A user account inherits access rights from its user group."
-        }, 
-        {
-            "/mgmt/types/default/dmSnmpCred": {
+                },
                 "type": {
-                    "name": "dmSnmpCred", 
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSnmpCred"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSnmpCred"
+                    }
+                },
+                "type": {
+                    "name": "dmSnmpCred",
                     "properties": {
                         "property": [
                             {
-                                "description": "Set the SNMPv3 engine ID. The value of 0 represents the local engine ID. For any other engine ID, the value is a hex string that represents the 5 - 32 byte value.", 
-                                "minimum-length": 1, 
-                                "default": 0, 
-                                "valid-regexp": "^(0|[0-9a-fA-F]{10,64})$", 
-                                "required": "true", 
-                                "summary": "Set the SNMPv3 engine ID.", 
-                                "maximum-length": 64, 
+                                "description": "Set the SNMPv3 engine ID. The value of 0 represents the local engine ID. For any other engine ID, the value is a hex string that represents the 5 - 32 byte value.",
+                                "name": "EngineID",
+                                "minimum-length": 1,
+                                "default": 0,
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Engine ID", 
-                                "name": "EngineID"
-                            }, 
+                                },
+                                "required": "true",
+                                "summary": "Set the SNMPv3 engine ID.",
+                                "valid-regexp": "^(0|[0-9a-fA-F]{10,64})$",
+                                "display": "Engine ID",
+                                "maximum-length": 64
+                            },
                             {
-                                "name": "AuthProtocol", 
-                                "default": "sha", 
-                                "required": "true", 
-                                "summary": "Set the authentication protocol.", 
+                                "name": "AuthProtocol",
+                                "default": "sha",
+                                "required": "true",
+                                "summary": "Set the authentication protocol.",
                                 "type": {
                                     "href": "/mgmt/types/default/dmSnmpAuthProtocol"
-                                }, 
-                                "display": "Authentication protocol", 
+                                },
+                                "display": "Authentication protocol",
                                 "description": "Select the authentication protocol."
-                            }, 
+                            },
                             {
-                                "name": "AuthSecretType", 
-                                "default": "password", 
+                                "name": "AuthSecretType",
+                                "default": "password",
                                 "required-when": {
                                     "condition": {
-                                        "property-name": "AuthProtocol", 
-                                        "evaluation": "property-does-not-equal", 
+                                        "property-name": "AuthProtocol",
+                                        "evaluation": "property-does-not-equal",
                                         "value": "none"
                                     }
-                                }, 
-                                "summary": "Set the format of the authentication key.", 
+                                },
+                                "summary": "Set the format of the authentication key.",
                                 "ignored-when": {
                                     "condition": {
                                         "evaluation": "logical-true"
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmSnmpSecretType"
-                                }, 
-                                "display": "Authentication value type", 
+                                },
+                                "display": "Authentication value type",
                                 "description": "&lt;p>Select whether the &lt;tt>AuthKey&lt;/tt> , when the authentication protocol is MD5 or SHA, is generated from a plaintext string or is an explicit key value.&lt;/p>"
-                            }, 
+                            },
                             {
-                                "name": "AuthSecret", 
-                                "minimum-length": 8, 
+                                "name": "AuthSecret",
+                                "minimum-length": 8,
                                 "required-when": {
                                     "condition": {
-                                        "evaluation": "logical-and", 
+                                        "evaluation": "logical-and",
                                         "condition": [
                                             {
                                                 "evaluation": "is-edit-new-object"
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "AuthProtocol", 
-                                                "evaluation": "property-does-not-equal", 
+                                                "property-name": "AuthProtocol",
+                                                "evaluation": "property-does-not-equal",
                                                 "value": "none"
                                             }
                                         ]
                                     }
-                                }, 
-                                "summary": "Enter the plaintext string to generate the localized authentication key, or enter the hex representation of the localized authentication key.", 
+                                },
+                                "summary": "Enter the plaintext string to generate the localized authentication key, or enter the hex representation of the localized authentication key.",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "AuthProtocol", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "AuthProtocol",
+                                        "evaluation": "property-equals",
                                         "value": "none"
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Authentication value", 
+                                },
+                                "display": "Authentication value",
                                 "description": "&lt;p>The &lt;tt>AuthKey&lt;/tt> can be an explicit value or generated by the DataPower Gateway. An explicit value is useful when the key is created on another system. Enter the plaintext string to generate the localized key, or enter the hex representation of the localized key.&lt;/p>&lt;ul>&lt;li>When the DataPower Gateway generates and stores the appropriate length key, enter a plaintext string that is at least 8 characters long as the hash.&lt;/li>&lt;li>When the value type is a localized key, enter the explicit key value. You can use colons (:) between every 2 hex characters.&lt;/li>&lt;ul>&lt;li>For MD5 authentication, enter the hex representation of the 16-byte key.&lt;/li>&lt;li>For SHA authentication, enter the hex representation of a 20-byte key.&lt;/li>&lt;/ul>&lt;/ul>"
-                            }, 
+                            },
                             {
-                                "name": "PrivProtocol", 
-                                "default": "des", 
-                                "required": "true", 
-                                "summary": "Set the privacy protocol.", 
+                                "name": "PrivProtocol",
+                                "default": "des",
+                                "required": "true",
+                                "summary": "Set the privacy protocol.",
                                 "type": {
                                     "href": "/mgmt/types/default/dmSnmpPrivProtocol"
-                                }, 
-                                "display": "Privacy protocol", 
+                                },
+                                "display": "Privacy protocol",
                                 "description": "Set the privacy protocol."
-                            }, 
+                            },
                             {
-                                "name": "PrivSecretType", 
-                                "default": "password", 
+                                "name": "PrivSecretType",
+                                "default": "password",
                                 "required-when": {
                                     "condition": {
-                                        "property-name": "PrivProtocol", 
-                                        "evaluation": "property-does-not-equal", 
+                                        "property-name": "PrivProtocol",
+                                        "evaluation": "property-does-not-equal",
                                         "value": "none"
                                     }
-                                }, 
-                                "summary": "Set the format of the privacy key.", 
+                                },
+                                "summary": "Set the format of the privacy key.",
                                 "ignored-when": {
                                     "condition": {
                                         "evaluation": "logical-true"
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmSnmpSecretType"
-                                }, 
-                                "display": "Privacy value type", 
+                                },
+                                "display": "Privacy value type",
                                 "description": "&lt;p>Select whether the &lt;tt>PrivKey&lt;/tt> , when the privacy protocol is AED or DES, is generated from a plaintext string or is an explicit key value.&lt;/p>"
-                            }, 
+                            },
                             {
-                                "name": "PrivSecret", 
-                                "minimum-length": 8, 
+                                "name": "PrivSecret",
+                                "minimum-length": 8,
                                 "required-when": {
                                     "condition": {
-                                        "evaluation": "logical-and", 
+                                        "evaluation": "logical-and",
                                         "condition": [
                                             {
                                                 "evaluation": "is-edit-new-object"
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "PrivProtocol", 
-                                                "evaluation": "property-does-not-equal", 
+                                                "property-name": "PrivProtocol",
+                                                "evaluation": "property-does-not-equal",
                                                 "value": "none"
                                             }
                                         ]
                                     }
-                                }, 
-                                "summary": "Enter the plaintext string to generate the localized privacy key, or enter the hex representation of the localized privacy key.", 
+                                },
+                                "summary": "Enter the plaintext string to generate the localized privacy key, or enter the hex representation of the localized privacy key.",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "PrivProtocol", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "PrivProtocol",
+                                        "evaluation": "property-equals",
                                         "value": "none"
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Privacy value", 
+                                },
+                                "display": "Privacy value",
                                 "description": "&lt;p>The &lt;tt>PrivKey&lt;/tt> can be an explicit value or generated by the DataPower Gateway. An explicit value is useful when the key is created on another system. Enter the plaintext string to generate the localized key, or enter the hex representation of the localized privacy key.&lt;/p>&lt;ul>&lt;li>When the DataPower Gateway generates and stores the appropriate length key, enter a plaintext string that is at least 8 characters long as the hash.&lt;/li>&lt;li>When the value type is a localized key, enter the explicit key value. You can use colons (:) between every 2 hex characters.&lt;/li>&lt;ul>&lt;li>For MD5 authentication, enter the hex representation of the 16-byte key.&lt;/li>&lt;li>For SHA authentication, enter the hex representation of a 20-byte key.&lt;/li>&lt;/ul>&lt;/ul>"
                             }
                         ]
                     }
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmSnmpCred"
-                    }, 
+                        "href": "/mgmt/docs/types/dmSnmpCredMasked"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmSnmpCred"
+                        "href": "/mgmt/types/default/dmSnmpCredMasked"
                     }
-                }
-            }, 
-            "name": "SnmpCreds", 
-            "type": {
-                "href": "/mgmt/types/default/dmSnmpCred"
-            }, 
-            "summary": "Manage SNMP V3 credentials for the user account.", 
-            "array": "true", 
-            "cli-alias": "snmp-cred", 
-            "display": "SNMP V3 credentials", 
-            "description": "&lt;p>SNMP V3 users are a type of user account with SNMP V3 credentials. This type of user account creates an account and adds SNMP V3 credentials. Each account can have multiple SNMP V3 credentials, one for each SNMP V3 engine that is identified by an engine ID value. The current implementation supports an SNMP V3 credential for the local engine ID only. Therefore, define only one SNMP V3 credential for each account.&lt;/p>&lt;p>SNMP V3 requests can use authentication with the &lt;tt>AuthKey&lt;/tt> and can use privacy (encryption and decryption) with the &lt;tt>PrivKey&lt;/tt> . The use of these keys is between the user and the local SNMP engine. &lt;ul>&lt;li>The &lt;tt>AuthKey&lt;/tt> provides data integrity and data origin authentication.&lt;/li>&lt;li>The &lt;tt>PrivKey&lt;/tt> provides data encryption and decryption.&lt;/li>&lt;/ul>&lt;/p>&lt;p>The &lt;tt>AuthKey&lt;/tt> and the &lt;tt>PrivKey&lt;/tt> can be explicit values or be generated by the DataPower Gateway. Specifying explicit values is useful when the key is created on another system. &lt;ul>&lt;li>When the authentication protocol is MD5, enter the hex representation of the 16-byte key.&lt;/li>&lt;li>When the authentication protocol is SHA, enter the hex representation of the 20-byte key.&lt;/li>&lt;li>When the DataPower Gateway generates and stores the appropriate length key, enter a plaintext string that is at least 8 characters long as the hash.&lt;/li>&lt;/ul>&lt;/p>"
-        }, 
-        {
-            "name": "HashedSnmpCreds", 
-            "type": {
-                "href": "/mgmt/types/default/dmSnmpCredMasked"
-            }, 
-            "/mgmt/types/default/dmSnmpCredMasked": {
+                },
                 "type": {
-                    "name": "dmSnmpCredMasked", 
+                    "name": "dmSnmpCredMasked",
                     "properties": {
                         "property": [
                             {
-                                "maximum-length": 64, 
-                                "minimum-length": 1, 
-                                "default": 0, 
-                                "valid-regexp": "^(0|[0-9a-fA-F]{10,64})$", 
-                                "required": "true", 
+                                "maximum-length": 64,
+                                "minimum-length": 1,
+                                "default": 0,
+                                "valid-regexp": "^(0|[0-9a-fA-F]{10,64})$",
+                                "required": "true",
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
+                                },
                                 "name": "EngineID"
-                            }, 
+                            },
                             {
-                                "default": "sha", 
-                                "required": "true", 
+                                "default": "sha",
+                                "required": "true",
                                 "type": {
                                     "href": "/mgmt/types/default/dmSnmpAuthProtocol"
-                                }, 
+                                },
                                 "name": "AuthProtocol"
-                            }, 
+                            },
                             {
-                                "default": "password", 
+                                "default": "password",
                                 "type": {
                                     "href": "/mgmt/types/default/dmSnmpSecretType"
-                                }, 
+                                },
                                 "name": "AuthSecretType"
-                            }, 
+                            },
                             {
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "name": "AuthSecret", 
+                                },
+                                "name": "AuthSecret",
                                 "minimum-length": 8
-                            }, 
+                            },
                             {
-                                "default": "des", 
-                                "required": "true", 
+                                "default": "des",
+                                "required": "true",
                                 "type": {
                                     "href": "/mgmt/types/default/dmSnmpPrivProtocol"
-                                }, 
+                                },
                                 "name": "PrivProtocol"
-                            }, 
+                            },
                             {
-                                "default": "password", 
+                                "default": "password",
                                 "type": {
                                     "href": "/mgmt/types/default/dmSnmpSecretType"
-                                }, 
+                                },
                                 "name": "PrivSecretType"
-                            }, 
+                            },
                             {
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "name": "PrivSecret", 
+                                },
+                                "name": "PrivSecret",
                                 "minimum-length": 8
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmSnmpCredMasked"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmSnmpCredMasked"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "name": "User",
+                "display": "User Account",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "AccessLevel"
+                            },
+                            {
+                                "name": "GroupName"
+                            },
+                            {
+                                "name": "UserSummary"
+                            }
+                        ],
+                        "name": "summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "Password"
+                            },
+                            {
+                                "name": "HashedPassword"
+                            },
+                            {
+                                "name": "SuppressPasswordChange"
+                            },
+                            {
+                                "name": "AccessLevel"
+                            },
+                            {
+                                "name": "GroupName"
+                            },
+                            {
+                                "name": "UserDomain"
+                            },
+                            {
+                                "name": "SnmpCreds"
+                            },
+                            {
+                                "name": "HashedSnmpCreds"
+                            },
+                            {
+                                "name": "DomainSettings"
+                            }
+                        ],
+                        "name": "main",
+                        "display": "Main"
                     }
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "array": "true", 
-            "cli-alias": "snmp-cred-hashed"
-        }, 
-        {
-            "name": "UserDomain", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/Domain"
-                }
-            }, 
-            "summary": "Deprecated - Set which application domains to grant access.", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "dmObjectName", 
-                    "evaluation": "property-value-in-list", 
-                    "value": [
-                        "admin", 
-                        "dp-technician"
+                ],
+                "uri": "access/username",
+                "actions": {
+                    "action": [
+                        {
+                            "name": "UserResetPassword",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "User",
+                                    "select": "dmObjectName"
+                                }
+                            },
+                            "display": "Reset password"
+                        },
+                        {
+                            "name": "UserForcePasswordChange",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "User",
+                                    "select": "dmObjectName"
+                                }
+                            },
+                            "display": "Force password change"
+                        },
+                        {
+                            "name": "UserResetFailedLogin",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "User",
+                                    "select": "dmObjectName"
+                                }
+                            },
+                            "display": "Reset failed login"
+                        }
                     ]
+                },
+                "summary": "Manage a local user account.",
+                "cmd-group": "usergroup",
+                "cli-alias": "user",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "Enter a descriptive summary for the configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter a descriptive summary for the configuration.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "description": "Enter the password for the account. The password must comply to the password policy in RBM settings.",
+                            "name": "Password",
+                            "minimum-length": 1,
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "is-edit-new-object"
+                                }
+                            },
+                            "summary": "Enter the password for the user account.",
+                            "cli-alias": "password",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Password",
+                            "maximum-length": 128
+                        },
+                        {
+                            "valid-regexp": "^\\$1\\$.+|^\\$5\\$.+$",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "cli-alias": "password-hashed",
+                            "name": "HashedPassword",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            }
+                        },
+                        {
+                            "name": "SuppressPasswordChange",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Indicate whether to force a change to the account password after the first ever successful login.",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-not",
+                                    "condition": {
+                                        "evaluation": "is-edit-new-object"
+                                    }
+                                }
+                            },
+                            "cli-alias": "suppress-password-change",
+                            "display": "Suppress initial password change",
+                            "description": "&lt;p>Indicate whether to force a change to the account password after the first ever successful login.&lt;/p>&lt;ul>&lt;li>When enabled, the account owner does not need to change the account password.&lt;/li>&lt;li>When disabled, the account owner must change the account password. This setting is the default behavior.&lt;/li>&lt;/ul>&lt;p>This property is available only when you create the configuration.&lt;/p>"
+                        },
+                        {
+                            "name": "AccessLevel",
+                            "default": "group-defined",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUserAccess"
+                            },
+                            "required": "true",
+                            "summary": "Set the access level of the user account.",
+                            "cli-alias": "access-level",
+                            "display": "Access level",
+                            "description": "Set the access level for the user account."
+                        },
+                        {
+                            "name": "GroupName",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "AccessLevel",
+                                    "evaluation": "property-equals",
+                                    "value": "group-defined"
+                                }
+                            },
+                            "summary": "Set the user group for the user account.",
+                            "cli-alias": "group",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/UserGroup"
+                                }
+                            },
+                            "display": "User group",
+                            "description": "Set the user group for the user account. Each user group has an access profile to manage access rights. A user account inherits access rights from its user group."
+                        },
+                        {
+                            "name": "SnmpCreds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSnmpCred"
+                            },
+                            "summary": "Manage SNMP V3 credentials for the user account.",
+                            "array": "true",
+                            "cli-alias": "snmp-cred",
+                            "display": "SNMP V3 credentials",
+                            "description": "&lt;p>SNMP V3 users are a type of user account with SNMP V3 credentials. This type of user account creates an account and adds SNMP V3 credentials. Each account can have multiple SNMP V3 credentials, one for each SNMP V3 engine that is identified by an engine ID value. The current implementation supports an SNMP V3 credential for the local engine ID only. Therefore, define only one SNMP V3 credential for each account.&lt;/p>&lt;p>SNMP V3 requests can use authentication with the &lt;tt>AuthKey&lt;/tt> and can use privacy (encryption and decryption) with the &lt;tt>PrivKey&lt;/tt> . The use of these keys is between the user and the local SNMP engine. &lt;ul>&lt;li>The &lt;tt>AuthKey&lt;/tt> provides data integrity and data origin authentication.&lt;/li>&lt;li>The &lt;tt>PrivKey&lt;/tt> provides data encryption and decryption.&lt;/li>&lt;/ul>&lt;/p>&lt;p>The &lt;tt>AuthKey&lt;/tt> and the &lt;tt>PrivKey&lt;/tt> can be explicit values or be generated by the DataPower Gateway. Specifying explicit values is useful when the key is created on another system. &lt;ul>&lt;li>When the authentication protocol is MD5, enter the hex representation of the 16-byte key.&lt;/li>&lt;li>When the authentication protocol is SHA, enter the hex representation of the 20-byte key.&lt;/li>&lt;li>When the DataPower Gateway generates and stores the appropriate length key, enter a plaintext string that is at least 8 characters long as the hash.&lt;/li>&lt;/ul>&lt;/p>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmSnmpCredMasked"
+                            },
+                            "array": "true",
+                            "cli-alias": "snmp-cred-hashed",
+                            "name": "HashedSnmpCreds",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            }
+                        },
+                        {
+                            "name": "UserDomain",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/Domain"
+                                }
+                            },
+                            "summary": "Deprecated - Set which application domains to grant access.",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "dmObjectName",
+                                    "evaluation": "property-value-in-list",
+                                    "value": [
+                                        "admin",
+                                        "dp-technician"
+                                    ]
+                                }
+                            },
+                            "array": "true",
+                            "cli-alias": "domain",
+                            "display": "Domain restriction (deprecated)",
+                            "description": "Deprecated - Set which application domains to grant access. The user account can log in to only these application domains. Without an application domain, the user account can log in to any application domain."
+                        }
+                    ]
+                },
+                "description": "&lt;p>Create or edit a local user account. When you modify a local user account, the changes do not affect remote user accounts in a role-based management XML information file.&lt;/p>&lt;p>An administrator can change the password for the account. An administrator can force the account owner to change the password during the next log in attempt.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/User"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/User"
                 }
-            }, 
-            "array": "true", 
-            "cli-alias": "domain", 
-            "display": "Domain restriction (deprecated)", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "Deprecated - Set which application domains to grant access. The user account can log in to only these application domains. Without an application domain, the user account can log in to any application domain."
+            }
         }
-    ]
+    }
 }

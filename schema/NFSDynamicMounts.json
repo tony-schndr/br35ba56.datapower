@@ -1,389 +1,319 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
+                },
                 "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmUInt32"
                     }
-                }
-            }, 
-            "name": "Version", 
-            "default": 3, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 4, 
-            "summary": "Preferred NFS protocol version for dynamic NFS mounts.", 
-            "minimum": 2, 
-            "cli-alias": "version", 
-            "display": "NFS Version", 
-            "description": "Preferred NFS protocol version for dynamic NFS mounts. If the Version is 3, but the server only implements Version 2, the client will fall back to Version 2. But if the Version is 4, there is no fallback, since the remote export paths are not the same."
-        }, 
-        {
-            "name": "Transport", 
-            "default": "tcp", 
-            "type": {
-                "href": "/mgmt/types/default/dmNFSTransportType"
-            }, 
-            "summary": "Starting transport protocol", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "Version", 
-                    "evaluation": "property-equals", 
-                    "value": 4
-                }
-            }, 
-            "cli-alias": "transport", 
-            "display": "Transport Protocol", 
-            "/mgmt/types/default/dmNFSTransportType": {
+                },
                 "type": {
-                    "summary": "NFS transport protocol", 
-                    "display": "NFS Transport", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "display": "TCP", 
-                                "name": "tcp", 
-                                "description": "Uses TCP. TCP is more reliable and allows larger read and write operations than UDP. If selected and not available, falls back to UDP."
-                            }, 
-                            {
-                                "display": "UDP", 
-                                "name": "udp", 
-                                "description": "Uses UDP. Some early NFS Version 2 servers support only UDP."
-                            }
-                        ]
-                    }, 
-                    "name": "dmNFSTransportType"
-                }, 
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmNFSTransportType"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmNFSTransportType"
                     }
-                }
-            }, 
-            "description": "Transport protocol to start with for dynamic NFS mounts. If TCP is selected and it is not available on the NFS server, UDP will be used instead. When NFS version 4 is selected, this option is ignored and always defaults to TCP."
-        }, 
-        {
-            "/mgmt/types/default/dmNFSMountHardSoft": {
+                },
                 "type": {
-                    "summary": "NFS mount type", 
-                    "display": "NFS Mount Type", 
+                    "display": "NFS Transport",
+                    "name": "dmNFSTransportType",
                     "value-list": {
                         "value": [
                             {
-                                "display": "Hard", 
-                                "name": "hard", 
-                                "description": "Makes this NFS mount a hard mount, which is the default behavior. Hard mounts ensure the reliable transfer of data. If the NFS server is unavailable for more than two minutes, the appliance might reboot due to a watchdog error."
-                            }, 
+                                "display": "TCP",
+                                "description": "Uses TCP. TCP is more reliable and allows larger read and write operations than UDP. If selected and not available, falls back to UDP.",
+                                "name": "tcp"
+                            },
                             {
-                                "display": "Soft", 
-                                "name": "soft", 
-                                "description": "Makes this NFS mount a soft mount. Soft mounts can expose the risk of undetected data corruption and the loss of files read or written via NFS. If the NFS server is unavailable and the retransmit timeout and count does not complete in less than two minutes, soft mounts might prevent a reboot due to a watchdog error. Select this behavior only if preventing watchdog errors is more important than data integrity."
+                                "display": "UDP",
+                                "description": "Uses UDP. Some early NFS Version 2 servers support only UDP.",
+                                "name": "udp"
                             }
                         ]
-                    }, 
-                    "name": "dmNFSMountHardSoft"
-                }, 
+                    },
+                    "summary": "NFS transport protocol"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmNFSMountHardSoft"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmNFSMountHardSoft"
                     }
-                }
-            }, 
-            "name": "MountType", 
-            "default": "hard", 
-            "type": {
-                "href": "/mgmt/types/default/dmNFSMountHardSoft"
-            }, 
-            "summary": "Type of NFS mount to use", 
-            "cli-alias": "mount-type", 
-            "display": "Mount Type", 
-            "description": "Select the type of NFS mount to use. The default behavior is to use NFS hard mounts, which is generally the appropriate behavior."
-        }, 
-        {
-            "name": "ReadOnly", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Allow only file reads on dynamic NFS mounts.", 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "display": "NFS Mount Type",
+                    "name": "dmNFSMountHardSoft",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
+                                "display": "Hard",
+                                "description": "Makes this NFS mount a hard mount, which is the default behavior. Hard mounts ensure the reliable transfer of data. If the NFS server is unavailable for more than two minutes, the appliance might reboot due to a watchdog error.",
+                                "name": "hard"
+                            },
                             {
-                                "name": "off", 
+                                "display": "Soft",
+                                "description": "Makes this NFS mount a soft mount. Soft mounts can expose the risk of undetected data corruption and the loss of files read or written via NFS. If the NFS server is unavailable and the retransmit timeout and count does not complete in less than two minutes, soft mounts might prevent a reboot due to a watchdog error. Select this behavior only if preventing watchdog errors is more important than data integrity.",
+                                "name": "soft"
+                            }
+                        ]
+                    },
+                    "summary": "NFS mount type"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "read-only", 
-            "display": "Read-Only"
-        }, 
-        {
-            "name": "ReadSize", 
-            "default": 4096, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 32768, 
-            "summary": "Size of read operations for dynamic NFS mounts.", 
-            "minimum": 1024, 
-            "units": "bytes", 
-            "cli-alias": "rsize", 
-            "display": "Read Size", 
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
                 }
             }
-        }, 
-        {
-            "name": "WriteSize", 
-            "default": 4096, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 32768, 
-            "summary": "Size of write operations for dynamic NFS mounts.", 
-            "minimum": 1024, 
-            "units": "bytes", 
-            "cli-alias": "wsize", 
-            "display": "Write Size", 
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
-                }
-            }
-        }, 
-        {
-            "name": "Timeout", 
-            "default": 7, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 600, 
-            "summary": "Time until first retransmission is sent on an RPC timeout, for dynamic NFS mounts.", 
-            "minimum": 1, 
-            "units": "tenths of seconds", 
-            "cli-alias": "timeo", 
-            "display": "Retransmission Timeout", 
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
-                }
-            }
-        }, 
-        {
-            "name": "Retransmissions", 
-            "default": 3, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 60, 
-            "summary": "Number of minor RPC timeouts and retransmissions until major timeout, for dynamic NFS mounts.", 
-            "minimum": 1, 
-            "cli-alias": "retrans", 
-            "display": "Maximum Retransmissions", 
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
-                }
-            }
-        }, 
-        {
-            "name": "IdleUnmountSeconds", 
-            "default": 900, 
-            "cli-alias": "inactivity-timeout", 
-            "summary": "How many seconds an dynamic NFS mount will be left mounted with no file activity until it gets unmounted. Setting it to 0 disables automatic unmounting.", 
-            "units": "seconds", 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "display": "Inactivity Timeout", 
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
-                }
-            }
-        }, 
-        {
-            "name": "MountTimeoutSeconds", 
-            "default": 30, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 240, 
-            "summary": "How many seconds the system will attempt to retry a dynamic NFS mount until it gives up, and causes the related file open(s) to fail.", 
-            "minimum": 10, 
-            "units": "seconds", 
-            "cli-alias": "mount-timeout", 
-            "display": "Mount Timeout", 
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "NFSDynamicMounts",
+                "display": "NFS Dynamic Mounts",
+                "uri": "network/nfs-dynamic-mounts",
+                "summary": "NFS Dynamic Mounts",
+                "cmd-group": "file-management",
+                "cli-alias": "nfs-dynamic-mounts",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "Version",
+                            "default": 3,
+                            "cli-alias": "version",
+                            "maximum": 4,
+                            "summary": "Preferred NFS protocol version for dynamic NFS mounts.",
+                            "minimum": 2,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "NFS Version",
+                            "description": "Preferred NFS protocol version for dynamic NFS mounts. If the Version is 3, but the server only implements Version 2, the client will fall back to Version 2. But if the Version is 4, there is no fallback, since the remote export paths are not the same."
+                        },
+                        {
+                            "name": "Transport",
+                            "default": "tcp",
+                            "type": {
+                                "href": "/mgmt/types/default/dmNFSTransportType"
+                            },
+                            "summary": "Starting transport protocol",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Version",
+                                    "evaluation": "property-equals",
+                                    "value": 4
+                                }
+                            },
+                            "cli-alias": "transport",
+                            "display": "Transport Protocol",
+                            "description": "Transport protocol to start with for dynamic NFS mounts. If TCP is selected and it is not available on the NFS server, UDP will be used instead. When NFS version 4 is selected, this option is ignored and always defaults to TCP."
+                        },
+                        {
+                            "name": "MountType",
+                            "default": "hard",
+                            "type": {
+                                "href": "/mgmt/types/default/dmNFSMountHardSoft"
+                            },
+                            "summary": "Type of NFS mount to use",
+                            "cli-alias": "mount-type",
+                            "display": "Mount Type",
+                            "description": "Select the type of NFS mount to use. The default behavior is to use NFS hard mounts, which is generally the appropriate behavior."
+                        },
+                        {
+                            "name": "ReadOnly",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Allow only file reads on dynamic NFS mounts.",
+                            "cli-alias": "read-only",
+                            "display": "Read-Only"
+                        },
+                        {
+                            "name": "ReadSize",
+                            "default": 4096,
+                            "cli-alias": "rsize",
+                            "maximum": 32768,
+                            "summary": "Size of read operations for dynamic NFS mounts.",
+                            "minimum": 1024,
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Read Size"
+                        },
+                        {
+                            "name": "WriteSize",
+                            "default": 4096,
+                            "cli-alias": "wsize",
+                            "maximum": 32768,
+                            "summary": "Size of write operations for dynamic NFS mounts.",
+                            "minimum": 1024,
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Write Size"
+                        },
+                        {
+                            "name": "Timeout",
+                            "default": 7,
+                            "cli-alias": "timeo",
+                            "maximum": 600,
+                            "summary": "Time until first retransmission is sent on an RPC timeout, for dynamic NFS mounts.",
+                            "minimum": 1,
+                            "units": "tenths of seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Retransmission Timeout"
+                        },
+                        {
+                            "name": "Retransmissions",
+                            "default": 3,
+                            "cli-alias": "retrans",
+                            "maximum": 60,
+                            "summary": "Number of minor RPC timeouts and retransmissions until major timeout, for dynamic NFS mounts.",
+                            "minimum": 1,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Maximum Retransmissions"
+                        },
+                        {
+                            "name": "IdleUnmountSeconds",
+                            "default": 900,
+                            "cli-alias": "inactivity-timeout",
+                            "summary": "How many seconds an dynamic NFS mount will be left mounted with no file activity until it gets unmounted. Setting it to 0 disables automatic unmounting.",
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Inactivity Timeout"
+                        },
+                        {
+                            "name": "MountTimeoutSeconds",
+                            "default": 30,
+                            "cli-alias": "mount-timeout",
+                            "maximum": 240,
+                            "summary": "How many seconds the system will attempt to retry a dynamic NFS mount until it gives up, and causes the related file open(s) to fail.",
+                            "minimum": 10,
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Mount Timeout"
+                        }
+                    ]
+                },
+                "description": "Use this page to configure the parameters of dynamic NFS mounts for dpnfs: URL fetches. These mounts support access via URLs of the form dpnfs://hostname/path/file, causing the directory hostname:/path to be automatically mounted by NFS. It remains mounted until it times out for inactivity."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/NFSDynamicMounts"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/NFSDynamicMounts"
                 }
             }
         }
-    ]
+    }
 }

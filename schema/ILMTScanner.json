@@ -1,97 +1,134 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "description": "A descriptive summary for the configuration.", 
-            "cli-alias": "summary", 
-            "summary": "Enter a descriptive summary for the configuration.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments", 
-            "name": "UserSummary"
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
+                },
                 "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmUInt32"
                     }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
                 }
-            }, 
-            "name": "ScanInterval", 
-            "default": 7, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 31, 
-            "summary": "Set the interval between scans.", 
-            "minimum": 1, 
-            "units": "Days", 
-            "cli-alias": "scan-interval", 
-            "display": "Scan interval", 
-            "description": "The interval in day between the creation of ILMT packages. At the defined interval, an ILMT package is created with the scan results. Enter a value in the range 1 - 31. The default value is 7."
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "ILMTScanner",
+                "display": "ILMT Disconnected Scanner",
+                "uri": "system/ilmt-scanner",
+                "actions": {
+                    "action": {
+                        "name": "ILMTForceScan"
+                    }
+                },
+                "summary": "Configure the disconnected ILMT scanner.",
+                "platforms": {
+                    "platform": "vmware"
+                },
+                "editions": {
+                    "edition": "developers"
+                },
+                "cmd-group": "system",
+                "cli-alias": "ilmt-scanner",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "A descriptive summary for the configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter a descriptive summary for the configuration.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "ScanInterval",
+                            "default": 7,
+                            "cli-alias": "scan-interval",
+                            "maximum": 31,
+                            "summary": "Set the interval between scans.",
+                            "minimum": 1,
+                            "units": "Days",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Scan interval",
+                            "description": "The interval in day between the creation of ILMT packages. At the defined interval, an ILMT package is created with the scan results. Enter a value in the range 1 - 31. The default value is 7."
+                        }
+                    ]
+                },
+                "description": "&lt;p>For DataPower Gateway for VMware, you can create IBM License Metric Tool packages on a schedule or on demand. Independent of how you create packages, these packages with the scan results are created in the &lt;tt>local:///ilmt/output&lt;/tt> directory. The package name includes the time stamp of when the package was created.&lt;/p>&lt;p>By default, the DataPower Gateway does not create ILMT packages. &lt;ul>&lt;li>To create packages on a schedule, you must enable the disconnected ILMT scanner. When enabled, packages are once a week. You can change scan interval.&lt;/li>&lt;li>To create a package on demand, you force a scan.&lt;/li>&lt;/ul>&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/ILMTScanner"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/ILMTScanner"
+                }
+            }
         }
-    ]
+    }
 }

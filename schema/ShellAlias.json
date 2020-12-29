@@ -1,66 +1,91 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
                 }
-            }, 
-            "description": "Enter the sequence of commands to invoke. Use a semicolon to separate commands. The macro invokes the commands in the specified sequence. For example, configure terminal; backup latest.zip appdomain.", 
-            "required": "true", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Command sequence", 
-            "name": "command"
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "ShellAlias",
+                "uri": "config/alias",
+                "display": "Shell Alias (deprecated)",
+                "cmd-group": "configuration",
+                "cli-alias": "alias",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "display": "Command sequence",
+                            "required": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "description": "Enter the sequence of commands to invoke. Use a semicolon to separate commands. The macro invokes the commands in the specified sequence. For example, configure terminal; backup latest.zip appdomain.",
+                            "name": "command"
+                        }
+                    ]
+                },
+                "description": "&lt;p>The Shell Alias command is deprecated.&lt;/p>&lt;p>Creates a user-defined macro that runs the specified sequence of commands when invoked from the CLI. You can use the GUI to create and modify macros, but you can invoke these macros from only the CLI.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/ShellAlias"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/ShellAlias"
+                }
+            }
         }
-    ]
+    }
 }

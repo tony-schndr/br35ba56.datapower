@@ -1,324 +1,295 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "description": "The full action pipeline that includes the actions generated from the WSDL as well as the rules configured by the user.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/StylePolicyAction"
-                }
-            }, 
-            "array": "true", 
-            "cli-alias": "action", 
-            "display": "Rule Actions", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "name": "Actions"
-        }, 
-        {
-            "name": "Direction", 
-            "default": "rule", 
-            "type": {
-                "href": "/mgmt/types/default/dmStyleRuleDirection"
-            }, 
-            "required": "true", 
-            "summary": "A rule type", 
-            "/mgmt/types/default/dmStyleRuleDirection": {
+                },
                 "type": {
-                    "summary": "Direction to which the Rule applies", 
-                    "display": "Rule Direction", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Applies to both client- and server-originated traffic", 
-                                "display": "Both Directions", 
-                                "name": "rule"
-                            }, 
-                            {
-                                "summary": "Applies to client-originated traffic", 
-                                "display": "Client to Server", 
-                                "name": "request-rule"
-                            }, 
-                            {
-                                "summary": "Applies to server-originated traffic", 
-                                "display": "Server to Client", 
-                                "name": "response-rule"
-                            }, 
-                            {
-                                "summary": "Invoked when a processing error occurs", 
-                                "display": "Error", 
-                                "name": "error-rule"
-                            }
-                        ]
-                    }, 
-                    "name": "dmStyleRuleDirection"
-                }, 
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmStyleRuleDirection"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmStyleRuleDirection"
                     }
-                }
-            }, 
-            "cli-alias": "type", 
-            "display": "Rule Direction", 
-            "description": "Select a rule type. The default is Rule."
-        }, 
-        {
-            "name": "InputFormat", 
-            "default": "none", 
-            "type": {
-                "href": "/mgmt/types/default/dmStyleRuleFilterFormat"
-            }, 
-            "required": "true", 
-            "summary": "Filter or preprocess Processing Rule input", 
-            "/mgmt/types/default/dmStyleRuleFilterFormat": {
+                },
                 "type": {
-                    "summary": "Stylesheet Rule Filter Format", 
-                    "display": "Stylesheet Rule Filter Format", 
+                    "display": "Rule Direction",
+                    "name": "dmStyleRuleDirection",
                     "value-list": {
                         "value": [
                             {
-                                "summary": "No algorithm for compression or decompression.", 
-                                "display": "None", 
-                                "name": "none"
-                            }, 
+                                "display": "Both Directions",
+                                "name": "rule",
+                                "summary": "Applies to both client- and server-originated traffic"
+                            },
                             {
-                                "summary": "Use the gzip algorithms for compression and decompression.", 
-                                "display": "gzip", 
-                                "name": "gzip"
-                            }, 
+                                "display": "Client to Server",
+                                "name": "request-rule",
+                                "summary": "Applies to client-originated traffic"
+                            },
                             {
-                                "summary": "Uses the PKZIP algorithms for compression and decompression.", 
-                                "display": "PKZIP", 
-                                "name": "pkzip"
+                                "display": "Server to Client",
+                                "name": "response-rule",
+                                "summary": "Applies to server-originated traffic"
+                            },
+                            {
+                                "display": "Error",
+                                "name": "error-rule",
+                                "summary": "Invoked when a processing error occurs"
                             }
                         ]
-                    }, 
-                    "name": "dmStyleRuleFilterFormat"
-                }, 
+                    },
+                    "summary": "Direction to which the Rule applies"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmStyleRuleFilterFormat"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmStyleRuleFilterFormat"
                     }
-                }
-            }, 
-            "cli-alias": "input-filter", 
-            "display": "Input Filter", 
-            "description": "Select a decompression algorithm to apply to all messages before any other processing occurs (a preprocess step). All messages are decompressed using the selected algorithm. If the message is not compressed with this algorithm, an error is raised. This setting is independent of transport-level decompression. The default is None."
-        }, 
-        {
-            "name": "OutputFormat", 
-            "default": "none", 
-            "type": {
-                "href": "/mgmt/types/default/dmStyleRuleFilterFormat"
-            }, 
-            "required": "true", 
-            "summary": "Filter or post-process Processing Rule output", 
-            "/mgmt/types/default/dmStyleRuleFilterFormat": {
+                },
                 "type": {
-                    "summary": "Stylesheet Rule Filter Format", 
-                    "display": "Stylesheet Rule Filter Format", 
+                    "display": "Stylesheet Rule Filter Format",
+                    "name": "dmStyleRuleFilterFormat",
                     "value-list": {
                         "value": [
                             {
-                                "summary": "No algorithm for compression or decompression.", 
-                                "display": "None", 
-                                "name": "none"
-                            }, 
+                                "display": "None",
+                                "name": "none",
+                                "summary": "No algorithm for compression or decompression."
+                            },
                             {
-                                "summary": "Use the gzip algorithms for compression and decompression.", 
-                                "display": "gzip", 
-                                "name": "gzip"
-                            }, 
+                                "display": "gzip",
+                                "name": "gzip",
+                                "summary": "Use the gzip algorithms for compression and decompression."
+                            },
                             {
-                                "summary": "Uses the PKZIP algorithms for compression and decompression.", 
-                                "display": "PKZIP", 
-                                "name": "pkzip"
+                                "display": "PKZIP",
+                                "name": "pkzip",
+                                "summary": "Uses the PKZIP algorithms for compression and decompression."
                             }
                         ]
-                    }, 
-                    "name": "dmStyleRuleFilterFormat"
-                }, 
+                    },
+                    "summary": "Stylesheet Rule Filter Format"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmStyleRuleFilterFormat"
-                    }, 
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmStyleRuleFilterFormat"
+                        "href": "/mgmt/types/default/dmToggle"
                     }
-                }
-            }, 
-            "cli-alias": "output-filter", 
-            "display": "Output Filter", 
-            "description": "Select a compression algorithm to apply to all messages after any other processing occurs (a post-process step). All messages are compressed using the selected algorithm. The resulting archive contains only one file. This setting is independent of transport-level compression. The default is None."
-        }, 
-        {
-            "name": "NonXMLProcessing", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Should Rule Apply to Non-XML traffic too", 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
+                                "name": "on",
                                 "display": "on"
-                            }, 
+                            },
                             {
-                                "name": "off", 
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "Unprocessed", 
-                    "evaluation": "property-equals", 
-                    "value": "on"
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "WSStylePolicyRule",
+                "property-group": {
+                    "member": {
+                        "name": "Direction"
+                    },
+                    "name": "summary"
+                },
+                "uri": "wsm/wsm-rule",
+                "display": "WS-Proxy Processing Rule",
+                "cmd-group": "stylesheetrule",
+                "cli-alias": "wsm-rule",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "description": "The full action pipeline that includes the actions generated from the WSDL as well as the rules configured by the user.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/StylePolicyAction"
+                                }
+                            },
+                            "array": "true",
+                            "cli-alias": "action",
+                            "display": "Rule Actions",
+                            "name": "Actions"
+                        },
+                        {
+                            "name": "Direction",
+                            "default": "rule",
+                            "type": {
+                                "href": "/mgmt/types/default/dmStyleRuleDirection"
+                            },
+                            "required": "true",
+                            "summary": "A rule type",
+                            "cli-alias": "type",
+                            "display": "Rule Direction",
+                            "description": "Select a rule type. The default is Rule."
+                        },
+                        {
+                            "name": "InputFormat",
+                            "default": "none",
+                            "type": {
+                                "href": "/mgmt/types/default/dmStyleRuleFilterFormat"
+                            },
+                            "required": "true",
+                            "summary": "Filter or preprocess Processing Rule input",
+                            "cli-alias": "input-filter",
+                            "display": "Input Filter",
+                            "description": "Select a decompression algorithm to apply to all messages before any other processing occurs (a preprocess step). All messages are decompressed using the selected algorithm. If the message is not compressed with this algorithm, an error is raised. This setting is independent of transport-level decompression. The default is None."
+                        },
+                        {
+                            "name": "OutputFormat",
+                            "default": "none",
+                            "type": {
+                                "href": "/mgmt/types/default/dmStyleRuleFilterFormat"
+                            },
+                            "required": "true",
+                            "summary": "Filter or post-process Processing Rule output",
+                            "cli-alias": "output-filter",
+                            "display": "Output Filter",
+                            "description": "Select a compression algorithm to apply to all messages after any other processing occurs (a post-process step). All messages are compressed using the selected algorithm. The resulting archive contains only one file. This setting is independent of transport-level compression. The default is None."
+                        },
+                        {
+                            "name": "NonXMLProcessing",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Should Rule Apply to Non-XML traffic too",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Unprocessed",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "cli-alias": "non-xml-processing",
+                            "display": "Non-XML Processing",
+                            "description": "Normally, processing is only performed on XML content. This option allows processing actions to be performed on Non-XML content as well."
+                        },
+                        {
+                            "name": "Unprocessed",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Permit rule to pass-through data unprocessed",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "NonXMLProcessing",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "cli-alias": "unprocessed",
+                            "display": "Unprocessed",
+                            "description": "Permit rule to pass-through data unprocessed"
+                        }
+                    ]
+                },
+                "description": "Create, edit, or delete processing policy rules. Rules can also be created and edited using a drag and drop interface by opening the Services menu area on the left-hand navigation bar. Click the appropriate Policy link which will then present an opportunity to create both Rules and Actions."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/WSStylePolicyRule"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/WSStylePolicyRule"
                 }
-            }, 
-            "cli-alias": "non-xml-processing", 
-            "display": "Non-XML Processing", 
-            "description": "Normally, processing is only performed on XML content. This option allows processing actions to be performed on Non-XML content as well."
-        }, 
-        {
-            "name": "Unprocessed", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Permit rule to pass-through data unprocessed", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "NonXMLProcessing", 
-                    "evaluation": "property-equals", 
-                    "value": "on"
-                }
-            }, 
-            "cli-alias": "unprocessed", 
-            "display": "Unprocessed", 
-            "description": "Permit rule to pass-through data unprocessed"
+            }
         }
-    ]
+    }
 }

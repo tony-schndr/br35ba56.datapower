@@ -1,514 +1,418 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "description": "Specifies a brief descriptive summary for the configuration.", 
-            "cli-alias": "summary", 
-            "summary": "A descriptive summary for the configuration", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments", 
-            "name": "UserSummary"
-        }, 
-        {
-            "description": "&lt;p>Specifies whether data storage is persistent or in-memory. &lt;ul>&lt;li>For persistent storage, select the RAID volume that must be &lt;tt>raid0&lt;/tt> .&lt;/li>&lt;li>For in-memory storage, do not select the RAID volume.&lt;/li>&lt;/ul>&lt;/p>", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/RaidVolume"
-                }
-            }, 
-            "summary": "Whether data storage is persisted on the RAID volume or is in-memory.", 
-            "cli-alias": "raid-volume", 
-            "display": "Data storage location", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "name": "RaidVolume"
-        }, 
-        {
-            "name": "ServerPort", 
-            "default": 16379, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt16"
-            }, 
-            "required": "true", 
-            "summary": "Server port of the quota enforcement server", 
-            "/mgmt/types/default/dmUInt16": {
+                },
                 "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt16", 
-                    "maximum": "0xFFFF"
-                }, 
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmUInt16"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmUInt16"
                     }
-                }
-            }, 
-            "cli-alias": "server-port", 
-            "display": "Server port", 
-            "description": "Indicates the listening port used by the GatewayScript module to communicate with the quota enforcement server. The default port value is 16379."
-        }, 
-        {
-            "name": "MonitorPort", 
-            "default": 26379, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt16"
-            }, 
-            "required": "true", 
-            "summary": "Monitor port of the quota enforcement server", 
-            "/mgmt/types/default/dmUInt16": {
+                },
                 "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt16", 
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt16",
                     "maximum": "0xFFFF"
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmUInt16"
-                    }, 
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmUInt16"
+                        "href": "/mgmt/types/default/dmToggle"
                     }
-                }
-            }, 
-            "cli-alias": "monitor-port", 
-            "display": "Monitor port", 
-            "description": "Indicates the listening port for operational state monitoring for the quota enforcement server. The default port is 26379."
-        }, 
-        {
-            "name": "EnablePeerGroup", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to enable the peer group mode", 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
+                                "name": "on",
                                 "display": "on"
-                            }, 
+                            },
                             {
-                                "name": "off", 
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "cli-alias": "enable-peer-group", 
-            "display": "Peer group mode", 
-            "description": "Indicates whether the DataPower Gateway is enabled to work in peer group mode. By default, peer group mode is disabled, which indicates that the DataPower Gateway works in standalone mode."
-        }, 
-        {
-            "name": "EnableSSL", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to enable the TLS to secure connection", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "EnablePeerGroup", 
-                    "evaluation": "property-equals", 
-                    "value": "off"
-                }
-            }, 
-            "cli-alias": "enable-ssl", 
-            "display": "Enable TLS", 
-            "description": "Indicates whether TLS is used to secure connection among the peers of the peer group. By default, the TLS is enabled."
-        }, 
-        {
-            "name": "SSLCryptoKey", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-and", 
-                    "condition": [
-                        {
-                            "property-name": "EnablePeerGroup", 
-                            "evaluation": "property-equals", 
-                            "value": "on"
-                        }, 
-                        {
-                            "property-name": "EnableSSL", 
-                            "evaluation": "property-equals", 
-                            "value": "on"
-                        }
-                    ]
-                }
-            }, 
-            "summary": "Private key alias", 
-            "cli-alias": "ssl-key", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "EnablePeerGroup", 
-                            "evaluation": "property-equals", 
-                            "value": "off"
-                        }, 
-                        {
-                            "property-name": "EnableSSL", 
-                            "evaluation": "property-equals", 
-                            "value": "off"
-                        }
-                    ]
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/CryptoKey"
-                }
-            }, 
-            "display": "Crypto key", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "Indicates the key alias for the DataPower Gateway to authenticate a peer of the DataPower Gateway during the TLS handshake."
-        }, 
-        {
-            "name": "SSLCryptoCertificate", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-and", 
-                    "condition": [
-                        {
-                            "property-name": "EnablePeerGroup", 
-                            "evaluation": "property-equals", 
-                            "value": "on"
-                        }, 
-                        {
-                            "property-name": "EnableSSL", 
-                            "evaluation": "property-equals", 
-                            "value": "on"
-                        }
-                    ]
-                }
-            }, 
-            "summary": "Certificate alias", 
-            "cli-alias": "ssl-cert", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "EnablePeerGroup", 
-                            "evaluation": "property-equals", 
-                            "value": "off"
-                        }, 
-                        {
-                            "property-name": "EnableSSL", 
-                            "evaluation": "property-equals", 
-                            "value": "off"
-                        }
-                    ]
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/CryptoCertificate"
-                }
-            }, 
-            "display": "Certificate", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "Indicates the certificate alias that is sent to a peer when the DataPower Gateway negotiates a TLS connection with the peer."
-        }, 
-        {
-            "/mgmt/types/default/dmLocalIPHostAddress": {
-                "type": {
-                    "cli-arg": "dotted-ip or 0 for any", 
-                    "name": "dmLocalIPHostAddress", 
-                    "format": "(a.b.c.d or 0 for any)"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmLocalIPHostAddress"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmLocalIPHostAddress"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmLocalIPHostAddress"
-            }, 
-            "name": "IPAddress", 
-            "required-when": {
-                "condition": {
-                    "property-name": "EnablePeerGroup", 
-                    "evaluation": "property-equals", 
-                    "value": "on"
-                }
-            }, 
-            "summary": "IP address of the DataPower Gateway", 
-            "valid-regexp": "^(?!(127.0.0.1|0.0.0.0|::)).*$", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "EnablePeerGroup", 
-                    "evaluation": "property-equals", 
-                    "value": "off"
-                }
-            }, 
-            "cli-alias": "ip-address", 
-            "display": "IP address", 
-            "description": "&lt;p>Indicates the IP address of the DataPower Gateway for other peers to connect to. The IP address can be the IP address on any interface of the DataPower Gateway and must be accessible by other peers in the peer group. The IP address cannot be 127.0.0.1, 0.0.0.0 or ::. This IP address uniquely identifies the DataPower Gateway.&lt;/p>&lt;p>You can use a local host alias instead of a static IP address. A host alias resolves a locally configured alias to a static IP address.&lt;/p>"
-        }, 
-        {
-            "/mgmt/types/default/dmLocalIPHostAddress": {
+                },
                 "type": {
-                    "cli-arg": "dotted-ip or 0 for any", 
-                    "name": "dmLocalIPHostAddress", 
+                    "cli-arg": "dotted-ip or 0 for any",
+                    "name": "dmLocalIPHostAddress",
                     "format": "(a.b.c.d or 0 for any)"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmLocalIPHostAddress"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "QuotaEnforcementServer",
+                "display": "Quota Enforcement Server",
+                "uri": "system/quota-enforcement-server",
+                "actions": {
+                    "action": {
+                        "name": "QuotaEnforcementSwitchPrimary"
                     }
+                },
+                "summary": "Quota enforcement server working in standalone mode or peer group mode.",
+                "cmd-group": "system",
+                "cli-alias": "quota-enforcement-server",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "Specifies a brief descriptive summary for the configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "A descriptive summary for the configuration",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "description": "&lt;p>Specifies whether data storage is persistent or in-memory. &lt;ul>&lt;li>For persistent storage, select the RAID volume that must be &lt;tt>raid0&lt;/tt> .&lt;/li>&lt;li>For in-memory storage, do not select the RAID volume.&lt;/li>&lt;/ul>&lt;/p>",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/RaidVolume"
+                                }
+                            },
+                            "summary": "Whether data storage is persisted on the RAID volume or is in-memory.",
+                            "cli-alias": "raid-volume",
+                            "display": "Data storage location",
+                            "name": "RaidVolume"
+                        },
+                        {
+                            "name": "ServerPort",
+                            "default": 16379,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "required": "true",
+                            "summary": "Server port of the quota enforcement server",
+                            "cli-alias": "server-port",
+                            "display": "Server port",
+                            "description": "Indicates the listening port used by the GatewayScript module to communicate with the quota enforcement server. The default port value is 16379."
+                        },
+                        {
+                            "name": "MonitorPort",
+                            "default": 26379,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "required": "true",
+                            "summary": "Monitor port of the quota enforcement server",
+                            "cli-alias": "monitor-port",
+                            "display": "Monitor port",
+                            "description": "Indicates the listening port for operational state monitoring for the quota enforcement server. The default port is 26379."
+                        },
+                        {
+                            "name": "EnablePeerGroup",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to enable the peer group mode",
+                            "cli-alias": "enable-peer-group",
+                            "display": "Peer group mode",
+                            "description": "Indicates whether the DataPower Gateway is enabled to work in peer group mode. By default, peer group mode is disabled, which indicates that the DataPower Gateway works in standalone mode."
+                        },
+                        {
+                            "name": "EnableSSL",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to enable the TLS to secure connection",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "EnablePeerGroup",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "cli-alias": "enable-ssl",
+                            "display": "Enable TLS",
+                            "description": "Indicates whether TLS is used to secure connection among the peers of the peer group. By default, the TLS is enabled."
+                        },
+                        {
+                            "name": "SSLCryptoKey",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "EnablePeerGroup",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "EnableSSL",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Private key alias",
+                            "cli-alias": "ssl-key",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "EnablePeerGroup",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "EnableSSL",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        }
+                                    ]
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoKey"
+                                }
+                            },
+                            "display": "Crypto key",
+                            "description": "Indicates the key alias for the DataPower Gateway to authenticate a peer of the DataPower Gateway during the TLS handshake."
+                        },
+                        {
+                            "name": "SSLCryptoCertificate",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "EnablePeerGroup",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "EnableSSL",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Certificate alias",
+                            "cli-alias": "ssl-cert",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "EnablePeerGroup",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "EnableSSL",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        }
+                                    ]
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoCertificate"
+                                }
+                            },
+                            "display": "Certificate",
+                            "description": "Indicates the certificate alias that is sent to a peer when the DataPower Gateway negotiates a TLS connection with the peer."
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                            },
+                            "name": "IPAddress",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "EnablePeerGroup",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "IP address of the DataPower Gateway",
+                            "cli-alias": "ip-address",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "EnablePeerGroup",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "valid-regexp": "^(?!(127.0.0.1|0.0.0.0|::)).*$",
+                            "display": "IP address",
+                            "description": "&lt;p>Indicates the IP address of the DataPower Gateway for other peers to connect to. The IP address can be the IP address on any interface of the DataPower Gateway and must be accessible by other peers in the peer group. The IP address cannot be 127.0.0.1, 0.0.0.0 or ::. This IP address uniquely identifies the DataPower Gateway.&lt;/p>&lt;p>You can use a local host alias instead of a static IP address. A host alias resolves a locally configured alias to a static IP address.&lt;/p>"
+                        },
+                        {
+                            "name": "Peers",
+                            "valid-regexp": "^(?!(127.0.0.1|0.0.0.0|::)).*$",
+                            "summary": "The IP address or hostname of peers of the DataPower Gateway",
+                            "cli-alias": "peer",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "EnablePeerGroup",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "array": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                            },
+                            "display": "Peers",
+                            "description": "&lt;p>Specifies peers of the DataPower Gateway in the peer group. The DataPower Gateway connects to each peer in the order in which peers are added in the list. It is not necessary to specify all peers in the Peers list.&lt;/p>&lt;ul>&lt;li>When the DataPower Gateway connects to no peer in the list, this DataPower Gateway is the first active server and joins the peer group as the primary node.&lt;/li>&lt;li>When the DataPower Gateway connects to any peer in the list, it joins the peer group as a replica.&lt;/li>&lt;/ul>&lt;p>You can use a local host alias instead of a static IP address. A host alias resolves a locally configured alias to a static IP address. Aliasing can help when you move configurations among appliances.&lt;/p>&lt;p>Note: Do not specify the IP address or hostname of this DataPower Gateway.&lt;/p>"
+                        },
+                        {
+                            "name": "Priority",
+                            "default": 100,
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "EnablePeerGroup",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "maximum": 255,
+                            "summary": "The priority of the DataPower Gateway",
+                            "cli-alias": "priority",
+                            "minimum": 0,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "EnablePeerGroup",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Priority",
+                            "description": "&lt;p>Indicates the priority that is used to decide which replica is promoted to the primary node when failover occurs.&lt;/p>&lt;p>Enter a value in range 0 - 255. The default value is 100. The replica with the lowest priority number is promoted. A replica with the value of 0 can never be promoted.&lt;/p>"
+                        },
+                        {
+                            "name": "StrictMode",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to enable or disable the strict mode",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "EnablePeerGroup",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "cli-alias": "strict-mode",
+                            "display": "Strict mode",
+                            "description": "Based on your requirements for quota enforcement, enable or disable strict mode. By default, the strict mode is enabled."
+                        }
+                    ]
+                },
+                "description": "&lt;p>On each DataPower Gateway, you configure the quota enforcement server to store the thresholds and associated metadata in memory or persist them on the RAID volume.&lt;/p>&lt;p>The quota enforcement server can work in standalone mode or peer group mode.&lt;/p>&lt;p>A peer group is collection of at least three nodes across which quota enforcement is implemented. In each peer group, one DataPower Gateway is the primary node and others are replicas. Failover might occur when the primary node becomes unavailable.&lt;/p>&lt;p>When you enable the peer group mode, the appropriate configuration properties are displayed. You must configure the connection among peers.&lt;/p>&lt;p>Based on your requirements for quota enforcement, you can enable or disable strict mode. Strict mode affects data-consistency across the peer group.&lt;/p>&lt;p>When strict mode is enabled, the following effects are caused: &lt;ul>&lt;li>When the primary node is operational and when strict mode of all nodes in a peer group is enabled, threshold synchronization is more frequent to ensure data-consistency across the peer group. However, more network bandwidth is used. Therefore, strict mode is suitable for peers in the same data center.&lt;/li>&lt;li>When the primary node becomes unavailable, before failover occurs, the replica with enabled strict mode cannot process the request. &lt;p>If service performance and availability are more important than data-consistency, you can disable strict mode for the replica so that this replica can process the request. The replica with disabled strict mode writes the threshold and associated metadata to the local data storage. After failover occurs, the connection is resumed between the replica and the new primary node. The threshold and associated metadata stored by the replica might be overwritten by the new primary node when the new primay node synchronizes the data to all replicas. Data-consistency might be affected across the peer group.&lt;/p>&lt;/li>&lt;/ul>&lt;/p>&lt;p>By default, data is stored in memory and quota enforcement server works in standalone mode.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/QuotaEnforcementServer"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/QuotaEnforcementServer"
                 }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmLocalIPHostAddress"
-            }, 
-            "name": "Peers", 
-            "valid-regexp": "^(?!(127.0.0.1|0.0.0.0|::)).*$", 
-            "summary": "The IP address or hostname of peers of the DataPower Gateway", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "EnablePeerGroup", 
-                    "evaluation": "property-equals", 
-                    "value": "off"
-                }
-            }, 
-            "array": "true", 
-            "cli-alias": "peer", 
-            "display": "Peers", 
-            "description": "&lt;p>Specifies peers of the DataPower Gateway in the peer group. The DataPower Gateway connects to each peer in the order in which peers are added in the list. It is not necessary to specify all peers in the Peers list.&lt;/p>&lt;ul>&lt;li>When the DataPower Gateway connects to no peer in the list, this DataPower Gateway is the first active server and joins the peer group as the primary node.&lt;/li>&lt;li>When the DataPower Gateway connects to any peer in the list, it joins the peer group as a replica.&lt;/li>&lt;/ul>&lt;p>You can use a local host alias instead of a static IP address. A host alias resolves a locally configured alias to a static IP address. Aliasing can help when you move configurations among appliances.&lt;/p>&lt;p>Note: Do not specify the IP address or hostname of this DataPower Gateway.&lt;/p>"
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmUInt16"
-            }, 
-            "name": "Priority", 
-            "default": 100, 
-            "required-when": {
-                "condition": {
-                    "property-name": "EnablePeerGroup", 
-                    "evaluation": "property-equals", 
-                    "value": "on"
-                }
-            }, 
-            "maximum": 255, 
-            "summary": "The priority of the DataPower Gateway", 
-            "minimum": 0, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "EnablePeerGroup", 
-                    "evaluation": "property-equals", 
-                    "value": "off"
-                }
-            }, 
-            "/mgmt/types/default/dmUInt16": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt16", 
-                    "maximum": "0xFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt16"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt16"
-                    }
-                }
-            }, 
-            "cli-alias": "priority", 
-            "display": "Priority", 
-            "description": "&lt;p>Indicates the priority that is used to decide which replica is promoted to the primary node when failover occurs.&lt;/p>&lt;p>Enter a value in range 0 - 255. The default value is 100. The replica with the lowest priority number is promoted. A replica with the value of 0 can never be promoted.&lt;/p>"
-        }, 
-        {
-            "name": "StrictMode", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to enable or disable the strict mode", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "EnablePeerGroup", 
-                    "evaluation": "property-equals", 
-                    "value": "off"
-                }
-            }, 
-            "cli-alias": "strict-mode", 
-            "display": "Strict mode", 
-            "description": "Based on your requirements for quota enforcement, enable or disable strict mode. By default, the strict mode is enabled."
+            }
         }
-    ]
+    }
 }

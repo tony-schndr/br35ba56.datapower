@@ -1,119 +1,163 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "description": "Enter a descriptive summary for the configuration.", 
-            "cli-alias": "summary", 
-            "summary": "A brief descriptive summary for the configuration.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments", 
-            "name": "UserSummary"
-        }, 
-        {
-            "name": "APISecurityOAuthDef", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/APISecurityOAuth"
-                }
-            }, 
-            "required": "true", 
-            "summary": "The OAuth security definition to use", 
-            "cli-alias": "oauth-definition", 
-            "display": "OAuth security definition", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "description": "Specifies an OAuth security definition that defines the applicable OAuth provider settings."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
+                    "cli-arg": "object",
+                    "name": "dmReference"
                 }
-            }, 
-            "description": "&lt;p>Specifies the scopes that the access token is valid to access. To specify multiple scopes, use a space between each scope. The order of scopes does not matter.&lt;/p>&lt;p>The allowed scopes must be a subset of the allowed scopes set for the OAuth provider settings.&lt;/p>&lt;p>Scopes ensure that the granted access token is valid to access only specific protected resources.&lt;/p>", 
-            "cli-alias": "allowed-scopes", 
-            "summary": "The scopes that the access token is valid to access", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Allowed scopes", 
-            "name": "OAuthAllowedScope"
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "APISecurityOAuthReq",
+                "display": "API Security OAuth Requirement",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            }
+                        ],
+                        "name": "summary",
+                        "display": "Summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "APISecurityOAuthDef"
+                            },
+                            {
+                                "name": "OAuthAllowedScope"
+                            }
+                        ],
+                        "name": "main",
+                        "display": "Main"
+                    }
+                ],
+                "uri": "config/api-sec-oauth-req",
+                "summary": "Configure and manage the OAuth security requirement in an API",
+                "cmd-group": "configuration",
+                "cli-alias": "api-sec-oauth-req",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "Enter a descriptive summary for the configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "A brief descriptive summary for the configuration.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "APISecurityOAuthDef",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/APISecurityOAuth"
+                                }
+                            },
+                            "required": "true",
+                            "summary": "The OAuth security definition to use",
+                            "cli-alias": "oauth-definition",
+                            "display": "OAuth security definition",
+                            "description": "Specifies an OAuth security definition that defines the applicable OAuth provider settings."
+                        },
+                        {
+                            "description": "&lt;p>Specifies the scopes that the access token is valid to access. To specify multiple scopes, use a space between each scope. The order of scopes does not matter.&lt;/p>&lt;p>The allowed scopes must be a subset of the allowed scopes set for the OAuth provider settings.&lt;/p>&lt;p>Scopes ensure that the granted access token is valid to access only specific protected resources.&lt;/p>",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The scopes that the access token is valid to access",
+                            "cli-alias": "allowed-scopes",
+                            "display": "Allowed scopes",
+                            "name": "OAuthAllowedScope"
+                        }
+                    ]
+                },
+                "description": "&lt;p>An OAuth security requirement defines the allowed scopes for controlling access to APIs or operations through the token-based OAuth protocol. By using an OAuth token, a user can grant websites or applications to access their data that are stored with another service provider, without sharing their personal credentials.&lt;/p>&lt;p>&lt;b>Note:&lt;/b> You cannot apply more than one OAuth security requirement to an API or operation.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/APISecurityOAuthReq"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/APISecurityOAuthReq"
+                }
+            }
         }
-    ]
+    }
 }

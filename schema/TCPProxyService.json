@@ -1,279 +1,409 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmLocalIPHostAddress": {
-                "type": {
-                    "cli-arg": "dotted-ip or 0 for any", 
-                    "name": "dmLocalIPHostAddress", 
-                    "format": "(a.b.c.d or 0 for any)"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmLocalIPHostAddress"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmLocalIPHostAddress"
                     }
-                }
-            }, 
-            "name": "LocalAddress", 
-            "default": "0.0.0.0", 
-            "type": {
-                "href": "/mgmt/types/default/dmLocalIPHostAddress"
-            }, 
-            "required": "true", 
-            "summary": "Enter the local IP address or host alias.", 
-            "cli-alias": "ip-address", 
-            "display": "Local address", 
-            "description": "&lt;p>Enter a host alias or the IP address that the service listens on. Host aliases can ease migration tasks among appliances.&lt;/p>&lt;ul>&lt;li>0 or 0.0.0.0 indicates all configured IPv4 addresses.&lt;/li>&lt;li>:: indicates all configured IPv4 and IPv6 addresses.&lt;/li>&lt;/ul>&lt;p>&lt;b>Attention:&lt;/b> For management services, the value of 0.0.0.0 or :: is a security risk. Use an explicit IP address to isolate management traffic from application data traffic.&lt;/p>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+                    "cli-arg": "dotted-ip or 0 for any",
+                    "name": "dmLocalIPHostAddress",
+                    "format": "(a.b.c.d or 0 for any)"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "description": "A descriptive summary for the configuration.", 
-            "cli-alias": "summary", 
-            "summary": "Enter a descriptive summary for the configuration.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments", 
-            "name": "UserSummary"
-        }, 
-        {
-            "description": "Control the service scheduling priority. When system resources are in high demand, \"high\" priority services will be favored over lower priority services.", 
-            "default": "normal", 
-            "/mgmt/types/default/dmSchedulerPriority": {
+                },
                 "type": {
-                    "name": "dmSchedulerPriority", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "unknown", 
-                                "display": "unknown"
-                            }, 
-                            {
-                                "name": "high-min", 
-                                "display": "high-min"
-                            }, 
-                            {
-                                "summary": "", 
-                                "display": "High", 
-                                "name": "high", 
-                                "description": "A service or transaction assigned this priority setting will receive above normal scheduling priority and resource allocation."
-                            }, 
-                            {
-                                "name": "high-max", 
-                                "display": "high-max"
-                            }, 
-                            {
-                                "name": "normal-min", 
-                                "display": "normal-min"
-                            }, 
-                            {
-                                "summary": "", 
-                                "display": "Normal", 
-                                "name": "normal", 
-                                "description": "A service or transaction assigned this priority setting will receive normal scheduling priority and resource allocation."
-                            }, 
-                            {
-                                "name": "normal-max", 
-                                "display": "normal-max"
-                            }, 
-                            {
-                                "name": "low-min", 
-                                "display": "low-min"
-                            }, 
-                            {
-                                "summary": "", 
-                                "display": "Low", 
-                                "name": "low", 
-                                "description": "A service or transaction assigned this priority setting will receive below normal scheduling priority and resource allocation."
-                            }, 
-                            {
-                                "name": "low-max", 
-                                "display": "low-max"
-                            }
-                        ]
-                    }, 
-                    "display": "Transaction Priority"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmSchedulerPriority"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmSchedulerPriority"
                     }
-                }
-            }, 
-            "summary": "Service scheduling priority", 
-            "type": {
-                "href": "/mgmt/types/default/dmSchedulerPriority"
-            }, 
-            "display": "Service Priority", 
-            "name": "Priority"
-        }, 
-        {
-            "name": "LocalPort", 
-            "/mgmt/types/default/dmIPPort": {
+                },
                 "type": {
-                    "cli-arg": "ip-port", 
-                    "minimum": 0, 
-                    "name": "dmIPPort", 
-                    "maximum": "0xFFFF"
-                }, 
+                    "name": "dmSchedulerPriority",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "unknown",
+                                "display": "unknown"
+                            },
+                            {
+                                "name": "high-min",
+                                "display": "high-min"
+                            },
+                            {
+                                "display": "High",
+                                "description": "A service or transaction assigned this priority setting will receive above normal scheduling priority and resource allocation.",
+                                "name": "high",
+                                "summary": ""
+                            },
+                            {
+                                "name": "high-max",
+                                "display": "high-max"
+                            },
+                            {
+                                "name": "normal-min",
+                                "display": "normal-min"
+                            },
+                            {
+                                "display": "Normal",
+                                "description": "A service or transaction assigned this priority setting will receive normal scheduling priority and resource allocation.",
+                                "name": "normal",
+                                "summary": ""
+                            },
+                            {
+                                "name": "normal-max",
+                                "display": "normal-max"
+                            },
+                            {
+                                "name": "low-min",
+                                "display": "low-min"
+                            },
+                            {
+                                "display": "Low",
+                                "description": "A service or transaction assigned this priority setting will receive below normal scheduling priority and resource allocation.",
+                                "name": "low",
+                                "summary": ""
+                            },
+                            {
+                                "name": "low-max",
+                                "display": "low-max"
+                            }
+                        ]
+                    },
+                    "display": "Transaction Priority"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmIPPort"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmIPPort"
                     }
-                }
-            }, 
-            "required": "true", 
-            "maximum": "0xFFFF", 
-            "summary": "The TCP port number", 
-            "listener": "LocalAddress", 
-            "minimum": 1, 
-            "type": {
-                "href": "/mgmt/types/default/dmIPPort"
-            }, 
-            "display": "Port Number", 
-            "description": "An integer (within the range 1 through 65535) that specifies the port monitored by the TCP proxy"
-        }, 
-        {
-            "description": "Specify the host name or IP address of the remote host for which this proxy is accepting TCP traffic. TCP traffic sent to the proxy will in turn be sent to this host. Click Ping to verify connectivity.", 
-            "required": "true", 
-            "summary": "Host name or IP address", 
-            "/mgmt/types/default/dmHostname": {
+                },
                 "type": {
-                    "cli-arg": "dotted-ip or hostname", 
-                    "name": "dmHostname", 
-                    "format": "(a.b.c.d or hostname)"
-                }, 
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmHostname"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmHostname"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmHostname"
-            }, 
-            "display": "Remote Host", 
-            "name": "RemoteAddress"
-        }, 
-        {
-            "name": "RemotePort", 
-            "/mgmt/types/default/dmIPPort": {
+                },
                 "type": {
-                    "cli-arg": "ip-port", 
-                    "minimum": 0, 
-                    "name": "dmIPPort", 
-                    "maximum": "0xFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmIPPort"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmIPPort"
-                    }
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
                 }
-            }, 
-            "required": "true", 
-            "maximum": "0xFFFF", 
-            "summary": "Port number", 
-            "minimum": 1, 
-            "type": {
-                "href": "/mgmt/types/default/dmIPPort"
-            }, 
-            "display": "Remote Port", 
-            "description": "Specify the port number of the remote host, specify with Remote Host, for which this proxy is accepting TCP traffic."
-        }, 
-        {
-            "name": "Timeout", 
-            "default": 360, 
-            "maximum": 86400, 
-            "summary": "Maximum idle time", 
-            "/mgmt/types/default/dmTimeInterval": {
-                "type": {
-                    "cli-arg": "seconds", 
-                    "minimum": 0, 
-                    "name": "dmTimeInterval", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmTimeInterval"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmTimeInterval"
                     }
+                },
+                "type": {
+                    "cli-arg": "seconds",
+                    "minimum": 0,
+                    "name": "dmTimeInterval",
+                    "maximum": "0xFFFFFFFF"
                 }
-            }, 
-            "minimum": 0, 
-            "units": "seconds", 
-            "type": {
-                "href": "/mgmt/types/default/dmTimeInterval"
-            }, 
-            "display": "Idle timeout", 
-            "description": "Specify the maximum idle time that is allowed for the front side connection and the server side connection. After the time is reached, the idle connections are terminated. Enter a value in the range 0 - 86400. The default value is 360. A value of 0 disables the idle timer."
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "TCPProxyService",
+                "status-bindings": {
+                    "status": {
+                        "binding": {
+                            "property": {
+                                "name": "TCPProxyService",
+                                "select": "dmObjectName"
+                            }
+                        },
+                        "name": "TCPProxyServiceSummary",
+                        "display": {
+                            "property": {
+                                "name": "Quiesce",
+                                "display": "Quiesce State"
+                            }
+                        }
+                    }
+                },
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "LocalAddress"
+                            },
+                            {
+                                "name": "LocalPort"
+                            },
+                            {
+                                "name": "RemoteAddress"
+                            },
+                            {
+                                "name": "RemotePort"
+                            },
+                            {
+                                "name": "Timeout"
+                            }
+                        ],
+                        "name": "summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "LocalAddress"
+                            },
+                            {
+                                "name": "Priority"
+                            },
+                            {
+                                "name": "LocalPort"
+                            },
+                            {
+                                "name": "RemoteAddress"
+                            },
+                            {
+                                "name": "RemotePort"
+                            },
+                            {
+                                "name": "Timeout"
+                            }
+                        ],
+                        "name": "main",
+                        "display": "Main"
+                    }
+                ],
+                "uri": "services/tcpproxy",
+                "actions": {
+                    "action": [
+                        {
+                            "name": "Ping",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "RemoteHost",
+                                    "select": "RemoteAddress"
+                                }
+                            }
+                        },
+                        {
+                            "name": "ServiceQuiesce",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "type",
+                                        "select": "dmObjectClass"
+                                    },
+                                    {
+                                        "name": "name",
+                                        "select": "dmObjectName"
+                                    },
+                                    {
+                                        "name": "timeout"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "ServiceUnquiesce",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "type",
+                                        "select": "dmObjectClass"
+                                    },
+                                    {
+                                        "name": "name",
+                                        "select": "dmObjectName"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "display": "TCP Proxy Service",
+                "cmd-group": "tcpproxy",
+                "cli-alias": "tcpproxy",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "LocalAddress",
+                            "default": "0.0.0.0",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                            },
+                            "required": "true",
+                            "summary": "Enter the local IP address or host alias.",
+                            "cli-alias": "ip-address",
+                            "display": "Local address",
+                            "description": "&lt;p>Enter a host alias or the IP address that the service listens on. Host aliases can ease migration tasks among appliances.&lt;/p>&lt;ul>&lt;li>0 or 0.0.0.0 indicates all configured IPv4 addresses.&lt;/li>&lt;li>:: indicates all configured IPv4 and IPv6 addresses.&lt;/li>&lt;/ul>&lt;p>&lt;b>Attention:&lt;/b> For management services, the value of 0.0.0.0 or :: is a security risk. Use an explicit IP address to isolate management traffic from application data traffic.&lt;/p>"
+                        },
+                        {
+                            "description": "A descriptive summary for the configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter a descriptive summary for the configuration.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "description": "Control the service scheduling priority. When system resources are in high demand, \"high\" priority services will be favored over lower priority services.",
+                            "default": "normal",
+                            "summary": "Service scheduling priority",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSchedulerPriority"
+                            },
+                            "display": "Service Priority",
+                            "name": "Priority"
+                        },
+                        {
+                            "name": "LocalPort",
+                            "required": "true",
+                            "maximum": "0xFFFF",
+                            "summary": "The TCP port number",
+                            "listener": "LocalAddress",
+                            "minimum": 1,
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPPort"
+                            },
+                            "display": "Port Number",
+                            "description": "An integer (within the range 1 through 65535) that specifies the port monitored by the TCP proxy"
+                        },
+                        {
+                            "description": "Specify the host name or IP address of the remote host for which this proxy is accepting TCP traffic. TCP traffic sent to the proxy will in turn be sent to this host. Click Ping to verify connectivity.",
+                            "required": "true",
+                            "summary": "Host name or IP address",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHostname"
+                            },
+                            "display": "Remote Host",
+                            "name": "RemoteAddress"
+                        },
+                        {
+                            "name": "RemotePort",
+                            "required": "true",
+                            "maximum": "0xFFFF",
+                            "summary": "Port number",
+                            "minimum": 1,
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPPort"
+                            },
+                            "display": "Remote Port",
+                            "description": "Specify the port number of the remote host, specify with Remote Host, for which this proxy is accepting TCP traffic."
+                        },
+                        {
+                            "name": "Timeout",
+                            "default": 360,
+                            "maximum": 86400,
+                            "summary": "Maximum idle time",
+                            "minimum": 0,
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimeInterval"
+                            },
+                            "display": "Idle timeout",
+                            "description": "Specify the maximum idle time that is allowed for the front side connection and the server side connection. After the time is reached, the idle connections are terminated. Enter a value in the range 0 - 86400. The default value is 360. A value of 0 disables the idle timer."
+                        }
+                    ]
+                },
+                "description": "Creates a TCP Proxy service."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/TCPProxyService"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/TCPProxyService"
+                }
+            }
         }
-    ]
+    }
 }

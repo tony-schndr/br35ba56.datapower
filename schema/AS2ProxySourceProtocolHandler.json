@@ -1,1357 +1,1285 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "description": "A descriptive summary for the configuration.", 
-            "cli-alias": "summary", 
-            "summary": "Enter a descriptive summary for the configuration.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments", 
-            "name": "UserSummary"
-        }, 
-        {
-            "/mgmt/types/default/dmLocalIPHostAddress": {
+                },
                 "type": {
-                    "cli-arg": "dotted-ip or 0 for any", 
-                    "name": "dmLocalIPHostAddress", 
-                    "format": "(a.b.c.d or 0 for any)"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmLocalIPHostAddress"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmLocalIPHostAddress"
                     }
-                }
-            }, 
-            "name": "LocalAddress", 
-            "default": "0.0.0.0", 
-            "type": {
-                "href": "/mgmt/types/default/dmLocalIPHostAddress"
-            }, 
-            "required": "true", 
-            "summary": "Enter the IP address or host alias on which the service listens.", 
-            "label": "IP address", 
-            "cli-alias": "local-address", 
-            "display": "Local IP address", 
-            "hoverhelp": "Enter the IP address or host alias to listen on for incoming HTTP traffic. The default value indicates that the service listens on all IP addresses.", 
-            "description": "Specifies the address to listen on for incoming HTTP traffic. The default value indicates that the service listens on all IP addresses."
-        }, 
-        {
-            "name": "LocalPort", 
-            "default": 80, 
-            "cli-alias": "port", 
-            "required": "true", 
-            "maximum": "0xFFFF", 
-            "summary": "The local TCP port number that supports server operations", 
-            "listener": "LocalAddress", 
-            "minimum": 1, 
-            "type": {
-                "href": "/mgmt/types/default/dmIPPort"
-            }, 
-            "/mgmt/types/default/dmIPPort": {
+                },
                 "type": {
-                    "cli-arg": "ip-port", 
-                    "minimum": 0, 
-                    "name": "dmIPPort", 
-                    "maximum": "0xFFFF"
-                }, 
+                    "cli-arg": "dotted-ip or 0 for any",
+                    "name": "dmLocalIPHostAddress",
+                    "format": "(a.b.c.d or 0 for any)"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmIPPort"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmIPPort"
                     }
-                }
-            }, 
-            "display": "Port", 
-            "hoverhelp": "Enter the port to listen on for incoming HTTP traffic. Enter a value in the range of 1 - 65535. The default value is 80.", 
-            "description": "Specifies the port to listen on for incoming HTTP traffic. Enter a value in the range 1 - 65535. The default value is 80."
-        }, 
-        {
-            "name": "HTTPVersion", 
-            "default": "HTTP/1.1", 
-            "type": {
-                "href": "/mgmt/types/default/dmHTTPVersion"
-            }, 
-            "summary": "HTTP version for client side connections", 
-            "/mgmt/types/default/dmHTTPVersion": {
+                },
                 "type": {
-                    "summary": "HTTP Version", 
-                    "display": "HTTP Version", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "HTTP version 1.0", 
-                                "display": "HTTP 1.0", 
-                                "name": "HTTP/1.0"
-                            }, 
-                            {
-                                "summary": "HTTP version 1.1", 
-                                "display": "HTTP 1.1", 
-                                "name": "HTTP/1.1"
-                            }
-                        ]
-                    }, 
-                    "name": "dmHTTPVersion"
-                }, 
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmHTTPVersion"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmHTTPVersion"
                     }
-                }
-            }, 
-            "cli-alias": "http-client-version", 
-            "display": "HTTP version to client", 
-            "description": "Select the HTTP version for client side connections. The default value is HTTP 1.1."
-        }, 
-        {
-            "/mgmt/types/default/dmSourceAS2FeatureType": {
+                },
                 "type": {
-                    "summary": "HTTP features that are allowed", 
-                    "display": "HTTP Features Allowed", 
+                    "display": "HTTP Version",
+                    "name": "dmHTTPVersion",
                     "value-list": {
                         "value": [
                             {
-                                "summary": "Supports HTTP 1.0 requests", 
-                                "display": "HTTP 1.0", 
-                                "name": "HTTP-1.0"
-                            }, 
+                                "display": "HTTP 1.0",
+                                "name": "HTTP/1.0",
+                                "summary": "HTTP version 1.0"
+                            },
                             {
-                                "summary": "Supports HTTP 1.1 requests", 
-                                "display": "HTTP 1.1", 
-                                "name": "HTTP-1.1"
-                            }, 
-                            {
-                                "summary": "Allows requests when the URL contains a ? (query string)", 
-                                "display": "URL with Query Strings", 
-                                "name": "QueryString"
-                            }, 
-                            {
-                                "summary": "Allows requests when the URL contains a # (fragment identifier)", 
-                                "display": "URL with Fragment Identifiers", 
-                                "name": "FragmentIdentifiers"
-                            }, 
-                            {
-                                "summary": "Allows requests when the URL contains a .. (dotdot)", 
-                                "display": "URL with ..", 
-                                "name": "DotDot"
-                            }, 
-                            {
-                                "summary": "Allows requests when the URL contains cmd.exe", 
-                                "display": "URL with cmd.exe", 
-                                "name": "CmdExe"
+                                "display": "HTTP 1.1",
+                                "name": "HTTP/1.1",
+                                "summary": "HTTP version 1.1"
                             }
                         ]
-                    }, 
-                    "name": "dmSourceAS2FeatureType"
-                }, 
+                    },
+                    "summary": "HTTP Version"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmSourceAS2FeatureType"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmSourceAS2FeatureType"
                     }
-                }
-            }, 
-            "name": "AllowedFeatures", 
-            "default": "0x0603", 
-            "type": {
-                "href": "/mgmt/types/default/dmSourceAS2FeatureType"
-            }, 
-            "summary": "Methods and versions to allow for incoming requests", 
-            "cli-alias": "allowed-features", 
-            "display": "Allowed methods and versions", 
-            "description": "Specifies the methods and versions to allow for incoming HTTP requests."
-        }, 
-        {
-            "name": "PersistentConnections", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to negotiate persistent connections on front side", 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "display": "HTTP Features Allowed",
+                    "name": "dmSourceAS2FeatureType",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
+                                "display": "HTTP 1.0",
+                                "name": "HTTP-1.0",
+                                "summary": "Supports HTTP 1.0 requests"
+                            },
                             {
-                                "name": "off", 
+                                "display": "HTTP 1.1",
+                                "name": "HTTP-1.1",
+                                "summary": "Supports HTTP 1.1 requests"
+                            },
+                            {
+                                "display": "URL with Query Strings",
+                                "name": "QueryString",
+                                "summary": "Allows requests when the URL contains a ? (query string)"
+                            },
+                            {
+                                "display": "URL with Fragment Identifiers",
+                                "name": "FragmentIdentifiers",
+                                "summary": "Allows requests when the URL contains a # (fragment identifier)"
+                            },
+                            {
+                                "display": "URL with ..",
+                                "name": "DotDot",
+                                "summary": "Allows requests when the URL contains a .. (dotdot)"
+                            },
+                            {
+                                "display": "URL with cmd.exe",
+                                "name": "CmdExe",
+                                "summary": "Allows requests when the URL contains cmd.exe"
+                            }
+                        ]
+                    },
+                    "summary": "HTTP features that are allowed"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "cli-alias": "persistent-connections", 
-            "display": "Negotiate persistent connections", 
-            "description": "Indicates whether to negotiate persistent connections where appropriate on front side. The default is enabled."
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmUInt32"
                     }
-                }
-            }, 
-            "name": "MaxPersistentConnectionsReuse", 
-            "default": 0, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "summary": "The maximum number of times a persistent connection is reused on the front side", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "PersistentConnections", 
-                    "evaluation": "property-equals", 
-                    "value": "off"
-                }
-            }, 
-            "cli-alias": "max-persistent-reuse", 
-            "display": "Maximum persistent reuse", 
-            "description": "Specifies the maximum number of times a persistent connection is reused on the front side. When the maximum reuse count is reached, an explicit &lt;tt>HTTP Connection: close&lt;/tt> header is sent in the response and the TCP connection is closed. The default value is 0, which means unlimited reuse."
-        }, 
-        {
-            "name": "AllowCompression", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Indicate whether to negotiate GZIP compression for client side connections.", 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "compression", 
-            "display": "Enable compression", 
-            "description": "&lt;p>Whether to negotiate GZIP compression for client side connections.&lt;/p>&lt;p>The default is off. If enabled, the DataPower service uses GZIP to compress HTTP transmissions when the &lt;tt>Accept-Encoding&lt;/tt> HTTP header indicates that compressed documents can be processed.&lt;/p>&lt;p>The &lt;tt>Transfer-Encoding&lt;/tt> HTTP header indicates compression.&lt;/p>"
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
                     "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
                 }
-            }, 
-            "name": "MaxURLLen", 
-            "default": 16384, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 128000, 
-            "summary": "The length of the longest incoming URL to accept", 
-            "minimum": 1, 
-            "units": "Bytes", 
-            "cli-alias": "max-url-len", 
-            "display": "Maximum URL length", 
-            "description": "Specifies the length of the longest incoming URL to accept. The length includes any query string or fragment identifier. Enter a value in the range 1 - 128000. The default value is 16384."
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
-                }
-            }, 
-            "name": "MaxTotalHdrLen", 
-            "default": 128000, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 128000, 
-            "summary": "Maximum aggregate length of incoming HTTP headers to allow", 
-            "minimum": 5, 
-            "units": "Bytes", 
-            "cli-alias": "max-total-header-len", 
-            "display": "Maximum total header length", 
-            "description": "Specifies the maximum aggregate length of incoming HTTP headers to allow. Enter a value in the range 5 - 128000. The default value is 128000."
-        }, 
-        {
-            "name": "MaxHdrCount", 
-            "default": 0, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt16"
-            }, 
-            "summary": "Maximum number of headers to allow in HTTP requests", 
-            "/mgmt/types/default/dmUInt16": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt16", 
-                    "maximum": "0xFFFF"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmUInt16"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmUInt16"
                     }
-                }
-            }, 
-            "cli-alias": "max-header-count", 
-            "display": "Maximum number of headers", 
-            "description": "Specifies the maximum number of headers to allow in the incoming request messages. The default value is 0, which indicates no limit."
-        }, 
-        {
-            "name": "MaxNameHdrLen", 
-            "default": 0, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt16"
-            }, 
-            "summary": "Maximum length of the name part of an HTTP header", 
-            "units": "Bytes", 
-            "/mgmt/types/default/dmUInt16": {
+                },
                 "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt16", 
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt16",
                     "maximum": "0xFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt16"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt16"
-                    }
                 }
-            }, 
-            "cli-alias": "max-header-name-len", 
-            "display": "Maximum header name length", 
-            "description": "Specifies the maximum length of HTTP header names. Each HTTP header is expressed as a name-value pair. This setting specifies the maximum length of the name portion for HTTP headers. The default value is 0, which indicates no limit."
-        }, 
-        {
-            "name": "MaxValueHdrLen", 
-            "default": 0, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt16"
-            }, 
-            "summary": "Maximum length of the value part of an HTTP header", 
-            "units": "Bytes", 
-            "/mgmt/types/default/dmUInt16": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt16", 
-                    "maximum": "0xFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt16"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt16"
-                    }
-                }
-            }, 
-            "cli-alias": "max-header-value-len", 
-            "display": "Maximum header value length", 
-            "description": "Specifies the maximum length of HTTP header values to allow. Each HTTP header is expressed as a name-value pair. This setting specifies the maximum length of the value portion of that header. The default value is 0, which indicates no limit."
-        }, 
-        {
-            "name": "MaxQueryStringLen", 
-            "default": 0, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt16"
-            }, 
-            "summary": "Maximum length of the HTTP query string to allow", 
-            "/mgmt/types/default/dmUInt16": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt16", 
-                    "maximum": "0xFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt16"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt16"
-                    }
-                }
-            }, 
-            "cli-alias": "max-querystring-len", 
-            "display": "Maximum query string length", 
-            "description": "The portion of the URL after the question mark (?) is known as the query string. This property specifies its maximum length in bytes. The default value is 0, which indicates no limit."
-        }, 
-        {
-            "description": "Specifies the access control list to allow or deny access to this service based on the IP address of the client. When attached to a service, an access control list denies all access by default. To deny access to only selected addresses, first grant access to all addresses (allow 0.0.0.0) and then create deny entries for the desired hosts.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/AccessControlList"
-                }
-            }, 
-            "summary": "The access control list to allow or deny access to this service", 
-            "cli-alias": "acl", 
-            "display": "Access control list", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "name": "ACL"
-        }, 
-        {
-            "description": "Specifies the character encoding of the original basic authentication values. Basic authentication credentials are combined and base64 encoded in the authorization header of the request. The DataPower Gateway transcodes the contents of the authorization header to UTF-8. The default value is Protocol, which represents ISO-8859-1, Latin 1.", 
-            "cli-alias": "credential-charset", 
-            "summary": "Character encoding of the original basic authentication values", 
-            "/mgmt/types/default/dmCredentialCharset": {
+                },
                 "type": {
-                    "summary": "Credential Character Set", 
-                    "display": "Credential Character Set", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Protocol defined character set", 
-                                "display": "Protocol", 
-                                "name": "protocol"
-                            }, 
-                            {
-                                "summary": "US-ASCII (7 bit)", 
-                                "display": "ASCII", 
-                                "name": "ascii"
-                            }, 
-                            {
-                                "summary": "UTF-8", 
-                                "display": "UTF-8", 
-                                "name": "utf8"
-                            }, 
-                            {
-                                "summary": "Big5 CP950 Chinese (Traditional)", 
-                                "display": "Big5", 
-                                "name": "big5"
-                            }, 
-                            {
-                                "summary": "Windows Central European and Eastern European", 
-                                "display": "Cp1250", 
-                                "name": "cp1250"
-                            }, 
-                            {
-                                "summary": "Windows Cyrillic", 
-                                "display": "Cp1251", 
-                                "name": "cp1251"
-                            }, 
-                            {
-                                "summary": "Windows Latin-1", 
-                                "display": "Cp1252", 
-                                "name": "cp1252"
-                            }, 
-                            {
-                                "summary": "Windows Greek", 
-                                "display": "Cp1253", 
-                                "name": "cp1253"
-                            }, 
-                            {
-                                "summary": "Windows Turkish", 
-                                "display": "Cp1254", 
-                                "name": "cp1254"
-                            }, 
-                            {
-                                "summary": "Windows Hebrew", 
-                                "display": "Cp1255", 
-                                "name": "cp1255"
-                            }, 
-                            {
-                                "summary": "Windows Arabic", 
-                                "display": "Cp1256", 
-                                "name": "cp1256"
-                            }, 
-                            {
-                                "summary": "Windows Baltic, UDB/Latvia, Lithuanian", 
-                                "display": "Cp1257", 
-                                "name": "cp1257"
-                            }, 
-                            {
-                                "summary": "Windows Vietnamese", 
-                                "display": "Cp1258", 
-                                "name": "cp1258"
-                            }, 
-                            {
-                                "summary": "EUC-JP Japanese", 
-                                "display": "EUC-JP", 
-                                "name": "euc_jp"
-                            }, 
-                            {
-                                "summary": "EUC-KR Korean", 
-                                "display": "EUC-KR", 
-                                "name": "euc_kr"
-                            }, 
-                            {
-                                "summary": "GB18030 Chinese", 
-                                "display": "GB18030", 
-                                "name": "gb18030"
-                            }, 
-                            {
-                                "summary": "GB2312 Chinese (Simplified)", 
-                                "display": "GB2312", 
-                                "name": "gb2312"
-                            }, 
-                            {
-                                "summary": "ISO-2022-JP Japanese", 
-                                "display": "ISO-2022-JP", 
-                                "name": "iso2022_jp"
-                            }, 
-                            {
-                                "summary": "ISO-2022-KR Korean", 
-                                "display": "ISO-2022-KR", 
-                                "name": "iso2022_kr"
-                            }, 
-                            {
-                                "summary": "ISO-8859-1 Latin 1 including Albanian, Catalan, Danish, Dutch, English, Finnish, French, German, Italian, Norwegian, Portuguese, Spanish, and Swedish", 
-                                "display": "ISO-8859-1", 
-                                "name": "iso8859_1"
-                            }, 
-                            {
-                                "summary": "ISO-8859-2 including Bosnian, Croatian, Czech, Hungarian, Polish, Romanian, Slovakian, and Slovenian", 
-                                "display": "ISO-8859-2", 
-                                "name": "iso8859_2"
-                            }, 
-                            {
-                                "summary": "ISO-8859-4 including Estonian, Greenlandic, Latvian, Lithuanian, and Sami", 
-                                "display": "ISO-8859-4", 
-                                "name": "iso8859_4"
-                            }, 
-                            {
-                                "summary": "ISO-8859-5 including Belarusian, Bulgarian, Kazakh, Macedonian, Russian, Serbian, Turkish, and Ukrainian", 
-                                "display": "ISO-8859-5", 
-                                "name": "iso8859_5"
-                            }, 
-                            {
-                                "summary": "ISO-8859-6 Arabic", 
-                                "display": "ISO-8859-6", 
-                                "name": "iso8859_6"
-                            }, 
-                            {
-                                "summary": "ISO-8859-7 Greek", 
-                                "display": "ISO-8859-7", 
-                                "name": "iso8859_7"
-                            }, 
-                            {
-                                "summary": "ISO-8859-8 Hebrew", 
-                                "display": "ISO-8859-8", 
-                                "name": "iso8859_8"
-                            }, 
-                            {
-                                "summary": "ISO-8859-9 UDB/Turkish", 
-                                "display": "ISO-8859-9", 
-                                "name": "iso8859_9"
-                            }, 
-                            {
-                                "summary": "ISO-8859-15 Latin9", 
-                                "display": "ISO-8859-15", 
-                                "name": "iso8859_15"
-                            }, 
-                            {
-                                "summary": "Shift-JIS Japanese", 
-                                "display": "SJIS", 
-                                "name": "sjis"
-                            }, 
-                            {
-                                "summary": "TIS620 Thai", 
-                                "display": "TIS620", 
-                                "name": "tis620"
-                            }, 
-                            {
-                                "summary": "UNICODE Little-Endian", 
-                                "display": "UTF16-LE", 
-                                "name": "unicode_le"
-                            }
-                        ]
-                    }, 
-                    "name": "dmCredentialCharset"
-                }, 
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmCredentialCharset"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmCredentialCharset"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmCredentialCharset"
-            }, 
-            "display": "Credential character set", 
-            "name": "CredentialCharset"
-        }, 
-        {
-            "name": "SSLProxy", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLProxyProfile"
-                }
-            }, 
-            "summary": "The TLS proxy profile is deprecated. Use a TLS server profile or TLS SNI server profile.", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "SSLServerConfigType", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "proxy"
-                }
-            }, 
-            "label": "TLS proxy profile", 
-            "cli-alias": "ssl", 
-            "display": "TLS proxy profile (deprecated)", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
+                    "display": "Credential Character Set",
+                    "name": "dmCredentialCharset",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Protocol",
+                                "name": "protocol",
+                                "summary": "Protocol defined character set"
+                            },
+                            {
+                                "display": "ASCII",
+                                "name": "ascii",
+                                "summary": "US-ASCII (7 bit)"
+                            },
+                            {
+                                "display": "UTF-8",
+                                "name": "utf8",
+                                "summary": "UTF-8"
+                            },
+                            {
+                                "display": "Big5",
+                                "name": "big5",
+                                "summary": "Big5 CP950 Chinese (Traditional)"
+                            },
+                            {
+                                "display": "Cp1250",
+                                "name": "cp1250",
+                                "summary": "Windows Central European and Eastern European"
+                            },
+                            {
+                                "display": "Cp1251",
+                                "name": "cp1251",
+                                "summary": "Windows Cyrillic"
+                            },
+                            {
+                                "display": "Cp1252",
+                                "name": "cp1252",
+                                "summary": "Windows Latin-1"
+                            },
+                            {
+                                "display": "Cp1253",
+                                "name": "cp1253",
+                                "summary": "Windows Greek"
+                            },
+                            {
+                                "display": "Cp1254",
+                                "name": "cp1254",
+                                "summary": "Windows Turkish"
+                            },
+                            {
+                                "display": "Cp1255",
+                                "name": "cp1255",
+                                "summary": "Windows Hebrew"
+                            },
+                            {
+                                "display": "Cp1256",
+                                "name": "cp1256",
+                                "summary": "Windows Arabic"
+                            },
+                            {
+                                "display": "Cp1257",
+                                "name": "cp1257",
+                                "summary": "Windows Baltic, UDB/Latvia, Lithuanian"
+                            },
+                            {
+                                "display": "Cp1258",
+                                "name": "cp1258",
+                                "summary": "Windows Vietnamese"
+                            },
+                            {
+                                "display": "EUC-JP",
+                                "name": "euc_jp",
+                                "summary": "EUC-JP Japanese"
+                            },
+                            {
+                                "display": "EUC-KR",
+                                "name": "euc_kr",
+                                "summary": "EUC-KR Korean"
+                            },
+                            {
+                                "display": "GB18030",
+                                "name": "gb18030",
+                                "summary": "GB18030 Chinese"
+                            },
+                            {
+                                "display": "GB2312",
+                                "name": "gb2312",
+                                "summary": "GB2312 Chinese (Simplified)"
+                            },
+                            {
+                                "display": "ISO-2022-JP",
+                                "name": "iso2022_jp",
+                                "summary": "ISO-2022-JP Japanese"
+                            },
+                            {
+                                "display": "ISO-2022-KR",
+                                "name": "iso2022_kr",
+                                "summary": "ISO-2022-KR Korean"
+                            },
+                            {
+                                "display": "ISO-8859-1",
+                                "name": "iso8859_1",
+                                "summary": "ISO-8859-1 Latin 1 including Albanian, Catalan, Danish, Dutch, English, Finnish, French, German, Italian, Norwegian, Portuguese, Spanish, and Swedish"
+                            },
+                            {
+                                "display": "ISO-8859-2",
+                                "name": "iso8859_2",
+                                "summary": "ISO-8859-2 including Bosnian, Croatian, Czech, Hungarian, Polish, Romanian, Slovakian, and Slovenian"
+                            },
+                            {
+                                "display": "ISO-8859-4",
+                                "name": "iso8859_4",
+                                "summary": "ISO-8859-4 including Estonian, Greenlandic, Latvian, Lithuanian, and Sami"
+                            },
+                            {
+                                "display": "ISO-8859-5",
+                                "name": "iso8859_5",
+                                "summary": "ISO-8859-5 including Belarusian, Bulgarian, Kazakh, Macedonian, Russian, Serbian, Turkish, and Ukrainian"
+                            },
+                            {
+                                "display": "ISO-8859-6",
+                                "name": "iso8859_6",
+                                "summary": "ISO-8859-6 Arabic"
+                            },
+                            {
+                                "display": "ISO-8859-7",
+                                "name": "iso8859_7",
+                                "summary": "ISO-8859-7 Greek"
+                            },
+                            {
+                                "display": "ISO-8859-8",
+                                "name": "iso8859_8",
+                                "summary": "ISO-8859-8 Hebrew"
+                            },
+                            {
+                                "display": "ISO-8859-9",
+                                "name": "iso8859_9",
+                                "summary": "ISO-8859-9 UDB/Turkish"
+                            },
+                            {
+                                "display": "ISO-8859-15",
+                                "name": "iso8859_15",
+                                "summary": "ISO-8859-15 Latin9"
+                            },
+                            {
+                                "display": "SJIS",
+                                "name": "sjis",
+                                "summary": "Shift-JIS Japanese"
+                            },
+                            {
+                                "display": "TIS620",
+                                "name": "tis620",
+                                "summary": "TIS620 Thai"
+                            },
+                            {
+                                "display": "UTF16-LE",
+                                "name": "unicode_le",
+                                "summary": "UNICODE Little-Endian"
+                            }
+                        ]
+                    },
+                    "summary": "Credential Character Set"
                 }
-            }, 
-            "description": "Specifies a TLS proxy profile for securing the communication between the requesting client and the DataPower Gateway."
-        }, 
-        {
-            "name": "RemoteAddress", 
-            "cli-alias": "remote-hostname", 
-            "required": "true", 
-            "summary": "IP address, host name, or load balancer group name of the Multi-Enterprise Integration Gateway server.", 
-            "/mgmt/types/default/dmHostname": {
-                "type": {
-                    "cli-arg": "dotted-ip or hostname", 
-                    "name": "dmHostname", 
-                    "format": "(a.b.c.d or hostname)"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmHostname"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmHostname"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmHostname"
-            }, 
-            "display": "Host", 
-            "description": "Specifies the IP address, host name, or name of a load balancer group of the Multi-Enterprise Integration Gateway server."
-        }, 
-        {
-            "name": "RemotePort", 
-            "/mgmt/types/default/dmIPPort": {
+                },
                 "type": {
-                    "cli-arg": "ip-port", 
-                    "minimum": 0, 
-                    "name": "dmIPPort", 
-                    "maximum": "0xFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmIPPort"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmIPPort"
-                    }
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
                 }
-            }, 
-            "required": "true", 
-            "maximum": "0xFFFF", 
-            "summary": "Destination port on the Multi-Enterprise Integration Gateway server.", 
-            "minimum": 1, 
-            "type": {
-                "href": "/mgmt/types/default/dmIPPort"
-            }, 
-            "cli-alias": "remote-port", 
-            "display": "Port", 
-            "description": "Specifies the destination port on the Multi-Enterprise Integration Gateway server."
-        }, 
-        {
-            "name": "RemoteSSLProxy", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLProxyProfile"
-                }
-            }, 
-            "summary": "The TLS proxy profile is deprecated. Use a TLS client profile.", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "SSLClientConfigType", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "proxy"
-                }
-            }, 
-            "cli-alias": "remote-ssl", 
-            "display": "TLS proxy profile (deprecated)", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "&lt;p>Specifies a TLS proxy profile for securing the communication between the DataPower Gateway and the remote Multi-Enterprise Integration Gateway server.&lt;/p>"
-        }, 
-        {
-            "name": "RemoteConnectionTimeout", 
-            "default": 60, 
-            "type": {
-                "href": "/mgmt/types/default/dmTimeInterval"
-            }, 
-            "required": "true", 
-            "maximum": 86400, 
-            "summary": "Connection timeout", 
-            "/mgmt/types/default/dmTimeInterval": {
-                "type": {
-                    "cli-arg": "seconds", 
-                    "minimum": 0, 
-                    "name": "dmTimeInterval", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmTimeInterval"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmTimeInterval"
                     }
-                }
-            }, 
-            "minimum": 1, 
-            "units": "seconds", 
-            "cli-alias": "remote-connect-timeout", 
-            "display": "Connection timeout", 
-            "description": "Specifies the number of seconds that the DataPower Gateway waits to establish a connection to the Multi-Enterprise Integration Gateway server. Enter a value in the range 1 - 86400. The default value is 60."
-        }, 
-        {
-            "name": "XMLManager", 
-            "default": "default", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/XMLManager"
-                }
-            }, 
-            "required": "true", 
-            "summary": "An XML manager", 
-            "cli-alias": "xml-manager", 
-            "display": "XML manager", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
+                    "cli-arg": "seconds",
+                    "minimum": 0,
+                    "name": "dmTimeInterval",
+                    "maximum": "0xFFFFFFFF"
                 }
-            }, 
-            "description": "Specifies an existing XML manager. An XML manager obtains and manages XML documents, stylesheets, and other document resources on behalf of one or more services."
-        }, 
-        {
-            "name": "EnablePassthrough", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to pass the original AS2 requests to DataPower service processing policy", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "enable-passthrough", 
-            "display": "Enable passthrough", 
-            "description": "Controls whether to pass the original AS2 requests to the processing policy of DataPower service. &lt;ul>&lt;li>When enabled, the AS2 proxy handler passes the original AS2 requests to DataPower service processing policy.&lt;/li>&lt;li>When disabled, the AS2 proxy handler first uses the cryptographic information in the partner exchange profile to decrypt the incoming AS2 requests and verify the signature. The AS2 proxy handler then passes the decrypted request body with signature removed to DataPower service for processing.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "name": "EnableVisibilityEvent", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to send visibility events to the MEIG visibility event endpoint", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "enable-visibility-event", 
-            "display": "Send visibility event", 
-            "description": "Controls whether to send the visibility events generated by the AS2 proxy handler to the MEIG visibility event endpoint. These visibility events are correlated to those generated by the Multi-Enterprise Integration Gateway server in one transaction thread."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmURL"
-            }, 
-            "name": "VisibilityEventEndpoint", 
-            "required-when": {
-                "condition": {
-                    "property-name": "EnableVisibilityEvent", 
-                    "evaluation": "property-equals", 
-                    "value": "on"
-                }
-            }, 
-            "summary": "The location of the MEIG visibility event endpoint", 
-            "/mgmt/types/default/dmURL": {
-                "type": {
-                    "cli-arg": "url", 
-                    "name": "dmURL"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmURL"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmURL"
                     }
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "EnableVisibilityEvent", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "on"
-                }
-            }, 
-            "cli-alias": "visibility-event-endpoint", 
-            "display": "Visibility event endpoint", 
-            "description": "Specifies the URL of the MEIG visibility event endpoint. Enter the URL in the format of static IBM MQ URL that provides the information about the IBM MQ server name, queue manager name, and name of the channel configured in the Multi-Enterprise Integration Gateway server. For example, dpmq://NAME_OF_MQ_OBJECT/?RequestQueue=QUEUE_NAME_FOR_VISIBILITY_EVENT"
-        }, 
-        {
-            "name": "EnableHmacAuthentication", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to use HMAC to secure visibility event delivery", 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "cli-arg": "url",
+                    "name": "dmURL"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSLConfigType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSLConfigType"
+                    }
+                },
+                "type": {
+                    "name": "dmSSLConfigType",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "EnableVisibilityEvent", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "on"
-                }
-            }, 
-            "cli-alias": "enable-hmac-authentication", 
-            "display": "Enable HMAC authentication", 
-            "description": "Controls whether to use Hash-based Message Authentication Code (HMAC) to secure all visibility events sent to the visibility event endpoint. If HMAC is enabled in the Multi-Enterprise Integration Gateway server, you must enable HMAC authentication in the AS2 proxy handler to avoid message rejection."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "HmacPassphrase", 
-            "cli-alias": "hmac-passphrase", 
-            "summary": "HMAC passphrase", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "evaluation": "logical-or", 
-                            "condition": [
-                                {
-                                    "property-name": "EnableVisibilityEvent", 
-                                    "evaluation": "property-does-not-equal", 
-                                    "value": "on"
-                                }, 
-                                {
-                                    "property-name": "EnableHmacAuthentication", 
-                                    "evaluation": "property-does-not-equal", 
-                                    "value": "on"
-                                }
-                            ]
-                        }, 
-                        {
-                            "property-name": "HmacPassphrase", 
-                            "evaluation": "property-equals", 
-                            "value": ""
-                        }
-                    ]
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "HMAC passphrase (deprecated)", 
-            "description": "Specifies the passphrase used to calculate the HMAC token for message authentication and integrity check in the Multi-Enterprise Integration Gateway server."
-        }, 
-        {
-            "name": "HmacPassphraseAlias", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-and", 
-                    "condition": [
-                        {
-                            "evaluation": "logical-and", 
-                            "condition": [
-                                {
-                                    "property-name": "EnableVisibilityEvent", 
-                                    "evaluation": "property-equals", 
-                                    "value": "on"
-                                }, 
-                                {
-                                    "property-name": "EnableHmacAuthentication", 
-                                    "evaluation": "property-equals", 
-                                    "value": "on"
-                                }
-                            ]
-                        }, 
-                        {
-                            "property-name": "HmacPassphrase", 
-                            "evaluation": "property-equals", 
-                            "value": ""
-                        }
-                    ]
-                }
-            }, 
-            "summary": "HMAC passphrase alias", 
-            "cli-alias": "hmac-passphrase-alias", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "EnableVisibilityEvent", 
-                            "evaluation": "property-does-not-equal", 
-                            "value": "on"
-                        }, 
-                        {
-                            "property-name": "EnableHmacAuthentication", 
-                            "evaluation": "property-does-not-equal", 
-                            "value": "on"
-                        }
-                    ]
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/PasswordAlias"
-                }
-            }, 
-            "display": "HMAC passphrase alias", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "Specifies the password alias of the passphrase used to calculate the HMAC token for message authentication and integrity checking in the Multi-Enterprise Integration Gateway server."
-        }, 
-        {
-            "/mgmt/types/default/dmSSLConfigType": {
-                "type": {
-                    "name": "dmSSLConfigType", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "proxy", 
+                                "name": "proxy",
                                 "display": "Proxy Profile"
-                            }, 
+                            },
                             {
-                                "name": "server", 
+                                "name": "server",
                                 "display": "Server Profile"
-                            }, 
+                            },
                             {
-                                "name": "sni", 
+                                "name": "sni",
                                 "display": "SNI Server Profile"
                             }
                         ]
                     }
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmSSLConfigType"
-                    }, 
+                        "href": "/mgmt/docs/types/dmSSLClientConfigType"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmSSLConfigType"
+                        "href": "/mgmt/types/default/dmSSLClientConfigType"
                     }
-                }
-            }, 
-            "name": "SSLServerConfigType", 
-            "default": "proxy", 
-            "cli-alias": "ssl-config-type", 
-            "summary": "Set the TLS profile type to secure connections between clients and the DataPower Gateway", 
-            "type": {
-                "href": "/mgmt/types/default/dmSSLConfigType"
-            }, 
-            "display": "TLS server type", 
-            "description": "The TLS profile type to secure connections between clients and the DataPower Gateway."
-        }, 
-        {
-            "name": "SSLServer", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLServerProfile"
-                }
-            }, 
-            "summary": "Set the TLS server profile to secure connections between clients and the DataPower Gateway", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "SSLServerConfigType", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "server"
-                }
-            }, 
-            "cli-alias": "ssl-server", 
-            "display": "TLS server profile", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "The TLS server profile to secure connections between clients and the DataPower Gateway."
-        }, 
-        {
-            "name": "SSLSNIServer", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLSNIServerProfile"
-                }
-            }, 
-            "summary": "Set the TLS SNI server profile to secure connections between clients and the DataPower Gateway", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "SSLServerConfigType", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "sni"
-                }
-            }, 
-            "cli-alias": "ssl-sni-server", 
-            "display": "TLS SNI server profile", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "The TLS SNI server profile to secure connections between clients and the DataPower Gateway."
-        }, 
-        {
-            "name": "SSLClientConfigType", 
-            "/mgmt/types/default/dmSSLClientConfigType": {
-                "type": {
-                    "name": "dmSSLClientConfigType", 
+                    "name": "dmSSLClientConfigType",
                     "value-list": {
                         "value": [
                             {
-                                "name": "proxy", 
+                                "name": "proxy",
                                 "display": "Proxy Profile"
-                            }, 
+                            },
                             {
-                                "name": "client", 
+                                "name": "client",
                                 "display": "Client Profile"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmSSLClientConfigType"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmSSLClientConfigType"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "AS2ProxySourceProtocolHandler",
+                "status-bindings": {
+                    "status": {
+                        "binding": {
+                            "property": {
+                                "name": "AS2ProxySourceProtocolHandler",
+                                "select": "dmObjectName"
+                            }
+                        },
+                        "name": "AS2ProxySourceProtocolHandlerSummary",
+                        "display": {
+                            "property": {
+                                "name": "Quiesce",
+                                "display": "Quiesce State"
+                            }
+                        }
                     }
-                }
-            }, 
-            "default": "proxy", 
-            "type": {
-                "href": "/mgmt/types/default/dmSSLClientConfigType"
-            }, 
-            "summary": "Set the TLS profile type to secure connections between the DataPower Gateway and the remote Multi-Enterprise Integration Gateway server.", 
-            "cli-alias": "ssl-client-type", 
-            "display": "TLS client type", 
-            "description": "&lt;p>The TLS profile type to secure connections between the DataPower Gateway and the remote Multi-Enterprise Integration Gateway server. This communication must be TLS protected. You can define the TLS proxy profile for this communication in one of the following places:&lt;/p>&lt;ul>&lt;li>Define the TLS profile in the user agent that is assigned to the XML manager for the DataPower service service.&lt;/li>&lt;li>Define the TLS profile here.&lt;/li>&lt;/ul>&lt;p>Ensure that the TLS profile is defined in one of these places. Without the remote TLS profile, processing is stopped and an error is logged.&lt;/p>"
-        }, 
-        {
-            "name": "SSLClient", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLClientProfile"
-                }
-            }, 
-            "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and its targets", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "SSLClientConfigType", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "client"
-                }
-            }, 
-            "cli-alias": "ssl-client", 
-            "display": "TLS client profile", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
+                },
+                "display": "MEIG AS2 Proxy Handler",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "LocalAddress"
+                            },
+                            {
+                                "name": "LocalPort"
+                            }
+                        ],
+                        "name": "summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "LocalAddress"
+                            },
+                            {
+                                "name": "LocalPort"
+                            },
+                            {
+                                "name": "HTTPVersion"
+                            },
+                            {
+                                "name": "AllowedFeatures"
+                            },
+                            {
+                                "name": "PersistentConnections"
+                            },
+                            {
+                                "name": "MaxPersistentConnectionsReuse"
+                            },
+                            {
+                                "name": "AllowCompression"
+                            },
+                            {
+                                "name": "MaxURLLen"
+                            },
+                            {
+                                "name": "MaxTotalHdrLen"
+                            },
+                            {
+                                "name": "MaxHdrCount"
+                            },
+                            {
+                                "name": "MaxNameHdrLen"
+                            },
+                            {
+                                "name": "MaxValueHdrLen"
+                            },
+                            {
+                                "name": "MaxQueryStringLen"
+                            },
+                            {
+                                "name": "ACL"
+                            },
+                            {
+                                "name": "CredentialCharset"
+                            },
+                            {
+                                "name": "SSLServerConfigType"
+                            },
+                            {
+                                "name": "SSLProxy"
+                            },
+                            {
+                                "name": "SSLServer"
+                            },
+                            {
+                                "name": "SSLSNIServer"
+                            }
+                        ],
+                        "name": "main",
+                        "display": "Main"
+                    },
+                    {
+                        "property-group": [
+                            {
+                                "member": [
+                                    {
+                                        "name": "EnablePassthrough"
+                                    },
+                                    {
+                                        "name": "XMLManager"
+                                    }
+                                ],
+                                "name": "General",
+                                "display": "General"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "RemoteAddress"
+                                    },
+                                    {
+                                        "name": "RemotePort"
+                                    },
+                                    {
+                                        "name": "SSLClientConfigType"
+                                    },
+                                    {
+                                        "name": "RemoteSSLProxy"
+                                    },
+                                    {
+                                        "name": "SSLClient"
+                                    },
+                                    {
+                                        "name": "RemoteConnectionTimeout"
+                                    },
+                                    {
+                                        "name": "RemoteEndpointURI"
+                                    }
+                                ],
+                                "name": "ExchangeProfile",
+                                "display": "Exchange Profile"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "EnableVisibilityEvent"
+                                    },
+                                    {
+                                        "name": "VisibilityEventEndpoint"
+                                    },
+                                    {
+                                        "name": "VisibilityEventTimeout"
+                                    },
+                                    {
+                                        "name": "EnableHmacAuthentication"
+                                    },
+                                    {
+                                        "name": "HmacPassphrase"
+                                    },
+                                    {
+                                        "name": "HmacPassphraseAlias"
+                                    }
+                                ],
+                                "name": "VisibilityEvent",
+                                "display": "Visibility Event"
+                            }
+                        ],
+                        "name": "MEIGIntegration",
+                        "display": "Multi-Enterprise Integration Gateway Server"
                     }
+                ],
+                "uri": "protocol/as2-proxy",
+                "actions": {
+                    "action": [
+                        {
+                            "name": "ServiceQuiesce",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "type",
+                                        "select": "dmObjectClass"
+                                    },
+                                    {
+                                        "name": "name",
+                                        "select": "dmObjectName"
+                                    },
+                                    {
+                                        "name": "timeout"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "ServiceUnquiesce",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "type",
+                                        "select": "dmObjectClass"
+                                    },
+                                    {
+                                        "name": "name",
+                                        "select": "dmObjectName"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "summary": "MEIG AS2 Proxy Handler",
+                "services": {
+                    "service": "MultiProtocolGateway"
+                },
+                "cmd-group": "mpgw",
+                "cli-alias": "source-as2-proxy",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "A descriptive summary for the configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter a descriptive summary for the configuration.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "LocalAddress",
+                            "default": "0.0.0.0",
+                            "cli-alias": "local-address",
+                            "required": "true",
+                            "label": "IP address",
+                            "summary": "Enter the IP address or host alias on which the service listens.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                            },
+                            "display": "Local IP address",
+                            "hoverhelp": "Enter the IP address or host alias to listen on for incoming HTTP traffic. The default value indicates that the service listens on all IP addresses.",
+                            "description": "Specifies the address to listen on for incoming HTTP traffic. The default value indicates that the service listens on all IP addresses."
+                        },
+                        {
+                            "name": "LocalPort",
+                            "default": 80,
+                            "cli-alias": "port",
+                            "required": "true",
+                            "maximum": "0xFFFF",
+                            "summary": "The local TCP port number that supports server operations",
+                            "listener": "LocalAddress",
+                            "minimum": 1,
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPPort"
+                            },
+                            "display": "Port",
+                            "hoverhelp": "Enter the port to listen on for incoming HTTP traffic. Enter a value in the range of 1 - 65535. The default value is 80.",
+                            "description": "Specifies the port to listen on for incoming HTTP traffic. Enter a value in the range 1 - 65535. The default value is 80."
+                        },
+                        {
+                            "name": "HTTPVersion",
+                            "default": "HTTP/1.1",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHTTPVersion"
+                            },
+                            "summary": "HTTP version for client side connections",
+                            "cli-alias": "http-client-version",
+                            "display": "HTTP version to client",
+                            "description": "Select the HTTP version for client side connections. The default value is HTTP 1.1."
+                        },
+                        {
+                            "name": "AllowedFeatures",
+                            "default": "0x0603",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSourceAS2FeatureType"
+                            },
+                            "summary": "Methods and versions to allow for incoming requests",
+                            "cli-alias": "allowed-features",
+                            "display": "Allowed methods and versions",
+                            "description": "Specifies the methods and versions to allow for incoming HTTP requests."
+                        },
+                        {
+                            "name": "PersistentConnections",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to negotiate persistent connections on front side",
+                            "cli-alias": "persistent-connections",
+                            "display": "Negotiate persistent connections",
+                            "description": "Indicates whether to negotiate persistent connections where appropriate on front side. The default is enabled."
+                        },
+                        {
+                            "name": "MaxPersistentConnectionsReuse",
+                            "default": 0,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "summary": "The maximum number of times a persistent connection is reused on the front side",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "PersistentConnections",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "cli-alias": "max-persistent-reuse",
+                            "display": "Maximum persistent reuse",
+                            "description": "Specifies the maximum number of times a persistent connection is reused on the front side. When the maximum reuse count is reached, an explicit &lt;tt>HTTP Connection: close&lt;/tt> header is sent in the response and the TCP connection is closed. The default value is 0, which means unlimited reuse."
+                        },
+                        {
+                            "name": "AllowCompression",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Indicate whether to negotiate GZIP compression for client side connections.",
+                            "cli-alias": "compression",
+                            "display": "Enable compression",
+                            "description": "&lt;p>Whether to negotiate GZIP compression for client side connections.&lt;/p>&lt;p>The default is off. If enabled, the DataPower service uses GZIP to compress HTTP transmissions when the &lt;tt>Accept-Encoding&lt;/tt> HTTP header indicates that compressed documents can be processed.&lt;/p>&lt;p>The &lt;tt>Transfer-Encoding&lt;/tt> HTTP header indicates compression.&lt;/p>"
+                        },
+                        {
+                            "name": "MaxURLLen",
+                            "default": 16384,
+                            "cli-alias": "max-url-len",
+                            "maximum": 128000,
+                            "summary": "The length of the longest incoming URL to accept",
+                            "minimum": 1,
+                            "units": "Bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Maximum URL length",
+                            "description": "Specifies the length of the longest incoming URL to accept. The length includes any query string or fragment identifier. Enter a value in the range 1 - 128000. The default value is 16384."
+                        },
+                        {
+                            "name": "MaxTotalHdrLen",
+                            "default": 128000,
+                            "cli-alias": "max-total-header-len",
+                            "maximum": 128000,
+                            "summary": "Maximum aggregate length of incoming HTTP headers to allow",
+                            "minimum": 5,
+                            "units": "Bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Maximum total header length",
+                            "description": "Specifies the maximum aggregate length of incoming HTTP headers to allow. Enter a value in the range 5 - 128000. The default value is 128000."
+                        },
+                        {
+                            "name": "MaxHdrCount",
+                            "default": 0,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "summary": "Maximum number of headers to allow in HTTP requests",
+                            "cli-alias": "max-header-count",
+                            "display": "Maximum number of headers",
+                            "description": "Specifies the maximum number of headers to allow in the incoming request messages. The default value is 0, which indicates no limit."
+                        },
+                        {
+                            "name": "MaxNameHdrLen",
+                            "default": 0,
+                            "cli-alias": "max-header-name-len",
+                            "summary": "Maximum length of the name part of an HTTP header",
+                            "units": "Bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Maximum header name length",
+                            "description": "Specifies the maximum length of HTTP header names. Each HTTP header is expressed as a name-value pair. This setting specifies the maximum length of the name portion for HTTP headers. The default value is 0, which indicates no limit."
+                        },
+                        {
+                            "name": "MaxValueHdrLen",
+                            "default": 0,
+                            "cli-alias": "max-header-value-len",
+                            "summary": "Maximum length of the value part of an HTTP header",
+                            "units": "Bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Maximum header value length",
+                            "description": "Specifies the maximum length of HTTP header values to allow. Each HTTP header is expressed as a name-value pair. This setting specifies the maximum length of the value portion of that header. The default value is 0, which indicates no limit."
+                        },
+                        {
+                            "name": "MaxQueryStringLen",
+                            "default": 0,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "summary": "Maximum length of the HTTP query string to allow",
+                            "cli-alias": "max-querystring-len",
+                            "display": "Maximum query string length",
+                            "description": "The portion of the URL after the question mark (?) is known as the query string. This property specifies its maximum length in bytes. The default value is 0, which indicates no limit."
+                        },
+                        {
+                            "description": "Specifies the access control list to allow or deny access to this service based on the IP address of the client. When attached to a service, an access control list denies all access by default. To deny access to only selected addresses, first grant access to all addresses (allow 0.0.0.0) and then create deny entries for the desired hosts.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/AccessControlList"
+                                }
+                            },
+                            "summary": "The access control list to allow or deny access to this service",
+                            "cli-alias": "acl",
+                            "display": "Access control list",
+                            "name": "ACL"
+                        },
+                        {
+                            "description": "Specifies the character encoding of the original basic authentication values. Basic authentication credentials are combined and base64 encoded in the authorization header of the request. The DataPower Gateway transcodes the contents of the authorization header to UTF-8. The default value is Protocol, which represents ISO-8859-1, Latin 1.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmCredentialCharset"
+                            },
+                            "summary": "Character encoding of the original basic authentication values",
+                            "cli-alias": "credential-charset",
+                            "display": "Credential character set",
+                            "name": "CredentialCharset"
+                        },
+                        {
+                            "name": "SSLProxy",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                                }
+                            },
+                            "label": "TLS proxy profile",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SSLServerConfigType",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "proxy"
+                                }
+                            },
+                            "summary": "The TLS proxy profile is deprecated. Use a TLS server profile or TLS SNI server profile.",
+                            "cli-alias": "ssl",
+                            "display": "TLS proxy profile (deprecated)",
+                            "description": "Specifies a TLS proxy profile for securing the communication between the requesting client and the DataPower Gateway."
+                        },
+                        {
+                            "name": "RemoteAddress",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHostname"
+                            },
+                            "required": "true",
+                            "summary": "IP address, host name, or load balancer group name of the Multi-Enterprise Integration Gateway server.",
+                            "cli-alias": "remote-hostname",
+                            "display": "Host",
+                            "description": "Specifies the IP address, host name, or name of a load balancer group of the Multi-Enterprise Integration Gateway server."
+                        },
+                        {
+                            "name": "RemotePort",
+                            "cli-alias": "remote-port",
+                            "required": "true",
+                            "maximum": "0xFFFF",
+                            "summary": "Destination port on the Multi-Enterprise Integration Gateway server.",
+                            "minimum": 1,
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPPort"
+                            },
+                            "display": "Port",
+                            "description": "Specifies the destination port on the Multi-Enterprise Integration Gateway server."
+                        },
+                        {
+                            "name": "RemoteSSLProxy",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                                }
+                            },
+                            "summary": "The TLS proxy profile is deprecated. Use a TLS client profile.",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SSLClientConfigType",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "proxy"
+                                }
+                            },
+                            "cli-alias": "remote-ssl",
+                            "display": "TLS proxy profile (deprecated)",
+                            "description": "&lt;p>Specifies a TLS proxy profile for securing the communication between the DataPower Gateway and the remote Multi-Enterprise Integration Gateway server.&lt;/p>"
+                        },
+                        {
+                            "name": "RemoteConnectionTimeout",
+                            "default": 60,
+                            "cli-alias": "remote-connect-timeout",
+                            "required": "true",
+                            "maximum": 86400,
+                            "summary": "Connection timeout",
+                            "minimum": 1,
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimeInterval"
+                            },
+                            "display": "Connection timeout",
+                            "description": "Specifies the number of seconds that the DataPower Gateway waits to establish a connection to the Multi-Enterprise Integration Gateway server. Enter a value in the range 1 - 86400. The default value is 60."
+                        },
+                        {
+                            "name": "XMLManager",
+                            "default": "default",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/XMLManager"
+                                }
+                            },
+                            "required": "true",
+                            "summary": "An XML manager",
+                            "cli-alias": "xml-manager",
+                            "display": "XML manager",
+                            "description": "Specifies an existing XML manager. An XML manager obtains and manages XML documents, stylesheets, and other document resources on behalf of one or more services."
+                        },
+                        {
+                            "name": "EnablePassthrough",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to pass the original AS2 requests to DataPower service processing policy",
+                            "cli-alias": "enable-passthrough",
+                            "display": "Enable passthrough",
+                            "description": "Controls whether to pass the original AS2 requests to the processing policy of DataPower service. &lt;ul>&lt;li>When enabled, the AS2 proxy handler passes the original AS2 requests to DataPower service processing policy.&lt;/li>&lt;li>When disabled, the AS2 proxy handler first uses the cryptographic information in the partner exchange profile to decrypt the incoming AS2 requests and verify the signature. The AS2 proxy handler then passes the decrypted request body with signature removed to DataPower service for processing.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "EnableVisibilityEvent",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to send visibility events to the MEIG visibility event endpoint",
+                            "cli-alias": "enable-visibility-event",
+                            "display": "Send visibility event",
+                            "description": "Controls whether to send the visibility events generated by the AS2 proxy handler to the MEIG visibility event endpoint. These visibility events are correlated to those generated by the Multi-Enterprise Integration Gateway server in one transaction thread."
+                        },
+                        {
+                            "name": "VisibilityEventEndpoint",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "EnableVisibilityEvent",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "The location of the MEIG visibility event endpoint",
+                            "cli-alias": "visibility-event-endpoint",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "EnableVisibilityEvent",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "on"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmURL"
+                            },
+                            "display": "Visibility event endpoint",
+                            "description": "Specifies the URL of the MEIG visibility event endpoint. Enter the URL in the format of static IBM MQ URL that provides the information about the IBM MQ server name, queue manager name, and name of the channel configured in the Multi-Enterprise Integration Gateway server. For example, dpmq://NAME_OF_MQ_OBJECT/?RequestQueue=QUEUE_NAME_FOR_VISIBILITY_EVENT"
+                        },
+                        {
+                            "name": "EnableHmacAuthentication",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to use HMAC to secure visibility event delivery",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "EnableVisibilityEvent",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "on"
+                                }
+                            },
+                            "cli-alias": "enable-hmac-authentication",
+                            "display": "Enable HMAC authentication",
+                            "description": "Controls whether to use Hash-based Message Authentication Code (HMAC) to secure all visibility events sent to the visibility event endpoint. If HMAC is enabled in the Multi-Enterprise Integration Gateway server, you must enable HMAC authentication in the AS2 proxy handler to avoid message rejection."
+                        },
+                        {
+                            "name": "HmacPassphrase",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "HMAC passphrase",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "evaluation": "logical-or",
+                                            "condition": [
+                                                {
+                                                    "property-name": "EnableVisibilityEvent",
+                                                    "evaluation": "property-does-not-equal",
+                                                    "value": "on"
+                                                },
+                                                {
+                                                    "property-name": "EnableHmacAuthentication",
+                                                    "evaluation": "property-does-not-equal",
+                                                    "value": "on"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "HmacPassphrase",
+                                            "evaluation": "property-equals",
+                                            "value": ""
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "hmac-passphrase",
+                            "display": "HMAC passphrase (deprecated)",
+                            "description": "Specifies the passphrase used to calculate the HMAC token for message authentication and integrity check in the Multi-Enterprise Integration Gateway server."
+                        },
+                        {
+                            "name": "HmacPassphraseAlias",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "EnableVisibilityEvent",
+                                                    "evaluation": "property-equals",
+                                                    "value": "on"
+                                                },
+                                                {
+                                                    "property-name": "EnableHmacAuthentication",
+                                                    "evaluation": "property-equals",
+                                                    "value": "on"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "HmacPassphrase",
+                                            "evaluation": "property-equals",
+                                            "value": ""
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "HMAC passphrase alias",
+                            "cli-alias": "hmac-passphrase-alias",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "EnableVisibilityEvent",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "EnableHmacAuthentication",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "on"
+                                        }
+                                    ]
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/PasswordAlias"
+                                }
+                            },
+                            "display": "HMAC passphrase alias",
+                            "description": "Specifies the password alias of the passphrase used to calculate the HMAC token for message authentication and integrity checking in the Multi-Enterprise Integration Gateway server."
+                        },
+                        {
+                            "name": "SSLServerConfigType",
+                            "default": "proxy",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSLConfigType"
+                            },
+                            "summary": "Set the TLS profile type to secure connections between clients and the DataPower Gateway",
+                            "cli-alias": "ssl-config-type",
+                            "display": "TLS server type",
+                            "description": "The TLS profile type to secure connections between clients and the DataPower Gateway."
+                        },
+                        {
+                            "name": "SSLServer",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLServerProfile"
+                                }
+                            },
+                            "summary": "Set the TLS server profile to secure connections between clients and the DataPower Gateway",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SSLServerConfigType",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "server"
+                                }
+                            },
+                            "cli-alias": "ssl-server",
+                            "display": "TLS server profile",
+                            "description": "The TLS server profile to secure connections between clients and the DataPower Gateway."
+                        },
+                        {
+                            "name": "SSLSNIServer",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLSNIServerProfile"
+                                }
+                            },
+                            "summary": "Set the TLS SNI server profile to secure connections between clients and the DataPower Gateway",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SSLServerConfigType",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "sni"
+                                }
+                            },
+                            "cli-alias": "ssl-sni-server",
+                            "display": "TLS SNI server profile",
+                            "description": "The TLS SNI server profile to secure connections between clients and the DataPower Gateway."
+                        },
+                        {
+                            "name": "SSLClientConfigType",
+                            "default": "proxy",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSLClientConfigType"
+                            },
+                            "summary": "Set the TLS profile type to secure connections between the DataPower Gateway and the remote Multi-Enterprise Integration Gateway server.",
+                            "cli-alias": "ssl-client-type",
+                            "display": "TLS client type",
+                            "description": "&lt;p>The TLS profile type to secure connections between the DataPower Gateway and the remote Multi-Enterprise Integration Gateway server. This communication must be TLS protected. You can define the TLS proxy profile for this communication in one of the following places:&lt;/p>&lt;ul>&lt;li>Define the TLS profile in the user agent that is assigned to the XML manager for the DataPower service service.&lt;/li>&lt;li>Define the TLS profile here.&lt;/li>&lt;/ul>&lt;p>Ensure that the TLS profile is defined in one of these places. Without the remote TLS profile, processing is stopped and an error is logged.&lt;/p>"
+                        },
+                        {
+                            "name": "SSLClient",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                                }
+                            },
+                            "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and its targets",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SSLClientConfigType",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "client"
+                                }
+                            },
+                            "cli-alias": "ssl-client",
+                            "display": "TLS client profile",
+                            "description": "The TLS client profile to secure connections between the DataPower Gateway and its targets."
+                        }
+                    ]
+                },
+                "description": "A MEIG AS2 proxy handler receives AS2 requests over HTTP or HTTPS and forwards them to the backend which is assumed to be an IBM Multi-Enterprise Integration Gateway (MEIG) server. AS2 proxy handlers conform to gateway specifications of RFC 2616 and AS2 specification of RFC 4130."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/AS2ProxySourceProtocolHandler"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/AS2ProxySourceProtocolHandler"
                 }
-            }, 
-            "description": "The TLS client profile to secure connections between the DataPower Gateway and its targets."
+            }
         }
-    ]
+    }
 }

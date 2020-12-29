@@ -1,177 +1,193 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "name": "URL", 
-            "cli-alias": "config-url", 
-            "required": "true", 
-            "summary": "URL of Included Configuration File", 
-            "/mgmt/types/default/dmURL": {
+                },
                 "type": {
-                    "cli-arg": "url", 
-                    "name": "dmURL"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmURL"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmURL"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmURL"
-            }, 
-            "display": "URL of Configuration File", 
-            "description": "Enter the URL of the configuration file to include. The file must be a configuration file of type .cfg. The URL should take the form 'protocol://username:password@host/path' if a username and password is required to retrieve the file."
-        }, 
-        {
-            "name": "OnStartup", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Execute the include on startup.", 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "cli-arg": "url",
+                    "name": "dmURL"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
+                                "name": "on",
                                 "display": "on"
-                            }, 
+                            },
                             {
-                                "name": "off", 
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "cli-alias": "auto-execute", 
-            "display": "Execute On Startup", 
-            "description": "When set to 'on' the configuration is executed at startup. The configuration will be marked external and cannot be saved locally. It is equivalent to 'include-always'. When set to 'off' executing the configuration has to be executed manually. The configuration will not be marked external and can be saved locally. It is equivalent to 'include-once'."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "name": "InterfaceDetection", 
-            "default": "off", 
-            "required-when": {
-                "condition": {
-                    "property-name": "OnStartup", 
-                    "evaluation": "property-equals", 
-                    "value": "on"
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "IncludeConfig",
+                "property-group": {
+                    "member": [
+                        {
+                            "name": "mAdminState"
+                        },
+                        {
+                            "name": "URL"
+                        },
+                        {
+                            "name": "OnStartup"
+                        },
+                        {
+                            "name": "UserSummary"
+                        }
+                    ],
+                    "name": "summary"
+                },
+                "uri": "config/include-config",
+                "display": "Include Configuration File",
+                "cmd-group": "config-management",
+                "cli-alias": "include-config",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "URL",
+                            "type": {
+                                "href": "/mgmt/types/default/dmURL"
+                            },
+                            "required": "true",
+                            "summary": "URL of Included Configuration File",
+                            "cli-alias": "config-url",
+                            "display": "URL of Configuration File",
+                            "description": "Enter the URL of the configuration file to include. The file must be a configuration file of type .cfg. The URL should take the form 'protocol://username:password@host/path' if a username and password is required to retrieve the file."
+                        },
+                        {
+                            "name": "OnStartup",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Execute the include on startup.",
+                            "cli-alias": "auto-execute",
+                            "display": "Execute On Startup",
+                            "description": "When set to 'on' the configuration is executed at startup. The configuration will be marked external and cannot be saved locally. It is equivalent to 'include-always'. When set to 'off' executing the configuration has to be executed manually. The configuration will not be marked external and can be saved locally. It is equivalent to 'include-once'."
+                        },
+                        {
+                            "name": "InterfaceDetection",
+                            "default": "off",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "OnStartup",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "Wait for operational interface.",
+                            "cli-alias": "interface-detection",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "display": "Interface Detection",
+                            "description": "This setting only affects the execution of configuration files from remote servers. If set to 'on' the remote file is executed asynchronously. It will be executed after the associated IP interface is operational."
+                        }
+                    ]
+                },
+                "description": "Allows the inclusion of external configuration files during startup. The included configuration files may reside on the local device or on a remote host."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/IncludeConfig"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/IncludeConfig"
                 }
-            }, 
-            "summary": "Wait for operational interface.", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "cli-alias": "interface-detection", 
-            "display": "Interface Detection", 
-            "description": "This setting only affects the execution of configuration files from remote servers. If set to 'on' the remote file is executed asynchronously. It will be executed after the associated IP interface is operational."
+            }
         }
-    ]
+    }
 }

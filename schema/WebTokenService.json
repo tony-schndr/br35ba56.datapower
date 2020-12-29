@@ -1,833 +1,915 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "description": "Specify a brief, descriptive comment.", 
-            "cli-alias": "summary", 
-            "summary": "Specify the descriptive comment", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments", 
-            "name": "UserSummary"
-        }, 
-        {
-            "name": "Priority", 
-            "default": "normal", 
-            "type": {
-                "href": "/mgmt/types/default/dmSchedulerPriority"
-            }, 
-            "/mgmt/types/default/dmSchedulerPriority": {
+                },
                 "type": {
-                    "name": "dmSchedulerPriority", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "unknown", 
-                                "display": "unknown"
-                            }, 
-                            {
-                                "name": "high-min", 
-                                "display": "high-min"
-                            }, 
-                            {
-                                "summary": "", 
-                                "display": "High", 
-                                "name": "high", 
-                                "description": "A service or transaction assigned this priority setting will receive above normal scheduling priority and resource allocation."
-                            }, 
-                            {
-                                "name": "high-max", 
-                                "display": "high-max"
-                            }, 
-                            {
-                                "name": "normal-min", 
-                                "display": "normal-min"
-                            }, 
-                            {
-                                "summary": "", 
-                                "display": "Normal", 
-                                "name": "normal", 
-                                "description": "A service or transaction assigned this priority setting will receive normal scheduling priority and resource allocation."
-                            }, 
-                            {
-                                "name": "normal-max", 
-                                "display": "normal-max"
-                            }, 
-                            {
-                                "name": "low-min", 
-                                "display": "low-min"
-                            }, 
-                            {
-                                "summary": "", 
-                                "display": "Low", 
-                                "name": "low", 
-                                "description": "A service or transaction assigned this priority setting will receive below normal scheduling priority and resource allocation."
-                            }, 
-                            {
-                                "name": "low-max", 
-                                "display": "low-max"
-                            }
-                        ]
-                    }, 
-                    "display": "Transaction Priority"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmSchedulerPriority"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmSchedulerPriority"
                     }
-                }
-            }, 
-            "summary": "Set the service-level priority", 
-            "cli-alias": "priority", 
-            "display": "Service priority", 
-            "description": "Set the service-level priority. When resources are in high demand, the appliance handles transactions for higher priority services over lower priority services."
-        }, 
-        {
-            "name": "XMLManager", 
-            "default": "default", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/XMLManager"
-                }
-            }, 
-            "required": "true", 
-            "summary": "Assign the XML manager", 
-            "cli-alias": "xml-manager", 
-            "display": "XML manager", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "Assign the XML manager that obtains and manages documents on behalf of the service. The user agent, which is referenced by this XML manager, controls access to remote destinations. Unless you have service-specific needs, use the &lt;tt>default&lt;/tt> XML manager."
-        }, 
-        {
-            "name": "RequestType", 
-            "default": "preprocessed", 
-            "cli-alias": "request-type", 
-            "summary": "Characterize client-originated traffic", 
-            "/mgmt/types/default/dmXMLReqRespType": {
-                "type": {
-                    "summary": "XML Firewall Request-Response Type", 
-                    "display": "XML Firewall Request-Response Type", 
+                    "name": "dmSchedulerPriority",
                     "value-list": {
                         "value": [
                             {
-                                "display": "SOAP", 
-                                "name": "soap", 
-                                "description": "The traffic is XML formatted in accordance with the SOAP schema standards. The service validates the message against SOAP schemas that are currently in use."
-                            }, 
+                                "name": "unknown",
+                                "display": "unknown"
+                            },
                             {
-                                "display": "XML", 
-                                "name": "xml", 
-                                "description": "The traffic is formatted in XML. The service validates the message against XML schemas that are currently in use."
-                            }, 
+                                "name": "high-min",
+                                "display": "high-min"
+                            },
                             {
-                                "display": "Pass through", 
-                                "name": "unprocessed", 
-                                "description": "The traffic is passed unaltered."
-                            }, 
+                                "display": "High",
+                                "description": "A service or transaction assigned this priority setting will receive above normal scheduling priority and resource allocation.",
+                                "name": "high",
+                                "summary": ""
+                            },
                             {
-                                "display": "Non-XML", 
-                                "name": "preprocessed", 
-                                "description": "The traffic can be any format. However, for traffic that is flat file text or binary, you must use this option. The service passes the contents of the message unaltered. Document processing will not operate directly on the message content, but actions that authenticate and authorize access, set a destination, or attach variables to the context can be performed."
-                            }, 
+                                "name": "high-max",
+                                "display": "high-max"
+                            },
                             {
-                                "display": "JSON", 
-                                "name": "json", 
-                                "description": "The traffic is formatted in JavaScript Object Notation (JSON). The service validates the message as well-formed JSON, and the message is made available both as JSON and as JSONx. Document processing can operate on the JSON message content with JSON schema validation, XQuery transformations with JSONiq Extensions, or GatewayScript, and can access the __JSONASJSONX context to process JSONx. Actions can authenticate and authorize access, set a destination, or attach variables to the context."
+                                "name": "normal-min",
+                                "display": "normal-min"
+                            },
+                            {
+                                "display": "Normal",
+                                "description": "A service or transaction assigned this priority setting will receive normal scheduling priority and resource allocation.",
+                                "name": "normal",
+                                "summary": ""
+                            },
+                            {
+                                "name": "normal-max",
+                                "display": "normal-max"
+                            },
+                            {
+                                "name": "low-min",
+                                "display": "low-min"
+                            },
+                            {
+                                "display": "Low",
+                                "description": "A service or transaction assigned this priority setting will receive below normal scheduling priority and resource allocation.",
+                                "name": "low",
+                                "summary": ""
+                            },
+                            {
+                                "name": "low-max",
+                                "display": "low-max"
                             }
                         ]
-                    }, 
-                    "name": "dmXMLReqRespType"
-                }, 
+                    },
+                    "display": "Transaction Priority"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmXMLReqRespType"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmXMLReqRespType"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmXMLReqRespType"
-            }, 
-            "display": "Request Type", 
-            "description": "Characterizes the traffic that originates from the client. The default is Non-XML."
-        }, 
-        {
-            "name": "FrontSide", 
-            "type": {
-                "href": "/mgmt/types/default/dmSSLFrontSide"
-            }, 
-            "/mgmt/types/default/dmSSLFrontSide": {
+                },
                 "type": {
-                    "name": "dmSSLFrontSide", 
+                    "display": "XML Firewall Request-Response Type",
+                    "name": "dmXMLReqRespType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "SOAP",
+                                "description": "The traffic is XML formatted in accordance with the SOAP schema standards. The service validates the message against SOAP schemas that are currently in use.",
+                                "name": "soap"
+                            },
+                            {
+                                "display": "XML",
+                                "description": "The traffic is formatted in XML. The service validates the message against XML schemas that are currently in use.",
+                                "name": "xml"
+                            },
+                            {
+                                "display": "Pass through",
+                                "description": "The traffic is passed unaltered.",
+                                "name": "unprocessed"
+                            },
+                            {
+                                "display": "Non-XML",
+                                "description": "The traffic can be any format. However, for traffic that is flat file text or binary, you must use this option. The service passes the contents of the message unaltered. Document processing will not operate directly on the message content, but actions that authenticate and authorize access, set a destination, or attach variables to the context can be performed.",
+                                "name": "preprocessed"
+                            },
+                            {
+                                "display": "JSON",
+                                "description": "The traffic is formatted in JavaScript Object Notation (JSON). The service validates the message as well-formed JSON, and the message is made available both as JSON and as JSONx. Document processing can operate on the JSON message content with JSON schema validation, XQuery transformations with JSONiq Extensions, or GatewayScript, and can access the __JSONASJSONX context to process JSONx. Actions can authenticate and authorize access, set a destination, or attach variables to the context.",
+                                "name": "json"
+                            }
+                        ]
+                    },
+                    "summary": "XML Firewall Request-Response Type"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSLFrontSide"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSLFrontSide"
+                    }
+                },
+                "type": {
+                    "name": "dmSSLFrontSide",
                     "properties": {
                         "property": [
                             {
-                                "name": "LocalAddress", 
-                                "default": "0.0.0.0", 
+                                "name": "LocalAddress",
+                                "default": "0.0.0.0",
                                 "type": {
                                     "href": "/mgmt/types/default/dmLocalIPHostAddress"
-                                }, 
-                                "required": "true", 
-                                "summary": "Specify the local address that the service listens on", 
-                                "cli-alias": "address", 
-                                "display": "Local address", 
+                                },
+                                "required": "true",
+                                "summary": "Specify the local address that the service listens on",
+                                "cli-alias": "address",
+                                "display": "Local address",
                                 "description": "Specify the host alias or local IP address on the appliance that the service listens on. The default value is 0.0.0.0, which denotes all local addresses."
-                            }, 
+                            },
                             {
-                                "name": "LocalPort", 
+                                "name": "LocalPort",
+                                "cli-alias": "port",
+                                "required": "true",
+                                "maximum": "0xFFFF",
+                                "summary": "Set the local TCP port that the service listens on",
+                                "listener": "LocalAddress",
+                                "minimum": 1,
                                 "type": {
                                     "href": "/mgmt/types/default/dmIPPort"
-                                }, 
-                                "required": "true", 
-                                "maximum": "0xFFFF", 
-                                "summary": "Set the local TCP port that the service listens on", 
-                                "listener": "LocalAddress", 
-                                "minimum": 1, 
-                                "cli-alias": "port", 
-                                "display": "Port", 
+                                },
+                                "display": "Port",
                                 "description": "Specify the unique, local TCP port that the service listens on. No other service on the DataPower Gateway can use this port. Enter any value in the range 1 - 65535."
-                            }, 
+                            },
                             {
-                                "name": "UseSSL", 
-                                "default": "off", 
+                                "name": "UseSSL",
+                                "default": "off",
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "summary": "Whether to secure the connection.", 
-                                "cli-alias": "use-ssl", 
-                                "display": "TLS", 
+                                },
+                                "summary": "Whether to secure the connection.",
+                                "cli-alias": "use-ssl",
+                                "display": "TLS",
                                 "description": "Indicate whether to use the assigned TLS profile to control connections to this TCP port. When enabled, the service expects HTTPS requests on this port."
-                            }, 
+                            },
                             {
-                                "name": "SSLProxyProfile", 
+                                "name": "SSLProxyProfile",
                                 "required-when": {
                                     "condition": {
-                                        "evaluation": "logical-and", 
+                                        "evaluation": "logical-and",
                                         "condition": [
                                             {
-                                                "property-name": "UseSSL", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "UseSSL",
+                                                "evaluation": "property-equals",
                                                 "value": "on"
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "SSLServerConfigType", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "SSLServerConfigType",
+                                                "evaluation": "property-equals",
                                                 "value": "proxy"
                                             }
                                         ]
                                     }
-                                }, 
-                                "summary": "The TLS proxy profile is deprecated. Use an TLS server profile or TLS SNI server profile.", 
-                                "cli-alias": "ssl-profile", 
+                                },
+                                "summary": "The TLS proxy profile is deprecated. Use an TLS server profile or TLS SNI server profile.",
+                                "cli-alias": "ssl-profile",
                                 "ignored-when": {
                                     "condition": {
                                         "evaluation": "logical-true"
                                     }
-                                }, 
+                                },
                                 "type": {
-                                    "href": "/mgmt/types/default/dmReference", 
+                                    "href": "/mgmt/types/default/dmReference",
                                     "reference-to": {
                                         "href": "/mgmt/metadata/default/SSLProxyProfile"
                                     }
-                                }, 
-                                "display": "TLS proxy profile (deprecated)", 
+                                },
+                                "display": "TLS proxy profile (deprecated)",
                                 "description": "The TLS proxy profile with the cryptographic profiles to secure connections."
-                            }, 
+                            },
                             {
-                                "description": "Specifies the character encoding of the original basic authentication values. Basic authentication credentials are combined and base64 encoded in the authorization header of the request. The appliance transcodes the contents of the authorization header to UTF-8. Defaults to Protocol which is ISO-8859-1, Latin 1.", 
+                                "description": "Specifies the character encoding of the original basic authentication values. Basic authentication credentials are combined and base64 encoded in the authorization header of the request. The appliance transcodes the contents of the authorization header to UTF-8. Defaults to Protocol which is ISO-8859-1, Latin 1.",
                                 "type": {
                                     "href": "/mgmt/types/default/dmCredentialCharset"
-                                }, 
-                                "summary": "Character encoding of the original basic authentication values", 
-                                "cli-alias": "credential-charset", 
-                                "display": "Credential Character Set", 
+                                },
+                                "summary": "Character encoding of the original basic authentication values",
+                                "cli-alias": "credential-charset",
+                                "display": "Credential Character Set",
                                 "name": "CredentialCharset"
-                            }, 
+                            },
                             {
-                                "type": {
-                                    "href": "/mgmt/types/default/dmSSLConfigType"
-                                }, 
-                                "name": "SSLServerConfigType", 
-                                "default": "proxy", 
+                                "name": "SSLServerConfigType",
+                                "default": "proxy",
                                 "required-when": {
                                     "condition": {
-                                        "property-name": "UseSSL", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "UseSSL",
+                                        "evaluation": "property-equals",
                                         "value": "on"
                                     }
-                                }, 
-                                "summary": "Set the TLS profile type to secure connections between clients and the DataPower Gateway", 
+                                },
+                                "summary": "Set the TLS profile type to secure connections between clients and the DataPower Gateway",
+                                "cli-alias": "ssl-config-type",
                                 "ignored-when": {
                                     "condition": {
                                         "evaluation": "logical-true"
                                     }
-                                }, 
-                                "cli-alias": "ssl-config-type", 
-                                "display": "TLS server type", 
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmSSLConfigType"
+                                },
+                                "display": "TLS server type",
                                 "description": "The TLS profile type to secure connections between clients and the DataPower Gateway."
-                            }, 
+                            },
                             {
-                                "name": "SSLServer", 
+                                "name": "SSLServer",
                                 "required-when": {
                                     "condition": {
-                                        "evaluation": "logical-and", 
+                                        "evaluation": "logical-and",
                                         "condition": [
                                             {
-                                                "property-name": "UseSSL", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "UseSSL",
+                                                "evaluation": "property-equals",
                                                 "value": "on"
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "SSLServerConfigType", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "SSLServerConfigType",
+                                                "evaluation": "property-equals",
                                                 "value": "server"
                                             }
                                         ]
                                     }
-                                }, 
-                                "summary": "Set the TLS server profile to secure connections between clients and the DataPower Gateway", 
-                                "cli-alias": "ssl-server", 
+                                },
+                                "summary": "Set the TLS server profile to secure connections between clients and the DataPower Gateway",
+                                "cli-alias": "ssl-server",
                                 "ignored-when": {
                                     "condition": {
                                         "evaluation": "logical-true"
                                     }
-                                }, 
+                                },
                                 "type": {
-                                    "href": "/mgmt/types/default/dmReference", 
+                                    "href": "/mgmt/types/default/dmReference",
                                     "reference-to": {
                                         "href": "/mgmt/metadata/default/SSLServerProfile"
                                     }
-                                }, 
-                                "display": "TLS server profile", 
+                                },
+                                "display": "TLS server profile",
                                 "description": "the TLS server profile to secure connections between clients and the DataPower Gateway."
-                            }, 
+                            },
                             {
-                                "name": "SSLSNIServer", 
+                                "name": "SSLSNIServer",
                                 "required-when": {
                                     "condition": {
-                                        "evaluation": "logical-and", 
+                                        "evaluation": "logical-and",
                                         "condition": [
                                             {
-                                                "property-name": "UseSSL", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "UseSSL",
+                                                "evaluation": "property-equals",
                                                 "value": "on"
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "SSLServerConfigType", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "SSLServerConfigType",
+                                                "evaluation": "property-equals",
                                                 "value": "sni"
                                             }
                                         ]
                                     }
-                                }, 
-                                "summary": "Set the TLS SNI server profile to secure connections between clients and the DataPower Gateway", 
-                                "cli-alias": "ssl-sni-server", 
+                                },
+                                "summary": "Set the TLS SNI server profile to secure connections between clients and the DataPower Gateway",
+                                "cli-alias": "ssl-sni-server",
                                 "ignored-when": {
                                     "condition": {
                                         "evaluation": "logical-true"
                                     }
-                                }, 
+                                },
                                 "type": {
-                                    "href": "/mgmt/types/default/dmReference", 
+                                    "href": "/mgmt/types/default/dmReference",
                                     "reference-to": {
                                         "href": "/mgmt/metadata/default/SSLSNIServerProfile"
                                     }
-                                }, 
-                                "display": "TLS SNI server profile", 
+                                },
+                                "display": "TLS SNI server profile",
                                 "description": "The TLS SNI server profile to secure connections between clients and the DataPower Gateway."
                             }
                         ]
                     }
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmSSLFrontSide"
-                    }, 
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmSSLFrontSide"
+                        "href": "/mgmt/types/default/dmToggle"
                     }
-                }
-            }, 
-            "summary": "Define addresses and ports that the service listens on", 
-            "array": "true", 
-            "cli-alias": "listen-on", 
-            "display": "Source addresses", 
-            "description": "Define the addresses and ports that the service listens on. You can define listening sources for HTTP and HTTPS requests. For HTTPS request, set the listening source to use TLS parameter and assign the TLS profile."
-        }, 
-        {
-            "name": "StylePolicy", 
-            "default": "default", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/StylePolicy"
-                }
-            }, 
-            "required": "true", 
-            "summary": "Assign the processing policy", 
-            "cli-alias": "stylepolicy", 
-            "display": "Processing Policy", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "Assign the processing policy to the service. The processing policy defines the actions to perform on security token requests."
-        }, 
-        {
-            "name": "RewriteErrors", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to rewrite error messages to avoid providing a padding oracle.", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
+                                "name": "on",
                                 "display": "on"
-                            }, 
+                            },
                             {
-                                "name": "off", 
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "cli-alias": "rewrite-errors", 
-            "display": "Rewrite error messages", 
-            "description": "Error messages after a decryption action can provide an attacker who is using the padding oracle attack method with enough information to determine the contents of the plain-text data. When enabled, the default, the client receives error messages without the internal information that could lead to a discovery. When disabled, the client receives the original message with this information."
-        }, 
-        {
-            "name": "DelayErrors", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to delay error messages to avoid providing a padding oracle.", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "RewriteErrors", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "on"
-                }
-            }, 
-            "cli-alias": "delay-errors", 
-            "display": "Delay error messages", 
-            "description": "The timing difference of the error messages returned after a decryption action can provide an attacker with enough information to determine the contents of the plain-text data. When enabled, the default, the appliance delays error messages for the defined duration. When disabled, the appliance does not delay error messages."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmUInt32"
                     }
-                }
-            }, 
-            "name": "DelayErrorsDuration", 
-            "default": 1000, 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-and", 
-                    "condition": [
-                        {
-                            "property-name": "DelayErrors", 
-                            "evaluation": "property-equals", 
-                            "value": "on"
-                        }, 
-                        {
-                            "property-name": "RewriteErrors", 
-                            "evaluation": "property-equals", 
-                            "value": "on"
-                        }
-                    ]
-                }
-            }, 
-            "maximum": 300000, 
-            "summary": "How long to delay error messages from the start of the transaction.", 
-            "minimum": 250, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "units": "ms", 
-            "cli-alias": "delay-errors-duration", 
-            "display": "Duration to delay error messages", 
-            "description": "When enabling the delay of error messages, specify the delay duration in milliseconds. If delaying messages for 3000 ms, the appliance will not send error messages to the client until 3 seconds have elapsed since the appliance performed decryption on the requests. Enter any value in the range 250 - 300000. The default value is 1000."
-        }, 
-        {
-            "name": "FrontTimeout", 
-            "default": 120, 
-            "type": {
-                "href": "/mgmt/types/default/dmTimeInterval"
-            }, 
-            "required": "true", 
-            "maximum": 86400, 
-            "summary": "Set the intra-transaction timeout for service-to-client connections", 
-            "/mgmt/types/default/dmTimeInterval": {
+                },
                 "type": {
-                    "cli-arg": "seconds", 
-                    "minimum": 0, 
-                    "name": "dmTimeInterval", 
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
                     "maximum": "0xFFFFFFFF"
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmTimeInterval"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmTimeInterval"
                     }
-                }
-            }, 
-            "minimum": 1, 
-            "units": "seconds", 
-            "cli-alias": "front-timeout", 
-            "display": "Front Side Timeout", 
-            "description": "Set the intra-transaction timeout for service-to-client connections. This value is the maximum idle time to allow in a transaction on the service-to-client connection. This timer monitors idle time in the data transfer process. If the specified idle time is exceeded, the connection is torn down. Enter a value in the range 1 - 86400. The default value is 120."
-        }, 
-        {
-            "name": "FrontPersistentTimeout", 
-            "default": 180, 
-            "type": {
-                "href": "/mgmt/types/default/dmTimeInterval"
-            }, 
-            "required": "true", 
-            "maximum": 86400, 
-            "summary": "Set the inter-transaction timeout for service-to-client connections", 
-            "/mgmt/types/default/dmTimeInterval": {
+                },
                 "type": {
-                    "cli-arg": "seconds", 
-                    "minimum": 0, 
-                    "name": "dmTimeInterval", 
+                    "cli-arg": "seconds",
+                    "minimum": 0,
+                    "name": "dmTimeInterval",
                     "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmTimeInterval"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmTimeInterval"
-                    }
                 }
-            }, 
-            "minimum": 0, 
-            "units": "seconds", 
-            "cli-alias": "front-persistent-timeout", 
-            "display": "Front Persistent Timeout", 
-            "description": "Set the inter-transaction timeout for service-to-client connections. This value is the maximum idle time to allow between the completion of a TCP transaction and the initiation of a new TCP transaction on the service-to-client connection. If the specified idle time is exceeded, the connection is torn down. Enter a value in the range 0 - 86400. The default value is 180. A value of 0 disables persistent connections."
-        }, 
-        {
-            "name": "FrontHTTPVersion", 
-            "default": "HTTP/1.1", 
-            "type": {
-                "href": "/mgmt/types/default/dmHTTPVersion"
-            }, 
-            "summary": "Set the HTTP version for client-to-service connections", 
-            "/mgmt/types/default/dmHTTPVersion": {
-                "type": {
-                    "summary": "HTTP Version", 
-                    "display": "HTTP Version", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "HTTP version 1.0", 
-                                "display": "HTTP 1.0", 
-                                "name": "HTTP/1.0"
-                            }, 
-                            {
-                                "summary": "HTTP version 1.1", 
-                                "display": "HTTP 1.1", 
-                                "name": "HTTP/1.1"
-                            }
-                        ]
-                    }, 
-                    "name": "dmHTTPVersion"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmHTTPVersion"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmHTTPVersion"
                     }
-                }
-            }, 
-            "cli-alias": "http-front-version", 
-            "display": "HTTP Version to Client", 
-            "description": "Set the HTTP version for client-to-service connections. If the client submits an HTTP 1.0 request, the service on the DataPower appliance always replies with HTTP 1.0 compatible responses regardless of this setting. The default version is HTTP 1.1."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "HTTPClientIPLabel", 
-            "default": "X-Client-IP", 
-            "cli-alias": "http-client-ip-label", 
-            "summary": "Set the HTTP header that contains the client IP address", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "HTTP Client IP Label", 
-            "description": "Set the HTTP header that contains the client IP address. When defined, the client IP address is read from this HTTP header. This IP address will then be used for monitoring and logging. Retain the default value &lt;tt>X-Client-IP&lt;/tt> or specify another value; for example, &lt;tt>X-Forwarded-For&lt;/tt> ."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "HTTPLogCorIDLabel", 
-            "default": "X-Global-Transaction-ID", 
-            "cli-alias": "http-global-tranID-label", 
-            "summary": "HTTP header label containing global transaction ID", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "HTTP Global Transaction ID Label", 
-            "description": "Enter the name of an HTTP Header to read to determine the global transaction ID for chained services. This value defaults to X-Global-Transaction-ID."
-        }, 
-        {
-            "name": "DebugMode", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmDebugMode"
-            }, 
-            "summary": "Controls transaction diagnostic mode", 
-            "cli-alias": "debug-mode", 
-            "display": "Probe setting", 
-            "/mgmt/types/default/dmDebugMode": {
-                "type": {
-                    "name": "dmDebugMode", 
-                    "summary": "Controls for Multistep Probe", 
-                    "display": "Multistep Probe", 
+                    "display": "HTTP Version",
+                    "name": "dmHTTPVersion",
                     "value-list": {
                         "value": [
                             {
-                                "summary": "Enables the probe to contain a specified number of transactions", 
-                                "display": "On", 
-                                "name": "on", 
-                                "description": "Enables the probe to contain the number of transactions that is defined by the debug history."
-                            }, 
+                                "display": "HTTP 1.0",
+                                "name": "HTTP/1.0",
+                                "summary": "HTTP version 1.0"
+                            },
                             {
-                                "summary": "Disables the probe", 
-                                "display": "Off", 
-                                "name": "off", 
-                                "description": "Disables the probe."
-                            }, 
-                            {
-                                "summary": "Enables the probe to contain 250 transactions", 
-                                "display": "Unbounded", 
-                                "name": "unbounded", 
-                                "description": "Enables the probe to contain 250 transactions. This property is equivalent to specifying a debug history value of 250 transactions."
+                                "display": "HTTP 1.1",
+                                "name": "HTTP/1.1",
+                                "summary": "HTTP version 1.1"
                             }
                         ]
-                    }, 
-                    "description": "Select the behavior of the probe."
-                }, 
+                    },
+                    "summary": "HTTP Version"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmDebugMode"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmDebugMode"
                     }
-                }
-            }, 
-            "description": "&lt;p>Select the diagnostic mode for processing policies. When enabled, you can view details about the state of variables and contexts for a captured transaction in the probe. The default value is &lt;tt>off&lt;/tt> .&lt;/p>&lt;p>Transaction diagnostic mode is not intended for use in a production environment. Transaction diagnostic mode consumes significant resources that can slow down transaction processing.&lt;/p>"
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "/mgmt/types/default/dmUInt32": {
+                },
                 "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "On",
+                                "description": "Enables the probe to contain the number of transactions that is defined by the debug history.",
+                                "name": "on",
+                                "summary": "Enables the probe to contain a specified number of transactions"
+                            },
+                            {
+                                "display": "Off",
+                                "description": "Disables the probe.",
+                                "name": "off",
+                                "summary": "Disables the probe"
+                            },
+                            {
+                                "display": "Unbounded",
+                                "description": "Enables the probe to contain 250 transactions. This property is equivalent to specifying a debug history value of 250 transactions.",
+                                "name": "unbounded",
+                                "summary": "Enables the probe to contain 250 transactions"
+                            }
+                        ]
+                    },
+                    "display": "Multistep Probe",
+                    "description": "Select the behavior of the probe.",
+                    "name": "dmDebugMode",
+                    "summary": "Controls for Multistep Probe"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "WebTokenService",
+                "status-bindings": {
+                    "status": {
+                        "binding": {
+                            "property": {
+                                "name": "WebTokenService",
+                                "select": "dmObjectName"
+                            }
+                        },
+                        "name": "WebTokenServiceSummary",
+                        "display": {
+                            "property": {
+                                "name": "Quiesce",
+                                "display": "Quiesce State"
+                            }
+                        }
                     }
+                },
+                "property-group": [
+                    {
+                        "property-group": [
+                            {
+                                "member": [
+                                    {
+                                        "name": "mAdminState"
+                                    },
+                                    {
+                                        "name": "UserSummary"
+                                    },
+                                    {
+                                        "name": "XMLManager"
+                                    },
+                                    {
+                                        "name": "Priority"
+                                    }
+                                ],
+                                "name": "general",
+                                "display": "General"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "FrontSide"
+                                    },
+                                    {
+                                        "name": "StylePolicy"
+                                    }
+                                ],
+                                "name": "endpoints",
+                                "display": "Endpoints"
+                            }
+                        ],
+                        "name": "main",
+                        "display": "Main"
+                    },
+                    {
+                        "property-group": [
+                            {
+                                "member": [
+                                    {
+                                        "name": "FrontTimeout"
+                                    },
+                                    {
+                                        "name": "FrontPersistentTimeout"
+                                    },
+                                    {
+                                        "name": "RequestType"
+                                    }
+                                ],
+                                "name": "Gateway",
+                                "display": "Client Settings"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "FrontHTTPVersion"
+                                    },
+                                    {
+                                        "name": "HTTPClientIPLabel"
+                                    },
+                                    {
+                                        "name": "HTTPLogCorIDLabel"
+                                    }
+                                ],
+                                "name": "HTTP",
+                                "display": "HTTP Options"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "RewriteErrors"
+                                    },
+                                    {
+                                        "name": "DelayErrors"
+                                    },
+                                    {
+                                        "name": "DelayErrorsDuration"
+                                    }
+                                ],
+                                "name": "oracle",
+                                "display": "Padding Oracle Protection"
+                            }
+                        ],
+                        "name": "advanced",
+                        "display": "Advanced"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "DebugMode"
+                            },
+                            {
+                                "name": "DebugHistory"
+                            }
+                        ],
+                        "display": "Probe Settings",
+                        "description": "The probe allows service developers to view the value of variables and the contents of processing contexts. The developer can step through each action for any given transaction.",
+                        "name": "ProbeSettings",
+                        "summary": "Set probe settings"
+                    }
+                ],
+                "uri": "services/web-token-service",
+                "actions": {
+                    "action": [
+                        {
+                            "name": "ServiceQuiesce",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "type",
+                                        "select": "dmObjectClass"
+                                    },
+                                    {
+                                        "name": "name",
+                                        "select": "dmObjectName"
+                                    },
+                                    {
+                                        "name": "timeout"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "ServiceUnquiesce",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "type",
+                                        "select": "dmObjectClass"
+                                    },
+                                    {
+                                        "name": "name",
+                                        "select": "dmObjectName"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "display": "Web Token Service",
+                "cmd-group": "mpgw",
+                "cli-alias": "web-token-service",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "Specify a brief, descriptive comment.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Specify the descriptive comment",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "Priority",
+                            "default": "normal",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSchedulerPriority"
+                            },
+                            "summary": "Set the service-level priority",
+                            "cli-alias": "priority",
+                            "display": "Service priority",
+                            "description": "Set the service-level priority. When resources are in high demand, the appliance handles transactions for higher priority services over lower priority services."
+                        },
+                        {
+                            "name": "XMLManager",
+                            "default": "default",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/XMLManager"
+                                }
+                            },
+                            "required": "true",
+                            "summary": "Assign the XML manager",
+                            "cli-alias": "xml-manager",
+                            "display": "XML manager",
+                            "description": "Assign the XML manager that obtains and manages documents on behalf of the service. The user agent, which is referenced by this XML manager, controls access to remote destinations. Unless you have service-specific needs, use the &lt;tt>default&lt;/tt> XML manager."
+                        },
+                        {
+                            "name": "RequestType",
+                            "default": "preprocessed",
+                            "type": {
+                                "href": "/mgmt/types/default/dmXMLReqRespType"
+                            },
+                            "summary": "Characterize client-originated traffic",
+                            "cli-alias": "request-type",
+                            "display": "Request Type",
+                            "description": "Characterizes the traffic that originates from the client. The default is Non-XML."
+                        },
+                        {
+                            "name": "FrontSide",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSLFrontSide"
+                            },
+                            "summary": "Define addresses and ports that the service listens on",
+                            "array": "true",
+                            "cli-alias": "listen-on",
+                            "display": "Source addresses",
+                            "description": "Define the addresses and ports that the service listens on. You can define listening sources for HTTP and HTTPS requests. For HTTPS request, set the listening source to use TLS parameter and assign the TLS profile."
+                        },
+                        {
+                            "name": "StylePolicy",
+                            "default": "default",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/StylePolicy"
+                                }
+                            },
+                            "required": "true",
+                            "summary": "Assign the processing policy",
+                            "cli-alias": "stylepolicy",
+                            "display": "Processing Policy",
+                            "description": "Assign the processing policy to the service. The processing policy defines the actions to perform on security token requests."
+                        },
+                        {
+                            "name": "RewriteErrors",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to rewrite error messages to avoid providing a padding oracle.",
+                            "cli-alias": "rewrite-errors",
+                            "display": "Rewrite error messages",
+                            "description": "Error messages after a decryption action can provide an attacker who is using the padding oracle attack method with enough information to determine the contents of the plain-text data. When enabled, the default, the client receives error messages without the internal information that could lead to a discovery. When disabled, the client receives the original message with this information."
+                        },
+                        {
+                            "name": "DelayErrors",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to delay error messages to avoid providing a padding oracle.",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "RewriteErrors",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "on"
+                                }
+                            },
+                            "cli-alias": "delay-errors",
+                            "display": "Delay error messages",
+                            "description": "The timing difference of the error messages returned after a decryption action can provide an attacker with enough information to determine the contents of the plain-text data. When enabled, the default, the appliance delays error messages for the defined duration. When disabled, the appliance does not delay error messages."
+                        },
+                        {
+                            "name": "DelayErrorsDuration",
+                            "default": 1000,
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "DelayErrors",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "RewriteErrors",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        }
+                                    ]
+                                }
+                            },
+                            "maximum": 300000,
+                            "summary": "How long to delay error messages from the start of the transaction.",
+                            "cli-alias": "delay-errors-duration",
+                            "minimum": 250,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "units": "ms",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Duration to delay error messages",
+                            "description": "When enabling the delay of error messages, specify the delay duration in milliseconds. If delaying messages for 3000 ms, the appliance will not send error messages to the client until 3 seconds have elapsed since the appliance performed decryption on the requests. Enter any value in the range 250 - 300000. The default value is 1000."
+                        },
+                        {
+                            "name": "FrontTimeout",
+                            "default": 120,
+                            "cli-alias": "front-timeout",
+                            "required": "true",
+                            "maximum": 86400,
+                            "summary": "Set the intra-transaction timeout for service-to-client connections",
+                            "minimum": 1,
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimeInterval"
+                            },
+                            "display": "Front Side Timeout",
+                            "description": "Set the intra-transaction timeout for service-to-client connections. This value is the maximum idle time to allow in a transaction on the service-to-client connection. This timer monitors idle time in the data transfer process. If the specified idle time is exceeded, the connection is torn down. Enter a value in the range 1 - 86400. The default value is 120."
+                        },
+                        {
+                            "name": "FrontPersistentTimeout",
+                            "default": 180,
+                            "cli-alias": "front-persistent-timeout",
+                            "required": "true",
+                            "maximum": 86400,
+                            "summary": "Set the inter-transaction timeout for service-to-client connections",
+                            "minimum": 0,
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimeInterval"
+                            },
+                            "display": "Front Persistent Timeout",
+                            "description": "Set the inter-transaction timeout for service-to-client connections. This value is the maximum idle time to allow between the completion of a TCP transaction and the initiation of a new TCP transaction on the service-to-client connection. If the specified idle time is exceeded, the connection is torn down. Enter a value in the range 0 - 86400. The default value is 180. A value of 0 disables persistent connections."
+                        },
+                        {
+                            "name": "FrontHTTPVersion",
+                            "default": "HTTP/1.1",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHTTPVersion"
+                            },
+                            "summary": "Set the HTTP version for client-to-service connections",
+                            "cli-alias": "http-front-version",
+                            "display": "HTTP Version to Client",
+                            "description": "Set the HTTP version for client-to-service connections. If the client submits an HTTP 1.0 request, the service on the DataPower appliance always replies with HTTP 1.0 compatible responses regardless of this setting. The default version is HTTP 1.1."
+                        },
+                        {
+                            "name": "HTTPClientIPLabel",
+                            "default": "X-Client-IP",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Set the HTTP header that contains the client IP address",
+                            "cli-alias": "http-client-ip-label",
+                            "display": "HTTP Client IP Label",
+                            "description": "Set the HTTP header that contains the client IP address. When defined, the client IP address is read from this HTTP header. This IP address will then be used for monitoring and logging. Retain the default value &lt;tt>X-Client-IP&lt;/tt> or specify another value; for example, &lt;tt>X-Forwarded-For&lt;/tt> ."
+                        },
+                        {
+                            "name": "HTTPLogCorIDLabel",
+                            "default": "X-Global-Transaction-ID",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "HTTP header label containing global transaction ID",
+                            "cli-alias": "http-global-tranID-label",
+                            "display": "HTTP Global Transaction ID Label",
+                            "description": "Enter the name of an HTTP Header to read to determine the global transaction ID for chained services. This value defaults to X-Global-Transaction-ID."
+                        },
+                        {
+                            "name": "DebugMode",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmDebugMode"
+                            },
+                            "summary": "Controls transaction diagnostic mode",
+                            "cli-alias": "debug-mode",
+                            "display": "Probe setting",
+                            "description": "&lt;p>Select the diagnostic mode for processing policies. When enabled, you can view details about the state of variables and contexts for a captured transaction in the probe. The default value is &lt;tt>off&lt;/tt> .&lt;/p>&lt;p>Transaction diagnostic mode is not intended for use in a production environment. Transaction diagnostic mode consumes significant resources that can slow down transaction processing.&lt;/p>"
+                        },
+                        {
+                            "name": "DebugHistory",
+                            "default": 25,
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "DebugMode",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "maximum": 250,
+                            "summary": "Set the number of records for transaction diagnostic mode in the probe",
+                            "cli-alias": "debug-history",
+                            "minimum": 10,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Transaction History",
+                            "description": "Set the number of records for transaction diagnostic mode in the probe. Enter a value in the range 10 - 250. The default value is 25."
+                        }
+                    ]
+                },
+                "description": "The web token service provides on-box HTTP services."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/WebTokenService"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/WebTokenService"
                 }
-            }, 
-            "name": "DebugHistory", 
-            "default": 25, 
-            "required-when": {
-                "condition": {
-                    "property-name": "DebugMode", 
-                    "evaluation": "property-equals", 
-                    "value": "on"
-                }
-            }, 
-            "maximum": 250, 
-            "summary": "Set the number of records for transaction diagnostic mode in the probe", 
-            "minimum": 10, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "cli-alias": "debug-history", 
-            "display": "Transaction History", 
-            "description": "Set the number of records for transaction diagnostic mode in the probe. Enter a value in the range 10 - 250. The default value is 25."
+            }
         }
-    ]
+    }
 }

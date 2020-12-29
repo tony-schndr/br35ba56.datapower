@@ -1,296 +1,291 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "name": "WSDLURL", 
-            "cli-alias": "wsdl", 
-            "required": "true", 
-            "summary": "WSDL URL", 
-            "/mgmt/types/default/dmURL": {
-                "type": {
-                    "cli-arg": "url", 
-                    "name": "dmURL"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmURL"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmURL"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmURL"
-            }, 
-            "display": "WSDL URL", 
-            "description": "The URL of the WSDL file that defines the Endpoints, Transport Type and Operations watched by this monitor. The WSDL file may reside on the local system or elsewhere on the network."
-        }, 
-        {
-            "name": "Operations", 
-            "cli-alias": "operation", 
-            "summary": "Operations", 
-            "type": {
-                "href": "/mgmt/types/default/dmWSSLMOps"
-            }, 
-            "array": "true", 
-            "/mgmt/types/default/dmWSSLMOps": {
+                },
                 "type": {
-                    "summary": "Web Service Service Level Monitor Operation", 
-                    "properties": {
-                        "property": [
-                            {
-                                "name": "Operation", 
-                                "default": "all", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmOperation"
-                                }, 
-                                "required": "true", 
-                                "summary": "Name of the operation to monitor", 
-                                "cli-alias": "operation", 
-                                "display": "Operation Name", 
-                                "description": "Select the name of the operation, as defined in the WSDL file, to monitor. The current implementation supports only the default value. The default is All."
-                            }, 
-                            {
-                                "name": "Target", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmSLMTarget"
-                                }, 
-                                "required": "true", 
-                                "summary": "The target activity to monitor", 
-                                "cli-alias": "target", 
-                                "display": "Target to Monitor", 
-                                "description": "Select the target activity to monitor. Define an operation for each activity to monitor."
-                            }, 
-                            {
-                                "name": "Severity", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmSLMLevel"
-                                }, 
-                                "required": "true", 
-                                "summary": "The action-threshold point", 
-                                "cli-alias": "severity", 
-                                "display": "Threshold Level", 
-                                "description": "&lt;p>Select the action threshold and define its value.&lt;/p>&lt;p>For example as transactions rates increase, you could define low and high thresholds. If the low threshold is defined at 100 transactions per second and that limit is reached, some action can be taken. Then if the high threshold is defined at 300 transactions per second and that limit is reached, another action can be taken.&lt;/p>"
-                            }, 
-                            {
-                                "name": "Threshold", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmUInt32"
-                                }, 
-                                "summary": "The threshold value required to trigger an action", 
-                                "units": "per second", 
-                                "cli-alias": "threshold", 
-                                "display": "Threshold Value", 
-                                "description": "Specify the threshold value that is required to trigger the action. The value is the count per second."
-                            }, 
-                            {
-                                "description": "Select the action to take when the threshold is reached.", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmSLMAction"
-                                }, 
-                                "summary": "Action to take when the threshold is reached", 
-                                "cli-alias": "action", 
-                                "display": "Threshold Action", 
-                                "name": "Action"
-                            }
-                        ]
-                    }, 
-                    "name": "dmWSSLMOps"
-                }, 
+                    "cli-arg": "url",
+                    "name": "dmURL"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmWSSLMOps"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmWSSLMOps"
                     }
-                }
-            }, 
-            "display": "Operations to Monitor", 
-            "description": "Select the operations that you wish to monitor by checking the check box to the left of the operation name."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+                    "properties": {
+                        "property": [
+                            {
+                                "name": "Operation",
+                                "default": "all",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmOperation"
+                                },
+                                "required": "true",
+                                "summary": "Name of the operation to monitor",
+                                "cli-alias": "operation",
+                                "display": "Operation Name",
+                                "description": "Select the name of the operation, as defined in the WSDL file, to monitor. The current implementation supports only the default value. The default is All."
+                            },
+                            {
+                                "name": "Target",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmSLMTarget"
+                                },
+                                "required": "true",
+                                "summary": "The target activity to monitor",
+                                "cli-alias": "target",
+                                "display": "Target to Monitor",
+                                "description": "Select the target activity to monitor. Define an operation for each activity to monitor."
+                            },
+                            {
+                                "name": "Severity",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmSLMLevel"
+                                },
+                                "required": "true",
+                                "summary": "The action-threshold point",
+                                "cli-alias": "severity",
+                                "display": "Threshold Level",
+                                "description": "&lt;p>Select the action threshold and define its value.&lt;/p>&lt;p>For example as transactions rates increase, you could define low and high thresholds. If the low threshold is defined at 100 transactions per second and that limit is reached, some action can be taken. Then if the high threshold is defined at 300 transactions per second and that limit is reached, another action can be taken.&lt;/p>"
+                            },
+                            {
+                                "name": "Threshold",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmUInt32"
+                                },
+                                "summary": "The threshold value required to trigger an action",
+                                "units": "per second",
+                                "cli-alias": "threshold",
+                                "display": "Threshold Value",
+                                "description": "Specify the threshold value that is required to trigger the action. The value is the count per second."
+                            },
+                            {
+                                "description": "Select the action to take when the threshold is reached.",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmSLMAction"
+                                },
+                                "summary": "Action to take when the threshold is reached",
+                                "cli-alias": "action",
+                                "display": "Threshold Action",
+                                "name": "Action"
+                            }
+                        ]
+                    },
+                    "name": "dmWSSLMOps",
+                    "summary": "Web Service Service Level Monitor Operation"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "description": "Enter the name of the Endpoint, as defined in the WSDL file identified above, this monitor will watch.", 
-            "cli-alias": "endpoint-name", 
-            "summary": "Name of the Endpoint this monitor will watch", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Endpoint", 
-            "name": "EndpointName"
-        }, 
-        {
-            "name": "EndpointURL", 
-            "cli-alias": "endpoint-url", 
-            "required": "true", 
-            "summary": "The URL of the desired endpoint", 
-            "/mgmt/types/default/dmURL": {
+                },
                 "type": {
-                    "cli-arg": "url", 
-                    "name": "dmURL"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmURL"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmURL"
-                    }
+                    "cli-arg": "string",
+                    "name": "dmString"
                 }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmURL"
-            }, 
-            "display": "Endpoint URL", 
-            "description": "Enter the URL of the Endpoint, as defined in the WSDL file identified above, this monitor will watch."
-        }, 
-        {
-            "name": "FrontendURL", 
-            "cli-alias": "frontend-url", 
-            "required": "true", 
-            "summary": "URL employed by the client to access the Web Service", 
-            "/mgmt/types/default/dmURL": {
-                "type": {
-                    "cli-arg": "url", 
-                    "name": "dmURL"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmURL"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmURL"
-                    }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmURL"
-            }, 
-            "display": "Front End URL", 
-            "description": "This is the URL used by the client to access the Web Service endpoint. This may not be the same as the Endpoint URL. Wildcards (such as *) may be used; a value is required."
-        }, 
-        {
-            "description": "Select the transport type used by the identified Endpoint. This transport type must agree with the transport type specified in the WSDL file.", 
-            "cli-alias": "transport", 
-            "summary": "The transport type used by the selected endpoint", 
-            "/mgmt/types/default/dmWSDLTransport": {
-                "type": {
-                    "name": "dmWSDLTransport", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "display": "HTTP-GET", 
-                                "name": "http-get", 
-                                "description": "Uses the HTTP GET operation."
-                            }, 
-                            {
-                                "display": "HTTP-SOAP", 
-                                "name": "http-post", 
-                                "description": "Uses the HTTP POST operation to post SOAP documents."
-                            }, 
-                            {
-                                "display": "SOAP-document", 
-                                "name": "soap-doc", 
-                                "description": "Uses the SOAP document transport."
-                            }, 
-                            {
-                                "display": "SOAP-RPC", 
-                                "name": "soap-rpc", 
-                                "description": "Uses the SOAP RPC transport."
-                            }
-                        ]
-                    }
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmWSDLTransport"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmWSDLTransport"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmWSDLTransport"
-            }, 
-            "display": "Transport Type", 
-            "name": "Transport"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
+                    "name": "dmWSDLTransport",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "HTTP-GET",
+                                "description": "Uses the HTTP GET operation.",
+                                "name": "http-get"
+                            },
+                            {
+                                "display": "HTTP-SOAP",
+                                "description": "Uses the HTTP POST operation to post SOAP documents.",
+                                "name": "http-post"
+                            },
+                            {
+                                "display": "SOAP-document",
+                                "description": "Uses the SOAP document transport.",
+                                "name": "soap-doc"
+                            },
+                            {
+                                "display": "SOAP-RPC",
+                                "description": "Uses the SOAP RPC transport.",
+                                "name": "soap-rpc"
+                            }
+                        ]
                     }
                 }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "WebServiceMonitor",
+                "display": "Web Services Monitor",
+                "property-group": {
+                    "member": [
+                        {
+                            "name": "WSDLURL"
+                        },
+                        {
+                            "name": "EndpointName"
+                        }
+                    ],
+                    "name": "summary"
+                },
+                "uri": "monitor/service-monitor",
+                "summary": "Web Services Service Level Monitor",
+                "cmd-group": "service-monitor",
+                "cli-alias": "service-monitor",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "WSDLURL",
+                            "type": {
+                                "href": "/mgmt/types/default/dmURL"
+                            },
+                            "required": "true",
+                            "summary": "WSDL URL",
+                            "cli-alias": "wsdl",
+                            "display": "WSDL URL",
+                            "description": "The URL of the WSDL file that defines the Endpoints, Transport Type and Operations watched by this monitor. The WSDL file may reside on the local system or elsewhere on the network."
+                        },
+                        {
+                            "name": "Operations",
+                            "type": {
+                                "href": "/mgmt/types/default/dmWSSLMOps"
+                            },
+                            "summary": "Operations",
+                            "array": "true",
+                            "cli-alias": "operation",
+                            "display": "Operations to Monitor",
+                            "description": "Select the operations that you wish to monitor by checking the check box to the left of the operation name."
+                        },
+                        {
+                            "description": "Enter the name of the Endpoint, as defined in the WSDL file identified above, this monitor will watch.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Name of the Endpoint this monitor will watch",
+                            "cli-alias": "endpoint-name",
+                            "display": "Endpoint",
+                            "name": "EndpointName"
+                        },
+                        {
+                            "name": "EndpointURL",
+                            "type": {
+                                "href": "/mgmt/types/default/dmURL"
+                            },
+                            "required": "true",
+                            "summary": "The URL of the desired endpoint",
+                            "cli-alias": "endpoint-url",
+                            "display": "Endpoint URL",
+                            "description": "Enter the URL of the Endpoint, as defined in the WSDL file identified above, this monitor will watch."
+                        },
+                        {
+                            "name": "FrontendURL",
+                            "type": {
+                                "href": "/mgmt/types/default/dmURL"
+                            },
+                            "required": "true",
+                            "summary": "URL employed by the client to access the Web Service",
+                            "cli-alias": "frontend-url",
+                            "display": "Front End URL",
+                            "description": "This is the URL used by the client to access the Web Service endpoint. This may not be the same as the Endpoint URL. Wildcards (such as *) may be used; a value is required."
+                        },
+                        {
+                            "description": "Select the transport type used by the identified Endpoint. This transport type must agree with the transport type specified in the WSDL file.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmWSDLTransport"
+                            },
+                            "summary": "The transport type used by the selected endpoint",
+                            "cli-alias": "transport",
+                            "display": "Transport Type",
+                            "name": "Transport"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        }
+                    ]
+                },
+                "description": "Web Service SLM (Service Level Monitor) Object &lt;p>An SLM watches Web Services traffic destined for the Endpoint URL defined in the Endpoint URL field using the transport method defined in the Transport Type field. The monitor watches only traffic the client sent to the Front End URL (which accepts wildcards). The Endpoint, Endpoint URL and Transport Type must agree with the definitions provided in the WSDL file identified by the WSDL URL field.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/WebServiceMonitor"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/WebServiceMonitor"
+                }
+            }
         }
-    ]
+    }
 }

@@ -1,170 +1,196 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "description": "A descriptive summary for the configuration.", 
-            "cli-alias": "summary", 
-            "summary": "Enter a brief descriptive summary for the configuration.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments", 
-            "name": "UserSummary"
-        }, 
-        {
-            "/mgmt/types/default/dmControlType": {
+                },
                 "type": {
-                    "summary": "Select the control type", 
-                    "display": "Control Type", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Blocklist", 
-                                "display": "Blocklist", 
-                                "name": "blocklist", 
-                                "description": "Indicates patterns to reject."
-                            }, 
-                            {
-                                "summary": "Allowlist", 
-                                "display": "Allowlist", 
-                                "name": "allowlist", 
-                                "description": "Indicates patterns to accept."
-                            }
-                        ]
-                    }, 
-                    "name": "dmControlType"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmControlType"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmControlType"
                     }
-                }
-            }, 
-            "description": "Specifies whether values are accepted or rejected.", 
-            "type": {
-                "href": "/mgmt/types/default/dmControlType"
-            }, 
-            "summary": "Whether values are accepted or rejected", 
-            "cli-alias": "type", 
-            "display": "Type", 
-            "name": "Type"
-        }, 
-        {
-            "name": "Value", 
-            "type": {
-                "href": "/mgmt/types/default/dmPCRE"
-            }, 
-            "/mgmt/types/default/dmPCRE": {
+                },
                 "type": {
-                    "cli-arg": "pcre", 
-                    "name": "dmPCRE"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmPCRE"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmPCRE"
-                    }
-                }
-            }, 
-            "summary": "PCRE to evaluate values.", 
-            "array": "true", 
-            "cli-alias": "value", 
-            "display": "Value", 
-            "description": "&lt;p>Specifies the PCRE to evaluate values.&lt;/p>&lt;ul>&lt;li>An entry of &lt;tt>^foo&lt;/tt> indicates a match against only values that start with &lt;tt>foo&lt;/tt> .&lt;/li>&lt;li>An empty list indicates no match against any value.&lt;/li>&lt;li>A list with only &lt;tt>.*&lt;/tt> indicates a match against all values.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "name": "CaseInsensitive", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether the specified values are case insensitive.", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "display": "Control Type",
+                    "name": "dmControlType",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
+                                "display": "Blocklist",
+                                "description": "Indicates patterns to reject.",
+                                "name": "blocklist",
+                                "summary": "Blocklist"
+                            },
                             {
-                                "name": "off", 
+                                "display": "Allowlist",
+                                "description": "Indicates patterns to accept.",
+                                "name": "allowlist",
+                                "summary": "Allowlist"
+                            }
+                        ]
+                    },
+                    "summary": "Select the control type"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmPCRE"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmPCRE"
+                    }
+                },
+                "type": {
+                    "cli-arg": "pcre",
+                    "name": "dmPCRE"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "cli-alias": "case-insensitive", 
-            "display": "Case-insensitive", 
-            "description": "Indicates whether the specified values are case-sensitive or case-insensitive."
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "ControlList",
+                "display": "Control List",
+                "uri": "config/control-list",
+                "summary": "Configure and manage control lists",
+                "cmd-group": "configuration",
+                "cli-alias": "control-list",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "A descriptive summary for the configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter a brief descriptive summary for the configuration.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "description": "Specifies whether values are accepted or rejected.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmControlType"
+                            },
+                            "summary": "Whether values are accepted or rejected",
+                            "cli-alias": "type",
+                            "display": "Type",
+                            "name": "Type"
+                        },
+                        {
+                            "name": "Value",
+                            "type": {
+                                "href": "/mgmt/types/default/dmPCRE"
+                            },
+                            "summary": "PCRE to evaluate values.",
+                            "array": "true",
+                            "cli-alias": "value",
+                            "display": "Value",
+                            "description": "&lt;p>Specifies the PCRE to evaluate values.&lt;/p>&lt;ul>&lt;li>An entry of &lt;tt>^foo&lt;/tt> indicates a match against only values that start with &lt;tt>foo&lt;/tt> .&lt;/li>&lt;li>An empty list indicates no match against any value.&lt;/li>&lt;li>A list with only &lt;tt>.*&lt;/tt> indicates a match against all values.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "CaseInsensitive",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether the specified values are case insensitive.",
+                            "cli-alias": "case-insensitive",
+                            "display": "Case-insensitive",
+                            "description": "Indicates whether the specified values are case-sensitive or case-insensitive."
+                        }
+                    ]
+                },
+                "description": "&lt;p>A control list uses a value-matching pattern to determine whether values are on the allowlist or blocklist.&lt;/p>&lt;p>The value-matching pattern is defined by a PCRE. When you define the control list, you can indicates whether evaluation is case-sensitive or case-insensitive.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/ControlList"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/ControlList"
+                }
+            }
         }
-    ]
+    }
 }

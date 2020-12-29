@@ -1,1348 +1,1196 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "name": "PolicyType", 
-            "default": "admission", 
-            "cli-alias": "policy-type", 
-            "summary": "Satisfaction Style", 
-            "/mgmt/types/default/dmSatisfactionPolicy": {
+                },
                 "type": {
-                    "name": "dmSatisfactionPolicy", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Validate this policy and all matching policies before accepting", 
-                                "display": "Prerequisite", 
-                                "name": "pre-requisite", 
-                                "description": "All matching profiles in the Application Security Policy are run. A failure of any of these profiles results in the failure of the transaction. Only when all matching profiles are successful will the transaction be accepted. A typical use of this style would be a broad match that enforces a basic item, such as maximum size, that is followed up with more specific matches with stronger criteria."
-                            }, 
-                            {
-                                "summary": "Validate this policy only before accepting", 
-                                "display": "Admission", 
-                                "name": "admission", 
-                                "description": "Only this policy is run. If successful, the transaction is accepted."
-                            }
-                        ]
-                    }, 
-                    "summary": "Satisfaction Policy"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmSatisfactionPolicy"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmSatisfactionPolicy"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmSatisfactionPolicy"
-            }, 
-            "display": "Style", 
-            "description": "Select the satisfaction policy for the profile. The default value is Admission."
-        }, 
-        {
-            "/mgmt/types/default/dmARDType": {
+                },
                 "type": {
-                    "name": "dmARDType", 
+                    "name": "dmSatisfactionPolicy",
                     "value-list": {
                         "value": [
                             {
-                                "summary": "Remain agnostic", 
-                                "display": "Allow", 
-                                "name": "allow"
-                            }, 
+                                "display": "Prerequisite",
+                                "description": "All matching profiles in the Application Security Policy are run. A failure of any of these profiles results in the failure of the transaction. Only when all matching profiles are successful will the transaction be accepted. A typical use of this style would be a broad match that enforces a basic item, such as maximum size, that is followed up with more specific matches with stronger criteria.",
+                                "name": "pre-requisite",
+                                "summary": "Validate this policy and all matching policies before accepting"
+                            },
                             {
-                                "summary": "Require the presence", 
-                                "display": "Require", 
-                                "name": "require"
-                            }, 
-                            {
-                                "summary": "Prohibit from being under", 
-                                "display": "Deny", 
-                                "name": "deny"
+                                "display": "Admission",
+                                "description": "Only this policy is run. If successful, the transaction is accepted.",
+                                "name": "admission",
+                                "summary": "Validate this policy only before accepting"
                             }
                         ]
-                    }, 
-                    "summary": "Allow, Require, or Deny"
-                }, 
+                    },
+                    "summary": "Satisfaction Policy"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmARDType"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmARDType"
                     }
-                }
-            }, 
-            "description": "Select how the client side of the inspected transaction handles SSL. The default value is Allow.", 
-            "default": "allow", 
-            "type": {
-                "href": "/mgmt/types/default/dmARDType"
-            }, 
-            "cli-alias": "request-ssl-policy", 
-            "display": "Allow SSL", 
-            "name": "SSLPolicy"
-        }, 
-        {
-            "description": "If this property references a AAA policy, then that AAA policy will be run as a filter on this transaction and the success of that AAA run will be required to continue processing. Any input to this transaction as XML, application/www-url-encoded, or multipart/form-data MIME types will be automatically provided to the AAA processing policy.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/AAAPolicy"
-                }
-            }, 
-            "summary": "AAA policy to enforce", 
-            "cli-alias": "aaa-policy", 
-            "display": "AAA Policy", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "AAA"
-        }, 
-        {
-            "description": "Select the Shared Secret Key for both signing or encrypting.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/CryptoSSKey"
-                }
-            }, 
-            "summary": "Shared Secret Key used for Value or Cookie protection", 
-            "cli-alias": "ss-key", 
-            "display": "Shared Secret Key", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "SSKey"
-        }, 
-        {
-            "description": "A rate limiting policy restricts identities (as determined by AAA or the client IP address if AAA is not available) to a specific number of transactions per second.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SimpleCountMonitor"
-                }
-            }, 
-            "summary": "Rate Limiting Policy", 
-            "cli-alias": "ratelimiter-policy", 
-            "display": "Rate Limiting", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "RateLimiter"
-        }, 
-        {
-            "description": "This Access Control List will be used to allow or deny access to this service based on the IP address of the client. When attached to a service, an Access Control List (ACL) denies all access by default. To deny access to only selected addresses, first grant access to all addresses (allow 0.0.0.0) and then create deny entries for the desired hosts.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/AccessControlList"
-                }
-            }, 
-            "cli-alias": "acl", 
-            "display": "Access Control List", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "ACL"
-        }, 
-        {
-            "name": "OKMethods", 
-            "default": "0x000B", 
-            "cli-alias": "request-methods", 
-            "summary": "Allowable Request Methods", 
-            "/mgmt/types/default/dmHTTPRequestMethods": {
-                "type": {
-                    "summary": "HTTP request methods to allow", 
-                    "display": "HTTP Request Methods Allowed", 
+                    "name": "dmARDType",
                     "value-list": {
                         "value": [
                             {
-                                "summary": "Allows POST methods in requests", 
-                                "display": "POST method", 
-                                "name": "POST"
-                            }, 
+                                "display": "Allow",
+                                "name": "allow",
+                                "summary": "Remain agnostic"
+                            },
                             {
-                                "summary": "Allows GET methods in requests", 
-                                "display": "GET method", 
-                                "name": "GET"
-                            }, 
+                                "display": "Require",
+                                "name": "require",
+                                "summary": "Require the presence"
+                            },
                             {
-                                "summary": "Allows PUT methods in requests", 
-                                "display": "PUT method", 
-                                "name": "PUT"
-                            }, 
-                            {
-                                "summary": "Allows HEAD methods in requests", 
-                                "display": "HEAD method", 
-                                "name": "HEAD"
-                            }, 
-                            {
-                                "summary": "Allows OPTIONS methods in requests", 
-                                "display": "OPTIONS method", 
-                                "name": "OPTIONS"
-                            }, 
-                            {
-                                "summary": "Allows TRACE methods in requests", 
-                                "display": "TRACE method", 
-                                "name": "TRACE"
-                            }, 
-                            {
-                                "summary": "Allows DELETE methods in requests", 
-                                "display": "DELETE method", 
-                                "name": "DELETE"
-                            }, 
-                            {
-                                "summary": "Allows CONNECT methods in requests", 
-                                "display": "CONNECT method", 
-                                "name": "CONNECT"
+                                "display": "Deny",
+                                "name": "deny",
+                                "summary": "Prohibit from being under"
                             }
                         ]
-                    }, 
-                    "name": "dmHTTPRequestMethods"
-                }, 
+                    },
+                    "summary": "Allow, Require, or Deny"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmHTTPRequestMethods"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmHTTPRequestMethods"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmHTTPRequestMethods"
-            }, 
-            "display": "Methods", 
-            "description": "Specify which HTTP methods are acceptable from the client acceptable."
-        }, 
-        {
-            "name": "OKVersions", 
-            "default": "0x03", 
-            "type": {
-                "href": "/mgmt/types/default/dmHTTPVersionMask"
-            }, 
-            "/mgmt/types/default/dmHTTPVersionMask": {
+                },
                 "type": {
-                    "summary": "HTTP versions that are allowed", 
-                    "display": "HTTP Version Mask", 
+                    "display": "HTTP Request Methods Allowed",
+                    "name": "dmHTTPRequestMethods",
                     "value-list": {
                         "value": [
                             {
-                                "summary": "HTTP version 1.0", 
-                                "display": "HTTP 1.0", 
-                                "name": "HTTP-1.0"
-                            }, 
+                                "display": "POST method",
+                                "name": "POST",
+                                "summary": "Allows POST methods in requests"
+                            },
                             {
-                                "summary": "HTTP version 1.1", 
-                                "display": "HTTP 1.1", 
-                                "name": "HTTP-1.1"
+                                "display": "GET method",
+                                "name": "GET",
+                                "summary": "Allows GET methods in requests"
+                            },
+                            {
+                                "display": "PUT method",
+                                "name": "PUT",
+                                "summary": "Allows PUT methods in requests"
+                            },
+                            {
+                                "display": "HEAD method",
+                                "name": "HEAD",
+                                "summary": "Allows HEAD methods in requests"
+                            },
+                            {
+                                "display": "OPTIONS method",
+                                "name": "OPTIONS",
+                                "summary": "Allows OPTIONS methods in requests"
+                            },
+                            {
+                                "display": "TRACE method",
+                                "name": "TRACE",
+                                "summary": "Allows TRACE methods in requests"
+                            },
+                            {
+                                "display": "DELETE method",
+                                "name": "DELETE",
+                                "summary": "Allows DELETE methods in requests"
+                            },
+                            {
+                                "display": "CONNECT method",
+                                "name": "CONNECT",
+                                "summary": "Allows CONNECT methods in requests"
                             }
                         ]
-                    }, 
-                    "name": "dmHTTPVersionMask"
-                }, 
+                    },
+                    "summary": "HTTP request methods to allow"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmHTTPVersionMask"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmHTTPVersionMask"
                     }
-                }
-            }, 
-            "summary": "Allowable Request Versions", 
-            "cli-alias": "request-versions", 
-            "display": "Versions", 
-            "description": "Specify which HTTP versions are acceptable from the client."
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
+                },
                 "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
-                }
-            }, 
-            "name": "MinBodySize", 
-            "default": 0, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "summary": "Minimum Request Body Size", 
-            "units": "bytes", 
-            "cli-alias": "request-body-min", 
-            "display": "Minimum Size", 
-            "description": "Specify the minimum size of the request body."
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
-                }
-            }, 
-            "name": "MaxBodySize", 
-            "default": 128000000, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "summary": "Maximum Request Body Size", 
-            "units": "bytes", 
-            "cli-alias": "request-body-max", 
-            "display": "Maximum Size", 
-            "description": "Specify the maximum size of the request body."
-        }, 
-        {
-            "name": "XMLPolicy", 
-            "default": "nothing", 
-            "type": {
-                "href": "/mgmt/types/default/dmWebAppXMLPolicy"
-            }, 
-            "summary": "Processing policy when encountering XML", 
-            "/mgmt/types/default/dmWebAppXMLPolicy": {
-                "type": {
-                    "summary": "Specify the processing of XML content", 
-                    "display": "XML Policy", 
+                    "display": "HTTP Version Mask",
+                    "name": "dmHTTPVersionMask",
                     "value-list": {
                         "value": [
                             {
-                                "summary": "Perform no additional processing", 
-                                "display": "No processing", 
-                                "name": "nothing", 
-                                "description": "Performs no additional processing."
-                            }, 
+                                "display": "HTTP 1.0",
+                                "name": "HTTP-1.0",
+                                "summary": "HTTP version 1.0"
+                            },
                             {
-                                "summary": "Ensure that the XML message is well formed", 
-                                "display": "Well Formed XML", 
-                                "name": "xml", 
-                                "description": "Ensures that the XML message is well formed and runs the transform rule that is specified by the XML processing rule."
-                            }, 
-                            {
-                                "summary": "Ensure that the SOAP message is well formed", 
-                                "display": "Well Formed SOAP", 
-                                "name": "soap", 
-                                "description": "Ensures that the SOAP message is well formed and runs the transform rule that is specified by the XML processing rule."
+                                "display": "HTTP 1.1",
+                                "name": "HTTP-1.1",
+                                "summary": "HTTP version 1.1"
                             }
                         ]
-                    }, 
-                    "name": "dmWebAppXMLPolicy"
-                }, 
+                    },
+                    "summary": "HTTP versions that are allowed"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmWebAppXMLPolicy"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmWebAppXMLPolicy"
                     }
-                }
-            }, 
-            "cli-alias": "request-xml-policy", 
-            "display": "XML Processing", 
-            "description": "Specify how the device handles requests that contain an XML MIME type."
-        }, 
-        {
-            "name": "XMLRule", 
-            "required-when": {
-                "condition": {
-                    "property-name": "XMLPolicy", 
-                    "evaluation": "property-value-in-list", 
-                    "value": [
-                        "xml", 
-                        "soap"
-                    ]
-                }
-            }, 
-            "summary": "Assign an additional processing rule for xml", 
-            "cli-alias": "request-xml-rule", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/StylePolicyRule"
-                }
-            }, 
-            "display": "XML Transformation Rule", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "This is the transformation rule that is run when the request contains an XML MIME type and the XML processing policy is set to XML or SOAP."
-        }, 
-        {
-            "name": "NonXMLPolicy", 
-            "default": "nothing", 
-            "type": {
-                "href": "/mgmt/types/default/dmWebAppNonXMLPolicy"
-            }, 
-            "/mgmt/types/default/dmWebAppNonXMLPolicy": {
-                "type": {
-                    "summary": "Specify the processing of non-XML content", 
-                    "display": "Non-XML Policy", 
+                    "display": "XML Policy",
+                    "name": "dmWebAppXMLPolicy",
                     "value-list": {
                         "value": [
                             {
-                                "summary": "Perform no additional processing", 
-                                "display": "No processing", 
-                                "name": "nothing", 
-                                "description": "Performs no additional processing."
-                            }, 
+                                "display": "No processing",
+                                "description": "Performs no additional processing.",
+                                "name": "nothing",
+                                "summary": "Perform no additional processing"
+                            },
                             {
-                                "summary": "Run a processing rule that cannot change message content", 
-                                "display": "Side-Effect Rule", 
-                                "name": "side", 
-                                "description": "Runs the specified non-XML processing rule. The rule cannot change the contents of the message. The rule cannot access the INPUT or OUTPUT context. The rule can perform such actions as authenticate and authorize, or can send a copy of the contents of the message to a third destination."
-                            }, 
+                                "display": "Well Formed XML",
+                                "description": "Ensures that the XML message is well formed and runs the transform rule that is specified by the XML processing rule.",
+                                "name": "xml",
+                                "summary": "Ensure that the XML message is well formed"
+                            },
                             {
-                                "summary": "Run the processing rule and submit the payload as unparsed binary", 
-                                "display": "Binary Rule", 
-                                "name": "binary", 
-                                "description": "Runs the specified non-XML processing rule. The message payload is submitted as an unparsed binary object. The rule can change the contents of the message. The rule can perform such actions as authentication and authorize, can convert to XML, can repackage with additional information, or can send a copy of the contents of the message to a third destination. The results of the rule is used as the payload for further processing."
+                                "display": "Well Formed SOAP",
+                                "description": "Ensures that the SOAP message is well formed and runs the transform rule that is specified by the XML processing rule.",
+                                "name": "soap",
+                                "summary": "Ensure that the SOAP message is well formed"
                             }
                         ]
-                    }, 
-                    "name": "dmWebAppNonXMLPolicy"
-                }, 
+                    },
+                    "summary": "Specify the processing of XML content"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmWebAppNonXMLPolicy"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmWebAppNonXMLPolicy"
                     }
-                }
-            }, 
-            "summary": "Processing policy when encountering Non-XML", 
-            "cli-alias": "request-nonxml-policy", 
-            "display": "Non-XML Processing", 
-            "description": "Specify how the device handles requests that do not contain an XML MIME type."
-        }, 
-        {
-            "name": "NonXMLRule", 
-            "required-when": {
-                "condition": {
-                    "property-name": "NonXMLPolicy", 
-                    "evaluation": "property-value-in-list", 
-                    "value": [
-                        "side", 
-                        "binary"
-                    ]
-                }
-            }, 
-            "summary": "Assign an additional processing rule for non-xml", 
-            "cli-alias": "request-nonxml-rule", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/StylePolicyRule"
-                }
-            }, 
-            "display": "Non-XML Processing Rule", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "This is the transformation rule that is run when the request does not contain an XML MIME type and the Non-XML processing policy is set to binary or side-effect."
-        }, 
-        {
-            "description": "If this request policy is violated the firewall error policy will be invoked unless this more specific error policy is provided, in which case this policy takes precedence.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/WebAppErrorHandlingPolicy"
-                }
-            }, 
-            "summary": "Error Handling Policy", 
-            "cli-alias": "error-policy-override", 
-            "display": "Error Policy", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "ErrorPolicy"
-        }, 
-        {
-            "description": "The session management policy enforces the start pages acceptable for requests that match this security profile. If no policy is referenced, any page is an acceptable start page.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/WebAppSessionPolicy"
-                }
-            }, 
-            "cli-alias": "session-policy", 
-            "display": "Session Policy", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "SessionManagementProfile"
-        }, 
-        {
-            "description": "The name-value profile allows you to specify what headers are expected, what headers should be stripped, and what headers should be mapped to known values. If no profile is specified, any header is allowed.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/NameValueProfile"
-                }
-            }, 
-            "summary": "The name-value profile for request headers", 
-            "cli-alias": "request-header-profile", 
-            "display": "Header Name-Value Profile", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "HeaderGNVC"
-        }, 
-        {
-            "description": "The name-value profile allows you to specify what form elements are expected, what form elements should be stripped, and what form elements should be mapped to known values. If no profile is specified, any set of pairs is allowed.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/NameValueProfile"
-                }
-            }, 
-            "summary": "The name-value profile for application/www-url-encoded body members", 
-            "cli-alias": "request-body-profile", 
-            "display": "URL-Encoded Body Name-Value Profile", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "UrlEncodedGNVC"
-        }, 
-        {
-            "/mgmt/types/default/dmARDType": {
-                "type": {
-                    "name": "dmARDType", 
+                    "display": "Non-XML Policy",
+                    "name": "dmWebAppNonXMLPolicy",
                     "value-list": {
                         "value": [
                             {
-                                "summary": "Remain agnostic", 
-                                "display": "Allow", 
-                                "name": "allow"
-                            }, 
+                                "display": "No processing",
+                                "description": "Performs no additional processing.",
+                                "name": "nothing",
+                                "summary": "Perform no additional processing"
+                            },
                             {
-                                "summary": "Require the presence", 
-                                "display": "Require", 
-                                "name": "require"
-                            }, 
+                                "display": "Side-Effect Rule",
+                                "description": "Runs the specified non-XML processing rule. The rule cannot change the contents of the message. The rule cannot access the INPUT or OUTPUT context. The rule can perform such actions as authenticate and authorize, or can send a copy of the contents of the message to a third destination.",
+                                "name": "side",
+                                "summary": "Run a processing rule that cannot change message content"
+                            },
                             {
-                                "summary": "Prohibit from being under", 
-                                "display": "Deny", 
-                                "name": "deny"
+                                "display": "Binary Rule",
+                                "description": "Runs the specified non-XML processing rule. The message payload is submitted as an unparsed binary object. The rule can change the contents of the message. The rule can perform such actions as authentication and authorize, can convert to XML, can repackage with additional information, or can send a copy of the contents of the message to a third destination. The results of the rule is used as the payload for further processing.",
+                                "name": "binary",
+                                "summary": "Run the processing rule and submit the payload as unparsed binary"
                             }
                         ]
-                    }, 
-                    "summary": "Allow, Require, or Deny"
-                }, 
+                    },
+                    "summary": "Specify the processing of non-XML content"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmARDType"
-                    }, 
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmARDType"
+                        "href": "/mgmt/types/default/dmToggle"
                     }
-                }
-            }, 
-            "description": "Select how the client URL handles query strings. The default is Allow.", 
-            "default": "allow", 
-            "type": {
-                "href": "/mgmt/types/default/dmARDType"
-            }, 
-            "cli-alias": "request-qs-policy", 
-            "display": "Allow Query String", 
-            "name": "QueryStringPolicy"
-        }, 
-        {
-            "name": "QueryStringGNVC", 
-            "required-when": {
-                "condition": {
-                    "property-name": "QueryStringPolicy", 
-                    "evaluation": "property-equals", 
-                    "value": "require"
-                }
-            }, 
-            "summary": "The name-value profile for query string", 
-            "cli-alias": "request-qs-profile", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "QueryStringPolicy", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "allow"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/NameValueProfile"
-                }
-            }, 
-            "display": "QueryString Name-Value Profile", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "The name-value profile for query-string. If not present, no profile is enforced. The profile allows you to validate data members of the query string, filter out unknown ones, or map certain names to known values."
-        }, 
-        {
-            "name": "SQLInjection", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "SQL Injection Filter on all data parameters", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
+                                "name": "on",
                                 "display": "on"
-                            }, 
+                            },
                             {
-                                "name": "off", 
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "cli-alias": "request-sql-policy", 
-            "display": "SQL Injection Filter", 
-            "description": "Data parameters from the query string, application/www-urlencoded requests, and multipart/form-data requests will be passed through the standard SQL Injection filter if this property is enabled."
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
-                }
-            }, 
-            "default": 1024, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "description": "The URI may be no longer than the value specified here.", 
-            "cli-alias": "request-uri-max", 
-            "display": "Maximum URI Length", 
-            "name": "MaxURISize"
-        }, 
-        {
-            "name": "URIFilterUnicode", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Filter Requests with Unicode in the URI", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "request-uri-filter-unicode", 
-            "display": "Filter Unicode", 
-            "description": "If Unicode is detected in the URI and this property is enabled then the transaction will be rejected"
-        }, 
-        {
-            "name": "URIFilterDotDot", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Filter Requests with .. in the URI", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "request-uri-filter-dotdot", 
-            "display": "Filter Dot Dot", 
-            "description": "Filter Requests with .. in the URI after URI normalization"
-        }, 
-        {
-            "name": "URIFilterExe", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Filter Requests with .exe in the URI", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "request-uri-filter-exe", 
-            "display": "Filter .exe", 
-            "description": "Filter Requests with .exe in the URI after URI normalization"
-        }, 
-        {
-            "name": "URIFilterFragment", 
-            "default": "truncate", 
-            "cli-alias": "request-uri-filter-fragment", 
-            "summary": "Policy for how to Handle Requests with # in the URI", 
-            "/mgmt/types/default/dmURIFragmentFixupType": {
-                "type": {
-                    "name": "dmURIFragmentFixupType", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Allow the fragment", 
-                                "display": "Allow", 
-                                "name": "allow"
-                            }, 
-                            {
-                                "summary": "Reject the transaction and raise an error", 
-                                "display": "Reject", 
-                                "name": "reject"
-                            }, 
-                            {
-                                "summary": "Remove the fragment", 
-                                "display": "Truncate", 
-                                "name": "truncate"
-                            }
-                        ]
-                    }, 
-                    "summary": "Fragment Fixup Policy"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmURIFragmentFixupType"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmURIFragmentFixupType"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmURIFragmentFixupType"
-            }, 
-            "display": "Fragmented URI Policy", 
-            "description": "Select how to handle URI fragments in requests. A URI fragment is the portion of a URI after the # symbol. The default is Truncate"
-        }, 
-        {
-            "name": "ContentTypes", 
-            "default": "application/www-url-encoded", 
-            "type": {
-                "href": "/mgmt/types/default/dmPCRE"
-            }, 
-            "/mgmt/types/default/dmPCRE": {
+                },
                 "type": {
-                    "cli-arg": "pcre", 
-                    "name": "dmPCRE"
-                }, 
+                    "name": "dmURIFragmentFixupType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Allow",
+                                "name": "allow",
+                                "summary": "Allow the fragment"
+                            },
+                            {
+                                "display": "Reject",
+                                "name": "reject",
+                                "summary": "Reject the transaction and raise an error"
+                            },
+                            {
+                                "display": "Truncate",
+                                "name": "truncate",
+                                "summary": "Remove the fragment"
+                            }
+                        ]
+                    },
+                    "summary": "Fragment Fixup Policy"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmPCRE"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmPCRE"
                     }
-                }
-            }, 
-            "summary": "List of Acceptable Content-Type Expressions", 
-            "array": "true", 
-            "cli-alias": "request-content-type", 
-            "display": "Content-Type List", 
-            "description": "A list of PCRE regular expressions that indicate acceptable content-type MIME headers on the request. If this list is empty, any content-type is acceptable. If the request does not have a content type that will be represented as an empty string for matching purposes. Requests without a body (GET, HEAD, and so forth) are not subject to this constraint. An empty list will match all content types."
-        }, 
-        {
-            "cli-alias": "multipart-form-data", 
-            "type": {
-                "href": "/mgmt/types/default/dmMultipartFormDataProfile"
-            }, 
-            "display": "Multipart/Form-Data Profile", 
-            "name": "MultipartFormData", 
-            "/mgmt/types/default/dmMultipartFormDataProfile": {
+                },
                 "type": {
-                    "name": "dmMultipartFormDataProfile", 
-                    "properties": {
-                        "property": [
-                            {
-                                "default": 4, 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmUInt32"
-                                }, 
-                                "display": "Maximum Number of Parts", 
-                                "name": "MaxParts", 
-                                "description": "Maximum number of parts allowed. Defaults to 4."
-                            }, 
-                            {
-                                "description": "Maximum size allowed for any one part. Defaults to 5000000.", 
-                                "default": 5000000, 
-                                "units": "bytes", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmUInt32"
-                                }, 
-                                "display": "Maximum Size Per Part", 
-                                "name": "MaxSizePerPart"
-                            }, 
-                            {
-                                "description": "Maximum size allowed for all parts combined. Defaults to 5000000.", 
-                                "default": 5000000, 
-                                "units": "bytes", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmUInt32"
-                                }, 
-                                "display": "Maximum Aggregate Size of All Parts", 
-                                "name": "MaxSize"
-                            }, 
-                            {
-                                "default": "off", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Restrict Sub-Content Types", 
-                                "name": "ContentTypeRestricted", 
-                                "description": "If set, this forces the individual form-data content types to be matched against the general list of request acceptable content-type expressions."
-                            }
-                        ]
-                    }
-                }, 
+                    "cli-arg": "pcre",
+                    "name": "dmPCRE"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmMultipartFormDataProfile"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmMultipartFormDataProfile"
                     }
-                }
-            }
-        }, 
-        {
-            "description": "The cookie management profile allows you to specify validation profiles for incoming cookies, whether cookies should be allowed at all, and the signature and encryption policies for cookies.", 
-            "type": {
-                "href": "/mgmt/types/default/dmCookieProfile"
-            }, 
-            "summary": "Cookie Management Profile", 
-            "/mgmt/types/default/dmCookieProfile": {
+                },
                 "type": {
-                    "name": "dmCookieProfile", 
+                    "name": "dmMultipartFormDataProfile",
                     "properties": {
                         "property": [
                             {
-                                "default": "allow", 
+                                "default": 4,
+                                "display": "Maximum Number of Parts",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmUInt32"
+                                },
+                                "description": "Maximum number of parts allowed. Defaults to 4.",
+                                "name": "MaxParts"
+                            },
+                            {
+                                "description": "Maximum size allowed for any one part. Defaults to 5000000.",
+                                "default": 5000000,
+                                "units": "bytes",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmUInt32"
+                                },
+                                "display": "Maximum Size Per Part",
+                                "name": "MaxSizePerPart"
+                            },
+                            {
+                                "description": "Maximum size allowed for all parts combined. Defaults to 5000000.",
+                                "default": 5000000,
+                                "units": "bytes",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmUInt32"
+                                },
+                                "display": "Maximum Aggregate Size of All Parts",
+                                "name": "MaxSize"
+                            },
+                            {
+                                "default": "off",
+                                "display": "Restrict Sub-Content Types",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "description": "If set, this forces the individual form-data content types to be matched against the general list of request acceptable content-type expressions.",
+                                "name": "ContentTypeRestricted"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmCookieProfile"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmCookieProfile"
+                    }
+                },
+                "type": {
+                    "name": "dmCookieProfile",
+                    "properties": {
+                        "property": [
+                            {
+                                "default": "allow",
+                                "display": "Allow Cookies",
                                 "type": {
                                     "href": "/mgmt/types/default/dmARDType"
-                                }, 
-                                "display": "Allow Cookies", 
-                                "name": "CookiePolicy", 
-                                "description": "Select how the client side of the inspected transaction handles cookies. The default value is Allow."
-                            }, 
+                                },
+                                "description": "Select how the client side of the inspected transaction handles cookies. The default value is Allow.",
+                                "name": "CookiePolicy"
+                            },
                             {
-                                "default": "none", 
+                                "default": "none",
+                                "display": "Sign or Encrypt Cookies",
                                 "type": {
                                     "href": "/mgmt/types/default/dmCookieProcessingType"
-                                }, 
-                                "display": "Sign or Encrypt Cookies", 
-                                "name": "Type", 
-                                "description": "Specify whether the device signs/verifies, encrypts/decrypts, or neither on the cookies for the application. The default value is None."
-                            }, 
+                                },
+                                "description": "Specify whether the device signs/verifies, encrypts/decrypts, or neither on the cookies for the application. The default value is None.",
+                                "name": "Type"
+                            },
                             {
-                                "description": "Signing or encrypting cookies requires a secret passphrase for the cryptographic operation. If this key is the same on multiple devices, then each device can statelessly verify or decrypt a cookie generated by another device.", 
-                                "default": "secret", 
+                                "description": "Signing or encrypting cookies requires a secret passphrase for the cryptographic operation. If this key is the same on multiple devices, then each device can statelessly verify or decrypt a cookie generated by another device.",
+                                "default": "secret",
                                 "ignored-when": {
                                     "condition": {
-                                        "evaluation": "logical-or", 
+                                        "evaluation": "logical-or",
                                         "condition": [
                                             {
-                                                "property-name": "UseSharedSecretObject", 
-                                                "evaluation": "property-equals", 
+                                                "property-name": "UseSharedSecretObject",
+                                                "evaluation": "property-equals",
                                                 "value": "on"
-                                            }, 
+                                            },
                                             {
-                                                "property-name": "Type", 
-                                                "evaluation": "property-value-not-in-list", 
+                                                "property-name": "Type",
+                                                "evaluation": "property-value-not-in-list",
                                                 "value": [
-                                                    "sign", 
+                                                    "sign",
                                                     "encrypt"
                                                 ]
                                             }
                                         ]
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Secret Key Passphrase", 
+                                },
+                                "display": "Secret Key Passphrase",
                                 "name": "Key"
-                            }, 
+                            },
                             {
-                                "description": "Normally the signed or encrypted cookie contains the client IP address and this prevents the client from using this cookie from any other host. Some proxy server environments may make this undesirable. Turning this property off will make the generated cookies address independent.", 
-                                "default": "on", 
+                                "description": "Normally the signed or encrypted cookie contains the client IP address and this prevents the client from using this cookie from any other host. Some proxy server environments may make this undesirable. Turning this property off will make the generated cookies address independent.",
+                                "default": "on",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "Type", 
-                                        "evaluation": "property-value-not-in-list", 
+                                        "property-name": "Type",
+                                        "evaluation": "property-value-not-in-list",
                                         "value": [
-                                            "sign", 
+                                            "sign",
                                             "encrypt"
                                         ]
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "IP Address specific Cookies", 
+                                },
+                                "display": "IP Address specific Cookies",
                                 "name": "IPinWatermark"
-                            }, 
+                            },
                             {
-                                "description": "The name-value profile for cookie contents. If not present, no profile is enforced. The profile allows you to validate data members of the cookie, filter out unknown ones, or map certain names to known values.", 
+                                "description": "The name-value profile for cookie contents. If not present, no profile is enforced. The profile allows you to validate data members of the cookie, filter out unknown ones, or map certain names to known values.",
                                 "type": {
-                                    "href": "/mgmt/types/default/dmReference", 
+                                    "href": "/mgmt/types/default/dmReference",
                                     "reference-to": {
                                         "href": "/mgmt/metadata/default/NameValueProfile"
                                     }
-                                }, 
-                                "summary": "Name-value validation profile for cookie contents", 
-                                "cli-alias": "request-cookie-gnvc", 
-                                "display": "Cookie Content Name-Value Profile", 
+                                },
+                                "summary": "Name-value validation profile for cookie contents",
+                                "cli-alias": "request-cookie-gnvc",
+                                "display": "Cookie Content Name-Value Profile",
                                 "name": "CookieGNVC"
-                            }, 
+                            },
                             {
-                                "name": "UseSharedSecretObject", 
-                                "default": "off", 
-                                "summary": "Signing or encrypting cookies using the shared secret", 
+                                "name": "UseSharedSecretObject",
+                                "default": "off",
+                                "summary": "Signing or encrypting cookies using the shared secret",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "Type", 
-                                        "evaluation": "property-value-not-in-list", 
+                                        "property-name": "Type",
+                                        "evaluation": "property-value-not-in-list",
                                         "value": [
-                                            "sign", 
+                                            "sign",
                                             "encrypt"
                                         ]
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Use Shared Secret Key", 
+                                },
+                                "display": "Use Shared Secret Key",
                                 "description": "A shared secret signs or encrypts the cookie when enabled. The default value is disabled."
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmCookieProfile"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmCookieProfile"
-                    }
                 }
-            }, 
-            "cli-alias": "cookie-policy", 
-            "display": "Cookie Profile", 
-            "name": "CookieProfile"
-        }, 
-        {
-            "name": "ProcessAllCookie", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Sign or Encrypt cookies header", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "process-all-cookie", 
-            "display": "Sign or Encrypt All Cookies", 
-            "description": "The process will sign or encrypt all cookies when enabled. The default is enabled."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "name": "CookieNameVector", 
-            "required-when": {
-                "condition": {
-                    "property-name": "ProcessAllCookie", 
-                    "evaluation": "property-equals", 
-                    "value": "off"
-                }
-            }, 
-            "summary": "List of the cookies, by name, to process", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "ProcessAllCookie", 
-                    "evaluation": "property-equals", 
-                    "value": "on"
-                }
-            }, 
-            "array": "true", 
-            "cli-alias": "cookie-namelist", 
-            "display": "Cookie Names", 
-            "description": "The list of cookies, by name, that the process signs and encrypts."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmFSFile"
-            }, 
-            "name": "SQLInjectionPatternsFile", 
-            "default": "store:///SQL-Injection-Patterns.xml", 
-            "required-when": {
-                "condition": {
-                    "property-name": "SQLInjection", 
-                    "evaluation": "property-equals", 
-                    "value": "on"
-                }
-            }, 
-            "locations": {
-                "location": [
-                    "local", 
-                    "store"
-                ]
-            }, 
-            "summary": "SQL Injection Patterns File", 
-            "/mgmt/types/default/dmFSFile": {
-                "type": {
-                    "cli-arg": "file", 
-                    "name": "dmFSFile"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmFSFile"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmFSFile"
                     }
+                },
+                "type": {
+                    "cli-arg": "file",
+                    "name": "dmFSFile"
                 }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "SQLInjection", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "on"
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "WebAppRequest",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "PolicyType"
+                            }
+                        ],
+                        "name": "summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "SSLPolicy"
+                            },
+                            {
+                                "name": "AAA"
+                            },
+                            {
+                                "name": "SSKey"
+                            },
+                            {
+                                "name": "RateLimiter"
+                            },
+                            {
+                                "name": "ACL"
+                            },
+                            {
+                                "name": "ErrorPolicy"
+                            },
+                            {
+                                "name": "SessionManagementProfile"
+                            },
+                            {
+                                "name": "ContentTypes"
+                            }
+                        ],
+                        "name": "Profile",
+                        "display": "Profile"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "OKMethods"
+                            },
+                            {
+                                "name": "OKVersions"
+                            }
+                        ],
+                        "name": "Versions",
+                        "display": "Methods &amp; Versions"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "XMLPolicy"
+                            },
+                            {
+                                "name": "XMLRule"
+                            },
+                            {
+                                "name": "NonXMLPolicy"
+                            },
+                            {
+                                "name": "NonXMLRule"
+                            }
+                        ],
+                        "name": "XML",
+                        "display": "Processing"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "HeaderGNVC"
+                            },
+                            {
+                                "name": "UrlEncodedGNVC"
+                            },
+                            {
+                                "name": "QueryStringPolicy"
+                            },
+                            {
+                                "name": "QueryStringGNVC"
+                            }
+                        ],
+                        "name": "GNVC",
+                        "display": "Name-Value"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "CookieProfile"
+                            },
+                            {
+                                "name": "ProcessAllCookie"
+                            },
+                            {
+                                "name": "CookieNameVector"
+                            }
+                        ],
+                        "name": "Cookie",
+                        "display": "Cookie"
+                    },
+                    {
+                        "member": {
+                            "name": "MultipartFormData"
+                        },
+                        "name": "MultipartForm",
+                        "display": "Multipart Form"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "MinBodySize"
+                            },
+                            {
+                                "name": "MaxBodySize"
+                            },
+                            {
+                                "name": "SQLInjection"
+                            },
+                            {
+                                "name": "SQLInjectionPatternsFile"
+                            },
+                            {
+                                "name": "MaxURISize"
+                            },
+                            {
+                                "name": "URIFilterUnicode"
+                            },
+                            {
+                                "name": "URIFilterDotDot"
+                            },
+                            {
+                                "name": "URIFilterExe"
+                            },
+                            {
+                                "name": "URIFilterFragment"
+                            }
+                        ],
+                        "name": "Threat",
+                        "display": "Threat Protection"
+                    }
+                ],
+                "uri": "webapp/request-profile",
+                "display": "Web Request Profile",
+                "cmd-group": "mpgw",
+                "cli-alias": "webapp-request-profile",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "PolicyType",
+                            "default": "admission",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSatisfactionPolicy"
+                            },
+                            "summary": "Satisfaction Style",
+                            "cli-alias": "policy-type",
+                            "display": "Style",
+                            "description": "Select the satisfaction policy for the profile. The default value is Admission."
+                        },
+                        {
+                            "description": "Select how the client side of the inspected transaction handles SSL. The default value is Allow.",
+                            "default": "allow",
+                            "type": {
+                                "href": "/mgmt/types/default/dmARDType"
+                            },
+                            "cli-alias": "request-ssl-policy",
+                            "display": "Allow SSL",
+                            "name": "SSLPolicy"
+                        },
+                        {
+                            "description": "If this property references a AAA policy, then that AAA policy will be run as a filter on this transaction and the success of that AAA run will be required to continue processing. Any input to this transaction as XML, application/www-url-encoded, or multipart/form-data MIME types will be automatically provided to the AAA processing policy.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/AAAPolicy"
+                                }
+                            },
+                            "summary": "AAA policy to enforce",
+                            "cli-alias": "aaa-policy",
+                            "display": "AAA Policy",
+                            "name": "AAA"
+                        },
+                        {
+                            "description": "Select the Shared Secret Key for both signing or encrypting.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoSSKey"
+                                }
+                            },
+                            "summary": "Shared Secret Key used for Value or Cookie protection",
+                            "cli-alias": "ss-key",
+                            "display": "Shared Secret Key",
+                            "name": "SSKey"
+                        },
+                        {
+                            "description": "A rate limiting policy restricts identities (as determined by AAA or the client IP address if AAA is not available) to a specific number of transactions per second.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SimpleCountMonitor"
+                                }
+                            },
+                            "summary": "Rate Limiting Policy",
+                            "cli-alias": "ratelimiter-policy",
+                            "display": "Rate Limiting",
+                            "name": "RateLimiter"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/AccessControlList"
+                                }
+                            },
+                            "display": "Access Control List",
+                            "cli-alias": "acl",
+                            "description": "This Access Control List will be used to allow or deny access to this service based on the IP address of the client. When attached to a service, an Access Control List (ACL) denies all access by default. To deny access to only selected addresses, first grant access to all addresses (allow 0.0.0.0) and then create deny entries for the desired hosts.",
+                            "name": "ACL"
+                        },
+                        {
+                            "name": "OKMethods",
+                            "default": "0x000B",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHTTPRequestMethods"
+                            },
+                            "summary": "Allowable Request Methods",
+                            "cli-alias": "request-methods",
+                            "display": "Methods",
+                            "description": "Specify which HTTP methods are acceptable from the client acceptable."
+                        },
+                        {
+                            "name": "OKVersions",
+                            "default": "0x03",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHTTPVersionMask"
+                            },
+                            "summary": "Allowable Request Versions",
+                            "cli-alias": "request-versions",
+                            "display": "Versions",
+                            "description": "Specify which HTTP versions are acceptable from the client."
+                        },
+                        {
+                            "name": "MinBodySize",
+                            "default": 0,
+                            "cli-alias": "request-body-min",
+                            "summary": "Minimum Request Body Size",
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Minimum Size",
+                            "description": "Specify the minimum size of the request body."
+                        },
+                        {
+                            "name": "MaxBodySize",
+                            "default": 128000000,
+                            "cli-alias": "request-body-max",
+                            "summary": "Maximum Request Body Size",
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Maximum Size",
+                            "description": "Specify the maximum size of the request body."
+                        },
+                        {
+                            "name": "XMLPolicy",
+                            "default": "nothing",
+                            "type": {
+                                "href": "/mgmt/types/default/dmWebAppXMLPolicy"
+                            },
+                            "summary": "Processing policy when encountering XML",
+                            "cli-alias": "request-xml-policy",
+                            "display": "XML Processing",
+                            "description": "Specify how the device handles requests that contain an XML MIME type."
+                        },
+                        {
+                            "name": "XMLRule",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "XMLPolicy",
+                                    "evaluation": "property-value-in-list",
+                                    "value": [
+                                        "xml",
+                                        "soap"
+                                    ]
+                                }
+                            },
+                            "summary": "Assign an additional processing rule for xml",
+                            "cli-alias": "request-xml-rule",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/StylePolicyRule"
+                                }
+                            },
+                            "display": "XML Transformation Rule",
+                            "description": "This is the transformation rule that is run when the request contains an XML MIME type and the XML processing policy is set to XML or SOAP."
+                        },
+                        {
+                            "name": "NonXMLPolicy",
+                            "default": "nothing",
+                            "type": {
+                                "href": "/mgmt/types/default/dmWebAppNonXMLPolicy"
+                            },
+                            "summary": "Processing policy when encountering Non-XML",
+                            "cli-alias": "request-nonxml-policy",
+                            "display": "Non-XML Processing",
+                            "description": "Specify how the device handles requests that do not contain an XML MIME type."
+                        },
+                        {
+                            "name": "NonXMLRule",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "NonXMLPolicy",
+                                    "evaluation": "property-value-in-list",
+                                    "value": [
+                                        "side",
+                                        "binary"
+                                    ]
+                                }
+                            },
+                            "summary": "Assign an additional processing rule for non-xml",
+                            "cli-alias": "request-nonxml-rule",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/StylePolicyRule"
+                                }
+                            },
+                            "display": "Non-XML Processing Rule",
+                            "description": "This is the transformation rule that is run when the request does not contain an XML MIME type and the Non-XML processing policy is set to binary or side-effect."
+                        },
+                        {
+                            "description": "If this request policy is violated the firewall error policy will be invoked unless this more specific error policy is provided, in which case this policy takes precedence.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/WebAppErrorHandlingPolicy"
+                                }
+                            },
+                            "summary": "Error Handling Policy",
+                            "cli-alias": "error-policy-override",
+                            "display": "Error Policy",
+                            "name": "ErrorPolicy"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/WebAppSessionPolicy"
+                                }
+                            },
+                            "display": "Session Policy",
+                            "cli-alias": "session-policy",
+                            "description": "The session management policy enforces the start pages acceptable for requests that match this security profile. If no policy is referenced, any page is an acceptable start page.",
+                            "name": "SessionManagementProfile"
+                        },
+                        {
+                            "description": "The name-value profile allows you to specify what headers are expected, what headers should be stripped, and what headers should be mapped to known values. If no profile is specified, any header is allowed.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/NameValueProfile"
+                                }
+                            },
+                            "summary": "The name-value profile for request headers",
+                            "cli-alias": "request-header-profile",
+                            "display": "Header Name-Value Profile",
+                            "name": "HeaderGNVC"
+                        },
+                        {
+                            "description": "The name-value profile allows you to specify what form elements are expected, what form elements should be stripped, and what form elements should be mapped to known values. If no profile is specified, any set of pairs is allowed.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/NameValueProfile"
+                                }
+                            },
+                            "summary": "The name-value profile for application/www-url-encoded body members",
+                            "cli-alias": "request-body-profile",
+                            "display": "URL-Encoded Body Name-Value Profile",
+                            "name": "UrlEncodedGNVC"
+                        },
+                        {
+                            "description": "Select how the client URL handles query strings. The default is Allow.",
+                            "default": "allow",
+                            "type": {
+                                "href": "/mgmt/types/default/dmARDType"
+                            },
+                            "cli-alias": "request-qs-policy",
+                            "display": "Allow Query String",
+                            "name": "QueryStringPolicy"
+                        },
+                        {
+                            "name": "QueryStringGNVC",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "QueryStringPolicy",
+                                    "evaluation": "property-equals",
+                                    "value": "require"
+                                }
+                            },
+                            "summary": "The name-value profile for query string",
+                            "cli-alias": "request-qs-profile",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "QueryStringPolicy",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "allow"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/NameValueProfile"
+                                }
+                            },
+                            "display": "QueryString Name-Value Profile",
+                            "description": "The name-value profile for query-string. If not present, no profile is enforced. The profile allows you to validate data members of the query string, filter out unknown ones, or map certain names to known values."
+                        },
+                        {
+                            "name": "SQLInjection",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "SQL Injection Filter on all data parameters",
+                            "cli-alias": "request-sql-policy",
+                            "display": "SQL Injection Filter",
+                            "description": "Data parameters from the query string, application/www-urlencoded requests, and multipart/form-data requests will be passed through the standard SQL Injection filter if this property is enabled."
+                        },
+                        {
+                            "description": "The URI may be no longer than the value specified here.",
+                            "default": 1024,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "cli-alias": "request-uri-max",
+                            "display": "Maximum URI Length",
+                            "name": "MaxURISize"
+                        },
+                        {
+                            "name": "URIFilterUnicode",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Filter Requests with Unicode in the URI",
+                            "cli-alias": "request-uri-filter-unicode",
+                            "display": "Filter Unicode",
+                            "description": "If Unicode is detected in the URI and this property is enabled then the transaction will be rejected"
+                        },
+                        {
+                            "name": "URIFilterDotDot",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Filter Requests with .. in the URI",
+                            "cli-alias": "request-uri-filter-dotdot",
+                            "display": "Filter Dot Dot",
+                            "description": "Filter Requests with .. in the URI after URI normalization"
+                        },
+                        {
+                            "name": "URIFilterExe",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Filter Requests with .exe in the URI",
+                            "cli-alias": "request-uri-filter-exe",
+                            "display": "Filter .exe",
+                            "description": "Filter Requests with .exe in the URI after URI normalization"
+                        },
+                        {
+                            "name": "URIFilterFragment",
+                            "default": "truncate",
+                            "type": {
+                                "href": "/mgmt/types/default/dmURIFragmentFixupType"
+                            },
+                            "summary": "Policy for how to Handle Requests with # in the URI",
+                            "cli-alias": "request-uri-filter-fragment",
+                            "display": "Fragmented URI Policy",
+                            "description": "Select how to handle URI fragments in requests. A URI fragment is the portion of a URI after the # symbol. The default is Truncate"
+                        },
+                        {
+                            "name": "ContentTypes",
+                            "default": "application/www-url-encoded",
+                            "type": {
+                                "href": "/mgmt/types/default/dmPCRE"
+                            },
+                            "summary": "List of Acceptable Content-Type Expressions",
+                            "array": "true",
+                            "cli-alias": "request-content-type",
+                            "display": "Content-Type List",
+                            "description": "A list of PCRE regular expressions that indicate acceptable content-type MIME headers on the request. If this list is empty, any content-type is acceptable. If the request does not have a content type that will be represented as an empty string for matching purposes. Requests without a body (GET, HEAD, and so forth) are not subject to this constraint. An empty list will match all content types."
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmMultipartFormDataProfile"
+                            },
+                            "cli-alias": "multipart-form-data",
+                            "name": "MultipartFormData",
+                            "display": "Multipart/Form-Data Profile"
+                        },
+                        {
+                            "description": "The cookie management profile allows you to specify validation profiles for incoming cookies, whether cookies should be allowed at all, and the signature and encryption policies for cookies.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmCookieProfile"
+                            },
+                            "summary": "Cookie Management Profile",
+                            "cli-alias": "cookie-policy",
+                            "display": "Cookie Profile",
+                            "name": "CookieProfile"
+                        },
+                        {
+                            "name": "ProcessAllCookie",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Sign or Encrypt cookies header",
+                            "cli-alias": "process-all-cookie",
+                            "display": "Sign or Encrypt All Cookies",
+                            "description": "The process will sign or encrypt all cookies when enabled. The default is enabled."
+                        },
+                        {
+                            "name": "CookieNameVector",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "ProcessAllCookie",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "summary": "List of the cookies, by name, to process",
+                            "cli-alias": "cookie-namelist",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "ProcessAllCookie",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "array": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Cookie Names",
+                            "description": "The list of cookies, by name, that the process signs and encrypts."
+                        },
+                        {
+                            "name": "SQLInjectionPatternsFile",
+                            "default": "store:///SQL-Injection-Patterns.xml",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "SQLInjection",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "locations": {
+                                "location": [
+                                    "local",
+                                    "store"
+                                ]
+                            },
+                            "summary": "SQL Injection Patterns File",
+                            "cli-alias": "sql-injection-patterns-file",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SQLInjection",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "on"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmFSFile"
+                            },
+                            "display": "SQL Injection Patterns File",
+                            "description": "The patterns file that the SQL injection filter uses."
+                        }
+                    ]
+                },
+                "description": "The web request profile specifies various properties about the request side of the transaction that must be satisfied."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/WebAppRequest"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/WebAppRequest"
                 }
-            }, 
-            "cli-alias": "sql-injection-patterns-file", 
-            "display": "SQL Injection Patterns File", 
-            "description": "The patterns file that the SQL injection filter uses."
+            }
         }
-    ]
+    }
 }

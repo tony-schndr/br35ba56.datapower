@@ -1,124 +1,127 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "description": "Private key for this identity.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/CryptoKey"
-                }
-            }, 
-            "required": "true", 
-            "cli-alias": "key", 
-            "display": "Crypto Key", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "name": "Key"
-        }, 
-        {
-            "description": "Certificate for this identity containing the public key matching the specified private key.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/CryptoCertificate"
-                }
-            }, 
-            "required": "true", 
-            "cli-alias": "certificate", 
-            "display": "Certificate", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
+                    "cli-arg": "object",
                     "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
                 }
-            }, 
-            "name": "Certificate"
-        }, 
-        {
-            "description": "A set of one or more intermediate Certification Authority certificates. These are passed to the client so it can establish a trust-chain starting with the certificate containing the public key. CA certificates might be necessary when the CA signing this certificate containing the public key is not a standard, well-known CA. If the intermediate CA certificate is also not signed by a standard, well-known CA, an additional intermediate CA certificate might be required for that CA. As many intermediate CA certs as necessary must be specified.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/CryptoCertificate"
+            }
+        ],
+        "metadata": {
+            "object": {
+                "name": "CryptoIdentCred",
+                "display": "Crypto Identification Credentials",
+                "property-group": {
+                    "member": {
+                        "name": "dmAdminState"
+                    },
+                    "name": "summary"
+                },
+                "uri": "crypto/idcred",
+                "summary": "Public-private key pair to identify TLS peers",
+                "cmd-group": "crypto",
+                "cli-alias": "idcred",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "Private key for this identity.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoKey"
+                                }
+                            },
+                            "required": "true",
+                            "cli-alias": "key",
+                            "display": "Crypto Key",
+                            "name": "Key"
+                        },
+                        {
+                            "description": "Certificate for this identity containing the public key matching the specified private key.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoCertificate"
+                                }
+                            },
+                            "required": "true",
+                            "cli-alias": "certificate",
+                            "display": "Certificate",
+                            "name": "Certificate"
+                        },
+                        {
+                            "description": "A set of one or more intermediate Certification Authority certificates. These are passed to the client so it can establish a trust-chain starting with the certificate containing the public key. CA certificates might be necessary when the CA signing this certificate containing the public key is not a standard, well-known CA. If the intermediate CA certificate is also not signed by a standard, well-known CA, an additional intermediate CA certificate might be required for that CA. As many intermediate CA certs as necessary must be specified.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoCertificate"
+                                }
+                            },
+                            "array": "true",
+                            "cli-alias": "ca",
+                            "display": "Intermediate CA certificates",
+                            "name": "CA"
+                        }
+                    ]
+                },
+                "description": "Identification credentials are public-private keys to identify TLS peers. The certificate (public key) is sent to a TLS peer when negotiating the TLS connection. These credentials are used as the identity when signing, encrypting, or decrypting messages."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/CryptoIdentCred"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/CryptoIdentCred"
                 }
-            }, 
-            "array": "true", 
-            "cli-alias": "ca", 
-            "display": "Intermediate CA certificates", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "CA"
+            }
         }
-    ]
+    }
 }

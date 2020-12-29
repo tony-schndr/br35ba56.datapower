@@ -1,512 +1,496 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "name": "RsrcType", 
-            "cli-alias": "type", 
-            "required": "true", 
-            "summary": "Manner to identify resources", 
-            "/mgmt/types/default/dmSLMRsrcType": {
+                },
                 "type": {
-                    "summary": "Resource Type", 
-                    "display": "Resource Type", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "display": "Mapped Resource", 
-                                "name": "aaa-mapped-resource", 
-                                "description": "The resource identifiers from an AAA map resource action. This resource type requires that the processing policy must include an AAA action before the SLM action."
-                            }, 
-                            {
-                                "display": "Front URL", 
-                                "name": "front-url", 
-                                "description": "The URL that the client requests or the rewritten, client-requested URL."
-                            }, 
-                            {
-                                "display": "Destination URL", 
-                                "name": "destination-url", 
-                                "description": "The URL that defines the destination server. This URL might be different from the one requested by the client."
-                            }, 
-                            {
-                                "display": "XPath Expression", 
-                                "name": "xpath-filter", 
-                                "description": "The resources identified by an XPath expression. When specified, provide the expression."
-                            }, 
-                            {
-                                "display": "Requests Only", 
-                                "name": "request-message", 
-                                "description": "All client requests."
-                            }, 
-                            {
-                                "display": "Responses Only", 
-                                "name": "response-message", 
-                                "description": "All server responses."
-                            }, 
-                            {
-                                "display": "SOAP Faults", 
-                                "name": "soap-fault", 
-                                "description": "All SOAP faults."
-                            }, 
-                            {
-                                "display": "Error Code", 
-                                "name": "errorcode", 
-                                "description": "The resources defined by error codes. This error code might be generated by the remote server or by the appliance during message processing."
-                            }, 
-                            {
-                                "display": "Custom Style Sheet", 
-                                "name": "custom-stylesheet", 
-                                "description": "The resource identifiers from a style sheet. When specified, provide the location of the custom style sheet."
-                            }, 
-                            {
-                                "display": "Concurrent Connections", 
-                                "name": "concurrent-connections", 
-                                "description": "&lt;p>All concurrent TCP connections. The TCP connection is from the requesting client to the DataPower appliance. Generally, a client opens only one connection to the appliance at a time. Concurrent connections are not specific to user credentials.&lt;/p>&lt;p>For this parameter, the threshold type must be count all and the algorithm type cannot be token-bucket.&lt;/p>"
-                            }, 
-                            {
-                                "display": "Concurrent Transactions", 
-                                "name": "concurrent-transactions", 
-                                "description": "&lt;p>All other active transactions.&lt;/p>&lt;p>For this parameter, the threshold type must be count all and the algorithm type cannot be token-bucket.&lt;/p>"
-                            }, 
-                            {
-                                "display": "WSDL", 
-                                "name": "wsdl", 
-                                "description": "The resources defined by a local WSDL file. A Web Service Proxy service might support more than one WSDL file."
-                            }, 
-                            {
-                                "display": "WSDL Service", 
-                                "name": "wsdl-service", 
-                                "description": "The resources defined by the name of a service in an underlying WSDL file. Only Web Service Proxy services support this resource type."
-                            }, 
-                            {
-                                "display": "WSDL Port", 
-                                "name": "wsdl-port", 
-                                "description": "The resources defined by the port binding in an underlying WSDL file. Only Web Service Proxy services support this resource type."
-                            }, 
-                            {
-                                "display": "WSDL Operation", 
-                                "name": "wsdl-operation", 
-                                "description": "The resources defined by the name of an operation in an underlying WSDL file. Only Web Service Proxy services support this resource type."
-                            }, 
-                            {
-                                "display": "IBM MQ Request Queue", 
-                                "name": "request-mq-qname", 
-                                "description": "The resources defined by the name of the IBM MQ Queue for client requests."
-                            }, 
-                            {
-                                "display": "IBM MQ Reply Queue", 
-                                "name": "reply-mq-qname", 
-                                "description": "The resources defined by the name of the IBM MQ Queue for server replies."
-                            }, 
-                            {
-                                "display": "UDDI Subscription (deprecated)", 
-                                "name": "uddi-subscription", 
-                                "description": "&lt;p>The UDDI subscription is deprecated. Instead, use WebSphere Service Registry and Repository (WSRR) subscription.&lt;/p>&lt;p>The resources defined by the UDDI Subscription key. When specified, provide the subscription key.&lt;/p>"
-                            }, 
-                            {
-                                "display": "WSRR Subscription", 
-                                "name": "wsrr-subscription", 
-                                "description": "The resources defined by the WSRR Subscription. When specified, provide the subscription."
-                            }, 
-                            {
-                                "display": "WSRR Saved Search Subscription", 
-                                "name": "wsrr-saved-search-subscription", 
-                                "description": "The resources defined by the WSRR Saved Search Subscription. When specified, provide the subscription."
-                            }
-                        ]
-                    }, 
-                    "name": "dmSLMRsrcType"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmSLMRsrcType"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmSLMRsrcType"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmSLMRsrcType"
-            }, 
-            "display": "Resource Type", 
-            "description": "The manner to identify the group of resources that is subject to the SLM policy."
-        }, 
-        {
-            "/mgmt/types/default/dmSLMMatchType": {
+                },
                 "type": {
-                    "summary": "Match Type", 
-                    "display": "Match Type", 
+                    "display": "Resource Type",
+                    "name": "dmSLMRsrcType",
                     "value-list": {
                         "value": [
                             {
-                                "display": "Per Extracted Value", 
-                                "name": "per-extracted-value", 
-                                "description": "Extract and keep a list of all unique values of the specified type. All configured SLM policies apply to each extracted value."
-                            }, 
+                                "display": "Mapped Resource",
+                                "description": "The resource identifiers from an AAA map resource action. This resource type requires that the processing policy must include an AAA action before the SLM action.",
+                                "name": "aaa-mapped-resource"
+                            },
                             {
-                                "display": "Exact", 
-                                "name": "exact-match", 
-                                "description": "Match exact values. An SLM policy applies to only values that match."
-                            }, 
+                                "display": "Front URL",
+                                "description": "The URL that the client requests or the rewritten, client-requested URL.",
+                                "name": "front-url"
+                            },
                             {
-                                "display": "Regular Expression", 
-                                "name": "regexp-match", 
-                                "description": "Match against a PCRE-style expression. An SLM policy applies to only values that match."
+                                "display": "Destination URL",
+                                "description": "The URL that defines the destination server. This URL might be different from the one requested by the client.",
+                                "name": "destination-url"
+                            },
+                            {
+                                "display": "XPath Expression",
+                                "description": "The resources identified by an XPath expression. When specified, provide the expression.",
+                                "name": "xpath-filter"
+                            },
+                            {
+                                "display": "Requests Only",
+                                "description": "All client requests.",
+                                "name": "request-message"
+                            },
+                            {
+                                "display": "Responses Only",
+                                "description": "All server responses.",
+                                "name": "response-message"
+                            },
+                            {
+                                "display": "SOAP Faults",
+                                "description": "All SOAP faults.",
+                                "name": "soap-fault"
+                            },
+                            {
+                                "display": "Error Code",
+                                "description": "The resources defined by error codes. This error code might be generated by the remote server or by the appliance during message processing.",
+                                "name": "errorcode"
+                            },
+                            {
+                                "display": "Custom Style Sheet",
+                                "description": "The resource identifiers from a style sheet. When specified, provide the location of the custom style sheet.",
+                                "name": "custom-stylesheet"
+                            },
+                            {
+                                "display": "Concurrent Connections",
+                                "description": "&lt;p>All concurrent TCP connections. The TCP connection is from the requesting client to the DataPower appliance. Generally, a client opens only one connection to the appliance at a time. Concurrent connections are not specific to user credentials.&lt;/p>&lt;p>For this parameter, the threshold type must be count all and the algorithm type cannot be token-bucket.&lt;/p>",
+                                "name": "concurrent-connections"
+                            },
+                            {
+                                "display": "Concurrent Transactions",
+                                "description": "&lt;p>All other active transactions.&lt;/p>&lt;p>For this parameter, the threshold type must be count all and the algorithm type cannot be token-bucket.&lt;/p>",
+                                "name": "concurrent-transactions"
+                            },
+                            {
+                                "display": "WSDL",
+                                "description": "The resources defined by a local WSDL file. A Web Service Proxy service might support more than one WSDL file.",
+                                "name": "wsdl"
+                            },
+                            {
+                                "display": "WSDL Service",
+                                "description": "The resources defined by the name of a service in an underlying WSDL file. Only Web Service Proxy services support this resource type.",
+                                "name": "wsdl-service"
+                            },
+                            {
+                                "display": "WSDL Port",
+                                "description": "The resources defined by the port binding in an underlying WSDL file. Only Web Service Proxy services support this resource type.",
+                                "name": "wsdl-port"
+                            },
+                            {
+                                "display": "WSDL Operation",
+                                "description": "The resources defined by the name of an operation in an underlying WSDL file. Only Web Service Proxy services support this resource type.",
+                                "name": "wsdl-operation"
+                            },
+                            {
+                                "display": "IBM MQ Request Queue",
+                                "description": "The resources defined by the name of the IBM MQ Queue for client requests.",
+                                "name": "request-mq-qname"
+                            },
+                            {
+                                "display": "IBM MQ Reply Queue",
+                                "description": "The resources defined by the name of the IBM MQ Queue for server replies.",
+                                "name": "reply-mq-qname"
+                            },
+                            {
+                                "display": "UDDI Subscription (deprecated)",
+                                "description": "&lt;p>The UDDI subscription is deprecated. Instead, use WebSphere Service Registry and Repository (WSRR) subscription.&lt;/p>&lt;p>The resources defined by the UDDI Subscription key. When specified, provide the subscription key.&lt;/p>",
+                                "name": "uddi-subscription"
+                            },
+                            {
+                                "display": "WSRR Subscription",
+                                "description": "The resources defined by the WSRR Subscription. When specified, provide the subscription.",
+                                "name": "wsrr-subscription"
+                            },
+                            {
+                                "display": "WSRR Saved Search Subscription",
+                                "description": "The resources defined by the WSRR Saved Search Subscription. When specified, provide the subscription.",
+                                "name": "wsrr-saved-search-subscription"
                             }
                         ]
-                    }, 
-                    "name": "dmSLMMatchType"
-                }, 
+                    },
+                    "summary": "Resource Type"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmSLMMatchType"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmSLMMatchType"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmSLMMatchType"
-            }, 
-            "name": "RsrcMatchType", 
-            "required-when": {
-                "condition": {
-                    "property-name": "RsrcType", 
-                    "evaluation": "property-value-not-in-list", 
-                    "value": [
-                        "xpath-filter", 
-                        "request-message", 
-                        "response-message", 
-                        "soap-fault", 
-                        "custom-stylesheet", 
-                        "concurrent-connections", 
-                        "concurrent-transactions", 
-                        "uddi-subscription", 
-                        "wsrr-subscription", 
-                        "wsrr-saved-search-subscription"
-                    ]
-                }
-            }, 
-            "summary": "Matching algorithm to apply", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "cli-alias": "match-type", 
-            "display": "Match Type", 
-            "description": "The matching algorithm to determine which resources to apply an SLM policy."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
+                    "display": "Match Type",
+                    "name": "dmSLMMatchType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Per Extracted Value",
+                                "description": "Extract and keep a list of all unique values of the specified type. All configured SLM policies apply to each extracted value.",
+                                "name": "per-extracted-value"
+                            },
+                            {
+                                "display": "Exact",
+                                "description": "Match exact values. An SLM policy applies to only values that match.",
+                                "name": "exact-match"
+                            },
+                            {
+                                "display": "Regular Expression",
+                                "description": "Match against a PCRE-style expression. An SLM policy applies to only values that match.",
+                                "name": "regexp-match"
+                            }
+                        ]
+                    },
+                    "summary": "Match Type"
                 }
-            }, 
-            "name": "RsrcValue", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "summary": "List of values to match", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "evaluation": "logical-and", 
-                            "condition": [
-                                {
-                                    "property-name": "RsrcMatchType", 
-                                    "evaluation": "property-does-not-equal", 
-                                    "value": "exact-match"
-                                }, 
-                                {
-                                    "property-name": "RsrcMatchType", 
-                                    "evaluation": "property-does-not-equal", 
-                                    "value": "regexp-match"
-                                }
-                            ]
-                        }, 
-                        {
-                            "property-name": "RsrcType", 
-                            "evaluation": "property-value-in-list", 
-                            "value": [
-                                "uddi-subscription", 
-                                "wsrr-subscription", 
-                                "wsrr-saved-search-subscription", 
-                                "request-message", 
-                                "response-message", 
-                                "soap-fault", 
-                                "xpath-filter", 
-                                "custom-stylesheet", 
-                                "concurrent-connections", 
-                                "concurrent-transactions"
-                            ]
-                        }
-                    ]
-                }
-            }, 
-            "array": "true", 
-            "cli-alias": "value", 
-            "display": "Resource Value", 
-            "description": "The list of one or more resource values to match."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmURL"
-            }, 
-            "name": "Stylesheet", 
-            "required-when": {
-                "condition": {
-                    "property-name": "RsrcType", 
-                    "evaluation": "property-equals", 
-                    "value": "custom-stylesheet"
-                }
-            }, 
-            "summary": "Location of style sheet", 
-            "/mgmt/types/default/dmURL": {
-                "type": {
-                    "cli-arg": "url", 
-                    "name": "dmURL"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmURL"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmURL"
                     }
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "cli-alias": "stylesheet", 
-            "display": "Custom Style Sheet", 
-            "description": "The location of the style sheet when the resource type is for a custom style sheet."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmXPathExpr"
-            }, 
-            "name": "XPathFilter", 
-            "required-when": {
-                "condition": {
-                    "property-name": "RsrcType", 
-                    "evaluation": "property-equals", 
-                    "value": "xpath-filter"
-                }
-            }, 
-            "summary": "XPath filter to apply", 
-            "/mgmt/types/default/dmXPathExpr": {
+                },
                 "type": {
-                    "cli-arg": "xpath", 
-                    "name": "dmXPathExpr"
-                }, 
+                    "cli-arg": "url",
+                    "name": "dmURL"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmXPathExpr"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmXPathExpr"
                     }
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "cli-alias": "xpath-filter", 
-            "display": "XPath Filter", 
-            "description": "The XPath expression to use as the filter when the resource type is for an XPath expression."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
+                    "cli-arg": "xpath",
+                    "name": "dmXPathExpr"
                 }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "name": "Subscription", 
-            "required-when": {
-                "condition": {
-                    "property-name": "RsrcType", 
-                    "evaluation": "property-equals", 
-                    "value": "uddi-subscription"
-                }
-            }, 
-            "summary": "UDDI subscription key", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "cli-alias": "subscription", 
-            "display": "UDDI Subscription (deprecated)", 
-            "description": "&lt;p>The UDDI subscription is deprecated. Instead, use WebSphere Service Registry and Repository (WSRR) subscription.&lt;/p>&lt;p>The subscription key when the resource type is a UDDI subscription.&lt;/p>"
-        }, 
-        {
-            "name": "WSRRSubscription", 
-            "required-when": {
-                "condition": {
-                    "property-name": "RsrcType", 
-                    "evaluation": "property-equals", 
-                    "value": "wsrr-subscription"
-                }
-            }, 
-            "summary": "WSRR Subscription", 
-            "cli-alias": "wsrr-subscription", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/WSRRSubscription"
-                }
-            }, 
-            "display": "WSRR Subscription", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "description": "The subscription when the resource type is a WSRR subscription."
-        }, 
-        {
-            "name": "WSRRSavedSearchSubscription", 
-            "required-when": {
-                "condition": {
-                    "property-name": "RsrcType", 
-                    "evaluation": "property-equals", 
-                    "value": "wsrr-saved-search-subscription"
-                }
-            }, 
-            "summary": "WSRR Saved Search Subscription", 
-            "cli-alias": "wsrr-saved-search-subscription", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/WSRRSavedSearchSubscription"
-                }
-            }, 
-            "display": "WSRR Saved Search Subscription", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
+                    "cli-arg": "object",
                     "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
                 }
-            }, 
-            "description": "The subscription when the resource type is a WSRR Saved Search subscription."
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "SLMRsrcClass",
+                "display": "SLM Resource Class",
+                "uri": "monitor/slm-rsrc",
+                "summary": "SLM Resource Class",
+                "cmd-group": "webservice",
+                "cli-alias": "slm-rsrc",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "RsrcType",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSLMRsrcType"
+                            },
+                            "required": "true",
+                            "summary": "Manner to identify resources",
+                            "cli-alias": "type",
+                            "display": "Resource Type",
+                            "description": "The manner to identify the group of resources that is subject to the SLM policy."
+                        },
+                        {
+                            "name": "RsrcMatchType",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "RsrcType",
+                                    "evaluation": "property-value-not-in-list",
+                                    "value": [
+                                        "xpath-filter",
+                                        "request-message",
+                                        "response-message",
+                                        "soap-fault",
+                                        "custom-stylesheet",
+                                        "concurrent-connections",
+                                        "concurrent-transactions",
+                                        "uddi-subscription",
+                                        "wsrr-subscription",
+                                        "wsrr-saved-search-subscription"
+                                    ]
+                                }
+                            },
+                            "summary": "Matching algorithm to apply",
+                            "cli-alias": "match-type",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmSLMMatchType"
+                            },
+                            "display": "Match Type",
+                            "description": "The matching algorithm to determine which resources to apply an SLM policy."
+                        },
+                        {
+                            "name": "RsrcValue",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "List of values to match",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "RsrcMatchType",
+                                                    "evaluation": "property-does-not-equal",
+                                                    "value": "exact-match"
+                                                },
+                                                {
+                                                    "property-name": "RsrcMatchType",
+                                                    "evaluation": "property-does-not-equal",
+                                                    "value": "regexp-match"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "RsrcType",
+                                            "evaluation": "property-value-in-list",
+                                            "value": [
+                                                "uddi-subscription",
+                                                "wsrr-subscription",
+                                                "wsrr-saved-search-subscription",
+                                                "request-message",
+                                                "response-message",
+                                                "soap-fault",
+                                                "xpath-filter",
+                                                "custom-stylesheet",
+                                                "concurrent-connections",
+                                                "concurrent-transactions"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "array": "true",
+                            "cli-alias": "value",
+                            "display": "Resource Value",
+                            "description": "The list of one or more resource values to match."
+                        },
+                        {
+                            "name": "Stylesheet",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "RsrcType",
+                                    "evaluation": "property-equals",
+                                    "value": "custom-stylesheet"
+                                }
+                            },
+                            "summary": "Location of style sheet",
+                            "cli-alias": "stylesheet",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmURL"
+                            },
+                            "display": "Custom Style Sheet",
+                            "description": "The location of the style sheet when the resource type is for a custom style sheet."
+                        },
+                        {
+                            "name": "XPathFilter",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "RsrcType",
+                                    "evaluation": "property-equals",
+                                    "value": "xpath-filter"
+                                }
+                            },
+                            "summary": "XPath filter to apply",
+                            "cli-alias": "xpath-filter",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmXPathExpr"
+                            },
+                            "display": "XPath Filter",
+                            "description": "The XPath expression to use as the filter when the resource type is for an XPath expression."
+                        },
+                        {
+                            "name": "Subscription",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "RsrcType",
+                                    "evaluation": "property-equals",
+                                    "value": "uddi-subscription"
+                                }
+                            },
+                            "summary": "UDDI subscription key",
+                            "cli-alias": "subscription",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "UDDI Subscription (deprecated)",
+                            "description": "&lt;p>The UDDI subscription is deprecated. Instead, use WebSphere Service Registry and Repository (WSRR) subscription.&lt;/p>&lt;p>The subscription key when the resource type is a UDDI subscription.&lt;/p>"
+                        },
+                        {
+                            "name": "WSRRSubscription",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "RsrcType",
+                                    "evaluation": "property-equals",
+                                    "value": "wsrr-subscription"
+                                }
+                            },
+                            "summary": "WSRR Subscription",
+                            "cli-alias": "wsrr-subscription",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/WSRRSubscription"
+                                }
+                            },
+                            "display": "WSRR Subscription",
+                            "description": "The subscription when the resource type is a WSRR subscription."
+                        },
+                        {
+                            "name": "WSRRSavedSearchSubscription",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "RsrcType",
+                                    "evaluation": "property-equals",
+                                    "value": "wsrr-saved-search-subscription"
+                                }
+                            },
+                            "summary": "WSRR Saved Search Subscription",
+                            "cli-alias": "wsrr-saved-search-subscription",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/WSRRSavedSearchSubscription"
+                                }
+                            },
+                            "display": "WSRR Saved Search Subscription",
+                            "description": "The subscription when the resource type is a WSRR Saved Search subscription."
+                        }
+                    ]
+                },
+                "description": "&lt;p>An SLM resource class identifies a set of resources to be subject to an SLM policy. A resource class consists of the following types and properties:&lt;/p>&lt;ul>&lt;li>A resource type that specifies the manner to identify resources&lt;/li>&lt;li>A match type that determines to which resources to apply the SLM policy&lt;/li>&lt;li>Depending on the resource and match type, properties that identify specific instances of resources&lt;/li>&lt;/ul>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/SLMRsrcClass"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/SLMRsrcClass"
+                }
+            }
         }
-    ]
+    }
 }

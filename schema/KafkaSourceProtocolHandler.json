@@ -1,171 +1,235 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "name": "Cluster", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/KafkaCluster"
-                }
-            }, 
-            "required": "true", 
-            "summary": "Kafka cluster", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "label": "Kafka cluster", 
-            "cli-alias": "cluster", 
-            "display": "Kafka cluster", 
-            "hoverhelp": "Select the Kafka cluster object that is supported by this protocol handler.", 
-            "description": "&lt;p>Identify Kafka cluster object supported by this protocol handler.&lt;/p>&lt;p>Select a server object from the list of available objects.&lt;/p>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
+                    "cli-arg": "object",
+                    "name": "dmReference"
                 }
-            }, 
-            "name": "RequestTopic", 
-            "cli-alias": "request-topic", 
-            "required": "true", 
-            "summary": "The name of the request topic that the Kafka handler monitors for incoming client requests", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Request topic", 
-            "description": "&lt;p>Enter the name of the request topic associated with the Kafka cluster object supported by this protocol handler.&lt;/p>&lt;p>The handler monitors the request topic for incoming client requests. Upon message receipt, the handler forwards the extracted message to the DataPower object that will process the message.&lt;/p>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "KafkaSourceProtocolHandler",
+                "status-bindings": {
+                    "status": {
+                        "binding": {
+                            "property": {
+                                "name": "KafkaSourceProtocolHandler",
+                                "select": "dmObjectName"
+                            }
+                        },
+                        "name": "KafkaSourceProtocolHandlerSummary",
+                        "display": {
+                            "property": {
+                                "name": "Quiesce",
+                                "display": "Quiesce State"
+                            }
+                        }
                     }
+                },
+                "display": "Kafka Handler",
+                "property-group": {
+                    "member": [
+                        {
+                            "name": "mAdminState"
+                        },
+                        {
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "Server"
+                        },
+                        {
+                            "name": "RequestTopic"
+                        },
+                        {
+                            "name": "ResponseTopic"
+                        },
+                        {
+                            "name": "ConsumerGroup"
+                        }
+                    ],
+                    "name": "summary"
+                },
+                "uri": "protocol/kafka",
+                "actions": {
+                    "action": [
+                        {
+                            "name": "ServiceQuiesce",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "type",
+                                        "select": "dmObjectClass"
+                                    },
+                                    {
+                                        "name": "name",
+                                        "select": "dmObjectName"
+                                    },
+                                    {
+                                        "name": "timeout"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "ServiceUnquiesce",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "type",
+                                        "select": "dmObjectClass"
+                                    },
+                                    {
+                                        "name": "name",
+                                        "select": "dmObjectName"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "summary": "Kafka Handler",
+                "services": {
+                    "service": "APIGateway"
+                },
+                "cmd-group": "mpgw",
+                "cli-alias": "source-kafka",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "Cluster",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/KafkaCluster"
+                                }
+                            },
+                            "required": "true",
+                            "label": "Kafka cluster",
+                            "summary": "Kafka cluster",
+                            "cli-alias": "cluster",
+                            "display": "Kafka cluster",
+                            "hoverhelp": "Select the Kafka cluster object that is supported by this protocol handler.",
+                            "description": "&lt;p>Identify Kafka cluster object supported by this protocol handler.&lt;/p>&lt;p>Select a server object from the list of available objects.&lt;/p>"
+                        },
+                        {
+                            "name": "RequestTopic",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "summary": "The name of the request topic that the Kafka handler monitors for incoming client requests",
+                            "cli-alias": "request-topic",
+                            "display": "Request topic",
+                            "description": "&lt;p>Enter the name of the request topic associated with the Kafka cluster object supported by this protocol handler.&lt;/p>&lt;p>The handler monitors the request topic for incoming client requests. Upon message receipt, the handler forwards the extracted message to the DataPower object that will process the message.&lt;/p>"
+                        },
+                        {
+                            "description": "&lt;p>Enter the name of the response topic associated with the Kafka cluster object supported by this protocol handler.&lt;/p>&lt;p>The response topic will receive the response message after DataPower finishes progressing the original client request message.&lt;/p>&lt;p>Configuration of a response topic is optional.&lt;/p>&lt;p>A response topic should be configured if server replies are expected; if reply messages are not expected, a response topic need not be configured.&lt;/p>&lt;p>In the absence of a response topic, any processed response messages are dropped.&lt;/p>",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The name of the response topic that will receive the reply message after DataPower process the client request",
+                            "cli-alias": "response-topic",
+                            "display": "Response topic",
+                            "name": "ResponseTopic"
+                        },
+                        {
+                            "name": "ConsumerGroup",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "label": "Consumer group",
+                            "summary": "Consumer group",
+                            "cli-alias": "consumer-group",
+                            "display": "Consumer group",
+                            "description": "Specify the consumer group name for retrieving messages from the Kafka cluster."
+                        }
+                    ]
+                },
+                "description": "A Kafka handler monitors the request topic for incoming client requests."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/KafkaSourceProtocolHandler"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/KafkaSourceProtocolHandler"
                 }
-            }, 
-            "description": "&lt;p>Enter the name of the response topic associated with the Kafka cluster object supported by this protocol handler.&lt;/p>&lt;p>The response topic will receive the response message after DataPower finishes progressing the original client request message.&lt;/p>&lt;p>Configuration of a response topic is optional.&lt;/p>&lt;p>A response topic should be configured if server replies are expected; if reply messages are not expected, a response topic need not be configured.&lt;/p>&lt;p>In the absence of a response topic, any processed response messages are dropped.&lt;/p>", 
-            "cli-alias": "response-topic", 
-            "summary": "The name of the response topic that will receive the reply message after DataPower process the client request", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Response topic", 
-            "name": "ResponseTopic"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "ConsumerGroup", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "required": "true", 
-            "summary": "Consumer group", 
-            "label": "Consumer group", 
-            "cli-alias": "consumer-group", 
-            "display": "Consumer group", 
-            "description": "Specify the consumer group name for retrieving messages from the Kafka cluster."
+            }
         }
-    ]
+    }
 }

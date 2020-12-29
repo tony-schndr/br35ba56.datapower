@@ -1,114 +1,155 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "name": "DeploymentPolicyParameter", 
-            "type": {
-                "href": "/mgmt/types/default/dmDeploymentPolicyParameter"
-            }, 
-            "/mgmt/types/default/dmDeploymentPolicyParameter": {
+                },
                 "type": {
-                    "name": "dmDeploymentPolicyParameter", 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmDeploymentPolicyParameter"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmDeploymentPolicyParameter"
+                    }
+                },
+                "type": {
+                    "name": "dmDeploymentPolicyParameter",
                     "properties": {
                         "property": [
                             {
-                                "description": "Specify the name of the deployment policy variable.", 
-                                "required": "true", 
-                                "summary": "Deployment policy variable name.", 
+                                "description": "Specify the name of the deployment policy variable.",
+                                "required": "true",
+                                "summary": "Deployment policy variable name.",
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Variable Name", 
+                                },
+                                "display": "Variable Name",
                                 "name": "ParameterName"
-                            }, 
+                            },
                             {
-                                "description": "Specify the corresponding value of the deployment policy variable.", 
-                                "required": "true", 
-                                "summary": "Deployment policy variable value.", 
+                                "description": "Specify the corresponding value of the deployment policy variable.",
+                                "required": "true",
+                                "summary": "Deployment policy variable value.",
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Variable Value", 
+                                },
+                                "display": "Variable Value",
                                 "name": "ParameterValue"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmDeploymentPolicyParameter"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmDeploymentPolicyParameter"
-                    }
                 }
-            }, 
-            "summary": "Deployment Policy Variable bindings table.", 
-            "array": "true", 
-            "cli-alias": "variable", 
-            "display": "Deployment Policy Variables", 
-            "description": "A list of name-value pairs. The name specifies a variable in a deployment policy, which will be replaced by its associated value before applying the policy to a configuration import."
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "DeploymentPolicyParametersBinding",
+                "display": "Deployment Policy Variables",
+                "property-group": {
+                    "member": [
+                        {
+                            "name": "mAdminState"
+                        },
+                        {
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "DeploymentPolicyParameter"
+                        }
+                    ],
+                    "name": "main",
+                    "display": "Main"
+                },
+                "uri": "config/deployment-policy-variables",
+                "summary": "Deployment Policy Variable Bindings.",
+                "cmd-group": "configuration",
+                "cli-alias": "deployment-policy-variables",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "DeploymentPolicyParameter",
+                            "type": {
+                                "href": "/mgmt/types/default/dmDeploymentPolicyParameter"
+                            },
+                            "summary": "Deployment Policy Variable bindings table.",
+                            "array": "true",
+                            "cli-alias": "variable",
+                            "display": "Deployment Policy Variables",
+                            "description": "A list of name-value pairs. The name specifies a variable in a deployment policy, which will be replaced by its associated value before applying the policy to a configuration import."
+                        }
+                    ]
+                },
+                "description": "Configuration to persist the values of the deployment policy variables."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/DeploymentPolicyParametersBinding"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/DeploymentPolicyParametersBinding"
+                }
+            }
         }
-    ]
+    }
 }

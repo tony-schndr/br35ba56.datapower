@@ -1,502 +1,580 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "name": "MailServer", 
-            "cli-alias": "mail-server", 
-            "required": "true", 
-            "summary": "Host name or IP address", 
-            "/mgmt/types/default/dmHostname": {
+                },
                 "type": {
-                    "cli-arg": "dotted-ip or hostname", 
-                    "name": "dmHostname", 
-                    "format": "(a.b.c.d or hostname)"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmHostname"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmHostname"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmHostname"
-            }, 
-            "display": "Mail Server", 
-            "description": "The host name or IP address of the mail server."
-        }, 
-        {
-            "/mgmt/types/default/dmIPPort": {
+                },
                 "type": {
-                    "cli-arg": "ip-port", 
-                    "minimum": 0, 
-                    "name": "dmIPPort", 
-                    "maximum": "0xFFFF"
-                }, 
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmIPPort"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmIPPort"
                     }
-                }
-            }, 
-            "name": "Port", 
-            "type": {
-                "href": "/mgmt/types/default/dmIPPort"
-            }, 
-            "required": "true", 
-            "summary": "Listening port on the server. Normally, 110 for unsecured connections or STARTTLS negotiation and 995 for implicit TLS.", 
-            "cli-alias": "port", 
-            "display": "Port", 
-            "description": "The listening port on the mail server. STARTTLS negotiation and an unsecured connection generally use port 110. An implicit, secured connection generally uses port 995."
-        }, 
-        {
-            "name": "ConnSecurity", 
-            "default": "none", 
-            "type": {
-                "href": "/mgmt/types/default/dmPOPConnSecurity"
-            }, 
-            "required": "true", 
-            "summary": "Security setting for server connection", 
-            "/mgmt/types/default/dmPOPConnSecurity": {
+                },
                 "type": {
-                    "name": "dmPOPConnSecurity", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Establishes an unsecured connection.", 
-                                "display": "None", 
-                                "name": "none"
-                            }, 
-                            {
-                                "summary": "Uses the POP STARTTLS feature to negotiate a secure connection. If negotiation succeeds, establishes a secure connection using the assigned TLS profile. If negotiation fails, no connection is made.", 
-                                "display": "STARTTLS negotiation", 
-                                "name": "stls"
-                            }, 
-                            {
-                                "summary": "Establishes a secure connection using the assigned TLS profile.", 
-                                "display": "Implicit TLS", 
-                                "name": "ssl"
-                            }
-                        ]
-                    }, 
-                    "display": "Connection Security"
-                }, 
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmPOPConnSecurity"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmPOPConnSecurity"
                     }
-                }
-            }, 
-            "cli-alias": "connection-security", 
-            "display": "Connection Security", 
-            "description": ""
-        }, 
-        {
-            "name": "SSLProxy", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-and", 
-                    "condition": [
-                        {
-                            "property-name": "ConnSecurity", 
-                            "evaluation": "property-does-not-equal", 
-                            "value": "none"
-                        }, 
-                        {
-                            "property-name": "SSLClientConfigType", 
-                            "evaluation": "property-equals", 
-                            "value": "proxy"
-                        }
-                    ]
-                }
-            }, 
-            "summary": "The TLS proxy profile is deprecated. Use a TLS client profile.", 
-            "cli-alias": "ssl", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLProxyProfile"
-                }
-            }, 
-            "display": "TLS proxy profile (deprecated)", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "The TLS proxy profile references the required cryptographic configurations for the secure connection."
-        }, 
-        {
-            "/mgmt/types/default/dmPOPAuthMethod": {
-                "type": {
-                    "name": "dmPOPAuthMethod", 
+                    "name": "dmPOPConnSecurity",
                     "value-list": {
                         "value": [
                             {
-                                "summary": "", 
-                                "display": "Basic Authentication", 
-                                "name": "basic"
-                            }, 
+                                "display": "None",
+                                "name": "none",
+                                "summary": "Establishes an unsecured connection."
+                            },
                             {
-                                "summary": "", 
-                                "display": "Authenticated POP (APOP)", 
-                                "name": "apop"
+                                "display": "STARTTLS negotiation",
+                                "name": "stls",
+                                "summary": "Uses the POP STARTTLS feature to negotiate a secure connection. If negotiation succeeds, establishes a secure connection using the assigned TLS profile. If negotiation fails, no connection is made."
+                            },
+                            {
+                                "display": "Implicit TLS",
+                                "name": "ssl",
+                                "summary": "Establishes a secure connection using the assigned TLS profile."
                             }
                         ]
-                    }, 
-                    "display": "Authentication Method"
-                }, 
+                    },
+                    "display": "Connection Security"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmPOPAuthMethod"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmPOPAuthMethod"
                     }
-                }
-            }, 
-            "name": "AuthMethod", 
-            "default": "basic", 
-            "cli-alias": "auth-method", 
-            "summary": "Type of authentication to use", 
-            "type": {
-                "href": "/mgmt/types/default/dmPOPAuthMethod"
-            }, 
-            "display": "Authentication Method", 
-            "description": "The type of authentication to use. If authentication fails, no connection is made."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "Account", 
-            "cli-alias": "account", 
-            "required": "true", 
-            "summary": "Name for e-mail account", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Account name", 
-            "description": "The name to access the mailbox on the server; for example, user@example.com."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "Password", 
-            "cli-alias": "password", 
-            "summary": "password for the account", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "Password", 
-                    "evaluation": "property-equals", 
-                    "value": ""
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Password (deprecated)", 
-            "description": "The password for the account that accesses the mailbox on the server."
-        }, 
-        {
-            "name": "PasswordAlias", 
-            "required-when": {
-                "condition": {
-                    "property-name": "Password", 
-                    "evaluation": "property-equals", 
-                    "value": ""
-                }
-            }, 
-            "summary": "The password alias of the password for the account", 
-            "cli-alias": "password-alias", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/PasswordAlias"
-                }
-            }, 
-            "display": "Password Alias", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "The password alias of the password for the account that accesses the mailbox on the server."
-        }, 
-        {
-            "name": "DelayBetweenPolls", 
-            "default": 300, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt16"
-            }, 
-            "required": "true", 
-            "maximum": 65535, 
-            "summary": "Interval between polling sequences", 
-            "minimum": 1, 
-            "units": "seconds", 
-            "/mgmt/types/default/dmUInt16": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt16", 
-                    "maximum": "0xFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt16"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt16"
-                    }
-                }
-            }, 
-            "cli-alias": "delay-time", 
-            "display": "Delay Between Polls", 
-            "description": "&lt;p>The number of seconds to wait after the completion of one polling sequence before starting the next one. A &lt;em>polling sequence&lt;/em> is the time to retrieve the messages plus the time to complete their processing. Enter any value of 1 - 65535. The default is 300.&lt;/p>&lt;p>&lt;b>Note:&lt;/b> Some mail servers restrict the number of times an account can establish a connection during a specific time period. Ensure that the configured interval complies with any restriction.&lt;/p>"
-        }, 
-        {
-            "name": "MaxMessagesPerPoll", 
-            "default": 5, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt16"
-            }, 
-            "required": "true", 
-            "maximum": 100, 
-            "summary": "Maximum number of messages to retrieve in each polling cycle", 
-            "minimum": 1, 
-            "/mgmt/types/default/dmUInt16": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt16", 
-                    "maximum": "0xFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt16"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt16"
-                    }
-                }
-            }, 
-            "cli-alias": "max-messages-per-poll", 
-            "display": "Maximum Messages per Poll", 
-            "description": "The maximum number of mail messages to retrieve in each polling cycle. Enter any value of 1 - 100. The default is 5."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmSSLClientConfigType"
-            }, 
-            "name": "SSLClientConfigType", 
-            "/mgmt/types/default/dmSSLClientConfigType": {
-                "type": {
-                    "name": "dmSSLClientConfigType", 
+                    "name": "dmPOPAuthMethod",
                     "value-list": {
                         "value": [
                             {
-                                "name": "proxy", 
-                                "display": "Proxy Profile"
-                            }, 
+                                "display": "Basic Authentication",
+                                "name": "basic",
+                                "summary": ""
+                            },
                             {
-                                "name": "client", 
+                                "display": "Authenticated POP (APOP)",
+                                "name": "apop",
+                                "summary": ""
+                            }
+                        ]
+                    },
+                    "display": "Authentication Method"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt16",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSLClientConfigType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSLClientConfigType"
+                    }
+                },
+                "type": {
+                    "name": "dmSSLClientConfigType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "proxy",
+                                "display": "Proxy Profile"
+                            },
+                            {
+                                "name": "client",
                                 "display": "Client Profile"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmSSLClientConfigType"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmSSLClientConfigType"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "B2B",
+                "name": "POPPollerSourceProtocolHandler",
+                "status-bindings": {
+                    "status": {
+                        "binding": {
+                            "property": {
+                                "name": "POPPollerSourceProtocolHandler",
+                                "select": "dmObjectName"
+                            }
+                        },
+                        "name": "POPPollerSourceProtocolHandlerSummary",
+                        "display": {
+                            "property": {
+                                "name": "Quiesce",
+                                "display": "Quiesce State"
+                            }
+                        }
                     }
-                }
-            }, 
-            "default": "proxy", 
-            "required-when": {
-                "condition": {
-                    "property-name": "ConnSecurity", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "none"
-                }
-            }, 
-            "summary": "Set the TLS profile type to secure connections between the DataPower Gateway and its targets", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "ConnSecurity", 
-                    "evaluation": "property-equals", 
-                    "value": "none"
-                }
-            }, 
-            "cli-alias": "ssl-client-type", 
-            "display": "TLS client type", 
-            "description": "The TLS profile type to secure connections between the DataPower Gateway and its targets."
-        }, 
-        {
-            "name": "SSLClient", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-and", 
-                    "condition": [
+                },
+                "display": "POP Poller Handler",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "MailServer"
+                            },
+                            {
+                                "name": "Port"
+                            },
+                            {
+                                "name": "DelayBetweenPolls"
+                            },
+                            {
+                                "name": "MaxMessagesPerPoll"
+                            }
+                        ],
+                        "name": "summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "MailServer"
+                            },
+                            {
+                                "name": "Port"
+                            },
+                            {
+                                "name": "ConnSecurity"
+                            },
+                            {
+                                "name": "SSLClientConfigType"
+                            },
+                            {
+                                "name": "SSLProxy"
+                            },
+                            {
+                                "name": "SSLClient"
+                            },
+                            {
+                                "name": "AuthMethod"
+                            },
+                            {
+                                "name": "Account"
+                            },
+                            {
+                                "name": "Password"
+                            },
+                            {
+                                "name": "DelayBetweenPolls"
+                            },
+                            {
+                                "name": "MaxMessagesPerPoll"
+                            }
+                        ],
+                        "name": "main",
+                        "display": "Main"
+                    }
+                ],
+                "uri": "protocol/pop-poller",
+                "actions": {
+                    "action": [
                         {
-                            "property-name": "ConnSecurity", 
-                            "evaluation": "property-does-not-equal", 
-                            "value": "none"
-                        }, 
+                            "name": "ServiceQuiesce",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "type",
+                                        "select": "dmObjectClass"
+                                    },
+                                    {
+                                        "name": "name",
+                                        "select": "dmObjectName"
+                                    },
+                                    {
+                                        "name": "timeout"
+                                    }
+                                ]
+                            }
+                        },
                         {
-                            "property-name": "SSLClientConfigType", 
-                            "evaluation": "property-equals", 
-                            "value": "client"
+                            "name": "ServiceUnquiesce",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "type",
+                                        "select": "dmObjectClass"
+                                    },
+                                    {
+                                        "name": "name",
+                                        "select": "dmObjectName"
+                                    }
+                                ]
+                            }
                         }
                     ]
+                },
+                "summary": "POP Poller Handler",
+                "services": {
+                    "service": "APIGateway"
+                },
+                "cmd-group": "mpgw",
+                "cli-alias": "source-pop-poller",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "MailServer",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHostname"
+                            },
+                            "required": "true",
+                            "summary": "Host name or IP address",
+                            "cli-alias": "mail-server",
+                            "display": "Mail Server",
+                            "description": "The host name or IP address of the mail server."
+                        },
+                        {
+                            "name": "Port",
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPPort"
+                            },
+                            "required": "true",
+                            "summary": "Listening port on the server. Normally, 110 for unsecured connections or STARTTLS negotiation and 995 for implicit TLS.",
+                            "cli-alias": "port",
+                            "display": "Port",
+                            "description": "The listening port on the mail server. STARTTLS negotiation and an unsecured connection generally use port 110. An implicit, secured connection generally uses port 995."
+                        },
+                        {
+                            "name": "ConnSecurity",
+                            "default": "none",
+                            "type": {
+                                "href": "/mgmt/types/default/dmPOPConnSecurity"
+                            },
+                            "required": "true",
+                            "summary": "Security setting for server connection",
+                            "cli-alias": "connection-security",
+                            "display": "Connection Security",
+                            "description": ""
+                        },
+                        {
+                            "name": "SSLProxy",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "ConnSecurity",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "none"
+                                        },
+                                        {
+                                            "property-name": "SSLClientConfigType",
+                                            "evaluation": "property-equals",
+                                            "value": "proxy"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "The TLS proxy profile is deprecated. Use a TLS client profile.",
+                            "cli-alias": "ssl",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                                }
+                            },
+                            "display": "TLS proxy profile (deprecated)",
+                            "description": "The TLS proxy profile references the required cryptographic configurations for the secure connection."
+                        },
+                        {
+                            "name": "AuthMethod",
+                            "default": "basic",
+                            "type": {
+                                "href": "/mgmt/types/default/dmPOPAuthMethod"
+                            },
+                            "summary": "Type of authentication to use",
+                            "cli-alias": "auth-method",
+                            "display": "Authentication Method",
+                            "description": "The type of authentication to use. If authentication fails, no connection is made."
+                        },
+                        {
+                            "name": "Account",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "summary": "Name for e-mail account",
+                            "cli-alias": "account",
+                            "display": "Account name",
+                            "description": "The name to access the mailbox on the server; for example, user@example.com."
+                        },
+                        {
+                            "name": "Password",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "password for the account",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Password",
+                                    "evaluation": "property-equals",
+                                    "value": ""
+                                }
+                            },
+                            "cli-alias": "password",
+                            "display": "Password (deprecated)",
+                            "description": "The password for the account that accesses the mailbox on the server."
+                        },
+                        {
+                            "name": "PasswordAlias",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Password",
+                                    "evaluation": "property-equals",
+                                    "value": ""
+                                }
+                            },
+                            "summary": "The password alias of the password for the account",
+                            "cli-alias": "password-alias",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/PasswordAlias"
+                                }
+                            },
+                            "display": "Password Alias",
+                            "description": "The password alias of the password for the account that accesses the mailbox on the server."
+                        },
+                        {
+                            "name": "DelayBetweenPolls",
+                            "default": 300,
+                            "cli-alias": "delay-time",
+                            "required": "true",
+                            "maximum": 65535,
+                            "summary": "Interval between polling sequences",
+                            "minimum": 1,
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Delay Between Polls",
+                            "description": "&lt;p>The number of seconds to wait after the completion of one polling sequence before starting the next one. A &lt;em>polling sequence&lt;/em> is the time to retrieve the messages plus the time to complete their processing. Enter any value of 1 - 65535. The default is 300.&lt;/p>&lt;p>&lt;b>Note:&lt;/b> Some mail servers restrict the number of times an account can establish a connection during a specific time period. Ensure that the configured interval complies with any restriction.&lt;/p>"
+                        },
+                        {
+                            "name": "MaxMessagesPerPoll",
+                            "default": 5,
+                            "cli-alias": "max-messages-per-poll",
+                            "required": "true",
+                            "maximum": 100,
+                            "summary": "Maximum number of messages to retrieve in each polling cycle",
+                            "minimum": 1,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Maximum Messages per Poll",
+                            "description": "The maximum number of mail messages to retrieve in each polling cycle. Enter any value of 1 - 100. The default is 5."
+                        },
+                        {
+                            "name": "SSLClientConfigType",
+                            "default": "proxy",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "ConnSecurity",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "none"
+                                }
+                            },
+                            "summary": "Set the TLS profile type to secure connections between the DataPower Gateway and its targets",
+                            "cli-alias": "ssl-client-type",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "ConnSecurity",
+                                    "evaluation": "property-equals",
+                                    "value": "none"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSLClientConfigType"
+                            },
+                            "display": "TLS client type",
+                            "description": "The TLS profile type to secure connections between the DataPower Gateway and its targets."
+                        },
+                        {
+                            "name": "SSLClient",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "ConnSecurity",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "none"
+                                        },
+                                        {
+                                            "property-name": "SSLClientConfigType",
+                                            "evaluation": "property-equals",
+                                            "value": "client"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and its targets",
+                            "cli-alias": "ssl-client",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                                }
+                            },
+                            "display": "TLS client profile",
+                            "description": "The TLS client profile to secure connections between the DataPower Gateway and its targets."
+                        }
+                    ]
+                },
+                "description": "The Post Office Protocol (POP) handler manages the polling of a mailbox on a mail server. The mailbox receives mail messages from external partners. The handler retrieves and deletes mail messages on each polling cycle. Each mail message that The handler retrieves results in one transaction."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/POPPollerSourceProtocolHandler"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/POPPollerSourceProtocolHandler"
                 }
-            }, 
-            "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and its targets", 
-            "cli-alias": "ssl-client", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLClientProfile"
-                }
-            }, 
-            "display": "TLS client profile", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "The TLS client profile to secure connections between the DataPower Gateway and its targets."
+            }
         }
-    ]
+    }
 }

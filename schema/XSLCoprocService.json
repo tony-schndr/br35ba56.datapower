@@ -1,800 +1,817 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmLocalIPHostAddress": {
-                "type": {
-                    "cli-arg": "dotted-ip or 0 for any", 
-                    "name": "dmLocalIPHostAddress", 
-                    "format": "(a.b.c.d or 0 for any)"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmLocalIPHostAddress"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmLocalIPHostAddress"
                     }
-                }
-            }, 
-            "name": "LocalAddress", 
-            "default": "0.0.0.0", 
-            "type": {
-                "href": "/mgmt/types/default/dmLocalIPHostAddress"
-            }, 
-            "required": "true", 
-            "summary": "Enter the local IP address or host alias.", 
-            "cli-alias": "ip-address", 
-            "display": "Local address", 
-            "description": "&lt;p>Enter a host alias or the IP address that the service listens on. Host aliases can ease migration tasks among appliances.&lt;/p>&lt;ul>&lt;li>0 or 0.0.0.0 indicates all configured IPv4 addresses.&lt;/li>&lt;li>:: indicates all configured IPv4 and IPv6 addresses.&lt;/li>&lt;/ul>&lt;p>&lt;b>Attention:&lt;/b> For management services, the value of 0.0.0.0 or :: is a security risk. Use an explicit IP address to isolate management traffic from application data traffic.&lt;/p>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+                    "cli-arg": "dotted-ip or 0 for any",
+                    "name": "dmLocalIPHostAddress",
+                    "format": "(a.b.c.d or 0 for any)"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "description": "", 
-            "cli-alias": "summary", 
-            "summary": "", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments", 
-            "name": "UserSummary"
-        }, 
-        {
-            "name": "Priority", 
-            "default": "normal", 
-            "type": {
-                "href": "/mgmt/types/default/dmSchedulerPriority"
-            }, 
-            "/mgmt/types/default/dmSchedulerPriority": {
+                },
                 "type": {
-                    "name": "dmSchedulerPriority", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "unknown", 
-                                "display": "unknown"
-                            }, 
-                            {
-                                "name": "high-min", 
-                                "display": "high-min"
-                            }, 
-                            {
-                                "summary": "", 
-                                "display": "High", 
-                                "name": "high", 
-                                "description": "A service or transaction assigned this priority setting will receive above normal scheduling priority and resource allocation."
-                            }, 
-                            {
-                                "name": "high-max", 
-                                "display": "high-max"
-                            }, 
-                            {
-                                "name": "normal-min", 
-                                "display": "normal-min"
-                            }, 
-                            {
-                                "summary": "", 
-                                "display": "Normal", 
-                                "name": "normal", 
-                                "description": "A service or transaction assigned this priority setting will receive normal scheduling priority and resource allocation."
-                            }, 
-                            {
-                                "name": "normal-max", 
-                                "display": "normal-max"
-                            }, 
-                            {
-                                "name": "low-min", 
-                                "display": "low-min"
-                            }, 
-                            {
-                                "summary": "", 
-                                "display": "Low", 
-                                "name": "low", 
-                                "description": "A service or transaction assigned this priority setting will receive below normal scheduling priority and resource allocation."
-                            }, 
-                            {
-                                "name": "low-max", 
-                                "display": "low-max"
-                            }
-                        ]
-                    }, 
-                    "display": "Transaction Priority"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmSchedulerPriority"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmSchedulerPriority"
                     }
-                }
-            }, 
-            "summary": "", 
-            "cli-alias": "priority", 
-            "display": "Service Priority", 
-            "description": ""
-        }, 
-        {
-            "name": "LocalPort", 
-            "cli-alias": "port", 
-            "required": "true", 
-            "maximum": "0xFFFF", 
-            "summary": "", 
-            "listener": "LocalAddress", 
-            "minimum": 1, 
-            "type": {
-                "href": "/mgmt/types/default/dmIPPort"
-            }, 
-            "/mgmt/types/default/dmIPPort": {
+                },
                 "type": {
-                    "cli-arg": "ip-port", 
-                    "minimum": 0, 
-                    "name": "dmIPPort", 
-                    "maximum": "0xFFFF"
-                }, 
+                    "name": "dmSchedulerPriority",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "unknown",
+                                "display": "unknown"
+                            },
+                            {
+                                "name": "high-min",
+                                "display": "high-min"
+                            },
+                            {
+                                "display": "High",
+                                "description": "A service or transaction assigned this priority setting will receive above normal scheduling priority and resource allocation.",
+                                "name": "high",
+                                "summary": ""
+                            },
+                            {
+                                "name": "high-max",
+                                "display": "high-max"
+                            },
+                            {
+                                "name": "normal-min",
+                                "display": "normal-min"
+                            },
+                            {
+                                "display": "Normal",
+                                "description": "A service or transaction assigned this priority setting will receive normal scheduling priority and resource allocation.",
+                                "name": "normal",
+                                "summary": ""
+                            },
+                            {
+                                "name": "normal-max",
+                                "display": "normal-max"
+                            },
+                            {
+                                "name": "low-min",
+                                "display": "low-min"
+                            },
+                            {
+                                "display": "Low",
+                                "description": "A service or transaction assigned this priority setting will receive below normal scheduling priority and resource allocation.",
+                                "name": "low",
+                                "summary": ""
+                            },
+                            {
+                                "name": "low-max",
+                                "display": "low-max"
+                            }
+                        ]
+                    },
+                    "display": "Transaction Priority"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmIPPort"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmIPPort"
                     }
-                }
-            }, 
-            "display": "Port Number", 
-            "description": ""
-        }, 
-        {
-            "name": "XMLManager", 
-            "default": "default", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/XMLManager"
-                }
-            }, 
-            "required": "true", 
-            "summary": "", 
-            "cli-alias": "xml-manager", 
-            "display": "XML Manager", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "description": ""
-        }, 
-        {
-            "description": "", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/URLRewritePolicy"
-                }
-            }, 
-            "summary": "", 
-            "cli-alias": "urlrewrite-policy", 
-            "display": "URL Rewrite Policy", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
+                    "cli-arg": "object",
                     "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
                 }
-            }, 
-            "name": "URLRewritePolicy"
-        }, 
-        {
-            "description": "", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/StylePolicyRule"
-                }
-            }, 
-            "summary": "", 
-            "cli-alias": "stylesheet-rule", 
-            "display": "Processing Rule", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "StylePolicyRule"
-        }, 
-        {
-            "name": "ConnectionTimeout", 
-            "default": 60, 
-            "type": {
-                "href": "/mgmt/types/default/dmTimeInterval"
-            }, 
-            "maximum": 7200, 
-            "summary": "", 
-            "/mgmt/types/default/dmTimeInterval": {
-                "type": {
-                    "cli-arg": "seconds", 
-                    "minimum": 0, 
-                    "name": "dmTimeInterval", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmTimeInterval"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmTimeInterval"
                     }
-                }
-            }, 
-            "minimum": 3, 
-            "units": "", 
-            "cli-alias": "connection-timeout", 
-            "display": "Connection Timeout", 
-            "description": ""
-        }, 
-        {
-            "name": "IntermediateResultTimeout", 
-            "default": 20, 
-            "type": {
-                "href": "/mgmt/types/default/dmTimeInterval"
-            }, 
-            "maximum": 600, 
-            "summary": "", 
-            "/mgmt/types/default/dmTimeInterval": {
+                },
                 "type": {
-                    "cli-arg": "seconds", 
-                    "minimum": 0, 
-                    "name": "dmTimeInterval", 
+                    "cli-arg": "seconds",
+                    "minimum": 0,
+                    "name": "dmTimeInterval",
                     "maximum": "0xFFFFFFFF"
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmTimeInterval"
-                    }, 
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmTimeInterval"
+                        "href": "/mgmt/types/default/dmToggle"
                     }
-                }
-            }, 
-            "minimum": 1, 
-            "units": "", 
-            "cli-alias": "intermediate-result-timeout", 
-            "display": "Intermediate Result Timeout", 
-            "description": ""
-        }, 
-        {
-            "name": "CacheRelativeURL", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "", 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
+                                "name": "on",
                                 "display": "on"
-                            }, 
+                            },
                             {
-                                "name": "off", 
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "cli-alias": "cache-relative-url", 
-            "display": "Cache Relative URL", 
-            "description": ""
-        }, 
-        {
-            "name": "UseClientURIResolver", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "use-client-resolver", 
-            "display": "Use URI Resolver", 
-            "description": ""
-        }, 
-        {
-            "name": "CryptoExtensions", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "crypto-extensions", 
-            "display": "Crypto Extensions", 
-            "description": ""
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "DefaultParamNamespace", 
-            "default": "http://www.datapower.com/param/config", 
-            "cli-alias": "default-param-namespace", 
-            "summary": "", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Default parameter namespace", 
-            "description": ""
-        }, 
-        {
-            "name": "SSLProxy", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLProxyProfile"
-                }
-            }, 
-            "summary": "", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "SSLServerConfigType", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "proxy"
-                }
-            }, 
-            "cli-alias": "ssl", 
-            "display": "TLS Profile (deprecated)", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": ""
-        }, 
-        {
-            "name": "DebugMode", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmDebugMode"
-            }, 
-            "summary": "", 
-            "cli-alias": "debug-mode", 
-            "display": "Probe setting", 
-            "/mgmt/types/default/dmDebugMode": {
-                "type": {
-                    "name": "dmDebugMode", 
-                    "summary": "Controls for Multistep Probe", 
-                    "display": "Multistep Probe", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Enables the probe to contain a specified number of transactions", 
-                                "display": "On", 
-                                "name": "on", 
-                                "description": "Enables the probe to contain the number of transactions that is defined by the debug history."
-                            }, 
-                            {
-                                "summary": "Disables the probe", 
-                                "display": "Off", 
-                                "name": "off", 
-                                "description": "Disables the probe."
-                            }, 
-                            {
-                                "summary": "Enables the probe to contain 250 transactions", 
-                                "display": "Unbounded", 
-                                "name": "unbounded", 
-                                "description": "Enables the probe to contain 250 transactions. This property is equivalent to specifying a debug history value of 250 transactions."
-                            }
-                        ]
-                    }, 
-                    "description": "Select the behavior of the probe."
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmDebugMode"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmDebugMode"
                     }
-                }
-            }, 
-            "description": ""
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "/mgmt/types/default/dmUInt32": {
+                },
                 "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "On",
+                                "description": "Enables the probe to contain the number of transactions that is defined by the debug history.",
+                                "name": "on",
+                                "summary": "Enables the probe to contain a specified number of transactions"
+                            },
+                            {
+                                "display": "Off",
+                                "description": "Disables the probe.",
+                                "name": "off",
+                                "summary": "Disables the probe"
+                            },
+                            {
+                                "display": "Unbounded",
+                                "description": "Enables the probe to contain 250 transactions. This property is equivalent to specifying a debug history value of 250 transactions.",
+                                "name": "unbounded",
+                                "summary": "Enables the probe to contain 250 transactions"
+                            }
+                        ]
+                    },
+                    "display": "Multistep Probe",
+                    "description": "Select the behavior of the probe.",
+                    "name": "dmDebugMode",
+                    "summary": "Controls for Multistep Probe"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmUInt32"
                     }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
                 }
-            }, 
-            "name": "DebugHistory", 
-            "default": 25, 
-            "required-when": {
-                "condition": {
-                    "property-name": "DebugMode", 
-                    "evaluation": "property-equals", 
-                    "value": "on"
-                }
-            }, 
-            "maximum": 250, 
-            "summary": "", 
-            "minimum": 10, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "cli-alias": "debug-history", 
-            "display": "Transaction History", 
-            "description": ""
-        }, 
-        {
-            "name": "DebugTrigger", 
-            "type": {
-                "href": "/mgmt/types/default/dmMSDebugTriggerType"
-            }, 
-            "/mgmt/types/default/dmMSDebugTriggerType": {
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmMSDebugTriggerType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmMSDebugTriggerType"
+                    }
+                },
                 "type": {
                     "properties": {
                         "property": [
                             {
-                                "summary": "PCRE to match client IP addresses", 
+                                "display": "Client-IP Match",
                                 "type": {
                                     "href": "/mgmt/types/default/dmPCRE"
-                                }, 
-                                "display": "Client-IP Match", 
-                                "name": "ClientIP", 
-                                "description": "Specify a PCRE to match against client IP addresses. Requests from clients with matching IP addresses will trigger the probe. To create a match for all IP addresses, specify .* instead of * as the PCRE."
-                            }, 
+                                },
+                                "description": "Specify a PCRE to match against client IP addresses. Requests from clients with matching IP addresses will trigger the probe. To create a match for all IP addresses, specify .* instead of * as the PCRE.",
+                                "name": "ClientIP",
+                                "summary": "PCRE to match client IP addresses"
+                            },
                             {
-                                "summary": "PCRE to match inbound URL requests", 
+                                "display": "Inbound URL Match",
                                 "type": {
                                     "href": "/mgmt/types/default/dmPCRE"
-                                }, 
-                                "display": "Inbound URL Match", 
-                                "name": "InURLMatch", 
-                                "description": "Specify a PCRE to match against the inbound URLs. Requests from clients with matching URLs will trigger the probe. To create a match for all URLs, specify .* instead of * as the PCRE."
-                            }, 
+                                },
+                                "description": "Specify a PCRE to match against the inbound URLs. Requests from clients with matching URLs will trigger the probe. To create a match for all URLs, specify .* instead of * as the PCRE.",
+                                "name": "InURLMatch",
+                                "summary": "PCRE to match inbound URL requests"
+                            },
                             {
-                                "summary": "PCRE to match outbound URL responses", 
+                                "display": "Outbound URL Match",
                                 "type": {
                                     "href": "/mgmt/types/default/dmPCRE"
-                                }, 
-                                "display": "Outbound URL Match", 
-                                "name": "OutURLMatch", 
-                                "description": "Specify a PCRE to match against the outbound URLs. Responses from servers with matching URLs will trigger the probe. To create a match for all URLs, specify .* instead of * as the PCRE."
-                            }, 
+                                },
+                                "description": "Specify a PCRE to match against the outbound URLs. Responses from servers with matching URLs will trigger the probe. To create a match for all URLs, specify .* instead of * as the PCRE.",
+                                "name": "OutURLMatch",
+                                "summary": "PCRE to match outbound URL responses"
+                            },
                             {
-                                "summary": "Processing rules direction or type to match", 
+                                "display": "Processing Type",
                                 "type": {
                                     "href": "/mgmt/types/default/dmProcessingType"
-                                }, 
-                                "display": "Processing Type", 
-                                "name": "RuleType", 
-                                "description": "Select the rule direction or type that will trigger the probe."
-                            }, 
+                                },
+                                "description": "Select the rule direction or type that will trigger the probe.",
+                                "name": "RuleType",
+                                "summary": "Processing rules direction or type to match"
+                            },
                             {
-                                "summary": "PCRE to match names of processing rules", 
+                                "display": "Processing Rule Match",
                                 "type": {
                                     "href": "/mgmt/types/default/dmPCRE"
-                                }, 
-                                "display": "Processing Rule Match", 
-                                "name": "RuleMatch", 
-                                "description": "Specify a PCRE to match against names of processing rules. Rules with matching names will trigger the probe. To create a match for all names, specify .* instead of * as the PCRE."
-                            }, 
+                                },
+                                "description": "Specify a PCRE to match against names of processing rules. Rules with matching names will trigger the probe. To create a match for all names, specify .* instead of * as the PCRE.",
+                                "name": "RuleMatch",
+                                "summary": "PCRE to match names of processing rules"
+                            },
                             {
-                                "summary": "XPath expression to match element in message", 
+                                "display": "XPath Expression Match",
                                 "type": {
                                     "href": "/mgmt/types/default/dmXPathExpr"
-                                }, 
-                                "display": "XPath Expression Match", 
-                                "name": "XPath", 
-                                "description": "Specify an XPath expression of use the XPath Tool to define an XPath expression to match against messages. Messages that contain the expression will trigger the probe."
+                                },
+                                "description": "Specify an XPath expression of use the XPath Tool to define an XPath expression to match against messages. Messages that contain the expression will trigger the probe.",
+                                "name": "XPath",
+                                "summary": "XPath expression to match element in message"
                             }
                         ]
-                    }, 
-                    "name": "dmMSDebugTriggerType", 
-                    "display": "Debug Triggers"
-                }, 
+                    },
+                    "display": "Debug Triggers",
+                    "name": "dmMSDebugTriggerType"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmMSDebugTriggerType"
-                    }, 
+                        "href": "/mgmt/docs/types/dmSSLConfigType"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmMSDebugTriggerType"
+                        "href": "/mgmt/types/default/dmSSLConfigType"
                     }
-                }
-            }, 
-            "summary": "", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "DebugMode", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "on"
-                }
-            }, 
-            "array": "true", 
-            "cli-alias": "debug-trigger", 
-            "display": "Probe Triggers", 
-            "description": ""
-        }, 
-        {
-            "/mgmt/types/default/dmSSLConfigType": {
+                },
                 "type": {
-                    "name": "dmSSLConfigType", 
+                    "name": "dmSSLConfigType",
                     "value-list": {
                         "value": [
                             {
-                                "name": "proxy", 
+                                "name": "proxy",
                                 "display": "Proxy Profile"
-                            }, 
+                            },
                             {
-                                "name": "server", 
+                                "name": "server",
                                 "display": "Server Profile"
-                            }, 
+                            },
                             {
-                                "name": "sni", 
+                                "name": "sni",
                                 "display": "SNI Server Profile"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmSSLConfigType"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmSSLConfigType"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "XSLCoprocService",
+                "status-bindings": {
+                    "status": {
+                        "binding": {
+                            "property": {
+                                "name": "XSLCoprocService",
+                                "select": "dmObjectName"
+                            }
+                        },
+                        "name": "XSLCoprocServiceSummary",
+                        "display": {
+                            "property": {
+                                "name": "Quiesce",
+                                "display": "Quiesce State"
+                            }
+                        }
                     }
-                }
-            }, 
-            "name": "SSLServerConfigType", 
-            "default": "proxy", 
-            "cli-alias": "ssl-config-type", 
-            "summary": "", 
-            "type": {
-                "href": "/mgmt/types/default/dmSSLConfigType"
-            }, 
-            "display": "TLS type", 
-            "description": ""
-        }, 
-        {
-            "name": "SSLServer", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLServerProfile"
-                }
-            }, 
-            "summary": "", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "SSLServerConfigType", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "server"
-                }
-            }, 
-            "cli-alias": "ssl-server", 
-            "display": "TLS server profile", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
+                },
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "LocalAddress"
+                            },
+                            {
+                                "name": "LocalPort"
+                            },
+                            {
+                                "name": "StylePolicyRule"
+                            },
+                            {
+                                "name": "UserSummary"
+                            }
+                        ],
+                        "name": "summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "LocalAddress"
+                            },
+                            {
+                                "name": "LocalPort"
+                            },
+                            {
+                                "name": "XMLManager"
+                            },
+                            {
+                                "name": "Priority"
+                            },
+                            {
+                                "name": "URLRewritePolicy"
+                            },
+                            {
+                                "name": "StylePolicyRule"
+                            },
+                            {
+                                "name": "ConnectionTimeout"
+                            },
+                            {
+                                "name": "IntermediateResultTimeout"
+                            },
+                            {
+                                "name": "CacheRelativeURL"
+                            },
+                            {
+                                "name": "UseClientURIResolver"
+                            },
+                            {
+                                "name": "CryptoExtensions"
+                            },
+                            {
+                                "name": "DefaultParamNamespace"
+                            },
+                            {
+                                "name": "SSLServerConfigType"
+                            },
+                            {
+                                "name": "SSLProxy"
+                            },
+                            {
+                                "name": "SSLServer"
+                            },
+                            {
+                                "name": "SSLSNIServer"
+                            }
+                        ],
+                        "name": "main"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "DebugMode"
+                            },
+                            {
+                                "name": "DebugHistory"
+                            }
+                        ],
+                        "name": "ProbeSettings",
+                        "display": "Probe Settings"
                     }
+                ],
+                "uri": "services/xslcoproc",
+                "actions": {
+                    "action": [
+                        {
+                            "name": "ServiceQuiesce",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "type",
+                                        "select": "dmObjectClass"
+                                    },
+                                    {
+                                        "name": "name",
+                                        "select": "dmObjectName"
+                                    },
+                                    {
+                                        "name": "timeout"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "ServiceUnquiesce",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "type",
+                                        "select": "dmObjectClass"
+                                    },
+                                    {
+                                        "name": "name",
+                                        "select": "dmObjectName"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "display": "XSL Coprocessor",
+                "cmd-group": "xslcoproc",
+                "cli-alias": "xslcoproc",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "LocalAddress",
+                            "default": "0.0.0.0",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                            },
+                            "required": "true",
+                            "summary": "Enter the local IP address or host alias.",
+                            "cli-alias": "ip-address",
+                            "display": "Local address",
+                            "description": "&lt;p>Enter a host alias or the IP address that the service listens on. Host aliases can ease migration tasks among appliances.&lt;/p>&lt;ul>&lt;li>0 or 0.0.0.0 indicates all configured IPv4 addresses.&lt;/li>&lt;li>:: indicates all configured IPv4 and IPv6 addresses.&lt;/li>&lt;/ul>&lt;p>&lt;b>Attention:&lt;/b> For management services, the value of 0.0.0.0 or :: is a security risk. Use an explicit IP address to isolate management traffic from application data traffic.&lt;/p>"
+                        },
+                        {
+                            "description": "",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "Priority",
+                            "default": "normal",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSchedulerPriority"
+                            },
+                            "summary": "",
+                            "cli-alias": "priority",
+                            "display": "Service Priority",
+                            "description": ""
+                        },
+                        {
+                            "name": "LocalPort",
+                            "cli-alias": "port",
+                            "required": "true",
+                            "maximum": "0xFFFF",
+                            "summary": "",
+                            "listener": "LocalAddress",
+                            "minimum": 1,
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPPort"
+                            },
+                            "display": "Port Number",
+                            "description": ""
+                        },
+                        {
+                            "name": "XMLManager",
+                            "default": "default",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/XMLManager"
+                                }
+                            },
+                            "required": "true",
+                            "summary": "",
+                            "cli-alias": "xml-manager",
+                            "display": "XML Manager",
+                            "description": ""
+                        },
+                        {
+                            "description": "",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/URLRewritePolicy"
+                                }
+                            },
+                            "summary": "",
+                            "cli-alias": "urlrewrite-policy",
+                            "display": "URL Rewrite Policy",
+                            "name": "URLRewritePolicy"
+                        },
+                        {
+                            "description": "",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/StylePolicyRule"
+                                }
+                            },
+                            "summary": "",
+                            "cli-alias": "stylesheet-rule",
+                            "display": "Processing Rule",
+                            "name": "StylePolicyRule"
+                        },
+                        {
+                            "name": "ConnectionTimeout",
+                            "default": 60,
+                            "cli-alias": "connection-timeout",
+                            "maximum": 7200,
+                            "summary": "",
+                            "minimum": 3,
+                            "units": "",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimeInterval"
+                            },
+                            "display": "Connection Timeout",
+                            "description": ""
+                        },
+                        {
+                            "name": "IntermediateResultTimeout",
+                            "default": 20,
+                            "cli-alias": "intermediate-result-timeout",
+                            "maximum": 600,
+                            "summary": "",
+                            "minimum": 1,
+                            "units": "",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimeInterval"
+                            },
+                            "display": "Intermediate Result Timeout",
+                            "description": ""
+                        },
+                        {
+                            "name": "CacheRelativeURL",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "",
+                            "cli-alias": "cache-relative-url",
+                            "display": "Cache Relative URL",
+                            "description": ""
+                        },
+                        {
+                            "name": "UseClientURIResolver",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "",
+                            "cli-alias": "use-client-resolver",
+                            "display": "Use URI Resolver",
+                            "description": ""
+                        },
+                        {
+                            "name": "CryptoExtensions",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "",
+                            "cli-alias": "crypto-extensions",
+                            "display": "Crypto Extensions",
+                            "description": ""
+                        },
+                        {
+                            "name": "DefaultParamNamespace",
+                            "default": "http://www.datapower.com/param/config",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "",
+                            "cli-alias": "default-param-namespace",
+                            "display": "Default parameter namespace",
+                            "description": ""
+                        },
+                        {
+                            "name": "SSLProxy",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                                }
+                            },
+                            "summary": "",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SSLServerConfigType",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "proxy"
+                                }
+                            },
+                            "cli-alias": "ssl",
+                            "display": "TLS Profile (deprecated)",
+                            "description": ""
+                        },
+                        {
+                            "name": "DebugMode",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmDebugMode"
+                            },
+                            "summary": "",
+                            "cli-alias": "debug-mode",
+                            "display": "Probe setting",
+                            "description": ""
+                        },
+                        {
+                            "name": "DebugHistory",
+                            "default": 25,
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "DebugMode",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "maximum": 250,
+                            "summary": "",
+                            "cli-alias": "debug-history",
+                            "minimum": 10,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Transaction History",
+                            "description": ""
+                        },
+                        {
+                            "name": "DebugTrigger",
+                            "type": {
+                                "href": "/mgmt/types/default/dmMSDebugTriggerType"
+                            },
+                            "summary": "",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "DebugMode",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "on"
+                                }
+                            },
+                            "array": "true",
+                            "cli-alias": "debug-trigger",
+                            "display": "Probe Triggers",
+                            "description": ""
+                        },
+                        {
+                            "name": "SSLServerConfigType",
+                            "default": "proxy",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSLConfigType"
+                            },
+                            "summary": "",
+                            "cli-alias": "ssl-config-type",
+                            "display": "TLS type",
+                            "description": ""
+                        },
+                        {
+                            "name": "SSLServer",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLServerProfile"
+                                }
+                            },
+                            "summary": "",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SSLServerConfigType",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "server"
+                                }
+                            },
+                            "cli-alias": "ssl-server",
+                            "display": "TLS server profile",
+                            "description": ""
+                        },
+                        {
+                            "name": "SSLSNIServer",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLSNIServerProfile"
+                                }
+                            },
+                            "summary": "",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SSLServerConfigType",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "sni"
+                                }
+                            },
+                            "cli-alias": "ssl-sni-server",
+                            "display": "TLS SNI server profile",
+                            "description": ""
+                        }
+                    ]
+                },
+                "description": "&lt;p>The XSL Coprocessor is obsolete.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/XSLCoprocService"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/XSLCoprocService"
                 }
-            }, 
-            "description": ""
-        }, 
-        {
-            "name": "SSLSNIServer", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLSNIServerProfile"
-                }
-            }, 
-            "summary": "", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "SSLServerConfigType", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "sni"
-                }
-            }, 
-            "cli-alias": "ssl-sni-server", 
-            "display": "TLS SNI server profile", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": ""
+            }
         }
-    ]
+    }
 }

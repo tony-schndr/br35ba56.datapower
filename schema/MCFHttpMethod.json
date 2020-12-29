@@ -1,120 +1,146 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "name": "HttpMethod", 
-            "/mgmt/types/default/dmHTTPMethodRESTType": {
+                },
                 "type": {
-                    "summary": "HTTP method types", 
-                    "display": "HTTP method", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Specifies the HTTP POST method type", 
-                                "display": "POST", 
-                                "name": "POST"
-                            }, 
-                            {
-                                "summary": "Specifies the HTTP GET method type", 
-                                "display": "GET", 
-                                "name": "GET"
-                            }, 
-                            {
-                                "summary": "Specifies the HTTP PUT method type", 
-                                "display": "PUT", 
-                                "name": "PUT"
-                            }, 
-                            {
-                                "summary": "Specifies the HTTP DELETE method type", 
-                                "display": "DELETE", 
-                                "name": "DELETE"
-                            }, 
-                            {
-                                "summary": "Specifies the HTTP HEAD method type", 
-                                "display": "HEAD", 
-                                "name": "HEAD"
-                            }
-                        ]
-                    }, 
-                    "name": "dmHTTPMethodRESTType"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmHTTPMethodRESTType"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmHTTPMethodRESTType"
                     }
+                },
+                "type": {
+                    "display": "HTTP method",
+                    "name": "dmHTTPMethodRESTType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "POST",
+                                "name": "POST",
+                                "summary": "Specifies the HTTP POST method type"
+                            },
+                            {
+                                "display": "GET",
+                                "name": "GET",
+                                "summary": "Specifies the HTTP GET method type"
+                            },
+                            {
+                                "display": "PUT",
+                                "name": "PUT",
+                                "summary": "Specifies the HTTP PUT method type"
+                            },
+                            {
+                                "display": "DELETE",
+                                "name": "DELETE",
+                                "summary": "Specifies the HTTP DELETE method type"
+                            },
+                            {
+                                "display": "HEAD",
+                                "name": "HEAD",
+                                "summary": "Specifies the HTTP HEAD method type"
+                            }
+                        ]
+                    },
+                    "summary": "HTTP method types"
                 }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmHTTPMethodRESTType"
-            }, 
-            "required": "true", 
-            "summary": "Designate an HTTP method to specify as a service provider matching criteria.", 
-            "cli-alias": "value", 
-            "display": "HTTP Method"
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "MCFHttpMethod",
+                "display": "HTTP Method Message Content Filter",
+                "uri": "policy/mcf-httpmethod",
+                "summary": "Filter based on the HTTP method",
+                "cmd-group": "mpgw",
+                "cli-alias": "mcf-httpmethod",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation"
+                        },
+                        {
+                            "name": "HttpMethod",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHTTPMethodRESTType"
+                            },
+                            "required": "true",
+                            "summary": "Designate an HTTP method to specify as a service provider matching criteria.",
+                            "cli-alias": "value",
+                            "display": "HTTP Method"
+                        }
+                    ]
+                },
+                "description": "Filter based on the HTTP method. The filter value is matched to the HTTP method in the request message."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/MCFHttpMethod"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/MCFHttpMethod"
+                }
+            }
         }
-    ]
+    }
 }

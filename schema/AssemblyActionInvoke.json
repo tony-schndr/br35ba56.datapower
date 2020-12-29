@@ -1,1093 +1,691 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for Assembly action.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
+                    "cli-arg": "string",
                     "name": "dmString"
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmString"
+                        "href": "/mgmt/types/default/dmToggle"
                     }
-                }
-            }, 
-            "name": "Title", 
-            "cli-alias": "title", 
-            "summary": "The title for Assembly action.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Title"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "description": "The correlation path specifies the part of the API definition that correlates with the assembly action. This path is exposed in the debug data by the API Gateway for use by debugging tools. For example, for an API configuration that is retrieved from API Connect and specified in an OpenAPI (Swagger 2.0) document with IBM extensions, this path is the JSON path to the assembly policy in the IBM extensions section of the document. The path can be expressed in any form that the debugging tool can correlate to the API definition.", 
-            "cli-alias": "correlation-path", 
-            "summary": "The path which correlates the assembly action to a specific part of the API specification.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Correlation path", 
-            "name": "CorrelationPath"
-        }, 
-        {
-            "name": "ActionDebug", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to enable GatewayScript debugger in assembly actions", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
+                                "name": "on",
                                 "display": "on"
-                            }, 
+                            },
                             {
-                                "name": "off", 
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "cli-alias": "debug", 
-            "display": "Enable debugging", 
-            "description": "&lt;p>Controls whether to enable the GatewayScript debugger to troubleshoot the following GatewayScript file or script. &lt;ul>&lt;li>Troubleshoot the GatewayScript file that is called from the assembly GatewayScript action.&lt;/li>&lt;li>Troubleshoot the GatewayScript file that is invoked by the GatewayScript associated XSLT extension functions or elements, such as the &lt;tt>gatewayscript()&lt;/tt> extension function, from the assembly XSLT action.&lt;/li>&lt;li>Troubleshoot the GatewayScript script that is invoked through the &lt;tt>value&lt;/tt> or the &lt;tt>default&lt;/tt> property in the JSON file from the assembly map action.&lt;/li>&lt;/ul>&lt;/p>&lt;p>To debug a file or script, the following conditions must be met:&lt;/p>&lt;ul>&lt;li>The file contains one or more &lt;tt>debugger;&lt;/tt> statements at the points in your script where you want to start debugging.&lt;/li>&lt;li>The GatewayScript debugger is enabled.&lt;/li>&lt;/ul>&lt;p>Then you can run the &lt;tt>debug-action&lt;/tt> command to debug.&lt;/p>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "Url", 
-            "cli-alias": "url", 
-            "required": "true", 
-            "summary": "The URL to be invoked.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "URL", 
-            "description": "Specifies the URL to be invoked. You can also reference a custom API property that resolves as the value. To reference an API property, use the &lt;tt>$(api.properties.property_name)&lt;/tt> format, where &lt;tt>property_name&lt;/tt> is the name of the property to reference. You can also use the short &lt;tt>$(property_name)&lt;/tt> format when the assembly action does not have a property with the same name."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "description": "Specifies the TLS client profile to secure connections between the DataPower Gateway and the target URL.", 
-            "cli-alias": "ssl-client", 
-            "summary": "The TLS client profile to secure connections between the DataPower Gateway and the target URL", 
-            "type": {
-                "href": "/mgmt/types/default/dmString", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLClientProfile"
-                }
-            }, 
-            "display": "TLS client profile", 
-            "name": "SSLClient"
-        }, 
-        {
-            "name": "Timeout", 
-            "default": 60, 
-            "type": {
-                "href": "/mgmt/types/default/dmTimeInterval"
-            }, 
-            "summary": "The time to wait for a reply from the target", 
-            "/mgmt/types/default/dmTimeInterval": {
-                "type": {
-                    "cli-arg": "seconds", 
-                    "minimum": 0, 
-                    "name": "dmTimeInterval", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmTimeInterval"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmTimeInterval"
                     }
-                }
-            }, 
-            "units": "seconds", 
-            "cli-alias": "timeout", 
-            "display": "Timeout", 
-            "description": "Specifies the duration in seconds to wait before the DataPower Gateway receives a reply from the target. The default value is 60."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
+                    "cli-arg": "seconds",
+                    "minimum": 0,
+                    "name": "dmTimeInterval",
+                    "maximum": "0xFFFFFFFF"
                 }
-            }, 
-            "name": "UserName", 
-            "valid-regexp": "^[^ ]+$", 
-            "summary": "The user name for HTTP basic authentication", 
-            "cli-alias": "username", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "User name", 
-            "description": "Specifies the user name to use for HTTP basic authentication."
-        }, 
-        {
-            "description": "Specifies the password alias of the user password to use for HTTP basic authentication.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/PasswordAlias"
-                }
-            }, 
-            "summary": "The password alias of the user password for HTTP basic authentication", 
-            "cli-alias": "password", 
-            "display": "Password alias", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "name": "Password"
-        }, 
-        {
-            "/mgmt/types/default/dmInvokeHTTPMethodType": {
+                },
                 "type": {
-                    "summary": "The HTTP method to use for the invocation.", 
-                    "display": "HTTP Method", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "HTTP method from the incoming request", 
-                                "display": "Keep", 
-                                "name": "Keep", 
-                                "description": "Use the HTTP method from the incoming request."
-                            }, 
-                            {
-                                "summary": "HTTP GET method", 
-                                "display": "GET", 
-                                "name": "GET", 
-                                "description": "Use the HTTP GET method."
-                            }, 
-                            {
-                                "summary": "HTTP POST method", 
-                                "display": "POST", 
-                                "name": "POST", 
-                                "description": "Use the HTTP POST method."
-                            }, 
-                            {
-                                "summary": "HTTP PUT method", 
-                                "display": "PUT", 
-                                "name": "PUT", 
-                                "description": "Use the HTTP PUT method."
-                            }, 
-                            {
-                                "summary": "HTTP DELETE method", 
-                                "display": "DELETE", 
-                                "name": "DELETE", 
-                                "description": "Use the HTTP DELETE method."
-                            }, 
-                            {
-                                "summary": "HTTP PATCH method", 
-                                "display": "PATCH", 
-                                "name": "PATCH", 
-                                "description": "Use the HTTP PATCH method."
-                            }, 
-                            {
-                                "summary": "HTTP HEAD method", 
-                                "display": "HEAD", 
-                                "name": "HEAD", 
-                                "description": "Use the HTTP HEAD method."
-                            }, 
-                            {
-                                "summary": "HTTP OPTIONS method", 
-                                "display": "OPTIONS", 
-                                "name": "OPTIONS", 
-                                "description": "Use the HTTP OPTIONS method."
-                            }
-                        ]
-                    }, 
-                    "name": "dmInvokeHTTPMethodType"
-                }, 
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmInvokeHTTPMethodType"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmInvokeHTTPMethodType"
                     }
-                }
-            }, 
-            "name": "Method", 
-            "default": "Keep", 
-            "type": {
-                "href": "/mgmt/types/default/dmInvokeHTTPMethodType"
-            }, 
-            "required": "true", 
-            "summary": "The HTTP method for the invocation", 
-            "cli-alias": "method", 
-            "display": "HTTP method", 
-            "description": "Specifies the HTTP method to use for the invocation."
-        }, 
-        {
-            "name": "BackendType", 
-            "default": "detect", 
-            "/mgmt/types/default/dmInvokeBackendType": {
+                },
                 "type": {
-                    "summary": "Backend Type", 
-                    "display": "Backend Type", 
+                    "display": "HTTP Method",
+                    "name": "dmInvokeHTTPMethodType",
                     "value-list": {
                         "value": [
                             {
-                                "summary": "Detect message type", 
-                                "display": "Detect", 
-                                "name": "detect", 
-                                "description": "Detects the message type and sends the payload accordingly."
-                            }, 
+                                "display": "Keep",
+                                "description": "Use the HTTP method from the incoming request.",
+                                "name": "Keep",
+                                "summary": "HTTP method from the incoming request"
+                            },
                             {
-                                "summary": "XML message type", 
-                                "display": "XML", 
-                                "name": "xml", 
-                                "description": "If the message type is XML, packages as XML and sends. If the message type is not XML, the action fails."
-                            }, 
+                                "display": "GET",
+                                "description": "Use the HTTP GET method.",
+                                "name": "GET",
+                                "summary": "HTTP GET method"
+                            },
                             {
-                                "summary": "JSON message type", 
-                                "display": "JSON", 
-                                "name": "json", 
-                                "description": "If the message type is JSON, packages as JSON and sends. If the message type is not JSON, the action fails."
-                            }, 
+                                "display": "POST",
+                                "description": "Use the HTTP POST method.",
+                                "name": "POST",
+                                "summary": "HTTP POST method"
+                            },
                             {
-                                "summary": "Binary message type", 
-                                "display": "Binary", 
-                                "name": "binary", 
-                                "description": "Package the payload as binary and send, regardless of the message type."
-                            }, 
+                                "display": "PUT",
+                                "description": "Use the HTTP PUT method.",
+                                "name": "PUT",
+                                "summary": "HTTP PUT method"
+                            },
                             {
-                                "summary": "GraphQL message type", 
-                                "display": "GraphQL", 
-                                "name": "graphql", 
-                                "description": "If the message type is GraphQL, packages as GraphQL and sends. If the message type is not GraphQL, the action fails."
+                                "display": "DELETE",
+                                "description": "Use the HTTP DELETE method.",
+                                "name": "DELETE",
+                                "summary": "HTTP DELETE method"
+                            },
+                            {
+                                "display": "PATCH",
+                                "description": "Use the HTTP PATCH method.",
+                                "name": "PATCH",
+                                "summary": "HTTP PATCH method"
+                            },
+                            {
+                                "display": "HEAD",
+                                "description": "Use the HTTP HEAD method.",
+                                "name": "HEAD",
+                                "summary": "HTTP HEAD method"
+                            },
+                            {
+                                "display": "OPTIONS",
+                                "description": "Use the HTTP OPTIONS method.",
+                                "name": "OPTIONS",
+                                "summary": "HTTP OPTIONS method"
                             }
                         ]
-                    }, 
-                    "name": "dmInvokeBackendType"
-                }, 
+                    },
+                    "summary": "The HTTP method to use for the invocation."
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmInvokeBackendType"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmInvokeBackendType"
                     }
-                }
-            }, 
-            "required": "true", 
-            "summary": "The message type of backend payload", 
-            "type": {
-                "href": "/mgmt/types/default/dmInvokeBackendType"
-            }, 
-            "cli-alias": "backend-type", 
-            "display": "Backend type", 
-            "description": "The message type of backend payload."
-        }, 
-        {
-            "name": "Compression", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to enable HTTP compression.", 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "display": "Backend Type",
+                    "name": "dmInvokeBackendType",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
+                                "display": "Detect",
+                                "description": "Detects the message type and sends the payload accordingly.",
+                                "name": "detect",
+                                "summary": "Detect message type"
+                            },
                             {
-                                "name": "off", 
-                                "display": "off"
+                                "display": "XML",
+                                "description": "If the message type is XML, packages as XML and sends. If the message type is not XML, the action fails.",
+                                "name": "xml",
+                                "summary": "XML message type"
+                            },
+                            {
+                                "display": "JSON",
+                                "description": "If the message type is JSON, packages as JSON and sends. If the message type is not JSON, the action fails.",
+                                "name": "json",
+                                "summary": "JSON message type"
+                            },
+                            {
+                                "display": "Binary",
+                                "description": "Package the payload as binary and send, regardless of the message type.",
+                                "name": "binary",
+                                "summary": "Binary message type"
+                            },
+                            {
+                                "display": "GraphQL",
+                                "description": "If the message type is GraphQL, packages as GraphQL and sends. If the message type is not GraphQL, the action fails.",
+                                "name": "graphql",
+                                "summary": "GraphQL message type"
                             }
                         ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
+                    },
+                    "summary": "Backend Type"
                 }
-            }, 
-            "cli-alias": "compression", 
-            "display": "Enable compression", 
-            "description": "Controls whether to enable HTTP compression."
-        }, 
-        {
-            "/mgmt/types/default/dmInvokeCacheType": {
-                "type": {
-                    "summary": "Cache Type", 
-                    "display": "Cache Type", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Uses the cache behavior that is defined by the Cache-Control headers on the request and response.", 
-                                "display": "Protocol", 
-                                "name": "Protocol", 
-                                "description": "Uses the cache behavior that is defined by the &lt;tt>Cache-Control&lt;/tt> headers on the request and response."
-                            }, 
-                            {
-                                "summary": "Disables caching", 
-                                "display": "No Cache", 
-                                "name": "NoCache", 
-                                "description": "Does not cache documents."
-                            }, 
-                            {
-                                "summary": "Caches for the specified time.", 
-                                "display": "Time to Live", 
-                                "name": "TimeToLive", 
-                                "description": "Keeps documents in the cache for a specified time."
-                            }
-                        ]
-                    }, 
-                    "name": "dmInvokeCacheType"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmInvokeCacheType"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmInvokeCacheType"
                     }
-                }
-            }, 
-            "name": "CacheType", 
-            "default": "Protocol", 
-            "type": {
-                "href": "/mgmt/types/default/dmInvokeCacheType"
-            }, 
-            "required": "true", 
-            "summary": "How to cache documents", 
-            "cli-alias": "cache-type", 
-            "display": "Cache type", 
-            "description": "Controls how to cache documents. This property takes effect only when a response is received from the target. When it is set, the invoke action always returns the non-expired response that is previously saved in cache."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmTimeInterval"
-            }, 
-            "name": "TimeToLive", 
-            "default": 900, 
-            "required-when": {
-                "condition": {
-                    "property-name": "CacheType", 
-                    "evaluation": "property-equals", 
-                    "value": "TimeToLive"
-                }
-            }, 
-            "summary": "The validity period for documents in the cache.", 
-            "/mgmt/types/default/dmTimeInterval": {
+                },
                 "type": {
-                    "cli-arg": "seconds", 
-                    "minimum": 0, 
-                    "name": "dmTimeInterval", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmTimeInterval"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmTimeInterval"
-                    }
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "CacheType", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "TimeToLive"
-                }
-            }, 
-            "units": "seconds", 
-            "cli-alias": "ttl", 
-            "display": "Time to live", 
-            "description": "Sets the validity period in seconds for documents in the cache. The default value is 900."
-        }, 
-        {
-            "name": "CacheUnsafeResponse", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Cache Response to POST and PUT Requests", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "display": "Cache Type",
+                    "name": "dmInvokeCacheType",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
+                                "display": "Protocol",
+                                "description": "Uses the cache behavior that is defined by the &lt;tt>Cache-Control&lt;/tt> headers on the request and response.",
+                                "name": "Protocol",
+                                "summary": "Uses the cache behavior that is defined by the Cache-Control headers on the request and response."
+                            },
                             {
-                                "name": "off", 
-                                "display": "off"
+                                "display": "No Cache",
+                                "description": "Does not cache documents.",
+                                "name": "NoCache",
+                                "summary": "Disables caching"
+                            },
+                            {
+                                "display": "Time to Live",
+                                "description": "Keeps documents in the cache for a specified time.",
+                                "name": "TimeToLive",
+                                "summary": "Caches for the specified time."
                             }
                         ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
+                    },
+                    "summary": "Cache Type"
                 }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "CacheType", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "TimeToLive"
-                }
-            }, 
-            "cli-alias": "cache-unsafe-response", 
-            "display": "Cache Response to POST and PUT Requests", 
-            "description": "Caches responses to POST and PUT requests when the cache policy type is set to time to live. The response to these requests is the result of an action on the server that might change its resource state. You might want to cache responses to these requests when you know that the action (for example: HTTP POST) will not change the server state."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "description": "The string to use as a key for the cache. If omitted, the entire URL string is used as the key.", 
-            "cli-alias": "cache-key", 
-            "summary": "The string to use as a key for the cache.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Cache Key", 
-            "name": "CacheKey"
-        }, 
-        {
-            "name": "FollowRedirects", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to follow the redirects.", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "follow-redirects", 
-            "display": "Follow Redirects", 
-            "description": "Some protocols generate redirects as part of the protocol; for example, an HTTP 304 response code. When enabled, the invoke action attempts to transparently resolve redirects."
-        }, 
-        {
-            "name": "UseHTTP10", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Restrict to HTTP 1.0", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "use-http-10", 
-            "display": "Restrict to HTTP 1.0", 
-            "description": "Controls whether to restrict HTTP transactions to version 1.0."
-        }, 
-        {
-            "name": "DoChunkedUpload", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to enable uploading of HTTP 1.1 chunked-encoded documents", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "chunked-uploads", 
-            "display": "Allow Chunked Uploads", 
-            "description": "Controls the ability to send chunked-encoded documents to the target server. When the device employs the HTTP 1.1 protocol, the body of the document can be delimited by either &lt;tt>Content-Length&lt;/tt> or chunked encoding. While all servers understand how to interpret &lt;tt>Content-Length&lt;/tt> , many applications fail to understand chunked encoding. For this reason, &lt;tt>Content-Length&lt;/tt> is the standard method used. However, the use of &lt;tt>Content-Length&lt;/tt> interferes with the ability of the device to fully stream. To stream full documents to the target server, set this property to &lt;tt>on&lt;/tt> . However, the target server must be RFC 2616 compatible. Unlike all other HTTP 1.1 features that can be negotiated down at run time, you must know beforehand that the target server is RFC 2616 compatible. The default value is &lt;tt>on&lt;/tt> ."
-        }, 
-        {
-            "name": "StopOnError", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether the flow stops when a particular type of error occurs", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "stop-on-error", 
-            "display": "Stop on error", 
-            "description": "Controls whether the flow stops when a particular type of error occurs during the assembly execution."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmInvokeErrorType"
-            }, 
-            "name": "ErrorTypes", 
-            "required-when": {
-                "condition": {
-                    "property-name": "StopOnError", 
-                    "evaluation": "property-equals", 
-                    "value": "on"
-                }
-            }, 
-            "/mgmt/types/default/dmInvokeErrorType": {
-                "type": {
-                    "summary": "The errors that can occur to the invoke action", 
-                    "display": "Invoke Error Type", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Connection error", 
-                                "display": "Connection Error", 
-                                "name": "ConnectionError", 
-                                "description": "Indicates that the invoke action cannot establish a connection to the target URL. For example, the host is not reachable or the service is not available."
-                            }, 
-                            {
-                                "summary": "SOAP error", 
-                                "display": "SOAP Error", 
-                                "name": "SOAPError", 
-                                "description": "Indicates that the invoke action receives a 500 SOAP fault as response."
-                            }, 
-                            {
-                                "summary": "Operation error", 
-                                "display": "Operation Error", 
-                                "name": "OperationError", 
-                                "description": "Indicates that the invoke action establishes the connection and receives a non-2xx response as response."
-                            }
-                        ]
-                    }, 
-                    "name": "dmInvokeErrorType"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmInvokeErrorType"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmInvokeErrorType"
                     }
-                }
-            }, 
-            "summary": "The type of error on which the flow stops", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "StopOnError", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "on"
-                }
-            }, 
-            "cli-alias": "error-types", 
-            "display": "Error types", 
-            "description": "Specifies the type of error on which the flow stops. Use this property when the stop on error is enabled."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "Output", 
-            "default": "message", 
-            "cli-alias": "output", 
-            "summary": "The name of a variable to store the invoke action output", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Output", 
-            "description": "Specifies the name of a variable to store the invoke action output. By default, the output is stored the &lt;tt>message.body&lt;/tt> , &lt;tt>message.headers&lt;/tt> , &lt;tt>message.statuscode&lt;/tt> respectively."
-        }, 
-        {
-            "name": "DecodeRequestParams", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to decode the request parameters", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "display": "Invoke Error Type",
+                    "name": "dmInvokeErrorType",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
+                                "display": "Connection Error",
+                                "description": "Indicates that the invoke action cannot establish a connection to the target URL. For example, the host is not reachable or the service is not available.",
+                                "name": "ConnectionError",
+                                "summary": "Connection error"
+                            },
                             {
-                                "name": "off", 
-                                "display": "off"
+                                "display": "SOAP Error",
+                                "description": "Indicates that the invoke action receives a 500 SOAP fault as response.",
+                                "name": "SOAPError",
+                                "summary": "SOAP error"
+                            },
+                            {
+                                "display": "Operation Error",
+                                "description": "Indicates that the invoke action establishes the connection and receives a non-2xx response as response.",
+                                "name": "OperationError",
+                                "summary": "Operation error"
                             }
                         ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
+                    },
+                    "summary": "The errors that can occur to the invoke action"
                 }
-            }, 
-            "cli-alias": "decode-request-params", 
-            "display": "Decode request parameters", 
-            "description": "Controls whether to decode the request parameters that are referenced in the target URL. If set to on, request parameters are decoded. The default value is off."
-        }, 
-        {
-            "name": "EncodePlusChar", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to encode plus characters in query strings", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "AssemblyActionInvoke",
+                "display": "Assembly Invoke Action",
+                "uri": "assembly/invoke",
+                "summary": "Configure and manage the invoke actions for the assembly",
+                "cmd-group": "assembly",
+                "cli-alias": "assembly-invoke",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for Assembly action."
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Title",
+                            "cli-alias": "title",
+                            "name": "Title",
+                            "summary": "The title for Assembly action."
+                        },
+                        {
+                            "description": "The correlation path specifies the part of the API definition that correlates with the assembly action. This path is exposed in the debug data by the API Gateway for use by debugging tools. For example, for an API configuration that is retrieved from API Connect and specified in an OpenAPI (Swagger 2.0) document with IBM extensions, this path is the JSON path to the assembly policy in the IBM extensions section of the document. The path can be expressed in any form that the debugging tool can correlate to the API definition.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The path which correlates the assembly action to a specific part of the API specification.",
+                            "cli-alias": "correlation-path",
+                            "display": "Correlation path",
+                            "name": "CorrelationPath"
+                        },
+                        {
+                            "name": "ActionDebug",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to enable GatewayScript debugger in assembly actions",
+                            "cli-alias": "debug",
+                            "display": "Enable debugging",
+                            "description": "&lt;p>Controls whether to enable the GatewayScript debugger to troubleshoot the following GatewayScript file or script. &lt;ul>&lt;li>Troubleshoot the GatewayScript file that is called from the assembly GatewayScript action.&lt;/li>&lt;li>Troubleshoot the GatewayScript file that is invoked by the GatewayScript associated XSLT extension functions or elements, such as the &lt;tt>gatewayscript()&lt;/tt> extension function, from the assembly XSLT action.&lt;/li>&lt;li>Troubleshoot the GatewayScript script that is invoked through the &lt;tt>value&lt;/tt> or the &lt;tt>default&lt;/tt> property in the JSON file from the assembly map action.&lt;/li>&lt;/ul>&lt;/p>&lt;p>To debug a file or script, the following conditions must be met:&lt;/p>&lt;ul>&lt;li>The file contains one or more &lt;tt>debugger;&lt;/tt> statements at the points in your script where you want to start debugging.&lt;/li>&lt;li>The GatewayScript debugger is enabled.&lt;/li>&lt;/ul>&lt;p>Then you can run the &lt;tt>debug-action&lt;/tt> command to debug.&lt;/p>"
+                        },
+                        {
+                            "name": "Url",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "summary": "The URL to be invoked.",
+                            "cli-alias": "url",
+                            "display": "URL",
+                            "description": "Specifies the URL to be invoked. You can also reference a custom API property that resolves as the value. To reference an API property, use the &lt;tt>$(api.properties.property_name)&lt;/tt> format, where &lt;tt>property_name&lt;/tt> is the name of the property to reference. You can also use the short &lt;tt>$(property_name)&lt;/tt> format when the assembly action does not have a property with the same name."
+                        },
+                        {
+                            "description": "Specifies the TLS client profile to secure connections between the DataPower Gateway and the target URL.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                                }
+                            },
+                            "summary": "The TLS client profile to secure connections between the DataPower Gateway and the target URL",
+                            "cli-alias": "ssl-client",
+                            "display": "TLS client profile",
+                            "name": "SSLClient"
+                        },
+                        {
+                            "name": "Timeout",
+                            "default": 60,
+                            "cli-alias": "timeout",
+                            "summary": "The time to wait for a reply from the target",
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimeInterval"
+                            },
+                            "display": "Timeout",
+                            "description": "Specifies the duration in seconds to wait before the DataPower Gateway receives a reply from the target. The default value is 60."
+                        },
+                        {
+                            "name": "UserName",
+                            "valid-regexp": "^[^ ]+$",
+                            "summary": "The user name for HTTP basic authentication",
+                            "cli-alias": "username",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "User name",
+                            "description": "Specifies the user name to use for HTTP basic authentication."
+                        },
+                        {
+                            "description": "Specifies the password alias of the user password to use for HTTP basic authentication.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/PasswordAlias"
+                                }
+                            },
+                            "summary": "The password alias of the user password for HTTP basic authentication",
+                            "cli-alias": "password",
+                            "display": "Password alias",
+                            "name": "Password"
+                        },
+                        {
+                            "name": "Method",
+                            "default": "Keep",
+                            "type": {
+                                "href": "/mgmt/types/default/dmInvokeHTTPMethodType"
+                            },
+                            "required": "true",
+                            "summary": "The HTTP method for the invocation",
+                            "cli-alias": "method",
+                            "display": "HTTP method",
+                            "description": "Specifies the HTTP method to use for the invocation."
+                        },
+                        {
+                            "name": "BackendType",
+                            "default": "detect",
+                            "type": {
+                                "href": "/mgmt/types/default/dmInvokeBackendType"
+                            },
+                            "required": "true",
+                            "summary": "The message type of backend payload",
+                            "cli-alias": "backend-type",
+                            "display": "Backend type",
+                            "description": "The message type of backend payload."
+                        },
+                        {
+                            "name": "Compression",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to enable HTTP compression.",
+                            "cli-alias": "compression",
+                            "display": "Enable compression",
+                            "description": "Controls whether to enable HTTP compression."
+                        },
+                        {
+                            "name": "CacheType",
+                            "default": "Protocol",
+                            "type": {
+                                "href": "/mgmt/types/default/dmInvokeCacheType"
+                            },
+                            "required": "true",
+                            "summary": "How to cache documents",
+                            "cli-alias": "cache-type",
+                            "display": "Cache type",
+                            "description": "Controls how to cache documents. This property takes effect only when a response is received from the target. When it is set, the invoke action always returns the non-expired response that is previously saved in cache."
+                        },
+                        {
+                            "name": "TimeToLive",
+                            "default": 900,
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "CacheType",
+                                    "evaluation": "property-equals",
+                                    "value": "TimeToLive"
+                                }
+                            },
+                            "summary": "The validity period for documents in the cache.",
+                            "cli-alias": "ttl",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "CacheType",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "TimeToLive"
+                                }
+                            },
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimeInterval"
+                            },
+                            "display": "Time to live",
+                            "description": "Sets the validity period in seconds for documents in the cache. The default value is 900."
+                        },
+                        {
+                            "name": "CacheUnsafeResponse",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Cache Response to POST and PUT Requests",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "CacheType",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "TimeToLive"
+                                }
+                            },
+                            "cli-alias": "cache-unsafe-response",
+                            "display": "Cache Response to POST and PUT Requests",
+                            "description": "Caches responses to POST and PUT requests when the cache policy type is set to time to live. The response to these requests is the result of an action on the server that might change its resource state. You might want to cache responses to these requests when you know that the action (for example: HTTP POST) will not change the server state."
+                        },
+                        {
+                            "description": "The string to use as a key for the cache. If omitted, the entire URL string is used as the key.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The string to use as a key for the cache.",
+                            "cli-alias": "cache-key",
+                            "display": "Cache Key",
+                            "name": "CacheKey"
+                        },
+                        {
+                            "name": "FollowRedirects",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to follow the redirects.",
+                            "cli-alias": "follow-redirects",
+                            "display": "Follow Redirects",
+                            "description": "Some protocols generate redirects as part of the protocol; for example, an HTTP 304 response code. When enabled, the invoke action attempts to transparently resolve redirects."
+                        },
+                        {
+                            "name": "UseHTTP10",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Restrict to HTTP 1.0",
+                            "cli-alias": "use-http-10",
+                            "display": "Restrict to HTTP 1.0",
+                            "description": "Controls whether to restrict HTTP transactions to version 1.0."
+                        },
+                        {
+                            "name": "DoChunkedUpload",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to enable uploading of HTTP 1.1 chunked-encoded documents",
+                            "cli-alias": "chunked-uploads",
+                            "display": "Allow Chunked Uploads",
+                            "description": "Controls the ability to send chunked-encoded documents to the target server. When the device employs the HTTP 1.1 protocol, the body of the document can be delimited by either &lt;tt>Content-Length&lt;/tt> or chunked encoding. While all servers understand how to interpret &lt;tt>Content-Length&lt;/tt> , many applications fail to understand chunked encoding. For this reason, &lt;tt>Content-Length&lt;/tt> is the standard method used. However, the use of &lt;tt>Content-Length&lt;/tt> interferes with the ability of the device to fully stream. To stream full documents to the target server, set this property to &lt;tt>on&lt;/tt> . However, the target server must be RFC 2616 compatible. Unlike all other HTTP 1.1 features that can be negotiated down at run time, you must know beforehand that the target server is RFC 2616 compatible. The default value is &lt;tt>on&lt;/tt> ."
+                        },
+                        {
+                            "name": "StopOnError",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether the flow stops when a particular type of error occurs",
+                            "cli-alias": "stop-on-error",
+                            "display": "Stop on error",
+                            "description": "Controls whether the flow stops when a particular type of error occurs during the assembly execution."
+                        },
+                        {
+                            "name": "ErrorTypes",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "StopOnError",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "The type of error on which the flow stops",
+                            "cli-alias": "error-types",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "StopOnError",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "on"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmInvokeErrorType"
+                            },
+                            "display": "Error types",
+                            "description": "Specifies the type of error on which the flow stops. Use this property when the stop on error is enabled."
+                        },
+                        {
+                            "name": "Output",
+                            "default": "message",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The name of a variable to store the invoke action output",
+                            "cli-alias": "output",
+                            "display": "Output",
+                            "description": "Specifies the name of a variable to store the invoke action output. By default, the output is stored the &lt;tt>message.body&lt;/tt> , &lt;tt>message.headers&lt;/tt> , &lt;tt>message.statuscode&lt;/tt> respectively."
+                        },
+                        {
+                            "name": "DecodeRequestParams",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to decode the request parameters",
+                            "cli-alias": "decode-request-params",
+                            "display": "Decode request parameters",
+                            "description": "Controls whether to decode the request parameters that are referenced in the target URL. If set to on, request parameters are decoded. The default value is off."
+                        },
+                        {
+                            "name": "EncodePlusChar",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to encode plus characters in query strings",
+                            "cli-alias": "encode-plus-char",
+                            "display": "Encode plus characters in query",
+                            "description": "Controls whether to encode &lt;tt>+&lt;/tt> characters in query strings. If set to on, &lt;tt>+&lt;/tt> characters in the query parameter values of the target URL are encoded to &lt;tt>%2F&lt;/tt> . The default value is off."
+                        },
+                        {
+                            "name": "KeepPayload",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to include the payload for DELETE requests",
+                            "cli-alias": "keep-payload",
+                            "display": "Keep payload",
+                            "description": "Controls whether to include the payload for DELETE requests. If set to on, the invoke action includes the payload for DELETE requests. The default value is off."
+                        },
+                        {
+                            "name": "InjectUserAgentHeader",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to inject the default User-Agent header",
+                            "cli-alias": "inject-user-agent",
+                            "display": "Inject User-Agent header",
+                            "description": "When the &lt;tt>User-Agent&lt;/tt> header is not found in the incoming request, whether to inject it to the API request."
+                        },
+                        {
+                            "name": "InjectProxyHeaders",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to inject proxy-related headers",
+                            "cli-alias": "inject-proxy-headers",
+                            "display": "Inject proxy headers",
+                            "description": "When the &lt;tt>X-Forwarded-For&lt;/tt> , &lt;tt>X-Forwarded-Host&lt;/tt> , and &lt;tt>X-Forwarded-Port&lt;/tt> headers are not found in the incoming request, whether to inject them to the API request."
+                        },
+                        {
+                            "name": "HeaderControlList",
+                            "default": "default-accept-all",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/ControlList"
+                                }
+                            },
+                            "summary": "Whether to accept or reject based on headers",
+                            "cli-alias": "header-control-list",
+                            "display": "Header control list",
+                            "description": "Indicates the control list that manages whether to accept or reject based on headers. The default behavior is to accept all headers."
+                        },
+                        {
+                            "name": "ParameterControlList",
+                            "default": "default-reject-all",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/ControlList"
+                                }
+                            },
+                            "summary": "Whether to accept or reject based on URL parameters",
+                            "cli-alias": "parameter-control-list",
+                            "display": "Parameter control list",
+                            "description": "Indicates the control list that manages whether to accept or reject based on URL parameters. The default behavior is to reject all URL parameters."
+                        }
+                    ]
+                },
+                "description": "You use the invoke action to call another service from within your assembly."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/AssemblyActionInvoke"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/AssemblyActionInvoke"
                 }
-            }, 
-            "cli-alias": "encode-plus-char", 
-            "display": "Encode plus characters in query", 
-            "description": "Controls whether to encode &lt;tt>+&lt;/tt> characters in query strings. If set to on, &lt;tt>+&lt;/tt> characters in the query parameter values of the target URL are encoded to &lt;tt>%2F&lt;/tt> . The default value is off."
-        }, 
-        {
-            "name": "KeepPayload", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to include the payload for DELETE requests", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "keep-payload", 
-            "display": "Keep payload", 
-            "description": "Controls whether to include the payload for DELETE requests. If set to on, the invoke action includes the payload for DELETE requests. The default value is off."
-        }, 
-        {
-            "name": "InjectUserAgentHeader", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to inject the default User-Agent header", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "inject-user-agent", 
-            "display": "Inject User-Agent header", 
-            "description": "When the &lt;tt>User-Agent&lt;/tt> header is not found in the incoming request, whether to inject it to the API request."
-        }, 
-        {
-            "name": "InjectProxyHeaders", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to inject proxy-related headers", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "inject-proxy-headers", 
-            "display": "Inject proxy headers", 
-            "description": "When the &lt;tt>X-Forwarded-For&lt;/tt> , &lt;tt>X-Forwarded-Host&lt;/tt> , and &lt;tt>X-Forwarded-Port&lt;/tt> headers are not found in the incoming request, whether to inject them to the API request."
-        }, 
-        {
-            "name": "HeaderControlList", 
-            "default": "default-accept-all", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/ControlList"
-                }
-            }, 
-            "summary": "Whether to accept or reject based on headers", 
-            "cli-alias": "header-control-list", 
-            "display": "Header control list", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "Indicates the control list that manages whether to accept or reject based on headers. The default behavior is to accept all headers."
-        }, 
-        {
-            "name": "ParameterControlList", 
-            "default": "default-reject-all", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/ControlList"
-                }
-            }, 
-            "summary": "Whether to accept or reject based on URL parameters", 
-            "cli-alias": "parameter-control-list", 
-            "display": "Parameter control list", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "Indicates the control list that manages whether to accept or reject based on URL parameters. The default behavior is to reject all URL parameters."
+            }
         }
-    ]
+    }
 }

@@ -1,1005 +1,691 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "name": "UserSummary", 
-            "display": ""
-        }, 
-        {
-            "required": "true", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/MQQM"
-                }
-            }, 
-            "name": "FrontQueueManager", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "display": ""
-        }, 
-        {
-            "required": "true", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/MQQM"
-                }
-            }, 
-            "name": "BackQueueManager", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
+                    "cli-arg": "object",
                     "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
                 }
-            }, 
-            "display": ""
-        }, 
-        {
-            "/mgmt/types/default/dmUInt16": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt16", 
-                    "maximum": "0xFFFF"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmUInt16"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmUInt16"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt16"
-            }, 
-            "name": "Concurrent", 
-            "display": ""
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "display": "", 
-            "name": "WaitTimeout", 
-            "/mgmt/types/default/dmUInt32": {
+                },
                 "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt16",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmUInt32"
                     }
-                }
-            }
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "name": "FirewallExtensions", 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
+                                "name": "on",
                                 "display": "on"
-                            }, 
+                            },
                             {
-                                "name": "off", 
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "display": ""
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "required": "true", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "name": "RequestGetQueue", 
-            "display": ""
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "required": "true", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "name": "RequestPutQueue", 
-            "display": ""
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "required": "true", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "name": "ResponseGetQueue", 
-            "display": ""
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "required": "true", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "name": "ResponsePutQueue", 
-            "display": ""
-        }, 
-        {
-            "required": "true", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/XMLManager"
-                }
-            }, 
-            "name": "XMLManager", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "display": ""
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "name": "ContentType", 
-            "display": ""
-        }, 
-        {
-            "/mgmt/types/default/dmXMLReqRespType": {
-                "type": {
-                    "summary": "XML Firewall Request-Response Type", 
-                    "display": "XML Firewall Request-Response Type", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "display": "SOAP", 
-                                "name": "soap", 
-                                "description": "The traffic is XML formatted in accordance with the SOAP schema standards. The service validates the message against SOAP schemas that are currently in use."
-                            }, 
-                            {
-                                "display": "XML", 
-                                "name": "xml", 
-                                "description": "The traffic is formatted in XML. The service validates the message against XML schemas that are currently in use."
-                            }, 
-                            {
-                                "display": "Pass through", 
-                                "name": "unprocessed", 
-                                "description": "The traffic is passed unaltered."
-                            }, 
-                            {
-                                "display": "Non-XML", 
-                                "name": "preprocessed", 
-                                "description": "The traffic can be any format. However, for traffic that is flat file text or binary, you must use this option. The service passes the contents of the message unaltered. Document processing will not operate directly on the message content, but actions that authenticate and authorize access, set a destination, or attach variables to the context can be performed."
-                            }, 
-                            {
-                                "display": "JSON", 
-                                "name": "json", 
-                                "description": "The traffic is formatted in JavaScript Object Notation (JSON). The service validates the message as well-formed JSON, and the message is made available both as JSON and as JSONx. Document processing can operate on the JSON message content with JSON schema validation, XQuery transformations with JSONiq Extensions, or GatewayScript, and can access the __JSONASJSONX context to process JSONx. Actions can authenticate and authorize access, set a destination, or attach variables to the context."
-                            }
-                        ]
-                    }, 
-                    "name": "dmXMLReqRespType"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmXMLReqRespType"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmXMLReqRespType"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmXMLReqRespType"
-            }, 
-            "name": "RequestType", 
-            "display": ""
-        }, 
-        {
-            "/mgmt/types/default/dmXMLReqRespType": {
+                },
                 "type": {
-                    "summary": "XML Firewall Request-Response Type", 
-                    "display": "XML Firewall Request-Response Type", 
+                    "display": "XML Firewall Request-Response Type",
+                    "name": "dmXMLReqRespType",
                     "value-list": {
                         "value": [
                             {
-                                "display": "SOAP", 
-                                "name": "soap", 
-                                "description": "The traffic is XML formatted in accordance with the SOAP schema standards. The service validates the message against SOAP schemas that are currently in use."
-                            }, 
+                                "display": "SOAP",
+                                "description": "The traffic is XML formatted in accordance with the SOAP schema standards. The service validates the message against SOAP schemas that are currently in use.",
+                                "name": "soap"
+                            },
                             {
-                                "display": "XML", 
-                                "name": "xml", 
-                                "description": "The traffic is formatted in XML. The service validates the message against XML schemas that are currently in use."
-                            }, 
+                                "display": "XML",
+                                "description": "The traffic is formatted in XML. The service validates the message against XML schemas that are currently in use.",
+                                "name": "xml"
+                            },
                             {
-                                "display": "Pass through", 
-                                "name": "unprocessed", 
-                                "description": "The traffic is passed unaltered."
-                            }, 
+                                "display": "Pass through",
+                                "description": "The traffic is passed unaltered.",
+                                "name": "unprocessed"
+                            },
                             {
-                                "display": "Non-XML", 
-                                "name": "preprocessed", 
-                                "description": "The traffic can be any format. However, for traffic that is flat file text or binary, you must use this option. The service passes the contents of the message unaltered. Document processing will not operate directly on the message content, but actions that authenticate and authorize access, set a destination, or attach variables to the context can be performed."
-                            }, 
+                                "display": "Non-XML",
+                                "description": "The traffic can be any format. However, for traffic that is flat file text or binary, you must use this option. The service passes the contents of the message unaltered. Document processing will not operate directly on the message content, but actions that authenticate and authorize access, set a destination, or attach variables to the context can be performed.",
+                                "name": "preprocessed"
+                            },
                             {
-                                "display": "JSON", 
-                                "name": "json", 
-                                "description": "The traffic is formatted in JavaScript Object Notation (JSON). The service validates the message as well-formed JSON, and the message is made available both as JSON and as JSONx. Document processing can operate on the JSON message content with JSON schema validation, XQuery transformations with JSONiq Extensions, or GatewayScript, and can access the __JSONASJSONX context to process JSONx. Actions can authenticate and authorize access, set a destination, or attach variables to the context."
+                                "display": "JSON",
+                                "description": "The traffic is formatted in JavaScript Object Notation (JSON). The service validates the message as well-formed JSON, and the message is made available both as JSON and as JSONx. Document processing can operate on the JSON message content with JSON schema validation, XQuery transformations with JSONiq Extensions, or GatewayScript, and can access the __JSONASJSONX context to process JSONx. Actions can authenticate and authorize access, set a destination, or attach variables to the context.",
+                                "name": "json"
                             }
                         ]
-                    }, 
-                    "name": "dmXMLReqRespType"
-                }, 
+                    },
+                    "summary": "XML Firewall Request-Response Type"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmXMLReqRespType"
-                    }, 
+                        "href": "/mgmt/docs/types/dmStylesheetParameter"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmXMLReqRespType"
+                        "href": "/mgmt/types/default/dmStylesheetParameter"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmXMLReqRespType"
-            }, 
-            "name": "ResponseType", 
-            "display": ""
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/CryptoFWCred"
-                }
-            }, 
-            "name": "Credentials", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "display": ""
-        }, 
-        {
-            "array": "true", 
-            "/mgmt/types/default/dmStylesheetParameter": {
-                "type": {
-                    "name": "dmStylesheetParameter", 
+                    "name": "dmStylesheetParameter",
                     "properties": {
                         "property": [
                             {
-                                "summary": "Name of stylesheet parameter", 
+                                "display": "Parameter Name",
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Parameter Name", 
-                                "name": "ParameterName", 
-                                "description": "&lt;p>Specify the name for the stylesheet parameter. The following list identifies common stylesheet parameters:&lt;/p>&lt;ul>&lt;li>decrypt-key: For decryption operations, the name of the Key object to be used.&lt;/li>&lt;li>keypair-key: For signing operations, the name of the Key object to be used.&lt;/li>&lt;li>keypair-cert: For signing operations, the name of the Certificate object to be used.&lt;/li>&lt;li>recipient: For encryption operations, the name of the Certificate object for the intended recipient.&lt;/li>&lt;li>valcred: For authentication, the name of the Validation Credentials object to be used.&lt;/li>&lt;/ul>"
-                            }, 
+                                },
+                                "description": "&lt;p>Specify the name for the stylesheet parameter. The following list identifies common stylesheet parameters:&lt;/p>&lt;ul>&lt;li>decrypt-key: For decryption operations, the name of the Key object to be used.&lt;/li>&lt;li>keypair-key: For signing operations, the name of the Key object to be used.&lt;/li>&lt;li>keypair-cert: For signing operations, the name of the Certificate object to be used.&lt;/li>&lt;li>recipient: For encryption operations, the name of the Certificate object for the intended recipient.&lt;/li>&lt;li>valcred: For authentication, the name of the Validation Credentials object to be used.&lt;/li>&lt;/ul>",
+                                "name": "ParameterName",
+                                "summary": "Name of stylesheet parameter"
+                            },
                             {
-                                "description": "Specify the value for the parameter. Typically, the value is the name of a configuration object.", 
-                                "required": "true", 
-                                "summary": "Value for stylesheet parameter", 
+                                "description": "Specify the value for the parameter. Typically, the value is the name of a configuration object.",
+                                "required": "true",
+                                "summary": "Value for stylesheet parameter",
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Parameter Value", 
+                                },
+                                "display": "Parameter Value",
                                 "name": "ParameterValue"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmStylesheetParameter"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmStylesheetParameter"
-                    }
                 }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmStylesheetParameter"
-            }, 
-            "display": "", 
-            "name": "StylesheetParameters"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "name": "DefaultParameterNamespace", 
-            "display": ""
-        }, 
-        {
-            "required": "true", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/StylePolicyRule"
-                }
-            }, 
-            "name": "RequestStylePolicyRule", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "display": ""
-        }, 
-        {
-            "required": "true", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/StylePolicyRule"
-                }
-            }, 
-            "name": "ResponseStylePolicyRule", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "display": ""
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/StylePolicyRule"
-                }
-            }, 
-            "name": "ErrorStylePolicyRule", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "display": ""
-        }, 
-        {
-            "/mgmt/types/default/dmAttachmentMode": {
-                "type": {
-                    "summary": "Attachment Processing Mode", 
-                    "display": "Attachment Processing Mode", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Strip attachments before processing", 
-                                "display": "Strip", 
-                                "name": "strip"
-                            }, 
-                            {
-                                "summary": "Reject messages with attachments", 
-                                "display": "Reject", 
-                                "name": "reject"
-                            }, 
-                            {
-                                "summary": "Allow attachments and process intact", 
-                                "display": "Allow", 
-                                "name": "allow"
-                            }, 
-                            {
-                                "summary": "Allow attachements, but limit processing", 
-                                "display": "Streaming", 
-                                "name": "streaming", 
-                                "description": "Allows messages attachments in streaming mode, but provides limited processing. Client requests in the form of a SOAP message package (that is, a SOAP message transmitted together with accompanying attachments) are supported. Processing can be applied to each attachment individually. The system will not build a manifest of all attachments and attachments must be accessed and processed in the order in which they appear in the document."
-                            }, 
-                            {
-                                "summary": "Allow attachments, but unprocessed", 
-                                "display": "Unprocessed", 
-                                "name": "unprocessed", 
-                                "description": "Allows messages with attachements but but does not process the attachments. This option permits forwarding of large attachments. root part of the message (typically containing a SOAP message) is subject to filter or transform actions. Accompanying documents can be passed intact to the server. No processing on parts other than the root part is possible."
-                            }
-                        ]
-                    }, 
-                    "name": "dmAttachmentMode"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmAttachmentMode"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmAttachmentMode"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmAttachmentMode"
-            }, 
-            "name": "RequestAttachments", 
-            "display": ""
-        }, 
-        {
-            "/mgmt/types/default/dmAttachmentMode": {
+                },
                 "type": {
-                    "summary": "Attachment Processing Mode", 
-                    "display": "Attachment Processing Mode", 
+                    "display": "Attachment Processing Mode",
+                    "name": "dmAttachmentMode",
                     "value-list": {
                         "value": [
                             {
-                                "summary": "Strip attachments before processing", 
-                                "display": "Strip", 
-                                "name": "strip"
-                            }, 
+                                "display": "Strip",
+                                "name": "strip",
+                                "summary": "Strip attachments before processing"
+                            },
                             {
-                                "summary": "Reject messages with attachments", 
-                                "display": "Reject", 
-                                "name": "reject"
-                            }, 
+                                "display": "Reject",
+                                "name": "reject",
+                                "summary": "Reject messages with attachments"
+                            },
                             {
-                                "summary": "Allow attachments and process intact", 
-                                "display": "Allow", 
-                                "name": "allow"
-                            }, 
+                                "display": "Allow",
+                                "name": "allow",
+                                "summary": "Allow attachments and process intact"
+                            },
                             {
-                                "summary": "Allow attachements, but limit processing", 
-                                "display": "Streaming", 
-                                "name": "streaming", 
-                                "description": "Allows messages attachments in streaming mode, but provides limited processing. Client requests in the form of a SOAP message package (that is, a SOAP message transmitted together with accompanying attachments) are supported. Processing can be applied to each attachment individually. The system will not build a manifest of all attachments and attachments must be accessed and processed in the order in which they appear in the document."
-                            }, 
+                                "display": "Streaming",
+                                "description": "Allows messages attachments in streaming mode, but provides limited processing. Client requests in the form of a SOAP message package (that is, a SOAP message transmitted together with accompanying attachments) are supported. Processing can be applied to each attachment individually. The system will not build a manifest of all attachments and attachments must be accessed and processed in the order in which they appear in the document.",
+                                "name": "streaming",
+                                "summary": "Allow attachements, but limit processing"
+                            },
                             {
-                                "summary": "Allow attachments, but unprocessed", 
-                                "display": "Unprocessed", 
-                                "name": "unprocessed", 
-                                "description": "Allows messages with attachements but but does not process the attachments. This option permits forwarding of large attachments. root part of the message (typically containing a SOAP message) is subject to filter or transform actions. Accompanying documents can be passed intact to the server. No processing on parts other than the root part is possible."
+                                "display": "Unprocessed",
+                                "description": "Allows messages with attachements but but does not process the attachments. This option permits forwarding of large attachments. root part of the message (typically containing a SOAP message) is subject to filter or transform actions. Accompanying documents can be passed intact to the server. No processing on parts other than the root part is possible.",
+                                "name": "unprocessed",
+                                "summary": "Allow attachments, but unprocessed"
                             }
                         ]
-                    }, 
-                    "name": "dmAttachmentMode"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAttachmentMode"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAttachmentMode"
-                    }
+                    },
+                    "summary": "Attachment Processing Mode"
                 }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmAttachmentMode"
-            }, 
-            "name": "ResponseAttachments", 
-            "display": ""
-        }, 
-        {
-            "/mgmt/types/default/dmRootPartNotFirstAction": {
-                "type": {
-                    "summary": "Action to take when MIME message root part is not first", 
-                    "display": "Root Part Not First Action", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Process the attachments and root part in the order they appear in the original message. All parts are still processed in streaming mode even though only attachments after the root will be streamed from the network.", 
-                                "display": "Process In Order", 
-                                "name": "process-in-order"
-                            }, 
-                            {
-                                "summary": "Buffer attachments before the root into memory. Then process the root part, buffered attachments, and subsequent attachments.", 
-                                "display": "Buffer To Root", 
-                                "name": "buffer"
-                            }, 
-                            {
-                                "summary": "Abort the transaction and return an error", 
-                                "display": "Abort", 
-                                "name": "abort"
-                            }
-                        ]
-                    }, 
-                    "name": "dmRootPartNotFirstAction"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmRootPartNotFirstAction"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmRootPartNotFirstAction"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmRootPartNotFirstAction"
-            }, 
-            "name": "RootPartNotFirstAction", 
-            "display": ""
-        }, 
-        {
-            "/mgmt/types/default/dmAttachmentFormat": {
+                },
                 "type": {
-                    "summary": "XML Firewall Attachment Processing Format", 
-                    "display": "XML Firewall Attachment Processing Format", 
+                    "display": "Root Part Not First Action",
+                    "name": "dmRootPartNotFirstAction",
                     "value-list": {
                         "value": [
                             {
-                                "summary": "Deduce attachment format (MIME or DIME) from content", 
-                                "display": "Dynamic", 
-                                "name": "dynamic"
-                            }, 
+                                "display": "Process In Order",
+                                "name": "process-in-order",
+                                "summary": "Process the attachments and root part in the order they appear in the original message. All parts are still processed in streaming mode even though only attachments after the root will be streamed from the network."
+                            },
                             {
-                                "summary": "MIME encapsulated document", 
-                                "display": "MIME", 
-                                "name": "mime"
-                            }, 
+                                "display": "Buffer To Root",
+                                "name": "buffer",
+                                "summary": "Buffer attachments before the root into memory. Then process the root part, buffered attachments, and subsequent attachments."
+                            },
                             {
-                                "summary": "DIME encapsulated document", 
-                                "display": "DIME", 
-                                "name": "dime"
+                                "display": "Abort",
+                                "name": "abort",
+                                "summary": "Abort the transaction and return an error"
                             }
                         ]
-                    }, 
-                    "name": "dmAttachmentFormat"
-                }, 
+                    },
+                    "summary": "Action to take when MIME message root part is not first"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmAttachmentFormat"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmAttachmentFormat"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmAttachmentFormat"
-            }, 
-            "name": "FrontAttachmentFormat", 
-            "display": ""
-        }, 
-        {
-            "/mgmt/types/default/dmAttachmentFormat": {
+                },
                 "type": {
-                    "summary": "XML Firewall Attachment Processing Format", 
-                    "display": "XML Firewall Attachment Processing Format", 
+                    "display": "XML Firewall Attachment Processing Format",
+                    "name": "dmAttachmentFormat",
                     "value-list": {
                         "value": [
                             {
-                                "summary": "Deduce attachment format (MIME or DIME) from content", 
-                                "display": "Dynamic", 
-                                "name": "dynamic"
-                            }, 
+                                "display": "Dynamic",
+                                "name": "dynamic",
+                                "summary": "Deduce attachment format (MIME or DIME) from content"
+                            },
                             {
-                                "summary": "MIME encapsulated document", 
-                                "display": "MIME", 
-                                "name": "mime"
-                            }, 
+                                "display": "MIME",
+                                "name": "mime",
+                                "summary": "MIME encapsulated document"
+                            },
                             {
-                                "summary": "DIME encapsulated document", 
-                                "display": "DIME", 
-                                "name": "dime"
+                                "display": "DIME",
+                                "name": "dime",
+                                "summary": "DIME encapsulated document"
                             }
                         ]
-                    }, 
-                    "name": "dmAttachmentFormat"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAttachmentFormat"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAttachmentFormat"
-                    }
+                    },
+                    "summary": "XML Firewall Attachment Processing Format"
                 }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmAttachmentFormat"
-            }, 
-            "name": "BackAttachmentFormat", 
-            "display": ""
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmDebugMode"
-            }, 
-            "display": "", 
-            "/mgmt/types/default/dmDebugMode": {
-                "type": {
-                    "name": "dmDebugMode", 
-                    "summary": "Controls for Multistep Probe", 
-                    "display": "Multistep Probe", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Enables the probe to contain a specified number of transactions", 
-                                "display": "On", 
-                                "name": "on", 
-                                "description": "Enables the probe to contain the number of transactions that is defined by the debug history."
-                            }, 
-                            {
-                                "summary": "Disables the probe", 
-                                "display": "Off", 
-                                "name": "off", 
-                                "description": "Disables the probe."
-                            }, 
-                            {
-                                "summary": "Enables the probe to contain 250 transactions", 
-                                "display": "Unbounded", 
-                                "name": "unbounded", 
-                                "description": "Enables the probe to contain 250 transactions. This property is equivalent to specifying a debug history value of 250 transactions."
-                            }
-                        ]
-                    }, 
-                    "description": "Select the behavior of the probe."
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmDebugMode"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmDebugMode"
                     }
-                }
-            }, 
-            "name": "DebugMode"
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "display": "", 
-            "name": "DebugHistory", 
-            "/mgmt/types/default/dmUInt32": {
+                },
                 "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
-                }
-            }
-        }, 
-        {
-            "array": "true", 
-            "type": {
-                "href": "/mgmt/types/default/dmMQMSDebugTriggerType"
-            }, 
-            "display": "", 
-            "name": "DebugTrigger", 
-            "/mgmt/types/default/dmMQMSDebugTriggerType": {
-                "type": {
-                    "summary": "Types of triggers that capture transactions", 
-                    "properties": {
-                        "property": [
+                    "value-list": {
+                        "value": [
                             {
-                                "summary": "Processing Type", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmProcessingType"
-                                }, 
-                                "display": "Processing Type", 
-                                "name": "RuleType", 
-                                "description": "Select the rule direction or type that will trigger the probe."
-                            }, 
+                                "display": "On",
+                                "description": "Enables the probe to contain the number of transactions that is defined by the debug history.",
+                                "name": "on",
+                                "summary": "Enables the probe to contain a specified number of transactions"
+                            },
                             {
-                                "summary": "XPath expression to match element in message", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmXPathExpr"
-                                }, 
-                                "display": "XPath Expression", 
-                                "name": "XPath", 
-                                "description": "Specify an XPath expression of use the XPath Tool to define an XPath expression to match against messages. Messages that contain the expression will trigger the probe."
+                                "display": "Off",
+                                "description": "Disables the probe.",
+                                "name": "off",
+                                "summary": "Disables the probe"
+                            },
+                            {
+                                "display": "Unbounded",
+                                "description": "Enables the probe to contain 250 transactions. This property is equivalent to specifying a debug history value of 250 transactions.",
+                                "name": "unbounded",
+                                "summary": "Enables the probe to contain 250 transactions"
                             }
                         ]
-                    }, 
-                    "name": "dmMQMSDebugTriggerType", 
-                    "display": "Debug Triggers"
-                }, 
+                    },
+                    "display": "Multistep Probe",
+                    "description": "Select the behavior of the probe.",
+                    "name": "dmDebugMode",
+                    "summary": "Controls for Multistep Probe"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmMQMSDebugTriggerType"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmMQMSDebugTriggerType"
                     }
-                }
-            }
-        }, 
-        {
-            "/mgmt/types/default/dmURL": {
+                },
                 "type": {
-                    "cli-arg": "url", 
-                    "name": "dmURL"
-                }, 
+                    "properties": {
+                        "property": [
+                            {
+                                "display": "Processing Type",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmProcessingType"
+                                },
+                                "description": "Select the rule direction or type that will trigger the probe.",
+                                "name": "RuleType",
+                                "summary": "Processing Type"
+                            },
+                            {
+                                "display": "XPath Expression",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmXPathExpr"
+                                },
+                                "description": "Specify an XPath expression of use the XPath Tool to define an XPath expression to match against messages. Messages that contain the expression will trigger the probe.",
+                                "name": "XPath",
+                                "summary": "XPath expression to match element in message"
+                            }
+                        ]
+                    },
+                    "display": "Debug Triggers",
+                    "name": "dmMQMSDebugTriggerType",
+                    "summary": "Types of triggers that capture transactions"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmURL"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmURL"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmURL"
-            }, 
-            "name": "SOAPSchemaURL", 
-            "display": ""
-        }, 
-        {
-            "array": "true", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/CountMonitor"
-                }
-            }, 
-            "name": "CountMonitors", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
+                    "cli-arg": "url",
+                    "name": "dmURL"
                 }
-            }, 
-            "display": ""
-        }, 
-        {
-            "array": "true", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/DurationMonitor"
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "cmd-group": "",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "name": "UserSummary",
+                            "display": ""
+                        },
+                        {
+                            "required": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/MQQM"
+                                }
+                            },
+                            "name": "FrontQueueManager",
+                            "display": ""
+                        },
+                        {
+                            "required": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/MQQM"
+                                }
+                            },
+                            "name": "BackQueueManager",
+                            "display": ""
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "name": "Concurrent",
+                            "display": ""
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "name": "WaitTimeout",
+                            "display": ""
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "name": "FirewallExtensions",
+                            "display": ""
+                        },
+                        {
+                            "required": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "name": "RequestGetQueue",
+                            "display": ""
+                        },
+                        {
+                            "required": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "name": "RequestPutQueue",
+                            "display": ""
+                        },
+                        {
+                            "required": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "name": "ResponseGetQueue",
+                            "display": ""
+                        },
+                        {
+                            "required": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "name": "ResponsePutQueue",
+                            "display": ""
+                        },
+                        {
+                            "required": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/XMLManager"
+                                }
+                            },
+                            "name": "XMLManager",
+                            "display": ""
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "name": "ContentType",
+                            "display": ""
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmXMLReqRespType"
+                            },
+                            "name": "RequestType",
+                            "display": ""
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmXMLReqRespType"
+                            },
+                            "name": "ResponseType",
+                            "display": ""
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoFWCred"
+                                }
+                            },
+                            "name": "Credentials",
+                            "display": ""
+                        },
+                        {
+                            "array": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmStylesheetParameter"
+                            },
+                            "name": "StylesheetParameters",
+                            "display": ""
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "name": "DefaultParameterNamespace",
+                            "display": ""
+                        },
+                        {
+                            "required": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/StylePolicyRule"
+                                }
+                            },
+                            "name": "RequestStylePolicyRule",
+                            "display": ""
+                        },
+                        {
+                            "required": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/StylePolicyRule"
+                                }
+                            },
+                            "name": "ResponseStylePolicyRule",
+                            "display": ""
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/StylePolicyRule"
+                                }
+                            },
+                            "name": "ErrorStylePolicyRule",
+                            "display": ""
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmAttachmentMode"
+                            },
+                            "name": "RequestAttachments",
+                            "display": ""
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmAttachmentMode"
+                            },
+                            "name": "ResponseAttachments",
+                            "display": ""
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmRootPartNotFirstAction"
+                            },
+                            "name": "RootPartNotFirstAction",
+                            "display": ""
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmAttachmentFormat"
+                            },
+                            "name": "FrontAttachmentFormat",
+                            "display": ""
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmAttachmentFormat"
+                            },
+                            "name": "BackAttachmentFormat",
+                            "display": ""
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmDebugMode"
+                            },
+                            "name": "DebugMode",
+                            "display": ""
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "name": "DebugHistory",
+                            "display": ""
+                        },
+                        {
+                            "array": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmMQMSDebugTriggerType"
+                            },
+                            "name": "DebugTrigger",
+                            "display": ""
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmURL"
+                            },
+                            "name": "SOAPSchemaURL",
+                            "display": ""
+                        },
+                        {
+                            "array": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CountMonitor"
+                                }
+                            },
+                            "name": "CountMonitors",
+                            "display": ""
+                        },
+                        {
+                            "array": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/DurationMonitor"
+                                }
+                            },
+                            "name": "DurationMonitors",
+                            "display": ""
+                        }
+                    ]
+                },
+                "uri": "",
+                "name": "MQproxy"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/MQproxy"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/MQproxy"
                 }
-            }, 
-            "name": "DurationMonitors", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "display": ""
+            }
         }
-    ]
+    }
 }

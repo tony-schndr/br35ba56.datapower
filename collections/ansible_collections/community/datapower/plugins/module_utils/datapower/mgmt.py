@@ -85,8 +85,10 @@ class DPManageConfigSchema:
             return isinstance(value, str)
         elif 'format' in type_['type']:
             #TODO: Need to look at all the different 'format's datapower
-            # uses to try and come up with a better way to validate input....  Maybe
+            # uses to try and come up with a better way to validate input....  Maybe...
             return isinstance(value, str)
+        elif 'properties' in type_:
+            return isinstance(value, dict)
         else:
             return False
         return False

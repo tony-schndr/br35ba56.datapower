@@ -1,226 +1,276 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "name": "FilterRefs", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "base-class": "MCFBase"
-                }
-            }, 
-            "summary": "Message content filters objects reference by the group", 
-            "array": "true", 
-            "cli-alias": "filter", 
-            "display": "Message Content Filter", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "description": "Defines the group of message content filter objects."
-        }, 
-        {
-            "name": "Filters", 
-            "type": {
-                "href": "/mgmt/types/default/dmMCFilter"
-            }, 
-            "/mgmt/types/default/dmMCFilter": {
+                },
                 "type": {
-                    "name": "dmMCFilter", 
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmMCFilter"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmMCFilter"
+                    }
+                },
+                "type": {
+                    "name": "dmMCFilter",
                     "properties": {
                         "property": [
                             {
-                                "description": "Specify the name for the message content filter.", 
-                                "required": "true", 
-                                "summary": "The name for the message content filter", 
+                                "description": "Specify the name for the message content filter.",
+                                "required": "true",
+                                "summary": "The name for the message content filter",
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Name", 
+                                },
+                                "display": "Name",
                                 "name": "FilterName"
-                            }, 
+                            },
                             {
-                                "description": "Select the type of the message content filter.", 
-                                "required": "true", 
-                                "summary": "The type of message content filter", 
+                                "description": "Select the type of the message content filter.",
+                                "required": "true",
+                                "summary": "The type of message content filter",
                                 "type": {
                                     "href": "/mgmt/types/default/dmMCFType"
-                                }, 
-                                "display": "Type", 
+                                },
+                                "display": "Type",
                                 "name": "Type"
-                            }, 
+                            },
                             {
-                                "name": "HttpName", 
+                                "name": "HttpName",
                                 "required-when": {
                                     "condition": {
-                                        "property-name": "Type", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Type",
+                                        "evaluation": "property-equals",
                                         "value": "http"
                                     }
-                                }, 
-                                "summary": "The name of the HTTP header field to match against", 
+                                },
+                                "summary": "The name of the HTTP header field to match against",
                                 "ignored-when": {
                                     "condition": {
                                         "evaluation": "logical-true"
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "HTTP Header Name", 
+                                },
+                                "display": "HTTP Header Name",
                                 "description": "Enter the name of the HTTP header field. Available for HTTP header-based filters."
-                            }, 
+                            },
                             {
-                                "name": "HttpValue", 
+                                "name": "HttpValue",
                                 "required-when": {
                                     "condition": {
-                                        "property-name": "Type", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Type",
+                                        "evaluation": "property-equals",
                                         "value": "http"
                                     }
-                                }, 
-                                "summary": "The value of the HTTP header field to match against", 
+                                },
+                                "summary": "The value of the HTTP header field to match against",
                                 "ignored-when": {
                                     "condition": {
                                         "evaluation": "logical-true"
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "HTTP Header Value", 
+                                },
+                                "display": "HTTP Header Value",
                                 "description": "Enter the explicit, literal string value for the HTTP header field. Wildcards are not supported. Available for HTTP header-based filters."
-                            }, 
+                            },
                             {
-                                "name": "XPathExpression", 
+                                "name": "XPathExpression",
                                 "required-when": {
                                     "condition": {
-                                        "property-name": "Type", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Type",
+                                        "evaluation": "property-equals",
                                         "value": "xpath"
                                     }
-                                }, 
-                                "summary": "The XPath expression to match against", 
+                                },
+                                "summary": "The XPath expression to match against",
                                 "ignored-when": {
                                     "condition": {
                                         "evaluation": "logical-true"
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmXPathExpr"
-                                }, 
-                                "display": "XPath Expression", 
+                                },
+                                "display": "XPath Expression",
                                 "description": "Enter the XPath expression or use the builder to define the XPath expression that is used to evaluate the messages to obtain the XPath value. Available for XPath-based filters."
-                            }, 
+                            },
                             {
-                                "name": "XPathValue", 
+                                "name": "XPathValue",
                                 "required-when": {
                                     "condition": {
-                                        "property-name": "Type", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Type",
+                                        "evaluation": "property-equals",
                                         "value": "xpath"
                                     }
-                                }, 
-                                "summary": "The value of the XPath expression to match against", 
+                                },
+                                "summary": "The value of the XPath expression to match against",
                                 "ignored-when": {
                                     "condition": {
                                         "evaluation": "logical-true"
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "XPath Value", 
+                                },
+                                "display": "XPath Value",
                                 "description": "Enter the contents of the element for the XPath expression. Available for XPath-based filters."
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmMCFilter"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmMCFilter"
-                    }
                 }
-            }, 
-            "summary": "Message content filters in the group", 
-            "array": "true", 
-            "cli-alias": "mcfilter", 
-            "display": "Message Content Filter", 
-            "description": "Defines the group of message content filters."
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "MessageContentFilters",
+                "display": "Message Content Filters",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "FilterRefs"
+                            }
+                        ],
+                        "name": "mcf12",
+                        "display": "MCF 1.2"
+                    },
+                    {
+                        "member": {
+                            "name": "Filters"
+                        },
+                        "name": "mcf11",
+                        "display": "MCF 1.1"
+                    }
+                ],
+                "uri": "policy/mcfilters",
+                "summary": "Manage a group of message content filters",
+                "cmd-group": "webservice",
+                "cli-alias": "mcfilters",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation"
+                        },
+                        {
+                            "name": "FilterRefs",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "base-class": "MCFBase"
+                                }
+                            },
+                            "summary": "Message content filters objects reference by the group",
+                            "array": "true",
+                            "cli-alias": "filter",
+                            "display": "Message Content Filter",
+                            "description": "Defines the group of message content filter objects."
+                        },
+                        {
+                            "name": "Filters",
+                            "type": {
+                                "href": "/mgmt/types/default/dmMCFilter"
+                            },
+                            "summary": "Message content filters in the group",
+                            "array": "true",
+                            "cli-alias": "mcfilter",
+                            "display": "Message Content Filter",
+                            "description": "Defines the group of message content filters."
+                        }
+                    ]
+                },
+                "description": "A Message Content Filters is a group of HTTP header-based and XPath-based filters. &lt;ul>&lt;li>For HTTP header-based filters, the filter succeeds when the name and value of an HTTP header field match.&lt;/li>&lt;li>For XPath-based filters, the filter succeeds when a document matches the element structure and content of the XPath expression and value.&lt;/li>&lt;/ul>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/MessageContentFilters"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/MessageContentFilters"
+                }
+            }
         }
-    ]
+    }
 }

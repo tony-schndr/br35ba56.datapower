@@ -1,1093 +1,935 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "description": "A descriptive summary for the configuration.", 
-            "cli-alias": "summary", 
-            "summary": "Enter a brief descriptive summary for the configuration.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments", 
-            "name": "UserSummary"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
+                    "cli-arg": "string",
                     "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
                 }
-            }, 
-            "description": "Specifies the ID of the API.", 
-            "cli-alias": "id", 
-            "summary": "ID of the API", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "API ID", 
-            "name": "ID"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "description": "Specifies the name of the API.", 
-            "cli-alias": "name", 
-            "summary": "Name of the API", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "API name", 
-            "name": "Name"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "Version", 
-            "default": "1.0.0", 
-            "cli-alias": "version", 
-            "summary": "Version of the API", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "API version", 
-            "description": "Specifies the version of the API."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "BasePath", 
-            "default": "/", 
-            "cli-alias": "base-path", 
-            "required": "true", 
-            "summary": "The base path for the API", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "valid-regexp": "^\\/$||^\\/([0-9a-zA-Z-_.~%!$&amp;'()*+,;=:@]+\\/)*[0-9a-zA-Z-_.~%!$&amp;'()*+,;=:@]+$", 
-            "display": "Base path", 
-            "description": "Specifies the base path on which the API is served, which is relative to the host. When the base path is not specified, the APIs are served directly under the host. The base path does not include the host name or any additional segments for paths or operations. The base path must start but not end with slash (/). All resources in a REST API are defined relative to its base path."
-        }, 
-        {
-            "name": "HtmlPage", 
-            "/mgmt/types/default/dmFSFile": {
-                "type": {
-                    "cli-arg": "file", 
-                    "name": "dmFSFile"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmFSFile"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmFSFile"
                     }
-                }
-            }, 
-            "locations": {
-                "location": [
-                    "local", 
-                    "temporary", 
-                    "store"
-                ]
-            }, 
-            "summary": "Location of a static HTML page", 
-            "cli-alias": "html-page", 
-            "type": {
-                "href": "/mgmt/types/default/dmFSFile"
-            }, 
-            "display": "HTML page", 
-            "description": "Specifies the name and location of a static HTML page that the API can return. Import the file to the &lt;tt>local:&lt;/tt> directory, the &lt;tt>store:&lt;/tt> directory, or the &lt;tt>temporary:&lt;/tt> directory, or one their subdirectories in the DataPower file system."
-        }, 
-        {
-            "name": "Type", 
-            "default": "standard", 
-            "type": {
-                "href": "/mgmt/types/default/dmAPIType"
-            }, 
-            "/mgmt/types/default/dmAPIType": {
+                },
                 "type": {
-                    "summary": "Select the API type", 
-                    "display": "API Type", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "REST API", 
-                                "display": "REST API", 
-                                "name": "standard", 
-                                "description": "Indicates a REST API that is compliant with version 2.0 of the Swagger specification."
-                            }, 
-                            {
-                                "summary": "SOAP API", 
-                                "display": "SOAP API", 
-                                "name": "wsdl", 
-                                "description": "Indicates a SOAP API to an existing web service."
-                            }, 
-                            {
-                                "summary": "GraphQL API", 
-                                "display": "GraphQL API", 
-                                "name": "graphql", 
-                                "description": "Indicates a GraphQL API that is compliant with the GraphQL specification."
-                            }
-                        ]
-                    }, 
-                    "name": "dmAPIType"
-                }, 
+                    "cli-arg": "file",
+                    "name": "dmFSFile"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmAPIType"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmAPIType"
                     }
-                }
-            }, 
-            "summary": "Type of the API", 
-            "cli-alias": "type", 
-            "display": "Type", 
-            "description": "Specifies the API type."
-        }, 
-        {
-            "description": "Specifies the assembly to apply to API calls. An assembly comprises a rule that defines the actions to run against the API call and how to handle the errors during assembly execution.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/Assembly"
-                }
-            }, 
-            "summary": "The assembly for API invocation", 
-            "cli-alias": "assembly", 
-            "display": "Assembly", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "Assembly"
-        }, 
-        {
-            "name": "Path", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/APIPath"
-                }
-            }, 
-            "required": "true", 
-            "summary": "Routes to access REST APIs", 
-            "array": "true", 
-            "cli-alias": "path", 
-            "display": "Paths", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "Specifies a list of paths through which users access the API operations. A path consists of one or more HTTP operations."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "Consume", 
-            "cli-alias": "consume", 
-            "summary": "MIME types that the API can consume", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "array": "true", 
-            "valid-regexp": "[a-zA-Z0-9][a-zA-Z0-9!#$&amp;\\-^_]{0,126}\\/[a-zA-Z0-9][a-zA-Z0-9!#$&amp;\\-^_+.]{0,126}(;\\s*[a-zA-Z0-9][a-zA-Z0-9!#$&amp;\\-^_=\"]{0,126})*$", 
-            "display": "Consumes", 
-            "description": "Specifies a list of MIME types that the API can consume. These MIME types apply to all API operations. You can override the setting for specific operations in the API operation."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "Produce", 
-            "cli-alias": "produce", 
-            "summary": "MIME types that the API can produce", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "array": "true", 
-            "valid-regexp": "^(application|audio|image|message|multipart|text|video)\\/[a-zA-Z-]+$", 
-            "display": "Produces", 
-            "description": "Specifies a list of MIME types that the API can produce. These MIME types apply to all API operations. You can override the setting for specific operations in the API operation."
-        }, 
-        {
-            "name": "SwaggerLocation", 
-            "/mgmt/types/default/dmFSFile": {
-                "type": {
-                    "cli-arg": "file", 
-                    "name": "dmFSFile"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmFSFile"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmFSFile"
-                    }
-                }
-            }, 
-            "locations": {
-                "location": [
-                    "local", 
-                    "temporary"
-                ]
-            }, 
-            "summary": "The name and location of the Swagger document", 
-            "cli-alias": "swagger-location", 
-            "type": {
-                "href": "/mgmt/types/default/dmFSFile"
-            }, 
-            "display": "Swagger location", 
-            "description": "&lt;p>When you create the API definition from a Swagger document, specify the name and location of the Swagger document. Prepare the document as follows before you specify the location.&lt;/p>&lt;ol>&lt;li>When the Swagger document is a YAML file, convert it to JSON format.&lt;/li>&lt;li>Import the JSON file to the &lt;tt>local:&lt;/tt> directory, the &lt;tt>temporary:&lt;/tt> directory, or one their subdirectories in the DataPower file system.&lt;/li>&lt;/ol>&lt;p>When you create the API definition by manually specifying the API properties, this field is not applicable.&lt;/p>"
-        }, 
-        {
-            "name": "GraphQLSchema", 
-            "required-when": {
-                "condition": {
-                    "property-name": "Type", 
-                    "evaluation": "property-equals", 
-                    "value": "graphql"
-                }
-            }, 
-            "summary": "GraphQL schema location.", 
-            "cli-alias": "graphql-schema", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "Type", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "graphql"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/APISchema"
-                }
-            }, 
-            "display": "GraphQL schema location", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "GraphQL schema location."
-        }, 
-        {
-            "name": "WsdlAdvertisedSchemaLocation", 
-            "/mgmt/types/default/dmFSFile": {
-                "type": {
-                    "cli-arg": "file", 
-                    "name": "dmFSFile"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmFSFile"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmFSFile"
-                    }
-                }
-            }, 
-            "summary": "The name and location of the WSDL file or archive file with a WSDL file, which should be used to advertise the contract for this API.", 
-            "cli-alias": "wsdl-advertised-schema-location", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "Type", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "wsdl"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmFSFile"
-            }, 
-            "display": "WSDL advertised schema location", 
-            "description": "When you create the API definition from a WSDL file, specify the name and location of the WSDL document or archive of the WSDL and its dependencies."
-        }, 
-        {
-            "name": "WsdlValidationSchema", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/APISchema"
-                }
-            }, 
-            "summary": "The name and location of the top-level WSDL file to use to validate SOAP payloads.", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "Type", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "wsdl"
-                }
-            }, 
-            "cli-alias": "wsdl-validation-schema", 
-            "display": "WSDL validation schema location", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "When you create the API definition from a WSDL file, specify the name and location of the top-level WSDL document itself, which should be used to validate incoming SOAP payloads."
-        }, 
-        {
-            "name": "SecurityRequirement", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/APISecurityRequirement"
-                }
-            }, 
-            "summary": "Required security schemes to execute API operations", 
-            "array": "true", 
-            "cli-alias": "security-req", 
-            "display": "Security requirements", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "Specifies the alternative security requirements to enforce for the API as a whole (that is, there is a logical OR between the security requirements). By default, the security requirement is applied to all operations in the API. But for each API operation, you can override the API-level security by separately specifying security schemes to enforce on the operation level."
-        }, 
-        {
-            "name": "RequireAPIMutualTLS", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Require mutual TLS protection", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "display": "API Type",
+                    "name": "dmAPIType",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
+                                "display": "REST API",
+                                "description": "Indicates a REST API that is compliant with version 2.0 of the Swagger specification.",
+                                "name": "standard",
+                                "summary": "REST API"
+                            },
                             {
-                                "name": "off", 
+                                "display": "SOAP API",
+                                "description": "Indicates a SOAP API to an existing web service.",
+                                "name": "wsdl",
+                                "summary": "SOAP API"
+                            },
+                            {
+                                "display": "GraphQL API",
+                                "description": "Indicates a GraphQL API that is compliant with the GraphQL specification.",
+                                "name": "graphql",
+                                "summary": "GraphQL API"
+                            }
+                        ]
+                    },
+                    "summary": "Select the API type"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "cli-alias": "require-api-mutual-tls", 
-            "display": "API protection", 
-            "description": "Require mutual TLS protection for this API."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmAPIMutualTLSSource"
-            }, 
-            "name": "APIMutualTLSSource", 
-            "required-when": {
-                "condition": {
-                    "property-name": "RequireAPIMutualTLS", 
-                    "evaluation": "property-equals", 
-                    "value": "on"
-                }
-            }, 
-            "summary": "Sources to obtain the client certificate for mutual TLS", 
-            "/mgmt/types/default/dmAPIMutualTLSSource": {
-                "type": {
-                    "summary": "Source of API protection data", 
-                    "display": "API Protection Source", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Use the value from a specific HTTP header.", 
-                                "display": "HTTP header", 
-                                "name": "header", 
-                                "description": "Use the value from a specific HTTP header."
-                            }, 
-                            {
-                                "summary": "Use the client certificate from the handshake.", 
-                                "display": "TLS client", 
-                                "name": "tls_cert", 
-                                "description": "Use the client certificate from the handshake."
-                            }
-                        ]
-                    }, 
-                    "name": "dmAPIMutualTLSSource"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmAPIMutualTLSSource"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmAPIMutualTLSSource"
                     }
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "RequireAPIMutualTLS", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "on"
-                }
-            }, 
-            "array": "true", 
-            "cli-alias": "api-mutual-tls-source", 
-            "display": "API protection sources", 
-            "description": "Indicates the sources to obtain the client certificate for mutual TLS. Because you can define multiple ways to obtain the source, ensure that you sequence the methods appropriately."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "APIMutualTLSHeaderName", 
-            "default": "X-Client-Certificate", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "summary": "HTTP header that contains the client certificate for mutual TLS", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "RequireAPIMutualTLS", 
-                            "evaluation": "property-does-not-equal", 
-                            "value": "on"
-                        }, 
-                        {
-                            "property-name": "APIMutualTLSSource", 
-                            "evaluation": "property-value-in-list", 
-                            "value": "tls_cert"
-                        }
-                    ]
-                }
-            }, 
-            "cli-alias": "api-mutual-tls-header-name", 
-            "display": "API protection HTTP header", 
-            "description": "The HTTP header that contains the client certificate for mutual TLS. The default value is &lt;tt>X-Client-Certificate&lt;/tt> ."
-        }, 
-        {
-            "name": "Properties", 
-            "/mgmt/types/default/dmAPIProperty": {
-                "type": {
-                    "summary": "Configure and manage API properties", 
-                    "properties": {
-                        "property": [
+                    "display": "API Protection Source",
+                    "name": "dmAPIMutualTLSSource",
+                    "value-list": {
+                        "value": [
                             {
-                                "name": "PropertyName", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "required": "true", 
-                                "summary": "Name of the property", 
-                                "valid-regexp": "^[a-zA-Z\\_$][a-zA-Z\\_\\-$0-9]*$", 
-                                "display": "Property name", 
-                                "description": "Specifies the name of the property. After a custom property is added, the assembly actions can reference the property through the property name."
-                            }, 
+                                "display": "HTTP header",
+                                "description": "Use the value from a specific HTTP header.",
+                                "name": "header",
+                                "summary": "Use the value from a specific HTTP header."
+                            },
                             {
-                                "name": "Catalog", 
-                                "default": "*", 
-                                "required": "true", 
-                                "summary": "Name of the API catalog that you want to set property value for", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Catalog", 
-                                "description": "Specifies the name of an API catalog. The name must match the catalog name of an existing API collection. The default of asterisk (*) indicates that the value applies to all catalogs."
-                            }, 
-                            {
-                                "description": "Specifies the property value for the API catalog.", 
-                                "default": "", 
-                                "summary": "Property value for the specified API catalog", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Value", 
-                                "name": "Value"
+                                "display": "TLS client",
+                                "description": "Use the client certificate from the handshake.",
+                                "name": "tls_cert",
+                                "summary": "Use the client certificate from the handshake."
                             }
                         ]
-                    }, 
-                    "name": "dmAPIProperty", 
-                    "display": "Custom properties"
-                }, 
+                    },
+                    "summary": "Source of API protection data"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmAPIProperty"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmAPIProperty"
                     }
-                }
-            }, 
-            "summary": "Custom API properties", 
-            "type": {
-                "href": "/mgmt/types/default/dmAPIProperty"
-            }, 
-            "array": "true", 
-            "cli-alias": "property", 
-            "display": "Custom properties", 
-            "description": "Specifies a list of custom API property entries. An API property is a type of context variable whose value is dependent on the API collection that the API is provisioned in. Collection-specific API properties allow you to use the same API definition in different API collections when a property in a collection requires a unique or different value. A custom property entry specifies one property and the property value for one collection. To add another custom property, or to specify a different property value for another collection, add another entry."
-        }, 
-        {
-            "name": "Schemas", 
-            "type": {
-                "href": "/mgmt/types/default/dmAPIDataTypeDefinition"
-            }, 
-            "/mgmt/types/default/dmAPIDataTypeDefinition": {
+                },
                 "type": {
-                    "summary": "Definition of the API data type", 
                     "properties": {
                         "property": [
                             {
-                                "description": "Specifies the name of the data type.", 
-                                "required": "true", 
-                                "summary": "Name of the data type", 
+                                "name": "PropertyName",
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Name", 
-                                "name": "Name"
-                            }, 
+                                },
+                                "required": "true",
+                                "summary": "Name of the property",
+                                "valid-regexp": "^[a-zA-Z\\_$][a-zA-Z\\_\\-$0-9]*$",
+                                "display": "Property name",
+                                "description": "Specifies the name of the property. After a custom property is added, the assembly actions can reference the property through the property name."
+                            },
                             {
-                                "description": "Specifies the API schema object.", 
-                                "required": "true", 
-                                "summary": "Schema of the data type", 
+                                "name": "Catalog",
+                                "default": "*",
+                                "required": "true",
+                                "summary": "Name of the API catalog that you want to set property value for",
                                 "type": {
-                                    "href": "/mgmt/types/default/dmReference", 
-                                    "reference-to": {
-                                        "href": "/mgmt/metadata/default/APISchema"
-                                    }
-                                }, 
-                                "display": "Schema", 
-                                "name": "Schema"
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Catalog",
+                                "description": "Specifies the name of an API catalog. The name must match the catalog name of an existing API collection. The default of asterisk (*) indicates that the value applies to all catalogs."
+                            },
+                            {
+                                "description": "Specifies the property value for the API catalog.",
+                                "default": "",
+                                "summary": "Property value for the specified API catalog",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Value",
+                                "name": "Value"
                             }
                         ]
-                    }, 
-                    "name": "dmAPIDataTypeDefinition", 
-                    "display": "Data type definition"
-                }, 
+                    },
+                    "display": "Custom properties",
+                    "name": "dmAPIProperty",
+                    "summary": "Configure and manage API properties"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmAPIDataTypeDefinition"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmAPIDataTypeDefinition"
                     }
-                }
-            }, 
-            "summary": "API schemas", 
-            "array": "true", 
-            "cli-alias": "schema", 
-            "display": "Schemas", 
-            "description": "Specifies a list of API schema objects that define data types for request or message validation. An API data type consists of a name and the API schema object."
-        }, 
-        {
-            "name": "CORSToggle", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to enable the API Gateway to handle CORS requests", 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
+                    "properties": {
+                        "property": [
                             {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
+                                "description": "Specifies the name of the data type.",
+                                "required": "true",
+                                "summary": "Name of the data type",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Name",
+                                "name": "Name"
+                            },
                             {
-                                "name": "off", 
-                                "display": "off"
+                                "description": "Specifies the API schema object.",
+                                "required": "true",
+                                "summary": "Schema of the data type",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference",
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/APISchema"
+                                    }
+                                },
+                                "display": "Schema",
+                                "name": "Schema"
                             }
                         ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
+                    },
+                    "display": "Data type definition",
+                    "name": "dmAPIDataTypeDefinition",
+                    "summary": "Definition of the API data type"
                 }
-            }, 
-            "cli-alias": "cors", 
-            "display": "Enable CORS", 
-            "description": "Indicates whether to enable the API Gateway to handle the the cross-origin resource sharing (CORS) requests &lt;ul>&lt;li>When enabled, the API Gateway runs the API CORS action to handle all CORS requests that are made to the API.&lt;/li>&lt;li>When not enabled, all CORS requests are handled by the assembly or the back end. When preflight requests are passed to the back end, an &lt;tt>OPTIONS&lt;/tt> operation must be defined for each path that can be the target of the request. Otherwise, the preflight request to that path can result in an error.&lt;/li>&lt;li>When a preflight request is received, the API routing action sets the &lt;tt>request.attributes.isCORSPreflight&lt;/tt> flag to &lt;tt>true&lt;/tt> . This flag is set even when CORS is not enabled in the API definition. This behavior allows for the customized handling of preflight requests.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "name": "ActivityLogToggle", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to enable logging for API activities", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "activity-log", 
-            "display": "Enable logging", 
-            "description": "&lt;p>Indicates whether to enable logging for API activities. The API Gateway runs the API activity log action to generate logs. To generate log data for calls that invoke this API, you must first enable this property and ensure that the following conditions are met.&lt;/p>&lt;ul>&lt;li>The logging type for successful and unsuccessful API invocations is not set to none.&lt;/li>&lt;li>The activity log action is added in the API rule associated with the API definition.&lt;/li>&lt;/ul>&lt;p>When disabled, the API Gateway does not generate any log data for calls that invoke this API.&lt;/p>"
-        }, 
-        {
-            "/mgmt/types/default/dmLogContent": {
-                "type": {
-                    "summary": "The type of content to be logged", 
-                    "display": "Log Content", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Does not log any content", 
-                                "display": "none", 
-                                "name": "none", 
-                                "description": "Indicates that no logging occurs."
-                            }, 
-                            {
-                                "summary": "Logs invocation only", 
-                                "display": "activity", 
-                                "name": "activity", 
-                                "description": "Logs invocation only (only the resource URI is recorded)."
-                            }, 
-                            {
-                                "summary": "Logs activity and header", 
-                                "display": "header", 
-                                "name": "header", 
-                                "description": "Logs activity and header."
-                            }, 
-                            {
-                                "summary": "Logs activity, header, and payload", 
-                                "display": "payload", 
-                                "name": "payload", 
-                                "description": "Logs activity, header, and payload (body of the message)."
-                            }
-                        ]
-                    }, 
-                    "name": "dmLogContent"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmLogContent"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmLogContent"
                     }
-                }
-            }, 
-            "name": "Content", 
-            "default": "activity", 
-            "type": {
-                "href": "/mgmt/types/default/dmLogContent"
-            }, 
-            "required": "true", 
-            "summary": "Type of content to be logged when the API invocation is successful", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "ActivityLogToggle", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "on"
-                }
-            }, 
-            "cli-alias": "success-content", 
-            "display": "Content on success", 
-            "description": "Defines the type of content to log when the API invocation is successful."
-        }, 
-        {
-            "/mgmt/types/default/dmLogContent": {
+                },
                 "type": {
-                    "summary": "The type of content to be logged", 
-                    "display": "Log Content", 
+                    "display": "Log Content",
+                    "name": "dmLogContent",
                     "value-list": {
                         "value": [
                             {
-                                "summary": "Does not log any content", 
-                                "display": "none", 
-                                "name": "none", 
-                                "description": "Indicates that no logging occurs."
-                            }, 
+                                "display": "none",
+                                "description": "Indicates that no logging occurs.",
+                                "name": "none",
+                                "summary": "Does not log any content"
+                            },
                             {
-                                "summary": "Logs invocation only", 
-                                "display": "activity", 
-                                "name": "activity", 
-                                "description": "Logs invocation only (only the resource URI is recorded)."
-                            }, 
+                                "display": "activity",
+                                "description": "Logs invocation only (only the resource URI is recorded).",
+                                "name": "activity",
+                                "summary": "Logs invocation only"
+                            },
                             {
-                                "summary": "Logs activity and header", 
-                                "display": "header", 
-                                "name": "header", 
-                                "description": "Logs activity and header."
-                            }, 
+                                "display": "header",
+                                "description": "Logs activity and header.",
+                                "name": "header",
+                                "summary": "Logs activity and header"
+                            },
                             {
-                                "summary": "Logs activity, header, and payload", 
-                                "display": "payload", 
-                                "name": "payload", 
-                                "description": "Logs activity, header, and payload (body of the message)."
+                                "display": "payload",
+                                "description": "Logs activity, header, and payload (body of the message).",
+                                "name": "payload",
+                                "summary": "Logs activity, header, and payload"
                             }
                         ]
-                    }, 
-                    "name": "dmLogContent"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmLogContent"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmLogContent"
-                    }
+                    },
+                    "summary": "The type of content to be logged"
                 }
-            }, 
-            "name": "ErrorContent", 
-            "default": "payload", 
-            "type": {
-                "href": "/mgmt/types/default/dmLogContent"
-            }, 
-            "required": "true", 
-            "summary": "Type of content to be logged when the API invocation completes with error", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "ActivityLogToggle", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "on"
-                }
-            }, 
-            "cli-alias": "error-content", 
-            "display": "Content on error", 
-            "description": "Defines the type of content to log when the API invocation completes with error."
-        }, 
-        {
-            "name": "MessageBuffering", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to enable message buffering for the API", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "message-buffering", 
-            "display": "Enable message buffering", 
-            "description": "&lt;p>Indicates whether to enable message buffering for the API.&lt;/p>&lt;ul>&lt;li>When enabled, the message payload and the output of the assembly invoke action are read as a binary large object (BLOB).&lt;/li>&lt;li>When disabled, the message payload and the output of the assembly invoke action are only read by an asynchronous API call.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "name": "DeploymentState", 
-            "default": "running", 
-            "type": {
-                "href": "/mgmt/types/default/dmAPIDeploymentState"
-            }, 
-            "summary": "Deployment state of the API", 
-            "/mgmt/types/default/dmAPIDeploymentState": {
-                "type": {
-                    "summary": "Deployment state of the API", 
-                    "display": "Deployment state", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "The API is running", 
-                                "display": "running", 
-                                "name": "running", 
-                                "description": "The API is running."
-                            }, 
-                            {
-                                "summary": "The API is suspended", 
-                                "display": "suspended", 
-                                "name": "suspended", 
-                                "description": "The API is suspended. When an API is suspended, you cannot access the API through any plan."
-                            }
-                        ]
-                    }, 
-                    "name": "dmAPIDeploymentState"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmAPIDeploymentState"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmAPIDeploymentState"
                     }
-                }
-            }, 
-            "cli-alias": "deployment-state", 
-            "display": "Deployment state", 
-            "description": "Specifies the deployment state of the API. By default, the deployment state of an API is running."
-        }, 
-        {
-            "name": "ShareRateLimitCount", 
-            "default": "unset", 
-            "type": {
-                "href": "/mgmt/types/default/dmAPIShareCount"
-            }, 
-            "summary": "Share rate limit count among all APIs under an application.", 
-            "/mgmt/types/default/dmAPIShareCount": {
+                },
                 "type": {
-                    "summary": "Share rate limit count among all APIs under an application.", 
-                    "display": "Share rate limit count", 
+                    "display": "Deployment state",
+                    "name": "dmAPIDeploymentState",
                     "value-list": {
                         "value": [
                             {
-                                "summary": "Use the value set at API Gateway.", 
-                                "display": "unset", 
-                                "name": "unset", 
-                                "description": "Use the value set at API Gateway."
-                            }, 
+                                "display": "running",
+                                "description": "The API is running.",
+                                "name": "running",
+                                "summary": "The API is running"
+                            },
                             {
-                                "summary": "Share rate limit count among all APIs under an application.", 
-                                "display": "yes", 
-                                "name": "yes", 
-                                "description": "When set to yes, share rate limit count among all APIs under an application."
-                            }, 
-                            {
-                                "summary": "Do not share rate limit count among all APIs under an application.", 
-                                "display": "no", 
-                                "name": "no", 
-                                "description": "When set to no, do not share rate limit count among all APIs under an application."
+                                "display": "suspended",
+                                "description": "The API is suspended. When an API is suspended, you cannot access the API through any plan.",
+                                "name": "suspended",
+                                "summary": "The API is suspended"
                             }
                         ]
-                    }, 
-                    "name": "dmAPIShareCount"
-                }, 
+                    },
+                    "summary": "Deployment state of the API"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmAPIShareCount"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmAPIShareCount"
                     }
+                },
+                "type": {
+                    "display": "Share rate limit count",
+                    "name": "dmAPIShareCount",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "unset",
+                                "description": "Use the value set at API Gateway.",
+                                "name": "unset",
+                                "summary": "Use the value set at API Gateway."
+                            },
+                            {
+                                "display": "yes",
+                                "description": "When set to yes, share rate limit count among all APIs under an application.",
+                                "name": "yes",
+                                "summary": "Share rate limit count among all APIs under an application."
+                            },
+                            {
+                                "display": "no",
+                                "description": "When set to no, do not share rate limit count among all APIs under an application.",
+                                "name": "no",
+                                "summary": "Do not share rate limit count among all APIs under an application."
+                            }
+                        ]
+                    },
+                    "summary": "Share rate limit count among all APIs under an application."
                 }
-            }, 
-            "cli-alias": "share-count", 
-            "display": "Share rate limit count", 
-            "description": "Share rate limit count among all APIs under an application."
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "APIDefinition",
+                "display": "API Definition",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "Name"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "BasePath"
+                            },
+                            {
+                                "name": "Type"
+                            }
+                        ],
+                        "name": "summary",
+                        "display": "Summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "ID"
+                            },
+                            {
+                                "name": "Name"
+                            },
+                            {
+                                "name": "Version"
+                            },
+                            {
+                                "name": "BasePath"
+                            },
+                            {
+                                "name": "Type"
+                            },
+                            {
+                                "name": "Assembly"
+                            },
+                            {
+                                "name": "Path"
+                            },
+                            {
+                                "name": "Consume"
+                            },
+                            {
+                                "name": "Produce"
+                            },
+                            {
+                                "name": "SwaggerLocation"
+                            },
+                            {
+                                "name": "GraphQLSchema"
+                            },
+                            {
+                                "name": "WsdlAdvertisedSchemaLocation"
+                            },
+                            {
+                                "name": "WsdlValidationSchema"
+                            },
+                            {
+                                "name": "SecurityRequirement"
+                            },
+                            {
+                                "name": "RequireAPIMutualTLS"
+                            },
+                            {
+                                "name": "APIMutualTLSSource"
+                            },
+                            {
+                                "name": "APIMutualTLSHeaderName"
+                            },
+                            {
+                                "name": "Properties"
+                            },
+                            {
+                                "name": "Schemas"
+                            },
+                            {
+                                "name": "CORSToggle"
+                            },
+                            {
+                                "name": "MessageBuffering"
+                            },
+                            {
+                                "name": "DeploymentState"
+                            },
+                            {
+                                "name": "ShareRateLimitCount"
+                            }
+                        ],
+                        "name": "main",
+                        "display": "Main"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "ActivityLogToggle"
+                            },
+                            {
+                                "name": "Content"
+                            },
+                            {
+                                "name": "ErrorContent"
+                            }
+                        ],
+                        "name": "APIActivityLog",
+                        "display": "API Activity Logging"
+                    }
+                ],
+                "uri": "config/api-definition",
+                "summary": "Configure and manage API Definitions",
+                "cmd-group": "configuration",
+                "cli-alias": "api-definition",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "A descriptive summary for the configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter a brief descriptive summary for the configuration.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "description": "Specifies the ID of the API.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "ID of the API",
+                            "cli-alias": "id",
+                            "display": "API ID",
+                            "name": "ID"
+                        },
+                        {
+                            "description": "Specifies the name of the API.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Name of the API",
+                            "cli-alias": "name",
+                            "display": "API name",
+                            "name": "Name"
+                        },
+                        {
+                            "name": "Version",
+                            "default": "1.0.0",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Version of the API",
+                            "cli-alias": "version",
+                            "display": "API version",
+                            "description": "Specifies the version of the API."
+                        },
+                        {
+                            "name": "BasePath",
+                            "default": "/",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "summary": "The base path for the API",
+                            "cli-alias": "base-path",
+                            "valid-regexp": "^\\/$||^\\/([0-9a-zA-Z-_.~%!$&amp;'()*+,;=:@]+\\/)*[0-9a-zA-Z-_.~%!$&amp;'()*+,;=:@]+$",
+                            "display": "Base path",
+                            "description": "Specifies the base path on which the API is served, which is relative to the host. When the base path is not specified, the APIs are served directly under the host. The base path does not include the host name or any additional segments for paths or operations. The base path must start but not end with slash (/). All resources in a REST API are defined relative to its base path."
+                        },
+                        {
+                            "name": "HtmlPage",
+                            "type": {
+                                "href": "/mgmt/types/default/dmFSFile"
+                            },
+                            "locations": {
+                                "location": [
+                                    "local",
+                                    "temporary",
+                                    "store"
+                                ]
+                            },
+                            "summary": "Location of a static HTML page",
+                            "cli-alias": "html-page",
+                            "display": "HTML page",
+                            "description": "Specifies the name and location of a static HTML page that the API can return. Import the file to the &lt;tt>local:&lt;/tt> directory, the &lt;tt>store:&lt;/tt> directory, or the &lt;tt>temporary:&lt;/tt> directory, or one their subdirectories in the DataPower file system."
+                        },
+                        {
+                            "name": "Type",
+                            "default": "standard",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAPIType"
+                            },
+                            "summary": "Type of the API",
+                            "cli-alias": "type",
+                            "display": "Type",
+                            "description": "Specifies the API type."
+                        },
+                        {
+                            "description": "Specifies the assembly to apply to API calls. An assembly comprises a rule that defines the actions to run against the API call and how to handle the errors during assembly execution.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/Assembly"
+                                }
+                            },
+                            "summary": "The assembly for API invocation",
+                            "cli-alias": "assembly",
+                            "display": "Assembly",
+                            "name": "Assembly"
+                        },
+                        {
+                            "name": "Path",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/APIPath"
+                                }
+                            },
+                            "required": "true",
+                            "summary": "Routes to access REST APIs",
+                            "array": "true",
+                            "cli-alias": "path",
+                            "display": "Paths",
+                            "description": "Specifies a list of paths through which users access the API operations. A path consists of one or more HTTP operations."
+                        },
+                        {
+                            "name": "Consume",
+                            "valid-regexp": "[a-zA-Z0-9][a-zA-Z0-9!#$&amp;\\-^_]{0,126}\\/[a-zA-Z0-9][a-zA-Z0-9!#$&amp;\\-^_+.]{0,126}(;\\s*[a-zA-Z0-9][a-zA-Z0-9!#$&amp;\\-^_=\"]{0,126})*$",
+                            "summary": "MIME types that the API can consume",
+                            "cli-alias": "consume",
+                            "array": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Consumes",
+                            "description": "Specifies a list of MIME types that the API can consume. These MIME types apply to all API operations. You can override the setting for specific operations in the API operation."
+                        },
+                        {
+                            "name": "Produce",
+                            "valid-regexp": "^(application|audio|image|message|multipart|text|video)\\/[a-zA-Z-]+$",
+                            "summary": "MIME types that the API can produce",
+                            "cli-alias": "produce",
+                            "array": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Produces",
+                            "description": "Specifies a list of MIME types that the API can produce. These MIME types apply to all API operations. You can override the setting for specific operations in the API operation."
+                        },
+                        {
+                            "name": "SwaggerLocation",
+                            "type": {
+                                "href": "/mgmt/types/default/dmFSFile"
+                            },
+                            "locations": {
+                                "location": [
+                                    "local",
+                                    "temporary"
+                                ]
+                            },
+                            "summary": "The name and location of the Swagger document",
+                            "cli-alias": "swagger-location",
+                            "display": "Swagger location",
+                            "description": "&lt;p>When you create the API definition from a Swagger document, specify the name and location of the Swagger document. Prepare the document as follows before you specify the location.&lt;/p>&lt;ol>&lt;li>When the Swagger document is a YAML file, convert it to JSON format.&lt;/li>&lt;li>Import the JSON file to the &lt;tt>local:&lt;/tt> directory, the &lt;tt>temporary:&lt;/tt> directory, or one their subdirectories in the DataPower file system.&lt;/li>&lt;/ol>&lt;p>When you create the API definition by manually specifying the API properties, this field is not applicable.&lt;/p>"
+                        },
+                        {
+                            "name": "GraphQLSchema",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-equals",
+                                    "value": "graphql"
+                                }
+                            },
+                            "summary": "GraphQL schema location.",
+                            "cli-alias": "graphql-schema",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "graphql"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/APISchema"
+                                }
+                            },
+                            "display": "GraphQL schema location",
+                            "description": "GraphQL schema location."
+                        },
+                        {
+                            "name": "WsdlAdvertisedSchemaLocation",
+                            "type": {
+                                "href": "/mgmt/types/default/dmFSFile"
+                            },
+                            "summary": "The name and location of the WSDL file or archive file with a WSDL file, which should be used to advertise the contract for this API.",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "wsdl"
+                                }
+                            },
+                            "cli-alias": "wsdl-advertised-schema-location",
+                            "display": "WSDL advertised schema location",
+                            "description": "When you create the API definition from a WSDL file, specify the name and location of the WSDL document or archive of the WSDL and its dependencies."
+                        },
+                        {
+                            "name": "WsdlValidationSchema",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/APISchema"
+                                }
+                            },
+                            "summary": "The name and location of the top-level WSDL file to use to validate SOAP payloads.",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "wsdl"
+                                }
+                            },
+                            "cli-alias": "wsdl-validation-schema",
+                            "display": "WSDL validation schema location",
+                            "description": "When you create the API definition from a WSDL file, specify the name and location of the top-level WSDL document itself, which should be used to validate incoming SOAP payloads."
+                        },
+                        {
+                            "name": "SecurityRequirement",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/APISecurityRequirement"
+                                }
+                            },
+                            "summary": "Required security schemes to execute API operations",
+                            "array": "true",
+                            "cli-alias": "security-req",
+                            "display": "Security requirements",
+                            "description": "Specifies the alternative security requirements to enforce for the API as a whole (that is, there is a logical OR between the security requirements). By default, the security requirement is applied to all operations in the API. But for each API operation, you can override the API-level security by separately specifying security schemes to enforce on the operation level."
+                        },
+                        {
+                            "name": "RequireAPIMutualTLS",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Require mutual TLS protection",
+                            "cli-alias": "require-api-mutual-tls",
+                            "display": "API protection",
+                            "description": "Require mutual TLS protection for this API."
+                        },
+                        {
+                            "name": "APIMutualTLSSource",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "RequireAPIMutualTLS",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "Sources to obtain the client certificate for mutual TLS",
+                            "cli-alias": "api-mutual-tls-source",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "RequireAPIMutualTLS",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "on"
+                                }
+                            },
+                            "array": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAPIMutualTLSSource"
+                            },
+                            "display": "API protection sources",
+                            "description": "Indicates the sources to obtain the client certificate for mutual TLS. Because you can define multiple ways to obtain the source, ensure that you sequence the methods appropriately."
+                        },
+                        {
+                            "name": "APIMutualTLSHeaderName",
+                            "default": "X-Client-Certificate",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "HTTP header that contains the client certificate for mutual TLS",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "RequireAPIMutualTLS",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "APIMutualTLSSource",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "tls_cert"
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "api-mutual-tls-header-name",
+                            "display": "API protection HTTP header",
+                            "description": "The HTTP header that contains the client certificate for mutual TLS. The default value is &lt;tt>X-Client-Certificate&lt;/tt> ."
+                        },
+                        {
+                            "name": "Properties",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAPIProperty"
+                            },
+                            "summary": "Custom API properties",
+                            "array": "true",
+                            "cli-alias": "property",
+                            "display": "Custom properties",
+                            "description": "Specifies a list of custom API property entries. An API property is a type of context variable whose value is dependent on the API collection that the API is provisioned in. Collection-specific API properties allow you to use the same API definition in different API collections when a property in a collection requires a unique or different value. A custom property entry specifies one property and the property value for one collection. To add another custom property, or to specify a different property value for another collection, add another entry."
+                        },
+                        {
+                            "name": "Schemas",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAPIDataTypeDefinition"
+                            },
+                            "summary": "API schemas",
+                            "array": "true",
+                            "cli-alias": "schema",
+                            "display": "Schemas",
+                            "description": "Specifies a list of API schema objects that define data types for request or message validation. An API data type consists of a name and the API schema object."
+                        },
+                        {
+                            "name": "CORSToggle",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to enable the API Gateway to handle CORS requests",
+                            "cli-alias": "cors",
+                            "display": "Enable CORS",
+                            "description": "Indicates whether to enable the API Gateway to handle the the cross-origin resource sharing (CORS) requests &lt;ul>&lt;li>When enabled, the API Gateway runs the API CORS action to handle all CORS requests that are made to the API.&lt;/li>&lt;li>When not enabled, all CORS requests are handled by the assembly or the back end. When preflight requests are passed to the back end, an &lt;tt>OPTIONS&lt;/tt> operation must be defined for each path that can be the target of the request. Otherwise, the preflight request to that path can result in an error.&lt;/li>&lt;li>When a preflight request is received, the API routing action sets the &lt;tt>request.attributes.isCORSPreflight&lt;/tt> flag to &lt;tt>true&lt;/tt> . This flag is set even when CORS is not enabled in the API definition. This behavior allows for the customized handling of preflight requests.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "ActivityLogToggle",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to enable logging for API activities",
+                            "cli-alias": "activity-log",
+                            "display": "Enable logging",
+                            "description": "&lt;p>Indicates whether to enable logging for API activities. The API Gateway runs the API activity log action to generate logs. To generate log data for calls that invoke this API, you must first enable this property and ensure that the following conditions are met.&lt;/p>&lt;ul>&lt;li>The logging type for successful and unsuccessful API invocations is not set to none.&lt;/li>&lt;li>The activity log action is added in the API rule associated with the API definition.&lt;/li>&lt;/ul>&lt;p>When disabled, the API Gateway does not generate any log data for calls that invoke this API.&lt;/p>"
+                        },
+                        {
+                            "name": "Content",
+                            "default": "activity",
+                            "cli-alias": "success-content",
+                            "required": "true",
+                            "summary": "Type of content to be logged when the API invocation is successful",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "ActivityLogToggle",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "on"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmLogContent"
+                            },
+                            "display": "Content on success",
+                            "description": "Defines the type of content to log when the API invocation is successful."
+                        },
+                        {
+                            "name": "ErrorContent",
+                            "default": "payload",
+                            "cli-alias": "error-content",
+                            "required": "true",
+                            "summary": "Type of content to be logged when the API invocation completes with error",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "ActivityLogToggle",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "on"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmLogContent"
+                            },
+                            "display": "Content on error",
+                            "description": "Defines the type of content to log when the API invocation completes with error."
+                        },
+                        {
+                            "name": "MessageBuffering",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to enable message buffering for the API",
+                            "cli-alias": "message-buffering",
+                            "display": "Enable message buffering",
+                            "description": "&lt;p>Indicates whether to enable message buffering for the API.&lt;/p>&lt;ul>&lt;li>When enabled, the message payload and the output of the assembly invoke action are read as a binary large object (BLOB).&lt;/li>&lt;li>When disabled, the message payload and the output of the assembly invoke action are only read by an asynchronous API call.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "DeploymentState",
+                            "default": "running",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAPIDeploymentState"
+                            },
+                            "summary": "Deployment state of the API",
+                            "cli-alias": "deployment-state",
+                            "display": "Deployment state",
+                            "description": "Specifies the deployment state of the API. By default, the deployment state of an API is running."
+                        },
+                        {
+                            "name": "ShareRateLimitCount",
+                            "default": "unset",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAPIShareCount"
+                            },
+                            "summary": "Share rate limit count among all APIs under an application.",
+                            "cli-alias": "share-count",
+                            "display": "Share rate limit count",
+                            "description": "Share rate limit count among all APIs under an application."
+                        }
+                    ]
+                },
+                "description": "&lt;p>Configure a REST API definition that uses HTTP requests to GET, PUT, POST, and DELETE data.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/APIDefinition"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/APIDefinition"
+                }
+            }
         }
-    ]
+    }
 }

@@ -1,206 +1,190 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "description": "The UDDI Registry object identifying a UDDI Registry offering the subscriptions desired.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/UDDIRegistry"
-                }
-            }, 
-            "required": "true", 
-            "cli-alias": "registry", 
-            "display": "UDDI Registry", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "name": "Registry"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "SubscriptionKey", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "required": "true", 
-            "array": "true", 
-            "cli-alias": "key", 
-            "display": "Subscription Key", 
-            "description": "&lt;p>This is a subscriptionKey for the subscription, which must already exist in the registry. In order to track services that are modeled in UDDI, serveral subscriptions may be required if, for example, you wish to receive updates for both the service and tModel components. All of these subscriptions must use the same Username and Password.&lt;/p>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "Username", 
-            "cli-alias": "username", 
-            "required": "true", 
-            "summary": "Username", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Username", 
-            "description": "The username used to authenticate with the Registry."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "Password", 
-            "cli-alias": "password", 
-            "summary": "Password", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "Password", 
-                    "evaluation": "property-equals", 
-                    "value": ""
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Password (deprecated)", 
-            "description": "The password used to authenticate with the Registry. Enter the password twice to confirm its accuracy."
-        }, 
-        {
-            "name": "PasswordAlias", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "is-edit-new-object"
-                }
-            }, 
-            "summary": "Password Alias", 
-            "cli-alias": "password-alias", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/PasswordAlias"
-                }
-            }, 
-            "display": "Password Alias", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
+                    "cli-arg": "object",
                     "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
                 }
-            }, 
-            "description": "The password alias of the password used for authentication with the Registry."
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "UDDISubscription",
+                "display": "UDDI Subscription (deprecated)",
+                "property-group": {
+                    "member": [
+                        {
+                            "name": "mAdminState"
+                        },
+                        {
+                            "name": "Registry"
+                        },
+                        {
+                            "name": "UserSummary"
+                        }
+                    ],
+                    "name": "summary"
+                },
+                "uri": "services/uddi-subscription",
+                "summary": "UDDI Subscription",
+                "cmd-group": "webservice",
+                "cli-alias": "uddi-subscription",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "description": "The UDDI Registry object identifying a UDDI Registry offering the subscriptions desired.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/UDDIRegistry"
+                                }
+                            },
+                            "required": "true",
+                            "cli-alias": "registry",
+                            "display": "UDDI Registry",
+                            "name": "Registry"
+                        },
+                        {
+                            "name": "SubscriptionKey",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "array": "true",
+                            "cli-alias": "key",
+                            "display": "Subscription Key",
+                            "description": "&lt;p>This is a subscriptionKey for the subscription, which must already exist in the registry. In order to track services that are modeled in UDDI, serveral subscriptions may be required if, for example, you wish to receive updates for both the service and tModel components. All of these subscriptions must use the same Username and Password.&lt;/p>"
+                        },
+                        {
+                            "name": "Username",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "summary": "Username",
+                            "cli-alias": "username",
+                            "display": "Username",
+                            "description": "The username used to authenticate with the Registry."
+                        },
+                        {
+                            "name": "Password",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Password",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Password",
+                                    "evaluation": "property-equals",
+                                    "value": ""
+                                }
+                            },
+                            "cli-alias": "password",
+                            "display": "Password (deprecated)",
+                            "description": "The password used to authenticate with the Registry. Enter the password twice to confirm its accuracy."
+                        },
+                        {
+                            "name": "PasswordAlias",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "is-edit-new-object"
+                                }
+                            },
+                            "summary": "Password Alias",
+                            "cli-alias": "password-alias",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/PasswordAlias"
+                                }
+                            },
+                            "display": "Password Alias",
+                            "description": "The password alias of the password used for authentication with the Registry."
+                        }
+                    ]
+                },
+                "description": "&lt;p>The UDDI subscription is deprecated. Instead, use WebSphere Service Registry and Repository (WSRR) subscription.&lt;/p>&lt;p>Configuration required for a UDDI subscriber to receive notifications from a UDDI Server. In addition to configuring the UDDI Subscription, you must also enable UDDI Subscription as a service in the configuration of the XML Management Interface in the default domain.&lt;/p>&lt;p>Web Service Proxies are automatically built and updated based on the UDDI subscription. Web Service Proxy virtualizes the Web Service endpoints detailed in the WSDLs returned by the subscription.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/UDDISubscription"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/UDDISubscription"
+                }
+            }
         }
-    ]
+    }
 }

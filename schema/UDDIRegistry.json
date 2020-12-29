@@ -1,429 +1,432 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "name": "IPAddress", 
-            "cli-alias": "hostname", 
-            "required": "true", 
-            "summary": "Host name or IP address", 
-            "/mgmt/types/default/dmHostname": {
+                },
                 "type": {
-                    "cli-arg": "dotted-ip or hostname", 
-                    "name": "dmHostname", 
-                    "format": "(a.b.c.d or hostname)"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmHostname"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmHostname"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmHostname"
-            }, 
-            "display": "Host", 
-            "description": "Specify the host name or IP address of the UDDI registry."
-        }, 
-        {
-            "name": "Port", 
-            "default": 80, 
-            "/mgmt/types/default/dmIPPort": {
+                },
                 "type": {
-                    "cli-arg": "ip-port", 
-                    "minimum": 0, 
-                    "name": "dmIPPort", 
-                    "maximum": "0xFFFF"
-                }, 
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmIPPort"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmIPPort"
                     }
-                }
-            }, 
-            "required": "true", 
-            "summary": "Port", 
-            "type": {
-                "href": "/mgmt/types/default/dmIPPort"
-            }, 
-            "cli-alias": "port", 
-            "display": "Port", 
-            "description": "Specify the port of the SOAP over HTTP interface on the UDDI Registry."
-        }, 
-        {
-            "name": "UseSSL", 
-            "default": "Publish", 
-            "cli-alias": "use-ssl", 
-            "summary": "Use TLS", 
-            "/mgmt/types/default/dmUDDIUseSSL": {
+                },
                 "type": {
-                    "name": "dmUDDIUseSSL", 
-                    "display": "Require TLS", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "display": "Always", 
-                                "name": "Always", 
-                                "description": "The device uses TLS for all communications."
-                            }, 
-                            {
-                                "display": "Publish", 
-                                "name": "Publish", 
-                                "description": "The device uses TLS for publish requests only."
-                            }
-                        ]
-                    }, 
-                    "description": "Require TLS"
-                }, 
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmUDDIUseSSL"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmUDDIUseSSL"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmUDDIUseSSL"
-            }, 
-            "display": "Use TLS", 
-            "description": "Select when to use HTTPS connections to the remote UDDI registry."
-        }, 
-        {
-            "/mgmt/types/default/dmIPPort": {
+                },
                 "type": {
-                    "cli-arg": "ip-port", 
-                    "minimum": 0, 
-                    "name": "dmIPPort", 
-                    "maximum": "0xFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmIPPort"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmIPPort"
-                    }
+                    "display": "Require TLS",
+                    "description": "Require TLS",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Always",
+                                "description": "The device uses TLS for all communications.",
+                                "name": "Always"
+                            },
+                            {
+                                "display": "Publish",
+                                "description": "The device uses TLS for publish requests only.",
+                                "name": "Publish"
+                            }
+                        ]
+                    },
+                    "name": "dmUDDIUseSSL"
                 }
-            }, 
-            "name": "SSLPort", 
-            "default": 443, 
-            "type": {
-                "href": "/mgmt/types/default/dmIPPort"
-            }, 
-            "summary": "Port (TLS)", 
-            "cli-alias": "ssl-port", 
-            "display": "Port (TLS)", 
-            "description": "The port number of the registry's SOAP over HTTPS interface. The default is 443."
-        }, 
-        {
-            "name": "SSLProxyProfile", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLProxyProfile"
-                }
-            }, 
-            "summary": "The TLS proxy profile is deprecated. Use a TLS client profile.", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "SSLClientConfigType", 
-                    "evaluation": "property-equals", 
-                    "value": "client"
-                }
-            }, 
-            "cli-alias": "ssl", 
-            "display": "TLS proxy profile (deprecated)", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "description": "Select an existing TLS Proxy Profile from the list of existing profiles. Click the + button to create a new profile. Select a profile and click the ... button to edit an existing profile."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
+                    "cli-arg": "object",
+                    "name": "dmReference"
                 }
-            }, 
-            "name": "InquiryURL", 
-            "default": "/uddi/inquiry", 
-            "cli-alias": "inquiry-url", 
-            "summary": "The local path (URI) part of the inquiry URL.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Inquiry URL", 
-            "description": "The local path (URI) portion of the URL used to query the Registry. UDDI inquiry requests will be sent to http(s)://hostname:port/inquiry-url. A typical default looks like https://192.18.1.120:443/uddi/inquiry."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "PublishURL", 
-            "default": "/uddi/publishing", 
-            "cli-alias": "publish-url", 
-            "summary": "The local path (URI) part of the publish URL.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Publish URL", 
-            "description": "The local path (URI) portion of the URL used to publish to the Registry. UDDI Publish requests will be sent to http(s)://hostname:port/publish-url. A typical default looks like https://192.18.1.120:443/uddi/publishing."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "SubscriptionURL", 
-            "default": "/uddi/subscription", 
-            "cli-alias": "subscription-url", 
-            "summary": "The local part of the URL of the subscription API", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Subscription URL", 
-            "description": "The local path (URI) portion of the URL used to subscribe to the Registry. UDDI subscription requests will be sent to http(s)://hostname:port/subscription-url. A typical default looks like https://192.18.1.120:443/uddi/subscription."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "SecurityURL", 
-            "default": "/uddi/security", 
-            "cli-alias": "security-url", 
-            "summary": "The local part of the URL of the security API", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Security URL", 
-            "description": "The local path (URI) portion of the URL used to subscribe to the Registry. UDDI security requests will be sent to http(s)://hostname:port/security-url. A typical default looks like https://192.18.1.120:443/uddi/security."
-        }, 
-        {
-            "/mgmt/types/default/dmUDDIVersion": {
-                "type": {
-                    "name": "dmUDDIVersion", 
-                    "display": "UDDI Version", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "UDDIv2", 
-                                "display": "Version 2"
-                            }, 
-                            {
-                                "name": "UDDIv3", 
-                                "display": "Version 3"
-                            }
-                        ]
-                    }, 
-                    "description": "UDDI major version used by the registry"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmUDDIVersion"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmUDDIVersion"
                     }
-                }
-            }, 
-            "name": "Version", 
-            "default": "UDDIv2", 
-            "type": {
-                "href": "/mgmt/types/default/dmUDDIVersion"
-            }, 
-            "summary": "Version", 
-            "cli-alias": "version", 
-            "display": "Version", 
-            "description": "Select the API version that is in use by the registry. This value must agree with the version that is running on the registry."
-        }, 
-        {
-            "name": "SSLClientConfigType", 
-            "/mgmt/types/default/dmSSLClientConfigType": {
+                },
                 "type": {
-                    "name": "dmSSLClientConfigType", 
+                    "display": "UDDI Version",
+                    "description": "UDDI major version used by the registry",
                     "value-list": {
                         "value": [
                             {
-                                "name": "proxy", 
-                                "display": "Proxy Profile"
-                            }, 
+                                "name": "UDDIv2",
+                                "display": "Version 2"
+                            },
                             {
-                                "name": "client", 
+                                "name": "UDDIv3",
+                                "display": "Version 3"
+                            }
+                        ]
+                    },
+                    "name": "dmUDDIVersion"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSLClientConfigType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSLClientConfigType"
+                    }
+                },
+                "type": {
+                    "name": "dmSSLClientConfigType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "proxy",
+                                "display": "Proxy Profile"
+                            },
+                            {
+                                "name": "client",
                                 "display": "Client Profile"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmSSLClientConfigType"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmSSLClientConfigType"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "UDDIRegistry",
+                "display": "UDDI Registry (deprecated)",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "IPAddress"
+                            },
+                            {
+                                "name": "Port"
+                            },
+                            {
+                                "name": "UseSSL"
+                            },
+                            {
+                                "name": "SSLPort"
+                            },
+                            {
+                                "name": "SSLClientConfigType"
+                            },
+                            {
+                                "name": "SSLProxyProfile"
+                            },
+                            {
+                                "name": "SSLClient"
+                            },
+                            {
+                                "name": "InquiryURL"
+                            },
+                            {
+                                "name": "PublishURL"
+                            },
+                            {
+                                "name": "SubscriptionURL"
+                            },
+                            {
+                                "name": "SecurityURL"
+                            },
+                            {
+                                "name": "Version"
+                            }
+                        ],
+                        "name": "main"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "IPAddress"
+                            },
+                            {
+                                "name": "Version"
+                            }
+                        ],
+                        "name": "summary"
                     }
+                ],
+                "uri": "config/uddi-registry",
+                "summary": "UDDI Registry",
+                "cmd-group": "webservice",
+                "cli-alias": "uddi-registry",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "IPAddress",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHostname"
+                            },
+                            "required": "true",
+                            "summary": "Host name or IP address",
+                            "cli-alias": "hostname",
+                            "display": "Host",
+                            "description": "Specify the host name or IP address of the UDDI registry."
+                        },
+                        {
+                            "name": "Port",
+                            "default": 80,
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPPort"
+                            },
+                            "required": "true",
+                            "summary": "Port",
+                            "cli-alias": "port",
+                            "display": "Port",
+                            "description": "Specify the port of the SOAP over HTTP interface on the UDDI Registry."
+                        },
+                        {
+                            "name": "UseSSL",
+                            "default": "Publish",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUDDIUseSSL"
+                            },
+                            "summary": "Use TLS",
+                            "cli-alias": "use-ssl",
+                            "display": "Use TLS",
+                            "description": "Select when to use HTTPS connections to the remote UDDI registry."
+                        },
+                        {
+                            "name": "SSLPort",
+                            "default": 443,
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPPort"
+                            },
+                            "summary": "Port (TLS)",
+                            "cli-alias": "ssl-port",
+                            "display": "Port (TLS)",
+                            "description": "The port number of the registry's SOAP over HTTPS interface. The default is 443."
+                        },
+                        {
+                            "name": "SSLProxyProfile",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                                }
+                            },
+                            "summary": "The TLS proxy profile is deprecated. Use a TLS client profile.",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SSLClientConfigType",
+                                    "evaluation": "property-equals",
+                                    "value": "client"
+                                }
+                            },
+                            "cli-alias": "ssl",
+                            "display": "TLS proxy profile (deprecated)",
+                            "description": "Select an existing TLS Proxy Profile from the list of existing profiles. Click the + button to create a new profile. Select a profile and click the ... button to edit an existing profile."
+                        },
+                        {
+                            "name": "InquiryURL",
+                            "default": "/uddi/inquiry",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The local path (URI) part of the inquiry URL.",
+                            "cli-alias": "inquiry-url",
+                            "display": "Inquiry URL",
+                            "description": "The local path (URI) portion of the URL used to query the Registry. UDDI inquiry requests will be sent to http(s)://hostname:port/inquiry-url. A typical default looks like https://192.18.1.120:443/uddi/inquiry."
+                        },
+                        {
+                            "name": "PublishURL",
+                            "default": "/uddi/publishing",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The local path (URI) part of the publish URL.",
+                            "cli-alias": "publish-url",
+                            "display": "Publish URL",
+                            "description": "The local path (URI) portion of the URL used to publish to the Registry. UDDI Publish requests will be sent to http(s)://hostname:port/publish-url. A typical default looks like https://192.18.1.120:443/uddi/publishing."
+                        },
+                        {
+                            "name": "SubscriptionURL",
+                            "default": "/uddi/subscription",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The local part of the URL of the subscription API",
+                            "cli-alias": "subscription-url",
+                            "display": "Subscription URL",
+                            "description": "The local path (URI) portion of the URL used to subscribe to the Registry. UDDI subscription requests will be sent to http(s)://hostname:port/subscription-url. A typical default looks like https://192.18.1.120:443/uddi/subscription."
+                        },
+                        {
+                            "name": "SecurityURL",
+                            "default": "/uddi/security",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The local part of the URL of the security API",
+                            "cli-alias": "security-url",
+                            "display": "Security URL",
+                            "description": "The local path (URI) portion of the URL used to subscribe to the Registry. UDDI security requests will be sent to http(s)://hostname:port/security-url. A typical default looks like https://192.18.1.120:443/uddi/security."
+                        },
+                        {
+                            "name": "Version",
+                            "default": "UDDIv2",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUDDIVersion"
+                            },
+                            "summary": "Version",
+                            "cli-alias": "version",
+                            "display": "Version",
+                            "description": "Select the API version that is in use by the registry. This value must agree with the version that is running on the registry."
+                        },
+                        {
+                            "name": "SSLClientConfigType",
+                            "default": "proxy",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSLClientConfigType"
+                            },
+                            "summary": "Set the TLS profile type to secure connections between the DataPower Gateway and its targets",
+                            "cli-alias": "ssl-client-type",
+                            "display": "TLS client type",
+                            "description": "The TLS profile type to secure connections between the DataPower Gateway and its targets."
+                        },
+                        {
+                            "name": "SSLClient",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                                }
+                            },
+                            "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and its targets",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SSLClientConfigType",
+                                    "evaluation": "property-equals",
+                                    "value": "proxy"
+                                }
+                            },
+                            "cli-alias": "ssl-client",
+                            "display": "TLS client profile",
+                            "description": "The TLS client profile to secure connections between the DataPower Gateway and its targets."
+                        }
+                    ]
+                },
+                "description": "&lt;p>The UDDI registry is deprecated. Instead, use WebSphere Service Registry and Repository (WSRR) server.&lt;/p>&lt;p>Configuration required for locating and accessing a UDDI registry. To configure a UDDI Subscription, the UDDI registry must support the UDDI Subscription API set.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/UDDIRegistry"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/UDDIRegistry"
                 }
-            }, 
-            "default": "proxy", 
-            "type": {
-                "href": "/mgmt/types/default/dmSSLClientConfigType"
-            }, 
-            "summary": "Set the TLS profile type to secure connections between the DataPower Gateway and its targets", 
-            "cli-alias": "ssl-client-type", 
-            "display": "TLS client type", 
-            "description": "The TLS profile type to secure connections between the DataPower Gateway and its targets."
-        }, 
-        {
-            "name": "SSLClient", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLClientProfile"
-                }
-            }, 
-            "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and its targets", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "SSLClientConfigType", 
-                    "evaluation": "property-equals", 
-                    "value": "proxy"
-                }
-            }, 
-            "cli-alias": "ssl-client", 
-            "display": "TLS client profile", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "The TLS client profile to secure connections between the DataPower Gateway and its targets."
+            }
         }
-    ]
+    }
 }

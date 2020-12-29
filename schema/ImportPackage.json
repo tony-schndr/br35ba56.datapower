@@ -1,365 +1,301 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "description": "Enter the URL of the import package. The import tool does not support SCP and SFTP URL protocols. All other URL protocols are available; for example, HTTP, HTTPS, or FTP.", 
-            "type": {
-                "href": "/mgmt/types/default/dmURL"
-            }, 
-            "required": "true", 
-            "/mgmt/types/default/dmURL": {
+                },
                 "type": {
-                    "cli-arg": "url", 
-                    "name": "dmURL"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmURL"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmURL"
                     }
-                }
-            }, 
-            "cli-alias": "source-url", 
-            "display": "URL of Configuration Package", 
-            "name": "URL"
-        }, 
-        {
-            "name": "ImportFormat", 
-            "default": "ZIP", 
-            "type": {
-                "href": "/mgmt/types/default/dmImportFormat"
-            }, 
-            "required": "true", 
-            "cli-alias": "import-format", 
-            "display": "Format of Configuration Package", 
-            "/mgmt/types/default/dmImportFormat": {
+                },
                 "type": {
-                    "summary": "Import Format", 
-                    "display": "Import Format", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "ZIP bundle", 
-                                "display": "ZIP", 
-                                "name": "ZIP", 
-                                "description": "Imports the configuration from a compressed ZIP bundle."
-                            }, 
-                            {
-                                "summary": "XML configuration file", 
-                                "display": "XML", 
-                                "name": "XML", 
-                                "description": "Imports configuration from the exported XML configuration files."
-                            }
-                        ]
-                    }, 
-                    "name": "dmImportFormat"
-                }, 
+                    "cli-arg": "url",
+                    "name": "dmURL"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmImportFormat"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmImportFormat"
                     }
-                }
-            }, 
-            "description": "Select the format of the package."
-        }, 
-        {
-            "name": "OverwriteFiles", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "required": "true", 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "display": "Import Format",
+                    "name": "dmImportFormat",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
+                                "display": "ZIP",
+                                "description": "Imports the configuration from a compressed ZIP bundle.",
+                                "name": "ZIP",
+                                "summary": "ZIP bundle"
+                            },
                             {
-                                "name": "off", 
+                                "display": "XML",
+                                "description": "Imports configuration from the exported XML configuration files.",
+                                "name": "XML",
+                                "summary": "XML configuration file"
+                            }
+                        ]
+                    },
+                    "summary": "Import Format"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "cli-alias": "overwrite-files", 
-            "display": "Overwrite Files", 
-            "description": "When enabled, any files in the package will overwrite any files of the same path and name that already exist on the device."
-        }, 
-        {
-            "name": "OverwriteObjects", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "required": "true", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "overwrite-objects", 
-            "display": "Overwrite Objects", 
-            "description": "When enabled, any objects in the package will overwrite any objects of the same class and name that already exist on the device."
-        }, 
-        {
-            "description": "Select a domain from the list of domains that exist on the device. The import package will be imported into the selected domain, regardless of any domain indicated in the package configurationm files.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/Domain"
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "cli-alias": "destination-domain", 
-            "display": "Destination Domain", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "name": "DestinationDomain"
-        }, 
-        {
-            "description": "Select a deployment policy from the list of configuration deployment policies. The configuration contained in the import package will be preprocessed according to the policy prior to being imported.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/ConfigDeploymentPolicy"
-                }
-            }, 
-            "summary": "Configuration of Deployment Policy", 
-            "cli-alias": "deployment-policy", 
-            "display": "Deployment Policy", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
+                    "cli-arg": "object",
                     "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
                 }
-            }, 
-            "name": "DeploymentPolicy"
-        }, 
-        {
-            "description": "Select a deployment policy variables binding map from the list. The deployment policy contained in the import package will be preprocessed according to the variables binding map to replace any variable names with their associated values, prior to being applied to the configuration.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/DeploymentPolicyParametersBinding"
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "ImportPackage",
+                "property-group": {
+                    "member": [
+                        {
+                            "name": "mAdminState"
+                        },
+                        {
+                            "name": "URL"
+                        },
+                        {
+                            "name": "OnStartup"
+                        },
+                        {
+                            "name": "UserSummary"
+                        }
+                    ],
+                    "name": "summary"
+                },
+                "uri": "config/import-package",
+                "display": "Import Configuration File",
+                "cmd-group": "config-management",
+                "cli-alias": "import-package",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "description": "Enter the URL of the import package. The import tool does not support SCP and SFTP URL protocols. All other URL protocols are available; for example, HTTP, HTTPS, or FTP.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmURL"
+                            },
+                            "required": "true",
+                            "cli-alias": "source-url",
+                            "display": "URL of Configuration Package",
+                            "name": "URL"
+                        },
+                        {
+                            "name": "ImportFormat",
+                            "default": "ZIP",
+                            "type": {
+                                "href": "/mgmt/types/default/dmImportFormat"
+                            },
+                            "required": "true",
+                            "cli-alias": "import-format",
+                            "display": "Format of Configuration Package",
+                            "description": "Select the format of the package."
+                        },
+                        {
+                            "name": "OverwriteFiles",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "required": "true",
+                            "cli-alias": "overwrite-files",
+                            "display": "Overwrite Files",
+                            "description": "When enabled, any files in the package will overwrite any files of the same path and name that already exist on the device."
+                        },
+                        {
+                            "name": "OverwriteObjects",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "required": "true",
+                            "cli-alias": "overwrite-objects",
+                            "display": "Overwrite Objects",
+                            "description": "When enabled, any objects in the package will overwrite any objects of the same class and name that already exist on the device."
+                        },
+                        {
+                            "description": "Select a domain from the list of domains that exist on the device. The import package will be imported into the selected domain, regardless of any domain indicated in the package configurationm files.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/Domain"
+                                }
+                            },
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "cli-alias": "destination-domain",
+                            "display": "Destination Domain",
+                            "name": "DestinationDomain"
+                        },
+                        {
+                            "description": "Select a deployment policy from the list of configuration deployment policies. The configuration contained in the import package will be preprocessed according to the policy prior to being imported.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/ConfigDeploymentPolicy"
+                                }
+                            },
+                            "summary": "Configuration of Deployment Policy",
+                            "cli-alias": "deployment-policy",
+                            "display": "Deployment Policy",
+                            "name": "DeploymentPolicy"
+                        },
+                        {
+                            "description": "Select a deployment policy variables binding map from the list. The deployment policy contained in the import package will be preprocessed according to the variables binding map to replace any variable names with their associated values, prior to being applied to the configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/DeploymentPolicyParametersBinding"
+                                }
+                            },
+                            "summary": "Configuration of Deployment Policy Variables",
+                            "cli-alias": "deployment-policy-variables",
+                            "display": "Deployment Policy Variables",
+                            "name": "DeploymentPolicyParameters"
+                        },
+                        {
+                            "name": "LocalIPRewrite",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Rewrite the local IP on import.",
+                            "cli-alias": "local-ip-rewrite",
+                            "display": "Local IP Rewrite",
+                            "description": "When enabled, the local IP addresses contained in the import package are rewritten to match the local configuration when imported. In other words, a service bound to eth1 on the device exporting the configuration will be rewritten to bind to eth1 on the local device the configuration is imported in."
+                        },
+                        {
+                            "name": "OnStartup",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Execute the import on startup.",
+                            "cli-alias": "auto-execute",
+                            "display": "Import On Startup",
+                            "description": "When enabled, the configuration package is imported at startup. The configuration is marked external and cannot be saved locally. It is equivalent to 'import-always'. When disabled, executing the import has to be triggered manually. The configuration is not marked external and can be saved locally. It is equivalent to 'import-once'."
+                        }
+                    ]
+                },
+                "description": "&lt;p>Import Package allows the system to import a configuration package from an external server, such as a centralized configuration server, when the configuration of the DataPower system is reloaded (such as during a reboot). This package can optionally overwrite existing files or objects.&lt;/p>&lt;p>An import package object specifies a source, content type and import parameters for a single import bundle.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/ImportPackage"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/ImportPackage"
                 }
-            }, 
-            "summary": "Configuration of Deployment Policy Variables", 
-            "cli-alias": "deployment-policy-variables", 
-            "display": "Deployment Policy Variables", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "DeploymentPolicyParameters"
-        }, 
-        {
-            "name": "LocalIPRewrite", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Rewrite the local IP on import.", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "local-ip-rewrite", 
-            "display": "Local IP Rewrite", 
-            "description": "When enabled, the local IP addresses contained in the import package are rewritten to match the local configuration when imported. In other words, a service bound to eth1 on the device exporting the configuration will be rewritten to bind to eth1 on the local device the configuration is imported in."
-        }, 
-        {
-            "name": "OnStartup", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Execute the import on startup.", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "auto-execute", 
-            "display": "Import On Startup", 
-            "description": "When enabled, the configuration package is imported at startup. The configuration is marked external and cannot be saved locally. It is equivalent to 'import-always'. When disabled, executing the import has to be triggered manually. The configuration is not marked external and can be saved locally. It is equivalent to 'import-once'."
+            }
         }
-    ]
+    }
 }

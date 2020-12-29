@@ -1,222 +1,234 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "/mgmt/types/default/dmResourceURI": {
+                },
                 "type": {
-                    "cli-arg": "resource uri", 
-                    "name": "dmResourceURI"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmResourceURI"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmResourceURI"
                     }
-                }
-            }, 
-            "name": "AcceptedConfig", 
-            "display": "Accepted Configuration", 
-            "cli-alias": "accept", 
-            "summary": "Accepted Configuration", 
-            "type": {
-                "href": "/mgmt/types/default/dmResourceURI"
-            }, 
-            "array": "true", 
-            "valid-regexp": "^[-_a-zA-Z0-9:.*]+/[-_a-zA-Z0-9.*]+/[-a-z0-9/*]+(\\?[^=]+=[^&amp;]+(&amp;[^=]+=[^&amp;]+)*)?$", 
-            "example": "10.10.1.1/domainA/services/xslproxy?Name=foo.*", 
-            "description": "Matching configuration is accepted during import. To create a match statement, type a correctly formatted resource match in the horizontal text box or select Build. Selecting Build displays the Configuration Match Builder in a popup window. &lt;p>A match statement takes the following general form: &lt;br/>&lt;i>Addr&lt;/i> / &lt;i>Domain&lt;/i> / &lt;i>Resource&lt;/i> [? &lt;i>Name=resource-name&lt;/i> &amp;amp; &lt;i>Property=property-name&lt;/i> &amp;amp; &lt;i>Value=property-value&lt;/i> ]&lt;/p>&lt;table>&lt;tr>&lt;td valign=\"top\">Addr&lt;/td>&lt;td>Device Address. Specifies IP address or host alias. The value (*) matches all IP addresses.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Domain&lt;/td>&lt;td>Application Domain. The name of the application domain. The value (*) matches all domains.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Resource&lt;/td>&lt;td>Resource Type. The name of the resource type. The value (*) matches all resource types.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Name=resource-name&lt;/td>&lt;td>An additional specification field, such as \"Name\". Limits the match statement to resources of the specified name. Use a PCRE to select groups of resource instances. For example, \"Name=foo.*\" would match all resources with names that start with \"foo\".&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Property=property-name&lt;/td>&lt;td>Property Name. The name of the configuration property. Limits the match statement to resources of the specified property. If change specified, set property-name to null string.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Value=property-value&lt;/td>&lt;td>Property Value. Specifies the value for the configuration property. This property limits the match statement to resources with the specified property value.&lt;/td>&lt;/tr>&lt;/table>"
-        }, 
-        {
-            "/mgmt/types/default/dmResourceURI": {
+                },
                 "type": {
-                    "cli-arg": "resource uri", 
+                    "cli-arg": "resource uri",
                     "name": "dmResourceURI"
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmResourceURI"
-                    }, 
+                        "href": "/mgmt/docs/types/dmConfigModifyType"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmResourceURI"
+                        "href": "/mgmt/types/default/dmConfigModifyType"
                     }
-                }
-            }, 
-            "name": "FilteredConfig", 
-            "display": "Filtered Configuration", 
-            "cli-alias": "filter", 
-            "summary": "Filtered Configuration", 
-            "type": {
-                "href": "/mgmt/types/default/dmResourceURI"
-            }, 
-            "array": "true", 
-            "valid-regexp": "^[-_a-zA-Z0-9:.*]+/[-_a-zA-Z0-9.*]+/[-a-z0-9/*]+(\\?[^=]+=[^&amp;]+(&amp;[^=]+=[^&amp;]+)*)?$", 
-            "example": "10.10.1.1/domainA/services/xslproxy?Name=foo.*", 
-            "description": "Matching configuration is filtered during import. Match statements do not control whether to import files that are part of the imported configuration package. Files are imported regardless of whether the filter disallows the resources with which the files are associated. &lt;p>To create a match statement, type a correctly formatted resource match in the horizontal text box or select Build. Selecting Build displays the Configuration Match Builder in a popup window.&lt;/p>&lt;p>A match statement takes the following general form: &lt;br/>&lt;i>Addr&lt;/i> / &lt;i>Domain&lt;/i> / &lt;i>Resource&lt;/i> [? &lt;i>Name=resource-name&lt;/i> &amp;amp; &lt;i>Property=property-name&lt;/i> &amp;amp; &lt;i>Value=property-value&lt;/i> ]&lt;/p>&lt;table>&lt;tr>&lt;td valign=\"top\">Addr&lt;/td>&lt;td>Device Address. Specifies IP address or host alias. The value (*) matches all IP addresses.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Domain&lt;/td>&lt;td>Application Domain. The name of the application domain. The value (*) matches all domains.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Resource&lt;/td>&lt;td>Resource Type. The name of the resource type. The value (*) matches all resource types.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Name=resource-name&lt;/td>&lt;td>An additional specification field, such as \"Name\". Limits the match statement to resources of the specified name. Use a PCRE to select groups of resource instances. For example, \"Name=foo.*\" would match all resources with names that start with \"foo\".&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Property=property-name&lt;/td>&lt;td>Property Name. The name of the configuration property. Limits the match statement to resources of the specified property. If change specified, set property-name to null string.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Value=property-value&lt;/td>&lt;td>Property Value. Specifies the value for the configuration property. This property limits the match statement to resources with the specified property value.&lt;/td>&lt;/tr>&lt;/table>"
-        }, 
-        {
-            "name": "ModifiedConfig", 
-            "type": {
-                "href": "/mgmt/types/default/dmConfigModifyType"
-            }, 
-            "/mgmt/types/default/dmConfigModifyType": {
+                },
                 "type": {
                     "properties": {
                         "property": [
                             {
-                                "name": "Match", 
-                                "display": "Configuration Match", 
+                                "name": "Match",
+                                "cli-alias": "match",
+                                "required": "true",
+                                "summary": "Configuration Match",
+                                "subtype": "dmConfigModifyURIType",
+                                "example": "10.10.1.1/domainA/services/xslproxy?Value=myhost",
                                 "type": {
                                     "href": "/mgmt/types/default/dmResourceURI"
-                                }, 
-                                "required": "true", 
-                                "summary": "Configuration Match", 
-                                "subtype": "dmConfigModifyURIType", 
-                                "valid-regexp": "^[-_a-zA-Z0-9:.*]+/[-_a-zA-Z0-9.*]+/[-a-z0-9/*]+(\\?[^=]+=[^&amp;]+(&amp;[^=]+=[^&amp;]+)*)?$", 
-                                "cli-alias": "match", 
-                                "example": "10.10.1.1/domainA/services/xslproxy?Value=myhost", 
+                                },
+                                "valid-regexp": "^[-_a-zA-Z0-9:.*]+/[-_a-zA-Z0-9.*]+/[-a-z0-9/*]+(\\?[^=]+=[^&amp;]+(&amp;[^=]+=[^&amp;]+)*)?$",
+                                "display": "Configuration Match",
                                 "description": "Matching configuration is modified. To create a match statement, type a correctly formatted resource match in the horizontal text box select Build. Selecting Build displays the Configuration Match Builder in a popup window. &lt;p>A match statement takes the following general form: &lt;br/>&lt;i>Addr&lt;/i> / &lt;i>Domain&lt;/i> / &lt;i>Resource&lt;/i> [? &lt;i>Name=resource-name&lt;/i> &amp;amp; &lt;i>Property=property-name&lt;/i> &amp;amp; &lt;i>Value=property-value&lt;/i> ]&lt;/p>&lt;table>&lt;tr>&lt;td valign=\"top\">Addr&lt;/td>&lt;td>Device Address. Specifies IP address or host alias. The value (*) matches all IP addresses.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Domain&lt;/td>&lt;td>Application Domain. The name of the application domain. The value (*) matches all domains.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Resource&lt;/td>&lt;td>Resource Type. The name of the resource type. The value (*) matches all resource types.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Name=resource-name&lt;/td>&lt;td>An additional specification field, such as \"Name\". Limits the match statement to resources of the specified name. Use a PCRE to select groups of resource instances. For example, \"Name=foo.*\" would match all resources with names that start with \"foo\".&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Property=property-name&lt;/td>&lt;td>Property Name. The name of the configuration property. Limits the match statement to resources of the specified property. If change specified, set property-name to null string.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Value=property-value&lt;/td>&lt;td>Property Value. Specifies the value for the configuration property. This property limits the match statement to resources with the specified property value.&lt;/td>&lt;/tr>&lt;/table>"
-                            }, 
+                            },
                             {
-                                "name": "Type", 
+                                "name": "Type",
                                 "type": {
                                     "href": "/mgmt/types/default/dmConfigModificationType"
-                                }, 
-                                "required": "true", 
-                                "summary": "Modification Type", 
-                                "cli-alias": "type", 
-                                "display": "Modification Type", 
+                                },
+                                "required": "true",
+                                "summary": "Modification Type",
+                                "cli-alias": "type",
+                                "display": "Modification Type",
                                 "description": "Selects the type of configuration modification."
-                            }, 
+                            },
                             {
-                                "cli-alias": "name", 
-                                "name": "Property", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "name": "Property",
                                 "required-when": {
                                     "condition": {
-                                        "property-name": "Type", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "Type",
+                                        "evaluation": "property-equals",
                                         "value": "add"
                                     }
-                                }, 
-                                "summary": "Configuration Property", 
-                                "subtype": "dmObjectProperty", 
+                                },
+                                "summary": "Configuration Property",
+                                "subtype": "dmObjectProperty",
                                 "ignored-when": {
                                     "condition": {
                                         "evaluation": "logical-true"
                                     }
-                                }, 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Configuration Property", 
+                                },
+                                "cli-alias": "name",
+                                "display": "Configuration Property",
                                 "description": "Specifies the name of the property to add."
-                            }, 
+                            },
                             {
-                                "name": "Value", 
+                                "name": "Value",
                                 "required-when": {
                                     "condition": {
-                                        "property-name": "Type", 
-                                        "evaluation": "property-value-in-list", 
+                                        "property-name": "Type",
+                                        "evaluation": "property-value-in-list",
                                         "value": [
-                                            "add", 
+                                            "add",
                                             "change"
                                         ]
                                     }
-                                }, 
-                                "summary": "Configuration Value", 
-                                "cli-alias": "value", 
+                                },
+                                "summary": "Configuration Value",
+                                "cli-alias": "value",
                                 "ignored-when": {
                                     "condition": {
                                         "evaluation": "logical-true"
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Configuration Value", 
+                                },
+                                "display": "Configuration Value",
                                 "description": "Specifies the value of the added or changed property. To change a property value, you can use an explicit value or a value that contains a variable in the &lt;tt>${ &lt;i>variable&lt;/i> }&lt;/tt> format. If you use variables, you need a deployment policy variable configuration to map the variable to its replacement value. For example, when the value is &lt;tt>${newName}&lt;/tt> or &lt;tt>${newName}_Service&lt;/tt> , a referenced deployment policy variable configuration must map the &lt;tt>newName&lt;/tt> variable to an explicit replacement value."
                             }
                         ]
-                    }, 
-                    "name": "dmConfigModifyType", 
-                    "display": "Configuration Modification"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmConfigModifyType"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmConfigModifyType"
-                    }
+                    },
+                    "display": "Configuration Modification",
+                    "name": "dmConfigModifyType"
                 }
-            }, 
-            "summary": "Modified Configuration", 
-            "array": "true", 
-            "cli-alias": "modify", 
-            "display": "Modified Configuration", 
-            "description": "Matching configuration is modified during import. The matching configuration may be changed, added, or deleted. To create a match statement, type a correctly formatted resource match in the horizontal text box or select Build. Selecting Build displays the Configuration Match Builder in a popup window. &lt;p>A match statement takes the following general form: &lt;br/>&lt;i>Addr&lt;/i> / &lt;i>Domain&lt;/i> / &lt;i>Resource&lt;/i> [? &lt;i>Name=resource-name&lt;/i> &amp;amp; &lt;i>Property=property-name&lt;/i> &amp;amp; &lt;i>Value=property-value&lt;/i> ]&lt;/p>&lt;table>&lt;tr>&lt;td valign=\"top\">Addr&lt;/td>&lt;td>Device Address. Specifies IP address or host alias. The value (*) matches all IP addresses.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Domain&lt;/td>&lt;td>Application Domain. The name of the application domain. The value (*) matches all domains.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Resource&lt;/td>&lt;td>Resource Type. The name of the resource type. The value (*) matches all resource types.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Name=resource-name&lt;/td>&lt;td>An additional specification field, such as \"Name\". Limits the match statement to resources of the specified name. Use a PCRE to select groups of resource instances. For example, \"Name=foo.*\" would match all resources with names that start with \"foo\".&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Property=property-name&lt;/td>&lt;td>Property Name. The name of the configuration property. Limits the match statement to resources of the specified property. If change specified, set property-name to null string.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Value=property-value&lt;/td>&lt;td>Property Value. Specifies the value for the configuration property. This property limits the match statement to resources with the specified property value.&lt;/td>&lt;/tr>&lt;/table>"
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "ConfigDeploymentPolicy",
+                "display": "Deployment Policy",
+                "uri": "config/deployment",
+                "summary": "Configuration Deployment Policy",
+                "cmd-group": "configuration",
+                "cli-alias": "deployment-policy",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "AcceptedConfig",
+                            "valid-regexp": "^[-_a-zA-Z0-9:.*]+/[-_a-zA-Z0-9.*]+/[-a-z0-9/*]+(\\?[^=]+=[^&amp;]+(&amp;[^=]+=[^&amp;]+)*)?$",
+                            "summary": "Accepted Configuration",
+                            "cli-alias": "accept",
+                            "example": "10.10.1.1/domainA/services/xslproxy?Name=foo.*",
+                            "array": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmResourceURI"
+                            },
+                            "display": "Accepted Configuration",
+                            "description": "Matching configuration is accepted during import. To create a match statement, type a correctly formatted resource match in the horizontal text box or select Build. Selecting Build displays the Configuration Match Builder in a popup window. &lt;p>A match statement takes the following general form: &lt;br/>&lt;i>Addr&lt;/i> / &lt;i>Domain&lt;/i> / &lt;i>Resource&lt;/i> [? &lt;i>Name=resource-name&lt;/i> &amp;amp; &lt;i>Property=property-name&lt;/i> &amp;amp; &lt;i>Value=property-value&lt;/i> ]&lt;/p>&lt;table>&lt;tr>&lt;td valign=\"top\">Addr&lt;/td>&lt;td>Device Address. Specifies IP address or host alias. The value (*) matches all IP addresses.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Domain&lt;/td>&lt;td>Application Domain. The name of the application domain. The value (*) matches all domains.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Resource&lt;/td>&lt;td>Resource Type. The name of the resource type. The value (*) matches all resource types.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Name=resource-name&lt;/td>&lt;td>An additional specification field, such as \"Name\". Limits the match statement to resources of the specified name. Use a PCRE to select groups of resource instances. For example, \"Name=foo.*\" would match all resources with names that start with \"foo\".&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Property=property-name&lt;/td>&lt;td>Property Name. The name of the configuration property. Limits the match statement to resources of the specified property. If change specified, set property-name to null string.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Value=property-value&lt;/td>&lt;td>Property Value. Specifies the value for the configuration property. This property limits the match statement to resources with the specified property value.&lt;/td>&lt;/tr>&lt;/table>"
+                        },
+                        {
+                            "name": "FilteredConfig",
+                            "valid-regexp": "^[-_a-zA-Z0-9:.*]+/[-_a-zA-Z0-9.*]+/[-a-z0-9/*]+(\\?[^=]+=[^&amp;]+(&amp;[^=]+=[^&amp;]+)*)?$",
+                            "summary": "Filtered Configuration",
+                            "cli-alias": "filter",
+                            "example": "10.10.1.1/domainA/services/xslproxy?Name=foo.*",
+                            "array": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmResourceURI"
+                            },
+                            "display": "Filtered Configuration",
+                            "description": "Matching configuration is filtered during import. Match statements do not control whether to import files that are part of the imported configuration package. Files are imported regardless of whether the filter disallows the resources with which the files are associated. &lt;p>To create a match statement, type a correctly formatted resource match in the horizontal text box or select Build. Selecting Build displays the Configuration Match Builder in a popup window.&lt;/p>&lt;p>A match statement takes the following general form: &lt;br/>&lt;i>Addr&lt;/i> / &lt;i>Domain&lt;/i> / &lt;i>Resource&lt;/i> [? &lt;i>Name=resource-name&lt;/i> &amp;amp; &lt;i>Property=property-name&lt;/i> &amp;amp; &lt;i>Value=property-value&lt;/i> ]&lt;/p>&lt;table>&lt;tr>&lt;td valign=\"top\">Addr&lt;/td>&lt;td>Device Address. Specifies IP address or host alias. The value (*) matches all IP addresses.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Domain&lt;/td>&lt;td>Application Domain. The name of the application domain. The value (*) matches all domains.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Resource&lt;/td>&lt;td>Resource Type. The name of the resource type. The value (*) matches all resource types.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Name=resource-name&lt;/td>&lt;td>An additional specification field, such as \"Name\". Limits the match statement to resources of the specified name. Use a PCRE to select groups of resource instances. For example, \"Name=foo.*\" would match all resources with names that start with \"foo\".&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Property=property-name&lt;/td>&lt;td>Property Name. The name of the configuration property. Limits the match statement to resources of the specified property. If change specified, set property-name to null string.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Value=property-value&lt;/td>&lt;td>Property Value. Specifies the value for the configuration property. This property limits the match statement to resources with the specified property value.&lt;/td>&lt;/tr>&lt;/table>"
+                        },
+                        {
+                            "name": "ModifiedConfig",
+                            "type": {
+                                "href": "/mgmt/types/default/dmConfigModifyType"
+                            },
+                            "summary": "Modified Configuration",
+                            "array": "true",
+                            "cli-alias": "modify",
+                            "display": "Modified Configuration",
+                            "description": "Matching configuration is modified during import. The matching configuration may be changed, added, or deleted. To create a match statement, type a correctly formatted resource match in the horizontal text box or select Build. Selecting Build displays the Configuration Match Builder in a popup window. &lt;p>A match statement takes the following general form: &lt;br/>&lt;i>Addr&lt;/i> / &lt;i>Domain&lt;/i> / &lt;i>Resource&lt;/i> [? &lt;i>Name=resource-name&lt;/i> &amp;amp; &lt;i>Property=property-name&lt;/i> &amp;amp; &lt;i>Value=property-value&lt;/i> ]&lt;/p>&lt;table>&lt;tr>&lt;td valign=\"top\">Addr&lt;/td>&lt;td>Device Address. Specifies IP address or host alias. The value (*) matches all IP addresses.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Domain&lt;/td>&lt;td>Application Domain. The name of the application domain. The value (*) matches all domains.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Resource&lt;/td>&lt;td>Resource Type. The name of the resource type. The value (*) matches all resource types.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Name=resource-name&lt;/td>&lt;td>An additional specification field, such as \"Name\". Limits the match statement to resources of the specified name. Use a PCRE to select groups of resource instances. For example, \"Name=foo.*\" would match all resources with names that start with \"foo\".&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Property=property-name&lt;/td>&lt;td>Property Name. The name of the configuration property. Limits the match statement to resources of the specified property. If change specified, set property-name to null string.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Value=property-value&lt;/td>&lt;td>Property Value. Specifies the value for the configuration property. This property limits the match statement to resources with the specified property value.&lt;/td>&lt;/tr>&lt;/table>"
+                        }
+                    ]
+                },
+                "description": "A deployment policy contains a set of rules that are applied during a configuration import. A deployment policy can be used to accept, filter, or modify configuration during import."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/ConfigDeploymentPolicy"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/ConfigDeploymentPolicy"
+                }
+            }
         }
-    ]
+    }
 }

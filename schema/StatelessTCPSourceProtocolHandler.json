@@ -1,334 +1,442 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "/mgmt/types/default/dmLocalIPHostAddress": {
+                },
                 "type": {
-                    "cli-arg": "dotted-ip or 0 for any", 
-                    "name": "dmLocalIPHostAddress", 
-                    "format": "(a.b.c.d or 0 for any)"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmLocalIPHostAddress"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmLocalIPHostAddress"
                     }
-                }
-            }, 
-            "name": "LocalAddress", 
-            "default": "0.0.0.0", 
-            "type": {
-                "href": "/mgmt/types/default/dmLocalIPHostAddress"
-            }, 
-            "required": "true", 
-            "summary": "Local IP address", 
-            "label": "IP address", 
-            "cli-alias": "local-address", 
-            "display": "Local IP Address", 
-            "hoverhelp": "Enter the IP address to listen on for incoming stateless TCP protocol traffic. The default value 0.0.0.0 indicates that the service listens on all IP addresses.", 
-            "description": "The address on which the service listens. The default of 0.0.0.0 indicates that the service is active on all addresses. Click Select Alias to use an alias for this value. Local host aliases help to ease migration tasks between machines. See Local Host Alias under Networking for more."
-        }, 
-        {
-            "name": "LocalPort", 
-            "default": 4000, 
-            "cli-alias": "port", 
-            "required": "true", 
-            "maximum": "0xFFFF", 
-            "summary": "The local TCP port number that supports server operations", 
-            "listener": "LocalAddress", 
-            "minimum": 1, 
-            "type": {
-                "href": "/mgmt/types/default/dmIPPort"
-            }, 
-            "label": "Port", 
-            "/mgmt/types/default/dmIPPort": {
+                },
                 "type": {
-                    "cli-arg": "ip-port", 
-                    "minimum": 0, 
-                    "name": "dmIPPort", 
-                    "maximum": "0xFFFF"
-                }, 
+                    "cli-arg": "dotted-ip or 0 for any",
+                    "name": "dmLocalIPHostAddress",
+                    "format": "(a.b.c.d or 0 for any)"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmIPPort"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmIPPort"
                     }
-                }
-            }, 
-            "display": "Port Number", 
-            "hoverhelp": "Enter the port number to listen on for incoming stateless TCP protocol traffic. Specify a number in the range of 1 - 65535. The default value is 4000.", 
-            "description": "An integer (within the range 1 through 65535, with a default of 4000) that specifies the port monitored by the service."
-        }, 
-        {
-            "name": "PersistentConnections", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Enable/Disable persistent connections on front side", 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
+                                "name": "on",
                                 "display": "on"
-                            }, 
+                            },
                             {
-                                "name": "off", 
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "cli-alias": "persistent-connections", 
-            "display": "Persistent Connections", 
-            "description": "Enable or disable persistent connections where appropriate on front side."
-        }, 
-        {
-            "name": "SSLProxy", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLProxyProfile"
-                }
-            }, 
-            "summary": "The TLS proxy profile is deprecated. Use a TLS server profile or TLS SNI server profile.", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "SSLServerConfigType", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "proxy"
-                }
-            }, 
-            "label": "TLS proxy profile", 
-            "cli-alias": "ssl", 
-            "display": "TLS proxy profile (deprecated)", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "description": "The TLS proxy profile references the required cryptographic configurations for the secure connection."
-        }, 
-        {
-            "description": "This Access Control List will be used to allow or deny access to this service based on the IP address of the client. When attached to a service, an Access Control List (ACL) denies all access by default. To deny access to only selected addresses, first grant access to all addresses (allow 0.0.0.0) and then create deny entries for the desired hosts.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/AccessControlList"
-                }
-            }, 
-            "cli-alias": "acl", 
-            "display": "Access Control List", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
+                    "cli-arg": "object",
                     "name": "dmReference"
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                        "href": "/mgmt/docs/types/dmSSLConfigType"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmReference"
+                        "href": "/mgmt/types/default/dmSSLConfigType"
                     }
-                }
-            }, 
-            "name": "ACL"
-        }, 
-        {
-            "/mgmt/types/default/dmSSLConfigType": {
+                },
                 "type": {
-                    "name": "dmSSLConfigType", 
+                    "name": "dmSSLConfigType",
                     "value-list": {
                         "value": [
                             {
-                                "name": "proxy", 
+                                "name": "proxy",
                                 "display": "Proxy Profile"
-                            }, 
+                            },
                             {
-                                "name": "server", 
+                                "name": "server",
                                 "display": "Server Profile"
-                            }, 
+                            },
                             {
-                                "name": "sni", 
+                                "name": "sni",
                                 "display": "SNI Server Profile"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmSSLConfigType"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmSSLConfigType"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "StatelessTCPSourceProtocolHandler",
+                "status-bindings": {
+                    "status": {
+                        "binding": {
+                            "property": {
+                                "name": "StatelessTCPSourceProtocolHandler",
+                                "select": "dmObjectName"
+                            }
+                        },
+                        "name": "StatelessTCPSourceProtocolHandlerSummary",
+                        "display": {
+                            "property": {
+                                "name": "Quiesce",
+                                "display": "Quiesce State"
+                            }
+                        }
                     }
-                }
-            }, 
-            "name": "SSLServerConfigType", 
-            "default": "proxy", 
-            "cli-alias": "ssl-config-type", 
-            "summary": "Set the TLS profile type to secure connections between clients and the DataPower Gateway", 
-            "type": {
-                "href": "/mgmt/types/default/dmSSLConfigType"
-            }, 
-            "display": "TLS server type", 
-            "description": "The TLS profile type to secure connections between clients and the DataPower Gateway."
-        }, 
-        {
-            "name": "SSLServer", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLServerProfile"
-                }
-            }, 
-            "summary": "Set the TLS server profile to secure connections between clients and the DataPower Gateway", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "SSLServerConfigType", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "server"
-                }
-            }, 
-            "cli-alias": "ssl-server", 
-            "display": "TLS server profile", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
+                },
+                "display": "Stateless Raw XML Handler",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "LocalAddress"
+                            },
+                            {
+                                "name": "LocalPort"
+                            },
+                            {
+                                "name": "SSLServerConfigType"
+                            },
+                            {
+                                "name": "SSLProxy"
+                            },
+                            {
+                                "name": "SSLServer"
+                            },
+                            {
+                                "name": "SSLSNIServer"
+                            }
+                        ],
+                        "name": "summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "LocalAddress"
+                            },
+                            {
+                                "name": "LocalPort"
+                            },
+                            {
+                                "name": "PersistentConnections"
+                            },
+                            {
+                                "name": "SSLServerConfigType"
+                            },
+                            {
+                                "name": "SSLProxy"
+                            },
+                            {
+                                "name": "SSLServer"
+                            },
+                            {
+                                "name": "SSLSNIServer"
+                            },
+                            {
+                                "name": "ACL"
+                            }
+                        ],
+                        "name": "main",
+                        "display": "Main"
                     }
+                ],
+                "uri": "protocol/tcp",
+                "actions": {
+                    "action": [
+                        {
+                            "name": "ServiceQuiesce",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "type",
+                                        "select": "dmObjectClass"
+                                    },
+                                    {
+                                        "name": "name",
+                                        "select": "dmObjectName"
+                                    },
+                                    {
+                                        "name": "timeout"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "ServiceUnquiesce",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "type",
+                                        "select": "dmObjectClass"
+                                    },
+                                    {
+                                        "name": "name",
+                                        "select": "dmObjectName"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "summary": "Stateless Raw XML Handler",
+                "services": {
+                    "service": "APIGateway"
+                },
+                "cmd-group": "mpgw",
+                "cli-alias": "source-raw",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "LocalAddress",
+                            "default": "0.0.0.0",
+                            "cli-alias": "local-address",
+                            "required": "true",
+                            "label": "IP address",
+                            "summary": "Local IP address",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                            },
+                            "display": "Local IP Address",
+                            "hoverhelp": "Enter the IP address to listen on for incoming stateless TCP protocol traffic. The default value 0.0.0.0 indicates that the service listens on all IP addresses.",
+                            "description": "The address on which the service listens. The default of 0.0.0.0 indicates that the service is active on all addresses. Click Select Alias to use an alias for this value. Local host aliases help to ease migration tasks between machines. See Local Host Alias under Networking for more."
+                        },
+                        {
+                            "name": "LocalPort",
+                            "default": 4000,
+                            "cli-alias": "port",
+                            "required": "true",
+                            "maximum": "0xFFFF",
+                            "summary": "The local TCP port number that supports server operations",
+                            "listener": "LocalAddress",
+                            "minimum": 1,
+                            "label": "Port",
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPPort"
+                            },
+                            "display": "Port Number",
+                            "hoverhelp": "Enter the port number to listen on for incoming stateless TCP protocol traffic. Specify a number in the range of 1 - 65535. The default value is 4000.",
+                            "description": "An integer (within the range 1 through 65535, with a default of 4000) that specifies the port monitored by the service."
+                        },
+                        {
+                            "name": "PersistentConnections",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Enable/Disable persistent connections on front side",
+                            "cli-alias": "persistent-connections",
+                            "display": "Persistent Connections",
+                            "description": "Enable or disable persistent connections where appropriate on front side."
+                        },
+                        {
+                            "name": "SSLProxy",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                                }
+                            },
+                            "label": "TLS proxy profile",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SSLServerConfigType",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "proxy"
+                                }
+                            },
+                            "summary": "The TLS proxy profile is deprecated. Use a TLS server profile or TLS SNI server profile.",
+                            "cli-alias": "ssl",
+                            "display": "TLS proxy profile (deprecated)",
+                            "description": "The TLS proxy profile references the required cryptographic configurations for the secure connection."
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/AccessControlList"
+                                }
+                            },
+                            "display": "Access Control List",
+                            "cli-alias": "acl",
+                            "description": "This Access Control List will be used to allow or deny access to this service based on the IP address of the client. When attached to a service, an Access Control List (ACL) denies all access by default. To deny access to only selected addresses, first grant access to all addresses (allow 0.0.0.0) and then create deny entries for the desired hosts.",
+                            "name": "ACL"
+                        },
+                        {
+                            "name": "SSLServerConfigType",
+                            "default": "proxy",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSLConfigType"
+                            },
+                            "summary": "Set the TLS profile type to secure connections between clients and the DataPower Gateway",
+                            "cli-alias": "ssl-config-type",
+                            "display": "TLS server type",
+                            "description": "The TLS profile type to secure connections between clients and the DataPower Gateway."
+                        },
+                        {
+                            "name": "SSLServer",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLServerProfile"
+                                }
+                            },
+                            "summary": "Set the TLS server profile to secure connections between clients and the DataPower Gateway",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SSLServerConfigType",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "server"
+                                }
+                            },
+                            "cli-alias": "ssl-server",
+                            "display": "TLS server profile",
+                            "description": "The TLS server profile to secure connections between clients and the DataPower Gateway."
+                        },
+                        {
+                            "name": "SSLSNIServer",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLSNIServerProfile"
+                                }
+                            },
+                            "summary": "Set the TLS SNI server profile to secure connections between clients and the DataPower Gateway",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SSLServerConfigType",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "sni"
+                                }
+                            },
+                            "cli-alias": "ssl-sni-server",
+                            "display": "TLS SNI server profile",
+                            "description": "The TLS SNI server profile to secure connections between clients and the DataPower Gateway."
+                        }
+                    ]
+                },
+                "description": "&lt;p>The configuration for the stateless TCP protocol handler. This protocol uses raw XML - where the close of the root node delineates the document - PI's and comments outside of the root node are not allowed.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/StatelessTCPSourceProtocolHandler"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/StatelessTCPSourceProtocolHandler"
                 }
-            }, 
-            "description": "The TLS server profile to secure connections between clients and the DataPower Gateway."
-        }, 
-        {
-            "name": "SSLSNIServer", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLSNIServerProfile"
-                }
-            }, 
-            "summary": "Set the TLS SNI server profile to secure connections between clients and the DataPower Gateway", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "SSLServerConfigType", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "sni"
-                }
-            }, 
-            "cli-alias": "ssl-sni-server", 
-            "display": "TLS SNI server profile", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "The TLS SNI server profile to secure connections between clients and the DataPower Gateway."
+            }
         }
-    ]
+    }
 }

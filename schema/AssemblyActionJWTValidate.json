@@ -1,348 +1,234 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for Assembly action.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
+                    "cli-arg": "string",
                     "name": "dmString"
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmString"
+                        "href": "/mgmt/types/default/dmToggle"
                     }
-                }
-            }, 
-            "name": "Title", 
-            "cli-alias": "title", 
-            "summary": "The title for Assembly action.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Title"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "description": "The correlation path specifies the part of the API definition that correlates with the assembly action. This path is exposed in the debug data by the API Gateway for use by debugging tools. For example, for an API configuration that is retrieved from API Connect and specified in an OpenAPI (Swagger 2.0) document with IBM extensions, this path is the JSON path to the assembly policy in the IBM extensions section of the document. The path can be expressed in any form that the debugging tool can correlate to the API definition.", 
-            "cli-alias": "correlation-path", 
-            "summary": "The path which correlates the assembly action to a specific part of the API specification.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Correlation path", 
-            "name": "CorrelationPath"
-        }, 
-        {
-            "name": "ActionDebug", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Whether to enable GatewayScript debugger in assembly actions", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
+                                "name": "on",
                                 "display": "on"
-                            }, 
+                            },
                             {
-                                "name": "off", 
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "cli-alias": "debug", 
-            "display": "Enable debugging", 
-            "description": "&lt;p>Controls whether to enable the GatewayScript debugger to troubleshoot the following GatewayScript file or script. &lt;ul>&lt;li>Troubleshoot the GatewayScript file that is called from the assembly GatewayScript action.&lt;/li>&lt;li>Troubleshoot the GatewayScript file that is invoked by the GatewayScript associated XSLT extension functions or elements, such as the &lt;tt>gatewayscript()&lt;/tt> extension function, from the assembly XSLT action.&lt;/li>&lt;li>Troubleshoot the GatewayScript script that is invoked through the &lt;tt>value&lt;/tt> or the &lt;tt>default&lt;/tt> property in the JSON file from the assembly map action.&lt;/li>&lt;/ul>&lt;/p>&lt;p>To debug a file or script, the following conditions must be met:&lt;/p>&lt;ul>&lt;li>The file contains one or more &lt;tt>debugger;&lt;/tt> statements at the points in your script where you want to start debugging.&lt;/li>&lt;li>The GatewayScript debugger is enabled.&lt;/li>&lt;/ul>&lt;p>Then you can run the &lt;tt>debug-action&lt;/tt> command to debug.&lt;/p>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "AssemblyActionJWTValidate",
+                "display": "Assembly Validate JWT Action",
+                "uri": "assembly/jwt-validate",
+                "summary": "Configure and manage the validate JWT actions",
+                "cmd-group": "assembly",
+                "cli-alias": "assembly-jwt-validate",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for Assembly action."
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Title",
+                            "cli-alias": "title",
+                            "name": "Title",
+                            "summary": "The title for Assembly action."
+                        },
+                        {
+                            "description": "The correlation path specifies the part of the API definition that correlates with the assembly action. This path is exposed in the debug data by the API Gateway for use by debugging tools. For example, for an API configuration that is retrieved from API Connect and specified in an OpenAPI (Swagger 2.0) document with IBM extensions, this path is the JSON path to the assembly policy in the IBM extensions section of the document. The path can be expressed in any form that the debugging tool can correlate to the API definition.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The path which correlates the assembly action to a specific part of the API specification.",
+                            "cli-alias": "correlation-path",
+                            "display": "Correlation path",
+                            "name": "CorrelationPath"
+                        },
+                        {
+                            "name": "ActionDebug",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to enable GatewayScript debugger in assembly actions",
+                            "cli-alias": "debug",
+                            "display": "Enable debugging",
+                            "description": "&lt;p>Controls whether to enable the GatewayScript debugger to troubleshoot the following GatewayScript file or script. &lt;ul>&lt;li>Troubleshoot the GatewayScript file that is called from the assembly GatewayScript action.&lt;/li>&lt;li>Troubleshoot the GatewayScript file that is invoked by the GatewayScript associated XSLT extension functions or elements, such as the &lt;tt>gatewayscript()&lt;/tt> extension function, from the assembly XSLT action.&lt;/li>&lt;li>Troubleshoot the GatewayScript script that is invoked through the &lt;tt>value&lt;/tt> or the &lt;tt>default&lt;/tt> property in the JSON file from the assembly map action.&lt;/li>&lt;/ul>&lt;/p>&lt;p>To debug a file or script, the following conditions must be met:&lt;/p>&lt;ul>&lt;li>The file contains one or more &lt;tt>debugger;&lt;/tt> statements at the points in your script where you want to start debugging.&lt;/li>&lt;li>The GatewayScript debugger is enabled.&lt;/li>&lt;/ul>&lt;p>Then you can run the &lt;tt>debug-action&lt;/tt> command to debug.&lt;/p>"
+                        },
+                        {
+                            "name": "JWT",
+                            "default": "request.headers.authorization",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "summary": "The context variable that contains the JSON Web Token (JWT) to be validated",
+                            "cli-alias": "jwt",
+                            "display": "JWT location",
+                            "description": "Specifies the context variable that contains the JWT to be validated. The default value is &lt;tt>request.headers.authorization&lt;/tt> . The format of the authorization header must be &lt;tt>Authorization: Bearer jwt-token&lt;/tt> where &lt;tt>jwt-token&lt;/tt> indicates the encoded JWT."
+                        },
+                        {
+                            "name": "OutputClaims",
+                            "default": "decoded.claims",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "summary": "The context variable to store all the claims that the JWT contains",
+                            "cli-alias": "output-claims",
+                            "display": "Output claims",
+                            "description": "Specifies a context variable to store all the claims that the JWT contains when the validation of the JWT succeeds. The default value is &lt;tt>decoded.claims&lt;/tt> ."
+                        },
+                        {
+                            "name": "IssuerClaim",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "PCRE to use to validate the issuer claim",
+                            "maximum-length": 256,
+                            "cli-alias": "iss-claim",
+                            "display": "Issuer claim",
+                            "description": "Specifies the optional PCRE to use to validate the issuer \"iss\" claim. When specified, the issuer claim in the JWT is validated. If the issuer claim fails, the JWT validation fails. The maximum length of the value is 256 characters."
+                        },
+                        {
+                            "name": "AudienceClaim",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "PCRE to use to validate the audience claim",
+                            "maximum-length": 256,
+                            "cli-alias": "aud-claim",
+                            "display": "Audience claim",
+                            "description": "Specifies the optional PCRE to use to validate the audience \"aud\" claim. When specified, the audience claim in the JWT is validated. If the audience claim fails, the JWT validation fails. The maximum length of the value is 256 characters."
+                        },
+                        {
+                            "description": "Specifies the cryptographic object (a shared secret key or certificate) to use to decrypt the JWT.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The cryptographic object to decrypt the JWT",
+                            "cli-alias": "jwe-crypto",
+                            "display": "Crypto object for JWT decryption",
+                            "name": "DecryptCrypto"
+                        },
+                        {
+                            "description": "Specifies the context variable that contains the JWK to use to decrypt the JWT.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The context variable that contains the JWK to decrypt the JWT",
+                            "cli-alias": "jwe-jwk",
+                            "display": "JWK for JWT decryption",
+                            "name": "DecryptJWK"
+                        },
+                        {
+                            "description": "Specifies the cryptographic object (a shared secret key or certificate) to use to verify the JWT.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The cryptographic object to verify the JWT",
+                            "cli-alias": "jws-crypto",
+                            "display": "Crypto object for JWT verification",
+                            "name": "VerifyCrypto"
+                        },
+                        {
+                            "description": "Specifies the context variable that contains the JWK to use to verify the JWT.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The context variable that contains the JWK to verify the JWT",
+                            "cli-alias": "jws-jwk",
+                            "display": "JWK for JWT verification",
+                            "name": "VerifyJWK"
+                        }
+                    ]
+                },
+                "description": "&lt;p>The validate JSON Web Token (JWT) action specifies credentials and methods to validate a JWT in the request. The following guidelines apply. &lt;ul>&lt;li>All claims that are specified in the validate JWT action are validated. If any specified claim fails, the JWT validation fails.&lt;/li>&lt;li>You can use a cryptographic object or a JWK to decrypt or verify the JWT. When both are specified, the cryptographic object is used.&lt;/li>&lt;li>If the original message is signed with a shared secret key, the cryptographic object that is specified must also be a shared secret key.&lt;/li>&lt;li>If the original message is signed with a private key, the cryptographic object that is specified must be a crypto certificate (public certificate).&lt;/li>&lt;li>If a JWK header parameter is included in the header of the JWT, the parameter must match the cryptographic object or JWK that is specified in the action. Otherwise, the JWT validation fails.&lt;/li>&lt;/ul>&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/AssemblyActionJWTValidate"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/AssemblyActionJWTValidate"
                 }
-            }, 
-            "name": "JWT", 
-            "default": "request.headers.authorization", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "required": "true", 
-            "summary": "The context variable that contains the JSON Web Token (JWT) to be validated", 
-            "cli-alias": "jwt", 
-            "display": "JWT location", 
-            "description": "Specifies the context variable that contains the JWT to be validated. The default value is &lt;tt>request.headers.authorization&lt;/tt> . The format of the authorization header must be &lt;tt>Authorization: Bearer jwt-token&lt;/tt> where &lt;tt>jwt-token&lt;/tt> indicates the encoded JWT."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "OutputClaims", 
-            "default": "decoded.claims", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "required": "true", 
-            "summary": "The context variable to store all the claims that the JWT contains", 
-            "cli-alias": "output-claims", 
-            "display": "Output claims", 
-            "description": "Specifies a context variable to store all the claims that the JWT contains when the validation of the JWT succeeds. The default value is &lt;tt>decoded.claims&lt;/tt> ."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "maximum-length": 256, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "description": "Specifies the optional PCRE to use to validate the issuer \"iss\" claim. When specified, the issuer claim in the JWT is validated. If the issuer claim fails, the JWT validation fails. The maximum length of the value is 256 characters.", 
-            "summary": "PCRE to use to validate the issuer claim", 
-            "cli-alias": "iss-claim", 
-            "display": "Issuer claim", 
-            "name": "IssuerClaim"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "maximum-length": 256, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "description": "Specifies the optional PCRE to use to validate the audience \"aud\" claim. When specified, the audience claim in the JWT is validated. If the audience claim fails, the JWT validation fails. The maximum length of the value is 256 characters.", 
-            "summary": "PCRE to use to validate the audience claim", 
-            "cli-alias": "aud-claim", 
-            "display": "Audience claim", 
-            "name": "AudienceClaim"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "description": "Specifies the cryptographic object (a shared secret key or certificate) to use to decrypt the JWT.", 
-            "cli-alias": "jwe-crypto", 
-            "summary": "The cryptographic object to decrypt the JWT", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Crypto object for JWT decryption", 
-            "name": "DecryptCrypto"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "description": "Specifies the context variable that contains the JWK to use to decrypt the JWT.", 
-            "cli-alias": "jwe-jwk", 
-            "summary": "The context variable that contains the JWK to decrypt the JWT", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "JWK for JWT decryption", 
-            "name": "DecryptJWK"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "description": "Specifies the cryptographic object (a shared secret key or certificate) to use to verify the JWT.", 
-            "cli-alias": "jws-crypto", 
-            "summary": "The cryptographic object to verify the JWT", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Crypto object for JWT verification", 
-            "name": "VerifyCrypto"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "description": "Specifies the context variable that contains the JWK to use to verify the JWT.", 
-            "cli-alias": "jws-jwk", 
-            "summary": "The context variable that contains the JWK to verify the JWT", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "JWK for JWT verification", 
-            "name": "VerifyJWK"
+            }
         }
-    ]
+    }
 }

@@ -1,1083 +1,981 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "description": "A descriptive summary for the JWT Validator configuration.", 
-            "cli-alias": "summary", 
-            "summary": "Enter a brief descriptive summary for the JWT Validator configuration.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments", 
-            "name": "UserSummary"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
+                    "cli-arg": "string",
                     "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
                 }
-            }, 
-            "maximum-length": 256, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "description": "The optional issuer claim. The \"iss\" PCRE can be used to verify the JWT. The maximum length of the value is 256 characters.", 
-            "summary": "Specify a PCRE used to verify the issuer claim.", 
-            "cli-alias": "iss", 
-            "display": "Issuer", 
-            "name": "Issuer"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "maximum-length": 256, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "description": "The optional audience claim. The \"aud\" PCRE can be used to verify the JWT. The maximum length of the value is 256 characters.", 
-            "summary": "Specify a PCRE used to verify the audience claim.", 
-            "cli-alias": "aud", 
-            "display": "Audience", 
-            "name": "Aud"
-        }, 
-        {
-            "description": "Various methods can be used to validate the JWT. You can decrypt the JWT, verify the JWT signature, and process a custom GatewayScript or XSLT file for further processing.", 
-            "type": {
-                "href": "/mgmt/types/default/dmJWTValMethod"
-            }, 
-            "summary": "Specify how to validate the JWT, such as by using verification methods, decryption methods, and a custom GatewayScript or XSLT file.", 
-            "/mgmt/types/default/dmJWTValMethod": {
-                "type": {
-                    "name": "dmJWTValMethod", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Decrypt the encrypted JWT.", 
-                                "display": "Decrypt", 
-                                "name": "decrypt", 
-                                "description": "Specify how to decrypt the encrypted JWT."
-                            }, 
-                            {
-                                "summary": "Verify the signed JWT.", 
-                                "display": "Verify", 
-                                "name": "verify", 
-                                "description": "Specify how to verify the signed JWT."
-                            }, 
-                            {
-                                "summary": "Use the custom processing mechanism to validate the JWT.", 
-                                "display": "Custom processing", 
-                                "name": "customized", 
-                                "description": "Specify a custom processing to validate the JWT, by processing a GatewayScript or XSLT file. This provides additional customized verification after the DataPower Gateway has verified the JWT successfully."
-                            }
-                        ]
-                    }
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmJWTValMethod"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmJWTValMethod"
                     }
-                }
-            }, 
-            "cli-alias": "validate-method", 
-            "display": "Validation method", 
-            "name": "ValMethod"
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmFSFile"
-            }, 
-            "name": "CustomizedScript", 
-            "/mgmt/types/default/dmFSFile": {
+                },
                 "type": {
-                    "cli-arg": "file", 
-                    "name": "dmFSFile"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmFSFile"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmFSFile"
-                    }
-                }
-            }, 
-            "required-when": {
-                "condition": {
-                    "property-name": "ValMethod", 
-                    "evaluation": "property-value-in-list", 
-                    "value": "customized"
-                }
-            }, 
-            "locations": {
-                "location": [
-                    "local", 
-                    "store"
-                ]
-            }, 
-            "summary": "Specify a custom GatewayScript or XSLT file to validate the JWT.", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "cli-alias": "customized-script", 
-            "display": "Custom validation method processing", 
-            "description": "A custom GatewayScript or XSLT file is processed to validate the JWT. The GatewayScript or XSLT file must be stored in the &lt;tt>local:&lt;/tt> (the default) or &lt;tt>store:&lt;/tt> directory. This field is meaningful when you select &lt;tt>Custom processing&lt;/tt> in the Validation method field."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmJWTCredType"
-            }, 
-            "name": "DecryptCredentialType", 
-            "required-when": {
-                "condition": {
-                    "property-name": "ValMethod", 
-                    "evaluation": "property-value-in-list", 
-                    "value": "decrypt"
-                }
-            }, 
-            "summary": "Specify how to decrypt the JWT.", 
-            "/mgmt/types/default/dmJWTCredType": {
-                "type": {
-                    "name": "dmJWTCredType", 
+                    "name": "dmJWTValMethod",
                     "value-list": {
                         "value": [
                             {
-                                "display": "PKIX", 
-                                "name": "pkix", 
-                                "description": "Specify the public and private keypair for JWT validation."
-                            }, 
+                                "display": "Decrypt",
+                                "description": "Specify how to decrypt the encrypted JWT.",
+                                "name": "decrypt",
+                                "summary": "Decrypt the encrypted JWT."
+                            },
                             {
-                                "display": "Shared secret key", 
-                                "name": "ssecret", 
-                                "description": "Specify the shared secret key for JWT validation."
-                            }, 
+                                "display": "Verify",
+                                "description": "Specify how to verify the signed JWT.",
+                                "name": "verify",
+                                "summary": "Verify the signed JWT."
+                            },
                             {
-                                "display": "Remotely retrieve JWK", 
-                                "name": "jwk-remote", 
-                                "description": "Specify a remote URL, with the form of http or https, for remotely retrieving the JWK for JWT validation."
-                            }, 
-                            {
-                                "display": "Custom", 
-                                "name": "custom", 
-                                "description": "Provide custom processing by retrieving the crypto materials from a custom GatewayScript or XSLT file."
+                                "display": "Custom processing",
+                                "description": "Specify a custom processing to validate the JWT, by processing a GatewayScript or XSLT file. This provides additional customized verification after the DataPower Gateway has verified the JWT successfully.",
+                                "name": "customized",
+                                "summary": "Use the custom processing mechanism to validate the JWT."
                             }
                         ]
                     }
-                }, 
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                },
+                "type": {
+                    "cli-arg": "file",
+                    "name": "dmFSFile"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmJWTCredType"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmJWTCredType"
                     }
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "cli-alias": "decrypt-type", 
-            "display": "Decrypt method", 
-            "description": "Various decryption methods (such as PKIX, shared secret key, JSON Web Key (JWK), custom processing, remotely retrieve JWK) can be used to decrypt the JWT. The default method is PKIX. This field is meaningful when you select &lt;tt>Decrypt&lt;/tt> in the Validation method field."
-        }, 
-        {
-            "name": "DecryptKey", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-and", 
-                    "condition": [
-                        {
-                            "property-name": "ValMethod", 
-                            "evaluation": "property-value-in-list", 
-                            "value": "decrypt"
-                        }, 
-                        {
-                            "property-name": "DecryptCredentialType", 
-                            "evaluation": "property-equals", 
-                            "value": "pkix"
-                        }
-                    ]
-                }
-            }, 
-            "summary": "Specify the private key for decrypting the JWT.", 
-            "cli-alias": "decrypt-key", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/CryptoKey"
-                }
-            }, 
-            "display": "Decrypt key", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "The private key can be used to decrypt the JWT. You can get the key alias by configuring the Crypto Key. This field is meaningful when you select &lt;tt>Decrypt&lt;/tt> in the Validation Method field and choose &lt;tt>PKIX&lt;/tt> from the Decrypt method list."
-        }, 
-        {
-            "name": "DecryptSSecret", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-and", 
-                    "condition": [
-                        {
-                            "property-name": "ValMethod", 
-                            "evaluation": "property-value-in-list", 
-                            "value": "decrypt"
-                        }, 
-                        {
-                            "property-name": "DecryptCredentialType", 
-                            "evaluation": "property-equals", 
-                            "value": "ssecret"
-                        }
-                    ]
-                }
-            }, 
-            "summary": "Specify the shared secret key for decrypting the JWT.", 
-            "cli-alias": "decrypt-ssecret", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/CryptoSSKey"
-                }
-            }, 
-            "display": "Decrypt shared secret", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "The shared secret key can be used to decrypt the JWT. You can get the shared secret key alias by configuring the Crypto Shared Secret Key. This field is meaningful when you select &lt;tt>Decrypt&lt;/tt> in the Validation method field and choose &lt;tt>Shared secret&lt;/tt> from the Decrypt method list."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmFSFile"
-            }, 
-            "name": "DecryptJWK", 
-            "/mgmt/types/default/dmFSFile": {
-                "type": {
-                    "cli-arg": "file", 
-                    "name": "dmFSFile"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmFSFile"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmFSFile"
-                    }
-                }
-            }, 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-and", 
-                    "condition": [
-                        {
-                            "property-name": "ValMethod", 
-                            "evaluation": "property-value-in-list", 
-                            "value": "decrypt"
-                        }, 
-                        {
-                            "property-name": "DecryptCredentialType", 
-                            "evaluation": "property-equals", 
-                            "value": "jwk"
-                        }
-                    ]
-                }
-            }, 
-            "locations": {
-                "location": [
-                    "local", 
-                    "store"
-                ]
-            }, 
-            "summary": "Specify the JWK or key set for decrypting the JWT.", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "cli-alias": "decrypt-jwk", 
-            "display": "Decrypt JWK", 
-            "description": "The file containing the JWK or key set is fetched to decrypt the JWT. The file must be stored in the local: or store: directory. This field is meaningful when you select &lt;tt>Decrypt&lt;/tt> in the Validation method field and choose &lt;tt>JWK&lt;/tt> from the Decrypt method list."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "description": "The URL indicates the source location where the decryption credentials can be fetched for decrypting the JWT. The URL must be in the format of http or https. By default, the URL is http://example.com/v3/key. This field is meaningful when you choose &lt;tt>Decrypt&lt;/tt> in the Validation method field and choose &lt;tt>Remotely retrieve JWK&lt;/tt> from the Decrypt method list.", 
-            "minimum-length": 7, 
-            "default": "http://example.com/v3/key", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-and", 
-                    "condition": [
-                        {
-                            "property-name": "ValMethod", 
-                            "evaluation": "property-value-in-list", 
-                            "value": "decrypt"
-                        }, 
-                        {
-                            "property-name": "DecryptCredentialType", 
-                            "evaluation": "property-equals", 
-                            "value": "jwk-remote"
-                        }
-                    ]
-                }
-            }, 
-            "summary": "Specify the URL where the decryption credentials can be fetched.", 
-            "display": "Decrypt credential URL", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "maximum-length": 255, 
-            "cli-alias": "decrypt-fetch-cred-url", 
-            "example": "https://example.com/v3/key", 
-            "name": "DecryptFetchCredURL"
-        }, 
-        {
-            "name": "DecryptFetchCredSSLProfile", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLClientProfile"
-                }
-            }, 
-            "summary": "Specify the TLS client profile as a source where the decryption credentials can be fetched.", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-not", 
-                    "condition": {
-                        "evaluation": "logical-and", 
-                        "condition": [
+                    "name": "dmJWTCredType",
+                    "value-list": {
+                        "value": [
                             {
-                                "property-name": "ValMethod", 
-                                "evaluation": "property-value-in-list", 
-                                "value": "decrypt"
-                            }, 
+                                "display": "PKIX",
+                                "description": "Specify the public and private keypair for JWT validation.",
+                                "name": "pkix"
+                            },
                             {
-                                "property-name": "DecryptCredentialType", 
-                                "evaluation": "property-equals", 
-                                "value": "jwk-remote"
+                                "display": "Shared secret key",
+                                "description": "Specify the shared secret key for JWT validation.",
+                                "name": "ssecret"
+                            },
+                            {
+                                "display": "Remotely retrieve JWK",
+                                "description": "Specify a remote URL, with the form of http or https, for remotely retrieving the JWK for JWT validation.",
+                                "name": "jwk-remote"
+                            },
+                            {
+                                "display": "Custom",
+                                "description": "Provide custom processing by retrieving the crypto materials from a custom GatewayScript or XSLT file.",
+                                "name": "custom"
                             }
                         ]
                     }
                 }
-            }, 
-            "cli-alias": "decrypt-fetch-cred-sslprofile", 
-            "display": "Decrypt credential TLS client profile", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "description": "The TLS client profile is specified for fetching the decryption credentials. This field is meaningful when you select &lt;tt>Decrypt&lt;/tt> in the Validation method field and choose &lt;tt>Remotely retrieve JWK&lt;/tt> from the Decrypt method list."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmFSFile"
-            }, 
-            "name": "ValidateCustom", 
-            "/mgmt/types/default/dmFSFile": {
+                },
                 "type": {
-                    "cli-arg": "file", 
-                    "name": "dmFSFile"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmFSFile"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmFSFile"
-                    }
-                }
-            }, 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "evaluation": "logical-and", 
-                            "condition": [
-                                {
-                                    "property-name": "ValMethod", 
-                                    "evaluation": "property-value-in-list", 
-                                    "value": "verify"
-                                }, 
-                                {
-                                    "property-name": "VerifyCredentialType", 
-                                    "evaluation": "property-equals", 
-                                    "value": "custom"
-                                }
-                            ]
-                        }, 
-                        {
-                            "evaluation": "logical-and", 
-                            "condition": [
-                                {
-                                    "property-name": "ValMethod", 
-                                    "evaluation": "property-value-in-list", 
-                                    "value": "decrypt"
-                                }, 
-                                {
-                                    "property-name": "DecryptCredentialType", 
-                                    "evaluation": "property-equals", 
-                                    "value": "custom"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            }, 
-            "locations": {
-                "location": [
-                    "local", 
-                    "store"
-                ]
-            }, 
-            "summary": "Specify a custom GatewayScript or XSLT file to provide the crypto information for decrypting or verifying the JWT.", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "cli-alias": "validate-custom", 
-            "display": "Custom decrypt/verify processing", 
-            "description": "A custom GatewayScript or XSLT file provides the key material information to decrypt or verify the JWT. This field is meaningful when you select &lt;tt>Custom&lt;/tt> for the Decrypt method or Verify method list."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmJWTCredType"
-            }, 
-            "name": "VerifyCredentialType", 
-            "required-when": {
-                "condition": {
-                    "property-name": "ValMethod", 
-                    "evaluation": "property-value-in-list", 
-                    "value": "verify"
-                }
-            }, 
-            "summary": "Specify how to verify the JWT signature.", 
-            "/mgmt/types/default/dmJWTCredType": {
-                "type": {
-                    "name": "dmJWTCredType", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "display": "PKIX", 
-                                "name": "pkix", 
-                                "description": "Specify the public and private keypair for JWT validation."
-                            }, 
-                            {
-                                "display": "Shared secret key", 
-                                "name": "ssecret", 
-                                "description": "Specify the shared secret key for JWT validation."
-                            }, 
-                            {
-                                "display": "Remotely retrieve JWK", 
-                                "name": "jwk-remote", 
-                                "description": "Specify a remote URL, with the form of http or https, for remotely retrieving the JWK for JWT validation."
-                            }, 
-                            {
-                                "display": "Custom", 
-                                "name": "custom", 
-                                "description": "Provide custom processing by retrieving the crypto materials from a custom GatewayScript or XSLT file."
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmJWTCredType"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmJWTCredType"
-                    }
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "cli-alias": "verify-type", 
-            "display": "Verify method", 
-            "description": "Various methods (such as PKIX, shared secret key, JWK, custom processing, remotely retrieve JWK) can be used to verify the JWT signature. The default method is PKIX. This field is meaningful when you select &lt;tt>Verify&lt;/tt> in the Validation method field."
-        }, 
-        {
-            "name": "VerifyCertificate", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-and", 
-                    "condition": [
-                        {
-                            "property-name": "ValMethod", 
-                            "evaluation": "property-value-in-list", 
-                            "value": "verify"
-                        }, 
-                        {
-                            "property-name": "VerifyCredentialType", 
-                            "evaluation": "property-equals", 
-                            "value": "pkix"
-                        }
-                    ]
-                }
-            }, 
-            "summary": "Specify the certificate to verify the JWT signature.", 
-            "cli-alias": "verify-certificate", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/CryptoCertificate"
-                }
-            }, 
-            "display": "Verify certificate", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
+                    "cli-arg": "object",
                     "name": "dmReference"
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmReference"
+                        "href": "/mgmt/types/default/dmToggle"
                     }
-                }
-            }, 
-            "description": "The certificate can be used to verify the JWT signature. You can get the certificate by configuring the Crypto Certificate. This field is meaningful when you select &lt;tt>Verify&lt;/tt> in the Validation method field and choose &lt;tt>PKIX&lt;/tt> from the Verify method field."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "name": "VerifyCertificateAgainstValCred", 
-            "default": "off", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-and", 
-                    "condition": [
-                        {
-                            "property-name": "ValMethod", 
-                            "evaluation": "property-value-in-list", 
-                            "value": "verify"
-                        }, 
-                        {
-                            "property-name": "VerifyCredentialType", 
-                            "evaluation": "property-equals", 
-                            "value": "pkix"
-                        }
-                    ]
-                }
-            }, 
-            "summary": "Indicate whether to verify the certificate by using validation credentials.", 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
+                                "name": "on",
                                 "display": "on"
-                            }, 
+                            },
                             {
-                                "name": "off", 
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "cli-alias": "verify-certificate-against-valcred", 
-            "display": "Signature validation credentials", 
-            "description": "You decide whether to use validation credentials to verify the JWT signature. This field is meaningful when you select &lt;tt>Verify&lt;/tt> in the Validation method field and choose &lt;tt>PKIX&lt;/tt> from the Verify method list."
-        }, 
-        {
-            "name": "VerifyValCred", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-and", 
-                    "condition": [
-                        {
-                            "property-name": "ValMethod", 
-                            "evaluation": "property-value-in-list", 
-                            "value": "verify"
-                        }, 
-                        {
-                            "property-name": "VerifyCredentialType", 
-                            "evaluation": "property-equals", 
-                            "value": "pkix"
-                        }, 
-                        {
-                            "property-name": "VerifyCertificateAgainstValCred", 
-                            "evaluation": "property-equals", 
-                            "value": "on"
-                        }
-                    ]
-                }
-            }, 
-            "summary": "Specify validation credentials to verify the signers' certificate for the JWT.", 
-            "cli-alias": "valcred", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/CryptoValCred"
-                }
-            }, 
-            "display": "Validation credentials", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "The validation credentials can be used to verify the signers' certificate for the JWT. You can get credentials by configuring the Crypto Validation Credentials. This field is meaningful when you select &lt;tt>on&lt;/tt> in the Signature validation credentials field."
-        }, 
-        {
-            "name": "VerifySSecret", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-and", 
-                    "condition": [
-                        {
-                            "property-name": "ValMethod", 
-                            "evaluation": "property-value-in-list", 
-                            "value": "verify"
-                        }, 
-                        {
-                            "property-name": "VerifyCredentialType", 
-                            "evaluation": "property-equals", 
-                            "value": "ssecret"
-                        }
-                    ]
-                }
-            }, 
-            "summary": "Specify the shared secret key to verify the JWT signature.", 
-            "cli-alias": "verify-ssecret", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/CryptoSSKey"
-                }
-            }, 
-            "display": "Verify shared secret", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "The shared secret key can be used to verify the JWT signature. This field is meaningful when you select &lt;tt>Verify&lt;/tt> in the Validation method field and choose &lt;tt>Shared secret&lt;/tt> from the Verify method list."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmFSFile"
-            }, 
-            "name": "VerifyJWK", 
-            "/mgmt/types/default/dmFSFile": {
-                "type": {
-                    "cli-arg": "file", 
-                    "name": "dmFSFile"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmFSFile"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmFSFile"
-                    }
-                }
-            }, 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-and", 
-                    "condition": [
-                        {
-                            "property-name": "ValMethod", 
-                            "evaluation": "property-value-in-list", 
-                            "value": "verify"
-                        }, 
-                        {
-                            "property-name": "VerifyCredentialType", 
-                            "evaluation": "property-equals", 
-                            "value": "jwk"
-                        }
-                    ]
-                }
-            }, 
-            "locations": {
-                "location": [
-                    "local", 
-                    "store"
-                ]
-            }, 
-            "summary": "Specify the JWK or key set for verifying the JWT.", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "cli-alias": "verify-jwk", 
-            "display": "Verify JWK", 
-            "description": "The file containing the JWK or key set is fetched to verify the JWT signature. The file must be stored in the local: or store: directory. This field is meaningful when you select &lt;tt>Verify&lt;/tt> in the Validation method field and choose &lt;tt>JWK&lt;/tt> from the Verify method list."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "description": "The URL indicates the source location where the verification credentials can be fetched for verifying the JWT signature. The URL must be in the format of http or https. By default, the URL is http://example.com/v3/certs. This field is meaningful when you select &lt;tt>Verify&lt;/tt> in the Validation method field and choose &lt;tt>Remotely retrieve JWK&lt;/tt> from the Verify method list.", 
-            "minimum-length": 7, 
-            "default": "http://example.com/v3/certs", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-and", 
-                    "condition": [
-                        {
-                            "property-name": "ValMethod", 
-                            "evaluation": "property-value-in-list", 
-                            "value": "verify"
-                        }, 
-                        {
-                            "property-name": "VerifyCredentialType", 
-                            "evaluation": "property-equals", 
-                            "value": "jwk-remote"
-                        }
-                    ]
-                }
-            }, 
-            "summary": "Specify an URL to fetch the verification credentials.", 
-            "display": "Verify credential URL", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "maximum-length": 255, 
-            "cli-alias": "verify-fetch-cred-url", 
-            "example": "https://example.com/v3/certs", 
-            "name": "VerifyFetchCredURL"
-        }, 
-        {
-            "name": "VerifyFetchCredSSLProfile", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLClientProfile"
-                }
-            }, 
-            "summary": "Specify the TLS client profile as a source where the verification credentials can be fetched.", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-not", 
-                    "condition": {
-                        "evaluation": "logical-and", 
-                        "condition": [
-                            {
-                                "property-name": "ValMethod", 
-                                "evaluation": "property-value-in-list", 
-                                "value": "verify"
-                            }, 
-                            {
-                                "property-name": "VerifyCredentialType", 
-                                "evaluation": "property-equals", 
-                                "value": "jwk-remote"
-                            }
-                        ]
-                    }
-                }
-            }, 
-            "cli-alias": "verify-fetch-cred-sslprofile", 
-            "display": "Verify credential TLS client profile", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "The TLS client profile is provided for fetching the verification credentials. This field is meaningful when you select &lt;tt>Verify&lt;/tt> in the Validation method field and choose &lt;tt>Remotely retrieve JWK&lt;/tt> from the Verify method list."
-        }, 
-        {
-            "/mgmt/types/default/dmClaim": {
-                "type": {
-                    "name": "dmClaim", 
-                    "properties": {
-                        "property": [
-                            {
-                                "summary": "Specify the JWT claim name.", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Name", 
-                                "name": "Name", 
-                                "description": "Specify the name of the JWT claim. A claim name is always a string."
-                            }, 
-                            {
-                                "description": "Specify the value of the JWT claim.", 
-                                "required": "true", 
-                                "summary": "Specify the JWT claim value.", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Value", 
-                                "name": "Value"
-                            }, 
-                            {
-                                "summary": "Specify the data type of the JWT claim value.", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmClaimType"
-                                }, 
-                                "display": "Type", 
-                                "name": "Type", 
-                                "description": "Specify the data type of the JWT claim value. The type can be string, boolean, or number."
-                            }
-                        ]
-                    }
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmClaim"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmClaim"
                     }
-                }
-            }, 
-            "name": "Claims", 
-            "type": {
-                "href": "/mgmt/types/default/dmClaim"
-            }, 
-            "summary": "Specify JWT claims to be validated.", 
-            "array": "true", 
-            "cli-alias": "claims", 
-            "display": "Validate claims", 
-            "description": "JWT claims need to be validated. You must enter the claim name, value, and data type. If the data type is string, specify the PCRE regular expression to verify the claim value."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
+                    "name": "dmClaim",
+                    "properties": {
+                        "property": [
+                            {
+                                "display": "Name",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "description": "Specify the name of the JWT claim. A claim name is always a string.",
+                                "name": "Name",
+                                "summary": "Specify the JWT claim name."
+                            },
+                            {
+                                "description": "Specify the value of the JWT claim.",
+                                "required": "true",
+                                "summary": "Specify the JWT claim value.",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Value",
+                                "name": "Value"
+                            },
+                            {
+                                "display": "Type",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmClaimType"
+                                },
+                                "description": "Specify the data type of the JWT claim value. The type can be string, boolean, or number.",
+                                "name": "Type",
+                                "summary": "Specify the data type of the JWT claim value."
+                            }
+                        ]
                     }
                 }
-            }, 
-            "name": "UsernameClaim", 
-            "default": "sub", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "required": "true", 
-            "summary": "Specify the JWT claim name. The value of this JWT claim can be used as the extracted identity username.", 
-            "cli-alias": "username-claim", 
-            "display": "Claim used as username", 
-            "description": "This field is applicable only when the JWT Validator is used in the AAA identity extraction phase. By default, the value of the \"sub\" claim is populated as the username element of the identity extraction output. Ensure that the claim specified in this field is present in the incoming JWT. If no match is found, no username is populated in the AAA processing."
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "AAAJWTValidator",
+                "display": "JWT Validator",
+                "property-group": [
+                    {
+                        "property-group": [
+                            {
+                                "member": [
+                                    {
+                                        "name": "mAdminState"
+                                    },
+                                    {
+                                        "name": "UserSummary"
+                                    },
+                                    {
+                                        "name": "Issuer"
+                                    },
+                                    {
+                                        "name": "Aud"
+                                    },
+                                    {
+                                        "name": "ValMethod"
+                                    },
+                                    {
+                                        "name": "CustomizedScript"
+                                    }
+                                ],
+                                "name": "general",
+                                "display": "General"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "DecryptCredentialType"
+                                    },
+                                    {
+                                        "name": "DecryptKey"
+                                    },
+                                    {
+                                        "name": "DecryptSSecret"
+                                    },
+                                    {
+                                        "name": "DecryptJWK"
+                                    },
+                                    {
+                                        "name": "DecryptFetchCredURL"
+                                    },
+                                    {
+                                        "name": "DecryptFetchCredSSLProfile"
+                                    }
+                                ],
+                                "name": "decrypt",
+                                "display": "Decrypt the token"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "VerifyCredentialType"
+                                    },
+                                    {
+                                        "name": "VerifyCertificate"
+                                    },
+                                    {
+                                        "name": "VerifyCertificateAgainstValCred"
+                                    },
+                                    {
+                                        "name": "VerifyValCred"
+                                    },
+                                    {
+                                        "name": "VerifySSecret"
+                                    },
+                                    {
+                                        "name": "VerifyJWK"
+                                    },
+                                    {
+                                        "name": "VerifyFetchCredURL"
+                                    },
+                                    {
+                                        "name": "VerifyFetchCredSSLProfile"
+                                    }
+                                ],
+                                "name": "verify",
+                                "display": "Verify the token"
+                            },
+                            {
+                                "member": {
+                                    "name": "ValidateCustom"
+                                },
+                                "name": "misc",
+                                "display": "Miscellaneous"
+                            }
+                        ],
+                        "name": "main",
+                        "display": "Main"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "Claims"
+                            },
+                            {
+                                "name": "UsernameClaim"
+                            }
+                        ],
+                        "name": "misc",
+                        "display": "Advanced"
+                    }
+                ],
+                "uri": "crypto/jwt-validator",
+                "summary": "Specify credentials for validating a JWT.",
+                "cmd-group": "crypto",
+                "cli-alias": "jwt-validator",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "A descriptive summary for the JWT Validator configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter a brief descriptive summary for the JWT Validator configuration.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "Issuer",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Specify a PCRE used to verify the issuer claim.",
+                            "maximum-length": 256,
+                            "cli-alias": "iss",
+                            "display": "Issuer",
+                            "description": "The optional issuer claim. The \"iss\" PCRE can be used to verify the JWT. The maximum length of the value is 256 characters."
+                        },
+                        {
+                            "name": "Aud",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Specify a PCRE used to verify the audience claim.",
+                            "maximum-length": 256,
+                            "cli-alias": "aud",
+                            "display": "Audience",
+                            "description": "The optional audience claim. The \"aud\" PCRE can be used to verify the JWT. The maximum length of the value is 256 characters."
+                        },
+                        {
+                            "description": "Various methods can be used to validate the JWT. You can decrypt the JWT, verify the JWT signature, and process a custom GatewayScript or XSLT file for further processing.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmJWTValMethod"
+                            },
+                            "summary": "Specify how to validate the JWT, such as by using verification methods, decryption methods, and a custom GatewayScript or XSLT file.",
+                            "cli-alias": "validate-method",
+                            "display": "Validation method",
+                            "name": "ValMethod"
+                        },
+                        {
+                            "name": "CustomizedScript",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "ValMethod",
+                                    "evaluation": "property-value-in-list",
+                                    "value": "customized"
+                                }
+                            },
+                            "locations": {
+                                "location": [
+                                    "local",
+                                    "store"
+                                ]
+                            },
+                            "summary": "Specify a custom GatewayScript or XSLT file to validate the JWT.",
+                            "cli-alias": "customized-script",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmFSFile"
+                            },
+                            "display": "Custom validation method processing",
+                            "description": "A custom GatewayScript or XSLT file is processed to validate the JWT. The GatewayScript or XSLT file must be stored in the &lt;tt>local:&lt;/tt> (the default) or &lt;tt>store:&lt;/tt> directory. This field is meaningful when you select &lt;tt>Custom processing&lt;/tt> in the Validation method field."
+                        },
+                        {
+                            "name": "DecryptCredentialType",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "ValMethod",
+                                    "evaluation": "property-value-in-list",
+                                    "value": "decrypt"
+                                }
+                            },
+                            "summary": "Specify how to decrypt the JWT.",
+                            "cli-alias": "decrypt-type",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmJWTCredType"
+                            },
+                            "display": "Decrypt method",
+                            "description": "Various decryption methods (such as PKIX, shared secret key, JSON Web Key (JWK), custom processing, remotely retrieve JWK) can be used to decrypt the JWT. The default method is PKIX. This field is meaningful when you select &lt;tt>Decrypt&lt;/tt> in the Validation method field."
+                        },
+                        {
+                            "name": "DecryptKey",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "ValMethod",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "decrypt"
+                                        },
+                                        {
+                                            "property-name": "DecryptCredentialType",
+                                            "evaluation": "property-equals",
+                                            "value": "pkix"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Specify the private key for decrypting the JWT.",
+                            "cli-alias": "decrypt-key",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoKey"
+                                }
+                            },
+                            "display": "Decrypt key",
+                            "description": "The private key can be used to decrypt the JWT. You can get the key alias by configuring the Crypto Key. This field is meaningful when you select &lt;tt>Decrypt&lt;/tt> in the Validation Method field and choose &lt;tt>PKIX&lt;/tt> from the Decrypt method list."
+                        },
+                        {
+                            "name": "DecryptSSecret",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "ValMethod",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "decrypt"
+                                        },
+                                        {
+                                            "property-name": "DecryptCredentialType",
+                                            "evaluation": "property-equals",
+                                            "value": "ssecret"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Specify the shared secret key for decrypting the JWT.",
+                            "cli-alias": "decrypt-ssecret",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoSSKey"
+                                }
+                            },
+                            "display": "Decrypt shared secret",
+                            "description": "The shared secret key can be used to decrypt the JWT. You can get the shared secret key alias by configuring the Crypto Shared Secret Key. This field is meaningful when you select &lt;tt>Decrypt&lt;/tt> in the Validation method field and choose &lt;tt>Shared secret&lt;/tt> from the Decrypt method list."
+                        },
+                        {
+                            "name": "DecryptJWK",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "ValMethod",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "decrypt"
+                                        },
+                                        {
+                                            "property-name": "DecryptCredentialType",
+                                            "evaluation": "property-equals",
+                                            "value": "jwk"
+                                        }
+                                    ]
+                                }
+                            },
+                            "locations": {
+                                "location": [
+                                    "local",
+                                    "store"
+                                ]
+                            },
+                            "summary": "Specify the JWK or key set for decrypting the JWT.",
+                            "cli-alias": "decrypt-jwk",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmFSFile"
+                            },
+                            "display": "Decrypt JWK",
+                            "description": "The file containing the JWK or key set is fetched to decrypt the JWT. The file must be stored in the local: or store: directory. This field is meaningful when you select &lt;tt>Decrypt&lt;/tt> in the Validation method field and choose &lt;tt>JWK&lt;/tt> from the Decrypt method list."
+                        },
+                        {
+                            "description": "The URL indicates the source location where the decryption credentials can be fetched for decrypting the JWT. The URL must be in the format of http or https. By default, the URL is http://example.com/v3/key. This field is meaningful when you choose &lt;tt>Decrypt&lt;/tt> in the Validation method field and choose &lt;tt>Remotely retrieve JWK&lt;/tt> from the Decrypt method list.",
+                            "name": "DecryptFetchCredURL",
+                            "minimum-length": 7,
+                            "default": "http://example.com/v3/key",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "ValMethod",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "decrypt"
+                                        },
+                                        {
+                                            "property-name": "DecryptCredentialType",
+                                            "evaluation": "property-equals",
+                                            "value": "jwk-remote"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Specify the URL where the decryption credentials can be fetched.",
+                            "cli-alias": "decrypt-fetch-cred-url",
+                            "example": "https://example.com/v3/key",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Decrypt credential URL",
+                            "maximum-length": 255
+                        },
+                        {
+                            "name": "DecryptFetchCredSSLProfile",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                                }
+                            },
+                            "summary": "Specify the TLS client profile as a source where the decryption credentials can be fetched.",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-not",
+                                    "condition": {
+                                        "evaluation": "logical-and",
+                                        "condition": [
+                                            {
+                                                "property-name": "ValMethod",
+                                                "evaluation": "property-value-in-list",
+                                                "value": "decrypt"
+                                            },
+                                            {
+                                                "property-name": "DecryptCredentialType",
+                                                "evaluation": "property-equals",
+                                                "value": "jwk-remote"
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            "cli-alias": "decrypt-fetch-cred-sslprofile",
+                            "display": "Decrypt credential TLS client profile",
+                            "description": "The TLS client profile is specified for fetching the decryption credentials. This field is meaningful when you select &lt;tt>Decrypt&lt;/tt> in the Validation method field and choose &lt;tt>Remotely retrieve JWK&lt;/tt> from the Decrypt method list."
+                        },
+                        {
+                            "name": "ValidateCustom",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "ValMethod",
+                                                    "evaluation": "property-value-in-list",
+                                                    "value": "verify"
+                                                },
+                                                {
+                                                    "property-name": "VerifyCredentialType",
+                                                    "evaluation": "property-equals",
+                                                    "value": "custom"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "ValMethod",
+                                                    "evaluation": "property-value-in-list",
+                                                    "value": "decrypt"
+                                                },
+                                                {
+                                                    "property-name": "DecryptCredentialType",
+                                                    "evaluation": "property-equals",
+                                                    "value": "custom"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "locations": {
+                                "location": [
+                                    "local",
+                                    "store"
+                                ]
+                            },
+                            "summary": "Specify a custom GatewayScript or XSLT file to provide the crypto information for decrypting or verifying the JWT.",
+                            "cli-alias": "validate-custom",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmFSFile"
+                            },
+                            "display": "Custom decrypt/verify processing",
+                            "description": "A custom GatewayScript or XSLT file provides the key material information to decrypt or verify the JWT. This field is meaningful when you select &lt;tt>Custom&lt;/tt> for the Decrypt method or Verify method list."
+                        },
+                        {
+                            "name": "VerifyCredentialType",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "ValMethod",
+                                    "evaluation": "property-value-in-list",
+                                    "value": "verify"
+                                }
+                            },
+                            "summary": "Specify how to verify the JWT signature.",
+                            "cli-alias": "verify-type",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmJWTCredType"
+                            },
+                            "display": "Verify method",
+                            "description": "Various methods (such as PKIX, shared secret key, JWK, custom processing, remotely retrieve JWK) can be used to verify the JWT signature. The default method is PKIX. This field is meaningful when you select &lt;tt>Verify&lt;/tt> in the Validation method field."
+                        },
+                        {
+                            "name": "VerifyCertificate",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "ValMethod",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "verify"
+                                        },
+                                        {
+                                            "property-name": "VerifyCredentialType",
+                                            "evaluation": "property-equals",
+                                            "value": "pkix"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Specify the certificate to verify the JWT signature.",
+                            "cli-alias": "verify-certificate",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoCertificate"
+                                }
+                            },
+                            "display": "Verify certificate",
+                            "description": "The certificate can be used to verify the JWT signature. You can get the certificate by configuring the Crypto Certificate. This field is meaningful when you select &lt;tt>Verify&lt;/tt> in the Validation method field and choose &lt;tt>PKIX&lt;/tt> from the Verify method field."
+                        },
+                        {
+                            "name": "VerifyCertificateAgainstValCred",
+                            "default": "off",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "ValMethod",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "verify"
+                                        },
+                                        {
+                                            "property-name": "VerifyCredentialType",
+                                            "evaluation": "property-equals",
+                                            "value": "pkix"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Indicate whether to verify the certificate by using validation credentials.",
+                            "cli-alias": "verify-certificate-against-valcred",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "display": "Signature validation credentials",
+                            "description": "You decide whether to use validation credentials to verify the JWT signature. This field is meaningful when you select &lt;tt>Verify&lt;/tt> in the Validation method field and choose &lt;tt>PKIX&lt;/tt> from the Verify method list."
+                        },
+                        {
+                            "name": "VerifyValCred",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "ValMethod",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "verify"
+                                        },
+                                        {
+                                            "property-name": "VerifyCredentialType",
+                                            "evaluation": "property-equals",
+                                            "value": "pkix"
+                                        },
+                                        {
+                                            "property-name": "VerifyCertificateAgainstValCred",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Specify validation credentials to verify the signers' certificate for the JWT.",
+                            "cli-alias": "valcred",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoValCred"
+                                }
+                            },
+                            "display": "Validation credentials",
+                            "description": "The validation credentials can be used to verify the signers' certificate for the JWT. You can get credentials by configuring the Crypto Validation Credentials. This field is meaningful when you select &lt;tt>on&lt;/tt> in the Signature validation credentials field."
+                        },
+                        {
+                            "name": "VerifySSecret",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "ValMethod",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "verify"
+                                        },
+                                        {
+                                            "property-name": "VerifyCredentialType",
+                                            "evaluation": "property-equals",
+                                            "value": "ssecret"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Specify the shared secret key to verify the JWT signature.",
+                            "cli-alias": "verify-ssecret",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoSSKey"
+                                }
+                            },
+                            "display": "Verify shared secret",
+                            "description": "The shared secret key can be used to verify the JWT signature. This field is meaningful when you select &lt;tt>Verify&lt;/tt> in the Validation method field and choose &lt;tt>Shared secret&lt;/tt> from the Verify method list."
+                        },
+                        {
+                            "name": "VerifyJWK",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "ValMethod",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "verify"
+                                        },
+                                        {
+                                            "property-name": "VerifyCredentialType",
+                                            "evaluation": "property-equals",
+                                            "value": "jwk"
+                                        }
+                                    ]
+                                }
+                            },
+                            "locations": {
+                                "location": [
+                                    "local",
+                                    "store"
+                                ]
+                            },
+                            "summary": "Specify the JWK or key set for verifying the JWT.",
+                            "cli-alias": "verify-jwk",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmFSFile"
+                            },
+                            "display": "Verify JWK",
+                            "description": "The file containing the JWK or key set is fetched to verify the JWT signature. The file must be stored in the local: or store: directory. This field is meaningful when you select &lt;tt>Verify&lt;/tt> in the Validation method field and choose &lt;tt>JWK&lt;/tt> from the Verify method list."
+                        },
+                        {
+                            "description": "The URL indicates the source location where the verification credentials can be fetched for verifying the JWT signature. The URL must be in the format of http or https. By default, the URL is http://example.com/v3/certs. This field is meaningful when you select &lt;tt>Verify&lt;/tt> in the Validation method field and choose &lt;tt>Remotely retrieve JWK&lt;/tt> from the Verify method list.",
+                            "name": "VerifyFetchCredURL",
+                            "minimum-length": 7,
+                            "default": "http://example.com/v3/certs",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "ValMethod",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "verify"
+                                        },
+                                        {
+                                            "property-name": "VerifyCredentialType",
+                                            "evaluation": "property-equals",
+                                            "value": "jwk-remote"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Specify an URL to fetch the verification credentials.",
+                            "cli-alias": "verify-fetch-cred-url",
+                            "example": "https://example.com/v3/certs",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Verify credential URL",
+                            "maximum-length": 255
+                        },
+                        {
+                            "name": "VerifyFetchCredSSLProfile",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                                }
+                            },
+                            "summary": "Specify the TLS client profile as a source where the verification credentials can be fetched.",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-not",
+                                    "condition": {
+                                        "evaluation": "logical-and",
+                                        "condition": [
+                                            {
+                                                "property-name": "ValMethod",
+                                                "evaluation": "property-value-in-list",
+                                                "value": "verify"
+                                            },
+                                            {
+                                                "property-name": "VerifyCredentialType",
+                                                "evaluation": "property-equals",
+                                                "value": "jwk-remote"
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            "cli-alias": "verify-fetch-cred-sslprofile",
+                            "display": "Verify credential TLS client profile",
+                            "description": "The TLS client profile is provided for fetching the verification credentials. This field is meaningful when you select &lt;tt>Verify&lt;/tt> in the Validation method field and choose &lt;tt>Remotely retrieve JWK&lt;/tt> from the Verify method list."
+                        },
+                        {
+                            "name": "Claims",
+                            "type": {
+                                "href": "/mgmt/types/default/dmClaim"
+                            },
+                            "summary": "Specify JWT claims to be validated.",
+                            "array": "true",
+                            "cli-alias": "claims",
+                            "display": "Validate claims",
+                            "description": "JWT claims need to be validated. You must enter the claim name, value, and data type. If the data type is string, specify the PCRE regular expression to verify the claim value."
+                        },
+                        {
+                            "name": "UsernameClaim",
+                            "default": "sub",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "summary": "Specify the JWT claim name. The value of this JWT claim can be used as the extracted identity username.",
+                            "cli-alias": "username-claim",
+                            "display": "Claim used as username",
+                            "description": "This field is applicable only when the JWT Validator is used in the AAA identity extraction phase. By default, the value of the \"sub\" claim is populated as the username element of the identity extraction output. Ensure that the claim specified in this field is present in the incoming JWT. If no match is found, no username is populated in the AAA processing."
+                        }
+                    ]
+                },
+                "description": "&lt;p>The JSON Web Token (JWT) Validator specifies credentials and different methods to validate a JWT.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/AAAJWTValidator"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/AAAJWTValidator"
+                }
+            }
         }
-    ]
+    }
 }

@@ -1,427 +1,438 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "name": "Ciphers", 
-            "default": [
-                "CHACHA20-POLY1305_AT_OPENSSH.COM", 
-                "AES128-CTR", 
-                "AES192-CTR", 
-                "AES256-CTR", 
-                "AES128-GCM_AT_OPENSSH.COM", 
-                "AES256-GCM_AT_OPENSSH.COM", 
-                "AES128-CBC", 
-                "BLOWFISH-CBC", 
-                "CAST128-CBC", 
-                "AES192-CBC", 
-                "AES256-CBC", 
-                "RIJNDAEL-CBC_AT_LYSATOR.LIU.SE"
-            ], 
-            "type": {
-                "href": "/mgmt/types/default/dmSSHCipherSuite"
-            }, 
-            "summary": "Which SSH cipher suites to support.", 
-            "array": "true", 
-            "/mgmt/types/default/dmSSHCipherSuite": {
+                },
                 "type": {
-                    "name": "dmSSHCipherSuite", 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSHCipherSuite"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSHCipherSuite"
+                    }
+                },
+                "type": {
+                    "name": "dmSSHCipherSuite",
                     "value-list": {
                         "value": [
                             {
-                                "name": "CHACHA20-POLY1305_AT_OPENSSH.COM", 
+                                "name": "CHACHA20-POLY1305_AT_OPENSSH.COM",
                                 "display": "chacha20-poly1305@openssh.com"
-                            }, 
+                            },
                             {
-                                "name": "AES128-CTR", 
+                                "name": "AES128-CTR",
                                 "display": "aes128-ctr"
-                            }, 
+                            },
                             {
-                                "name": "AES192-CTR", 
+                                "name": "AES192-CTR",
                                 "display": "aes192-ctr"
-                            }, 
+                            },
                             {
-                                "name": "AES256-CTR", 
+                                "name": "AES256-CTR",
                                 "display": "aes256-ctr"
-                            }, 
+                            },
                             {
-                                "name": "AES128-GCM_AT_OPENSSH.COM", 
+                                "name": "AES128-GCM_AT_OPENSSH.COM",
                                 "display": "aes128-gcm@openssh.com"
-                            }, 
+                            },
                             {
-                                "name": "AES256-GCM_AT_OPENSSH.COM", 
+                                "name": "AES256-GCM_AT_OPENSSH.COM",
                                 "display": "aes256-gcm@openssh.com"
-                            }, 
+                            },
                             {
-                                "name": "AES128-CBC", 
+                                "name": "AES128-CBC",
                                 "display": "aes128-cbc"
-                            }, 
+                            },
                             {
-                                "name": "AES192-CBC", 
+                                "name": "AES192-CBC",
                                 "display": "aes192-cbc"
-                            }, 
+                            },
                             {
-                                "name": "AES256-CBC", 
+                                "name": "AES256-CBC",
                                 "display": "aes256-cbc"
-                            }, 
+                            },
                             {
-                                "name": "3DES-CBC", 
+                                "name": "3DES-CBC",
                                 "display": "3des-cbc"
-                            }, 
+                            },
                             {
-                                "name": "ARCFOUR", 
+                                "name": "ARCFOUR",
                                 "display": "arcfour"
-                            }, 
+                            },
                             {
-                                "name": "ARCFOUR128", 
+                                "name": "ARCFOUR128",
                                 "display": "arcfour128"
-                            }, 
+                            },
                             {
-                                "name": "ARCFOUR256", 
+                                "name": "ARCFOUR256",
                                 "display": "arcfour256"
-                            }, 
+                            },
                             {
-                                "name": "BLOWFISH-CBC", 
+                                "name": "BLOWFISH-CBC",
                                 "display": "blowfish-cbc"
-                            }, 
+                            },
                             {
-                                "name": "CAST128-CBC", 
+                                "name": "CAST128-CBC",
                                 "display": "cast128-cbc"
-                            }, 
+                            },
                             {
-                                "name": "RIJNDAEL-CBC_AT_LYSATOR.LIU.SE", 
+                                "name": "RIJNDAEL-CBC_AT_LYSATOR.LIU.SE",
                                 "display": "rijndael-cbc@lysator.liu.se"
                             }
                         ]
                     }
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmSSHCipherSuite"
-                    }, 
+                        "href": "/mgmt/docs/types/dmSSHKEXList"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmSSHCipherSuite"
+                        "href": "/mgmt/types/default/dmSSHKEXList"
                     }
-                }
-            }, 
-            "cli-alias": "ciphers", 
-            "display": "Ciphers", 
-            "description": "Specifies the list of SSH cipher suites to support."
-        }, 
-        {
-            "name": "KEXAlg", 
-            "default": [
-                "CURVE25519-SHA256_AT_LIBSSH.ORG", 
-                "ECDH-SHA2-NISTP256", 
-                "ECDH-SHA2-NISTP384", 
-                "ECDH-SHA2-NISTP521", 
-                "DIFFIE-HELLMAN-GROUP-EXCHANGE-SHA256", 
-                "DIFFIE-HELLMAN-GROUP14-SHA1"
-            ], 
-            "type": {
-                "href": "/mgmt/types/default/dmSSHKEXList"
-            }, 
-            "summary": "Which key exchange (KEX) algorithms to support.", 
-            "/mgmt/types/default/dmSSHKEXList": {
+                },
                 "type": {
-                    "name": "dmSSHKEXList", 
+                    "name": "dmSSHKEXList",
                     "value-list": {
                         "value": [
                             {
-                                "name": "DIFFIE-HELLMAN-GROUP1-SHA1", 
+                                "name": "DIFFIE-HELLMAN-GROUP1-SHA1",
                                 "display": "diffie-hellman-group1-sha1"
-                            }, 
+                            },
                             {
-                                "name": "DIFFIE-HELLMAN-GROUP14-SHA1", 
+                                "name": "DIFFIE-HELLMAN-GROUP14-SHA1",
                                 "display": "diffie-hellman-group14-sha1"
-                            }, 
+                            },
                             {
-                                "name": "DIFFIE-HELLMAN-GROUP-EXCHANGE-SHA1", 
+                                "name": "DIFFIE-HELLMAN-GROUP-EXCHANGE-SHA1",
                                 "display": "diffie-hellman-group-exchange-sha1"
-                            }, 
+                            },
                             {
-                                "name": "DIFFIE-HELLMAN-GROUP-EXCHANGE-SHA256", 
+                                "name": "DIFFIE-HELLMAN-GROUP-EXCHANGE-SHA256",
                                 "display": "diffie-hellman-group-exchange-sha256"
-                            }, 
+                            },
                             {
-                                "name": "ECDH-SHA2-NISTP256", 
+                                "name": "ECDH-SHA2-NISTP256",
                                 "display": "ecdh-sha2-nistp256"
-                            }, 
+                            },
                             {
-                                "name": "ECDH-SHA2-NISTP384", 
+                                "name": "ECDH-SHA2-NISTP384",
                                 "display": "ecdh-sha2-nistp384"
-                            }, 
+                            },
                             {
-                                "name": "ECDH-SHA2-NISTP521", 
+                                "name": "ECDH-SHA2-NISTP521",
                                 "display": "ecdh-sha2-nistp521"
-                            }, 
+                            },
                             {
-                                "name": "CURVE25519-SHA256_AT_LIBSSH.ORG", 
+                                "name": "CURVE25519-SHA256_AT_LIBSSH.ORG",
                                 "display": "curve25519-sha256@libssh.org"
                             }
                         ]
                     }
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmSSHKEXList"
-                    }, 
+                        "href": "/mgmt/docs/types/dmSSHMACList"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmSSHKEXList"
+                        "href": "/mgmt/types/default/dmSSHMACList"
                     }
-                }
-            }, 
-            "array": "true", 
-            "cli-alias": "kex-alg", 
-            "display": "Key exchange algorithms", 
-            "description": "Specifies the list of SSH KEXs support."
-        }, 
-        {
-            "name": "MACAlg", 
-            "default": [
-                "UMAC-64-ETM_AT_OPENSSH.COM", 
-                "UMAC-128-ETM_AT_OPENSSH.COM", 
-                "HMAC-SHA2-256-ETM_AT_OPENSSH.COM", 
-                "HMAC-SHA2-512-ETM_AT_OPENSSH.COM", 
-                "HMAC-SHA1-ETM_AT_OPENSSH.COM", 
-                "UMAC-64_AT_OPENSSH.COM", 
-                "UMAC-128_AT_OPENSSH.COM", 
-                "HMAC-SHA2-256", 
-                "HMAC-SHA2-512", 
-                "HMAC-SHA1"
-            ], 
-            "type": {
-                "href": "/mgmt/types/default/dmSSHMACList"
-            }, 
-            "summary": "Which message authentication codes (MAC) to support.", 
-            "/mgmt/types/default/dmSSHMACList": {
+                },
                 "type": {
-                    "name": "dmSSHMACList", 
+                    "name": "dmSSHMACList",
                     "value-list": {
                         "value": [
                             {
-                                "name": "HMAC-SHA1", 
+                                "name": "HMAC-SHA1",
                                 "display": "hmac-sha1"
-                            }, 
+                            },
                             {
-                                "name": "HMAC-SHA1-96", 
+                                "name": "HMAC-SHA1-96",
                                 "display": "hmac-sha1-96"
-                            }, 
+                            },
                             {
-                                "name": "HMAC-SHA2-256", 
+                                "name": "HMAC-SHA2-256",
                                 "display": "hmac-sha2-256"
-                            }, 
+                            },
                             {
-                                "name": "HMAC-SHA2-512", 
+                                "name": "HMAC-SHA2-512",
                                 "display": "hmac-sha2-512"
-                            }, 
+                            },
                             {
-                                "name": "HMAC-MD5", 
+                                "name": "HMAC-MD5",
                                 "display": "hmac-md5"
-                            }, 
+                            },
                             {
-                                "name": "HMAC-MD5-96", 
+                                "name": "HMAC-MD5-96",
                                 "display": "hmac-md5-96"
-                            }, 
+                            },
                             {
-                                "name": "HMAC-RIPEMD160", 
+                                "name": "HMAC-RIPEMD160",
                                 "display": "hmac-ripemd160"
-                            }, 
+                            },
                             {
-                                "name": "HMAC-RIPEMD160_AT_OPENSSH.COM", 
+                                "name": "HMAC-RIPEMD160_AT_OPENSSH.COM",
                                 "display": "hmac-ripemd160@openssh.com"
-                            }, 
+                            },
                             {
-                                "name": "UMAC-64_AT_OPENSSH.COM", 
+                                "name": "UMAC-64_AT_OPENSSH.COM",
                                 "display": "umac-64@openssh.com"
-                            }, 
+                            },
                             {
-                                "name": "UMAC-128_AT_OPENSSH.COM", 
+                                "name": "UMAC-128_AT_OPENSSH.COM",
                                 "display": "umac-128@openssh.com"
-                            }, 
+                            },
                             {
-                                "name": "HMAC-SHA1-ETM_AT_OPENSSH.COM", 
+                                "name": "HMAC-SHA1-ETM_AT_OPENSSH.COM",
                                 "display": "hmac-sha1-etm@openssh.com"
-                            }, 
+                            },
                             {
-                                "name": "HMAC-SHA1-96-ETM_AT_OPENSSH.COM", 
+                                "name": "HMAC-SHA1-96-ETM_AT_OPENSSH.COM",
                                 "display": "hmac-sha1-96-etm@openssh.com"
-                            }, 
+                            },
                             {
-                                "name": "HMAC-SHA2-256-ETM_AT_OPENSSH.COM", 
+                                "name": "HMAC-SHA2-256-ETM_AT_OPENSSH.COM",
                                 "display": "hmac-sha2-256-etm@openssh.com"
-                            }, 
+                            },
                             {
-                                "name": "HMAC-SHA2-512-ETM_AT_OPENSSH.COM", 
+                                "name": "HMAC-SHA2-512-ETM_AT_OPENSSH.COM",
                                 "display": "hmac-sha2-512-etm@openssh.com"
-                            }, 
+                            },
                             {
-                                "name": "HMAC-MD5-ETM_AT_OPENSSH.COM", 
+                                "name": "HMAC-MD5-ETM_AT_OPENSSH.COM",
                                 "display": "hmac-md5-etm@openssh.com"
-                            }, 
+                            },
                             {
-                                "name": "HMAC-MD5-96-ETM_AT_OPENSSH.COM", 
+                                "name": "HMAC-MD5-96-ETM_AT_OPENSSH.COM",
                                 "display": "hmac-md5-96-etm@openssh.com"
-                            }, 
+                            },
                             {
-                                "name": "HMAC-RIPEMD160-ETM_AT_OPENSSH.COM", 
+                                "name": "HMAC-RIPEMD160-ETM_AT_OPENSSH.COM",
                                 "display": "hmac-ripemd160-etm@openssh.com"
-                            }, 
+                            },
                             {
-                                "name": "UMAC-64-ETM_AT_OPENSSH.COM", 
+                                "name": "UMAC-64-ETM_AT_OPENSSH.COM",
                                 "display": "umac-64-etm@openssh.com"
-                            }, 
+                            },
                             {
-                                "name": "UMAC-128-ETM_AT_OPENSSH.COM", 
+                                "name": "UMAC-128-ETM_AT_OPENSSH.COM",
                                 "display": "umac-128-etm@openssh.com"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmSSHMACList"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmSSHMACList"
-                    }
                 }
-            }, 
-            "array": "true", 
-            "cli-alias": "mac-alg", 
-            "display": "Message authentication codes", 
-            "description": "Specifies the list of SSH MAC to support."
-        }, 
-        {
-            "name": "SendPreAuthMsg", 
-            "default": "no", 
-            "cli-alias": "send-preauth-msg", 
-            "/mgmt/types/default/dmSendPreAuthMsg": {
-                "type": {
-                    "name": "dmSendPreAuthMsg", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Does not include a banner message", 
-                                "display": "No", 
-                                "name": "no", 
-                                "description": "Does not include a banner message during SSH preauthentication phase."
-                            }, 
-                            {
-                                "summary": "Includes a banner message", 
-                                "display": "Yes", 
-                                "name": "yes", 
-                                "description": "Includes a banner message during SSH preauthentication phase."
-                            }
-                        ]
-                    }
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmSendPreAuthMsg"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmSendPreAuthMsg"
                     }
-                }
-            }, 
-            "summary": "Whether to include a banner message during SSH preauthentication phase", 
-            "type": {
-                "href": "/mgmt/types/default/dmSendPreAuthMsg"
-            }, 
-            "display": "Include SSH preauthentication message", 
-            "description": "Specifies whether to include a banner message during SSH preauthentication phase. The message contains text to be displayed to the user before the login prompt."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
+                    "name": "dmSendPreAuthMsg",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "No",
+                                "description": "Does not include a banner message during SSH preauthentication phase.",
+                                "name": "no",
+                                "summary": "Does not include a banner message"
+                            },
+                            {
+                                "display": "Yes",
+                                "description": "Includes a banner message during SSH preauthentication phase.",
+                                "name": "yes",
+                                "summary": "Includes a banner message"
+                            }
+                        ]
                     }
                 }
-            }, 
-            "name": "PreAuthMsg", 
-            "cli-alias": "preauth-msg", 
-            "summary": "Banner message text to be displayed to the user before the login prompt", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "SendPreAuthMsg", 
-                    "evaluation": "property-equals", 
-                    "value": "no"
+            }
+        ],
+        "metadata": {
+            "object": {
+                "name": "SSHServerProfile",
+                "display": "SSH Server Profile",
+                "uri": "crypto/sshserverprofile",
+                "summary": "Configuration of the SSH server.",
+                "cmd-group": "crypto",
+                "cli-alias": "sshserverprofile",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "Ciphers",
+                            "default": [
+                                "CHACHA20-POLY1305_AT_OPENSSH.COM",
+                                "AES128-CTR",
+                                "AES192-CTR",
+                                "AES256-CTR",
+                                "AES128-GCM_AT_OPENSSH.COM",
+                                "AES256-GCM_AT_OPENSSH.COM",
+                                "AES128-CBC",
+                                "BLOWFISH-CBC",
+                                "CAST128-CBC",
+                                "AES192-CBC",
+                                "AES256-CBC",
+                                "RIJNDAEL-CBC_AT_LYSATOR.LIU.SE"
+                            ],
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSHCipherSuite"
+                            },
+                            "summary": "Which SSH cipher suites to support.",
+                            "array": "true",
+                            "cli-alias": "ciphers",
+                            "display": "Ciphers",
+                            "description": "Specifies the list of SSH cipher suites to support."
+                        },
+                        {
+                            "name": "KEXAlg",
+                            "default": [
+                                "CURVE25519-SHA256_AT_LIBSSH.ORG",
+                                "ECDH-SHA2-NISTP256",
+                                "ECDH-SHA2-NISTP384",
+                                "ECDH-SHA2-NISTP521",
+                                "DIFFIE-HELLMAN-GROUP-EXCHANGE-SHA256",
+                                "DIFFIE-HELLMAN-GROUP14-SHA1"
+                            ],
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSHKEXList"
+                            },
+                            "summary": "Which key exchange (KEX) algorithms to support.",
+                            "array": "true",
+                            "cli-alias": "kex-alg",
+                            "display": "Key exchange algorithms",
+                            "description": "Specifies the list of SSH KEXs support."
+                        },
+                        {
+                            "name": "MACAlg",
+                            "default": [
+                                "UMAC-64-ETM_AT_OPENSSH.COM",
+                                "UMAC-128-ETM_AT_OPENSSH.COM",
+                                "HMAC-SHA2-256-ETM_AT_OPENSSH.COM",
+                                "HMAC-SHA2-512-ETM_AT_OPENSSH.COM",
+                                "HMAC-SHA1-ETM_AT_OPENSSH.COM",
+                                "UMAC-64_AT_OPENSSH.COM",
+                                "UMAC-128_AT_OPENSSH.COM",
+                                "HMAC-SHA2-256",
+                                "HMAC-SHA2-512",
+                                "HMAC-SHA1"
+                            ],
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSHMACList"
+                            },
+                            "summary": "Which message authentication codes (MAC) to support.",
+                            "array": "true",
+                            "cli-alias": "mac-alg",
+                            "display": "Message authentication codes",
+                            "description": "Specifies the list of SSH MAC to support."
+                        },
+                        {
+                            "name": "SendPreAuthMsg",
+                            "default": "no",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSendPreAuthMsg"
+                            },
+                            "summary": "Whether to include a banner message during SSH preauthentication phase",
+                            "cli-alias": "send-preauth-msg",
+                            "display": "Include SSH preauthentication message",
+                            "description": "Specifies whether to include a banner message during SSH preauthentication phase. The message contains text to be displayed to the user before the login prompt."
+                        },
+                        {
+                            "name": "PreAuthMsg",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Banner message text to be displayed to the user before the login prompt",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SendPreAuthMsg",
+                                    "evaluation": "property-equals",
+                                    "value": "no"
+                                }
+                            },
+                            "cli-alias": "preauth-msg",
+                            "display": "Preauthentication message",
+                            "description": "Specifies the banner message text to be displayed to the user before the login prompt. Whitespace characters (\\n, \\t) are recognized and escaped. The minimum length of the text is one character. The maximum length is truncated at 4096 characters."
+                        }
+                    ]
+                },
+                "description": "Modify the configuration of the SSH server. &lt;b>Warning&lt;/b>: You must reboot the system for the changes to take effect."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/SSHServerProfile"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/SSHServerProfile"
                 }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Preauthentication message", 
-            "description": "Specifies the banner message text to be displayed to the user before the login prompt. Whitespace characters (\\n, \\t) are recognized and escaped. The minimum length of the text is one character. The maximum length is truncated at 4096 characters."
+            }
         }
-    ]
+    }
 }

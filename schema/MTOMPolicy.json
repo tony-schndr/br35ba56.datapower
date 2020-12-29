@@ -1,201 +1,227 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "description": "Specify the optimization mode. &lt;p>The encode option optimizes (serializes) input messages. For serialization, provide an XPath expression or a list of XPath expressions to identify the content to extract. Optionally, per XPath expression, exercise control over the Content Type and Content ID values. These two values can be determined automatically using the xmlmime:contentType declaration and namespace declaration.&lt;/p>&lt;p>The decode option decodes (deserializes) attachment parts of an optimized message. Deserialization, by default, reassembles the original infoset, which results in either a SOAP document or MIME document depending on whether all attachments were referenced by &amp;lt;Include/> elements. Optionally, you can specify a Content ID to select individual attachment parts to reassemble.&lt;/p>", 
-            "type": {
-                "href": "/mgmt/types/default/dmMtomMode"
-            }, 
-            "/mgmt/types/default/dmMtomMode": {
+                },
                 "type": {
-                    "name": "dmMtomMode", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Optimizes an input message.", 
-                                "display": "Encode", 
-                                "name": "encode"
-                            }, 
-                            {
-                                "summary": "Reconstitutes the original message.", 
-                                "display": "Decode", 
-                                "name": "decode"
-                            }
-                        ]
-                    }, 
-                    "summary": "MTOM Mode"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmMtomMode"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmMtomMode"
                     }
-                }
-            }, 
-            "summary": "MTOM Mode", 
-            "cli-alias": "mode", 
-            "display": "MTOM Mode", 
-            "name": "Mode"
-        }, 
-        {
-            "name": "IncludeContentType", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Include Content Type Attribute", 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "name": "dmMtomMode",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
+                                "display": "Encode",
+                                "name": "encode",
+                                "summary": "Optimizes an input message."
+                            },
                             {
-                                "name": "off", 
+                                "display": "Decode",
+                                "name": "decode",
+                                "summary": "Reconstitutes the original message."
+                            }
+                        ]
+                    },
+                    "summary": "MTOM Mode"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "cli-alias": "include-content-type", 
-            "display": "Include Content Type", 
-            "description": "&lt;p>Select whether to include the xmlmine:contentType declaration in output messages when the input message does not contain this declaration. If the input message contains this declaration, the MTOM policy passes through the attribute regardless of the setting for this property.&lt;/p>&lt;ul>&lt;li>Select \"on\", the default value, to add the contentType declaration to the output message.&lt;/li>&lt;li>Select \"off\" to not add the contentType declaration to the output message.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmMtomRule": {
-                "type": {
-                    "summary": "MTOM Rule", 
-                    "properties": {
-                        "property": [
-                            {
-                                "name": "XPath", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmXPathExpr"
-                                }, 
-                                "required": "true", 
-                                "summary": "XPath Expression", 
-                                "cli-alias": "select", 
-                                "display": "XPath Expression", 
-                                "description": "An XPath expression that defines which schema element or schema elements are subject to this rule. Click XPath Tool to launch the XPath expression builder. To use this tool, upload an example document. After the example document is loaded, the tool allows you to select the elements to construct the corresponding XPath expression. After selecting the elements, click Done to return to the MTOM Rules Properties window."
-                            }, 
-                            {
-                                "description": "The Content Type for the extracted element data. This option overrides the value that is attained from the xmlmime:contentType attribute. If the provided XPath matches more than one element, each corresponding MIME attachment part will contain a content-type header with this value. If different content-type values are required, selective XPath expressions are required.", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "summary": "Content Type", 
-                                "cli-alias": "content-type", 
-                                "display": "Content Type", 
-                                "name": "ContentType"
-                            }, 
-                            {
-                                "description": "If not explicitly configured, content IDs are automatically generated. Using this property allows for the explicit configuration of content-id headers and their associated href values. Rules that match multiple data elements result in one attachment part for all matched elements. The resulting attachment part contains data from the last match only.", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "summary": "Content ID", 
-                                "cli-alias": "content-id", 
-                                "display": "Content ID", 
-                                "name": "ContentID"
-                            }
-                        ]
-                    }, 
-                    "name": "dmMtomRule"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmMtomRule"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmMtomRule"
                     }
+                },
+                "type": {
+                    "properties": {
+                        "property": [
+                            {
+                                "name": "XPath",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmXPathExpr"
+                                },
+                                "required": "true",
+                                "summary": "XPath Expression",
+                                "cli-alias": "select",
+                                "display": "XPath Expression",
+                                "description": "An XPath expression that defines which schema element or schema elements are subject to this rule. Click XPath Tool to launch the XPath expression builder. To use this tool, upload an example document. After the example document is loaded, the tool allows you to select the elements to construct the corresponding XPath expression. After selecting the elements, click Done to return to the MTOM Rules Properties window."
+                            },
+                            {
+                                "description": "The Content Type for the extracted element data. This option overrides the value that is attained from the xmlmime:contentType attribute. If the provided XPath matches more than one element, each corresponding MIME attachment part will contain a content-type header with this value. If different content-type values are required, selective XPath expressions are required.",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "summary": "Content Type",
+                                "cli-alias": "content-type",
+                                "display": "Content Type",
+                                "name": "ContentType"
+                            },
+                            {
+                                "description": "If not explicitly configured, content IDs are automatically generated. Using this property allows for the explicit configuration of content-id headers and their associated href values. Rules that match multiple data elements result in one attachment part for all matched elements. The resulting attachment part contains data from the last match only.",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "summary": "Content ID",
+                                "cli-alias": "content-id",
+                                "display": "Content ID",
+                                "name": "ContentID"
+                            }
+                        ]
+                    },
+                    "name": "dmMtomRule",
+                    "summary": "MTOM Rule"
                 }
-            }, 
-            "name": "Rule", 
-            "type": {
-                "href": "/mgmt/types/default/dmMtomRule"
-            }, 
-            "summary": "MTOM Rules", 
-            "array": "true", 
-            "cli-alias": "rule", 
-            "display": "MTOM Rules", 
-            "description": "Each MTOM rule describes which message elements to optimize. A single XPath expression selects one or more elements for optimization."
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "MTOMPolicy",
+                "display": "MTOM Policy",
+                "uri": "xml/mtom",
+                "summary": "MTOM Policy",
+                "cmd-group": "configuration",
+                "cli-alias": "mtom",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "description": "Specify the optimization mode. &lt;p>The encode option optimizes (serializes) input messages. For serialization, provide an XPath expression or a list of XPath expressions to identify the content to extract. Optionally, per XPath expression, exercise control over the Content Type and Content ID values. These two values can be determined automatically using the xmlmime:contentType declaration and namespace declaration.&lt;/p>&lt;p>The decode option decodes (deserializes) attachment parts of an optimized message. Deserialization, by default, reassembles the original infoset, which results in either a SOAP document or MIME document depending on whether all attachments were referenced by &amp;lt;Include/> elements. Optionally, you can specify a Content ID to select individual attachment parts to reassemble.&lt;/p>",
+                            "type": {
+                                "href": "/mgmt/types/default/dmMtomMode"
+                            },
+                            "summary": "MTOM Mode",
+                            "cli-alias": "mode",
+                            "display": "MTOM Mode",
+                            "name": "Mode"
+                        },
+                        {
+                            "name": "IncludeContentType",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Include Content Type Attribute",
+                            "cli-alias": "include-content-type",
+                            "display": "Include Content Type",
+                            "description": "&lt;p>Select whether to include the xmlmine:contentType declaration in output messages when the input message does not contain this declaration. If the input message contains this declaration, the MTOM policy passes through the attribute regardless of the setting for this property.&lt;/p>&lt;ul>&lt;li>Select \"on\", the default value, to add the contentType declaration to the output message.&lt;/li>&lt;li>Select \"off\" to not add the contentType declaration to the output message.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "Rule",
+                            "type": {
+                                "href": "/mgmt/types/default/dmMtomRule"
+                            },
+                            "summary": "MTOM Rules",
+                            "array": "true",
+                            "cli-alias": "rule",
+                            "display": "MTOM Rules",
+                            "description": "Each MTOM rule describes which message elements to optimize. A single XPath expression selects one or more elements for optimization."
+                        }
+                    ]
+                },
+                "description": "An MTOM policy provides a mechanism for optimizing the transmission and wire format of an XML/SOAP message. Optimization is performed by selecting elements with base64-encoded character data. The selected elements are decoded and attached as MIME attachment parts before transmission. Decoding before transmission reduces the overhead that is associated with base64-encoded data."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/MTOMPolicy"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/MTOMPolicy"
+                }
+            }
         }
-    ]
+    }
 }

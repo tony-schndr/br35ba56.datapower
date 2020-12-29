@@ -1,635 +1,677 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "name": "Protocol", 
-            "default": "plaintext", 
-            "type": {
-                "href": "/mgmt/types/default/dmKafkaProtocol"
-            }, 
-            "required": "true", 
-            "summary": "Protocol for bootstrap connection", 
-            "/mgmt/types/default/dmKafkaProtocol": {
+                },
                 "type": {
-                    "name": "dmKafkaProtocol", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "", 
-                                "display": "Plaintext", 
-                                "name": "plaintext", 
-                                "description": "Uses non encrypted transport."
-                            }, 
-                            {
-                                "summary": "", 
-                                "display": "TLS", 
-                                "name": "ssl", 
-                                "description": "Uses TLS encrypted transport."
-                            }, 
-                            {
-                                "summary": "", 
-                                "display": "SASL plaintext", 
-                                "name": "sasl_plaintext", 
-                                "description": "Uses non encrypted transport with SASL authentication."
-                            }, 
-                            {
-                                "summary": "", 
-                                "display": "SASL TLS", 
-                                "name": "sasl_ssl", 
-                                "description": "Uses TLS encrypted transport with SASL authentication."
-                            }
-                        ]
-                    }, 
-                    "display": "Communication protocol"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmKafkaProtocol"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmKafkaProtocol"
                     }
+                },
+                "type": {
+                    "name": "dmKafkaProtocol",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Plaintext",
+                                "description": "Uses non encrypted transport.",
+                                "name": "plaintext",
+                                "summary": ""
+                            },
+                            {
+                                "display": "TLS",
+                                "description": "Uses TLS encrypted transport.",
+                                "name": "ssl",
+                                "summary": ""
+                            },
+                            {
+                                "display": "SASL plaintext",
+                                "description": "Uses non encrypted transport with SASL authentication.",
+                                "name": "sasl_plaintext",
+                                "summary": ""
+                            },
+                            {
+                                "display": "SASL TLS",
+                                "description": "Uses TLS encrypted transport with SASL authentication.",
+                                "name": "sasl_ssl",
+                                "summary": ""
+                            }
+                        ]
+                    },
+                    "display": "Communication protocol"
                 }
-            }, 
-            "cli-alias": "protocol", 
-            "display": "Protocol", 
-            "description": "Select the predefined protocol that is supported by the Kafka server and used for information exchange between the Kafka Server object and the bootstrap server."
-        }, 
-        {
-            "name": "Endpoint", 
-            "type": {
-                "href": "/mgmt/types/default/dmKafkaEndpoint"
-            }, 
-            "required": "true", 
-            "/mgmt/types/default/dmKafkaEndpoint": {
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmKafkaEndpoint"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmKafkaEndpoint"
+                    }
+                },
                 "type": {
                     "properties": {
                         "property": [
                             {
-                                "description": "Host name or IP address of a bootstrap server", 
-                                "required": "true", 
-                                "summary": "Host name or IP address", 
+                                "description": "Host name or IP address of a bootstrap server",
+                                "required": "true",
+                                "summary": "Host name or IP address",
                                 "type": {
                                     "href": "/mgmt/types/default/dmHostname"
-                                }, 
-                                "display": "Kafka host", 
+                                },
+                                "display": "Kafka host",
                                 "name": "Host"
-                            }, 
+                            },
                             {
-                                "description": "Port number of a bootstrap server.", 
-                                "required": "true", 
-                                "summary": "Port for bootstrap connection", 
+                                "description": "Port number of a bootstrap server.",
+                                "required": "true",
+                                "summary": "Port for bootstrap connection",
                                 "type": {
                                     "href": "/mgmt/types/default/dmIPPort"
-                                }, 
-                                "display": "Kafka port", 
+                                },
+                                "display": "Kafka port",
                                 "name": "Port"
                             }
                         ]
-                    }, 
-                    "name": "dmKafkaEndpoint", 
-                    "display": "Kafka endpoint"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmKafkaEndpoint"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmKafkaEndpoint"
-                    }
+                    },
+                    "display": "Kafka endpoint",
+                    "name": "dmKafkaEndpoint"
                 }
-            }, 
-            "summary": "Kafka endpoint", 
-            "array": "true", 
-            "cli-alias": "endpoint", 
-            "display": "Kafka endpoint", 
-            "description": "&lt;p>Identifies the connection host and port to use for the bootstrap process.&lt;/p>&lt;p>A bootstrap server uses a host name or IP address and a port number to define an endpoint address.&lt;/p>&lt;p>You can add multiple nondefault bootstrap servers. For failover capability, the endpoints must be members of the same cluster.&lt;/p>"
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmKafkaSASLMechanism"
-            }, 
-            "name": "SASLMechanism", 
-            "default": "plain", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "Protocol", 
-                            "evaluation": "property-equals", 
-                            "value": "sasl_plaintext"
-                        }, 
-                        {
-                            "property-name": "Protocol", 
-                            "evaluation": "property-equals", 
-                            "value": "sasl_ssl"
-                        }
-                    ]
-                }
-            }, 
-            "summary": "Simple Authentication and Security Layer mechanism", 
-            "cli-alias": "sasl-mechanism", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "Protocol", 
-                            "evaluation": "property-equals", 
-                            "value": "plaintext"
-                        }, 
-                        {
-                            "property-name": "Protocol", 
-                            "evaluation": "property-equals", 
-                            "value": "ssl"
-                        }
-                    ]
-                }
-            }, 
-            "/mgmt/types/default/dmKafkaSASLMechanism": {
-                "type": {
-                    "name": "dmKafkaSASLMechanism", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "", 
-                                "display": "PLAIN", 
-                                "name": "plain", 
-                                "description": "A simple clear text password mechanism."
-                            }, 
-                            {
-                                "summary": "", 
-                                "display": "SCRAM-SHA-256", 
-                                "name": "scram-sha-256", 
-                                "description": "Salted Challenge Response Authentication Mechanism with SHA-256."
-                            }, 
-                            {
-                                "summary": "", 
-                                "display": "SCRAM-SHA-512", 
-                                "name": "scram-sha-512", 
-                                "description": "Salted Challenge Response Authentication Mechanism with SHA-512."
-                            }
-                        ]
-                    }, 
-                    "display": "SASL mechanism"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmKafkaSASLMechanism"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmKafkaSASLMechanism"
                     }
-                }
-            }, 
-            "display": "SASL mechanism", 
-            "description": "Select the appropriate SASL mechanism necessary to communicate with the Kafka Cluster. The default value is plaintext."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "name": "UserName", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "Protocol", 
-                            "evaluation": "property-equals", 
-                            "value": "sasl_plaintext"
-                        }, 
-                        {
-                            "property-name": "Protocol", 
-                            "evaluation": "property-equals", 
-                            "value": "sasl_ssl"
-                        }
-                    ]
-                }
-            }, 
-            "summary": "Username to use for connecting to the server", 
-            "valid-regexp": "^[^ ]+$", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "Protocol", 
-                            "evaluation": "property-equals", 
-                            "value": "plaintext"
-                        }, 
-                        {
-                            "property-name": "Protocol", 
-                            "evaluation": "property-equals", 
-                            "value": "ssl"
-                        }
-                    ]
-                }
-            }, 
-            "cli-alias": "username", 
-            "display": "User name", 
-            "description": "Specifies the account name used to access the remote server."
-        }, 
-        {
-            "name": "PasswordAlias", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "Protocol", 
-                            "evaluation": "property-equals", 
-                            "value": "sasl_plaintext"
-                        }, 
-                        {
-                            "property-name": "Protocol", 
-                            "evaluation": "property-equals", 
-                            "value": "sasl_ssl"
-                        }
-                    ]
-                }
-            }, 
-            "summary": "Password alias of the password to use for connecting to the server", 
-            "cli-alias": "password-alias", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "Protocol", 
-                            "evaluation": "property-equals", 
-                            "value": "plaintext"
-                        }, 
-                        {
-                            "property-name": "Protocol", 
-                            "evaluation": "property-equals", 
-                            "value": "ssl"
-                        }
-                    ]
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/PasswordAlias"
-                }
-            }, 
-            "display": "Password alias", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "Specifies the password alias of the password used to access the remote server."
-        }, 
-        {
-            "name": "SSLClient", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "Protocol", 
-                            "evaluation": "property-equals", 
-                            "value": "ssl"
-                        }, 
-                        {
-                            "property-name": "Protocol", 
-                            "evaluation": "property-equals", 
-                            "value": "sasl_ssl"
-                        }
-                    ]
-                }
-            }, 
-            "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and its targets", 
-            "cli-alias": "ssl-client", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "Protocol", 
-                            "evaluation": "property-equals", 
-                            "value": "plaintext"
-                        }, 
-                        {
-                            "property-name": "Protocol", 
-                            "evaluation": "property-equals", 
-                            "value": "sasl_plaintext"
-                        }
-                    ]
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLClientProfile"
-                }
-            }, 
-            "display": "TLS client profile", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "The TLS client profile to secure connections between the DataPower Gateway and its targets."
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
-                }
-            }, 
-            "name": "MemoryThreshold", 
-            "default": 268435456, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 1073741824, 
-            "summary": "Maximum memory size allowed for pending messages", 
-            "minimum": 10485760, 
-            "units": "bytes", 
-            "cli-alias": "memory-threshold", 
-            "display": "Memory threshold", 
-            "description": "Specifies the maximum memory allocation for pending messages. Enter a value in the range 1048576 - 1073741824 that specifies the maximum memory in bytes to allocate for pending messages. By default, the maximum memory allocation is set at 268435456."
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
-                }
-            }, 
-            "name": "MaximumMessageSize", 
-            "default": 1048576, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 1073741824, 
-            "summary": "Maximum message size the DataPower Gateway sends to the remote server", 
-            "minimum": 0, 
-            "units": "bytes", 
-            "cli-alias": "maximum-message-size", 
-            "display": "Maximum message size", 
-            "description": "Specifies the maximum message size that the DataPower Gateway supports over a connection to the remote server. Enter a value in the range 0 - 1073741824 that specifies the maximum message size in bytes. By default, the maximum message size is set at 1048576 bytes. You can use the special value, 0, to disable the enforcement of maximum message sizes."
-        }, 
-        {
-            "name": "TotalConnectionLimit", 
-            "default": 64, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt16"
-            }, 
-            "summary": "Total number of connections limit", 
-            "minimum": 1, 
-            "/mgmt/types/default/dmUInt16": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt16", 
-                    "maximum": "0xFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt16"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt16"
-                    }
-                }
-            }, 
-            "cli-alias": "total-connection-limit", 
-            "display": "Total connection limit", 
-            "description": "&lt;p>Specifies the maximum number of simultaneous open connections to the remote server.&lt;/p>&lt;p>Session requests in excess of the total allowable number of sessions per connection trigger the establishment of a new connection to the remote server. The DataPower Gateway cannot establish a new connection unless the number of concurrent connections is less than the allowable total number of connections.&lt;/p>&lt;p>For example, with values of 20 for sessions per connection, 5 for connection limit and 3 active fully-subscribed connections, then a new session request generates the establishment of a 4th connection.&lt;/p>"
-        }, 
-        {
-            "name": "AutoRetry", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Advanced recovery after critical error.", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "name": "dmKafkaSASLMechanism",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
+                                "display": "PLAIN",
+                                "description": "A simple clear text password mechanism.",
+                                "name": "plain",
+                                "summary": ""
+                            },
                             {
-                                "name": "off", 
+                                "display": "SCRAM-SHA-256",
+                                "description": "Salted Challenge Response Authentication Mechanism with SHA-256.",
+                                "name": "scram-sha-256",
+                                "summary": ""
+                            },
+                            {
+                                "display": "SCRAM-SHA-512",
+                                "description": "Salted Challenge Response Authentication Mechanism with SHA-512.",
+                                "name": "scram-sha-512",
+                                "summary": ""
+                            }
+                        ]
+                    },
+                    "display": "SASL mechanism"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt16",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
+                        "href": "/mgmt/docs/types/dmKafkaProperty"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmToggle"
+                        "href": "/mgmt/types/default/dmKafkaProperty"
                     }
-                }
-            }, 
-            "cli-alias": "auto-retry", 
-            "display": "Automatic retry", 
-            "description": "Enables (on, the default state) or disables (off) an automatic critical error-recovery procedure that attempts to re-establish a connection that has been broken in response to an error condition."
-        }, 
-        {
-            "name": "RetryInterval", 
-            "default": 10, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt16"
-            }, 
-            "summary": "Seconds to wait before retrying failing connections.", 
-            "minimum": 1, 
-            "units": "seconds", 
-            "/mgmt/types/default/dmUInt16": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt16", 
-                    "maximum": "0xFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt16"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt16"
-                    }
-                }
-            }, 
-            "cli-alias": "retry-interval", 
-            "display": "Retry interval", 
-            "description": "&lt;p>If &lt;em>Automatic Retry&lt;/em> is enabled (the default state), specifies the interval in seconds between connection re-establishment attempts.&lt;/p>"
-        }, 
-        {
-            "name": "Property", 
-            "type": {
-                "href": "/mgmt/types/default/dmKafkaProperty"
-            }, 
-            "/mgmt/types/default/dmKafkaProperty": {
+                },
                 "type": {
                     "properties": {
                         "property": [
                             {
-                                "description": "Property name", 
-                                "required": "true", 
-                                "summary": "", 
+                                "description": "Property name",
+                                "required": "true",
+                                "summary": "",
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Name", 
+                                },
+                                "display": "Name",
                                 "name": "Name"
-                            }, 
+                            },
                             {
-                                "description": "Property value", 
-                                "required": "true", 
-                                "summary": "", 
+                                "description": "Property value",
+                                "required": "true",
+                                "summary": "",
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "Value", 
+                                },
+                                "display": "Value",
                                 "name": "Value"
                             }
                         ]
-                    }, 
-                    "name": "dmKafkaProperty", 
-                    "display": "Kafka property"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmKafkaProperty"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmKafkaProperty"
-                    }
+                    },
+                    "display": "Kafka property",
+                    "name": "dmKafkaProperty"
                 }
-            }, 
-            "summary": "Additional propeties to configure the Kafka server connection", 
-            "array": "true", 
-            "cli-alias": "property", 
-            "display": "Properties", 
-            "description": "Add additional properties to further configure the Kafka server connection. Some properties are not supported and will cause the configuration to fail."
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "KafkaCluster",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "Protocol"
+                            },
+                            {
+                                "name": "Endpoint"
+                            },
+                            {
+                                "name": "SASLMechanism"
+                            },
+                            {
+                                "name": "UserName"
+                            },
+                            {
+                                "name": "PasswordAlias"
+                            },
+                            {
+                                "name": "SSLClient"
+                            }
+                        ],
+                        "name": "main"
+                    },
+                    {
+                        "member": {
+                            "name": "SSLClient"
+                        },
+                        "name": "summary"
+                    },
+                    {
+                        "property-group": [
+                            {
+                                "member": [
+                                    {
+                                        "name": "MemoryThreshold"
+                                    },
+                                    {
+                                        "name": "MaximumMessageSize"
+                                    },
+                                    {
+                                        "name": "TotalConnectionLimit"
+                                    }
+                                ],
+                                "name": "threat",
+                                "display": "Threat protection"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "AutoRetry"
+                                    },
+                                    {
+                                        "name": "RetryInterval"
+                                    }
+                                ],
+                                "name": "retry",
+                                "display": "Connection retry"
+                            },
+                            {
+                                "member": {
+                                    "name": "Property"
+                                },
+                                "name": "additional",
+                                "display": "Additional properties"
+                            }
+                        ],
+                        "name": "advanced",
+                        "display": "Advanced"
+                    }
+                ],
+                "uri": "network/kafka-cluster",
+                "display": "Kafka Cluster",
+                "cmd-group": "mpgw",
+                "cli-alias": "kafka-cluster",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "Protocol",
+                            "default": "plaintext",
+                            "type": {
+                                "href": "/mgmt/types/default/dmKafkaProtocol"
+                            },
+                            "required": "true",
+                            "summary": "Protocol for bootstrap connection",
+                            "cli-alias": "protocol",
+                            "display": "Protocol",
+                            "description": "Select the predefined protocol that is supported by the Kafka server and used for information exchange between the Kafka Server object and the bootstrap server."
+                        },
+                        {
+                            "name": "Endpoint",
+                            "type": {
+                                "href": "/mgmt/types/default/dmKafkaEndpoint"
+                            },
+                            "required": "true",
+                            "summary": "Kafka endpoint",
+                            "array": "true",
+                            "cli-alias": "endpoint",
+                            "display": "Kafka endpoint",
+                            "description": "&lt;p>Identifies the connection host and port to use for the bootstrap process.&lt;/p>&lt;p>A bootstrap server uses a host name or IP address and a port number to define an endpoint address.&lt;/p>&lt;p>You can add multiple nondefault bootstrap servers. For failover capability, the endpoints must be members of the same cluster.&lt;/p>"
+                        },
+                        {
+                            "name": "SASLMechanism",
+                            "default": "plain",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-equals",
+                                            "value": "sasl_plaintext"
+                                        },
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-equals",
+                                            "value": "sasl_ssl"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Simple Authentication and Security Layer mechanism",
+                            "cli-alias": "sasl-mechanism",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-equals",
+                                            "value": "plaintext"
+                                        },
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-equals",
+                                            "value": "ssl"
+                                        }
+                                    ]
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmKafkaSASLMechanism"
+                            },
+                            "display": "SASL mechanism",
+                            "description": "Select the appropriate SASL mechanism necessary to communicate with the Kafka Cluster. The default value is plaintext."
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "name": "UserName",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-equals",
+                                            "value": "sasl_plaintext"
+                                        },
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-equals",
+                                            "value": "sasl_ssl"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Username to use for connecting to the server",
+                            "cli-alias": "username",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-equals",
+                                            "value": "plaintext"
+                                        },
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-equals",
+                                            "value": "ssl"
+                                        }
+                                    ]
+                                }
+                            },
+                            "valid-regexp": "^[^ ]+$",
+                            "display": "User name",
+                            "description": "Specifies the account name used to access the remote server."
+                        },
+                        {
+                            "name": "PasswordAlias",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-equals",
+                                            "value": "sasl_plaintext"
+                                        },
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-equals",
+                                            "value": "sasl_ssl"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Password alias of the password to use for connecting to the server",
+                            "cli-alias": "password-alias",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-equals",
+                                            "value": "plaintext"
+                                        },
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-equals",
+                                            "value": "ssl"
+                                        }
+                                    ]
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/PasswordAlias"
+                                }
+                            },
+                            "display": "Password alias",
+                            "description": "Specifies the password alias of the password used to access the remote server."
+                        },
+                        {
+                            "name": "SSLClient",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-equals",
+                                            "value": "ssl"
+                                        },
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-equals",
+                                            "value": "sasl_ssl"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and its targets",
+                            "cli-alias": "ssl-client",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-equals",
+                                            "value": "plaintext"
+                                        },
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-equals",
+                                            "value": "sasl_plaintext"
+                                        }
+                                    ]
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                                }
+                            },
+                            "display": "TLS client profile",
+                            "description": "The TLS client profile to secure connections between the DataPower Gateway and its targets."
+                        },
+                        {
+                            "name": "MemoryThreshold",
+                            "default": 268435456,
+                            "cli-alias": "memory-threshold",
+                            "maximum": 1073741824,
+                            "summary": "Maximum memory size allowed for pending messages",
+                            "minimum": 10485760,
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Memory threshold",
+                            "description": "Specifies the maximum memory allocation for pending messages. Enter a value in the range 1048576 - 1073741824 that specifies the maximum memory in bytes to allocate for pending messages. By default, the maximum memory allocation is set at 268435456."
+                        },
+                        {
+                            "name": "MaximumMessageSize",
+                            "default": 1048576,
+                            "cli-alias": "maximum-message-size",
+                            "maximum": 1073741824,
+                            "summary": "Maximum message size the DataPower Gateway sends to the remote server",
+                            "minimum": 0,
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Maximum message size",
+                            "description": "Specifies the maximum message size that the DataPower Gateway supports over a connection to the remote server. Enter a value in the range 0 - 1073741824 that specifies the maximum message size in bytes. By default, the maximum message size is set at 1048576 bytes. You can use the special value, 0, to disable the enforcement of maximum message sizes."
+                        },
+                        {
+                            "name": "TotalConnectionLimit",
+                            "default": 64,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "summary": "Total number of connections limit",
+                            "minimum": 1,
+                            "cli-alias": "total-connection-limit",
+                            "display": "Total connection limit",
+                            "description": "&lt;p>Specifies the maximum number of simultaneous open connections to the remote server.&lt;/p>&lt;p>Session requests in excess of the total allowable number of sessions per connection trigger the establishment of a new connection to the remote server. The DataPower Gateway cannot establish a new connection unless the number of concurrent connections is less than the allowable total number of connections.&lt;/p>&lt;p>For example, with values of 20 for sessions per connection, 5 for connection limit and 3 active fully-subscribed connections, then a new session request generates the establishment of a 4th connection.&lt;/p>"
+                        },
+                        {
+                            "name": "AutoRetry",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Advanced recovery after critical error.",
+                            "cli-alias": "auto-retry",
+                            "display": "Automatic retry",
+                            "description": "Enables (on, the default state) or disables (off) an automatic critical error-recovery procedure that attempts to re-establish a connection that has been broken in response to an error condition."
+                        },
+                        {
+                            "name": "RetryInterval",
+                            "default": 10,
+                            "cli-alias": "retry-interval",
+                            "summary": "Seconds to wait before retrying failing connections.",
+                            "minimum": 1,
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Retry interval",
+                            "description": "&lt;p>If &lt;em>Automatic Retry&lt;/em> is enabled (the default state), specifies the interval in seconds between connection re-establishment attempts.&lt;/p>"
+                        },
+                        {
+                            "name": "Property",
+                            "type": {
+                                "href": "/mgmt/types/default/dmKafkaProperty"
+                            },
+                            "summary": "Additional propeties to configure the Kafka server connection",
+                            "array": "true",
+                            "cli-alias": "property",
+                            "display": "Properties",
+                            "description": "Add additional properties to further configure the Kafka server connection. Some properties are not supported and will cause the configuration to fail."
+                        }
+                    ]
+                },
+                "description": "Kafka Cluster is responsible for messaging services for communicating applications by periodically monitoring/polling topics, by ensuring that sent messages are directed to the correct receive topic, or that messages are routed to another server."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/KafkaCluster"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/KafkaCluster"
+                }
+            }
         }
-    ]
+    }
 }

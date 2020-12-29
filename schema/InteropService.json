@@ -1,627 +1,583 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "description": "You can specify an existing XML Manager, or create a new XML Manager and assign that XML Manager to the Interoperability Test Service instead of the default one.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/XMLManager"
-                }
-            }, 
-            "summary": "Custom XML manager", 
-            "cli-alias": "xml-manager", 
-            "display": "Custom XML Manager", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "name": "XMLManager"
-        }, 
-        {
-            "description": "Edit the AAA Policy to customize the authentication and authorization policy to Interoperability Test Service.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/AAAPolicy"
-                }
-            }, 
-            "summary": "AAA Policy", 
-            "cli-alias": "aaa-policy", 
-            "display": "AAA Policy", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
+                    "cli-arg": "object",
                     "name": "dmReference"
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmReference"
+                        "href": "/mgmt/types/default/dmToggle"
                     }
-                }
-            }, 
-            "name": "AAAPolicy"
-        }, 
-        {
-            "name": "HttpService", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Enable the Interoperability Test Service via HTTP.", 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
+                                "name": "on",
                                 "display": "on"
-                            }, 
+                            },
                             {
-                                "name": "off", 
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "cli-alias": "http-service", 
-            "display": "HTTP Service", 
-            "description": "When set to enabled, the Interoperability Test Service is available via HTTP."
-        }, 
-        {
-            "/mgmt/types/default/dmLocalIPHostAddress": {
-                "type": {
-                    "cli-arg": "dotted-ip or 0 for any", 
-                    "name": "dmLocalIPHostAddress", 
-                    "format": "(a.b.c.d or 0 for any)"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmLocalIPHostAddress"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmLocalIPHostAddress"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmLocalIPHostAddress"
-            }, 
-            "name": "LocalAddress", 
-            "default": "0.0.0.0", 
-            "required-when": {
-                "condition": {
-                    "property-name": "HttpService", 
-                    "evaluation": "property-equals", 
-                    "value": "on"
-                }
-            }, 
-            "summary": "Local IP address", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "HttpService", 
-                    "evaluation": "property-equals", 
-                    "value": "off"
-                }
-            }, 
-            "cli-alias": "http-ip-address", 
-            "display": "Local IP Address", 
-            "description": "Specify the address that the service listens on. The default value \"0.0.0.0\" indicates that the service is active on all addresses. Click Select Alias to use an alias for this value. See Host Alias under Networking for more information."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmIPPort"
-            }, 
-            "name": "LocalPort", 
-            "default": 9990, 
-            "required-when": {
-                "condition": {
-                    "property-name": "HttpService", 
-                    "evaluation": "property-equals", 
-                    "value": "on"
-                }
-            }, 
-            "maximum": 61000, 
-            "summary": "Port that the Interoperability Test Service listens on", 
-            "listener": "LocalAddress", 
-            "cli-alias": "http-port", 
-            "minimum": 1000, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "HttpService", 
-                    "evaluation": "property-equals", 
-                    "value": "off"
-                }
-            }, 
-            "/mgmt/types/default/dmIPPort": {
+                },
                 "type": {
-                    "cli-arg": "ip-port", 
-                    "minimum": 0, 
-                    "name": "dmIPPort", 
-                    "maximum": "0xFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmIPPort"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmIPPort"
-                    }
-                }
-            }, 
-            "display": "Port Number", 
-            "description": "Specify the port that the Interoperability Test Service listens on."
-        }, 
-        {
-            "description": "Specify an Access Control List. Access Control List is used to allow or deny access to the service based on the IP address of the client.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/AccessControlList"
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "HttpService", 
-                    "evaluation": "property-equals", 
-                    "value": "off"
-                }
-            }, 
-            "cli-alias": "http-acl", 
-            "display": "Access Control List", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "name": "ACL"
-        }, 
-        {
-            "name": "HttpsService", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Enable the Interoperability Test Service via HTTPS.", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "cli-alias": "https-service", 
-            "display": "HTTPS Service", 
-            "description": "When set to enabled, the Interoperability Test Service is available via HTTPS."
-        }, 
-        {
-            "/mgmt/types/default/dmLocalIPHostAddress": {
-                "type": {
-                    "cli-arg": "dotted-ip or 0 for any", 
-                    "name": "dmLocalIPHostAddress", 
+                    "cli-arg": "dotted-ip or 0 for any",
+                    "name": "dmLocalIPHostAddress",
                     "format": "(a.b.c.d or 0 for any)"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmLocalIPHostAddress"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmLocalIPHostAddress"
-                    }
                 }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmLocalIPHostAddress"
-            }, 
-            "name": "HttpsLocalAddress", 
-            "default": "0.0.0.0", 
-            "required-when": {
-                "condition": {
-                    "property-name": "HttpsService", 
-                    "evaluation": "property-equals", 
-                    "value": "on"
-                }
-            }, 
-            "summary": "Local IP address", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "HttpsService", 
-                    "evaluation": "property-equals", 
-                    "value": "off"
-                }
-            }, 
-            "cli-alias": "https-ip-address", 
-            "display": "Local IP Address", 
-            "description": "Specify the address that the secured service listens on. The default value \"0.0.0.0\" indicates that the service is active on all addresses. Click Select Alias to use an alias for this value. See Host Alias under Networking for more information."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmIPPort"
-            }, 
-            "name": "HttpsLocalPort", 
-            "default": 9991, 
-            "required-when": {
-                "condition": {
-                    "property-name": "HttpsService", 
-                    "evaluation": "property-equals", 
-                    "value": "on"
-                }
-            }, 
-            "maximum": 61000, 
-            "summary": "Port that the secured Interoperability Test Service listens on", 
-            "listener": "HttpsLocalAddress", 
-            "cli-alias": "https-port", 
-            "minimum": 1000, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "HttpsService", 
-                    "evaluation": "property-equals", 
-                    "value": "off"
-                }
-            }, 
-            "/mgmt/types/default/dmIPPort": {
-                "type": {
-                    "cli-arg": "ip-port", 
-                    "minimum": 0, 
-                    "name": "dmIPPort", 
-                    "maximum": "0xFFFF"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmIPPort"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmIPPort"
                     }
-                }
-            }, 
-            "display": "Port Number", 
-            "description": "Specify the port that the secured Interoperability Test Service listens on."
-        }, 
-        {
-            "description": "Specify an Access Control List. Access Control List is used to allow or deny access to the service based on the IP address of the client.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/AccessControlList"
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "HttpsService", 
-                    "evaluation": "property-equals", 
-                    "value": "off"
-                }
-            }, 
-            "cli-alias": "https-acl", 
-            "display": "Access Control List", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                        "href": "/mgmt/docs/types/dmSSLConfigType"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmReference"
+                        "href": "/mgmt/types/default/dmSSLConfigType"
                     }
-                }
-            }, 
-            "name": "HttpsACL"
-        }, 
-        {
-            "name": "SSLProxy", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-and", 
-                    "condition": [
-                        {
-                            "property-name": "HttpsService", 
-                            "evaluation": "property-equals", 
-                            "value": "on"
-                        }, 
-                        {
-                            "property-name": "SSLServerConfigType", 
-                            "evaluation": "property-equals", 
-                            "value": "proxy"
-                        }
-                    ]
-                }
-            }, 
-            "summary": "The TLS proxy profile is deprecated. Use a TLS server profile or TLS SNI server profile.", 
-            "cli-alias": "ssl", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLProxyProfile"
-                }
-            }, 
-            "display": "TLS proxy profile (deprecated)", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "The TLS proxy profile to secure connections between clients and the DataPower Gateway."
-        }, 
-        {
-            "/mgmt/types/default/dmSSLConfigType": {
-                "type": {
-                    "name": "dmSSLConfigType", 
+                    "name": "dmSSLConfigType",
                     "value-list": {
                         "value": [
                             {
-                                "name": "proxy", 
+                                "name": "proxy",
                                 "display": "Proxy Profile"
-                            }, 
+                            },
                             {
-                                "name": "server", 
+                                "name": "server",
                                 "display": "Server Profile"
-                            }, 
+                            },
                             {
-                                "name": "sni", 
+                                "name": "sni",
                                 "display": "SNI Server Profile"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmSSLConfigType"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmSSLConfigType"
-                    }
                 }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmSSLConfigType"
-            }, 
-            "name": "SSLServerConfigType", 
-            "default": "server", 
-            "required-when": {
-                "condition": {
-                    "property-name": "HttpsService", 
-                    "evaluation": "property-equals", 
-                    "value": "on"
-                }
-            }, 
-            "summary": "Set the TLS profile type to secure connections between clients and the DataPower Gateway", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "cli-alias": "ssl-config-type", 
-            "display": "TLS server type", 
-            "description": "The TLS profile type to secure connections between clients and the DataPower Gateway."
-        }, 
-        {
-            "name": "SSLServer", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-and", 
-                    "condition": [
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "InteropService",
+                "property-group": {
+                    "property-group": [
                         {
-                            "property-name": "HttpsService", 
-                            "evaluation": "property-equals", 
-                            "value": "on"
-                        }, 
+                            "member": [
+                                {
+                                    "name": "mAdminState"
+                                },
+                                {
+                                    "name": "UserSummary"
+                                },
+                                {
+                                    "name": "XMLManager"
+                                },
+                                {
+                                    "name": "AAAPolicy"
+                                }
+                            ],
+                            "name": "general",
+                            "display": "General"
+                        },
                         {
-                            "property-name": "SSLServerConfigType", 
-                            "evaluation": "property-equals", 
-                            "value": "server"
+                            "member": [
+                                {
+                                    "name": "HttpService"
+                                },
+                                {
+                                    "name": "LocalAddress"
+                                },
+                                {
+                                    "name": "LocalPort"
+                                },
+                                {
+                                    "name": "ACL"
+                                }
+                            ],
+                            "name": "http-service",
+                            "display": "Over HTTP"
+                        },
+                        {
+                            "member": [
+                                {
+                                    "name": "HttpsService"
+                                },
+                                {
+                                    "name": "HttpsLocalAddress"
+                                },
+                                {
+                                    "name": "HttpsLocalPort"
+                                },
+                                {
+                                    "name": "HttpsACL"
+                                },
+                                {
+                                    "name": "SSLServerConfigType"
+                                },
+                                {
+                                    "name": "SSLProxy"
+                                },
+                                {
+                                    "name": "SSLServer"
+                                },
+                                {
+                                    "name": "SSLSNIServer"
+                                }
+                            ],
+                            "name": "https-service",
+                            "display": "Over HTTPS"
+                        }
+                    ],
+                    "name": "main",
+                    "display": "Main"
+                },
+                "uri": "mgmt/iop-mgmt",
+                "display": "Interoperability Test Service",
+                "cmd-group": "device-management",
+                "cli-alias": "iop-mgmt",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "description": "You can specify an existing XML Manager, or create a new XML Manager and assign that XML Manager to the Interoperability Test Service instead of the default one.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/XMLManager"
+                                }
+                            },
+                            "summary": "Custom XML manager",
+                            "cli-alias": "xml-manager",
+                            "display": "Custom XML Manager",
+                            "name": "XMLManager"
+                        },
+                        {
+                            "description": "Edit the AAA Policy to customize the authentication and authorization policy to Interoperability Test Service.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/AAAPolicy"
+                                }
+                            },
+                            "summary": "AAA Policy",
+                            "cli-alias": "aaa-policy",
+                            "display": "AAA Policy",
+                            "name": "AAAPolicy"
+                        },
+                        {
+                            "name": "HttpService",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Enable the Interoperability Test Service via HTTP.",
+                            "cli-alias": "http-service",
+                            "display": "HTTP Service",
+                            "description": "When set to enabled, the Interoperability Test Service is available via HTTP."
+                        },
+                        {
+                            "name": "LocalAddress",
+                            "default": "0.0.0.0",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "HttpService",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "Local IP address",
+                            "cli-alias": "http-ip-address",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "HttpService",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                            },
+                            "display": "Local IP Address",
+                            "description": "Specify the address that the service listens on. The default value \"0.0.0.0\" indicates that the service is active on all addresses. Click Select Alias to use an alias for this value. See Host Alias under Networking for more information."
+                        },
+                        {
+                            "name": "LocalPort",
+                            "default": 9990,
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "HttpService",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "maximum": 61000,
+                            "summary": "Port that the Interoperability Test Service listens on",
+                            "listener": "LocalAddress",
+                            "cli-alias": "http-port",
+                            "minimum": 1000,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "HttpService",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPPort"
+                            },
+                            "display": "Port Number",
+                            "description": "Specify the port that the Interoperability Test Service listens on."
+                        },
+                        {
+                            "description": "Specify an Access Control List. Access Control List is used to allow or deny access to the service based on the IP address of the client.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/AccessControlList"
+                                }
+                            },
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "HttpService",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "cli-alias": "http-acl",
+                            "display": "Access Control List",
+                            "name": "ACL"
+                        },
+                        {
+                            "name": "HttpsService",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Enable the Interoperability Test Service via HTTPS.",
+                            "cli-alias": "https-service",
+                            "display": "HTTPS Service",
+                            "description": "When set to enabled, the Interoperability Test Service is available via HTTPS."
+                        },
+                        {
+                            "name": "HttpsLocalAddress",
+                            "default": "0.0.0.0",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "HttpsService",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "Local IP address",
+                            "cli-alias": "https-ip-address",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "HttpsService",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                            },
+                            "display": "Local IP Address",
+                            "description": "Specify the address that the secured service listens on. The default value \"0.0.0.0\" indicates that the service is active on all addresses. Click Select Alias to use an alias for this value. See Host Alias under Networking for more information."
+                        },
+                        {
+                            "name": "HttpsLocalPort",
+                            "default": 9991,
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "HttpsService",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "maximum": 61000,
+                            "summary": "Port that the secured Interoperability Test Service listens on",
+                            "listener": "HttpsLocalAddress",
+                            "cli-alias": "https-port",
+                            "minimum": 1000,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "HttpsService",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPPort"
+                            },
+                            "display": "Port Number",
+                            "description": "Specify the port that the secured Interoperability Test Service listens on."
+                        },
+                        {
+                            "description": "Specify an Access Control List. Access Control List is used to allow or deny access to the service based on the IP address of the client.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/AccessControlList"
+                                }
+                            },
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "HttpsService",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "cli-alias": "https-acl",
+                            "display": "Access Control List",
+                            "name": "HttpsACL"
+                        },
+                        {
+                            "name": "SSLProxy",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "HttpsService",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "SSLServerConfigType",
+                                            "evaluation": "property-equals",
+                                            "value": "proxy"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "The TLS proxy profile is deprecated. Use a TLS server profile or TLS SNI server profile.",
+                            "cli-alias": "ssl",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                                }
+                            },
+                            "display": "TLS proxy profile (deprecated)",
+                            "description": "The TLS proxy profile to secure connections between clients and the DataPower Gateway."
+                        },
+                        {
+                            "name": "SSLServerConfigType",
+                            "default": "server",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "HttpsService",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "Set the TLS profile type to secure connections between clients and the DataPower Gateway",
+                            "cli-alias": "ssl-config-type",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSLConfigType"
+                            },
+                            "display": "TLS server type",
+                            "description": "The TLS profile type to secure connections between clients and the DataPower Gateway."
+                        },
+                        {
+                            "name": "SSLServer",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "HttpsService",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "SSLServerConfigType",
+                                            "evaluation": "property-equals",
+                                            "value": "server"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Set the TLS server profile to secure connections between clients and the DataPower Gateway",
+                            "cli-alias": "ssl-server",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLServerProfile"
+                                }
+                            },
+                            "display": "TLS server profile",
+                            "description": "The TLS server profile to secure connections between clients and the DataPower Gateway."
+                        },
+                        {
+                            "name": "SSLSNIServer",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "HttpsService",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "SSLServerConfigType",
+                                            "evaluation": "property-equals",
+                                            "value": "sni"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Set the TLS SNI server profile to secure connections between clients and the DataPower Gateway",
+                            "cli-alias": "ssl-sni-server",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLSNIServerProfile"
+                                }
+                            },
+                            "display": "TLS SNI server profile",
+                            "description": "The TLS SNI server profile to secure connections between clients and the DataPower Gateway."
                         }
                     ]
+                },
+                "description": "This page shows the configuration of the Interoperability Test Service. Interoperability Test Service is used to test stylesheets or maps. The service is available via HTTP or HTTPS, and it is disabled by default."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/InteropService"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/InteropService"
                 }
-            }, 
-            "summary": "Set the TLS server profile to secure connections between clients and the DataPower Gateway", 
-            "cli-alias": "ssl-server", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLServerProfile"
-                }
-            }, 
-            "display": "TLS server profile", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "The TLS server profile to secure connections between clients and the DataPower Gateway."
-        }, 
-        {
-            "name": "SSLSNIServer", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-and", 
-                    "condition": [
-                        {
-                            "property-name": "HttpsService", 
-                            "evaluation": "property-equals", 
-                            "value": "on"
-                        }, 
-                        {
-                            "property-name": "SSLServerConfigType", 
-                            "evaluation": "property-equals", 
-                            "value": "sni"
-                        }
-                    ]
-                }
-            }, 
-            "summary": "Set the TLS SNI server profile to secure connections between clients and the DataPower Gateway", 
-            "cli-alias": "ssl-sni-server", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLSNIServerProfile"
-                }
-            }, 
-            "display": "TLS SNI server profile", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "The TLS SNI server profile to secure connections between clients and the DataPower Gateway."
+            }
         }
-    ]
+    }
 }

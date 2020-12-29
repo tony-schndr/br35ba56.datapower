@@ -1,429 +1,357 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "description": "Specifies a descriptive summary.", 
-            "cli-alias": "summary", 
-            "summary": "Descriptive summary", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments", 
-            "name": "UserSummary"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
+                    "cli-arg": "string",
                     "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
                 }
-            }, 
-            "name": "IMSHost", 
-            "cli-alias": "host", 
-            "required": "true", 
-            "summary": "Host name or IP address of remote IMS Connect server", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Host", 
-            "description": "Specify the host name or IP address of the target IMS Connect server."
-        }, 
-        {
-            "/mgmt/types/default/dmIPPort": {
-                "type": {
-                    "cli-arg": "ip-port", 
-                    "minimum": 0, 
-                    "name": "dmIPPort", 
-                    "maximum": "0xFFFF"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmIPPort"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmIPPort"
                     }
-                }
-            }, 
-            "name": "IMSPort", 
-            "type": {
-                "href": "/mgmt/types/default/dmIPPort"
-            }, 
-            "required": "true", 
-            "summary": "Listening port on the remote IMS Connect server", 
-            "cli-alias": "port", 
-            "display": "Port", 
-            "description": "Specifies the listening port on the remote IMS Connect server."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
                 }
-            }, 
-            "name": "DataStoreName", 
-            "cli-alias": "datastore", 
-            "description": "Specifies the name of the IMS data store. The value can be up to eight characters in length and cannot be blank. The value can use all alphanumeric characters and the following special characters: @ # $.", 
-            "required": "true", 
-            "summary": "Name of the IMS data store", 
-            "valid-regexp": "^[a-zA-Z0-9@#$]*$", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Data store", 
-            "maximum-length": 8
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "TPipe", 
-            "cli-alias": "tpipe", 
-            "description": "Specifies the IMS OTMA tpipe names. A tpipe is also known as an alternate client ID. The value can be up to eight characters in length and cannot be blank. The value can use all alphanumeric characters and the following special characters: @ # $.", 
-            "required": "true", 
-            "summary": "IMS OTMA tpipe names", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "array": "true", 
-            "valid-regexp": "^[a-zA-Z0-9@#$]*$", 
-            "display": "OTMA tpipe names", 
-            "maximum-length": 8
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "maximum-length": 8, 
-            "cli-alias": "user-id", 
-            "description": "Specifies the security authorization facility (SAF) user name. The value can be up to eight characters in length and cannot be blank. The value can use all alphanumeric characters and the following special characters: @ # $.", 
-            "summary": "SAF user name", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "valid-regexp": "^[a-zA-Z0-9@#$]*$", 
-            "display": "SAF user name", 
-            "name": "UserID"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "Password", 
-            "cli-alias": "password", 
-            "summary": "SAF password", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "Password", 
-                    "evaluation": "property-equals", 
-                    "value": ""
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "SAF password (deprecated)", 
-            "description": "Specifies the security authorization facility (SAF) password. The value can use all alphanumeric characters and the following special characters: @ # $."
-        }, 
-        {
-            "description": "Specifies the password alias of the security authorization facility (SAF) password.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/PasswordAlias"
-                }
-            }, 
-            "summary": "SAF password alias", 
-            "cli-alias": "password-alias", 
-            "display": "SAF password alias", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "name": "PasswordAlias"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
+                    "cli-arg": "object",
+                    "name": "dmReference"
                 }
-            }, 
-            "maximum-length": 8, 
-            "cli-alias": "group", 
-            "description": "Specifies the name of the security authorization facility (SAF) group. The value can be up to eight characters in length and cannot be blank. The value can use all alphanumeric characters and the following special characters: @ # $.", 
-            "summary": "Name of SAF group", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "valid-regexp": "^[a-zA-Z0-9@#$]*$", 
-            "display": "SAF group", 
-            "name": "Group"
-        }, 
-        {
-            "name": "RetryErrorLimit", 
-            "default": 5, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt16"
-            }, 
-            "summary": "Number of times to attempt to resume a tpipe", 
-            "minimum": 1, 
-            "/mgmt/types/default/dmUInt16": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt16", 
-                    "maximum": "0xFFFF"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmUInt16"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmUInt16"
                     }
-                }
-            }, 
-            "cli-alias": "retry-attempts", 
-            "display": "Retry attempts", 
-            "description": "Specifies the number of times to attempt to resume a transaction pipe (tpipe) after processing encounters an error. Enter a value in the range 1 - 256. The default value is 5."
-        }, 
-        {
-            "name": "RetryInterval", 
-            "default": 3, 
-            "type": {
-                "href": "/mgmt/types/default/dmTimeInterval"
-            }, 
-            "summary": "Interval to wait before processing attempts to resume the tpipe", 
-            "/mgmt/types/default/dmTimeInterval": {
+                },
                 "type": {
-                    "cli-arg": "seconds", 
-                    "minimum": 0, 
-                    "name": "dmTimeInterval", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmTimeInterval"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmTimeInterval"
-                    }
-                }
-            }, 
-            "minimum": 1, 
-            "units": "seconds", 
-            "cli-alias": "retry-interval", 
-            "display": "Retry interval", 
-            "description": "Specifies the number of seconds to wait before processing attempts to resume the transaction pipe (tpipe). The minimum value is 1. The default value is 3."
-        }, 
-        {
-            "name": "ConnectTimeout", 
-            "default": 10, 
-            "type": {
-                "href": "/mgmt/types/default/dmTimeInterval"
-            }, 
-            "summary": "Time to wait to establish a connection", 
-            "/mgmt/types/default/dmTimeInterval": {
-                "type": {
-                    "cli-arg": "seconds", 
-                    "minimum": 0, 
-                    "name": "dmTimeInterval", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmTimeInterval"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmTimeInterval"
-                    }
-                }
-            }, 
-            "units": "seconds", 
-            "cli-alias": "connect-timeout", 
-            "display": "Connection timeout", 
-            "description": "Specifies the number of seconds that the DataPower Gateway waits to establish a connection to IMS Connect. A value of 0 disables the timeout. The default value is 10."
-        }, 
-        {
-            "name": "ResponseConcurrency", 
-            "default": 1, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt16"
-            }, 
-            "maximum": 32, 
-            "summary": "Number of response processors to allocate for concurrent transactions processing.", 
-            "minimum": 1, 
-            "/mgmt/types/default/dmUInt16": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt16", 
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt16",
                     "maximum": "0xFFFF"
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmUInt16"
-                    }, 
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmUInt16"
+                        "href": "/mgmt/types/default/dmTimeInterval"
                     }
-                }
-            }, 
-            "cli-alias": "response-concurrency", 
-            "display": "Response Concurrency", 
-            "description": "&lt;p>Specifies the number of response processors to allocate for each tpipe for concurrent transaction processing. Enter a value in the range 1 - 32. The default value is 1.&lt;/p>&lt;p>For example, when you set response concurrency to 2 and you have 5 tpipe definitions, the number of response processors is 10. The maximum number of response processors is 50.&lt;/p>"
-        }, 
-        {
-            "name": "TraceFile", 
-            "cli-alias": "trace-file", 
-            "locations": {
-                "location": [
-                    "logtemp", 
-                    "logstore", 
-                    "temporary"
-                ]
-            }, 
-            "summary": "Location for the trace file", 
-            "/mgmt/types/default/dmURL": {
+                },
                 "type": {
-                    "cli-arg": "url", 
-                    "name": "dmURL"
-                }, 
+                    "cli-arg": "seconds",
+                    "minimum": 0,
+                    "name": "dmTimeInterval",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmURL"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmURL"
                     }
+                },
+                "type": {
+                    "cli-arg": "url",
+                    "name": "dmURL"
                 }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmURL"
-            }, 
-            "display": "Trace file", 
-            "description": "Enables IMS tracing and specifies the location of the trace file. You can use the following directories as the location when you enable tracing: &lt;ul>&lt;li>logtemp&lt;/li>&lt;li>logstore&lt;/li>&lt;li>temporary&lt;/li>&lt;/ul>&lt;p>&lt;b>Note:&lt;/b> Enable tracing when instructed by IBM Support to help in problem determination.&lt;/p>&lt;p>If you enabled tracing and want to disable, remove the directory and apply the configuration.&lt;/p>"
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IMS",
+                "name": "IMSCalloutSourceProtocolHandler",
+                "display": "IMS Callout Handler",
+                "property-group": {
+                    "member": [
+                        {
+                            "name": "TraceFile"
+                        },
+                        {
+                            "name": "ConnectTimeout"
+                        }
+                    ],
+                    "name": "advanced",
+                    "display": "Advanced"
+                },
+                "uri": "protocol/ims-callout",
+                "summary": "IMS Callout handler",
+                "platforms": {
+                    "platform": "software"
+                },
+                "services": {
+                    "service": "MultiProtocolGateway"
+                },
+                "cmd-group": "mpgw",
+                "cli-alias": "source-ims-callout",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "Specifies a descriptive summary.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Descriptive summary",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "IMSHost",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "summary": "Host name or IP address of remote IMS Connect server",
+                            "cli-alias": "host",
+                            "display": "Host",
+                            "description": "Specify the host name or IP address of the target IMS Connect server."
+                        },
+                        {
+                            "name": "IMSPort",
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPPort"
+                            },
+                            "required": "true",
+                            "summary": "Listening port on the remote IMS Connect server",
+                            "cli-alias": "port",
+                            "display": "Port",
+                            "description": "Specifies the listening port on the remote IMS Connect server."
+                        },
+                        {
+                            "name": "DataStoreName",
+                            "valid-regexp": "^[a-zA-Z0-9@#$]*$",
+                            "required": "true",
+                            "summary": "Name of the IMS data store",
+                            "cli-alias": "datastore",
+                            "maximum-length": 8,
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Data store",
+                            "description": "Specifies the name of the IMS data store. The value can be up to eight characters in length and cannot be blank. The value can use all alphanumeric characters and the following special characters: @ # $."
+                        },
+                        {
+                            "name": "TPipe",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "summary": "IMS OTMA tpipe names",
+                            "cli-alias": "tpipe",
+                            "maximum-length": 8,
+                            "array": "true",
+                            "valid-regexp": "^[a-zA-Z0-9@#$]*$",
+                            "display": "OTMA tpipe names",
+                            "description": "Specifies the IMS OTMA tpipe names. A tpipe is also known as an alternate client ID. The value can be up to eight characters in length and cannot be blank. The value can use all alphanumeric characters and the following special characters: @ # $."
+                        },
+                        {
+                            "name": "UserID",
+                            "valid-regexp": "^[a-zA-Z0-9@#$]*$",
+                            "summary": "SAF user name",
+                            "cli-alias": "user-id",
+                            "maximum-length": 8,
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "SAF user name",
+                            "description": "Specifies the security authorization facility (SAF) user name. The value can be up to eight characters in length and cannot be blank. The value can use all alphanumeric characters and the following special characters: @ # $."
+                        },
+                        {
+                            "name": "Password",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "SAF password",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Password",
+                                    "evaluation": "property-equals",
+                                    "value": ""
+                                }
+                            },
+                            "cli-alias": "password",
+                            "display": "SAF password (deprecated)",
+                            "description": "Specifies the security authorization facility (SAF) password. The value can use all alphanumeric characters and the following special characters: @ # $."
+                        },
+                        {
+                            "description": "Specifies the password alias of the security authorization facility (SAF) password.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/PasswordAlias"
+                                }
+                            },
+                            "summary": "SAF password alias",
+                            "cli-alias": "password-alias",
+                            "display": "SAF password alias",
+                            "name": "PasswordAlias"
+                        },
+                        {
+                            "name": "Group",
+                            "valid-regexp": "^[a-zA-Z0-9@#$]*$",
+                            "summary": "Name of SAF group",
+                            "cli-alias": "group",
+                            "maximum-length": 8,
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "SAF group",
+                            "description": "Specifies the name of the security authorization facility (SAF) group. The value can be up to eight characters in length and cannot be blank. The value can use all alphanumeric characters and the following special characters: @ # $."
+                        },
+                        {
+                            "name": "RetryErrorLimit",
+                            "default": 5,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "summary": "Number of times to attempt to resume a tpipe",
+                            "minimum": 1,
+                            "cli-alias": "retry-attempts",
+                            "display": "Retry attempts",
+                            "description": "Specifies the number of times to attempt to resume a transaction pipe (tpipe) after processing encounters an error. Enter a value in the range 1 - 256. The default value is 5."
+                        },
+                        {
+                            "name": "RetryInterval",
+                            "default": 3,
+                            "cli-alias": "retry-interval",
+                            "summary": "Interval to wait before processing attempts to resume the tpipe",
+                            "minimum": 1,
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimeInterval"
+                            },
+                            "display": "Retry interval",
+                            "description": "Specifies the number of seconds to wait before processing attempts to resume the transaction pipe (tpipe). The minimum value is 1. The default value is 3."
+                        },
+                        {
+                            "name": "ConnectTimeout",
+                            "default": 10,
+                            "cli-alias": "connect-timeout",
+                            "summary": "Time to wait to establish a connection",
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimeInterval"
+                            },
+                            "display": "Connection timeout",
+                            "description": "Specifies the number of seconds that the DataPower Gateway waits to establish a connection to IMS Connect. A value of 0 disables the timeout. The default value is 10."
+                        },
+                        {
+                            "name": "ResponseConcurrency",
+                            "default": 1,
+                            "cli-alias": "response-concurrency",
+                            "maximum": 32,
+                            "summary": "Number of response processors to allocate for concurrent transactions processing.",
+                            "minimum": 1,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Response Concurrency",
+                            "description": "&lt;p>Specifies the number of response processors to allocate for each tpipe for concurrent transaction processing. Enter a value in the range 1 - 32. The default value is 1.&lt;/p>&lt;p>For example, when you set response concurrency to 2 and you have 5 tpipe definitions, the number of response processors is 10. The maximum number of response processors is 50.&lt;/p>"
+                        },
+                        {
+                            "name": "TraceFile",
+                            "type": {
+                                "href": "/mgmt/types/default/dmURL"
+                            },
+                            "locations": {
+                                "location": [
+                                    "logtemp",
+                                    "logstore",
+                                    "temporary"
+                                ]
+                            },
+                            "summary": "Location for the trace file",
+                            "cli-alias": "trace-file",
+                            "display": "Trace file",
+                            "description": "Enables IMS tracing and specifies the location of the trace file. You can use the following directories as the location when you enable tracing: &lt;ul>&lt;li>logtemp&lt;/li>&lt;li>logstore&lt;/li>&lt;li>temporary&lt;/li>&lt;/ul>&lt;p>&lt;b>Note:&lt;/b> Enable tracing when instructed by IBM Support to help in problem determination.&lt;/p>&lt;p>If you enabled tracing and want to disable, remove the directory and apply the configuration.&lt;/p>"
+                        }
+                    ]
+                },
+                "description": "An IMS Callout handler allows a DataPower service to make asynchronous requests to an IMS application with the ICAL protocol. An IMS handler can retrieve IMS Callout messages from an IMS application and send response data to the IMS application."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/IMSCalloutSourceProtocolHandler"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/IMSCalloutSourceProtocolHandler"
+                }
+            }
         }
-    ]
+    }
 }

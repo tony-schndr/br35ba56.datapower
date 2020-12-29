@@ -1,366 +1,392 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "/mgmt/types/default/dmPolicyEnforcementMode": {
+                },
                 "type": {
-                    "summary": "Select an enforcement mode for messages.", 
-                    "display": "Enforcement Mode", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "display": "Filter", 
-                                "name": "filter", 
-                                "description": "Reject messages that do not satisfy the policy. If a client request or a server response does not satisfy policy, the service rejects the message. Rejection triggers error handling."
-                            }, 
-                            {
-                                "display": "Enforce", 
-                                "name": "enforce", 
-                                "description": "Attempts to transform messages that do not satisfy the policy by using defined policy parameters. If a client request or a server response does not satisfy policy and the configuration defines the required policy parameters, the service modifies the original message to satisfy policy. If the configuration does not contain the required policy parameters, the mode switches to filter behavior and triggers error handling. The log contains a warning message that explains the cause for failure. If the cause is a missing certificate for encryption, the log will contain an entry that is similar to the following warning: WS-SecurityPolicy Mapping: A message cannot be encrypted during enforcement."
-                            }
-                        ]
-                    }, 
-                    "name": "dmPolicyEnforcementMode"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmPolicyEnforcementMode"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmPolicyEnforcementMode"
                     }
-                }
-            }, 
-            "name": "EnforcementMode", 
-            "default": "enforce", 
-            "type": {
-                "href": "/mgmt/types/default/dmPolicyEnforcementMode"
-            }, 
-            "required": "true", 
-            "summary": "How to ensure that messages meet security requirements", 
-            "cli-alias": "enforcement-mode", 
-            "display": "Policy Enforcement Mode", 
-            "description": "Enforcement Mode defines how the service uses WS-Policy to ensure that messages meet security requirements. The default behavior is enforce."
-        }, 
-        {
-            "name": "PolicyReferences", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "required": "true", 
-            "summary": "Controls WSDL-defined policy references.", 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "display": "Enforcement Mode",
+                    "name": "dmPolicyEnforcementMode",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
+                                "display": "Filter",
+                                "description": "Reject messages that do not satisfy the policy. If a client request or a server response does not satisfy policy, the service rejects the message. Rejection triggers error handling.",
+                                "name": "filter"
+                            },
                             {
-                                "name": "off", 
+                                "display": "Enforce",
+                                "description": "Attempts to transform messages that do not satisfy the policy by using defined policy parameters. If a client request or a server response does not satisfy policy and the configuration defines the required policy parameters, the service modifies the original message to satisfy policy. If the configuration does not contain the required policy parameters, the mode switches to filter behavior and triggers error handling. The log contains a warning message that explains the cause for failure. If the cause is a missing certificate for encryption, the log will contain an entry that is similar to the following warning: WS-SecurityPolicy Mapping: A message cannot be encrypted during enforcement.",
+                                "name": "enforce"
+                            }
+                        ]
+                    },
+                    "summary": "Select an enforcement mode for messages."
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "cli-alias": "policy-references", 
-            "display": "Policy References", 
-            "description": "Enable policies attached to WSDL using PolicyURI attributes and PolicyReference elements. These attachments are sometimes called XML element attachments. If 'off', all PolicyURI attributes and PolicyReference elements are ignored and only external policies are enforced."
-        }, 
-        {
-            "name": "IgnoredPolicyAttachmentPoints", 
-            "type": {
-                "href": "/mgmt/types/default/dmPolicyAttachmentPoint"
-            }, 
-            "summary": "Disables an external policy for a service or port.", 
-            "/mgmt/types/default/dmPolicyAttachmentPoint": {
-                "type": {
-                    "summary": "Identify a wsdl component", 
-                    "properties": {
-                        "property": [
-                            {
-                                "summary": "Type of WSDL Component", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmWSDLComponentTypeRestricted"
-                                }, 
-                                "display": "WSDL Component Type", 
-                                "name": "PolicyAttachWSDLComponentType", 
-                                "description": "Select a type of WSDL Component"
-                            }, 
-                            {
-                                "description": "Enter the qname of a wsdl component formatted {ns}ncname", 
-                                "summary": "The name of the WSDL Component", 
-                                "ignored-when": {
-                                    "condition": {
-                                        "property-name": "WSDLComponentType", 
-                                        "evaluation": "property-equals", 
-                                        "value": "subscription"
-                                    }
-                                }, 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "WSDL Component Value", 
-                                "name": "PolicyAttachWSDLComponentValue"
-                            }, 
-                            {
-                                "type": {
-                                    "href": "/mgmt/types/default/dmFragmentID"
-                                }, 
-                                "display": "Fragment Identifier", 
-                                "name": "PolicyAttachFragmentID", 
-                                "description": "Matches Fragment Identifier"
-                            }
-                        ]
-                    }, 
-                    "name": "dmPolicyAttachmentPoint", 
-                    "display": "WSDL Component"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmPolicyAttachmentPoint"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmPolicyAttachmentPoint"
                     }
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "PolicyReferences", 
-                    "evaluation": "property-equals", 
-                    "value": "off"
-                }
-            }, 
-            "array": "true", 
-            "cli-alias": "ignore-attachment-point", 
-            "display": "Ignore Embedded Policy", 
-            "description": "Disable all policies attached by policy references at a configured attachment point leaving other policy references intact."
-        }, 
-        {
-            "name": "ExternalPolicy", 
-            "type": {
-                "href": "/mgmt/types/default/dmExternalAttachedPolicy"
-            }, 
-            "summary": "Associates an external policy with a service or port.", 
-            "/mgmt/types/default/dmExternalAttachedPolicy": {
+                },
                 "type": {
-                    "summary": "Attach a policy document to a service", 
                     "properties": {
                         "property": [
                             {
-                                "summary": "Type of Component", 
+                                "display": "WSDL Component Type",
                                 "type": {
                                     "href": "/mgmt/types/default/dmWSDLComponentTypeRestricted"
-                                }, 
-                                "display": "Component Type", 
-                                "name": "ExternalAttachWSDLComponentType", 
-                                "description": "Select a type of Component"
-                            }, 
+                                },
+                                "description": "Select a type of WSDL Component",
+                                "name": "PolicyAttachWSDLComponentType",
+                                "summary": "Type of WSDL Component"
+                            },
                             {
-                                "name": "ExternalAttachWSDLComponentValue", 
-                                "required-when": {
-                                    "condition": {
-                                        "property-name": "ExternalAttachWSDLComponentType", 
-                                        "evaluation": "property-does-not-equal", 
-                                        "value": "rest"
-                                    }
-                                }, 
-                                "summary": "The name of the WSDL Component", 
+                                "description": "Enter the qname of a wsdl component formatted {ns}ncname",
+                                "summary": "The name of the WSDL Component",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "ExternalAttachWSDLComponentType", 
-                                        "evaluation": "property-equals", 
-                                        "value": "rest"
+                                        "property-name": "WSDLComponentType",
+                                        "evaluation": "property-equals",
+                                        "value": "subscription"
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "WSDL Component Value", 
-                                "description": "Enter the qname of a WSDL component formatted {ns}ncname"
-                            }, 
+                                },
+                                "display": "WSDL Component Value",
+                                "name": "PolicyAttachWSDLComponentValue"
+                            },
                             {
-                                "description": "Select a document containing policy to be attached", 
-                                "required": "true", 
-                                "summary": "Location of Policy Document", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmURL"
-                                }, 
-                                "display": "Policy URL", 
-                                "name": "ExternalAttachPolicyURL"
-                            }, 
-                            {
-                                "display": "Fragment Identifier", 
+                                "display": "Fragment Identifier",
                                 "type": {
                                     "href": "/mgmt/types/default/dmFragmentID"
-                                }, 
-                                "description": "Matches Fragment Identifier", 
-                                "name": "ExternalAttachPolicyFragmentID", 
-                                "ignored-when": {
-                                    "condition": {
-                                        "property-name": "ExternalAttachWSDLComponentType", 
-                                        "evaluation": "property-equals", 
-                                        "value": "rest"
-                                    }
-                                }
-                            }, 
-                            {
-                                "summary": "The name of the message content filters used to describe a consumer for which the policy should be enforced", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmReference", 
-                                    "reference-to": {
-                                        "href": "/mgmt/metadata/default/MessageContentFilters"
-                                    }
-                                }, 
-                                "display": "Service Consumer MCF", 
-                                "name": "ExternalAttachMessageContentFilter", 
-                                "description": "Enter the name of the message content filters object that specifies the service consumer"
-                            }, 
-                            {
-                                "summary": "The name of the message content filters used to describe a provided service for which the policy should be enforced", 
-                                "type": {
-                                    "href": "/mgmt/types/default/dmReference", 
-                                    "reference-to": {
-                                        "href": "/mgmt/metadata/default/MessageContentFilters"
-                                    }
-                                }, 
-                                "display": "Service Provider MCF", 
-                                "name": "ExternalAttachMessageContentFilterServiceProvider", 
-                                "description": "Enter the name of the message content filters object that specifies the service provider"
+                                },
+                                "description": "Matches Fragment Identifier",
+                                "name": "PolicyAttachFragmentID"
                             }
                         ]
-                    }, 
-                    "name": "dmExternalAttachedPolicy", 
-                    "display": "External Attached Policy"
-                }, 
+                    },
+                    "display": "WSDL Component",
+                    "name": "dmPolicyAttachmentPoint",
+                    "summary": "Identify a wsdl component"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmExternalAttachedPolicy"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmExternalAttachedPolicy"
                     }
-                }
-            }, 
-            "array": "true", 
-            "cli-alias": "external-policy", 
-            "display": "External Policy", 
-            "description": "Associate an external policy with a service."
-        }, 
-        {
-            "name": "SLAEnforcementMode", 
-            "default": "allow-if-no-sla", 
-            "type": {
-                "href": "/mgmt/types/default/dmSLAPolicyEnforcementMode"
-            }, 
-            "required": "true", 
-            "summary": "Controls the application of SLA Policies to transactions.", 
-            "/mgmt/types/default/dmSLAPolicyEnforcementMode": {
+                },
                 "type": {
-                    "summary": "Controls the application of SLA Policies to transactions.", 
-                    "display": "SLA Enforcement Mode", 
-                    "value-list": {
-                        "value": [
+                    "properties": {
+                        "property": [
                             {
-                                "display": "Allow", 
-                                "name": "allow-if-no-sla", 
-                                "description": "Use allow to process all transactions. This is the default."
-                            }, 
+                                "display": "Component Type",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmWSDLComponentTypeRestricted"
+                                },
+                                "description": "Select a type of Component",
+                                "name": "ExternalAttachWSDLComponentType",
+                                "summary": "Type of Component"
+                            },
                             {
-                                "display": "Reject", 
-                                "name": "reject-if-no-sla", 
-                                "description": "Use reject to process only the transactions that match at least one SLA policy."
+                                "name": "ExternalAttachWSDLComponentValue",
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "ExternalAttachWSDLComponentType",
+                                        "evaluation": "property-does-not-equal",
+                                        "value": "rest"
+                                    }
+                                },
+                                "summary": "The name of the WSDL Component",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "ExternalAttachWSDLComponentType",
+                                        "evaluation": "property-equals",
+                                        "value": "rest"
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "WSDL Component Value",
+                                "description": "Enter the qname of a WSDL component formatted {ns}ncname"
+                            },
+                            {
+                                "description": "Select a document containing policy to be attached",
+                                "required": "true",
+                                "summary": "Location of Policy Document",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmURL"
+                                },
+                                "display": "Policy URL",
+                                "name": "ExternalAttachPolicyURL"
+                            },
+                            {
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "ExternalAttachWSDLComponentType",
+                                        "evaluation": "property-equals",
+                                        "value": "rest"
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmFragmentID"
+                                },
+                                "description": "Matches Fragment Identifier",
+                                "name": "ExternalAttachPolicyFragmentID",
+                                "display": "Fragment Identifier"
+                            },
+                            {
+                                "display": "Service Consumer MCF",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference",
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/MessageContentFilters"
+                                    }
+                                },
+                                "description": "Enter the name of the message content filters object that specifies the service consumer",
+                                "name": "ExternalAttachMessageContentFilter",
+                                "summary": "The name of the message content filters used to describe a consumer for which the policy should be enforced"
+                            },
+                            {
+                                "display": "Service Provider MCF",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference",
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/MessageContentFilters"
+                                    }
+                                },
+                                "description": "Enter the name of the message content filters object that specifies the service provider",
+                                "name": "ExternalAttachMessageContentFilterServiceProvider",
+                                "summary": "The name of the message content filters used to describe a provided service for which the policy should be enforced"
                             }
                         ]
-                    }, 
-                    "name": "dmSLAPolicyEnforcementMode"
-                }, 
+                    },
+                    "display": "External Attached Policy",
+                    "name": "dmExternalAttachedPolicy",
+                    "summary": "Attach a policy document to a service"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmSLAPolicyEnforcementMode"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmSLAPolicyEnforcementMode"
                     }
+                },
+                "type": {
+                    "display": "SLA Enforcement Mode",
+                    "name": "dmSLAPolicyEnforcementMode",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Allow",
+                                "description": "Use allow to process all transactions. This is the default.",
+                                "name": "allow-if-no-sla"
+                            },
+                            {
+                                "display": "Reject",
+                                "description": "Use reject to process only the transactions that match at least one SLA policy.",
+                                "name": "reject-if-no-sla"
+                            }
+                        ]
+                    },
+                    "summary": "Controls the application of SLA Policies to transactions."
                 }
-            }, 
-            "cli-alias": "sla-enforcement-mode", 
-            "display": "SLA Enforcement Mode", 
-            "description": "SLA Enforcement Mode controls the application of SLA Policies to transactions. Transactions are either allowed or rejected based on whether an SLA rule is applied to the transaction."
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "PolicyAttachments",
+                "display": "Policy Attachment",
+                "uri": "policy/policy-attachments",
+                "summary": "WS-Policy Internal and External Policy Attachment",
+                "cmd-group": "webservice",
+                "cli-alias": "policy-attachments",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "EnforcementMode",
+                            "default": "enforce",
+                            "type": {
+                                "href": "/mgmt/types/default/dmPolicyEnforcementMode"
+                            },
+                            "required": "true",
+                            "summary": "How to ensure that messages meet security requirements",
+                            "cli-alias": "enforcement-mode",
+                            "display": "Policy Enforcement Mode",
+                            "description": "Enforcement Mode defines how the service uses WS-Policy to ensure that messages meet security requirements. The default behavior is enforce."
+                        },
+                        {
+                            "name": "PolicyReferences",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "required": "true",
+                            "summary": "Controls WSDL-defined policy references.",
+                            "cli-alias": "policy-references",
+                            "display": "Policy References",
+                            "description": "Enable policies attached to WSDL using PolicyURI attributes and PolicyReference elements. These attachments are sometimes called XML element attachments. If 'off', all PolicyURI attributes and PolicyReference elements are ignored and only external policies are enforced."
+                        },
+                        {
+                            "name": "IgnoredPolicyAttachmentPoints",
+                            "type": {
+                                "href": "/mgmt/types/default/dmPolicyAttachmentPoint"
+                            },
+                            "summary": "Disables an external policy for a service or port.",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "PolicyReferences",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "array": "true",
+                            "cli-alias": "ignore-attachment-point",
+                            "display": "Ignore Embedded Policy",
+                            "description": "Disable all policies attached by policy references at a configured attachment point leaving other policy references intact."
+                        },
+                        {
+                            "name": "ExternalPolicy",
+                            "type": {
+                                "href": "/mgmt/types/default/dmExternalAttachedPolicy"
+                            },
+                            "summary": "Associates an external policy with a service or port.",
+                            "array": "true",
+                            "cli-alias": "external-policy",
+                            "display": "External Policy",
+                            "description": "Associate an external policy with a service."
+                        },
+                        {
+                            "name": "SLAEnforcementMode",
+                            "default": "allow-if-no-sla",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSLAPolicyEnforcementMode"
+                            },
+                            "required": "true",
+                            "summary": "Controls the application of SLA Policies to transactions.",
+                            "cli-alias": "sla-enforcement-mode",
+                            "display": "SLA Enforcement Mode",
+                            "description": "SLA Enforcement Mode controls the application of SLA Policies to transactions. Transactions are either allowed or rejected based on whether an SLA rule is applied to the transaction."
+                        }
+                    ]
+                },
+                "description": "Create and configure ws-policy attachments for WSDLs"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/PolicyAttachments"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/PolicyAttachments"
+                }
+            }
         }
-    ]
+    }
 }

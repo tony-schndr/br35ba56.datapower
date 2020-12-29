@@ -1,1233 +1,1234 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "/mgmt/types/default/dmEndpointType": {
+                },
                 "type": {
-                    "name": "dmEndpointType", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "display": "Token Mapping Service", 
-                                "name": "tokenmapping", 
-                                "description": "The Tivoli Federated Identity Manager endpoint is acting as a token mapping service."
-                            }, 
-                            {
-                                "display": "OAuth STS", 
-                                "name": "oauth", 
-                                "description": "The Tivoli Federated Identity Manager endpoint is acting as an OAuth secure token service."
-                            }
-                        ]
-                    }
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmEndpointType"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmEndpointType"
                     }
-                }
-            }, 
-            "name": "mEndpointType", 
-            "default": "tokenmapping", 
-            "type": {
-                "href": "/mgmt/types/default/dmEndpointType"
-            }, 
-            "summary": "TFIM endpoint type", 
-            "cli-alias": "tfim-endpoint-type", 
-            "display": "Endpoint Type", 
-            "description": "Specify the endpoint type configured on the Tivoli Federated Identity Manager server."
-        }, 
-        {
-            "name": "mServerURL", 
-            "cli-alias": "tfim-addr", 
-            "required": "true", 
-            "summary": "Host name or IP address", 
-            "/mgmt/types/default/dmHostname": {
+                },
                 "type": {
-                    "cli-arg": "dotted-ip or hostname", 
-                    "name": "dmHostname", 
-                    "format": "(a.b.c.d or hostname)"
-                }, 
+                    "name": "dmEndpointType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Token Mapping Service",
+                                "description": "The Tivoli Federated Identity Manager endpoint is acting as a token mapping service.",
+                                "name": "tokenmapping"
+                            },
+                            {
+                                "display": "OAuth STS",
+                                "description": "The Tivoli Federated Identity Manager endpoint is acting as an OAuth secure token service.",
+                                "name": "oauth"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmHostname"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmHostname"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmHostname"
-            }, 
-            "display": "Server", 
-            "description": "Specify the domain-qualified host name or IP address of the Tivoli Federated Identity Manager server."
-        }, 
-        {
-            "name": "mServerPort", 
-            "default": 9080, 
-            "/mgmt/types/default/dmIPPort": {
+                },
                 "type": {
-                    "cli-arg": "ip-port", 
-                    "minimum": 0, 
-                    "name": "dmIPPort", 
-                    "maximum": "0xFFFF"
-                }, 
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmIPPort"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmIPPort"
                     }
-                }
-            }, 
-            "required": "true", 
-            "summary": "Port number", 
-            "type": {
-                "href": "/mgmt/types/default/dmIPPort"
-            }, 
-            "cli-alias": "tfim-port", 
-            "display": "Port", 
-            "description": "Specify the listening port on the Tivoli Federated Identity Manager server."
-        }, 
-        {
-            "name": "mCompatibleMode", 
-            "type": {
-                "href": "/mgmt/types/default/dmTFIMMode"
-            }, 
-            "required": "true", 
-            "/mgmt/types/default/dmTFIMMode": {
+                },
                 "type": {
-                    "name": "dmTFIMMode", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Version 6.0", 
-                                "display": "Version 6.0", 
-                                "name": "v6.0"
-                            }, 
-                            {
-                                "summary": "Version 6.1", 
-                                "display": "Version 6.1", 
-                                "name": "v6.1"
-                            }, 
-                            {
-                                "summary": "Version 6.2", 
-                                "display": "Version 6.2", 
-                                "name": "v6.2"
-                            }
-                        ]
-                    }
-                }, 
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmTFIMMode"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmTFIMMode"
                     }
-                }
-            }, 
-            "summary": "Compatibility Mode", 
-            "cli-alias": "tfim-compatible", 
-            "display": "Compatibility Mode", 
-            "description": "&lt;p>Select the currently configured version of Tivoli Federated Identity Manager. The selected value determines the details for the namespace and WS-Trust messages.&lt;/p>&lt;ul>&lt;li>For versions 6.0 or 6.1, version 1.2 of the WS-Trust specification is used.&lt;/li>&lt;li>For version 6.2, version 1.3 of the WS-Trust specification is used, which corresponds to the \"Validate OASIS URI\" Request Type. Version 6.2 also supports WS-Trust 1.2. &lt;p>&lt;b>Note:&lt;/b> To use WS-Trust 1.2 messages with a TFIM version 6.2 server, use 6.1 as the compatibility mode. On a TFIM version 6.2 server, this corresponds to the \"Validate\" Request Type.&lt;/p>&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmTFIMReq60Format": {
+                },
                 "type": {
-                    "name": "dmTFIMReq60Format", 
+                    "name": "dmTFIMMode",
                     "value-list": {
                         "value": [
                             {
-                                "summary": "WS-Security Username TokenType", 
-                                "display": "Username Token", 
-                                "name": "WSUserNameToken"
-                            }, 
+                                "display": "Version 6.0",
+                                "name": "v6.0",
+                                "summary": "Version 6.0"
+                            },
                             {
-                                "summary": "SAML Assertion 1.0", 
-                                "display": "SAML 1.0", 
-                                "name": "SAML1.0"
-                            }, 
+                                "display": "Version 6.1",
+                                "name": "v6.1",
+                                "summary": "Version 6.1"
+                            },
                             {
-                                "summary": "SAML Assertion 1.1", 
-                                "display": "SAML 1.1", 
-                                "name": "SAML1.1"
-                            }, 
-                            {
-                                "summary": "Custom", 
-                                "display": "Custom", 
-                                "name": "Custom"
+                                "display": "Version 6.2",
+                                "name": "v6.2",
+                                "summary": "Version 6.2"
                             }
                         ]
                     }
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmTFIMReq60Format"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmTFIMReq60Format"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmTFIMReq60Format"
-            }, 
-            "name": "mReqToken60Format", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-and", 
-                    "condition": [
-                        {
-                            "property-name": "mCompatibleMode", 
-                            "evaluation": "property-equals", 
-                            "value": "v6.0"
-                        }, 
-                        {
-                            "property-name": "mEndpointType", 
-                            "evaluation": "property-equals", 
-                            "value": "tokenmapping"
-                        }
-                    ]
-                }
-            }, 
-            "summary": "Request Token Format for version 6.0.1", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "cli-alias": "tfim-60-req-tokenformat", 
-            "display": "Request Token Format", 
-            "description": "Select the format of the request token when using Tivoli Federated Identity Manager version 6.0.1."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmTFIMReq61Format"
-            }, 
-            "name": "mReqToken61Format", 
-            "/mgmt/types/default/dmTFIMReq61Format": {
+                },
                 "type": {
-                    "name": "dmTFIMReq61Format", 
+                    "name": "dmTFIMReq60Format",
                     "value-list": {
                         "value": [
                             {
-                                "summary": "WS-Security Username TokenType", 
-                                "display": "Username Token", 
-                                "name": "WSUserNameToken"
-                            }, 
+                                "display": "Username Token",
+                                "name": "WSUserNameToken",
+                                "summary": "WS-Security Username TokenType"
+                            },
                             {
-                                "summary": "SAML Assertion 1.0", 
-                                "display": "SAML 1.0", 
-                                "name": "SAML1.0"
-                            }, 
+                                "display": "SAML 1.0",
+                                "name": "SAML1.0",
+                                "summary": "SAML Assertion 1.0"
+                            },
                             {
-                                "summary": "SAML Assertion 1.1", 
-                                "display": "SAML 1.1", 
-                                "name": "SAML1.1"
-                            }, 
+                                "display": "SAML 1.1",
+                                "name": "SAML1.1",
+                                "summary": "SAML Assertion 1.1"
+                            },
                             {
-                                "summary": "SAML Assertion 2.0", 
-                                "display": "SAML 2.0", 
-                                "name": "SAML2.0"
-                            }, 
-                            {
-                                "summary": "WS-Security Kerberos Token", 
-                                "display": "Kerberos Token", 
-                                "name": "WSKerberosToken"
-                            }, 
-                            {
-                                "summary": "WS-Security X.509 Token", 
-                                "display": "X.509 Token", 
-                                "name": "WSX509Token"
-                            }, 
-                            {
-                                "summary": "WS-Security BinarySecurityToken", 
-                                "display": "Binary Security Token", 
-                                "name": "BinarySecurityToken"
-                            }, 
-                            {
-                                "summary": "Custom Token", 
-                                "display": "Custom Token", 
-                                "name": "CustomToken"
-                            }, 
-                            {
-                                "summary": "Custom stylesheet generates the request", 
-                                "display": "Custom", 
-                                "name": "Custom"
+                                "display": "Custom",
+                                "name": "Custom",
+                                "summary": "Custom"
                             }
                         ]
                     }
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmTFIMReq61Format"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmTFIMReq61Format"
                     }
-                }
-            }, 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-and", 
-                    "condition": [
-                        {
-                            "property-name": "mCompatibleMode", 
-                            "evaluation": "property-equals", 
-                            "value": "v6.1"
-                        }, 
-                        {
-                            "property-name": "mEndpointType", 
-                            "evaluation": "property-equals", 
-                            "value": "tokenmapping"
-                        }
-                    ]
-                }
-            }, 
-            "summary": "Request Token Format for version 6.1", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "cli-alias": "tfim-61-req-tokenformat", 
-            "display": "Request Token Format", 
-            "description": "Select the format of the request token when using Tivoli Federated Identity Manager version 6.1."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmTFIMReq62Format"
-            }, 
-            "name": "mReqToken62Format", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-and", 
-                    "condition": [
-                        {
-                            "property-name": "mCompatibleMode", 
-                            "evaluation": "property-equals", 
-                            "value": "v6.2"
-                        }, 
-                        {
-                            "property-name": "mEndpointType", 
-                            "evaluation": "property-equals", 
-                            "value": "tokenmapping"
-                        }
-                    ]
-                }
-            }, 
-            "/mgmt/types/default/dmTFIMReq62Format": {
+                },
                 "type": {
-                    "name": "dmTFIMReq62Format", 
+                    "name": "dmTFIMReq61Format",
                     "value-list": {
                         "value": [
                             {
-                                "summary": "WS-Security Username TokenType", 
-                                "display": "Username Token", 
-                                "name": "WSUserNameToken"
-                            }, 
+                                "display": "Username Token",
+                                "name": "WSUserNameToken",
+                                "summary": "WS-Security Username TokenType"
+                            },
                             {
-                                "summary": "SAML Assertion 1.0", 
-                                "display": "SAML 1.0", 
-                                "name": "SAML1.0"
-                            }, 
+                                "display": "SAML 1.0",
+                                "name": "SAML1.0",
+                                "summary": "SAML Assertion 1.0"
+                            },
                             {
-                                "summary": "SAML Assertion 1.1", 
-                                "display": "SAML 1.1", 
-                                "name": "SAML1.1"
-                            }, 
+                                "display": "SAML 1.1",
+                                "name": "SAML1.1",
+                                "summary": "SAML Assertion 1.1"
+                            },
                             {
-                                "summary": "SAML Assertion 2.0", 
-                                "display": "SAML 2.0", 
-                                "name": "SAML2.0"
-                            }, 
+                                "display": "SAML 2.0",
+                                "name": "SAML2.0",
+                                "summary": "SAML Assertion 2.0"
+                            },
                             {
-                                "summary": "WS-Security Kerberos Token", 
-                                "display": "Kerberos Token", 
-                                "name": "WSKerberosToken"
-                            }, 
+                                "display": "Kerberos Token",
+                                "name": "WSKerberosToken",
+                                "summary": "WS-Security Kerberos Token"
+                            },
                             {
-                                "summary": "WS-Security X.509 Token", 
-                                "display": "X.509 Token", 
-                                "name": "WSX509Token"
-                            }, 
+                                "display": "X.509 Token",
+                                "name": "WSX509Token",
+                                "summary": "WS-Security X.509 Token"
+                            },
                             {
-                                "summary": "WS-Security BinarySecurityToken", 
-                                "display": "Binary Security Token", 
-                                "name": "BinarySecurityToken"
-                            }, 
+                                "display": "Binary Security Token",
+                                "name": "BinarySecurityToken",
+                                "summary": "WS-Security BinarySecurityToken"
+                            },
                             {
-                                "summary": "Custom Token", 
-                                "display": "Custom Token", 
-                                "name": "CustomToken"
-                            }, 
+                                "display": "Custom Token",
+                                "name": "CustomToken",
+                                "summary": "Custom Token"
+                            },
                             {
-                                "summary": "Custom stylesheet generates the request", 
-                                "display": "Custom", 
-                                "name": "Custom"
+                                "display": "Custom",
+                                "name": "Custom",
+                                "summary": "Custom stylesheet generates the request"
                             }
                         ]
                     }
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmTFIMReq62Format"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmTFIMReq62Format"
                     }
-                }
-            }, 
-            "summary": "Request Token Format for version 6.2", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "cli-alias": "tfim-62-req-tokenformat", 
-            "display": "Request Token Format", 
-            "description": "Select the format of the request token when using Tivoli Federated Identity Manager version 6.2."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmFSFile"
-            }, 
-            "name": "mReqCustomURL", 
-            "/mgmt/types/default/dmFSFile": {
+                },
                 "type": {
-                    "cli-arg": "file", 
-                    "name": "dmFSFile"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmFSFile"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmFSFile"
-                    }
-                }
-            }, 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "evaluation": "logical-and", 
-                            "condition": [
-                                {
-                                    "property-name": "mCompatibleMode", 
-                                    "evaluation": "property-equals", 
-                                    "value": "v6.2"
-                                }, 
-                                {
-                                    "property-name": "mReqToken62Format", 
-                                    "evaluation": "property-equals", 
-                                    "value": "Custom"
-                                }, 
-                                {
-                                    "property-name": "mEndpointType", 
-                                    "evaluation": "property-equals", 
-                                    "value": "tokenmapping"
-                                }
-                            ]
-                        }, 
-                        {
-                            "evaluation": "logical-and", 
-                            "condition": [
-                                {
-                                    "property-name": "mCompatibleMode", 
-                                    "evaluation": "property-equals", 
-                                    "value": "v6.1"
-                                }, 
-                                {
-                                    "property-name": "mReqToken61Format", 
-                                    "evaluation": "property-equals", 
-                                    "value": "Custom"
-                                }, 
-                                {
-                                    "property-name": "mEndpointType", 
-                                    "evaluation": "property-equals", 
-                                    "value": "tokenmapping"
-                                }
-                            ]
-                        }, 
-                        {
-                            "evaluation": "logical-and", 
-                            "condition": [
-                                {
-                                    "property-name": "mCompatibleMode", 
-                                    "evaluation": "property-equals", 
-                                    "value": "v6.0"
-                                }, 
-                                {
-                                    "property-name": "mReqToken60Format", 
-                                    "evaluation": "property-equals", 
-                                    "value": "Custom"
-                                }, 
-                                {
-                                    "property-name": "mEndpointType", 
-                                    "evaluation": "property-equals", 
-                                    "value": "tokenmapping"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            }, 
-            "locations": {
-                "location": [
-                    "local", 
-                    "store"
-                ]
-            }, 
-            "summary": "Custom stylesheet or GatewayScript file for request.", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "cli-alias": "tfim-custom-req-url", 
-            "display": "Custom Request", 
-            "description": "When Request Token Format is Custom, upload the custom stylesheet or GatewayScript file to the DataPower Gateway. The custom stylesheet or GatewayScript file must be in the local: or store: directory."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "name": "mAppliesToAddress", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "mEndpointType", 
-                            "evaluation": "property-equals", 
-                            "value": "oauth"
-                        }, 
-                        {
-                            "evaluation": "logical-and", 
-                            "condition": [
-                                {
-                                    "property-name": "mCompatibleMode", 
-                                    "evaluation": "property-equals", 
-                                    "value": "v6.2"
-                                }, 
-                                {
-                                    "property-name": "mReqToken62Format", 
-                                    "evaluation": "property-does-not-equal", 
-                                    "value": "Custom"
-                                }
-                            ]
-                        }, 
-                        {
-                            "evaluation": "logical-and", 
-                            "condition": [
-                                {
-                                    "property-name": "mCompatibleMode", 
-                                    "evaluation": "property-equals", 
-                                    "value": "v6.1"
-                                }, 
-                                {
-                                    "property-name": "mReqToken61Format", 
-                                    "evaluation": "property-does-not-equal", 
-                                    "value": "Custom"
-                                }
-                            ]
-                        }, 
-                        {
-                            "evaluation": "logical-and", 
-                            "condition": [
-                                {
-                                    "property-name": "mCompatibleMode", 
-                                    "evaluation": "property-equals", 
-                                    "value": "v6.0"
-                                }, 
-                                {
-                                    "property-name": "mReqToken60Format", 
-                                    "evaluation": "property-does-not-equal", 
-                                    "value": "Custom"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            }, 
-            "summary": "TFIM Applies-To field", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "cli-alias": "tfim-pathaddr", 
-            "display": "Applies-To Address", 
-            "description": "&lt;p>When Request Token Format is not Custom, enter the scope for this security token. For example, enter the services to which this token applies. For example:&lt;/p>&lt;ul>&lt;li>http://tfim.ibm.com:9080/EchoApplication/services/EchoServiceUsername&lt;/li>&lt;li>http://9.33.97.251:9080/EchoApplication/services/EchoServiceUsername&lt;/li>&lt;/ul>&lt;p>Within the Tivoli Federated Identity Manager service, this information specifies the destination of the request. The TFIM trust service uses this information to determine which partner is being accessed.&lt;/p>&lt;p>To determine the correct value, consult either the WSDL document or your TFIM administrator. Within the WSDL document, this destination equates to the AppliesTo field.&lt;/p>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "name": "mIssuer", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "evaluation": "logical-and", 
-                            "condition": [
-                                {
-                                    "property-name": "mCompatibleMode", 
-                                    "evaluation": "property-equals", 
-                                    "value": "v6.2"
-                                }, 
-                                {
-                                    "property-name": "mReqToken62Format", 
-                                    "evaluation": "property-does-not-equal", 
-                                    "value": "Custom"
-                                }, 
-                                {
-                                    "property-name": "mEndpointType", 
-                                    "evaluation": "property-equals", 
-                                    "value": "tokenmapping"
-                                }
-                            ]
-                        }, 
-                        {
-                            "evaluation": "logical-and", 
-                            "condition": [
-                                {
-                                    "property-name": "mCompatibleMode", 
-                                    "evaluation": "property-equals", 
-                                    "value": "v6.1"
-                                }, 
-                                {
-                                    "property-name": "mReqToken61Format", 
-                                    "evaluation": "property-does-not-equal", 
-                                    "value": "Custom"
-                                }, 
-                                {
-                                    "property-name": "mEndpointType", 
-                                    "evaluation": "property-equals", 
-                                    "value": "tokenmapping"
-                                }
-                            ]
-                        }, 
-                        {
-                            "evaluation": "logical-and", 
-                            "condition": [
-                                {
-                                    "property-name": "mCompatibleMode", 
-                                    "evaluation": "property-equals", 
-                                    "value": "v6.0"
-                                }, 
-                                {
-                                    "property-name": "mReqToken60Format", 
-                                    "evaluation": "property-does-not-equal", 
-                                    "value": "Custom"
-                                }, 
-                                {
-                                    "property-name": "mEndpointType", 
-                                    "evaluation": "property-equals", 
-                                    "value": "tokenmapping"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            }, 
-            "summary": "Issuer", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "cli-alias": "tfim-issuer", 
-            "display": "Issuer", 
-            "description": "&lt;p>When Request Token Format is not Custom, enter the identity that issued the request. In the WS-Security Management (WSSM) component, the issuer is either the WSSM token generator or the WSSM token consumer. For example:&lt;/p>&lt;ul>&lt;li>urn:itfim:wssm:tokenconsumer&lt;/li>&lt;/ul>&lt;p>To determine the correct value, consult either the WSDL document or your Tivoli Federated Identity Manager administrator. Within the WSDL document, this destination equates to the &lt;tt>Issuer&lt;/tt> field.&lt;/p>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "mPortType", 
-            "cli-alias": "tfim-porttype", 
-            "summary": "Port Type", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "mEndpointType", 
-                            "evaluation": "property-equals", 
-                            "value": "oauth"
-                        }, 
-                        {
-                            "evaluation": "logical-and", 
-                            "condition": [
-                                {
-                                    "property-name": "mCompatibleMode", 
-                                    "evaluation": "property-equals", 
-                                    "value": "v6.2"
-                                }, 
-                                {
-                                    "property-name": "mReqToken62Format", 
-                                    "evaluation": "property-equals", 
-                                    "value": "Custom"
-                                }
-                            ]
-                        }, 
-                        {
-                            "evaluation": "logical-and", 
-                            "condition": [
-                                {
-                                    "property-name": "mCompatibleMode", 
-                                    "evaluation": "property-equals", 
-                                    "value": "v6.1"
-                                }, 
-                                {
-                                    "property-name": "mReqToken61Format", 
-                                    "evaluation": "property-equals", 
-                                    "value": "Custom"
-                                }
-                            ]
-                        }, 
-                        {
-                            "property-name": "mCompatibleMode", 
-                            "evaluation": "property-equals", 
-                            "value": "v6.0"
-                        }
-                    ]
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Port Type", 
-            "description": "&lt;p>When Compatibility Mode is version 6.1 or version 6.2 and when Request Token Format is not Custom, enter the Web services port type to use. A port type is a group of Web services operations. For example:&lt;/p>&lt;p>&lt;tt>EchoService&lt;/tt>&lt;/p>&lt;p>To determine the correct value, consult either the WSDL document or your Tivoli Federated Identity Manager administrator. Within the WSDL document, this destination equates to the PortType field.&lt;/p>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "mOperation", 
-            "cli-alias": "tfim-operation", 
-            "summary": "Operation", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "mEndpointType", 
-                            "evaluation": "property-equals", 
-                            "value": "oauth"
-                        }, 
-                        {
-                            "evaluation": "logical-and", 
-                            "condition": [
-                                {
-                                    "property-name": "mCompatibleMode", 
-                                    "evaluation": "property-equals", 
-                                    "value": "v6.2"
-                                }, 
-                                {
-                                    "property-name": "mReqToken62Format", 
-                                    "evaluation": "property-equals", 
-                                    "value": "Custom"
-                                }
-                            ]
-                        }, 
-                        {
-                            "evaluation": "logical-and", 
-                            "condition": [
-                                {
-                                    "property-name": "mCompatibleMode", 
-                                    "evaluation": "property-equals", 
-                                    "value": "v6.1"
-                                }, 
-                                {
-                                    "property-name": "mReqToken61Format", 
-                                    "evaluation": "property-equals", 
-                                    "value": "Custom"
-                                }
-                            ]
-                        }, 
-                        {
-                            "property-name": "mCompatibleMode", 
-                            "evaluation": "property-equals", 
-                            "value": "v6.0"
-                        }
-                    ]
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Operation", 
-            "description": "&lt;p>When Compatibility Mode is version 6.1 or version 6.2 and when Request Token Format is not Custom, enter the name of the Web services operation as defined in the WSDL document. For example:&lt;/p>&lt;p>&lt;tt>echo&lt;/tt>&lt;/p>&lt;p>To determine the correct value, consult either the WSDL document or your Tivoli Federated Identity Manager administrator.&lt;/p>"
-        }, 
-        {
-            "name": "mSSLProxy", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLProxyProfile"
-                }
-            }, 
-            "summary": "The TLS proxy profile is deprecated. Use a TLS client profile.", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "mSSLClientConfigType", 
-                    "evaluation": "property-equals", 
-                    "value": "client"
-                }
-            }, 
-            "cli-alias": "tfim-sslproxy", 
-            "display": "TLS proxy profile (deprecated)", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "Select the TLS proxy profile to manage TLS communications with the peer. The TLS Proxy Profile identifies the keys and certificates that are used in the handshake."
-        }, 
-        {
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "name": "mSchemaValidate", 
-            "default": "off", 
-            "required-when": {
-                "condition": {
-                    "property-name": "mEndpointType", 
-                    "evaluation": "property-equals", 
-                    "value": "tokenmapping"
-                }
-            }, 
-            "summary": "Schema Validate Response", 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "name": "dmTFIMReq62Format",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
+                                "display": "Username Token",
+                                "name": "WSUserNameToken",
+                                "summary": "WS-Security Username TokenType"
+                            },
                             {
-                                "name": "off", 
+                                "display": "SAML 1.0",
+                                "name": "SAML1.0",
+                                "summary": "SAML Assertion 1.0"
+                            },
+                            {
+                                "display": "SAML 1.1",
+                                "name": "SAML1.1",
+                                "summary": "SAML Assertion 1.1"
+                            },
+                            {
+                                "display": "SAML 2.0",
+                                "name": "SAML2.0",
+                                "summary": "SAML Assertion 2.0"
+                            },
+                            {
+                                "display": "Kerberos Token",
+                                "name": "WSKerberosToken",
+                                "summary": "WS-Security Kerberos Token"
+                            },
+                            {
+                                "display": "X.509 Token",
+                                "name": "WSX509Token",
+                                "summary": "WS-Security X.509 Token"
+                            },
+                            {
+                                "display": "Binary Security Token",
+                                "name": "BinarySecurityToken",
+                                "summary": "WS-Security BinarySecurityToken"
+                            },
+                            {
+                                "display": "Custom Token",
+                                "name": "CustomToken",
+                                "summary": "Custom Token"
+                            },
+                            {
+                                "display": "Custom",
+                                "name": "Custom",
+                                "summary": "Custom stylesheet generates the request"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                },
+                "type": {
+                    "cli-arg": "file",
+                    "name": "dmFSFile"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "mEndpointType", 
-                    "evaluation": "property-equals", 
-                    "value": "oauth"
-                }
-            }, 
-            "cli-alias": "tfim-schema-validate", 
-            "display": "Schema Validate Response", 
-            "description": "Specify whether to schema-validate responses from the Tivoli Federated Identity Manager server. When enabled, responses are schema-validated using the WS-Trust version that is defined by the compatibility mode."
-        }, 
-        {
-            "/mgmt/types/default/dmLTPAValueTypeMode": {
-                "type": {
-                    "name": "dmLTPAValueTypeMode", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "display": "LTPA", 
-                                "name": "static", 
-                                "description": "&lt;p>Use the following namespace for all LTPA token versions:&lt;/p>&lt;ul>&lt;li>http://www.ibm.com/websphere/appserver/tokentype/5.0.2/#LTPA&lt;/li>&lt;/ul>"
-                            }, 
-                            {
-                                "display": "LTPA or LTPAv2", 
-                                "name": "dynamic", 
-                                "description": "&lt;p>Use one of the following namespaces based on the LTPA token version:&lt;/p>&lt;ul>&lt;li>http://www.ibm.com/websphere/appserver/tokentype/5.0.2/#LTPA&lt;/li>&lt;li>http://www.ibm.com/websphere/appserver/tokentype/#LTPAv2&lt;/li>&lt;/ul>"
-                            }
-                        ]
-                    }
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmLTPAValueTypeMode"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmLTPAValueTypeMode"
                     }
-                }
-            }, 
-            "name": "mLTPAValueTypeMode", 
-            "default": "static", 
-            "type": {
-                "href": "/mgmt/types/default/dmLTPAValueTypeMode"
-            }, 
-            "summary": "LTPA Binary Security Token Value Type", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "mEndpointType", 
-                            "evaluation": "property-equals", 
-                            "value": "oauth"
-                        }, 
-                        {
-                            "evaluation": "logical-not", 
-                            "condition": {
-                                "evaluation": "logical-or", 
-                                "condition": [
-                                    {
-                                        "evaluation": "logical-and", 
-                                        "condition": [
-                                            {
-                                                "property-name": "mCompatibleMode", 
-                                                "evaluation": "property-equals", 
-                                                "value": "v6.2"
-                                            }, 
-                                            {
-                                                "property-name": "mReqToken62Format", 
-                                                "evaluation": "property-equals", 
-                                                "value": "BinarySecurityToken"
-                                            }
-                                        ]
-                                    }, 
-                                    {
-                                        "evaluation": "logical-and", 
-                                        "condition": [
-                                            {
-                                                "property-name": "mCompatibleMode", 
-                                                "evaluation": "property-equals", 
-                                                "value": "v6.1"
-                                            }, 
-                                            {
-                                                "property-name": "mReqToken61Format", 
-                                                "evaluation": "property-equals", 
-                                                "value": "BinarySecurityToken"
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        }
-                    ]
-                }
-            }, 
-            "cli-alias": "tfim-lpta-valuetype-mode", 
-            "display": "LTPA Binary Security Token Value Type", 
-            "description": "The namespace mode to use when populating the ValueType field of an LTPA BinarySecurityToken."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "mSTSUsername", 
-            "cli-alias": "tfim-username", 
-            "summary": "Enforcement point username", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "mEndpointType", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "oauth"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Username", 
-            "description": "Basic authentication user name when connecting to the Tivoli Federated Identity Manager OAuth secure token service."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "name": "mSTSPassword", 
-            "cli-alias": "tfim-password", 
-            "summary": "Enforcement point password", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "mEndpointType", 
-                            "evaluation": "property-does-not-equal", 
-                            "value": "oauth"
-                        }, 
-                        {
-                            "property-name": "mSTSPassword", 
-                            "evaluation": "property-equals", 
-                            "value": ""
-                        }
-                    ]
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Password (deprecated)", 
-            "description": "Basic authentication password when connecting to the Tivoli Federated Identity Manager OAuth secure token service."
-        }, 
-        {
-            "name": "mSTSPasswordAlias", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/PasswordAlias"
-                }
-            }, 
-            "summary": "Enforcement point password alias", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "mEndpointType", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "oauth"
-                }
-            }, 
-            "cli-alias": "tfim-password-alias", 
-            "display": "Password Alias", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "Password alias for the Basic authentication password when connecting to the Tivoli Federated Identity Manager OAuth secure token service."
-        }, 
-        {
-            "name": "mSSLClientConfigType", 
-            "/mgmt/types/default/dmSSLClientConfigType": {
-                "type": {
-                    "name": "dmSSLClientConfigType", 
+                    "name": "dmLTPAValueTypeMode",
                     "value-list": {
                         "value": [
                             {
-                                "name": "proxy", 
-                                "display": "Proxy Profile"
-                            }, 
+                                "display": "LTPA",
+                                "description": "&lt;p>Use the following namespace for all LTPA token versions:&lt;/p>&lt;ul>&lt;li>http://www.ibm.com/websphere/appserver/tokentype/5.0.2/#LTPA&lt;/li>&lt;/ul>",
+                                "name": "static"
+                            },
                             {
-                                "name": "client", 
+                                "display": "LTPA or LTPAv2",
+                                "description": "&lt;p>Use one of the following namespaces based on the LTPA token version:&lt;/p>&lt;ul>&lt;li>http://www.ibm.com/websphere/appserver/tokentype/5.0.2/#LTPA&lt;/li>&lt;li>http://www.ibm.com/websphere/appserver/tokentype/#LTPAv2&lt;/li>&lt;/ul>",
+                                "name": "dynamic"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSLClientConfigType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSLClientConfigType"
+                    }
+                },
+                "type": {
+                    "name": "dmSSLClientConfigType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "proxy",
+                                "display": "Proxy Profile"
+                            },
+                            {
+                                "name": "client",
                                 "display": "Client Profile"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmSSLClientConfigType"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmSSLClientConfigType"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "TFIMEndpoint",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "mEndpointType"
+                            },
+                            {
+                                "name": "mServerURL"
+                            },
+                            {
+                                "name": "mServerPort"
+                            },
+                            {
+                                "name": "mCompatibleMode"
+                            },
+                            {
+                                "name": "mReqToken60Format"
+                            },
+                            {
+                                "name": "mReqToken61Format"
+                            },
+                            {
+                                "name": "mReqToken62Format"
+                            },
+                            {
+                                "name": "mReqCustomURL"
+                            },
+                            {
+                                "name": "mAppliesToAddress"
+                            },
+                            {
+                                "name": "mIssuer"
+                            },
+                            {
+                                "name": "mPortType"
+                            },
+                            {
+                                "name": "mOperation"
+                            },
+                            {
+                                "name": "mSSLClientConfigType"
+                            },
+                            {
+                                "name": "mSSLProxy"
+                            },
+                            {
+                                "name": "mSSLClient"
+                            },
+                            {
+                                "name": "mSchemaValidate"
+                            },
+                            {
+                                "name": "mLTPAValueTypeMode"
+                            },
+                            {
+                                "name": "mSTSUsername"
+                            },
+                            {
+                                "name": "mSTSPassword"
+                            }
+                        ],
+                        "name": "main",
+                        "display": "Main"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "mServerURL"
+                            },
+                            {
+                                "name": "mServerPort"
+                            },
+                            {
+                                "name": "mCompatibleMode"
+                            }
+                        ],
+                        "name": "summary"
                     }
+                ],
+                "uri": "access/tfim",
+                "display": "Tivoli Federated Identity Manager",
+                "cmd-group": "tam",
+                "cli-alias": "tfim",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "mEndpointType",
+                            "default": "tokenmapping",
+                            "type": {
+                                "href": "/mgmt/types/default/dmEndpointType"
+                            },
+                            "summary": "TFIM endpoint type",
+                            "cli-alias": "tfim-endpoint-type",
+                            "display": "Endpoint Type",
+                            "description": "Specify the endpoint type configured on the Tivoli Federated Identity Manager server."
+                        },
+                        {
+                            "name": "mServerURL",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHostname"
+                            },
+                            "required": "true",
+                            "summary": "Host name or IP address",
+                            "cli-alias": "tfim-addr",
+                            "display": "Server",
+                            "description": "Specify the domain-qualified host name or IP address of the Tivoli Federated Identity Manager server."
+                        },
+                        {
+                            "name": "mServerPort",
+                            "default": 9080,
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPPort"
+                            },
+                            "required": "true",
+                            "summary": "Port number",
+                            "cli-alias": "tfim-port",
+                            "display": "Port",
+                            "description": "Specify the listening port on the Tivoli Federated Identity Manager server."
+                        },
+                        {
+                            "name": "mCompatibleMode",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTFIMMode"
+                            },
+                            "required": "true",
+                            "summary": "Compatibility Mode",
+                            "cli-alias": "tfim-compatible",
+                            "display": "Compatibility Mode",
+                            "description": "&lt;p>Select the currently configured version of Tivoli Federated Identity Manager. The selected value determines the details for the namespace and WS-Trust messages.&lt;/p>&lt;ul>&lt;li>For versions 6.0 or 6.1, version 1.2 of the WS-Trust specification is used.&lt;/li>&lt;li>For version 6.2, version 1.3 of the WS-Trust specification is used, which corresponds to the \"Validate OASIS URI\" Request Type. Version 6.2 also supports WS-Trust 1.2. &lt;p>&lt;b>Note:&lt;/b> To use WS-Trust 1.2 messages with a TFIM version 6.2 server, use 6.1 as the compatibility mode. On a TFIM version 6.2 server, this corresponds to the \"Validate\" Request Type.&lt;/p>&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "mReqToken60Format",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "mCompatibleMode",
+                                            "evaluation": "property-equals",
+                                            "value": "v6.0"
+                                        },
+                                        {
+                                            "property-name": "mEndpointType",
+                                            "evaluation": "property-equals",
+                                            "value": "tokenmapping"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Request Token Format for version 6.0.1",
+                            "cli-alias": "tfim-60-req-tokenformat",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmTFIMReq60Format"
+                            },
+                            "display": "Request Token Format",
+                            "description": "Select the format of the request token when using Tivoli Federated Identity Manager version 6.0.1."
+                        },
+                        {
+                            "name": "mReqToken61Format",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "mCompatibleMode",
+                                            "evaluation": "property-equals",
+                                            "value": "v6.1"
+                                        },
+                                        {
+                                            "property-name": "mEndpointType",
+                                            "evaluation": "property-equals",
+                                            "value": "tokenmapping"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Request Token Format for version 6.1",
+                            "cli-alias": "tfim-61-req-tokenformat",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmTFIMReq61Format"
+                            },
+                            "display": "Request Token Format",
+                            "description": "Select the format of the request token when using Tivoli Federated Identity Manager version 6.1."
+                        },
+                        {
+                            "name": "mReqToken62Format",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "mCompatibleMode",
+                                            "evaluation": "property-equals",
+                                            "value": "v6.2"
+                                        },
+                                        {
+                                            "property-name": "mEndpointType",
+                                            "evaluation": "property-equals",
+                                            "value": "tokenmapping"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Request Token Format for version 6.2",
+                            "cli-alias": "tfim-62-req-tokenformat",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmTFIMReq62Format"
+                            },
+                            "display": "Request Token Format",
+                            "description": "Select the format of the request token when using Tivoli Federated Identity Manager version 6.2."
+                        },
+                        {
+                            "name": "mReqCustomURL",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "mCompatibleMode",
+                                                    "evaluation": "property-equals",
+                                                    "value": "v6.2"
+                                                },
+                                                {
+                                                    "property-name": "mReqToken62Format",
+                                                    "evaluation": "property-equals",
+                                                    "value": "Custom"
+                                                },
+                                                {
+                                                    "property-name": "mEndpointType",
+                                                    "evaluation": "property-equals",
+                                                    "value": "tokenmapping"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "mCompatibleMode",
+                                                    "evaluation": "property-equals",
+                                                    "value": "v6.1"
+                                                },
+                                                {
+                                                    "property-name": "mReqToken61Format",
+                                                    "evaluation": "property-equals",
+                                                    "value": "Custom"
+                                                },
+                                                {
+                                                    "property-name": "mEndpointType",
+                                                    "evaluation": "property-equals",
+                                                    "value": "tokenmapping"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "mCompatibleMode",
+                                                    "evaluation": "property-equals",
+                                                    "value": "v6.0"
+                                                },
+                                                {
+                                                    "property-name": "mReqToken60Format",
+                                                    "evaluation": "property-equals",
+                                                    "value": "Custom"
+                                                },
+                                                {
+                                                    "property-name": "mEndpointType",
+                                                    "evaluation": "property-equals",
+                                                    "value": "tokenmapping"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "locations": {
+                                "location": [
+                                    "local",
+                                    "store"
+                                ]
+                            },
+                            "summary": "Custom stylesheet or GatewayScript file for request.",
+                            "cli-alias": "tfim-custom-req-url",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmFSFile"
+                            },
+                            "display": "Custom Request",
+                            "description": "When Request Token Format is Custom, upload the custom stylesheet or GatewayScript file to the DataPower Gateway. The custom stylesheet or GatewayScript file must be in the local: or store: directory."
+                        },
+                        {
+                            "name": "mAppliesToAddress",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "mEndpointType",
+                                            "evaluation": "property-equals",
+                                            "value": "oauth"
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "mCompatibleMode",
+                                                    "evaluation": "property-equals",
+                                                    "value": "v6.2"
+                                                },
+                                                {
+                                                    "property-name": "mReqToken62Format",
+                                                    "evaluation": "property-does-not-equal",
+                                                    "value": "Custom"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "mCompatibleMode",
+                                                    "evaluation": "property-equals",
+                                                    "value": "v6.1"
+                                                },
+                                                {
+                                                    "property-name": "mReqToken61Format",
+                                                    "evaluation": "property-does-not-equal",
+                                                    "value": "Custom"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "mCompatibleMode",
+                                                    "evaluation": "property-equals",
+                                                    "value": "v6.0"
+                                                },
+                                                {
+                                                    "property-name": "mReqToken60Format",
+                                                    "evaluation": "property-does-not-equal",
+                                                    "value": "Custom"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "TFIM Applies-To field",
+                            "cli-alias": "tfim-pathaddr",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Applies-To Address",
+                            "description": "&lt;p>When Request Token Format is not Custom, enter the scope for this security token. For example, enter the services to which this token applies. For example:&lt;/p>&lt;ul>&lt;li>http://tfim.ibm.com:9080/EchoApplication/services/EchoServiceUsername&lt;/li>&lt;li>http://9.33.97.251:9080/EchoApplication/services/EchoServiceUsername&lt;/li>&lt;/ul>&lt;p>Within the Tivoli Federated Identity Manager service, this information specifies the destination of the request. The TFIM trust service uses this information to determine which partner is being accessed.&lt;/p>&lt;p>To determine the correct value, consult either the WSDL document or your TFIM administrator. Within the WSDL document, this destination equates to the AppliesTo field.&lt;/p>"
+                        },
+                        {
+                            "name": "mIssuer",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "mCompatibleMode",
+                                                    "evaluation": "property-equals",
+                                                    "value": "v6.2"
+                                                },
+                                                {
+                                                    "property-name": "mReqToken62Format",
+                                                    "evaluation": "property-does-not-equal",
+                                                    "value": "Custom"
+                                                },
+                                                {
+                                                    "property-name": "mEndpointType",
+                                                    "evaluation": "property-equals",
+                                                    "value": "tokenmapping"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "mCompatibleMode",
+                                                    "evaluation": "property-equals",
+                                                    "value": "v6.1"
+                                                },
+                                                {
+                                                    "property-name": "mReqToken61Format",
+                                                    "evaluation": "property-does-not-equal",
+                                                    "value": "Custom"
+                                                },
+                                                {
+                                                    "property-name": "mEndpointType",
+                                                    "evaluation": "property-equals",
+                                                    "value": "tokenmapping"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "mCompatibleMode",
+                                                    "evaluation": "property-equals",
+                                                    "value": "v6.0"
+                                                },
+                                                {
+                                                    "property-name": "mReqToken60Format",
+                                                    "evaluation": "property-does-not-equal",
+                                                    "value": "Custom"
+                                                },
+                                                {
+                                                    "property-name": "mEndpointType",
+                                                    "evaluation": "property-equals",
+                                                    "value": "tokenmapping"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Issuer",
+                            "cli-alias": "tfim-issuer",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Issuer",
+                            "description": "&lt;p>When Request Token Format is not Custom, enter the identity that issued the request. In the WS-Security Management (WSSM) component, the issuer is either the WSSM token generator or the WSSM token consumer. For example:&lt;/p>&lt;ul>&lt;li>urn:itfim:wssm:tokenconsumer&lt;/li>&lt;/ul>&lt;p>To determine the correct value, consult either the WSDL document or your Tivoli Federated Identity Manager administrator. Within the WSDL document, this destination equates to the &lt;tt>Issuer&lt;/tt> field.&lt;/p>"
+                        },
+                        {
+                            "name": "mPortType",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Port Type",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "mEndpointType",
+                                            "evaluation": "property-equals",
+                                            "value": "oauth"
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "mCompatibleMode",
+                                                    "evaluation": "property-equals",
+                                                    "value": "v6.2"
+                                                },
+                                                {
+                                                    "property-name": "mReqToken62Format",
+                                                    "evaluation": "property-equals",
+                                                    "value": "Custom"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "mCompatibleMode",
+                                                    "evaluation": "property-equals",
+                                                    "value": "v6.1"
+                                                },
+                                                {
+                                                    "property-name": "mReqToken61Format",
+                                                    "evaluation": "property-equals",
+                                                    "value": "Custom"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "mCompatibleMode",
+                                            "evaluation": "property-equals",
+                                            "value": "v6.0"
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "tfim-porttype",
+                            "display": "Port Type",
+                            "description": "&lt;p>When Compatibility Mode is version 6.1 or version 6.2 and when Request Token Format is not Custom, enter the Web services port type to use. A port type is a group of Web services operations. For example:&lt;/p>&lt;p>&lt;tt>EchoService&lt;/tt>&lt;/p>&lt;p>To determine the correct value, consult either the WSDL document or your Tivoli Federated Identity Manager administrator. Within the WSDL document, this destination equates to the PortType field.&lt;/p>"
+                        },
+                        {
+                            "name": "mOperation",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Operation",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "mEndpointType",
+                                            "evaluation": "property-equals",
+                                            "value": "oauth"
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "mCompatibleMode",
+                                                    "evaluation": "property-equals",
+                                                    "value": "v6.2"
+                                                },
+                                                {
+                                                    "property-name": "mReqToken62Format",
+                                                    "evaluation": "property-equals",
+                                                    "value": "Custom"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "mCompatibleMode",
+                                                    "evaluation": "property-equals",
+                                                    "value": "v6.1"
+                                                },
+                                                {
+                                                    "property-name": "mReqToken61Format",
+                                                    "evaluation": "property-equals",
+                                                    "value": "Custom"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "mCompatibleMode",
+                                            "evaluation": "property-equals",
+                                            "value": "v6.0"
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "tfim-operation",
+                            "display": "Operation",
+                            "description": "&lt;p>When Compatibility Mode is version 6.1 or version 6.2 and when Request Token Format is not Custom, enter the name of the Web services operation as defined in the WSDL document. For example:&lt;/p>&lt;p>&lt;tt>echo&lt;/tt>&lt;/p>&lt;p>To determine the correct value, consult either the WSDL document or your Tivoli Federated Identity Manager administrator.&lt;/p>"
+                        },
+                        {
+                            "name": "mSSLProxy",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                                }
+                            },
+                            "summary": "The TLS proxy profile is deprecated. Use a TLS client profile.",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "mSSLClientConfigType",
+                                    "evaluation": "property-equals",
+                                    "value": "client"
+                                }
+                            },
+                            "cli-alias": "tfim-sslproxy",
+                            "display": "TLS proxy profile (deprecated)",
+                            "description": "Select the TLS proxy profile to manage TLS communications with the peer. The TLS Proxy Profile identifies the keys and certificates that are used in the handshake."
+                        },
+                        {
+                            "name": "mSchemaValidate",
+                            "default": "off",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "mEndpointType",
+                                    "evaluation": "property-equals",
+                                    "value": "tokenmapping"
+                                }
+                            },
+                            "summary": "Schema Validate Response",
+                            "cli-alias": "tfim-schema-validate",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "mEndpointType",
+                                    "evaluation": "property-equals",
+                                    "value": "oauth"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "display": "Schema Validate Response",
+                            "description": "Specify whether to schema-validate responses from the Tivoli Federated Identity Manager server. When enabled, responses are schema-validated using the WS-Trust version that is defined by the compatibility mode."
+                        },
+                        {
+                            "name": "mLTPAValueTypeMode",
+                            "default": "static",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLTPAValueTypeMode"
+                            },
+                            "summary": "LTPA Binary Security Token Value Type",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "mEndpointType",
+                                            "evaluation": "property-equals",
+                                            "value": "oauth"
+                                        },
+                                        {
+                                            "evaluation": "logical-not",
+                                            "condition": {
+                                                "evaluation": "logical-or",
+                                                "condition": [
+                                                    {
+                                                        "evaluation": "logical-and",
+                                                        "condition": [
+                                                            {
+                                                                "property-name": "mCompatibleMode",
+                                                                "evaluation": "property-equals",
+                                                                "value": "v6.2"
+                                                            },
+                                                            {
+                                                                "property-name": "mReqToken62Format",
+                                                                "evaluation": "property-equals",
+                                                                "value": "BinarySecurityToken"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "evaluation": "logical-and",
+                                                        "condition": [
+                                                            {
+                                                                "property-name": "mCompatibleMode",
+                                                                "evaluation": "property-equals",
+                                                                "value": "v6.1"
+                                                            },
+                                                            {
+                                                                "property-name": "mReqToken61Format",
+                                                                "evaluation": "property-equals",
+                                                                "value": "BinarySecurityToken"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "tfim-lpta-valuetype-mode",
+                            "display": "LTPA Binary Security Token Value Type",
+                            "description": "The namespace mode to use when populating the ValueType field of an LTPA BinarySecurityToken."
+                        },
+                        {
+                            "name": "mSTSUsername",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enforcement point username",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "mEndpointType",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "oauth"
+                                }
+                            },
+                            "cli-alias": "tfim-username",
+                            "display": "Username",
+                            "description": "Basic authentication user name when connecting to the Tivoli Federated Identity Manager OAuth secure token service."
+                        },
+                        {
+                            "name": "mSTSPassword",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enforcement point password",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "mEndpointType",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "oauth"
+                                        },
+                                        {
+                                            "property-name": "mSTSPassword",
+                                            "evaluation": "property-equals",
+                                            "value": ""
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "tfim-password",
+                            "display": "Password (deprecated)",
+                            "description": "Basic authentication password when connecting to the Tivoli Federated Identity Manager OAuth secure token service."
+                        },
+                        {
+                            "name": "mSTSPasswordAlias",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/PasswordAlias"
+                                }
+                            },
+                            "summary": "Enforcement point password alias",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "mEndpointType",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "oauth"
+                                }
+                            },
+                            "cli-alias": "tfim-password-alias",
+                            "display": "Password Alias",
+                            "description": "Password alias for the Basic authentication password when connecting to the Tivoli Federated Identity Manager OAuth secure token service."
+                        },
+                        {
+                            "name": "mSSLClientConfigType",
+                            "default": "proxy",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSLClientConfigType"
+                            },
+                            "summary": "Set the TLS profile type to secure connections between the DataPower Gateway and its targets",
+                            "cli-alias": "ssl-client-type",
+                            "display": "TLS client type",
+                            "description": "The TLS profile type to secure connections between the DataPower Gateway and its targets."
+                        },
+                        {
+                            "name": "mSSLClient",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                                }
+                            },
+                            "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and its targets",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "mSSLClientConfigType",
+                                    "evaluation": "property-equals",
+                                    "value": "proxy"
+                                }
+                            },
+                            "cli-alias": "ssl-client",
+                            "display": "TLS client profile",
+                            "description": "The TLS client profile to secure connections between the DataPower Gateway and its targets."
+                        }
+                    ]
+                },
+                "description": "Tivoli Federated Identity Manager Configuration"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/TFIMEndpoint"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/TFIMEndpoint"
                 }
-            }, 
-            "default": "proxy", 
-            "type": {
-                "href": "/mgmt/types/default/dmSSLClientConfigType"
-            }, 
-            "summary": "Set the TLS profile type to secure connections between the DataPower Gateway and its targets", 
-            "cli-alias": "ssl-client-type", 
-            "display": "TLS client type", 
-            "description": "The TLS profile type to secure connections between the DataPower Gateway and its targets."
-        }, 
-        {
-            "name": "mSSLClient", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLClientProfile"
-                }
-            }, 
-            "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and its targets", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "mSSLClientConfigType", 
-                    "evaluation": "property-equals", 
-                    "value": "proxy"
-                }
-            }, 
-            "cli-alias": "ssl-client", 
-            "display": "TLS client profile", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
-                }
-            }, 
-            "description": "The TLS client profile to secure connections between the DataPower Gateway and its targets."
+            }
         }
-    ]
+    }
 }

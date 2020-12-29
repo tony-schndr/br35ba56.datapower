@@ -1,339 +1,303 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "description": "Specifies the descriptive summary for the analytics endpoint.", 
-            "cli-alias": "summary", 
-            "summary": "Descriptive summary for the Gateway Peering Manager", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments", 
-            "name": "UserSummary"
-        }, 
-        {
-            "name": "AnalyticsServerURL", 
-            "type": {
-                "href": "/mgmt/types/default/dmURL"
-            }, 
-            "required": "true", 
-            "locations": {
-                "location": "\"NONE\""
-            }, 
-            "summary": "URL to offload the collected API event data", 
-            "/mgmt/types/default/dmURL": {
+                },
                 "type": {
-                    "cli-arg": "url", 
-                    "name": "dmURL"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmURL"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmURL"
                     }
-                }
-            }, 
-            "cli-alias": "analytics-server-url", 
-            "display": "Analytics server URL", 
-            "protocols": {
-                "protocol": [
-                    "http", 
-                    "https", 
-                    "dpkafka"
-                ]
-            }, 
-            "description": "&lt;p>Specifies the URL to offload the collected API event data. This URL can start with &lt;tt>http&lt;/tt> or &lt;tt>https&lt;/tt> for an Elasticsearch server or start with &lt;tt>dpkafka&lt;/tt> for a Kafka server&lt;/p>&lt;ul>&lt;li>For an Elasticsearch server, specify the full URL to the endpoint starting with the &lt;tt>http&lt;/tt> or &lt;tt>https&lt;/tt> protocol identifier. With HTTPS, you must assign a TLS client profile.&lt;/li>&lt;li>For a Kafka server, specify only the name of the existing Kafka cluster configuration after the &lt;tt>dpkafka&lt;/tt> protocol identifier. To complete the complete the URL, you must specify which request topic to offload analytics data.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "name": "SSLClient", 
-            "required-when": {
-                "condition": {
-                    "property-name": "AnalyticsServerURL", 
-                    "evaluation": "property-url-protocol-in-list", 
-                    "value": "https"
-                }
-            }, 
-            "summary": "TLS client profile to secure connections", 
-            "cli-alias": "ssl-client", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "AnalyticsServerURL", 
-                    "evaluation": "property-url-protocol-not-in-list", 
-                    "value": "https"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/SSLClientProfile"
-                }
-            }, 
-            "display": "TLS client profile", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+                    "cli-arg": "url",
+                    "name": "dmURL"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "description": "&lt;p>Specifies the TLS client profile to secure connections with the analytics endpoint. With HTTPS, you must assign a TLS client profile.&lt;/p>&lt;p>This property is meaningful only when HTTPS is used to connect to the analytics endpoint.&lt;/p>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
+                },
                 "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
+                    "cli-arg": "object",
+                    "name": "dmReference"
                 }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "name": "RequestTopic", 
-            "required-when": {
-                "condition": {
-                    "property-name": "AnalyticsServerURL", 
-                    "evaluation": "property-url-protocol-in-list", 
-                    "value": "dpkafka"
-                }
-            }, 
-            "summary": "Name of the Kafka request topic to offload analytics data", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "AnalyticsServerURL", 
-                    "evaluation": "property-url-protocol-not-in-list", 
-                    "value": "dpkafka"
-                }
-            }, 
-            "cli-alias": "request-topic", 
-            "display": "Request topic", 
-            "description": "&lt;p>Specifies the name of the Kafka request topic to offload analytics data.&lt;/p>&lt;p>This property is meaningful only when Kafka is the analytics endpoint.&lt;/p>"
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmUInt32"
                     }
-                }
-            }, 
-            "name": "MaxRecords", 
-            "default": 1024, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "required": "true", 
-            "maximum": 65536, 
-            "summary": "Maximum number of records that can be buffered", 
-            "minimum": 256, 
-            "cli-alias": "max-records", 
-            "display": "Maximum records", 
-            "description": "&lt;p>Specifies the maximum number of records that can be buffered. The collected analytics data is offloaded when 10% of this value set or the defined interval is reached.&lt;/p>&lt;p>The value must be a power of 2. Enter a value in the range 256 - 65536. The default value is 1024.&lt;/p>"
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
+                },
                 "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
                     "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
                 }
-            }, 
-            "name": "MaxRecordsMemoryKB", 
-            "default": 512, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "required": "true", 
-            "maximum": 1024, 
-            "summary": "Maximum size of each record", 
-            "minimum": 4, 
-            "units": "KB", 
-            "cli-alias": "max-record-size", 
-            "display": "Maximum size for each record", 
-            "description": "Specifies the maximum size of each record in kilobytes. Enter a value in the range 4 - 1024. The default value is 512."
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
-                }
-            }, 
-            "name": "MaxDeliveryMemoryMB", 
-            "default": 512, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "required": "true", 
-            "maximum": 1024, 
-            "summary": "Maximum size for each delivery", 
-            "minimum": 1, 
-            "units": "MB", 
-            "cli-alias": "max-delivery-size", 
-            "display": "Maximum size for each delivery", 
-            "description": "Specifies the maximum memory for each delivery through the analytics endpoint in megabytes. Enter a value in the range 1 - 1024. The default value is 512."
-        }, 
-        {
-            "name": "Interval", 
-            "default": 600, 
-            "type": {
-                "href": "/mgmt/types/default/dmTimeInterval"
-            }, 
-            "maximum": 3600, 
-            "summary": "Interval between offloads", 
-            "/mgmt/types/default/dmTimeInterval": {
-                "type": {
-                    "cli-arg": "seconds", 
-                    "minimum": 0, 
-                    "name": "dmTimeInterval", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmTimeInterval"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmTimeInterval"
                     }
-                }
-            }, 
-            "minimum": 1, 
-            "units": "Seconds", 
-            "cli-alias": "interval", 
-            "display": "Interval", 
-            "description": "&lt;p>Specifies the interval in seconds between offloads. Data is offloaded at this interval or when the 10% of the value set for maximum records is reached.&lt;/p>&lt;p>Enter a value in the range 1 - 3600. The default value is 600.&lt;/p>"
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
+                },
                 "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
+                    "cli-arg": "seconds",
+                    "minimum": 0,
+                    "name": "dmTimeInterval",
                     "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
                 }
-            }, 
-            "name": "DeliveryConnections", 
-            "default": 1, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 100, 
-            "summary": "number of connection to establish per delivery to the remote server", 
-            "minimum": 1, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "AnalyticsServerURL", 
-                    "evaluation": "property-url-protocol-not-in-list", 
-                    "value": "dpkafka"
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "AnalyticsEndpoint",
+                "display": "Analytics Endpoint",
+                "uri": "config/analytics-endpoint",
+                "summary": "Configure and manage the API analytics endpoint",
+                "cmd-group": "configuration",
+                "cli-alias": "analytics-endpoint",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "Specifies the descriptive summary for the analytics endpoint.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Descriptive summary for the Gateway Peering Manager",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "AnalyticsServerURL",
+                            "type": {
+                                "href": "/mgmt/types/default/dmURL"
+                            },
+                            "required": "true",
+                            "locations": {
+                                "location": "\"NONE\""
+                            },
+                            "summary": "URL to offload the collected API event data",
+                            "cli-alias": "analytics-server-url",
+                            "display": "Analytics server URL",
+                            "protocols": {
+                                "protocol": [
+                                    "http",
+                                    "https",
+                                    "dpkafka"
+                                ]
+                            },
+                            "description": "&lt;p>Specifies the URL to offload the collected API event data. This URL can start with &lt;tt>http&lt;/tt> or &lt;tt>https&lt;/tt> for an Elasticsearch server or start with &lt;tt>dpkafka&lt;/tt> for a Kafka server&lt;/p>&lt;ul>&lt;li>For an Elasticsearch server, specify the full URL to the endpoint starting with the &lt;tt>http&lt;/tt> or &lt;tt>https&lt;/tt> protocol identifier. With HTTPS, you must assign a TLS client profile.&lt;/li>&lt;li>For a Kafka server, specify only the name of the existing Kafka cluster configuration after the &lt;tt>dpkafka&lt;/tt> protocol identifier. To complete the complete the URL, you must specify which request topic to offload analytics data.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "SSLClient",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "AnalyticsServerURL",
+                                    "evaluation": "property-url-protocol-in-list",
+                                    "value": "https"
+                                }
+                            },
+                            "summary": "TLS client profile to secure connections",
+                            "cli-alias": "ssl-client",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "AnalyticsServerURL",
+                                    "evaluation": "property-url-protocol-not-in-list",
+                                    "value": "https"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                                }
+                            },
+                            "display": "TLS client profile",
+                            "description": "&lt;p>Specifies the TLS client profile to secure connections with the analytics endpoint. With HTTPS, you must assign a TLS client profile.&lt;/p>&lt;p>This property is meaningful only when HTTPS is used to connect to the analytics endpoint.&lt;/p>"
+                        },
+                        {
+                            "name": "RequestTopic",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "AnalyticsServerURL",
+                                    "evaluation": "property-url-protocol-in-list",
+                                    "value": "dpkafka"
+                                }
+                            },
+                            "summary": "Name of the Kafka request topic to offload analytics data",
+                            "cli-alias": "request-topic",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "AnalyticsServerURL",
+                                    "evaluation": "property-url-protocol-not-in-list",
+                                    "value": "dpkafka"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Request topic",
+                            "description": "&lt;p>Specifies the name of the Kafka request topic to offload analytics data.&lt;/p>&lt;p>This property is meaningful only when Kafka is the analytics endpoint.&lt;/p>"
+                        },
+                        {
+                            "name": "MaxRecords",
+                            "default": 1024,
+                            "cli-alias": "max-records",
+                            "required": "true",
+                            "maximum": 65536,
+                            "summary": "Maximum number of records that can be buffered",
+                            "minimum": 256,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Maximum records",
+                            "description": "&lt;p>Specifies the maximum number of records that can be buffered. The collected analytics data is offloaded when 10% of this value set or the defined interval is reached.&lt;/p>&lt;p>The value must be a power of 2. Enter a value in the range 256 - 65536. The default value is 1024.&lt;/p>"
+                        },
+                        {
+                            "name": "MaxRecordsMemoryKB",
+                            "default": 512,
+                            "cli-alias": "max-record-size",
+                            "required": "true",
+                            "maximum": 1024,
+                            "summary": "Maximum size of each record",
+                            "minimum": 4,
+                            "units": "KB",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Maximum size for each record",
+                            "description": "Specifies the maximum size of each record in kilobytes. Enter a value in the range 4 - 1024. The default value is 512."
+                        },
+                        {
+                            "name": "MaxDeliveryMemoryMB",
+                            "default": 512,
+                            "cli-alias": "max-delivery-size",
+                            "required": "true",
+                            "maximum": 1024,
+                            "summary": "Maximum size for each delivery",
+                            "minimum": 1,
+                            "units": "MB",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Maximum size for each delivery",
+                            "description": "Specifies the maximum memory for each delivery through the analytics endpoint in megabytes. Enter a value in the range 1 - 1024. The default value is 512."
+                        },
+                        {
+                            "name": "Interval",
+                            "default": 600,
+                            "cli-alias": "interval",
+                            "maximum": 3600,
+                            "summary": "Interval between offloads",
+                            "minimum": 1,
+                            "units": "Seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimeInterval"
+                            },
+                            "display": "Interval",
+                            "description": "&lt;p>Specifies the interval in seconds between offloads. Data is offloaded at this interval or when the 10% of the value set for maximum records is reached.&lt;/p>&lt;p>Enter a value in the range 1 - 3600. The default value is 600.&lt;/p>"
+                        },
+                        {
+                            "name": "DeliveryConnections",
+                            "default": 1,
+                            "cli-alias": "delivery-connections",
+                            "maximum": 100,
+                            "summary": "number of connection to establish per delivery to the remote server",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "AnalyticsServerURL",
+                                    "evaluation": "property-url-protocol-not-in-list",
+                                    "value": "dpkafka"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Number of connections per delivery",
+                            "description": "&lt;p>Specifies the number of connection to establish per delivery to the remote server to offload analytics data. Each connection can carry a bulk activity log.&lt;/p>&lt;p>Enter a value in the range 1 - 100. The default value is 1.&lt;/p>&lt;p>This property is meaningful only when Kafka is the analytics endpoint.&lt;/p>"
+                        }
+                    ]
+                },
+                "description": "Configure an analytics endpoint to buffer API event data and offload the collected data as a bulk activity log to a remote server. When offloaded, you can use this data for display and analysis."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/AnalyticsEndpoint"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/AnalyticsEndpoint"
                 }
-            }, 
-            "cli-alias": "delivery-connections", 
-            "display": "Number of connections per delivery", 
-            "description": "&lt;p>Specifies the number of connection to establish per delivery to the remote server to offload analytics data. Each connection can carry a bulk activity log.&lt;/p>&lt;p>Enter a value in the range 1 - 100. The default value is 1.&lt;/p>&lt;p>This property is meaningful only when Kafka is the analytics endpoint.&lt;/p>"
+            }
         }
-    ]
+    }
 }

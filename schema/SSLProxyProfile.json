@@ -1,564 +1,454 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "description": "Indicates which end of the TLS connection this TLS Proxy Profile describes.", 
-            "required": "true", 
-            "/mgmt/types/default/dmSSLProxyDirection": {
-                "type": {
-                    "summary": "Role of the TLS Proxy in the connection", 
-                    "display": "TLS Proxy Direction", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Proxy acts as a TLS client in a TLS communication. The proxy creates TLS over TCP connection to the configured destination.", 
-                                "display": "Forward", 
-                                "name": "forward"
-                            }, 
-                            {
-                                "summary": "Proxy acts as a TLS server in a TLS communication. The proxy accepts TLS over TCP connection and creates TCP connection to the configured destination. Use a reverse proxy profile when you want to do TLS offload.", 
-                                "display": "Reverse", 
-                                "name": "reverse"
-                            }, 
-                            {
-                                "summary": "Proxy acts as both a TLS client and a TLS server and connects one TLS to another TLS. The proxy accepts TLS over TCP connection and creates new TLS over TCP connection to the configured destination.", 
-                                "display": "Two-Way", 
-                                "name": "two-way"
-                            }
-                        ]
-                    }, 
-                    "name": "dmSSLProxyDirection"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmSSLProxyDirection"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmSSLProxyDirection"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmSSLProxyDirection"
-            }, 
-            "display": "TLS Direction", 
-            "name": "Direction"
-        }, 
-        {
-            "description": "The cryptographic profile that is used when acting as a TLS client for a \"forward\" or \"two-way\" proxy.", 
-            "required-when": {
-                "condition": {
-                    "property-name": "Direction", 
-                    "evaluation": "property-value-in-list", 
-                    "value": [
-                        "forward", 
-                        "two-way"
-                    ]
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/CryptoProfile"
-                }
-            }, 
-            "display": "Forward (Client) Crypto Profile", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+                    "display": "TLS Proxy Direction",
+                    "name": "dmSSLProxyDirection",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Forward",
+                                "name": "forward",
+                                "summary": "Proxy acts as a TLS client in a TLS communication. The proxy creates TLS over TCP connection to the configured destination."
+                            },
+                            {
+                                "display": "Reverse",
+                                "name": "reverse",
+                                "summary": "Proxy acts as a TLS server in a TLS communication. The proxy accepts TLS over TCP connection and creates TCP connection to the configured destination. Use a reverse proxy profile when you want to do TLS offload."
+                            },
+                            {
+                                "display": "Two-Way",
+                                "name": "two-way",
+                                "summary": "Proxy acts as both a TLS client and a TLS server and connects one TLS to another TLS. The proxy accepts TLS over TCP connection and creates new TLS over TCP connection to the configured destination."
+                            }
+                        ]
+                    },
+                    "summary": "Role of the TLS Proxy in the connection"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "name": "ForwardCryptoProfile"
-        }, 
-        {
-            "description": "The cryptographic profile that is used when acting as a TLS server for a \"reverse\" or \"two-way\" proxy.", 
-            "required-when": {
-                "condition": {
-                    "property-name": "Direction", 
-                    "evaluation": "property-value-in-list", 
-                    "value": [
-                        "reverse", 
-                        "two-way"
-                    ]
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/CryptoProfile"
-                }
-            }, 
-            "display": "Reverse (Server) Crypto Profile", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
+                    "cli-arg": "object",
                     "name": "dmReference"
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmReference"
+                        "href": "/mgmt/types/default/dmToggle"
                     }
-                }
-            }, 
-            "name": "ReverseCryptoProfile"
-        }, 
-        {
-            "description": "Enable/disable the caching of TLS sessions when acting as a TLS server.", 
-            "default": "on", 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
+                                "name": "on",
                                 "display": "on"
-                            }, 
+                            },
                             {
-                                "name": "off", 
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "Direction", 
-                    "evaluation": "property-equals", 
-                    "value": "forward"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "display": "Server-side Session Caching", 
-            "name": "ServerCaching"
-        }, 
-        {
-            "name": "SessionTimeout", 
-            "default": 300, 
-            "type": {
-                "href": "/mgmt/types/default/dmTimeInterval"
-            }, 
-            "maximum": 86400, 
-            "/mgmt/types/default/dmTimeInterval": {
-                "type": {
-                    "cli-arg": "seconds", 
-                    "minimum": 0, 
-                    "name": "dmTimeInterval", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmTimeInterval"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmTimeInterval"
                     }
-                }
-            }, 
-            "minimum": 0, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "ServerCaching", 
-                            "evaluation": "property-equals", 
-                            "value": "off"
-                        }, 
-                        {
-                            "property-name": "Direction", 
-                            "evaluation": "property-equals", 
-                            "value": "forward"
-                        }
-                    ]
-                }
-            }, 
-            "units": "seconds", 
-            "cli-alias": "sess-timeout", 
-            "display": "Server-side Session Cache Timeout", 
-            "description": "Specify the timeout in seconds for each entry in the server-side session cache."
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
+                },
                 "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
+                    "cli-arg": "seconds",
+                    "minimum": 0,
+                    "name": "dmTimeInterval",
                     "maximum": "0xFFFFFFFF"
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmUInt32"
                     }
-                }
-            }, 
-            "default": 20, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 500, 
-            "name": "CacheSize", 
-            "minimum": 1, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "ServerCaching", 
-                            "evaluation": "property-equals", 
-                            "value": "off"
-                        }, 
-                        {
-                            "property-name": "Direction", 
-                            "evaluation": "property-equals", 
-                            "value": "forward"
-                        }
-                    ]
-                }
-            }, 
-            "units": "entries (x 1024)", 
-            "cli-alias": "cache-size", 
-            "display": "Server-side Session Cache Size", 
-            "description": "Specify the number of entries (multiplied by 1024) in the server-side session cache."
-        }, 
-        {
-            "name": "ClientCache", 
-            "default": "on", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "Direction", 
-                    "evaluation": "property-equals", 
-                    "value": "reverse"
-                }
-            }, 
-            "cli-alias": "client-cache", 
-            "display": "Client-side Session Caching", 
-            "description": "Enable/disable the caching of TLS sessions when acting as a TLS client."
-        }, 
-        {
-            "name": "ClientSessionTimeout", 
-            "default": 300, 
-            "type": {
-                "href": "/mgmt/types/default/dmTimeInterval"
-            }, 
-            "maximum": 86400, 
-            "/mgmt/types/default/dmTimeInterval": {
-                "type": {
-                    "cli-arg": "seconds", 
-                    "minimum": 0, 
-                    "name": "dmTimeInterval", 
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
                     "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmTimeInterval"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmTimeInterval"
-                    }
                 }
-            }, 
-            "minimum": 0, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "SSLProxyProfile",
+                "display": "TLS Proxy Profile (deprecated)",
+                "property-group": {
+                    "member": [
                         {
-                            "property-name": "ClientCache", 
-                            "evaluation": "property-equals", 
-                            "value": "off"
-                        }, 
+                            "name": "Direction"
+                        },
                         {
-                            "property-name": "Direction", 
-                            "evaluation": "property-equals", 
-                            "value": "reverse"
+                            "name": "ForwardCryptoProfile"
+                        },
+                        {
+                            "name": "ReverseCryptoProfile"
+                        }
+                    ],
+                    "name": "summary"
+                },
+                "uri": "crypto/sslproxy",
+                "summary": "Profile describing TLS endpoint (client or server)",
+                "cmd-group": "crypto",
+                "cli-alias": "sslproxy",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "display": "TLS Direction",
+                            "required": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSLProxyDirection"
+                            },
+                            "description": "Indicates which end of the TLS connection this TLS Proxy Profile describes.",
+                            "name": "Direction"
+                        },
+                        {
+                            "description": "The cryptographic profile that is used when acting as a TLS client for a \"forward\" or \"two-way\" proxy.",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Direction",
+                                    "evaluation": "property-value-in-list",
+                                    "value": [
+                                        "forward",
+                                        "two-way"
+                                    ]
+                                }
+                            },
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoProfile"
+                                }
+                            },
+                            "display": "Forward (Client) Crypto Profile",
+                            "name": "ForwardCryptoProfile"
+                        },
+                        {
+                            "description": "The cryptographic profile that is used when acting as a TLS server for a \"reverse\" or \"two-way\" proxy.",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Direction",
+                                    "evaluation": "property-value-in-list",
+                                    "value": [
+                                        "reverse",
+                                        "two-way"
+                                    ]
+                                }
+                            },
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoProfile"
+                                }
+                            },
+                            "display": "Reverse (Server) Crypto Profile",
+                            "name": "ReverseCryptoProfile"
+                        },
+                        {
+                            "description": "Enable/disable the caching of TLS sessions when acting as a TLS server.",
+                            "default": "on",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Direction",
+                                    "evaluation": "property-equals",
+                                    "value": "forward"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "display": "Server-side Session Caching",
+                            "name": "ServerCaching"
+                        },
+                        {
+                            "name": "SessionTimeout",
+                            "default": 300,
+                            "cli-alias": "sess-timeout",
+                            "maximum": 86400,
+                            "minimum": 0,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "ServerCaching",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "Direction",
+                                            "evaluation": "property-equals",
+                                            "value": "forward"
+                                        }
+                                    ]
+                                }
+                            },
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimeInterval"
+                            },
+                            "display": "Server-side Session Cache Timeout",
+                            "description": "Specify the timeout in seconds for each entry in the server-side session cache."
+                        },
+                        {
+                            "name": "CacheSize",
+                            "default": 20,
+                            "cli-alias": "cache-size",
+                            "maximum": 500,
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "ServerCaching",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "Direction",
+                                            "evaluation": "property-equals",
+                                            "value": "forward"
+                                        }
+                                    ]
+                                }
+                            },
+                            "units": "entries (x 1024)",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Server-side Session Cache Size",
+                            "description": "Specify the number of entries (multiplied by 1024) in the server-side session cache."
+                        },
+                        {
+                            "name": "ClientCache",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Direction",
+                                    "evaluation": "property-equals",
+                                    "value": "reverse"
+                                }
+                            },
+                            "cli-alias": "client-cache",
+                            "display": "Client-side Session Caching",
+                            "description": "Enable/disable the caching of TLS sessions when acting as a TLS client."
+                        },
+                        {
+                            "name": "ClientSessionTimeout",
+                            "default": 300,
+                            "cli-alias": "client-sess-timeout",
+                            "maximum": 86400,
+                            "minimum": 0,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "ClientCache",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "Direction",
+                                            "evaluation": "property-equals",
+                                            "value": "reverse"
+                                        }
+                                    ]
+                                }
+                            },
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimeInterval"
+                            },
+                            "display": "Client-side Session Cache Timeout",
+                            "description": "Specify the timeout in seconds for each entry in the client-side session cache."
+                        },
+                        {
+                            "name": "ClientCacheSize",
+                            "default": 100,
+                            "cli-alias": "client-cache-size",
+                            "maximum": 500000,
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "ClientCache",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "Direction",
+                                            "evaluation": "property-equals",
+                                            "value": "reverse"
+                                        }
+                                    ]
+                                }
+                            },
+                            "units": "entries",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Client-side Session Cache Size",
+                            "description": "Specify the number of entries in the client-side session cache."
+                        },
+                        {
+                            "name": "ClientAuthOptional",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Direction",
+                                    "evaluation": "property-equals",
+                                    "value": "forward"
+                                }
+                            },
+                            "cli-alias": "client-auth-optional",
+                            "display": "Client Authentication Is Optional",
+                            "description": "When acting as a TLS server and performing client authentications, requests but does not require TLS client authentication. This property is meaningful when TLS client authentication is enabled in the server crypto profile. When both properties are enabled, TLS client authentication is optional. The request does not fail when there is no client certificate. When disabled (the default), TLS client authentication is required by the application server."
+                        },
+                        {
+                            "name": "ClientAuthAlwaysRequest",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Direction",
+                                    "evaluation": "property-equals",
+                                    "value": "forward"
+                                }
+                            },
+                            "cli-alias": "client-auth-always-request",
+                            "display": "Always Request Client Authentication",
+                            "description": "When acting as a TLS server, always request TLS client authentication even when there are no validation credentials present in the server crypto profile. When disabled (the default), the TLS server only requests TLS client authentication when validation credentials are present in the server crypto profile."
+                        },
+                        {
+                            "name": "PermitInsecureServers",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Direction",
+                                    "evaluation": "property-equals",
+                                    "value": "reverse"
+                                }
+                            },
+                            "cli-alias": "permit-insecure-servers",
+                            "display": "Permit Connections to Insecure TLS Servers",
+                            "description": "When acting as a TLS client, specifies whether to permit connections to TLS servers that do not support RFC 5746. Such servers are vulnerable to man-in-the-middle attacks as documented in CVE-2009-3555. The default is off, which means reject insecure connections during the TLS handshake."
                         }
                     ]
+                },
+                "description": "&lt;p>The TLS proxy profile is deprecated. To secure the connections, use the TLS client profile and TLS server profile or TLS SNI server profile based on the role of the DataPower Gateway.&lt;/p>&lt;p>a TLS proxy profile is associated with a DataPower service to describe how TLS connections should be made from or to the proxy's port.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/SSLProxyProfile"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/SSLProxyProfile"
                 }
-            }, 
-            "units": "seconds", 
-            "cli-alias": "client-sess-timeout", 
-            "display": "Client-side Session Cache Timeout", 
-            "description": "Specify the timeout in seconds for each entry in the client-side session cache."
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
-                }
-            }, 
-            "default": 100, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 500000, 
-            "name": "ClientCacheSize", 
-            "minimum": 1, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "ClientCache", 
-                            "evaluation": "property-equals", 
-                            "value": "off"
-                        }, 
-                        {
-                            "property-name": "Direction", 
-                            "evaluation": "property-equals", 
-                            "value": "reverse"
-                        }
-                    ]
-                }
-            }, 
-            "units": "entries", 
-            "cli-alias": "client-cache-size", 
-            "display": "Client-side Session Cache Size", 
-            "description": "Specify the number of entries in the client-side session cache."
-        }, 
-        {
-            "name": "ClientAuthOptional", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "Direction", 
-                    "evaluation": "property-equals", 
-                    "value": "forward"
-                }
-            }, 
-            "cli-alias": "client-auth-optional", 
-            "display": "Client Authentication Is Optional", 
-            "description": "When acting as a TLS server and performing client authentications, requests but does not require TLS client authentication. This property is meaningful when TLS client authentication is enabled in the server crypto profile. When both properties are enabled, TLS client authentication is optional. The request does not fail when there is no client certificate. When disabled (the default), TLS client authentication is required by the application server."
-        }, 
-        {
-            "name": "ClientAuthAlwaysRequest", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "Direction", 
-                    "evaluation": "property-equals", 
-                    "value": "forward"
-                }
-            }, 
-            "cli-alias": "client-auth-always-request", 
-            "display": "Always Request Client Authentication", 
-            "description": "When acting as a TLS server, always request TLS client authentication even when there are no validation credentials present in the server crypto profile. When disabled (the default), the TLS server only requests TLS client authentication when validation credentials are present in the server crypto profile."
-        }, 
-        {
-            "name": "PermitInsecureServers", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "/mgmt/types/default/dmToggle": {
-                "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
-                            {
-                                "name": "off", 
-                                "display": "off"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "Direction", 
-                    "evaluation": "property-equals", 
-                    "value": "reverse"
-                }
-            }, 
-            "cli-alias": "permit-insecure-servers", 
-            "display": "Permit Connections to Insecure TLS Servers", 
-            "description": "When acting as a TLS client, specifies whether to permit connections to TLS servers that do not support RFC 5746. Such servers are vulnerable to man-in-the-middle attacks as documented in CVE-2009-3555. The default is off, which means reject insecure connections during the TLS handshake."
+            }
         }
-    ]
+    }
 }

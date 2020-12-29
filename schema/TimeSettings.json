@@ -1,1065 +1,838 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
+                        "href": "/mgmt/docs/types/dmTimeZone"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
+                        "href": "/mgmt/types/default/dmTimeZone"
                     }
-                }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "name": "LocalTimeZone", 
-            "default": "EST-5EDT", 
-            "type": {
-                "href": "/mgmt/types/default/dmTimeZone"
-            }, 
-            "required": "true", 
-            "summary": "Set the local time zone.", 
-            "/mgmt/types/default/dmTimeZone": {
+                },
                 "type": {
-                    "name": "dmTimeZone", 
+                    "name": "dmTimeZone",
                     "value-list": {
                         "value": [
                             {
-                                "name": "HST10", 
+                                "name": "HST10",
                                 "display": "HST (US Hawaii-Aleutian Time)"
-                            }, 
+                            },
                             {
-                                "name": "AKST9AKDT", 
+                                "name": "AKST9AKDT",
                                 "display": "AKST (US Alaska Time)"
-                            }, 
+                            },
                             {
-                                "name": "PST8PDT", 
+                                "name": "PST8PDT",
                                 "display": "PST (US Pacific Time)"
-                            }, 
+                            },
                             {
-                                "name": "MST7MDT", 
+                                "name": "MST7MDT",
                                 "display": "MST (US Mountain Time)"
-                            }, 
+                            },
                             {
-                                "name": "CST6CDT", 
+                                "name": "CST6CDT",
                                 "display": "CST (US Central Time)"
-                            }, 
+                            },
                             {
-                                "name": "EST5EDT", 
+                                "name": "EST5EDT",
                                 "display": "EST (US Eastern Time)"
-                            }, 
+                            },
                             {
-                                "name": "AST4ADT", 
+                                "name": "AST4ADT",
                                 "display": "AST (Atlantic Time)"
-                            }, 
+                            },
                             {
-                                "name": "UTC", 
+                                "name": "UTC",
                                 "display": "UTC (Coordinated Universal Time)"
-                            }, 
+                            },
                             {
-                                "name": "GMT0BST", 
+                                "name": "GMT0BST",
                                 "display": "GMT (United Kingdom)"
-                            }, 
+                            },
                             {
-                                "name": "CET-1CEST", 
+                                "name": "CET-1CEST",
                                 "display": "CET (Central Europe Time)"
-                            }, 
+                            },
                             {
-                                "name": "EET-2EEST", 
+                                "name": "EET-2EEST",
                                 "display": "EET (Eastern Europe Time)"
-                            }, 
+                            },
                             {
-                                "name": "MSK-3MSD", 
+                                "name": "MSK-3MSD",
                                 "display": "MSK (Moscow Time)"
-                            }, 
+                            },
                             {
-                                "name": "AST-3", 
+                                "name": "AST-3",
                                 "display": "AST (Saudi Arabia)"
-                            }, 
+                            },
                             {
-                                "name": "KRT-5", 
+                                "name": "KRT-5",
                                 "display": "KRT (Pakistan)"
-                            }, 
+                            },
                             {
-                                "name": "IST-5:30", 
+                                "name": "IST-5:30",
                                 "display": "IST (Indian Standard Time)"
-                            }, 
+                            },
                             {
-                                "name": "NOVST-6NOVDT", 
+                                "name": "NOVST-6NOVDT",
                                 "display": "NOV (Novosibirsk)"
-                            }, 
+                            },
                             {
-                                "name": "CST-8", 
+                                "name": "CST-8",
                                 "display": "CST (China Coast Time)"
-                            }, 
+                            },
                             {
-                                "name": "WST-8", 
+                                "name": "WST-8",
                                 "display": "WST (Australia Western Time)"
-                            }, 
+                            },
                             {
-                                "name": "JST-9", 
+                                "name": "JST-9",
                                 "display": "JST (Japan Time)"
-                            }, 
+                            },
                             {
-                                "name": "CST-9:30CDT", 
+                                "name": "CST-9:30CDT",
                                 "display": "CST/CDT (Australia Central Time)"
-                            }, 
+                            },
                             {
-                                "name": "EST-10EDT", 
+                                "name": "EST-10EDT",
                                 "display": "EST/EDT (Australia Eastern Time)"
-                            }, 
+                            },
                             {
-                                "name": "EST-10", 
+                                "name": "EST-10",
                                 "display": "EST (Australia Eastern Time - Queensland)"
-                            }, 
+                            },
                             {
-                                "name": "Custom", 
+                                "name": "Custom",
                                 "display": "Custom (user-defined)"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmTimeZone"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmTimeZone"
-                    }
                 }
-            }, 
-            "cli-alias": "name", 
-            "display": "Local time zone", 
-            "description": "The time zone to use in management interfaces. The default value is EST-5EDT."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "CustomTZName", 
-            "default": "STD", 
-            "required-when": {
-                "condition": {
-                    "property-name": "LocalTimeZone", 
-                    "evaluation": "property-equals", 
-                    "value": "Custom"
-                }
-            }, 
-            "summary": "Enter the symbolic name for the custom time zone.", 
-            "cli-alias": "custom", 
-            "valid-regexp": "^[a-zA-Z]{3,}$", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-true"
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Name", 
-            "hoverhelp": "Enter the symbolic name for the custom time zone. The name must be three or more alphabetic characters. If you use any other characters, the time zone becomes UTC.", 
-            "description": "The symbolic name for the custom time zone. This name is appended to local times. The name must be three or more alphabetic characters. If you use any other characters, the time zone becomes UTC."
-        }, 
-        {
-            "name": "UTCDirection", 
-            "default": "West", 
-            "type": {
-                "href": "/mgmt/types/default/dmTimeDirection"
-            }, 
-            "summary": "Set the direction relative to UTC for the custom time zone.", 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "LocalTimeZone", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "Custom"
-                }
-            }, 
-            "/mgmt/types/default/dmTimeDirection": {
+                },
                 "type": {
-                    "name": "dmTimeDirection", 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeDirection"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeDirection"
+                    }
+                },
+                "type": {
+                    "name": "dmTimeDirection",
                     "value-list": {
                         "value": [
                             {
-                                "name": "East", 
+                                "name": "East",
                                 "display": "East"
-                            }, 
+                            },
                             {
-                                "name": "West", 
+                                "name": "West",
                                 "display": "West"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmTimeDirection"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmTimeDirection"
-                    }
                 }
-            }, 
-            "cli-alias": "direction", 
-            "display": "Direction from UTC", 
-            "hoverhelp": "Set the direction relative to UTC for the custom time zone. Asia is east. North America is west.", 
-            "description": "The direction relative to UTC for the custom time zone. Asia is east. North America is west. The default value is East."
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmUInt32"
                     }
-                }
-            }, 
-            "name": "OffsetHours", 
-            "default": 0, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 12, 
-            "summary": "Enter the number of hours the custom time zone is from UTC.", 
-            "minimum": 0, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "LocalTimeZone", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "Custom"
-                }
-            }, 
-            "units": "Hours", 
-            "cli-alias": "offset-hours", 
-            "display": "Hours from UTC", 
-            "hoverhelp": "Enter the number of hours the custom time zone is from UTC. If 2 hours and 30 minutes from UTC, enter 2.", 
-            "description": "The number of hours the custom time zone is from UTC. If 2 hours and 30 minutes from UTC, enter 2."
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
+                },
                 "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
                     "maximum": "0xFFFFFFFF"
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
+                        "href": "/mgmt/docs/types/dmMonth"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
+                        "href": "/mgmt/types/default/dmMonth"
                     }
-                }
-            }, 
-            "name": "OffsetMinutes", 
-            "default": 0, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 59, 
-            "summary": "Enter the number of minutes the custom time zone is from UTC.", 
-            "minimum": 0, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "LocalTimeZone", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "Custom"
-                }
-            }, 
-            "units": "Minutes", 
-            "cli-alias": "offset-minutes", 
-            "display": "Minutes from UTC", 
-            "hoverhelp": "Enter the number of minutes the time zone is from UTC. If 2 hours and 30 minutes from UTC, enter 30.", 
-            "description": "The number of minutes the time zone is from UTC. If 2 hours and 30 minutes from UTC, enter 30."
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
+                },
                 "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
-                }
-            }, 
-            "name": "DaylightOffsetHours", 
-            "default": 1, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 12, 
-            "summary": "Enter the offset hours from DST.", 
-            "minimum": 0, 
-            "ignored-when": {
-                "condition": {
-                    "property-name": "LocalTimeZone", 
-                    "evaluation": "property-does-not-equal", 
-                    "value": "Custom"
-                }
-            }, 
-            "units": "Hours", 
-            "cli-alias": "daylight-offset", 
-            "display": "Daylight savings time (DST) offset", 
-            "description": "The offset in hours when the custom time zone observes DST. Generally, the offset is 1 hour. The default value is 1."
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmString"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmString"
-                    }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "name": "TZNameDST", 
-            "default": "DST", 
-            "required-when": {
-                "condition": {
-                    "evaluation": "logical-and", 
-                    "condition": [
-                        {
-                            "property-name": "LocalTimeZone", 
-                            "evaluation": "property-equals", 
-                            "value": "Custom"
-                        }, 
-                        {
-                            "property-name": "DaylightOffsetHours", 
-                            "evaluation": "property-does-not-equal", 
-                            "value": 0
-                        }
-                    ]
-                }
-            }, 
-            "summary": "Enter the symbolic name for the custom time zone during DST.", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "LocalTimeZone", 
-                            "evaluation": "property-does-not-equal", 
-                            "value": "Custom"
-                        }, 
-                        {
-                            "property-name": "DaylightOffsetHours", 
-                            "evaluation": "property-equals", 
-                            "value": 0
-                        }
-                    ]
-                }
-            }, 
-            "cli-alias": "daylight-name", 
-            "display": "DST name", 
-            "hoverhelp": "Enter the symbolic name for the custom time zone during DST. The name must be three or more alphabetic characters. If you use any other characters, the time zone becomes UTC.", 
-            "description": "The symbolic name for the custom time zone during DST. This name is appended to local times. The name must be three or more alphabetic characters. If you use any other characters, the time zone becomes UTC."
-        }, 
-        {
-            "name": "DaylightStartMonth", 
-            "default": "March", 
-            "type": {
-                "href": "/mgmt/types/default/dmMonth"
-            }, 
-            "summary": "Set the month when DST starts for the custom time zone.", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "LocalTimeZone", 
-                            "evaluation": "property-does-not-equal", 
-                            "value": "Custom"
-                        }, 
-                        {
-                            "property-name": "DaylightOffsetHours", 
-                            "evaluation": "property-equals", 
-                            "value": 0
-                        }
-                    ]
-                }
-            }, 
-            "/mgmt/types/default/dmMonth": {
-                "type": {
-                    "name": "dmMonth", 
+                    "name": "dmMonth",
                     "value-list": {
                         "value": [
                             {
-                                "name": "January", 
+                                "name": "January",
                                 "display": "January"
-                            }, 
+                            },
                             {
-                                "name": "February", 
+                                "name": "February",
                                 "display": "February"
-                            }, 
+                            },
                             {
-                                "name": "March", 
+                                "name": "March",
                                 "display": "March"
-                            }, 
+                            },
                             {
-                                "name": "April", 
+                                "name": "April",
                                 "display": "April"
-                            }, 
+                            },
                             {
-                                "name": "May", 
+                                "name": "May",
                                 "display": "May"
-                            }, 
+                            },
                             {
-                                "name": "June", 
+                                "name": "June",
                                 "display": "June"
-                            }, 
+                            },
                             {
-                                "name": "July", 
+                                "name": "July",
                                 "display": "July"
-                            }, 
+                            },
                             {
-                                "name": "August", 
+                                "name": "August",
                                 "display": "August"
-                            }, 
+                            },
                             {
-                                "name": "September", 
+                                "name": "September",
                                 "display": "September"
-                            }, 
+                            },
                             {
-                                "name": "October", 
+                                "name": "October",
                                 "display": "October"
-                            }, 
+                            },
                             {
-                                "name": "November", 
+                                "name": "November",
                                 "display": "November"
-                            }, 
+                            },
                             {
-                                "name": "December", 
+                                "name": "December",
                                 "display": "December"
                             }
                         ]
                     }
-                }, 
+                }
+            },
+            {
                 "_links": {
                     "doc": {
-                        "href": "/mgmt/docs/types/dmMonth"
-                    }, 
+                        "href": "/mgmt/docs/types/dmWeekday"
+                    },
                     "self": {
-                        "href": "/mgmt/types/default/dmMonth"
+                        "href": "/mgmt/types/default/dmWeekday"
                     }
-                }
-            }, 
-            "cli-alias": "daylight-start-month", 
-            "display": "DST start month", 
-            "description": "The month when DST starts for the custom time zone. The default value is March."
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
+                },
                 "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
-                }
-            }, 
-            "name": "DaylightStartWeek", 
-            "default": 2, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 5, 
-            "summary": "Enter the instance of the day in the month when DST starts for the custom time zone.", 
-            "minimum": 1, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "LocalTimeZone", 
-                            "evaluation": "property-does-not-equal", 
-                            "value": "Custom"
-                        }, 
-                        {
-                            "property-name": "DaylightOffsetHours", 
-                            "evaluation": "property-equals", 
-                            "value": 0
-                        }
-                    ]
-                }
-            }, 
-            "units": "Instance", 
-            "cli-alias": "daylight-start-week", 
-            "display": "DST start day instance", 
-            "hoverhelp": "Enter the instance of the day in the month when DST starts for the custom time zone. If DST starts on the second Sunday in the month, enter 2.", 
-            "description": "The instance of the day in the month when DST starts for the custom time zone. If DST starts on the second Sunday in the month, enter 2."
-        }, 
-        {
-            "name": "DaylightStartDay", 
-            "default": "Sunday", 
-            "type": {
-                "href": "/mgmt/types/default/dmWeekday"
-            }, 
-            "summary": "Set the day of the week when DST starts for the custom time zone.", 
-            "/mgmt/types/default/dmWeekday": {
-                "type": {
-                    "name": "dmWeekday", 
+                    "name": "dmWeekday",
                     "value-list": {
                         "value": [
                             {
-                                "name": "Sunday", 
+                                "name": "Sunday",
                                 "display": "Sunday"
-                            }, 
+                            },
                             {
-                                "name": "Monday", 
+                                "name": "Monday",
                                 "display": "Monday"
-                            }, 
+                            },
                             {
-                                "name": "Tuesday", 
+                                "name": "Tuesday",
                                 "display": "Tuesday"
-                            }, 
+                            },
                             {
-                                "name": "Wednesday", 
+                                "name": "Wednesday",
                                 "display": "Wednesday"
-                            }, 
+                            },
                             {
-                                "name": "Thursday", 
+                                "name": "Thursday",
                                 "display": "Thursday"
-                            }, 
+                            },
                             {
-                                "name": "Friday", 
+                                "name": "Friday",
                                 "display": "Friday"
-                            }, 
+                            },
                             {
-                                "name": "Saturday", 
+                                "name": "Saturday",
                                 "display": "Saturday"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmWeekday"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmWeekday"
-                    }
                 }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "LocalTimeZone", 
-                            "evaluation": "property-does-not-equal", 
-                            "value": "Custom"
-                        }, 
-                        {
-                            "property-name": "DaylightOffsetHours", 
-                            "evaluation": "property-equals", 
-                            "value": 0
-                        }
-                    ]
-                }
-            }, 
-            "cli-alias": "daylight-start-day", 
-            "display": "DST start day", 
-            "description": "The day of the week when DST starts for the custom time zone. The default value is Sunday."
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
-                }
-            }, 
-            "name": "DaylightStartTimeHours", 
-            "default": 2, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 23, 
-            "summary": "Enter the hour when DST starts.", 
-            "minimum": 0, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "LocalTimeZone", 
-                            "evaluation": "property-does-not-equal", 
-                            "value": "Custom"
-                        }, 
-                        {
-                            "property-name": "DaylightOffsetHours", 
-                            "evaluation": "property-equals", 
-                            "value": 0
-                        }
-                    ]
-                }
-            }, 
-            "units": "Hours", 
-            "cli-alias": "daylight-start-hours", 
-            "display": "DST start hour", 
-            "hoverhelp": "Enter the hour when DST starts for the custom time zone. If the start boundary is 2:30 AM, enter 2.", 
-            "description": "The hour when DST starts for the custom time zone. If the start boundary is 2:30 AM, enter 2."
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
-                }
-            }, 
-            "name": "DaylightStartTimeMinutes", 
-            "default": 0, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 59, 
-            "summary": "Enter the minute when DST starts for the custom time zone.", 
-            "minimum": 0, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "LocalTimeZone", 
-                            "evaluation": "property-does-not-equal", 
-                            "value": "Custom"
-                        }, 
-                        {
-                            "property-name": "DaylightOffsetHours", 
-                            "evaluation": "property-equals", 
-                            "value": 0
-                        }
-                    ]
-                }
-            }, 
-            "units": "Minutes", 
-            "cli-alias": "daylight-start-minutes", 
-            "display": "DST start minute", 
-            "hoverhelp": "Enter the minute when DST starts for the custom time zone. If the start boundary is 2:30 AM, enter 30.", 
-            "description": "The minute when DST starts for the custom time zone. If the start boundary is 2:30 AM, enter 30."
-        }, 
-        {
-            "name": "DaylightStopMonth", 
-            "default": "November", 
-            "type": {
-                "href": "/mgmt/types/default/dmMonth"
-            }, 
-            "summary": "Set the month when DST ends for the custom time zone.", 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "LocalTimeZone", 
-                            "evaluation": "property-does-not-equal", 
-                            "value": "Custom"
-                        }, 
-                        {
-                            "property-name": "DaylightOffsetHours", 
-                            "evaluation": "property-equals", 
-                            "value": 0
-                        }
-                    ]
-                }
-            }, 
-            "/mgmt/types/default/dmMonth": {
-                "type": {
-                    "name": "dmMonth", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "January", 
-                                "display": "January"
-                            }, 
-                            {
-                                "name": "February", 
-                                "display": "February"
-                            }, 
-                            {
-                                "name": "March", 
-                                "display": "March"
-                            }, 
-                            {
-                                "name": "April", 
-                                "display": "April"
-                            }, 
-                            {
-                                "name": "May", 
-                                "display": "May"
-                            }, 
-                            {
-                                "name": "June", 
-                                "display": "June"
-                            }, 
-                            {
-                                "name": "July", 
-                                "display": "July"
-                            }, 
-                            {
-                                "name": "August", 
-                                "display": "August"
-                            }, 
-                            {
-                                "name": "September", 
-                                "display": "September"
-                            }, 
-                            {
-                                "name": "October", 
-                                "display": "October"
-                            }, 
-                            {
-                                "name": "November", 
-                                "display": "November"
-                            }, 
-                            {
-                                "name": "December", 
-                                "display": "December"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmMonth"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmMonth"
-                    }
-                }
-            }, 
-            "cli-alias": "daylight-stop-month", 
-            "display": "DST stop month", 
-            "description": "The month when DST ends for the custom time zone. The default value is November."
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
-                }
-            }, 
-            "name": "DaylightStopWeek", 
-            "default": 1, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 5, 
-            "summary": "Enter the instance of the day in the month when DST ends for the custom time zone.", 
-            "minimum": 1, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "LocalTimeZone", 
-                            "evaluation": "property-does-not-equal", 
-                            "value": "Custom"
-                        }, 
-                        {
-                            "property-name": "DaylightOffsetHours", 
-                            "evaluation": "property-equals", 
-                            "value": 0
-                        }
-                    ]
-                }
-            }, 
-            "units": "Instance", 
-            "cli-alias": "daylight-stop-week", 
-            "display": "DST stop day instance", 
-            "hoverhelp": "Enter the instance of the day in the month when DST ends for the custom time zone. If DST ends on the second Sunday in the month, enter 2.", 
-            "description": "The instance of the day in the month when DST ends for the custom time zone. If DST ends on the second Sunday in the month, enter 2."
-        }, 
-        {
-            "name": "DaylightStopDay", 
-            "default": "Sunday", 
-            "type": {
-                "href": "/mgmt/types/default/dmWeekday"
-            }, 
-            "summary": "Set the day of the week when DST ends for the custom time zone.", 
-            "/mgmt/types/default/dmWeekday": {
-                "type": {
-                    "name": "dmWeekday", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "name": "Sunday", 
-                                "display": "Sunday"
-                            }, 
-                            {
-                                "name": "Monday", 
-                                "display": "Monday"
-                            }, 
-                            {
-                                "name": "Tuesday", 
-                                "display": "Tuesday"
-                            }, 
-                            {
-                                "name": "Wednesday", 
-                                "display": "Wednesday"
-                            }, 
-                            {
-                                "name": "Thursday", 
-                                "display": "Thursday"
-                            }, 
-                            {
-                                "name": "Friday", 
-                                "display": "Friday"
-                            }, 
-                            {
-                                "name": "Saturday", 
-                                "display": "Saturday"
-                            }
-                        ]
-                    }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmWeekday"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmWeekday"
-                    }
-                }
-            }, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "LocalTimeZone", 
-                            "evaluation": "property-does-not-equal", 
-                            "value": "Custom"
-                        }, 
-                        {
-                            "property-name": "DaylightOffsetHours", 
-                            "evaluation": "property-equals", 
-                            "value": 0
-                        }
-                    ]
-                }
-            }, 
-            "cli-alias": "daylight-stop-day", 
-            "display": "DST stop day", 
-            "description": "The day of the week when DST ends for the custom time zone. The default value is Sunday."
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
-                }
-            }, 
-            "name": "DaylightStopTimeHours", 
-            "default": 2, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 23, 
-            "summary": "Enter the hour when DST ends for the custom time zone.", 
-            "minimum": 0, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "LocalTimeZone", 
-                            "evaluation": "property-does-not-equal", 
-                            "value": "Custom"
-                        }, 
-                        {
-                            "property-name": "DaylightOffsetHours", 
-                            "evaluation": "property-equals", 
-                            "value": 0
-                        }
-                    ]
-                }
-            }, 
-            "units": "Hours", 
-            "cli-alias": "daylight-stop-hours", 
-            "display": "DST stop hour", 
-            "hoverhelp": "Enter the hour when DST ends for the custom time zone. If the end boundary is 2:30 AM, enter 2.", 
-            "description": "The hour when DST ends for the custom time zone. If the end boundary is 2:30 AM, enter 2."
-        }, 
-        {
-            "/mgmt/types/default/dmUInt32": {
-                "type": {
-                    "cli-arg": "number", 
-                    "minimum": 0, 
-                    "name": "dmUInt32", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmUInt32"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmUInt32"
-                    }
-                }
-            }, 
-            "name": "DaylightStopTimeMinutes", 
-            "default": 0, 
-            "type": {
-                "href": "/mgmt/types/default/dmUInt32"
-            }, 
-            "maximum": 59, 
-            "summary": "Enter the minute when DST ends for the custom time zone.", 
-            "minimum": 0, 
-            "ignored-when": {
-                "condition": {
-                    "evaluation": "logical-or", 
-                    "condition": [
-                        {
-                            "property-name": "LocalTimeZone", 
-                            "evaluation": "property-does-not-equal", 
-                            "value": "Custom"
-                        }, 
-                        {
-                            "property-name": "DaylightOffsetHours", 
-                            "evaluation": "property-equals", 
-                            "value": 0
-                        }
-                    ]
-                }
-            }, 
-            "units": "Minutes", 
-            "cli-alias": "daylight-stop-minutes", 
-            "display": "DST stop minutes", 
-            "hoverhelp": "Enter the minute when DST ends for the custom time zone. If the end boundary is 2:30 AM, enter 30.", 
-            "description": "The minute when DST ends for the custom time zone. If the end boundary is 2:30 AM, enter 30."
-        }, 
-        {
-            "description": "The current local time when last applied. This time is obtained from the timezone settings established on the Time Settings object and with the date and time settings set on the System Control page.", 
-            "summary": "Current local time when last applied.", 
-            "/mgmt/types/default/dmTimestamp": {
-                "type": {
-                    "cli-arg": "timestamp", 
-                    "minimum": 0, 
-                    "name": "dmTimestamp", 
-                    "maximum": "0xFFFFFFFF"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmTimestamp"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmTimestamp"
                     }
+                },
+                "type": {
+                    "cli-arg": "timestamp",
+                    "minimum": 0,
+                    "name": "dmTimestamp",
+                    "maximum": "0xFFFFFFFF"
                 }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmTimestamp"
-            }, 
-            "display": "Local time, last applied", 
-            "name": "Time"
+            }
+        ],
+        "metadata": {
+            "object": {
+                "name": "TimeSettings",
+                "display": "Time Settings",
+                "uri": "system/timezone",
+                "summary": "Set the local time zone for the appliance.",
+                "cmd-group": "system",
+                "cli-alias": "timezone",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "LocalTimeZone",
+                            "default": "EST-5EDT",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimeZone"
+                            },
+                            "required": "true",
+                            "summary": "Set the local time zone.",
+                            "cli-alias": "name",
+                            "display": "Local time zone",
+                            "description": "The time zone to use in management interfaces. The default value is EST-5EDT."
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "name": "CustomTZName",
+                            "default": "STD",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "LocalTimeZone",
+                                    "evaluation": "property-equals",
+                                    "value": "Custom"
+                                }
+                            },
+                            "summary": "Enter the symbolic name for the custom time zone.",
+                            "cli-alias": "custom",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "valid-regexp": "^[a-zA-Z]{3,}$",
+                            "display": "Name",
+                            "hoverhelp": "Enter the symbolic name for the custom time zone. The name must be three or more alphabetic characters. If you use any other characters, the time zone becomes UTC.",
+                            "description": "The symbolic name for the custom time zone. This name is appended to local times. The name must be three or more alphabetic characters. If you use any other characters, the time zone becomes UTC."
+                        },
+                        {
+                            "name": "UTCDirection",
+                            "default": "West",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimeDirection"
+                            },
+                            "summary": "Set the direction relative to UTC for the custom time zone.",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "LocalTimeZone",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "Custom"
+                                }
+                            },
+                            "cli-alias": "direction",
+                            "display": "Direction from UTC",
+                            "hoverhelp": "Set the direction relative to UTC for the custom time zone. Asia is east. North America is west.",
+                            "description": "The direction relative to UTC for the custom time zone. Asia is east. North America is west. The default value is East."
+                        },
+                        {
+                            "name": "OffsetHours",
+                            "default": 0,
+                            "cli-alias": "offset-hours",
+                            "maximum": 12,
+                            "summary": "Enter the number of hours the custom time zone is from UTC.",
+                            "minimum": 0,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "LocalTimeZone",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "Custom"
+                                }
+                            },
+                            "units": "Hours",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Hours from UTC",
+                            "hoverhelp": "Enter the number of hours the custom time zone is from UTC. If 2 hours and 30 minutes from UTC, enter 2.",
+                            "description": "The number of hours the custom time zone is from UTC. If 2 hours and 30 minutes from UTC, enter 2."
+                        },
+                        {
+                            "name": "OffsetMinutes",
+                            "default": 0,
+                            "cli-alias": "offset-minutes",
+                            "maximum": 59,
+                            "summary": "Enter the number of minutes the custom time zone is from UTC.",
+                            "minimum": 0,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "LocalTimeZone",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "Custom"
+                                }
+                            },
+                            "units": "Minutes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Minutes from UTC",
+                            "hoverhelp": "Enter the number of minutes the time zone is from UTC. If 2 hours and 30 minutes from UTC, enter 30.",
+                            "description": "The number of minutes the time zone is from UTC. If 2 hours and 30 minutes from UTC, enter 30."
+                        },
+                        {
+                            "name": "DaylightOffsetHours",
+                            "default": 1,
+                            "cli-alias": "daylight-offset",
+                            "maximum": 12,
+                            "summary": "Enter the offset hours from DST.",
+                            "minimum": 0,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "LocalTimeZone",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "Custom"
+                                }
+                            },
+                            "units": "Hours",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Daylight savings time (DST) offset",
+                            "description": "The offset in hours when the custom time zone observes DST. Generally, the offset is 1 hour. The default value is 1."
+                        },
+                        {
+                            "name": "TZNameDST",
+                            "default": "DST",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "LocalTimeZone",
+                                            "evaluation": "property-equals",
+                                            "value": "Custom"
+                                        },
+                                        {
+                                            "property-name": "DaylightOffsetHours",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": 0
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Enter the symbolic name for the custom time zone during DST.",
+                            "cli-alias": "daylight-name",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "LocalTimeZone",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "Custom"
+                                        },
+                                        {
+                                            "property-name": "DaylightOffsetHours",
+                                            "evaluation": "property-equals",
+                                            "value": 0
+                                        }
+                                    ]
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "DST name",
+                            "hoverhelp": "Enter the symbolic name for the custom time zone during DST. The name must be three or more alphabetic characters. If you use any other characters, the time zone becomes UTC.",
+                            "description": "The symbolic name for the custom time zone during DST. This name is appended to local times. The name must be three or more alphabetic characters. If you use any other characters, the time zone becomes UTC."
+                        },
+                        {
+                            "name": "DaylightStartMonth",
+                            "default": "March",
+                            "type": {
+                                "href": "/mgmt/types/default/dmMonth"
+                            },
+                            "summary": "Set the month when DST starts for the custom time zone.",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "LocalTimeZone",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "Custom"
+                                        },
+                                        {
+                                            "property-name": "DaylightOffsetHours",
+                                            "evaluation": "property-equals",
+                                            "value": 0
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "daylight-start-month",
+                            "display": "DST start month",
+                            "description": "The month when DST starts for the custom time zone. The default value is March."
+                        },
+                        {
+                            "name": "DaylightStartWeek",
+                            "default": 2,
+                            "cli-alias": "daylight-start-week",
+                            "maximum": 5,
+                            "summary": "Enter the instance of the day in the month when DST starts for the custom time zone.",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "LocalTimeZone",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "Custom"
+                                        },
+                                        {
+                                            "property-name": "DaylightOffsetHours",
+                                            "evaluation": "property-equals",
+                                            "value": 0
+                                        }
+                                    ]
+                                }
+                            },
+                            "units": "Instance",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "DST start day instance",
+                            "hoverhelp": "Enter the instance of the day in the month when DST starts for the custom time zone. If DST starts on the second Sunday in the month, enter 2.",
+                            "description": "The instance of the day in the month when DST starts for the custom time zone. If DST starts on the second Sunday in the month, enter 2."
+                        },
+                        {
+                            "name": "DaylightStartDay",
+                            "default": "Sunday",
+                            "type": {
+                                "href": "/mgmt/types/default/dmWeekday"
+                            },
+                            "summary": "Set the day of the week when DST starts for the custom time zone.",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "LocalTimeZone",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "Custom"
+                                        },
+                                        {
+                                            "property-name": "DaylightOffsetHours",
+                                            "evaluation": "property-equals",
+                                            "value": 0
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "daylight-start-day",
+                            "display": "DST start day",
+                            "description": "The day of the week when DST starts for the custom time zone. The default value is Sunday."
+                        },
+                        {
+                            "name": "DaylightStartTimeHours",
+                            "default": 2,
+                            "cli-alias": "daylight-start-hours",
+                            "maximum": 23,
+                            "summary": "Enter the hour when DST starts.",
+                            "minimum": 0,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "LocalTimeZone",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "Custom"
+                                        },
+                                        {
+                                            "property-name": "DaylightOffsetHours",
+                                            "evaluation": "property-equals",
+                                            "value": 0
+                                        }
+                                    ]
+                                }
+                            },
+                            "units": "Hours",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "DST start hour",
+                            "hoverhelp": "Enter the hour when DST starts for the custom time zone. If the start boundary is 2:30 AM, enter 2.",
+                            "description": "The hour when DST starts for the custom time zone. If the start boundary is 2:30 AM, enter 2."
+                        },
+                        {
+                            "name": "DaylightStartTimeMinutes",
+                            "default": 0,
+                            "cli-alias": "daylight-start-minutes",
+                            "maximum": 59,
+                            "summary": "Enter the minute when DST starts for the custom time zone.",
+                            "minimum": 0,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "LocalTimeZone",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "Custom"
+                                        },
+                                        {
+                                            "property-name": "DaylightOffsetHours",
+                                            "evaluation": "property-equals",
+                                            "value": 0
+                                        }
+                                    ]
+                                }
+                            },
+                            "units": "Minutes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "DST start minute",
+                            "hoverhelp": "Enter the minute when DST starts for the custom time zone. If the start boundary is 2:30 AM, enter 30.",
+                            "description": "The minute when DST starts for the custom time zone. If the start boundary is 2:30 AM, enter 30."
+                        },
+                        {
+                            "name": "DaylightStopMonth",
+                            "default": "November",
+                            "type": {
+                                "href": "/mgmt/types/default/dmMonth"
+                            },
+                            "summary": "Set the month when DST ends for the custom time zone.",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "LocalTimeZone",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "Custom"
+                                        },
+                                        {
+                                            "property-name": "DaylightOffsetHours",
+                                            "evaluation": "property-equals",
+                                            "value": 0
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "daylight-stop-month",
+                            "display": "DST stop month",
+                            "description": "The month when DST ends for the custom time zone. The default value is November."
+                        },
+                        {
+                            "name": "DaylightStopWeek",
+                            "default": 1,
+                            "cli-alias": "daylight-stop-week",
+                            "maximum": 5,
+                            "summary": "Enter the instance of the day in the month when DST ends for the custom time zone.",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "LocalTimeZone",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "Custom"
+                                        },
+                                        {
+                                            "property-name": "DaylightOffsetHours",
+                                            "evaluation": "property-equals",
+                                            "value": 0
+                                        }
+                                    ]
+                                }
+                            },
+                            "units": "Instance",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "DST stop day instance",
+                            "hoverhelp": "Enter the instance of the day in the month when DST ends for the custom time zone. If DST ends on the second Sunday in the month, enter 2.",
+                            "description": "The instance of the day in the month when DST ends for the custom time zone. If DST ends on the second Sunday in the month, enter 2."
+                        },
+                        {
+                            "name": "DaylightStopDay",
+                            "default": "Sunday",
+                            "type": {
+                                "href": "/mgmt/types/default/dmWeekday"
+                            },
+                            "summary": "Set the day of the week when DST ends for the custom time zone.",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "LocalTimeZone",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "Custom"
+                                        },
+                                        {
+                                            "property-name": "DaylightOffsetHours",
+                                            "evaluation": "property-equals",
+                                            "value": 0
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "daylight-stop-day",
+                            "display": "DST stop day",
+                            "description": "The day of the week when DST ends for the custom time zone. The default value is Sunday."
+                        },
+                        {
+                            "name": "DaylightStopTimeHours",
+                            "default": 2,
+                            "cli-alias": "daylight-stop-hours",
+                            "maximum": 23,
+                            "summary": "Enter the hour when DST ends for the custom time zone.",
+                            "minimum": 0,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "LocalTimeZone",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "Custom"
+                                        },
+                                        {
+                                            "property-name": "DaylightOffsetHours",
+                                            "evaluation": "property-equals",
+                                            "value": 0
+                                        }
+                                    ]
+                                }
+                            },
+                            "units": "Hours",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "DST stop hour",
+                            "hoverhelp": "Enter the hour when DST ends for the custom time zone. If the end boundary is 2:30 AM, enter 2.",
+                            "description": "The hour when DST ends for the custom time zone. If the end boundary is 2:30 AM, enter 2."
+                        },
+                        {
+                            "name": "DaylightStopTimeMinutes",
+                            "default": 0,
+                            "cli-alias": "daylight-stop-minutes",
+                            "maximum": 59,
+                            "summary": "Enter the minute when DST ends for the custom time zone.",
+                            "minimum": 0,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "LocalTimeZone",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "Custom"
+                                        },
+                                        {
+                                            "property-name": "DaylightOffsetHours",
+                                            "evaluation": "property-equals",
+                                            "value": 0
+                                        }
+                                    ]
+                                }
+                            },
+                            "units": "Minutes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "DST stop minutes",
+                            "hoverhelp": "Enter the minute when DST ends for the custom time zone. If the end boundary is 2:30 AM, enter 30.",
+                            "description": "The minute when DST ends for the custom time zone. If the end boundary is 2:30 AM, enter 30."
+                        },
+                        {
+                            "display": "Local time, last applied",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimestamp"
+                            },
+                            "description": "The current local time when last applied. This time is obtained from the timezone settings established on the Time Settings object and with the date and time settings set on the System Control page.",
+                            "name": "Time",
+                            "summary": "Current local time when last applied."
+                        }
+                    ]
+                },
+                "description": "&lt;p>The time zone for the appliance. The time zone affects the time that the appliance displays. All time stamps in the CLI and GUI use this time zone.&lt;/p>&lt;p>&lt;b>Note: &lt;/b>The appliance clock runs on Coordinated Universal Time (UTC).&lt;/p>&lt;p>When daylight saving time (DST), or summer time, applies to a time zone, the appliance adjusts the time when a DST boundary is crossed.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/TimeSettings"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/TimeSettings"
+                }
+            }
         }
-    ]
+    }
 }

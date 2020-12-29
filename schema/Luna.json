@@ -1,155 +1,228 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "description": "A descriptive summary for the configuration.", 
-            "cli-alias": "summary", 
-            "summary": "Enter a descriptive summary for the configuration.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments", 
-            "name": "UserSummary"
-        }, 
-        {
-            "name": "RemoteAddress", 
-            "cli-alias": "host", 
-            "required": "true", 
-            "summary": "Enter the IP address or host name of the Luna HSM.", 
-            "/mgmt/types/default/dmHostname": {
+                },
                 "type": {
-                    "cli-arg": "dotted-ip or hostname", 
-                    "name": "dmHostname", 
-                    "format": "(a.b.c.d or hostname)"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmHostname"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmHostname"
                     }
-                }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmHostname"
-            }, 
-            "display": "Host", 
-            "description": "The IP address or host name of the Luna HSM to store RSA keys."
-        }, 
-        {
-            "name": "ServerCert", 
-            "type": {
-                "href": "/mgmt/types/default/dmURL"
-            }, 
-            "required": "true", 
-            "locations": {
-                "location": "cert"
-            }, 
-            "summary": "Specify the certificate of the Luna HSM.", 
-            "/mgmt/types/default/dmURL": {
+                },
                 "type": {
-                    "cli-arg": "url", 
-                    "name": "dmURL"
-                }, 
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmURL"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmURL"
                     }
-                }
-            }, 
-            "cli-alias": "server-cert", 
-            "display": "Encryption certificate", 
-            "description": "The public key that DataPower Gateway uses to encrypt the data it sends to the Luna HSM."
-        }, 
-        {
-            "/mgmt/types/default/dmLunaSecurityOption": {
+                },
                 "type": {
-                    "name": "dmLunaSecurityOption", 
-                    "value-list": {
-                        "value": {
-                            "summary": "", 
-                            "display": "None", 
-                            "name": "none", 
-                            "description": "Does not use security option other than the network trust link (NTL)."
-                        }
-                    }, 
-                    "display": "Security Option"
-                }, 
+                    "cli-arg": "url",
+                    "name": "dmURL"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmLunaSecurityOption"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmLunaSecurityOption"
                     }
+                },
+                "type": {
+                    "name": "dmLunaSecurityOption",
+                    "value-list": {
+                        "value": {
+                            "display": "None",
+                            "description": "Does not use security option other than the network trust link (NTL).",
+                            "name": "none",
+                            "summary": ""
+                        }
+                    },
+                    "display": "Security Option"
                 }
-            }, 
-            "name": "SecurityOption", 
-            "default": "none", 
-            "type": {
-                "href": "/mgmt/types/default/dmLunaSecurityOption"
-            }, 
-            "required": "true", 
-            "summary": "Select the security options for the Luna HSM connect.", 
-            "cli-alias": "option", 
-            "display": "Security option", 
-            "description": "The security option for Luna HSM connection."
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "Luna",
+                "display": "SafeNet Luna HSM",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "RemoteAddress"
+                            },
+                            {
+                                "name": "ServerCert"
+                            },
+                            {
+                                "name": "SecurityOption"
+                            }
+                        ],
+                        "name": "summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "RemoteAddress"
+                            },
+                            {
+                                "name": "ServerCert"
+                            },
+                            {
+                                "name": "SecurityOption"
+                            }
+                        ],
+                        "name": "main"
+                    }
+                ],
+                "uri": "networkhsm/luna",
+                "actions": {
+                    "action": {
+                        "name": "LunaOTTUpdate",
+                        "parameters": {
+                            "parameter": {
+                                "name": "LunaName",
+                                "select": "dmObjectName"
+                            }
+                        }
+                    }
+                },
+                "summary": "SafeNet Luna Network HSM",
+                "cmd-group": "system",
+                "cli-alias": "luna",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "A descriptive summary for the configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter a descriptive summary for the configuration.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "RemoteAddress",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHostname"
+                            },
+                            "required": "true",
+                            "summary": "Enter the IP address or host name of the Luna HSM.",
+                            "cli-alias": "host",
+                            "display": "Host",
+                            "description": "The IP address or host name of the Luna HSM to store RSA keys."
+                        },
+                        {
+                            "name": "ServerCert",
+                            "type": {
+                                "href": "/mgmt/types/default/dmURL"
+                            },
+                            "required": "true",
+                            "locations": {
+                                "location": "cert"
+                            },
+                            "summary": "Specify the certificate of the Luna HSM.",
+                            "cli-alias": "server-cert",
+                            "display": "Encryption certificate",
+                            "description": "The public key that DataPower Gateway uses to encrypt the data it sends to the Luna HSM."
+                        },
+                        {
+                            "name": "SecurityOption",
+                            "default": "none",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLunaSecurityOption"
+                            },
+                            "required": "true",
+                            "summary": "Select the security options for the Luna HSM connect.",
+                            "cli-alias": "option",
+                            "display": "Security option",
+                            "description": "The security option for Luna HSM connection."
+                        }
+                    ]
+                },
+                "description": "You can use a network-attached SafeNet Luna Network HSM appliance as the HSM to provide secure storage for RSA keys and accelerate RSA operations remotely. The configuration of the Luna HSM sets up the connection between the DataPower Gateway and the Luna HSM."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/Luna"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/Luna"
+                }
+            }
         }
-    ]
+    }
 }

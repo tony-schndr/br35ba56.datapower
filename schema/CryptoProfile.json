@@ -1,224 +1,236 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "description": "The credentials which the device will use to identify itself to a TLS peer.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/CryptoIdentCred"
-                }
-            }, 
-            "cli-alias": "idcred", 
-            "display": "Identification Credentials", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
-                }
-            }, 
-            "name": "IdentCredential"
-        }, 
-        {
-            "description": "An optional set of validation credentials used to authenticate the certificate sent by a remote TLS peer during the TLS handshake.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/CryptoValCred"
-                }
-            }, 
-            "cli-alias": "ssl", 
-            "display": "Validation Credentials", 
-            "/mgmt/types/default/dmReference": {
+                },
                 "type": {
-                    "cli-arg": "object", 
+                    "cli-arg": "object",
                     "name": "dmReference"
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmReference"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmReference"
-                    }
                 }
-            }, 
-            "name": "ValCredential"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "description": "The cipher list consists of one or more cipher strings separated by colons. Commas or spaces are also acceptable separators but colons are normally used. The actual cipher string can take several different forms. &lt;li>It can consist of a single cipher suite such as RC4-SHA.&lt;/li>&lt;li>It can represent a list of cipher suites containing a certain algorithm, or cipher suites of a certain type. For example SHA1 represents all ciphers suites using the digest algorithm SHA1 and SSLv3 represents all TLS v3 algorithms.&lt;/li>&lt;li>Lists of cipher suites can be combined in a single cipher string using the + character. This is used as a logical and operation. For example SHA1+DES represents all cipher suites containing the SHA1 and the DES algorithms.&lt;/li>&lt;p>Each cipher string can be optionally preceded by the characters !, - or +.&lt;/p>&lt;p>If the ! character is used, the ciphers are permanently deleted from the list. The deleted ciphers can never reappear in the list even if they are explicitly stated.&lt;/p>&lt;p>If the - character is used, the ciphers are deleted from the list, but some or all of the ciphers can be added again by later options.&lt;/p>&lt;p>If + is used then the ciphers are moved to the end of the list. This option doesn't add any new ciphers it just moves matching existing ones.&lt;/p>&lt;p>If none of these characters is present then the string is just interpreted as a list of ciphers to be appended to the current preference list. If the list includes any ciphers already present they will be ignored: that is they will not moved to the end of the list.&lt;/p>&lt;p>Additionally the cipher string @STRENGTH can be used at any point to sort the current cipher list in order of encryption algorithm key length.&lt;/p>&lt;p>Note that as of firmware release 7.2.0.0 the default value of this property is now &lt;b>HIGH:MEDIUM:!aNULL:!eNULL:!RC4:@STRENGTH&lt;/b>. Before firmware release 7.2.0.0 the default value was &lt;b>HIGH:MEDIUM:!aNULL:!eNULL:@STRENGTH&lt;/b>.&lt;/p>&lt;p>Here are all of the permitted cipher strings and their meanings. &lt;table>&lt;tr>&lt;td valign=\"top\">DEFAULT&lt;/td>&lt;td>All cipher suites (including weak export ciphers) except the aNULL and eNULL ciphers.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">ALL&lt;/td>&lt;td>All ciphers suites except the eNULL ciphers which must be explicitly enabled.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">HIGH&lt;/td>&lt;td>\"high\" encryption cipher suites, currently AES or 3DES.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">MEDIUM&lt;/td>&lt;td>\"medium\" encryption cipher suites, currently 128 bit RC2 and 128 bit RC4.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">LOW&lt;/td>&lt;td>\"low\" encryption cipher suites, currently 64 bit RC4 and 56 bit DES non-export cipher suites.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">EXP, EXPORT&lt;/td>&lt;td>Export (weak) encryption algorithms including 40 and 56 bits algorithms.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">EXPORT40&lt;/td>&lt;td>40 bit export (weak) encryption algorithms.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">EXPORT56&lt;/td>&lt;td>56 bit export (weak) encryption algorithms.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">eNULL, NULL&lt;/td>&lt;td>Cipher suites offering no encryption. Because using no encryption is a security risk they are disabled unless explicitly included.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">aNULL&lt;/td>&lt;td>Cipher suites offering no authentication. This is currently the anonymous DH algorithms. These cipher suites are vulnerable to a \"man in the middle\" attack so their use is normally discouraged.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">kRSA, RSA&lt;/td>&lt;td>Cipher suites using RSA key exchange.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">kEDH&lt;/td>&lt;td>Cipher suites using ephemeral DH key agreement. These cipher suites are only supported when acting as a client.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">aRSA&lt;/td>&lt;td>Cipher suites using RSA authentication, that is, the certificates carry RSA keys.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">aDSS, DSS&lt;/td>&lt;td>Cipher suites using DSS authentication, that is, the certificates carry DSS keys.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">TLSv1, SSLv3, SSLv2&lt;/td>&lt;td>TLS v1.0, TLS v3.0 or TLS v2.0 cipher suites respectively.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">DH&lt;/td>&lt;td>Cipher suites using DH, including anonymous DH.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">ADH&lt;/td>&lt;td>Anonymous DH cipher suites.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">3DES&lt;/td>&lt;td>Cipher suites using triple DES.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">DES&lt;/td>&lt;td>Cipher suites using DES (not triple DES).&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">RC4&lt;/td>&lt;td>Cipher suites using RC4.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">RC2&lt;/td>&lt;td>Cipher suites using RC2.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">MD5&lt;/td>&lt;td>Cipher suites using MD5.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">SHA1, SHA&lt;/td>&lt;td>Cipher suites using SHA1.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">AES&lt;/td>&lt;td>Cipher suites using AES.&lt;/td>&lt;/tr>&lt;/table>&lt;/p>", 
-            "default": "HIGH:MEDIUM:!aNULL:!eNULL:!RC4:@STRENGTH", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "cli-alias": "ciphers", 
-            "display": "Ciphers", 
-            "name": "Ciphers"
-        }, 
-        {
-            "/mgmt/types/default/dmSSLOptionType": {
+                },
                 "type": {
-                    "summary": "Enable or disable TLS options", 
-                    "display": "TLS Options", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Enables the default TLS settings", 
-                                "display": "Enable default settings", 
-                                "name": "OpenSSL-default"
-                            }, 
-                            {
-                                "summary": "Disables SSL version 3", 
-                                "display": "Disable SSL version 3", 
-                                "name": "Disable-SSLv3"
-                            }, 
-                            {
-                                "summary": "Disables TLS version 1.0", 
-                                "display": "Disable TLS version 1.0", 
-                                "name": "Disable-TLSv1"
-                            }, 
-                            {
-                                "summary": "Permit insecure TLS renegotiation to a legacy TLS client that does not support RFC 5746", 
-                                "display": "Permit insecure TLS renegotiation to a legacy TLS client", 
-                                "name": "Enable-Legacy-Renegotiation", 
-                                "description": "When acting as a TLS server, specifies whether to allow TLS and TLS renegotiation from legacy TLS clients that do not support RFC 5746. Such clients are vulnerable to man-in-the-middle attacks as documented in CVE-2009-3555. The default behavior is to reject renegotiation attempts from TLS clients that do not support RFC 5746. TLS clients which support RFC 5746 or have patched CVE-2009-3555 are permitted to attempt renegotiation regardless of the setting specified."
-                            }, 
-                            {
-                                "summary": "Enables compression", 
-                                "display": "Enable compression", 
-                                "name": "Enable-Compression", 
-                                "description": "Enabling TLS compression in HTTPS is dangerous since the connection becomes vulnerable to the CRIME attack."
-                            }, 
-                            {
-                                "summary": "Disables TLS version 1.1", 
-                                "display": "Disable TLS version 1.1", 
-                                "name": "Disable-TLSv1d1"
-                            }, 
-                            {
-                                "summary": "Disables TLS version 1.2", 
-                                "display": "Disable TLS version 1.2", 
-                                "name": "Disable-TLSv1d2"
-                            }
-                        ]
-                    }, 
-                    "name": "dmSSLOptionType"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmSSLOptionType"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmSSLOptionType"
                     }
-                }
-            }, 
-            "name": "SSLOptions", 
-            "default": "OpenSSL-default+Disable-SSLv2+Disable-SSLv3", 
-            "type": {
-                "href": "/mgmt/types/default/dmSSLOptionType"
-            }, 
-            "required": "true", 
-            "summary": "OpenSSL options", 
-            "cli-alias": "option-string", 
-            "display": "Options", 
-            "description": "Select the OpenSSL options to modify the behavior of TLS connections during the handshake."
-        }, 
-        {
-            "name": "ClientCAList", 
-            "default": "off", 
-            "type": {
-                "href": "/mgmt/types/default/dmToggle"
-            }, 
-            "summary": "Send CA list to client", 
-            "/mgmt/types/default/dmToggle": {
+                },
                 "type": {
-                    "cli-arg": "on | off", 
-                    "name": "dmToggle", 
+                    "display": "TLS Options",
+                    "name": "dmSSLOptionType",
                     "value-list": {
                         "value": [
                             {
-                                "name": "on", 
-                                "display": "on"
-                            }, 
+                                "display": "Enable default settings",
+                                "name": "OpenSSL-default",
+                                "summary": "Enables the default TLS settings"
+                            },
                             {
-                                "name": "off", 
+                                "display": "Disable SSL version 3",
+                                "name": "Disable-SSLv3",
+                                "summary": "Disables SSL version 3"
+                            },
+                            {
+                                "display": "Disable TLS version 1.0",
+                                "name": "Disable-TLSv1",
+                                "summary": "Disables TLS version 1.0"
+                            },
+                            {
+                                "display": "Permit insecure TLS renegotiation to a legacy TLS client",
+                                "description": "When acting as a TLS server, specifies whether to allow TLS and TLS renegotiation from legacy TLS clients that do not support RFC 5746. Such clients are vulnerable to man-in-the-middle attacks as documented in CVE-2009-3555. The default behavior is to reject renegotiation attempts from TLS clients that do not support RFC 5746. TLS clients which support RFC 5746 or have patched CVE-2009-3555 are permitted to attempt renegotiation regardless of the setting specified.",
+                                "name": "Enable-Legacy-Renegotiation",
+                                "summary": "Permit insecure TLS renegotiation to a legacy TLS client that does not support RFC 5746"
+                            },
+                            {
+                                "display": "Enable compression",
+                                "description": "Enabling TLS compression in HTTPS is dangerous since the connection becomes vulnerable to the CRIME attack.",
+                                "name": "Enable-Compression",
+                                "summary": "Enables compression"
+                            },
+                            {
+                                "display": "Disable TLS version 1.1",
+                                "name": "Disable-TLSv1d1",
+                                "summary": "Disables TLS version 1.1"
+                            },
+                            {
+                                "display": "Disable TLS version 1.2",
+                                "name": "Disable-TLSv1d2",
+                                "summary": "Disables TLS version 1.2"
+                            }
+                        ]
+                    },
+                    "summary": "Enable or disable TLS options"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
                                 "display": "off"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmToggle"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmToggle"
-                    }
                 }
-            }, 
-            "cli-alias": "clientcalist", 
-            "display": "Send Client CA List", 
-            "description": "If this profile is being used for a server (reverse) TLS proxy profile and validation credentials defined in the profile and this switch is enabled, the TLS server sends a list of CAs in the validation credentials to the TLS client during the handshake."
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "CryptoProfile",
+                "display": "Crypto Profile",
+                "uri": "crypto/profile",
+                "summary": "TLS configuration profile",
+                "cmd-group": "crypto",
+                "cli-alias": "profile",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoIdentCred"
+                                }
+                            },
+                            "display": "Identification Credentials",
+                            "cli-alias": "idcred",
+                            "description": "The credentials which the device will use to identify itself to a TLS peer.",
+                            "name": "IdentCredential"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoValCred"
+                                }
+                            },
+                            "display": "Validation Credentials",
+                            "cli-alias": "ssl",
+                            "description": "An optional set of validation credentials used to authenticate the certificate sent by a remote TLS peer during the TLS handshake.",
+                            "name": "ValCredential"
+                        },
+                        {
+                            "description": "The cipher list consists of one or more cipher strings separated by colons. Commas or spaces are also acceptable separators but colons are normally used. The actual cipher string can take several different forms. &lt;li>It can consist of a single cipher suite such as RC4-SHA.&lt;/li>&lt;li>It can represent a list of cipher suites containing a certain algorithm, or cipher suites of a certain type. For example SHA1 represents all ciphers suites using the digest algorithm SHA1 and SSLv3 represents all TLS v3 algorithms.&lt;/li>&lt;li>Lists of cipher suites can be combined in a single cipher string using the + character. This is used as a logical and operation. For example SHA1+DES represents all cipher suites containing the SHA1 and the DES algorithms.&lt;/li>&lt;p>Each cipher string can be optionally preceded by the characters !, - or +.&lt;/p>&lt;p>If the ! character is used, the ciphers are permanently deleted from the list. The deleted ciphers can never reappear in the list even if they are explicitly stated.&lt;/p>&lt;p>If the - character is used, the ciphers are deleted from the list, but some or all of the ciphers can be added again by later options.&lt;/p>&lt;p>If + is used then the ciphers are moved to the end of the list. This option doesn't add any new ciphers it just moves matching existing ones.&lt;/p>&lt;p>If none of these characters is present then the string is just interpreted as a list of ciphers to be appended to the current preference list. If the list includes any ciphers already present they will be ignored: that is they will not moved to the end of the list.&lt;/p>&lt;p>Additionally the cipher string @STRENGTH can be used at any point to sort the current cipher list in order of encryption algorithm key length.&lt;/p>&lt;p>Note that as of firmware release 7.2.0.0 the default value of this property is now &lt;b>HIGH:MEDIUM:!aNULL:!eNULL:!RC4:@STRENGTH&lt;/b>. Before firmware release 7.2.0.0 the default value was &lt;b>HIGH:MEDIUM:!aNULL:!eNULL:@STRENGTH&lt;/b>.&lt;/p>&lt;p>Here are all of the permitted cipher strings and their meanings. &lt;table>&lt;tr>&lt;td valign=\"top\">DEFAULT&lt;/td>&lt;td>All cipher suites (including weak export ciphers) except the aNULL and eNULL ciphers.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">ALL&lt;/td>&lt;td>All ciphers suites except the eNULL ciphers which must be explicitly enabled.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">HIGH&lt;/td>&lt;td>\"high\" encryption cipher suites, currently AES or 3DES.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">MEDIUM&lt;/td>&lt;td>\"medium\" encryption cipher suites, currently 128 bit RC2 and 128 bit RC4.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">LOW&lt;/td>&lt;td>\"low\" encryption cipher suites, currently 64 bit RC4 and 56 bit DES non-export cipher suites.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">EXP, EXPORT&lt;/td>&lt;td>Export (weak) encryption algorithms including 40 and 56 bits algorithms.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">EXPORT40&lt;/td>&lt;td>40 bit export (weak) encryption algorithms.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">EXPORT56&lt;/td>&lt;td>56 bit export (weak) encryption algorithms.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">eNULL, NULL&lt;/td>&lt;td>Cipher suites offering no encryption. Because using no encryption is a security risk they are disabled unless explicitly included.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">aNULL&lt;/td>&lt;td>Cipher suites offering no authentication. This is currently the anonymous DH algorithms. These cipher suites are vulnerable to a \"man in the middle\" attack so their use is normally discouraged.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">kRSA, RSA&lt;/td>&lt;td>Cipher suites using RSA key exchange.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">kEDH&lt;/td>&lt;td>Cipher suites using ephemeral DH key agreement. These cipher suites are only supported when acting as a client.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">aRSA&lt;/td>&lt;td>Cipher suites using RSA authentication, that is, the certificates carry RSA keys.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">aDSS, DSS&lt;/td>&lt;td>Cipher suites using DSS authentication, that is, the certificates carry DSS keys.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">TLSv1, SSLv3, SSLv2&lt;/td>&lt;td>TLS v1.0, TLS v3.0 or TLS v2.0 cipher suites respectively.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">DH&lt;/td>&lt;td>Cipher suites using DH, including anonymous DH.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">ADH&lt;/td>&lt;td>Anonymous DH cipher suites.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">3DES&lt;/td>&lt;td>Cipher suites using triple DES.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">DES&lt;/td>&lt;td>Cipher suites using DES (not triple DES).&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">RC4&lt;/td>&lt;td>Cipher suites using RC4.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">RC2&lt;/td>&lt;td>Cipher suites using RC2.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">MD5&lt;/td>&lt;td>Cipher suites using MD5.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">SHA1, SHA&lt;/td>&lt;td>Cipher suites using SHA1.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">AES&lt;/td>&lt;td>Cipher suites using AES.&lt;/td>&lt;/tr>&lt;/table>&lt;/p>",
+                            "default": "HIGH:MEDIUM:!aNULL:!eNULL:!RC4:@STRENGTH",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "cli-alias": "ciphers",
+                            "display": "Ciphers",
+                            "name": "Ciphers"
+                        },
+                        {
+                            "name": "SSLOptions",
+                            "default": "OpenSSL-default+Disable-SSLv2+Disable-SSLv3",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSLOptionType"
+                            },
+                            "required": "true",
+                            "summary": "OpenSSL options",
+                            "cli-alias": "option-string",
+                            "display": "Options",
+                            "description": "Select the OpenSSL options to modify the behavior of TLS connections during the handshake."
+                        },
+                        {
+                            "name": "ClientCAList",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Send CA list to client",
+                            "cli-alias": "clientcalist",
+                            "display": "Send Client CA List",
+                            "description": "If this profile is being used for a server (reverse) TLS proxy profile and validation credentials defined in the profile and this switch is enabled, the TLS server sends a list of CAs in the validation credentials to the TLS client during the handshake."
+                        }
+                    ]
+                },
+                "description": "A cryptographic profile describes a set of configuration information for creating secure connections."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/CryptoProfile"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/CryptoProfile"
+                }
+            }
         }
-    ]
+    }
 }

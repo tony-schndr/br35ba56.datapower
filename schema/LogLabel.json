@@ -1,105 +1,141 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "description": "Type of Log Category", 
-            "default": "user", 
-            "summary": "Log Category Type", 
-            "/mgmt/types/default/dmLabelType": {
+                },
                 "type": {
-                    "summary": "Label Type", 
-                    "display": "Label Type", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "summary": "Predefined label", 
-                                "display": "Predefined", 
-                                "name": "pre-defined"
-                            }, 
-                            {
-                                "summary": "User-defined label", 
-                                "display": "User-defined", 
-                                "name": "user"
-                            }
-                        ]
-                    }, 
-                    "name": "dmLabelType"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmLabelType"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmLabelType"
                     }
+                },
+                "type": {
+                    "display": "Label Type",
+                    "name": "dmLabelType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Predefined",
+                                "name": "pre-defined",
+                                "summary": "Predefined label"
+                            },
+                            {
+                                "display": "User-defined",
+                                "name": "user",
+                                "summary": "User-defined label"
+                            }
+                        ]
+                    },
+                    "summary": "Label Type"
                 }
-            }, 
-            "type": {
-                "href": "/mgmt/types/default/dmLabelType"
-            }, 
-            "display": "Type", 
-            "name": "Type"
+            }
+        ],
+        "metadata": {
+            "object": {
+                "name": "LogLabel",
+                "display": "Log Category",
+                "property-group": {
+                    "member": [
+                        {
+                            "name": "Type"
+                        },
+                        {
+                            "name": "UserSummary"
+                        }
+                    ],
+                    "name": "summary"
+                },
+                "uri": "logging/category",
+                "summary": "Configuration of custom log categories",
+                "cmd-group": "logging",
+                "cli-alias": "logging category",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "description": "Type of Log Category",
+                            "default": "user",
+                            "summary": "Log Category Type",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLabelType"
+                            },
+                            "display": "Type",
+                            "name": "Type"
+                        }
+                    ]
+                },
+                "description": "Allows for the configuration of custom log categories"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/LogLabel"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/LogLabel"
+                }
+            }
         }
-    ]
+    }
 }

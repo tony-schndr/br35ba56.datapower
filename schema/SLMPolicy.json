@@ -1,380 +1,406 @@
 {
-    "schema": [
-        {
-            "name": "mAdminState", 
-            "default": "enabled", 
-            "type": {
-                "href": "/mgmt/types/default/dmAdminState"
-            }, 
-            "summary": "Set the administrative state of this configuration.", 
-            "/mgmt/types/default/dmAdminState": {
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
                 "type": {
-                    "cli-arg": "enabled | disabled", 
-                    "name": "dmAdminState", 
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
                     "value-list": {
                         "value": [
                             {
-                                "name": "enabled", 
+                                "name": "enabled",
                                 "display": "enabled"
-                            }, 
+                            },
                             {
-                                "name": "disabled", 
+                                "name": "disabled",
                                 "display": "disabled"
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmAdminState"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmAdminState"
-                    }
                 }
-            }, 
-            "label": "Enable administrative state", 
-            "cli-alias": "admin-state", 
-            "display": "Administrative state", 
-            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
-            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
-        }, 
-        {
-            "/mgmt/types/default/dmString": {
-                "type": {
-                    "cli-arg": "string", 
-                    "name": "dmString"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmString"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmString"
                     }
-                }
-            }, 
-            "name": "UserSummary", 
-            "cli-alias": "summary", 
-            "summary": "Brief summary for user annotation.", 
-            "type": {
-                "href": "/mgmt/types/default/dmString"
-            }, 
-            "display": "Comments"
-        }, 
-        {
-            "name": "ExecutionPolicy", 
-            "default": "execute-all-statements", 
-            "type": {
-                "href": "/mgmt/types/default/dmSLMExecutionPolicy"
-            }, 
-            "summary": "Operational behavior of policy", 
-            "/mgmt/types/default/dmSLMExecutionPolicy": {
+                },
                 "type": {
-                    "summary": "Execution Policy", 
-                    "display": "Execution Policy", 
-                    "value-list": {
-                        "value": [
-                            {
-                                "display": "Terminate at First Reject", 
-                                "name": "terminate-at-first-reject", 
-                                "description": "The policy stops processing any statement after the first rejection. A threshold was met."
-                            }, 
-                            {
-                                "display": "Terminate at First Action", 
-                                "name": "terminate-at-first-action", 
-                                "description": "The policy stops processing any statement after the first control procedure (an SLM reject or notify action). A threshold was met."
-                            }, 
-                            {
-                                "display": "Execute All Statements", 
-                                "name": "execute-all-statements", 
-                                "description": "The policy processes all policy statements regardless of any action a statement takes."
-                            }
-                        ]
-                    }, 
-                    "name": "dmSLMExecutionPolicy"
-                }, 
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmSLMExecutionPolicy"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmSLMExecutionPolicy"
                     }
-                }
-            }, 
-            "cli-alias": "eval-method", 
-            "display": "Evaluation Method", 
-            "description": "The operational behavior of the policy. The default behavior is to process all policy statements."
-        }, 
-        {
-            "/mgmt/types/default/dmSLMStatement": {
+                },
                 "type": {
-                    "name": "dmSLMStatement", 
+                    "display": "Execution Policy",
+                    "name": "dmSLMExecutionPolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Terminate at First Reject",
+                                "description": "The policy stops processing any statement after the first rejection. A threshold was met.",
+                                "name": "terminate-at-first-reject"
+                            },
+                            {
+                                "display": "Terminate at First Action",
+                                "description": "The policy stops processing any statement after the first control procedure (an SLM reject or notify action). A threshold was met.",
+                                "name": "terminate-at-first-action"
+                            },
+                            {
+                                "display": "Execute All Statements",
+                                "description": "The policy processes all policy statements regardless of any action a statement takes.",
+                                "name": "execute-all-statements"
+                            }
+                        ]
+                    },
+                    "summary": "Execution Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSLMStatement"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSLMStatement"
+                    }
+                },
+                "type": {
+                    "name": "dmSLMStatement",
                     "properties": {
                         "property": [
                             {
-                                "description": "A unique integer that indicates the order in which to process the statement. The policy processes statements from least to greatest. Adding a statement that duplicates the value of a previous identifier replaces the previous statement.", 
-                                "required": "true", 
-                                "summary": "Statement index", 
+                                "description": "A unique integer that indicates the order in which to process the statement. The policy processes statements from least to greatest. Adding a statement that duplicates the value of a previous identifier replaces the previous statement.",
+                                "required": "true",
+                                "summary": "Statement index",
                                 "type": {
                                     "href": "/mgmt/types/default/dmUInt32"
-                                }, 
-                                "display": "Identifier", 
+                                },
+                                "display": "Identifier",
                                 "name": "SLMId"
-                            }, 
+                            },
                             {
-                                "summary": "User annotation", 
+                                "display": "User Annotation",
                                 "type": {
                                     "href": "/mgmt/types/default/dmString"
-                                }, 
-                                "display": "User Annotation", 
-                                "name": "UserString", 
-                                "description": "The string or identifier that appears in log messages for this statement."
-                            }, 
+                                },
+                                "description": "The string or identifier that appears in log messages for this statement.",
+                                "name": "UserString",
+                                "summary": "User annotation"
+                            },
                             {
-                                "summary": "Credential class that defines users", 
+                                "display": "Credential Class",
                                 "type": {
-                                    "href": "/mgmt/types/default/dmReference", 
+                                    "href": "/mgmt/types/default/dmReference",
                                     "reference-to": {
                                         "href": "/mgmt/metadata/default/SLMCredClass"
                                     }
-                                }, 
-                                "display": "Credential Class", 
-                                "name": "CredClass", 
-                                "description": "The credential class that defines the users (credentials) to be subject to policy restrictions. Without a credential class, the appliance considers all messages as belonging to a single global user. Therefore, the statement applies to all messages that are identified as valid resources without respect to credential classification."
-                            }, 
+                                },
+                                "description": "The credential class that defines the users (credentials) to be subject to policy restrictions. Without a credential class, the appliance considers all messages as belonging to a single global user. Therefore, the statement applies to all messages that are identified as valid resources without respect to credential classification.",
+                                "name": "CredClass",
+                                "summary": "Credential class that defines users"
+                            },
                             {
-                                "summary": "Resource class that defines resources", 
+                                "display": "Resource Class",
                                 "type": {
-                                    "href": "/mgmt/types/default/dmReference", 
+                                    "href": "/mgmt/types/default/dmReference",
                                     "reference-to": {
                                         "href": "/mgmt/metadata/default/SLMRsrcClass"
                                     }
-                                }, 
-                                "display": "Resource Class", 
-                                "name": "RsrcClass", 
-                                "description": "The resource class that defines a resources to be subject to policy restrictions. Without a resource class, the statement applies to all messages that pass the credential classification."
-                            }, 
+                                },
+                                "description": "The resource class that defines a resources to be subject to policy restrictions. Without a resource class, the statement applies to all messages that pass the credential classification.",
+                                "name": "RsrcClass",
+                                "summary": "Resource class that defines resources"
+                            },
                             {
-                                "summary": "Schedule for policy enforcement", 
+                                "display": "Schedule",
                                 "type": {
-                                    "href": "/mgmt/types/default/dmReference", 
+                                    "href": "/mgmt/types/default/dmReference",
                                     "reference-to": {
                                         "href": "/mgmt/metadata/default/SLMSchedule"
                                     }
-                                }, 
-                                "display": "Schedule", 
-                                "name": "Schedule", 
-                                "description": "The schedule that defines the time frame to enforce the policy."
-                            }, 
+                                },
+                                "description": "The schedule that defines the time frame to enforce the policy.",
+                                "name": "Schedule",
+                                "summary": "Schedule for policy enforcement"
+                            },
                             {
-                                "description": "The action that defines the administrative action for messages that exceed the threshold.", 
-                                "required": "true", 
-                                "summary": "Action to run", 
+                                "description": "The action that defines the administrative action for messages that exceed the threshold.",
+                                "required": "true",
+                                "summary": "Action to run",
                                 "type": {
-                                    "href": "/mgmt/types/default/dmReference", 
+                                    "href": "/mgmt/types/default/dmReference",
                                     "reference-to": {
                                         "href": "/mgmt/metadata/default/SLMAction"
                                     }
-                                }, 
-                                "display": "SLM Action", 
+                                },
+                                "display": "SLM Action",
                                 "name": "Action"
-                            }, 
+                            },
                             {
-                                "name": "ThreshIntervalLength", 
-                                "default": 0, 
-                                "summary": "Length of measurement interval", 
+                                "name": "ThreshIntervalLength",
+                                "default": 0,
+                                "summary": "Length of measurement interval",
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "ThreshIntervalType", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "ThreshIntervalType",
+                                        "evaluation": "property-equals",
                                         "value": "concurrent"
                                     }
-                                }, 
-                                "units": "Seconds", 
+                                },
+                                "units": "Seconds",
                                 "type": {
                                     "href": "/mgmt/types/default/dmUInt32"
-                                }, 
-                                "display": "Threshold Interval Length", 
+                                },
+                                "display": "Threshold Interval Length",
                                 "description": "&lt;p>The length of each measurement interval. The default value is 0, which allows all messages and never triggers the threshold to enforce the action.&lt;/p>&lt;p>The threshold interval length is not relevant when the interval type is \"concurrent\". However, concurrent transactions can also be configured with the resource class type of concurrent transactions. In this case, if the interval type is set to \"fixed\" (the default), the configuration behaves as concurrent, but an interval length of 0 allows all messages and never triggers the threshold to enforce the action.&lt;/p>&lt;p>When the threshold interval type is \"moving\", the maximum interval length is 65535 seconds.&lt;/p>"
-                            }, 
+                            },
                             {
-                                "description": "How intervals are measured. The default is a fixed interval.", 
-                                "default": "fixed", 
-                                "summary": "How to measure intervals", 
+                                "description": "How intervals are measured. The default is a fixed interval.",
+                                "default": "fixed",
+                                "summary": "How to measure intervals",
                                 "type": {
                                     "href": "/mgmt/types/default/dmSLMIntervalType"
-                                }, 
-                                "display": "Threshold Interval Type", 
+                                },
+                                "display": "Threshold Interval Type",
                                 "name": "ThreshIntervalType"
-                            }, 
+                            },
                             {
-                                "description": "The methodology that calculates the threshold in the current interval.", 
-                                "default": "greater-than", 
-                                "summary": "Methodology that calculates the threshold", 
+                                "description": "The methodology that calculates the threshold in the current interval.",
+                                "default": "greater-than",
+                                "summary": "Methodology that calculates the threshold",
                                 "type": {
                                     "href": "/mgmt/types/default/dmSLMThresholdAlgorithm"
-                                }, 
-                                "display": "Threshold Algorithm", 
+                                },
+                                "display": "Threshold Algorithm",
                                 "name": "ThreshAlgorithm"
-                            }, 
+                            },
                             {
-                                "description": "How to apply the threshold level to the monitored count or latency. For the token-bucket algorithm, latency threshold types do not apply.", 
-                                "default": "count-all", 
-                                "summary": "How to apply the threshold", 
+                                "description": "How to apply the threshold level to the monitored count or latency. For the token-bucket algorithm, latency threshold types do not apply.",
+                                "default": "count-all",
+                                "summary": "How to apply the threshold",
                                 "type": {
                                     "href": "/mgmt/types/default/dmSLMThreshType"
-                                }, 
-                                "display": "Threshold Type", 
+                                },
+                                "display": "Threshold Type",
                                 "name": "ThresholdType"
-                            }, 
+                            },
                             {
-                                "name": "ThresholdLevel", 
-                                "default": 0, 
-                                "maximum": 9007199254740991, 
-                                "summary": "Threshold that triggers the action", 
-                                "minimum": 0, 
+                                "name": "ThresholdLevel",
+                                "default": 0,
+                                "maximum": 9007199254740991,
+                                "summary": "Threshold that triggers the action",
+                                "minimum": 0,
                                 "type": {
                                     "href": "/mgmt/types/default/dmUInt64"
-                                }, 
-                                "display": "Threshold Level", 
+                                },
+                                "display": "Threshold Level",
                                 "description": "&lt;p>The threshold that triggers the action for all algorithms. The units of measure depends on the threshold type.&lt;/p>&lt;ul>&lt;li>If the threshold is a count, enter the aggregate count.&lt;/li>&lt;li>If the threshold is latency, enter the latency in milliseconds.&lt;/li>&lt;li>If the threshold is payload, enter the payload size in KB.&lt;/li>&lt;/ul>&lt;p>The default is 0, which has different behaviors based on algorithm and threshold type, threshold interval and level.&lt;/p>&lt;ul>&lt;li>When algorithm type is &lt;b>Less Than&lt;/b> or threshold type is &lt;b>Latency&lt;/b>, all messages are accepted.&lt;/li>&lt;li>When threshold interval is 0, a threshold level of 0 is overridden and all messages are allowed.&lt;/li>&lt;/ul>"
-                            }, 
+                            },
                             {
-                                "name": "ReleaseThresholdLevel", 
-                                "default": 0, 
-                                "maximum": 9007199254740991, 
-                                "summary": "Stop point of the high-low algorithm", 
-                                "minimum": 0, 
+                                "name": "ReleaseThresholdLevel",
+                                "default": 0,
+                                "maximum": 9007199254740991,
+                                "summary": "Stop point of the high-low algorithm",
+                                "minimum": 0,
                                 "ignored-when": {
                                     "condition": {
-                                        "property-name": "ThreshAlgorithm", 
-                                        "evaluation": "property-does-not-equal", 
+                                        "property-name": "ThreshAlgorithm",
+                                        "evaluation": "property-does-not-equal",
                                         "value": "high-low-thresholds"
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmUInt64"
-                                }, 
-                                "display": "High-Low Release Level", 
+                                },
+                                "display": "High-Low Release Level",
                                 "description": "The stop point (low threshold). The start point (high threshold) is the value of the threshold level property."
-                            }, 
+                            },
                             {
-                                "name": "BurstLimit", 
-                                "default": 0, 
+                                "name": "BurstLimit",
+                                "default": 0,
                                 "required-when": {
                                     "condition": {
-                                        "property-name": "ThreshAlgorithm", 
-                                        "evaluation": "property-equals", 
+                                        "property-name": "ThreshAlgorithm",
+                                        "evaluation": "property-equals",
                                         "value": "token-bucket"
                                     }
-                                }, 
-                                "summary": "Maximum size of the committed burst", 
+                                },
+                                "summary": "Maximum size of the committed burst",
                                 "ignored-when": {
                                     "condition": {
                                         "evaluation": "logical-true"
                                     }
-                                }, 
+                                },
                                 "type": {
                                     "href": "/mgmt/types/default/dmUInt32"
-                                }, 
-                                "display": "Burst Limit", 
+                                },
+                                "display": "Burst Limit",
                                 "description": "&lt;p>The maximum size of the committed burst. The committed burst defines how much traffic can be sent during a reporting interval. The burst size should be at least twice the value of the threshold level. If the burst limit is less than the threshold value, the algorithm acts like greater than.&lt;/p>&lt;p>The default is 0, which throttles all messages.&lt;/p>"
-                            }, 
+                            },
                             {
-                                "name": "ReportingAggregationInterval", 
-                                "default": 0, 
-                                "summary": "Interval to reporting statistics", 
-                                "units": "Minutes", 
+                                "name": "ReportingAggregationInterval",
+                                "default": 0,
+                                "summary": "Interval to reporting statistics",
+                                "units": "Minutes",
                                 "type": {
                                     "href": "/mgmt/types/default/dmUInt32"
-                                }, 
-                                "display": "Reporting Aggregation Interval", 
+                                },
+                                "display": "Reporting Aggregation Interval",
                                 "description": "The base aggregation level in minutes for the reporting statistics. This property is independent of the thresholding interval."
-                            }, 
+                            },
                             {
-                                "name": "MaximumTotalReportingRecords", 
-                                "default": 5000, 
-                                "required": "true", 
-                                "summary": "Total number of records per reporting interval", 
-                                "units": "Records", 
+                                "name": "MaximumTotalReportingRecords",
+                                "default": 5000,
+                                "required": "true",
+                                "summary": "Total number of records per reporting interval",
+                                "units": "Records",
                                 "type": {
                                     "href": "/mgmt/types/default/dmUInt32"
-                                }, 
-                                "display": "Maximum Records Across Intervals", 
+                                },
+                                "display": "Maximum Records Across Intervals",
                                 "description": "The total number of records for a reporting interval. A single reporting aggregation interval can contain multiple records; for example, one record per resource or credential. This property allows you to define a maximum memory-consumption threshold. The default is 5000."
-                            }, 
+                            },
                             {
-                                "description": "Read-only property that when &lt;tt>on&lt;/tt> indicates that the WebGUI created the statement as part of a default SLM configuration.", 
-                                "default": "off", 
-                                "summary": "Whether the GUI created the statement", 
+                                "description": "Read-only property that when &lt;tt>on&lt;/tt> indicates that the WebGUI created the statement as part of a default SLM configuration.",
+                                "default": "off",
+                                "summary": "Whether the GUI created the statement",
                                 "type": {
                                     "href": "/mgmt/types/default/dmToggle"
-                                }, 
-                                "display": "Auto Generated by GUI", 
+                                },
+                                "display": "Auto Generated by GUI",
                                 "name": "AutoGeneratedByWebGUI"
-                            }, 
+                            },
                             {
-                                "name": "MaximumResourcesAndCredentialsForThreshold", 
-                                "default": 5000, 
-                                "required": "true", 
-                                "summary": "Number of combinations of credentials and resources", 
-                                "units": "Records", 
+                                "name": "MaximumResourcesAndCredentialsForThreshold",
+                                "default": 5000,
+                                "required": "true",
+                                "summary": "Number of combinations of credentials and resources",
+                                "units": "Records",
                                 "type": {
                                     "href": "/mgmt/types/default/dmUInt32"
-                                }, 
-                                "display": "Maximum Credentials-Resource Combinations", 
+                                },
+                                "display": "Maximum Credentials-Resource Combinations",
                                 "description": "The maximum number of records for the combination of credentials and resources. This property limits the maximum number of combinations and allows the setting of a maximum memory-consumption threshold. The default is 5000."
                             }
                         ]
                     }
-                }, 
-                "_links": {
-                    "doc": {
-                        "href": "/mgmt/docs/types/dmSLMStatement"
-                    }, 
-                    "self": {
-                        "href": "/mgmt/types/default/dmSLMStatement"
-                    }
                 }
-            }, 
-            "name": "Statement", 
-            "type": {
-                "href": "/mgmt/types/default/dmSLMStatement"
-            }, 
-            "summary": "Policy statement to select messages", 
-            "array": "true", 
-            "cli-alias": "statement", 
-            "display": "Statement", 
-            "description": "The policy statement that establishes criteria for selecting messages, sets a measurement interval, sets thresholds, and determines the action to take when the threshold is met for the selected messages. A policy can have multiple statements that run in the sequence defined by the statement identifier (index)."
-        }, 
-        {
-            "description": "An SLM Policy may be enforced across a group of devices handling load-balanced traffic destined for the same resources. A Peer Group establishes a data sharing protocol among these devices such that each device includes the traffic that has passed through the other peers when calculating whether or not a threshold has been reached.", 
-            "type": {
-                "href": "/mgmt/types/default/dmReference", 
-                "reference-to": {
-                    "href": "/mgmt/metadata/default/PeerGroup"
-                }
-            }, 
-            "summary": "Peer Group", 
-            "cli-alias": "peer-group", 
-            "display": "Peer Group", 
-            "/mgmt/types/default/dmReference": {
-                "type": {
-                    "cli-arg": "object", 
-                    "name": "dmReference"
-                }, 
+            },
+            {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/types/dmReference"
-                    }, 
+                    },
                     "self": {
                         "href": "/mgmt/types/default/dmReference"
                     }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
                 }
-            }, 
-            "name": "PeerGroup"
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "SLMPolicy",
+                "display": "SLM Policy",
+                "uri": "monitor/slm-policy",
+                "summary": "SLM Policy",
+                "cmd-group": "webservice",
+                "cli-alias": "slm-policy",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "ExecutionPolicy",
+                            "default": "execute-all-statements",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSLMExecutionPolicy"
+                            },
+                            "summary": "Operational behavior of policy",
+                            "cli-alias": "eval-method",
+                            "display": "Evaluation Method",
+                            "description": "The operational behavior of the policy. The default behavior is to process all policy statements."
+                        },
+                        {
+                            "name": "Statement",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSLMStatement"
+                            },
+                            "summary": "Policy statement to select messages",
+                            "array": "true",
+                            "cli-alias": "statement",
+                            "display": "Statement",
+                            "description": "The policy statement that establishes criteria for selecting messages, sets a measurement interval, sets thresholds, and determines the action to take when the threshold is met for the selected messages. A policy can have multiple statements that run in the sequence defined by the statement identifier (index)."
+                        },
+                        {
+                            "description": "An SLM Policy may be enforced across a group of devices handling load-balanced traffic destined for the same resources. A Peer Group establishes a data sharing protocol among these devices such that each device includes the traffic that has passed through the other peers when calculating whether or not a threshold has been reached.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/PeerGroup"
+                                }
+                            },
+                            "summary": "Peer Group",
+                            "cli-alias": "peer-group",
+                            "display": "Peer Group",
+                            "name": "PeerGroup"
+                        }
+                    ]
+                },
+                "description": "&lt;p>An SLM policy counts messages or measures latency for messages that match a set of select criteria and that pass through the appliance during a configured interval. The policy can take action when configured thresholds are reached.&lt;/p>&lt;p>Messages can be selected based on credential class, resource class, or both. If neither, all messages are selected.&lt;/p>&lt;p>A policy consists of one or more statements. Each statement establishes the credential class, resource class, thresholds, and actions to take when thresholds are met during an interval.&lt;/p>&lt;p>Examples:&lt;/p>&lt;ul>&lt;li>A policy that throttles all traffic that arrives at a rate faster than 1000 messages per second.&lt;/li>&lt;li>A policy that generates a log message for all messages that arrive during the last elapsed second that originated from a specific IP address and requested use of a specific resource.&lt;/li>&lt;/ul>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/SLMPolicy"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/SLMPolicy"
+                }
+            }
         }
-    ]
+    }
 }

@@ -1,0 +1,115 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for user annotation.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "description": "A key-value pair. The key specifies a policy parameter in a policy mapping stylesheet formatted {policy-domain-ns}key.", 
+            "type": {
+                "href": "/mgmt/types/default/dmPolicyParameter"
+            }, 
+            "/mgmt/types/default/dmPolicyParameter": {
+                "type": {
+                    "summary": "Policy key value pair", 
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Policy key name formated {policy-domain-ns}name", 
+                                "required": "true", 
+                                "summary": "Policy parameter key name", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Name", 
+                                "name": "ParameterName"
+                            }, 
+                            {
+                                "description": "Value for corresponding policy parameter key.", 
+                                "required": "true", 
+                                "summary": "Policy parameter value", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Value", 
+                                "name": "ParameterValue"
+                            }
+                        ]
+                    }, 
+                    "name": "dmPolicyParameter", 
+                    "display": "Parameter"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmPolicyParameter"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmPolicyParameter"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "parameter", 
+            "display": "Policy Parameter", 
+            "name": "PolicyParameter"
+        }
+    ]
+}

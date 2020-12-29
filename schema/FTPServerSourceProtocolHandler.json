@@ -1,0 +1,1673 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for user annotation.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "/mgmt/types/default/dmLocalIPHostAddress": {
+                "type": {
+                    "cli-arg": "dotted-ip or 0 for any", 
+                    "name": "dmLocalIPHostAddress", 
+                    "format": "(a.b.c.d or 0 for any)"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLocalIPHostAddress"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                    }
+                }
+            }, 
+            "name": "LocalAddress", 
+            "default": "0.0.0.0", 
+            "type": {
+                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+            }, 
+            "required": "true", 
+            "summary": "Local IP address", 
+            "label": "IP address", 
+            "cli-alias": "address", 
+            "display": "Local IP Address", 
+            "hoverhelp": "Enter the IP address to listen on for incoming FTP server traffic. The default value 0.0.0.0 indicates that the service listens on all IP addresses.", 
+            "description": "&lt;p>Enter the address on which the FTP server service listens. The default of 0.0.0.0 indicates that the service is active on all addresses. Click Select Alias to use an alias for this value. Local host aliases can help ease migration tasks among machines. If the FTP server service is listening on a virtual IP address managed by a standby control group with the self-balancing feature enabled, incoming control and data connections will always go to the active member of the standby control group.&lt;/p>"
+        }, 
+        {
+            "name": "LocalPort", 
+            "default": 21, 
+            "cli-alias": "port", 
+            "required": "true", 
+            "maximum": "0xFFFF", 
+            "summary": "Local TCP port for the FTP server", 
+            "listener": "LocalAddress", 
+            "minimum": 1, 
+            "type": {
+                "href": "/mgmt/types/default/dmIPPort"
+            }, 
+            "label": "Port", 
+            "/mgmt/types/default/dmIPPort": {
+                "type": {
+                    "cli-arg": "ip-port", 
+                    "minimum": 0, 
+                    "name": "dmIPPort", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                }
+            }, 
+            "display": "Port Number", 
+            "hoverhelp": "Enter the port number to listen on for incoming FTP server traffic. Specify a number in the range of 1 - 65535. The default value is 21.", 
+            "description": "&lt;p>Enter the port that is monitored by the FTP Server service. This port is the port on which FTP control connections can be established. This port does not control the TCP port that is used for the data connections. If the FTP client uses the &lt;tt>PASV&lt;/tt> command, data connections will use an arbitrary, unused TCP port. Defaults to 21. Valid range is 1 through 65535.&lt;/p>"
+        }, 
+        {
+            "name": "FilesystemType", 
+            "/mgmt/types/default/dmFTPFilesystemType": {
+                "type": {
+                    "name": "dmFTPFilesystemType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Virtual Ephemeral", 
+                                "name": "virtual-ephemeral", 
+                                "description": "The FTP server will have an ephemeral virtual file system with subdirectories created by configuration. The contents of this file system are private to an individual FTP control connection to the FTP server. The contents of this file system will not persist after this FTP control connection ends."
+                            }, 
+                            {
+                                "display": "Virtual Persistent", 
+                                "name": "virtual-persistent", 
+                                "description": "The FTP server will have a persistent virtual file system with subdirectories created by configuration. The contents of this file system are shared by all FTP control connections to this FTP server with the same authenticated user identity. The user identity is determined by the FTP user name and, if used, by the TLS certificate. The contents of this file system will persist after all FTP control connections end for a duration defined by Persistent Filesystem Timeout. This mode is required to support checkpoint/restart using the REST command."
+                            }, 
+                            {
+                                "display": "Transparent", 
+                                "name": "transparent", 
+                                "description": "The FTP server has a transparent file system. The files and directories shown are those on the back end of the associated DataPower service."
+                            }
+                        ]
+                    }, 
+                    "display": "FTP Server Filesystem Type"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPFilesystemType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPFilesystemType"
+                    }
+                }
+            }, 
+            "default": "virtual-ephemeral", 
+            "type": {
+                "href": "/mgmt/types/default/dmFTPFilesystemType"
+            }, 
+            "summary": "The type of filesystem the FTP server will present", 
+            "cli-alias": "filesystem", 
+            "display": "Filesystem Type", 
+            "description": "&lt;p>Select the file system type that is presented by the FTP server.&lt;/p>&lt;ul>&lt;li>If Virtual Ephemeral or Virtual Persistent is chosen, the client can write files to all directories. These files are shown in directory listings but cannot be retrieved. For file system responses, the responses are shown and can be retrieved, renamed, and deleted by the client.&lt;/li>&lt;li>If Transparent is chosen, the file system shows the contents of the equivalent path of the server on the back-end of the DataPower service with which this FTP server is associated.&lt;/li>&lt;/ul>&lt;p>This configuration property is only supported by the FTP Server handler and in conjunction with a Multi-Protocol Gateway or Web Service Proxy.&lt;/p>"
+        }, 
+        {
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "PersistentFilesystemTimeout", 
+            "default": 600, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "maximum": 43200, 
+            "summary": "Controls how long a Virtual Persistent file system with no active connections is retained", 
+            "minimum": 1, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "FilesystemType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "virtual-persistent"
+                }
+            }, 
+            "cli-alias": "persistent-filesystem-timeout", 
+            "display": "Persistent Filesystem Timeout", 
+            "description": "Enter the duration in seconds that a connection to a virtual file system is retained after all FTP control connections from user identities are disconnected. When the timeout expires, the virtual file system object is destroyed. All of the response files that were not deleted by the FTP client are deleted from their storage area. Default to 600 (10 minutes). Valid range is 1 to 43,200 seconds (12 hours)."
+        }, 
+        {
+            "/mgmt/types/default/dmFTPServerVirtualDirectory": {
+                "type": {
+                    "name": "dmFTPServerVirtualDirectory", 
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Enter the directory in the virtual file system of the FTP server where the FTP client can find this directory.", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "summary": "Directory in virtual file system of the FTP server", 
+                                "valid-regexp": "^/[^/]+(/[^/]+)*$", 
+                                "display": "Virtual Directory", 
+                                "name": "VirtualPath"
+                            }, 
+                            {
+                                "description": "Enter the directory in the virtual file system of the FTP server where the responses to files that are stored in this directory will go.", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "summary": "Virtual directory in which to put responses", 
+                                "valid-regexp": "^(|/[^/]+(/[^/]+)*)$", 
+                                "display": "Response Directory", 
+                                "name": "ResponseDirectory"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPServerVirtualDirectory"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPServerVirtualDirectory"
+                    }
+                }
+            }, 
+            "name": "VirtualDirectories", 
+            "type": {
+                "href": "/mgmt/types/default/dmFTPServerVirtualDirectory"
+            }, 
+            "summary": "Create directory in virtual file system of FTP server", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "FilesystemType", 
+                    "evaluation": "property-value-not-in-list", 
+                    "value": [
+                        "virtual-ephemeral", 
+                        "virtual-persistent"
+                    ]
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "virtual-directory", 
+            "display": "Virtual Directories", 
+            "description": "In virtual mode, create a directory in the virtual file system that is presented by this FTP server. The FTP client can use all of these directories to write file to be processed. The root directory (/) is always present and cannot be created. Its response directory is always the root directory."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "DefaultDirectory", 
+            "default": "/", 
+            "cli-alias": "default-directory", 
+            "summary": "Default for current working directory", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Default Directory", 
+            "description": "Enter the initial working directory on the FTP server (after users connect and authenticate). When using a virtual file system and the working directory is not the root directory, the specified directory must be one of the configured virtual directories. The default is the root directory (/)."
+        }, 
+        {
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "MaxFilenameLength", 
+            "default": 256, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "maximum": 4000, 
+            "summary": "Maximum length of a file name on the server", 
+            "minimum": 1, 
+            "cli-alias": "max-filename-len", 
+            "display": "Maximum Filename Length", 
+            "description": "Enter the maximum file name length on the FTP server. Defaults to 256 characters. Valid range is 1 through 4000."
+        }, 
+        {
+            "description": "Select an Access Control List to apply. The ACL allows or denies access to the FTP server based on the IP address of the FTP client. When attached to a server, the default for an ACL is to deny all access. To deny access to only select IP addresses, first grant access to all addresses (allow 0.0.0.0). Then, create deny entries for the desired hosts.", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/AccessControlList"
+                }
+            }, 
+            "cli-alias": "acl", 
+            "display": "Access Control List", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "ACL"
+        }, 
+        {
+            "name": "RequireTLS", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Control whether FTP control connections require TLS encryption", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "require-tls", 
+            "display": "Require TLS", 
+            "description": "&lt;p>Specify whether FTP control connections require explicit TLS encryption. If required, the following rules apply: &lt;ul>&lt;li>The FTP client must use the FTP &lt;tt>AUTH TLS&lt;/tt> command before any other command.&lt;/li>&lt;li>You must specify a TLS profile to secure connections.&lt;/li>&lt;/ul>&lt;/p>&lt;p>This property does not control encryption of data transfers.&lt;/p>"
+        }, 
+        {
+            "name": "SSLProxy", 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "RequireTLS", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "SSLServerConfigType", 
+                            "evaluation": "property-equals", 
+                            "value": "proxy"
+                        }
+                    ]
+                }
+            }, 
+            "summary": "The TLS proxy profile is deprecated. Use a TLS server profile or TLS SNI server profile.", 
+            "cli-alias": "ssl", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "SSLServerConfigType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "proxy"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                }
+            }, 
+            "display": "TLS proxy profile (deprecated)", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The TLS proxy profile references the required cryptographic configurations for the secure connection."
+        }, 
+        {
+            "description": "&lt;p>Selects the AAA Policy to perform authentication of user names and passwords provided to the FTP server by the client with the &lt;tt>USER&lt;/tt> and &lt;tt>PASS&lt;/tt> commands. If the authentication succeeds, the FTP client may use all the features of the FTP server. If the authentication fails, a 530 error is returned, and the user can attempt to authenticate again. Without this AAA Policy configured, any user name and password will be accepted.&lt;/p>", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/AAAPolicy"
+                }
+            }, 
+            "summary": "AAA policy for validating user name and password", 
+            "cli-alias": "password-aaa-policy", 
+            "display": "Username-Password AAA Policy", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "PasswordAAAPolicy"
+        }, 
+        {
+            "description": "&lt;p>Selects the AAA Policy to perform secondary authentication of the information provided in the TLS certificate provided during TLS negotiation after the &lt;tt>AUTH TLS&lt;/tt> command to the FTP server. Primary authentication is done by the TLS Profile, it can completely reject a certificate. This authentication stage controls whether an FTP password will be demanded or not. If the result of this authentication succeeds, the FTP client will only have to use the &lt;tt>USER&lt;/tt> command to login after the &lt;tt>AUTH TLS&lt;/tt> . If this authentication fails, the FTP client will have to use both the &lt;tt>USER&lt;/tt> and &lt;b>PASS&lt;/b> commands to complete the login process. If no Certificate AAA Policy is configured, &lt;tt>USER&lt;/tt> and &lt;b>PASS&lt;/b> will always be required. If the &lt;tt>AUTH TLS&lt;/tt> command is not used by the FTP client, &lt;tt>USER&lt;/tt> and &lt;b>PASS&lt;/b> will always be required.&lt;/p>", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/AAAPolicy"
+                }
+            }, 
+            "summary": "AAA Policy for determining whether password is required", 
+            "cli-alias": "certificate-aaa-policy", 
+            "display": "Password-Required AAA Policy", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "CertificateAAAPolicy"
+        }, 
+        {
+            "name": "AllowCCC", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Control use of CCC command", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "allow-ccc", 
+            "display": "Allow CCC Command", 
+            "description": "&lt;p>Specify whether the FTP &lt;b>CCC&lt;/b> command can be used to turn off TLS encryption of the FTP control connection after user authentication. If allowed, the &lt;b>CCC&lt;/b> command can be used to turn off encryption after authentication. Turning off encryption is necessary when the FTP control connection crosses a firewall or NAT device that needs to sniff the control connection. Turning off encryption eliminates the secrecy of the files being transferred and allows TCP packets injection attacks.&lt;/p>"
+        }, 
+        {
+            "name": "Passive", 
+            "default": "allow", 
+            "type": {
+                "href": "/mgmt/types/default/dmFTPPassive"
+            }, 
+            "summary": "Control use of passive mode", 
+            "/mgmt/types/default/dmFTPPassive": {
+                "type": {
+                    "name": "dmFTPPassive", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Allow Passive Mode", 
+                                "name": "allow", 
+                                "description": "Allows, but does not require, the FTP client to use the PASV command to open data connections to the FTP server."
+                            }, 
+                            {
+                                "display": "Passive Mode Not Allowed", 
+                                "name": "disallow", 
+                                "description": "Does not allow the FTP client to use the PASV command to open data connections to the FTP server. The FTP server will open all data connections to the FTP client (as directed by the FTP PORT command). This mode is not always compatible with firewalls."
+                            }, 
+                            {
+                                "display": "Require Passive Mode", 
+                                "name": "require", 
+                                "description": "Requires the FTP client to use the PASV command to open all data connections with the FTP server. This mode is useful when the FTP server is behind a firewall device that requires clients to use passive mode."
+                            }
+                        ]
+                    }, 
+                    "display": "FTP Server Passive Mode"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPPassive"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPPassive"
+                    }
+                }
+            }, 
+            "cli-alias": "passive", 
+            "display": "Passive (PASV) Command", 
+            "description": "Control use of the FTP PASV and EPSV commands by the FTP client, as an alternative to the PORT and EPRT commands. The default is to allow PORT, EPRT, PASV, and EPSV. Other settings either require PASV or EPSV, or require PORT or EPRT. If an acceptable PORT, EPRT, PASV, or EPSV command is not received, the STOR, STOU, RETR, LIST, and NLST data transfer commands will fail. (This FTP server will never attempt to connect to the deprecated default FTP data port at TCP port 20.)"
+        }, 
+        {
+            "name": "UsePasvPortRange", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Enable using a limited range of TCP port numbers for Passive connections.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "Passive", 
+                    "evaluation": "property-equals", 
+                    "value": "disallow"
+                }
+            }, 
+            "cli-alias": "passive-port-range", 
+            "display": "Limit Port Range for Passive Connections", 
+            "description": "&lt;p>When enabled, when a PASV or EPSV command is received from the FTP client, instead of selecting any free listening TCP port in the range 1024 to 65534, allow configuration of a restricted port range. This may be used when a firewall wants to allow incoming FTP data connections only on a limited range of ports, particularly when it cannot \"sniff\" the FTP control connection.&lt;/p>&lt;p>Note that the size of the range specified limits how many FTP clients can be in the state between receiving the 227 response code to the PASV or EPSV command, and establishing the FTP data TCP connection. Pressure on this limited resource can be controlled by adjusting the passive data connection idle timeout.&lt;/p>&lt;p>While it is perfectly legal to configure multiple FTP servers on the same system to use the same (or overlapping) passive port ranges, realize that they are contending for a common resource in the TCP implementation.&lt;/p>&lt;p>However, it is not wise to use a port range that overlaps with other services (HTTP servers, etc.) that are configured on the system. There is no configuration checking for such conflicts, and other configured services will allocate the ports first, and they will not be available for the FTP server. (The FTP server allocates these listing ports dynamically.)&lt;/p>"
+        }, 
+        {
+            "name": "PasvMinPort", 
+            "default": 1024, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt16"
+            }, 
+            "maximum": 65534, 
+            "summary": "Lowest port value for the passive port range", 
+            "minimum": 1024, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "Passive", 
+                            "evaluation": "property-equals", 
+                            "value": "disallow"
+                        }, 
+                        {
+                            "property-name": "UsePasvPortRange", 
+                            "evaluation": "property-equals", 
+                            "value": "off"
+                        }
+                    ]
+                }
+            }, 
+            "/mgmt/types/default/dmUInt16": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt16", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                }
+            }, 
+            "cli-alias": "passive-port-min", 
+            "display": "Minimum Passive Port", 
+            "description": "Specify the lowest listening TCP port number to use for passive FTP data connections. Any value from 1024 to 65534 is valid, as long as this not greater than Maximum Passive Port."
+        }, 
+        {
+            "name": "PasvMaxPort", 
+            "default": 1050, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt16"
+            }, 
+            "maximum": 65534, 
+            "summary": "Highest port value for the passive port range", 
+            "minimum": 1024, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "Passive", 
+                            "evaluation": "property-equals", 
+                            "value": "disallow"
+                        }, 
+                        {
+                            "property-name": "UsePasvPortRange", 
+                            "evaluation": "property-equals", 
+                            "value": "off"
+                        }
+                    ]
+                }
+            }, 
+            "/mgmt/types/default/dmUInt16": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt16", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                }
+            }, 
+            "cli-alias": "passive-port-max", 
+            "display": "Maximum Passive Port", 
+            "description": "Specify the highest listening TCP port number to use for passive FTP data connections. Any value from 1024 to 65534 is valid, as long as this not less than Minimum Passive Port."
+        }, 
+        {
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "PasvIdleTimeOut", 
+            "default": 60, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "maximum": 300, 
+            "summary": "Idle timeout for a passive data connection", 
+            "minimum": 5, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "Passive", 
+                    "evaluation": "property-equals", 
+                    "value": "disallow"
+                }
+            }, 
+            "units": "seconds", 
+            "cli-alias": "passive-idle-timeout", 
+            "display": "Passive Data Connection Idle Timeout", 
+            "description": "&lt;p>Specifies the number of seconds that the server waits for a client to establish a passive connection. Use an integer in the range of 5 through 300. The default is 60.&lt;/p>&lt;p>This setting controls the amount of time in seconds between when the FTP server issues code 227 (Entering Passive Mode) in response to the &lt;tt>PASV&lt;/tt> or &lt;tt>EPSV&lt;/tt> command from the FTP client and when the FTP client must establish a TCP data connection to the listening port and issue a data transfer command.&lt;/p>&lt;ul>&lt;li>If the data connection is not established within the timeout period, the listening port will be closed. If a data transfer command is issued after the port is closed, the command fails with code 425 and the &lt;tt>Failed to open data connection&lt;/tt> message.&lt;/li>&lt;li>If the data connection is established but no data transfer command is issued within the timeout period, the TCP data connection will be closed. Any data transfer command after the timeout will be treated as if the &lt;tt>PASV&lt;/tt> or &lt;tt>EPSV&lt;/tt> command was never issued. The command fails with code 425 and the &lt;tt>Require PASV or PORT command first&lt;/tt> message.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "name": "DisablePASVIPCheck", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Disable Passive Data Connection (PASV) IP Security Check", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "Passive", 
+                    "evaluation": "property-equals", 
+                    "value": "disallow"
+                }
+            }, 
+            "cli-alias": "passive-promiscuous", 
+            "display": "Disable Passive Data Connection (PASV) IP Security Check", 
+            "description": "&lt;p>This option will disable the IP security check that is done when processing the FTP PASV command. The check verifies that the IP address of the client connecting to the data connection is the same as the one that established the control connection.&lt;/p>&lt;p>The default value for this option is off, which is the expected behavior for an FTP server. Turn the option on if there is a specific reason the incoming connection will not be coming from the same client as the control connection (i.e. from a load balancer).&lt;/p>&lt;p>This configuration property is only supported by the FTP Server handler and in conjunction with a Multi-Protocol Gateway or Web Service Proxy.&lt;/p>"
+        }, 
+        {
+            "name": "DisablePORTIPCheck", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Disable Active Data Connection (PORT) IP Security Check", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "Passive", 
+                    "evaluation": "property-equals", 
+                    "value": "require"
+                }
+            }, 
+            "cli-alias": "port-promiscuous", 
+            "display": "Disable Active Data Connection (PORT) IP Security Check", 
+            "description": "&lt;p>This option will disable the IP security check that verifies that outgoing data connections can only connect to the client.&lt;/p>&lt;p>The default value for this option is off, which is the expected behavior for an FTP server.&lt;/p>&lt;p>This configuration property is only supported by the FTP Server handler and in conjunction with a Multi-Protocol Gateway or Web Service Proxy.&lt;/p>"
+        }, 
+        {
+            "name": "UseAlternatePASVAddr", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Use Alternate PASV IP Address", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "Passive", 
+                    "evaluation": "property-equals", 
+                    "value": "disallow"
+                }
+            }, 
+            "cli-alias": "allow-passive-addr", 
+            "display": "Use Alternate PASV IP Address", 
+            "description": "&lt;p>When on, this option will enable the ability to override the IP address that is presented to the FTP client when the server is in passive mode.&lt;/p>&lt;p>This configuration property is only supported by the FTP Server handler and in conjunction with a Multi-Protocol Gateway or Web Service Proxy.&lt;/p>"
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmIPHostAddress"
+            }, 
+            "name": "AlternatePASVAddr", 
+            "/mgmt/types/default/dmIPHostAddress": {
+                "type": {
+                    "cli-arg": "dotted-ip", 
+                    "name": "dmIPHostAddress", 
+                    "format": "(a.b.c.d)"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPHostAddress"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPHostAddress"
+                    }
+                }
+            }, 
+            "default": "", 
+            "required-when": {
+                "condition": {
+                    "property-name": "UseAlternatePASVAddr", 
+                    "evaluation": "property-equals", 
+                    "value": "on"
+                }
+            }, 
+            "summary": "Alternate PASV IP Address", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "passive-addr", 
+            "display": "Alternate PASV IP Address", 
+            "description": "&lt;p>The numeric IP address that will be returned to the FTP client in response to a PASV command. This does not change the IP address that the FTP server will listen on, which is always the IP address that the FTP data connection was made to. This is used in certain situations when the FTP server is behind a firewall that is not FTP-aware.&lt;/p>"
+        }, 
+        {
+            "name": "AllowLISTCmd", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Enable LIST command support", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "FilesystemType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "transparent"
+                }
+            }, 
+            "cli-alias": "list-cmd", 
+            "display": "Enable LIST command support", 
+            "description": "&lt;p>When on, the server will make a distinction between the LIST and NLST commands. When off, the server will always respond with an NLST when requesting a file listing.&lt;/p>&lt;p>The default value for this option is off&lt;/p>&lt;p>This configuration property is only supported by the FTP Server handler and in conjunction with a Multi-Protocol Gateway or Web Service Proxy.&lt;/p>"
+        }, 
+        {
+            "name": "AllowDELECmd", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Enable DELE (delete) support", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "FilesystemType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "transparent"
+                }
+            }, 
+            "cli-alias": "dele-cmd", 
+            "display": "Enable delete support", 
+            "description": "&lt;p>When on, allows the DELE (delete) command to be passed to the FTP back-end server. This is only valid in Transparent Filesystem type.&lt;/p>&lt;p>The default value for this option is off&lt;/p>&lt;p>This configuration property is only supported by the FTP Server handler and in conjunction with a Multi-Protocol Gateway or Web Service Proxy.&lt;/p>"
+        }, 
+        {
+            "name": "DataEncryption", 
+            "default": "allow", 
+            "cli-alias": "data-encryption", 
+            "summary": "Control use of data encryption for file transfers", 
+            "/mgmt/types/default/dmFTPDataEncryption": {
+                "type": {
+                    "name": "dmFTPDataEncryption", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Data Encryption Not Allowed", 
+                                "name": "disallow", 
+                                "description": "Does not allow the FTP client to encrypt data connections."
+                            }, 
+                            {
+                                "display": "Allow Data Encryption", 
+                                "name": "allow", 
+                                "description": "Allows, but does not require, the FTP client to encrypt data connections. TLS must be allowed on data connections."
+                            }, 
+                            {
+                                "display": "Require Data Encryption", 
+                                "name": "require", 
+                                "description": "Requires the FTP client to encrypt data connections. TLS should be required on data connections."
+                            }
+                        ]
+                    }, 
+                    "display": "FTP Server Data Encryption Mode"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPDataEncryption"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPDataEncryption"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmFTPDataEncryption"
+            }, 
+            "display": "File Transfer Data Encryption", 
+            "description": "Select the use of encryption for data connections (file transfers). Data encryption is controlled by the FTP PROT P command."
+        }, 
+        {
+            "name": "AllowCompression", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Control use of MODE Z command to compress data transfer", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "allow-compression", 
+            "display": "Allow Compression", 
+            "description": "&lt;p>Specify whether the FTP client can use FTP &lt;tt>MODE Z&lt;/tt> compression. After enabling FTP compression, the FTP client can use the zlib method to compress data transfers.&lt;/p>"
+        }, 
+        {
+            "name": "AllowSTOU", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Control use of STOU command for unique file names", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "allow-unique-filename", 
+            "display": "Allow Unique File Name (STOU)", 
+            "description": "&lt;p>Specify whether the FTP client can use the FTP &lt;tt>STOU&lt;/tt> command. When enabled, the FTP server generates a unique file name for each transferred file.&lt;/p>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UniqueFilenamePrefix", 
+            "default": "", 
+            "cli-alias": "unique-filename-prefix", 
+            "summary": "Prefix of all unique filenames generated by STOU", 
+            "valid-regexp": "^[^/]*$", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "AllowSTOU", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "on"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Unique File Name Prefix", 
+            "description": "&lt;p>Enter the prefix (leading characters) for file names that are generated when using the FTP &lt;tt>STOU&lt;/tt> command. When defining the prefix, the directory separator (/) is not allowed. The default is to not add a prefix, which is an empty string.&lt;/p>&lt;p>&lt;b>Note:&lt;/b> The software adds a numeric suffix.&lt;/p>"
+        }, 
+        {
+            "name": "AllowREST", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Control use of the REST command for interrupted file transfers", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "FilesystemType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "virtual-persistent"
+                }
+            }, 
+            "cli-alias": "allow-restart", 
+            "display": "Allow Restart (REST)", 
+            "description": "&lt;p>Controls whether the FTP client can use the FTP &lt;tt>REST&lt;/tt> command to continue the transfer of a file after an interruption in the data transfer. This is supported in the BSD stream style described in draft-ietf-ftpext-mlst-16.txt. (The MODE B style that is described in RFC 959 is not supported.) The FTP server must be configured with a virtual persistent file system.&lt;/p>&lt;p>For written files, the server will delay the actual processing until a timeout expires or until the next FTP command other than a &lt;tt>SIZE&lt;/tt> or &lt;tt>REST&lt;/tt> command. This processing allows the FTP client can return and resume to the transfer using the &lt;tt>SIZE&lt;/tt> , &lt;tt>REST&lt;/tt> , and &lt;tt>STOR&lt;/tt> commands. The argument to the &lt;tt>REST&lt;/tt> command must be the same as the byte count returned by the &lt;tt>SIZE&lt;/tt> command.&lt;/p>&lt;p>&lt;b>Note:&lt;/b> The response code to all &lt;tt>STOR&lt;/tt> commands on this server will always be 226. The response codes does not reflect the success of the transaction.&lt;/p>&lt;p>This capability is also supported for reading the response files, if the server is configured for a Response Type of Virtual Filesystem.&lt;/p>&lt;p>&lt;b>Note:&lt;/b> The generation of response files are delayed until the transaction is completed.&lt;/p>"
+        }, 
+        {
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "RestartTimeout", 
+            "default": 240, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "summary": "Time that the STOR command waits for a restart", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "AllowREST", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "FilesystemType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "virtual-persistent"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "restart-timeout", 
+            "display": "Restart Timeout", 
+            "description": "&lt;p>When restart ( &lt;tt>REST&lt;/tt> ) is enabled, the number of seconds that the FTP client has to reconnect to the server and use the &lt;tt>SIZE&lt;/tt> , &lt;tt>REST&lt;/tt> , and &lt;tt>STOR&lt;/tt> commands to continue an interrupted file transfer. If this period of time elapses, the data that was received to this point on the TCP data connection will be passed to the DataPower service. This timeout is canceled if another command (other than &lt;tt>SIZE&lt;/tt> or &lt;tt>REST&lt;/tt> ) is received on the FTP control connection.&lt;/p>"
+        }, 
+        {
+            "name": "IdleTimeout", 
+            "default": 0, 
+            "type": {
+                "href": "/mgmt/types/default/dmTimeInterval"
+            }, 
+            "maximum": 65535, 
+            "summary": "Inactivity limit on FTP control connection", 
+            "/mgmt/types/default/dmTimeInterval": {
+                "type": {
+                    "cli-arg": "seconds", 
+                    "minimum": 0, 
+                    "name": "dmTimeInterval", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                }
+            }, 
+            "minimum": 0, 
+            "units": "seconds", 
+            "cli-alias": "idle-timeout", 
+            "display": "Idle Timeout", 
+            "description": "Enter the number of seconds that the FTP control connection can be idle. After the specified duration elapses, the FTP server closes the control connection. Defaults to 0, which disables the timeout."
+        }, 
+        {
+            "name": "ResponseType", 
+            "default": "none", 
+            "type": {
+                "href": "/mgmt/types/default/dmFTPResponseType"
+            }, 
+            "/mgmt/types/default/dmFTPResponseType": {
+                "type": {
+                    "name": "dmFTPResponseType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "No Response", 
+                                "name": "none", 
+                                "description": "Indicates that no response is made available to the client. Any response from the backend server is dropped."
+                            }, 
+                            {
+                                "display": "Virtual Filesystem", 
+                                "name": "virtual-filesystem", 
+                                "description": "Indicates that the response is made available as a file in the virtual file system that can be read by the FTP client. The directory for responses is configured on a per-virtual directory basis. The suffix specified by Response Suffix is added to the input file name and stored in the directory specified by Response Storage."
+                            }
+                        ]
+                    }, 
+                    "display": "FTP Server Response Type"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPResponseType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPResponseType"
+                    }
+                }
+            }, 
+            "summary": "How to make response available to FTP client", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "FilesystemType", 
+                    "evaluation": "property-value-not-in-list", 
+                    "value": [
+                        "virtual-ephemeral", 
+                        "virtual-persistent"
+                    ]
+                }
+            }, 
+            "cli-alias": "response-type", 
+            "display": "Response Type", 
+            "description": "Select how to make response files available for gateway transactions started by an FTP STOR or SOUT operation."
+        }, 
+        {
+            "name": "ResponseStorage", 
+            "default": "temporary", 
+            "type": {
+                "href": "/mgmt/types/default/dmFTPResponseStorage"
+            }, 
+            "summary": "Where to store response files", 
+            "/mgmt/types/default/dmFTPResponseStorage": {
+                "type": {
+                    "name": "dmFTPResponseStorage", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Temporary", 
+                                "name": "temporary", 
+                                "description": "Stores response files in temporary storage on the system. This storage has limited size. Using temporary storage reduces the available system storage for processing. Temporary storage should not be used when using a virtual persistent file system. In virtual persistent file systems, it is highly unlikely that there would be enough space. After a system restart or power cycle, response files are not available."
+                            }, 
+                            {
+                                "display": "NFS", 
+                                "name": "nfs", 
+                                "description": "Stores response files on the top level directory of the specified NFS server. Only the NFS server limits the storage space."
+                            }
+                        ]
+                    }, 
+                    "display": "FTP Server Response Storage"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPResponseStorage"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPResponseStorage"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ResponseType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "virtual-filesystem"
+                        }, 
+                        {
+                            "property-name": "FilesystemType", 
+                            "evaluation": "property-value-not-in-list", 
+                            "value": [
+                                "virtual-ephemeral", 
+                                "virtual-persistent"
+                            ]
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "response-storage", 
+            "display": "Response Storage", 
+            "description": "Select where response files are stored."
+        }, 
+        {
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "TemporaryStorageSize", 
+            "default": 32, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "maximum": 2048, 
+            "summary": "Maximum size of temporary file system", 
+            "minimum": 1, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ResponseStorage", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "temporary"
+                        }, 
+                        {
+                            "property-name": "FilesystemType", 
+                            "evaluation": "property-value-not-in-list", 
+                            "value": [
+                                "virtual-ephemeral", 
+                                "virtual-persistent"
+                            ]
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "filesystem-size", 
+            "display": "Temporary Storage Size", 
+            "description": "Enter in megabytes the maximum size for the temporary file system size. Defaults to 32 MB. Valid range is 1 MB through 2048 MB."
+        }, 
+        {
+            "name": "ResponseNFSMount", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/NFSStaticMount"
+                }
+            }, 
+            "summary": "NFS mount to store response files in", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ResponseType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "virtual-filesystem"
+                        }, 
+                        {
+                            "property-name": "ResponseStorage", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "nfs"
+                        }, 
+                        {
+                            "property-name": "FilesystemType", 
+                            "evaluation": "property-value-not-in-list", 
+                            "value": [
+                                "virtual-ephemeral", 
+                                "virtual-persistent"
+                            ]
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "response-nfs-mount", 
+            "display": "Response NFS Mount", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "&lt;p>When Response Type is Virtual File System and Response Storage is NFS, select an NFS static mount to apply. Each response file will have a unique file name in the NFS directory. The name of the response file is not related to the file name that the virtual file system presents to the FTP client. Generally, this NFS directory is not made available through the FTP server. This directory should not be used for any other purpose.&lt;/p>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "ResponseSuffix", 
+            "default": "", 
+            "cli-alias": "response-suffix", 
+            "summary": "URL file name suffix to response file", 
+            "valid-regexp": "^[^/]*$", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ResponseType", 
+                            "evaluation": "property-value-not-in-list", 
+                            "value": "virtual-filesystem"
+                        }, 
+                        {
+                            "property-name": "FilesystemType", 
+                            "evaluation": "property-value-not-in-list", 
+                            "value": [
+                                "virtual-ephemeral", 
+                                "virtual-persistent"
+                            ]
+                        }
+                    ]
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Response Suffix", 
+            "description": "When the response type is a virtual file system, enter the suffix to add when generating response files. The directory separator (/) is not allowed. If the response type is a virtual file system and the FTP client is writing in virtual directories that do not have a response directory or if the response directory is the same as the virtual directory, this value must have a non-empty value. If empty, the response would try to overwrite the request, which is not allowed. Defaults to an empty string."
+        }, 
+        {
+            "/mgmt/types/default/dmSSLConfigType": {
+                "type": {
+                    "name": "dmSSLConfigType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "proxy", 
+                                "display": "Proxy Profile"
+                            }, 
+                            {
+                                "name": "server", 
+                                "display": "Server Profile"
+                            }, 
+                            {
+                                "name": "sni", 
+                                "display": "SNI Server Profile"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSLConfigType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSLConfigType"
+                    }
+                }
+            }, 
+            "name": "SSLServerConfigType", 
+            "default": "proxy", 
+            "required-when": {
+                "condition": {
+                    "property-name": "RequireTLS", 
+                    "evaluation": "property-equals", 
+                    "value": "on"
+                }
+            }, 
+            "summary": "Set the TLS profile type to secure connections between clients and the DataPower Gateway", 
+            "type": {
+                "href": "/mgmt/types/default/dmSSLConfigType"
+            }, 
+            "cli-alias": "ssl-config-type", 
+            "display": "TLS server type", 
+            "description": "&lt;p>The TLS profile type to secure connections between clients and the DataPower Gateway. If a TLS profile is assigned, the FTP &lt;tt>AUTH TLS&lt;/tt> server command will be enabled, and the client will be able to start TLS encryption of the FTP control connection.&lt;/p>&lt;p>The chosen TLS profile controls the TLS credentials that the FTP server will present to the client after the &lt;tt>AUTH TLS&lt;/tt> command, and how the TLS credentials presented by the client will be evaluated.&lt;/p>"
+        }, 
+        {
+            "name": "SSLServer", 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "RequireTLS", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "SSLServerConfigType", 
+                            "evaluation": "property-equals", 
+                            "value": "server"
+                        }
+                    ]
+                }
+            }, 
+            "summary": "Set the TLS server profile to secure connections between clients and the DataPower Gateway", 
+            "cli-alias": "ssl-server", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "SSLServerConfigType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "server"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLServerProfile"
+                }
+            }, 
+            "display": "TLS server profile", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The TLS server profile to secure connections between clients and the DataPower Gateway."
+        }, 
+        {
+            "name": "SSLSNIServer", 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "RequireTLS", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "SSLServerConfigType", 
+                            "evaluation": "property-equals", 
+                            "value": "sni"
+                        }
+                    ]
+                }
+            }, 
+            "summary": "Set the TLS SNI server profile to secure connections between clients and the DataPower Gateway", 
+            "cli-alias": "ssl-sni-server", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "SSLServerConfigType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "sni"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLSNIServerProfile"
+                }
+            }, 
+            "display": "TLS SNI server profile", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The TLS SNI server profile to secure connections between clients and the DataPower Gateway."
+        }
+    ]
+}

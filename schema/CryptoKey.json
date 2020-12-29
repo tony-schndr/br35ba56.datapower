@@ -1,0 +1,181 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "name": "Filename", 
+            "type": {
+                "href": "/mgmt/types/default/dmURL"
+            }, 
+            "required": "true", 
+            "locations": {
+                "location": [
+                    "cert", 
+                    "hsm", 
+                    "sharedcert", 
+                    "dpcert", 
+                    "local"
+                ]
+            }, 
+            "summary": "Name of the file that contains the private key", 
+            "/mgmt/types/default/dmURL": {
+                "type": {
+                    "cli-arg": "url", 
+                    "name": "dmURL"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                }
+            }, 
+            "cli-alias": "file-name", 
+            "display": "File name", 
+            "protocols": {
+                "protocol": [
+                    "saf-key", 
+                    "saf-remote-key", 
+                    "luna-remote-key"
+                ]
+            }, 
+            "description": "&lt;p>Specifies the file that contains the private key. This name might be the same as the file that contains the public key. You can specify a local private key file, a remote z/OS private key file, or a SafeNet Luna key file.&lt;/p>&lt;ul>&lt;li>For a local key file, access a list of files that are contained in the &lt;tt>cert:&lt;/tt> or &lt;tt>local:&lt;/tt> directory, and select the file that contains the private key aliased by this key object. &lt;p>&lt;b>Attention:&lt;/b> Any file in the &lt;tt>local:&lt;/tt> directory can be downloaded or included in an export. Therefore, consider carefully before you store cryptographic files in this directory.&lt;/p>&lt;/li>&lt;li>For a remote z/OS key file, specify the location and the file name. &lt;ol>&lt;li>Select &lt;tt>saf-key://&lt;/tt> or &lt;tt>saf-remote-key://&lt;/tt> from the list of directories. &lt;p>A &lt;tt>saf-key://&lt;/tt> must be a SAF key that is not stored in ICSF. A &lt;tt>saf-remote-key://&lt;/tt> must be a SAF key that is stored in ICSF.&lt;/p>&lt;/li>&lt;li>Enter the label name of an existing SAF key residing on the z/OS system using the form &lt;tt>&lt;i>nssclient/ZOSKEYLABEL&lt;/i>&lt;/tt> where &lt;i>nssclient&lt;/i> is an existing NSS client.&lt;/li>&lt;/ol>&lt;p>See the z/OS Communications Server: IP Configuration Guide for details on label names.&lt;/p>&lt;/li>&lt;li>For a remote key file on the SafeNet Luna Network HSM, specify the location and the file name. The DataPower Gateway supports keys that are generated on only the the Luna HSM. &lt;ol>&lt;li>Select &lt;tt>luna-remote-key://&lt;/tt> from the list of directories.&lt;/li>&lt;li>Enter the file name in one of the following formats based on whether the key is part of a high availability (HA) group. &lt;ul>&lt;li>When part of an HA group, use the &lt;tt>&lt;i>group/label&lt;/i>&lt;/tt> format.&lt;/li>&lt;li>When not part of an HA group, use the &lt;tt>&lt;i>partition/label&lt;/i>&lt;/tt> format. &lt;p>where, &lt;ul>&lt;li>&lt;i>group&lt;/i> indicates the configuration name of the HA group that contains the key.&lt;/li>&lt;li>&lt;i>partition&lt;/i> indicates the configuration name of the partition that contains the key.&lt;/li>&lt;li>&lt;i>label&lt;/i> indicates the label name of the private key on the HSM. The label name of the private key is specified by the &lt;tt>labelPrivate&lt;/tt> parameter when you generate the key with the Luna &lt;tt>cmu generatekeypair&lt;/tt> command on the Luna HSM.&lt;/li>&lt;/ul>&lt;/p>&lt;/li>&lt;/ul>&lt;/li>&lt;/ol>&lt;p>The DataPower Gateway communicates with the Luna HSM appliance through the SafeNet Luna HSM configuration. To use a private key on the HSM, the SafeNet Luna HSM configuration must be defined and in the &lt;tt>up&lt;/tt> operational state. The key must be stored in a partition or an HA group that the DataPower Gateway can access. Therefore, the partition or HA group configuration must be in the &lt;tt>up&lt;/tt> operational state.&lt;/p>&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "A cleartext password required to access the file containing the private key.", 
+            "cli-alias": "password", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "Password", 
+                    "evaluation": "property-equals", 
+                    "value": ""
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Password (deprecated)", 
+            "name": "Password"
+        }, 
+        {
+            "description": "", 
+            "default": "off", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "display": "Password alias toggle (deprecated)", 
+            "name": "PasswordAlias"
+        }, 
+        {
+            "description": "The password alias of a cleartext password required to access the file containing the private key.", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/PasswordAlias"
+                }
+            }, 
+            "summary": "The alias of the password required to access the file containing the private key.", 
+            "cli-alias": "password-alias", 
+            "display": "Password alias", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "Alias"
+        }
+    ]
+}

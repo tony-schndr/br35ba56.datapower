@@ -37,29 +37,27 @@ class DPManageConfigRequestHandler(DPRequestHandler):
     def __init__(self, connection):
         super(DPManageConfigRequestHandler, self).__init__(connection)
 
-
     def config_info(self, domain='default', class_name=None):
         if class_name is None:
             path = MGMT_CONFIG_URI
         else:
             path = MGMT_CONFIG_METADATA_URI.format(domain, class_name)
-        resp = self._make_request(path, 'GET', body=None)
-        if resp['_links']['self']['href'] == MGMT_CONFIG_URI:
-            resp = list(resp['_links'].keys())
-            resp.sort()
-            return resp
+        metadata = self._make_request(path, 'GET', body=None)
+        if metadata['_links']['self']['href'] == MGMT_CONFIG_URI:
+            metadata = list(metadata['_links'].keys())
+            metadata.sort()
+            return metatadata
 
-        schema_children = []
-        for prop in resp['object']['properties']['property']:
-            for child in schema_children:
+        types = []
+        for prop in metadata['object']['properties']['property']:
+            for child in types:
                 if child["_links"]['self']['href'] == prop['type']['href']:
                     break
             else:
                 child_resp = self._make_request(prop['type']['href'], 'GET', body=None)
-                schema_children.append(child_resp)
-        # if the URL was the base it returned a list of mgmt/config objects
-        # Return the Keys so a user can lookup up what mgmt/config objects are valid    
-        return {'parent' : resp, 'children': schema_children}
+                types.append(child_resp)
+                
+        return {'metadata' : metadata, 'types': types}
 
 
 

@@ -1,0 +1,3093 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmLocalIPHostAddress": {
+                "type": {
+                    "cli-arg": "dotted-ip or 0 for any", 
+                    "name": "dmLocalIPHostAddress", 
+                    "format": "(a.b.c.d or 0 for any)"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLocalIPHostAddress"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                    }
+                }
+            }, 
+            "name": "LocalAddress", 
+            "default": "0.0.0.0", 
+            "type": {
+                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+            }, 
+            "required": "true", 
+            "summary": "Enter the local IP address or host alias.", 
+            "cli-alias": "ip-address", 
+            "display": "Local address", 
+            "description": "&lt;p>Enter a host alias or the IP address that the service listens on. Host aliases can ease migration tasks among appliances.&lt;/p>&lt;ul>&lt;li>0 or 0.0.0.0 indicates all configured IPv4 addresses.&lt;/li>&lt;li>:: indicates all configured IPv4 and IPv6 addresses.&lt;/li>&lt;/ul>&lt;p>&lt;b>Attention:&lt;/b> For management services, the value of 0.0.0.0 or :: is a security risk. Use an explicit IP address to isolate management traffic from application data traffic.&lt;/p>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for user annotation.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "name": "Priority", 
+            "default": "normal", 
+            "type": {
+                "href": "/mgmt/types/default/dmSchedulerPriority"
+            }, 
+            "/mgmt/types/default/dmSchedulerPriority": {
+                "type": {
+                    "name": "dmSchedulerPriority", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "unknown", 
+                                "display": "unknown"
+                            }, 
+                            {
+                                "name": "high-min", 
+                                "display": "high-min"
+                            }, 
+                            {
+                                "summary": "", 
+                                "display": "High", 
+                                "name": "high", 
+                                "description": "A service or transaction assigned this priority setting will receive above normal scheduling priority and resource allocation."
+                            }, 
+                            {
+                                "name": "high-max", 
+                                "display": "high-max"
+                            }, 
+                            {
+                                "name": "normal-min", 
+                                "display": "normal-min"
+                            }, 
+                            {
+                                "summary": "", 
+                                "display": "Normal", 
+                                "name": "normal", 
+                                "description": "A service or transaction assigned this priority setting will receive normal scheduling priority and resource allocation."
+                            }, 
+                            {
+                                "name": "normal-max", 
+                                "display": "normal-max"
+                            }, 
+                            {
+                                "name": "low-min", 
+                                "display": "low-min"
+                            }, 
+                            {
+                                "summary": "", 
+                                "display": "Low", 
+                                "name": "low", 
+                                "description": "A service or transaction assigned this priority setting will receive below normal scheduling priority and resource allocation."
+                            }, 
+                            {
+                                "name": "low-max", 
+                                "display": "low-max"
+                            }
+                        ]
+                    }, 
+                    "display": "Transaction Priority"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSchedulerPriority"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSchedulerPriority"
+                    }
+                }
+            }, 
+            "summary": "Service scheduling priority", 
+            "cli-alias": "priority", 
+            "display": "Service Priority", 
+            "description": "Control the service scheduling priority. When system resources are in high demand, \"high\" priority services will be favored over lower priority services."
+        }, 
+        {
+            "name": "LocalPort", 
+            "cli-alias": "port", 
+            "required": "true", 
+            "maximum": "0xFFFF", 
+            "summary": "Port number", 
+            "listener": "LocalAddress", 
+            "minimum": 1, 
+            "type": {
+                "href": "/mgmt/types/default/dmIPPort"
+            }, 
+            "/mgmt/types/default/dmIPPort": {
+                "type": {
+                    "cli-arg": "ip-port", 
+                    "minimum": 0, 
+                    "name": "dmIPPort", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                }
+            }, 
+            "display": "Port Number", 
+            "description": "Specify the local port to monitor for incoming client requests."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmHostname"
+            }, 
+            "name": "RemoteAddress", 
+            "required-when": {
+                "condition": {
+                    "property-name": "Type", 
+                    "evaluation": "property-equals", 
+                    "value": "static-backend"
+                }
+            }, 
+            "summary": "Host name, IP address, or Load Balancer Group", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "/mgmt/types/default/dmHostname": {
+                "type": {
+                    "cli-arg": "dotted-ip or hostname", 
+                    "name": "dmHostname", 
+                    "format": "(a.b.c.d or hostname)"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostname"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostname"
+                    }
+                }
+            }, 
+            "cli-alias": "remote-ip-address", 
+            "display": "Remote Host", 
+            "description": "Specify the host name or IP address of the specific server supported by this DataPower service. If using load balancers, specify the name of the Load Balancer Group. If using the On Demand Router, specify the keyword ODR-LBG. Load balancer groups and the On Demand Router can be used only when Type is static-backend."
+        }, 
+        {
+            "/mgmt/types/default/dmIPPort": {
+                "type": {
+                    "cli-arg": "ip-port", 
+                    "minimum": 0, 
+                    "name": "dmIPPort", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                }
+            }, 
+            "name": "RemotePort", 
+            "required-when": {
+                "condition": {
+                    "property-name": "Type", 
+                    "evaluation": "property-equals", 
+                    "value": "static-backend"
+                }
+            }, 
+            "maximum": "0xFFFF", 
+            "summary": "Port number", 
+            "cli-alias": "remote-port", 
+            "minimum": 1, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmIPPort"
+            }, 
+            "display": "Remote Port", 
+            "description": "Specify the port number to monitor. Used only when Type is static-backend."
+        }, 
+        {
+            "description": "This Access Control List will be used to allow or deny access to this service based on the IP address of the client. When attached to a service, an Access Control List (ACL) denies all access by default. To deny access to only selected addresses, first grant access to all addresses (allow 0.0.0.0) and then create deny entries for the desired hosts.", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/AccessControlList"
+                }
+            }, 
+            "cli-alias": "acl", 
+            "display": "Access Control List", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "ACL"
+        }, 
+        {
+            "name": "HTTPTimeout", 
+            "default": 120, 
+            "type": {
+                "href": "/mgmt/types/default/dmTimeInterval"
+            }, 
+            "maximum": 86400, 
+            "summary": "HTTP idle timer", 
+            "/mgmt/types/default/dmTimeInterval": {
+                "type": {
+                    "cli-arg": "seconds", 
+                    "minimum": 0, 
+                    "name": "dmTimeInterval", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                }
+            }, 
+            "minimum": 1, 
+            "units": "seconds", 
+            "cli-alias": "http-timeout", 
+            "display": "HTTP Timeout", 
+            "description": "Specifies the maximum number of seconds (within the range 1 through 86400, with a default of 120) that a firewall or proxy maintains an idle HTTP connection."
+        }, 
+        {
+            "name": "HTTPPersistTimeout", 
+            "default": 180, 
+            "type": {
+                "href": "/mgmt/types/default/dmTimeInterval"
+            }, 
+            "maximum": 7200, 
+            "summary": "TCP idle timer", 
+            "/mgmt/types/default/dmTimeInterval": {
+                "type": {
+                    "cli-arg": "seconds", 
+                    "minimum": 0, 
+                    "name": "dmTimeInterval", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                }
+            }, 
+            "minimum": 0, 
+            "units": "seconds", 
+            "cli-alias": "persistent-timeout", 
+            "display": "HTTP Persistent Timeout", 
+            "description": "Specifies the maximum number of seconds (within the range 0 through 7200, with a default of 180) that a firewall or proxy maintains an idle TCP connection."
+        }, 
+        {
+            "name": "DoHostRewrite", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Enable/Disable host rewrite", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "host-rewriting", 
+            "display": "Host Rewrite", 
+            "description": "When enabled, the device will rewrite the Host: header to be the address of the back-end server. This is not what a strict proxy would do, and may not be appropriate for all topologies."
+        }, 
+        {
+            "name": "SuppressHTTPWarnings", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Enable/Disable 214 warnings", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "silence-warning", 
+            "display": "HTTP Warning Suppression", 
+            "description": "Toggle to enable or disable the generation of Transformation Applied (Warning Code: 214) messages by the HTTP service."
+        }, 
+        {
+            "name": "HTTPCompression", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Enable/Disable GZIP compression", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "compression", 
+            "display": "HTTP Compression", 
+            "description": "Toggle to enable or disable the GZIP compression function."
+        }, 
+        {
+            "name": "HTTPIncludeResponseTypeEncoding", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Include the character set encoding in the HTTP content-type header", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "include-response-type-encoding", 
+            "display": "HTTP Include charset in response-type", 
+            "description": "Toggle to enable or disable including the character set encoding in the HTTP content-type header produced. For example, when sending a UTF-8 encoded XML document: If this property is disabled, 'content-type=text/xml' will be sent. If this property is enabled, 'content-type=text/xml; charset=UTF-8' will be sent."
+        }, 
+        {
+            "name": "AlwaysShowErrors", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Provide full error reports even when inline with other documents.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "always-show-errors", 
+            "display": "Always provide full errors", 
+            "description": "If set, HTTP responses may be generated with errors appended to partially generated documents. If not set error responses will only be sent to the browser if no other output has been created."
+        }, 
+        {
+            "name": "DisallowGet", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Do not allow clients to do GET and HEAD", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "disallow-get", 
+            "display": "Disallow GET (and HEAD)", 
+            "description": "If set, only methods with incoming data (such as POST) are allowed."
+        }, 
+        {
+            "name": "DisallowEmptyResponse", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Require all responses to have bodies", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "disallow-empty-reply", 
+            "display": "Don't allow empty response bodies", 
+            "description": "If set, only responses with message bodies are allowed (that is, not 304 and so forth)."
+        }, 
+        {
+            "name": "HTTPPersistentConnections", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Enable/Disable HTTP persistent connections", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "persistent-connections", 
+            "display": "HTTP Persistent Connections", 
+            "description": "Toggle to enable or disable HTTP persistent connections."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "HTTPClientIPLabel", 
+            "default": "X-Client-IP", 
+            "cli-alias": "client-address", 
+            "summary": "HTTP header label containing client IP address", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "HTTP Client IP Label", 
+            "description": "Retain the default value (X-Client-IP) or provide an other value (for example, X-Forwarded-For)."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "HTTPLogCorIDLabel", 
+            "default": "X-Global-Transaction-ID", 
+            "cli-alias": "http-global-tranID-label", 
+            "summary": "HTTP header label containing global transaction ID", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "HTTP Global Transaction ID Label", 
+            "description": "Enter the name of an HTTP Header to read to determine the global transaction ID for chained services. This value defaults to X-Global-Transaction-ID."
+        }, 
+        {
+            "description": "Specify the host name or IP address of the HTTP proxy to use when the remote server can be accessed only through another HTTP proxy.", 
+            "type": {
+                "href": "/mgmt/types/default/dmHostname"
+            }, 
+            "summary": "Host name or IP address", 
+            "/mgmt/types/default/dmHostname": {
+                "type": {
+                    "cli-arg": "dotted-ip or hostname", 
+                    "name": "dmHostname", 
+                    "format": "(a.b.c.d or hostname)"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostname"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostname"
+                    }
+                }
+            }, 
+            "cli-alias": "httpproxy-address", 
+            "display": "Proxy Host", 
+            "name": "HTTPProxyHost"
+        }, 
+        {
+            "name": "HTTPProxyPort", 
+            "default": 800, 
+            "/mgmt/types/default/dmIPPort": {
+                "type": {
+                    "cli-arg": "ip-port", 
+                    "minimum": 0, 
+                    "name": "dmIPPort", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                }
+            }, 
+            "maximum": "0xFFFF", 
+            "summary": "Port number", 
+            "minimum": 1, 
+            "type": {
+                "href": "/mgmt/types/default/dmIPPort"
+            }, 
+            "cli-alias": "httpproxy-port", 
+            "display": "Proxy Port", 
+            "description": "Specify the port number on the HTTP proxy server."
+        }, 
+        {
+            "name": "HTTPVersion", 
+            "type": {
+                "href": "/mgmt/types/default/dmHTTPClientServerVersion"
+            }, 
+            "summary": "HTTP version", 
+            "cli-alias": "version", 
+            "display": "HTTP Version", 
+            "/mgmt/types/default/dmHTTPClientServerVersion": {
+                "type": {
+                    "name": "dmHTTPClientServerVersion", 
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Select the HTTP version to use on the client-side connection. The default is HTTP 1.1.", 
+                                "default": "HTTP/1.1", 
+                                "summary": "Client-side HTTP version", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmHTTPVersion"
+                                }, 
+                                "display": "HTTP Version to Client", 
+                                "name": "Front"
+                            }, 
+                            {
+                                "description": "Select the HTTP version to use on the server-side connection. The default is HTTP 1.1.", 
+                                "default": "HTTP/1.1", 
+                                "summary": "Server-side HTTP version", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmHTTPVersion"
+                                }, 
+                                "display": "HTTP Version to Server", 
+                                "name": "Back"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHTTPClientServerVersion"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmHTTPClientServerVersion"
+                    }
+                }
+            }
+        }, 
+        {
+            "name": "DoChunkedUpload", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Enabled/Disable HTTP/1.1 Chunked Request Bodies", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "chunked-uploads", 
+            "display": "Allow Chunked Uploads", 
+            "description": "Use the radio buttons to enable (on) or disable (off) the ability to send Content-Type Chunked Encoded documents to the back end server. When the device employs the HTTP/1.1 protocol, the body of the document can be delimited by either Content-Length or chunked encodings. While all servers will understand how to interpret Content-Length, many applications will fail to understand Chunked encoding. For this reason, Content-Length is the standard method used. However doing so interferes with the ability of the device to fully stream. To stream full documents towards the back end server, this property should be turned on. However, the back end server must be RFC 2616 compatible, because this feature cannot be renegotiated at run time, unlike all other HTTP/1.1 features which can be negotiated down at runtime if necessary. This property can also be enabled by configuring a User Agent to enable it on a per-URL basis."
+        }, 
+        {
+            "/mgmt/types/default/dmHeaderInjection": {
+                "type": {
+                    "name": "dmHeaderInjection", 
+                    "properties": {
+                        "property": [
+                            {
+                                "summary": "Direction of the message", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmHTTPHeaderLocationType"
+                                }, 
+                                "display": "Direction", 
+                                "name": "Direction", 
+                                "description": "Select the direction of the message."
+                            }, 
+                            {
+                                "summary": "Name of the injected header", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Header Name", 
+                                "name": "HeaderTag", 
+                                "description": "Enter the name of the header to inject. Even though the headers are not defined in the original request, the device provides the specified headers to the backend server."
+                            }, 
+                            {
+                                "description": "Enter the value for the header tag.", 
+                                "required": "true", 
+                                "summary": "Value for the injected header", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Header Value", 
+                                "name": "HeaderTagValue"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHeaderInjection"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmHeaderInjection"
+                    }
+                }
+            }, 
+            "name": "HeaderInjection", 
+            "type": {
+                "href": "/mgmt/types/default/dmHeaderInjection"
+            }, 
+            "array": "true", 
+            "cli-alias": "inject", 
+            "display": "HTTP Header Injection"
+        }, 
+        {
+            "description": "HTTP Headers can be suppressed (removed) from the message flow using this property. For example, the Via: header, which contains the name of the DataPower service handling the message, may be suppressed from messages sent by the DataPower device back to the client.", 
+            "type": {
+                "href": "/mgmt/types/default/dmHeaderSuppression"
+            }, 
+            "/mgmt/types/default/dmHeaderSuppression": {
+                "type": {
+                    "name": "dmHeaderSuppression", 
+                    "properties": {
+                        "property": [
+                            {
+                                "summary": "Direction of the message", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmHTTPHeaderLocationType"
+                                }, 
+                                "display": "Direction", 
+                                "name": "Direction", 
+                                "description": "Select the direction of the message."
+                            }, 
+                            {
+                                "summary": "Name of the suppressed header", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Header Tag", 
+                                "name": "HeaderTag", 
+                                "description": "Enter the name of the header to suppress. When these headers are defined in the original request, the device removes the specified headers before forwarding the request to the backend server."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHeaderSuppression"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmHeaderSuppression"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "suppress", 
+            "display": "HTTP Header Suppression", 
+            "name": "HeaderSuppression"
+        }, 
+        {
+            "description": "Stylesheets used in Processing Policies can take stylesheet parameters. These parameters can be passed in by this object. More than one parameter can be defined.", 
+            "type": {
+                "href": "/mgmt/types/default/dmStylesheetParameter"
+            }, 
+            "display": "Stylesheet Parameter", 
+            "/mgmt/types/default/dmStylesheetParameter": {
+                "type": {
+                    "name": "dmStylesheetParameter", 
+                    "properties": {
+                        "property": [
+                            {
+                                "summary": "Name of stylesheet parameter", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Parameter Name", 
+                                "name": "ParameterName", 
+                                "description": "&lt;p>Specify the name for the stylesheet parameter. The following list identifies common stylesheet parameters:&lt;/p>&lt;ul>&lt;li>decrypt-key: For decryption operations, the name of the Key object to be used.&lt;/li>&lt;li>keypair-key: For signing operations, the name of the Key object to be used.&lt;/li>&lt;li>keypair-cert: For signing operations, the name of the Certificate object to be used.&lt;/li>&lt;li>recipient: For encryption operations, the name of the Certificate object for the intended recipient.&lt;/li>&lt;li>valcred: For authentication, the name of the Validation Credentials object to be used.&lt;/li>&lt;/ul>"
+                            }, 
+                            {
+                                "description": "Specify the value for the parameter. Typically, the value is the name of a configuration object.", 
+                                "required": "true", 
+                                "summary": "Value for stylesheet parameter", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Parameter Value", 
+                                "name": "ParameterValue"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmStylesheetParameter"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmStylesheetParameter"
+                    }
+                }
+            }, 
+            "cli-alias": "parameter", 
+            "array": "true", 
+            "name": "StylesheetParameters"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "If a stylesheet parameter is defined without a namespace (or without explicitly specifying the null namespace), then this is the namespace into which the parameter will be assigned.", 
+            "default": "http://www.datapower.com/param/config", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "cli-alias": "default-param-namespace", 
+            "display": "Default parameter namespace", 
+            "name": "DefaultParamNamespace"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "The namespace in which to put all parameters that are specified in the URL query string.", 
+            "default": "http://www.datapower.com/param/query", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "cli-alias": "query-param-namespace", 
+            "display": "Query parameter namespace", 
+            "name": "QueryParamNamespace"
+        }, 
+        {
+            "name": "ForcePolicyExec", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Bypasses the one way exchange pattern", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "force-policy-exec", 
+            "display": "Process Messages Whose Body Is Empty", 
+            "description": "&lt;p>Some message patterns may include bodyless request and response messages. This is common with RESTful web services where messages may or may not include a body but still requires the processing policy to run. To enable this capability for services whose request and response type is XML (or marked as non-XML i.e. JSON), set this option to 'on'. By doing so, the processing policy rules will always be executed.&lt;/p>"
+        }, 
+        {
+            "description": "Count Monitors watch for defined messaging events and increment counters each time the event occurs. When a certain threshold is reached, the monitor can either post a notification to a log or block service for a configured amount of time. Select a Count Monitor from the list to activate that monitor for this firewall. Click the + button to create a new Count Monitor.", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/CountMonitor"
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "monitor-count", 
+            "display": "Count Monitors", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "CountMonitors"
+        }, 
+        {
+            "description": "Duration Monitors watch for events meeting or exceeding a configured duration. When a duration is met or exceeded, the monitor can either post a notification to a log or block service for a configured amount of time. Select a Duration Monitor from the list to activate that monitor for this firewall. Click the + button to create a new Duration Monitor.", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/DurationMonitor"
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "monitor-duration", 
+            "display": "Duration Monitors", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "DurationMonitors"
+        }, 
+        {
+            "name": "MonitorProcessingPolicy", 
+            "default": "terminate-at-first-throttle", 
+            "type": {
+                "href": "/mgmt/types/default/dmMonitorProcessingPolicy"
+            }, 
+            "summary": "Monitors evaluation method", 
+            "/mgmt/types/default/dmMonitorProcessingPolicy": {
+                "type": {
+                    "summary": "Monitors Processing Policy", 
+                    "display": "Monitors Processing Policy", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Terminate at First Throttle", 
+                                "name": "terminate-at-first-throttle", 
+                                "description": "Monitors execute in the order in which they are listed. After any monitor either shapes (buffers to delay) or rejects a message, no further monitors will execute. If there are six monitors and the second monitor executes and rejects the message, the remaining monitors (three to six) do not execute."
+                            }, 
+                            {
+                                "display": "Terminate at First Match", 
+                                "name": "terminate-at-first-match", 
+                                "description": "Monitors execute in the order in which they are listed. After any monitor matches a message and takes any action at all, no further monitors will execute. If there are six monitors and the second monitor executes and logs the message, the remaining monitors (three to six) do not execute."
+                            }
+                        ]
+                    }, 
+                    "name": "dmMonitorProcessingPolicy"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmMonitorProcessingPolicy"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmMonitorProcessingPolicy"
+                    }
+                }
+            }, 
+            "cli-alias": "monitor-processing-policy", 
+            "display": "Monitors evaluation method", 
+            "description": "Select the way that the system behaves when more than one monitor is attached to a service."
+        }, 
+        {
+            "name": "DebugMode", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmDebugMode"
+            }, 
+            "summary": "Controls transaction diagnostic mode", 
+            "cli-alias": "debug-mode", 
+            "display": "Probe setting", 
+            "/mgmt/types/default/dmDebugMode": {
+                "type": {
+                    "name": "dmDebugMode", 
+                    "summary": "Controls for Multistep Probe", 
+                    "display": "Multistep Probe", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Enables the probe to contain a specified number of transactions", 
+                                "display": "On", 
+                                "name": "on", 
+                                "description": "Enables the probe to contain the number of transactions that is defined by the debug history."
+                            }, 
+                            {
+                                "summary": "Disables the probe", 
+                                "display": "Off", 
+                                "name": "off", 
+                                "description": "Disables the probe."
+                            }, 
+                            {
+                                "summary": "Enables the probe to contain 250 transactions", 
+                                "display": "Unbounded", 
+                                "name": "unbounded", 
+                                "description": "Enables the probe to contain 250 transactions. This property is equivalent to specifying a debug history value of 250 transactions."
+                            }
+                        ]
+                    }, 
+                    "description": "Select the behavior of the probe."
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmDebugMode"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmDebugMode"
+                    }
+                }
+            }, 
+            "description": "&lt;p>Select the diagnostic mode for processing policies. When enabled, you can view details about the state of variables and contexts for a captured transaction in the probe. The default value is &lt;tt>off&lt;/tt> .&lt;/p>&lt;p>Transaction diagnostic mode is not intended for use in a production environment. Transaction diagnostic mode consumes significant resources that can slow down transaction processing.&lt;/p>"
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "DebugHistory", 
+            "default": 25, 
+            "required-when": {
+                "condition": {
+                    "property-name": "DebugMode", 
+                    "evaluation": "property-equals", 
+                    "value": "on"
+                }
+            }, 
+            "maximum": 250, 
+            "summary": "Set the number of records for transaction diagnostic mode in the probe", 
+            "minimum": 10, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "debug-history", 
+            "display": "Transaction History", 
+            "description": "Set the number of records for transaction diagnostic mode in the probe. Enter a value in the range 10 - 250. The default value is 25."
+        }, 
+        {
+            "name": "DebugTrigger", 
+            "type": {
+                "href": "/mgmt/types/default/dmMSDebugTriggerType"
+            }, 
+            "/mgmt/types/default/dmMSDebugTriggerType": {
+                "type": {
+                    "properties": {
+                        "property": [
+                            {
+                                "summary": "PCRE to match client IP addresses", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmPCRE"
+                                }, 
+                                "display": "Client-IP Match", 
+                                "name": "ClientIP", 
+                                "description": "Specify a PCRE to match against client IP addresses. Requests from clients with matching IP addresses will trigger the probe. To create a match for all IP addresses, specify .* instead of * as the PCRE."
+                            }, 
+                            {
+                                "summary": "PCRE to match inbound URL requests", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmPCRE"
+                                }, 
+                                "display": "Inbound URL Match", 
+                                "name": "InURLMatch", 
+                                "description": "Specify a PCRE to match against the inbound URLs. Requests from clients with matching URLs will trigger the probe. To create a match for all URLs, specify .* instead of * as the PCRE."
+                            }, 
+                            {
+                                "summary": "PCRE to match outbound URL responses", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmPCRE"
+                                }, 
+                                "display": "Outbound URL Match", 
+                                "name": "OutURLMatch", 
+                                "description": "Specify a PCRE to match against the outbound URLs. Responses from servers with matching URLs will trigger the probe. To create a match for all URLs, specify .* instead of * as the PCRE."
+                            }, 
+                            {
+                                "summary": "Processing rules direction or type to match", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmProcessingType"
+                                }, 
+                                "display": "Processing Type", 
+                                "name": "RuleType", 
+                                "description": "Select the rule direction or type that will trigger the probe."
+                            }, 
+                            {
+                                "summary": "PCRE to match names of processing rules", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmPCRE"
+                                }, 
+                                "display": "Processing Rule Match", 
+                                "name": "RuleMatch", 
+                                "description": "Specify a PCRE to match against names of processing rules. Rules with matching names will trigger the probe. To create a match for all names, specify .* instead of * as the PCRE."
+                            }, 
+                            {
+                                "summary": "XPath expression to match element in message", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmXPathExpr"
+                                }, 
+                                "display": "XPath Expression Match", 
+                                "name": "XPath", 
+                                "description": "Specify an XPath expression of use the XPath Tool to define an XPath expression to match against messages. Messages that contain the expression will trigger the probe."
+                            }
+                        ]
+                    }, 
+                    "name": "dmMSDebugTriggerType", 
+                    "display": "Debug Triggers"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmMSDebugTriggerType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmMSDebugTriggerType"
+                    }
+                }
+            }, 
+            "summary": "Probe Triggers", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "DebugMode", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "on"
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "debug-trigger", 
+            "display": "Probe Triggers", 
+            "description": "The probe captures transactions that meet one or more of the conditions defined by the triggers. These triggers examine the direction or type of the message flow and examine the message for an XPath expression match. When a message meets one of these conditions, the transaction is captured in diagnostics mode and becomes part of the list of transactions that can be viewed."
+        }, 
+        {
+            "/mgmt/types/default/dmFirewallType": {
+                "type": {
+                    "summary": "Type", 
+                    "display": "Type", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Static Backend", 
+                                "name": "static-backend", 
+                                "description": "The XML Firewall communicates with the server that is identified by a remote IP address and remote port. The XML Firewall can process request and response messages using the selected policy. A TLS Client Profile can be used for communication with the server. A TLS Server Profile can be selected to manage TLS communication with the client."
+                            }, 
+                            {
+                                "display": "Loopback", 
+                                "name": "loopback-proxy", 
+                                "description": "The XML Firewall processes the incoming request using the selected policy and returns the result to the client. No server is involved. A TLS Server Profile can be selected to manage TLS communication with the client."
+                            }, 
+                            {
+                                "display": "Dynamic Backend", 
+                                "name": "dynamic-backend", 
+                                "description": "The XML Firewall identifies the server by examining the request. The XML Firewall can process request and response messages using the selected policy. A TLS Client Profile can be used for communication with the server. A TLS Server Profile can be selected to manage TLS communication with the client."
+                            }
+                        ]
+                    }, 
+                    "name": "dmFirewallType"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFirewallType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFirewallType"
+                    }
+                }
+            }, 
+            "name": "Type", 
+            "default": "dynamic-backend", 
+            "type": {
+                "href": "/mgmt/types/default/dmFirewallType"
+            }, 
+            "required": "true", 
+            "summary": "Type of operation", 
+            "cli-alias": "type", 
+            "display": "Type", 
+            "description": "Specify the mode of the XML Firewall. The default is Dynamic Backend."
+        }, 
+        {
+            "name": "XMLManager", 
+            "default": "default", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/XMLManager"
+                }
+            }, 
+            "required": "true", 
+            "summary": "XML manager", 
+            "cli-alias": "xml-manager", 
+            "display": "XML Manager", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "An XML Manager manages the compilation and caching of stylesheets, the caching of documents, and provides configuration constraints on the size and parsing depth of documents. You can enable streaming operation by configuring an XML Manager to use a Streaming Compile Option Policy. More than one firewall may use the same XML Manager. Select an existing XML Manager from the list to assign the Manager to this firewall. Click the + button to create a new XML Manager that is assigned to this firewall. A default Manager is used if you do not create one."
+        }, 
+        {
+            "description": "A URL Rewrite Policy applies the rules established in the named policy to rewrite the URL used by the client to connect to the service this firewall represents. This helps to mask the URL and location of the actual service. Select an existing URL rewrite policy from the list of available policies. Click the + button to create a new URL rewrite policy that is then assigned to this firewall.", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/URLRewritePolicy"
+                }
+            }, 
+            "summary": "URL rewrite policy", 
+            "cli-alias": "urlrewrite-policy", 
+            "display": "URL Rewrite Policy", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "URLRewritePolicy"
+        }, 
+        {
+            "name": "SSLProxy", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                }
+            }, 
+            "summary": "The TLS proxy profile is deprecated. Use a TLS client profile and a TLS server profile or TLS SNI server profile.", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "SSLConfigType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "proxy"
+                }
+            }, 
+            "cli-alias": "ssl", 
+            "display": "TLS proxy profile (deprecated)", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "Select an existing TLS proxy profile from the list to assign the TLS proxy profile to this firewall. Click the + button to create a new TLS proxy profile and assign that TLS proxy profile to the firewall. TLS Proxy profiles can be used in either client or server communications."
+        }, 
+        {
+            "name": "StylePolicy", 
+            "default": "default", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/StylePolicy"
+                }
+            }, 
+            "summary": "Assign the processing policy", 
+            "cli-alias": "stylesheet-policy", 
+            "display": "Processing Policy", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "Assign the processing policy to the service. The processing policy defines the actions to take against messages that flow through the service."
+        }, 
+        {
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "MaxMessageSize", 
+            "default": 0, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "maximum": 2097151, 
+            "summary": "The maximum allowable size in kilobytes of a message", 
+            "minimum": 0, 
+            "units": "KB", 
+            "cli-alias": "max-message-size", 
+            "display": "Maximum Message Size", 
+            "description": "&lt;p>Specifies the maximum allowable size in kilobytes of a message. Enter a value in the range 0 - 2097151. The default value is 0. A value of 0 specifies that no limit is enforced, and the message can be of unlimited size.&lt;/p>&lt;p>The maximum message size limit applies to JSON, SOAP, XML, and non-XML messages. If the message type is pass-through, no limit is enforced.&lt;/p>"
+        }, 
+        {
+            "name": "RequestType", 
+            "default": "soap", 
+            "cli-alias": "request-type", 
+            "summary": "Characterize client-originated traffic", 
+            "/mgmt/types/default/dmXMLReqRespType": {
+                "type": {
+                    "summary": "XML Firewall Request-Response Type", 
+                    "display": "XML Firewall Request-Response Type", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "SOAP", 
+                                "name": "soap", 
+                                "description": "The traffic is XML formatted in accordance with the SOAP schema standards. The service validates the message against SOAP schemas that are currently in use."
+                            }, 
+                            {
+                                "display": "XML", 
+                                "name": "xml", 
+                                "description": "The traffic is formatted in XML. The service validates the message against XML schemas that are currently in use."
+                            }, 
+                            {
+                                "display": "Pass through", 
+                                "name": "unprocessed", 
+                                "description": "The traffic is passed unaltered."
+                            }, 
+                            {
+                                "display": "Non-XML", 
+                                "name": "preprocessed", 
+                                "description": "The traffic can be any format. However, for traffic that is flat file text or binary, you must use this option. The service passes the contents of the message unaltered. Document processing will not operate directly on the message content, but actions that authenticate and authorize access, set a destination, or attach variables to the context can be performed."
+                            }, 
+                            {
+                                "display": "JSON", 
+                                "name": "json", 
+                                "description": "The traffic is formatted in JavaScript Object Notation (JSON). The service validates the message as well-formed JSON, and the message is made available both as JSON and as JSONx. Document processing can operate on the JSON message content with JSON schema validation, XQuery transformations with JSONiq Extensions, or GatewayScript, and can access the __JSONASJSONX context to process JSONx. Actions can authenticate and authorize access, set a destination, or attach variables to the context."
+                            }
+                        ]
+                    }, 
+                    "name": "dmXMLReqRespType"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmXMLReqRespType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmXMLReqRespType"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmXMLReqRespType"
+            }, 
+            "display": "Request Type", 
+            "description": "Characterizes the type of traffic that originates from the client. The default is SOAP."
+        }, 
+        {
+            "name": "ResponseType", 
+            "default": "soap", 
+            "cli-alias": "response-type", 
+            "summary": "Characterize server-originated traffic", 
+            "/mgmt/types/default/dmXMLReqRespType": {
+                "type": {
+                    "summary": "XML Firewall Request-Response Type", 
+                    "display": "XML Firewall Request-Response Type", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "SOAP", 
+                                "name": "soap", 
+                                "description": "The traffic is XML formatted in accordance with the SOAP schema standards. The service validates the message against SOAP schemas that are currently in use."
+                            }, 
+                            {
+                                "display": "XML", 
+                                "name": "xml", 
+                                "description": "The traffic is formatted in XML. The service validates the message against XML schemas that are currently in use."
+                            }, 
+                            {
+                                "display": "Pass through", 
+                                "name": "unprocessed", 
+                                "description": "The traffic is passed unaltered."
+                            }, 
+                            {
+                                "display": "Non-XML", 
+                                "name": "preprocessed", 
+                                "description": "The traffic can be any format. However, for traffic that is flat file text or binary, you must use this option. The service passes the contents of the message unaltered. Document processing will not operate directly on the message content, but actions that authenticate and authorize access, set a destination, or attach variables to the context can be performed."
+                            }, 
+                            {
+                                "display": "JSON", 
+                                "name": "json", 
+                                "description": "The traffic is formatted in JavaScript Object Notation (JSON). The service validates the message as well-formed JSON, and the message is made available both as JSON and as JSONx. Document processing can operate on the JSON message content with JSON schema validation, XQuery transformations with JSONiq Extensions, or GatewayScript, and can access the __JSONASJSONX context to process JSONx. Actions can authenticate and authorize access, set a destination, or attach variables to the context."
+                            }
+                        ]
+                    }, 
+                    "name": "dmXMLReqRespType"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmXMLReqRespType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmXMLReqRespType"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmXMLReqRespType"
+            }, 
+            "display": "Response Type", 
+            "description": "Characterizes the type of traffic that originates from the server. The default is SOAP."
+        }, 
+        {
+            "description": "Specifies an optional Firewall Credentials list. A Firewall Credentials list specifies which keys and certificates are available to support firewall processing. In the absence of an identified Firewall Credentials list, all locally-stored key and certificates are available to the firewall.", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/CryptoFWCred"
+                }
+            }, 
+            "summary": "Firewall credentials list", 
+            "cli-alias": "fwcred", 
+            "display": "Firewall Credentials", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "FWCred"
+        }, 
+        {
+            "description": "Specifies a list of Web Service Monitors. Web Service Monitors target Web Service endpoints. Use the Web Services wizard on the Control Panel to supply a WSDL and configure a Monitor for an endpoint. The Monitor collects statistics, establishes count and duration monitors and can take action when thresholds are met or exceeded. A Monitor must be selected here to be activated. Click + to create a new Web Services Monitor. Note that this Monitor is not the Service Level Monitor (SLM) used by a Multi-Protocol Gateway or Web Service Proxy.", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/WebServiceMonitor"
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "monitor-service", 
+            "display": "Service Monitors", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "ServiceMonitors"
+        }, 
+        {
+            "/mgmt/types/default/dmAttachmentMode": {
+                "type": {
+                    "summary": "Attachment Processing Mode", 
+                    "display": "Attachment Processing Mode", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Strip attachments before processing", 
+                                "display": "Strip", 
+                                "name": "strip"
+                            }, 
+                            {
+                                "summary": "Reject messages with attachments", 
+                                "display": "Reject", 
+                                "name": "reject"
+                            }, 
+                            {
+                                "summary": "Allow attachments and process intact", 
+                                "display": "Allow", 
+                                "name": "allow"
+                            }, 
+                            {
+                                "summary": "Allow attachements, but limit processing", 
+                                "display": "Streaming", 
+                                "name": "streaming", 
+                                "description": "Allows messages attachments in streaming mode, but provides limited processing. Client requests in the form of a SOAP message package (that is, a SOAP message transmitted together with accompanying attachments) are supported. Processing can be applied to each attachment individually. The system will not build a manifest of all attachments and attachments must be accessed and processed in the order in which they appear in the document."
+                            }, 
+                            {
+                                "summary": "Allow attachments, but unprocessed", 
+                                "display": "Unprocessed", 
+                                "name": "unprocessed", 
+                                "description": "Allows messages with attachements but but does not process the attachments. This option permits forwarding of large attachments. root part of the message (typically containing a SOAP message) is subject to filter or transform actions. Accompanying documents can be passed intact to the server. No processing on parts other than the root part is possible."
+                            }
+                        ]
+                    }, 
+                    "name": "dmAttachmentMode"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAttachmentMode"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAttachmentMode"
+                    }
+                }
+            }, 
+            "name": "RequestAttachments", 
+            "default": "strip", 
+            "type": {
+                "href": "/mgmt/types/default/dmAttachmentMode"
+            }, 
+            "summary": "Attachment processing mode for client requests", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "RequestType", 
+                    "evaluation": "property-equals", 
+                    "value": "unprocessed"
+                }
+            }, 
+            "cli-alias": "request-attachments", 
+            "display": "Request attachment processing mode", 
+            "description": "Select how to treat client requests with attachments. The default is Strip."
+        }, 
+        {
+            "/mgmt/types/default/dmAttachmentMode": {
+                "type": {
+                    "summary": "Attachment Processing Mode", 
+                    "display": "Attachment Processing Mode", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Strip attachments before processing", 
+                                "display": "Strip", 
+                                "name": "strip"
+                            }, 
+                            {
+                                "summary": "Reject messages with attachments", 
+                                "display": "Reject", 
+                                "name": "reject"
+                            }, 
+                            {
+                                "summary": "Allow attachments and process intact", 
+                                "display": "Allow", 
+                                "name": "allow"
+                            }, 
+                            {
+                                "summary": "Allow attachements, but limit processing", 
+                                "display": "Streaming", 
+                                "name": "streaming", 
+                                "description": "Allows messages attachments in streaming mode, but provides limited processing. Client requests in the form of a SOAP message package (that is, a SOAP message transmitted together with accompanying attachments) are supported. Processing can be applied to each attachment individually. The system will not build a manifest of all attachments and attachments must be accessed and processed in the order in which they appear in the document."
+                            }, 
+                            {
+                                "summary": "Allow attachments, but unprocessed", 
+                                "display": "Unprocessed", 
+                                "name": "unprocessed", 
+                                "description": "Allows messages with attachements but but does not process the attachments. This option permits forwarding of large attachments. root part of the message (typically containing a SOAP message) is subject to filter or transform actions. Accompanying documents can be passed intact to the server. No processing on parts other than the root part is possible."
+                            }
+                        ]
+                    }, 
+                    "name": "dmAttachmentMode"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAttachmentMode"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAttachmentMode"
+                    }
+                }
+            }, 
+            "name": "ResponseAttachments", 
+            "default": "strip", 
+            "type": {
+                "href": "/mgmt/types/default/dmAttachmentMode"
+            }, 
+            "summary": "Attachment processing mode for server responses", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "ResponseType", 
+                    "evaluation": "property-equals", 
+                    "value": "unprocessed"
+                }
+            }, 
+            "cli-alias": "response-attachments", 
+            "display": "Response attachment processing mode", 
+            "description": "Select how to treat server responses with attachments. The default is Strip."
+        }, 
+        {
+            "name": "RootPartNotFirstAction", 
+            "default": "process-in-order", 
+            "cli-alias": "root-part-not-first-action", 
+            "/mgmt/types/default/dmRootPartNotFirstAction": {
+                "type": {
+                    "summary": "Action to take when MIME message root part is not first", 
+                    "display": "Root Part Not First Action", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Process the attachments and root part in the order they appear in the original message. All parts are still processed in streaming mode even though only attachments after the root will be streamed from the network.", 
+                                "display": "Process In Order", 
+                                "name": "process-in-order"
+                            }, 
+                            {
+                                "summary": "Buffer attachments before the root into memory. Then process the root part, buffered attachments, and subsequent attachments.", 
+                                "display": "Buffer To Root", 
+                                "name": "buffer"
+                            }, 
+                            {
+                                "summary": "Abort the transaction and return an error", 
+                                "display": "Abort", 
+                                "name": "abort"
+                            }
+                        ]
+                    }, 
+                    "name": "dmRootPartNotFirstAction"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmRootPartNotFirstAction"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmRootPartNotFirstAction"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "RequestAttachments", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "streaming"
+                        }, 
+                        {
+                            "property-name": "ResponseAttachments", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "streaming"
+                        }
+                    ]
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmRootPartNotFirstAction"
+            }, 
+            "display": "Action when required root part is not first", 
+            "description": "When streaming MIME messages, the action to take when the root part is not the first part of the message. If the root part must be first (for example to do BSP conformance checking) and the action is set to \"process in order\" the DP device will buffer attachments up to the root."
+        }, 
+        {
+            "/mgmt/types/default/dmAttachmentFormat": {
+                "type": {
+                    "summary": "XML Firewall Attachment Processing Format", 
+                    "display": "XML Firewall Attachment Processing Format", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Deduce attachment format (MIME or DIME) from content", 
+                                "display": "Dynamic", 
+                                "name": "dynamic"
+                            }, 
+                            {
+                                "summary": "MIME encapsulated document", 
+                                "display": "MIME", 
+                                "name": "mime"
+                            }, 
+                            {
+                                "summary": "DIME encapsulated document", 
+                                "display": "DIME", 
+                                "name": "dime"
+                            }
+                        ]
+                    }, 
+                    "name": "dmAttachmentFormat"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAttachmentFormat"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAttachmentFormat"
+                    }
+                }
+            }, 
+            "name": "FrontAttachmentFormat", 
+            "default": "dynamic", 
+            "type": {
+                "href": "/mgmt/types/default/dmAttachmentFormat"
+            }, 
+            "summary": "Attachment processing format for client requests", 
+            "cli-alias": "front-attachment-format", 
+            "display": "Front attachment processing format", 
+            "description": "Select how to interpret client requests with attachments. If an attachment arrives that is not of the type chosen, the attachment will be rejected."
+        }, 
+        {
+            "/mgmt/types/default/dmAttachmentFormat": {
+                "type": {
+                    "summary": "XML Firewall Attachment Processing Format", 
+                    "display": "XML Firewall Attachment Processing Format", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Deduce attachment format (MIME or DIME) from content", 
+                                "display": "Dynamic", 
+                                "name": "dynamic"
+                            }, 
+                            {
+                                "summary": "MIME encapsulated document", 
+                                "display": "MIME", 
+                                "name": "mime"
+                            }, 
+                            {
+                                "summary": "DIME encapsulated document", 
+                                "display": "DIME", 
+                                "name": "dime"
+                            }
+                        ]
+                    }, 
+                    "name": "dmAttachmentFormat"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAttachmentFormat"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAttachmentFormat"
+                    }
+                }
+            }, 
+            "name": "BackAttachmentFormat", 
+            "default": "dynamic", 
+            "type": {
+                "href": "/mgmt/types/default/dmAttachmentFormat"
+            }, 
+            "summary": "Output attachment processing format", 
+            "cli-alias": "back-attachment-format", 
+            "display": "Back attachment processing format", 
+            "description": "Select the attachment output format to backend servers. If an attachment arrives that is not of the type chosen, the attachment will be rejected."
+        }, 
+        {
+            "name": "MIMEHeaders", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Processing of MIME Package Headers", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "mime-headers", 
+            "display": "MIME Header Processing", 
+            "description": "&lt;p>The body of a message (that is, the payload, independent of any protocol headers) can sometimes contain MIME headers before any preamble and before the first MIME boundary contained in the body of the message. These MIME headers can contain important information not available in the protocol headers, such as the string identifying the MIME boundary. If this property is set to on, then these MIME headers will be processed by the Firewall.&lt;/p>&lt;p>Note that if this is on and there are no MIME headers contained in the message, the device will continue to try and parse the message, using the protocol header information, if available.&lt;/p>&lt;p>When this is off and MIME headers are present in the body of the message, these MIME headers will be considered part of the preamble and not used to parse out the message. If the protocol headers (such as HTTP) indicate the MIME boundaries, the device can parse and process individual attachments. If such information is not available, no attachments can be parsed from the body of the message.&lt;/p>"
+        }, 
+        {
+            "name": "RewriteErrors", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to rewrite error messages to avoid providing a padding oracle.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "rewrite-errors", 
+            "display": "Rewrite Error Messages", 
+            "description": "Error messages after a decryption action can provide an attacker who is using the padding oracle attack method with enough information to determine the contents of the plaintext data. When enabled, the default, the client receives error messages without the internal information that could lead to a discovery. When disabled, the client receives the original message with this information."
+        }, 
+        {
+            "name": "DelayErrors", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to delay error messages to avoid providing a padding oracle.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "RewriteErrors", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "on"
+                }
+            }, 
+            "cli-alias": "delay-errors", 
+            "display": "Delay Error Messages", 
+            "description": "The timing difference of the error messages returned after a decryption action can provide an attacker with enough information to determine the contents of the plain-text data. When enabled, the default, the DataPower Gateway delays error messages for the defined duration. When disabled, the DataPower Gateway does not delay error messages."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "DelayErrorsDuration", 
+            "default": 1000, 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "DelayErrors", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "RewriteErrors", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }
+                    ]
+                }
+            }, 
+            "maximum": 300000, 
+            "summary": "How long to delay error messages from the start of the transaction.", 
+            "minimum": 250, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "units": "ms", 
+            "cli-alias": "delay-errors-duration", 
+            "display": "Duration to Delay Error Messages", 
+            "description": "When enabling the delay of error messages, specify the delay duration in milliseconds. If delaying messages for 3000 ms, the DataPower Gateway will not send error messages to the client until 3 seconds have elapsed since the DataPower Gateway performed decryption on the requests. Use any value of 250 - 300000. The default value is 1000."
+        }, 
+        {
+            "name": "SOAPSchemaURL", 
+            "default": "store:///schemas/soap-envelope.xsd", 
+            "type": {
+                "href": "/mgmt/types/default/dmURL"
+            }, 
+            "summary": "Specifies which W3C XML Schema will be used to validate SOAP documents", 
+            "/mgmt/types/default/dmURL": {
+                "type": {
+                    "cli-arg": "url", 
+                    "name": "dmURL"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "RequestType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "soap"
+                        }, 
+                        {
+                            "property-name": "ResponseType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "soap"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "soap-schema-url", 
+            "display": "SOAP Schema URL", 
+            "description": "When a firewall is in SOAP mode, either on the request or response side, it will validate the incoming messages against a W3C Schema that defines what a SOAP message is supposed to look like. It is possible to customize which schema is used on a per-firewall basis by changing this property; this can be used to accommodate non-standard configurations or other special cases."
+        }, 
+        {
+            "/mgmt/types/default/dmWSDLResponsePolicy": {
+                "type": {
+                    "name": "dmWSDLResponsePolicy", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Do not affect .NET requests for WSDL", 
+                                "display": "Off", 
+                                "name": "off", 
+                                "description": "Does not affect .NET requests for WSDL files. Requests and responses are not touched."
+                            }, 
+                            {
+                                "summary": "Rewrite address bindings in server response", 
+                                "display": "Intercept and Rewrite", 
+                                "name": "intercept", 
+                                "description": "Rewrites the wsdl:service/wsdl:port/soap:address (address binding in server responses) to point to the proxy."
+                            }, 
+                            {
+                                "summary": "Serve the local WSDL", 
+                                "display": "Serve Local File", 
+                                "name": "serve", 
+                                "description": "Serves the local WSDL file without forwarding the request to the server. The WSDL files resides in the local: directory."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmWSDLResponsePolicy"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmWSDLResponsePolicy"
+                    }
+                }
+            }, 
+            "name": "WSDLResponsePolicy", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmWSDLResponsePolicy"
+            }, 
+            "summary": "Policy for responding to .NET WSDL requests", 
+            "cli-alias": "wsdl-response-policy", 
+            "display": "WSDL Response Policy", 
+            "description": "Select how the firewall handles requests for .NET WSDL requests via the http://domain.com/service?wsdl convention. The default is Off."
+        }, 
+        {
+            "name": "WSDLFileLocation", 
+            "cli-alias": "wsdl-file-location", 
+            "summary": "Location of post-filter WSDL", 
+            "/mgmt/types/default/dmURL": {
+                "type": {
+                    "cli-arg": "url", 
+                    "name": "dmURL"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "WSDLResponsePolicy", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "serve"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmURL"
+            }, 
+            "display": "WSDL file location", 
+            "description": "URL of the file to return when WSDL response policy is set to serve local."
+        }, 
+        {
+            "name": "FirewallParserLimits", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Use firewall parser limits instead of XML Manager parser limits.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "firewall-parser-limits", 
+            "display": "Firewall parser limits", 
+            "description": "Use the firewall parser limits instead of the parser limits in the XML Manager for this firewall. Firewall limits override XML Manager limits."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmUInt64"
+            }, 
+            "name": "ParserLimitsBytesScanned", 
+            "default": 4194304, 
+            "required-when": {
+                "condition": {
+                    "property-name": "FirewallParserLimits", 
+                    "evaluation": "property-equals", 
+                    "value": "on"
+                }
+            }, 
+            "/mgmt/types/default/dmUInt64": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt64", 
+                    "maximum": "0xFFFFFFFFFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt64"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt64"
+                    }
+                }
+            }, 
+            "summary": "XML parser maximum bytes scanned", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "units": "bytes", 
+            "cli-alias": "bytes-scanned", 
+            "display": "XML Bytes Scanned", 
+            "description": "Defines the maximum number of bytes scanned by the XML parser. This applies to any XML document that is parsed. If any of the parser limits are set in the XML Firewall, they will override those on the XML Manager. If this value is 0, no limit is enforced."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmUInt16"
+            }, 
+            "name": "ParserLimitsElementDepth", 
+            "default": 512, 
+            "required-when": {
+                "condition": {
+                    "property-name": "FirewallParserLimits", 
+                    "evaluation": "property-equals", 
+                    "value": "on"
+                }
+            }, 
+            "summary": "XML parser maximum element depth", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "/mgmt/types/default/dmUInt16": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt16", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                }
+            }, 
+            "cli-alias": "element-depth", 
+            "display": "XML Element Depth", 
+            "description": "Defines the maximum depth of element nesting in XML parser. If any of the parser limits are set in the XML Firewall, they will override those on the XML Manager."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmUInt16"
+            }, 
+            "name": "ParserLimitsAttributeCount", 
+            "default": 128, 
+            "required-when": {
+                "condition": {
+                    "property-name": "FirewallParserLimits", 
+                    "evaluation": "property-equals", 
+                    "value": "on"
+                }
+            }, 
+            "summary": "XML parser maximum attribute count", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "/mgmt/types/default/dmUInt16": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt16", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                }
+            }, 
+            "cli-alias": "attribute-count", 
+            "display": "XML Attribute Count", 
+            "description": "Defines the maximum number of attributes of a given element. If any of the parser limits are set in the XML Firewall, they will override those on the XML Manager."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "ParserLimitsMaxNodeSize", 
+            "default": 33554432, 
+            "required-when": {
+                "condition": {
+                    "property-name": "FirewallParserLimits", 
+                    "evaluation": "property-equals", 
+                    "value": "on"
+                }
+            }, 
+            "maximum": 4294967295, 
+            "summary": "XML parser maximum node size", 
+            "minimum": 1024, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "units": "bytes", 
+            "cli-alias": "max-node-size", 
+            "display": "XML Maximum Node Size", 
+            "description": "Defines the maximum size any one node may consume. The default is 32 MB. Sizes which are powers of two result in the best performance. If any of the parser limits are set in the XML Firewall, they will override those on the XML Manager. Although you set an explicit value, the DataPower Gateway uses a value that is the rounded-down, largest power of two that is smaller than the defined value."
+        }, 
+        {
+            "name": "ParserLimitsForbidExternalReferences", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "XML parser forbid external references toggle", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "forbid-external-references", 
+            "display": "XML Forbid External References", 
+            "description": "Defines if the XML parser will abort when an input document specifies to resolve an external reference such as an external entity or external DTD definition."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "ParserLimitsMaxPrefixes", 
+            "default": 1024, 
+            "required-when": {
+                "condition": {
+                    "property-name": "FirewallParserLimits", 
+                    "evaluation": "property-equals", 
+                    "value": "on"
+                }
+            }, 
+            "summary": "XML parser maximum distinct prefixes", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "max-prefixes", 
+            "display": "XML Maximum Distinct Prefixes", 
+            "description": "Enter an integer that defines the maximum number of distinct XML namespace prefixes in a document. This limit counts multiple prefixes defined for the same namespace, but does not count multiple namespaces defined in different parts of the input document under a single prefix. Enter a value in the rage 0 - 262143. The default value is 1024. A value of 0 indicates that the limit is 1024."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "ParserLimitsMaxNamespaces", 
+            "default": 1024, 
+            "required-when": {
+                "condition": {
+                    "property-name": "FirewallParserLimits", 
+                    "evaluation": "property-equals", 
+                    "value": "on"
+                }
+            }, 
+            "summary": "XML parser maximum distinct namespaces", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "max-namespaces", 
+            "display": "XML Maximum Distinct Namespaces", 
+            "description": "Enter an integer that defines the maximum number of distinct XML namespace URIs in a document. This limit counts all XML namespaces, regardless of how many prefixes are used to declare them. Enter a value in the range 0 - 65535. The default value is 1024. A value of 0 indicates that the limit is 1024."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "ParserLimitsMaxLocalNames", 
+            "default": 60000, 
+            "required-when": {
+                "condition": {
+                    "property-name": "FirewallParserLimits", 
+                    "evaluation": "property-equals", 
+                    "value": "on"
+                }
+            }, 
+            "summary": "XML parser maximum distinct local names", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "max-local-names", 
+            "display": "XML Maximum Distinct Local Names", 
+            "description": "Enter an integer that defines the maximum number of distinct XML local names in a document. This limit counts all local names, independent of the namespaces they are associated with. Enter a value in the range 0 - 1048575. The default value is 60000. A value of 0 indicates that the limit is 60000."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "ParserLimitsAttachmentByteCount", 
+            "default": 2000000000, 
+            "required-when": {
+                "condition": {
+                    "property-name": "FirewallParserLimits", 
+                    "evaluation": "property-equals", 
+                    "value": "on"
+                }
+            }, 
+            "summary": "Maximum byte count per attachment", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "units": "bytes", 
+            "cli-alias": "attachment-byte-count", 
+            "display": "Attachment Byte Count Limit", 
+            "description": "Defines the maximum number of bytes allowed in any single attachment. Attachments that exceed this size will result in a failure of the whole transaction. If this value is 0, no limit is enforced."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "ParserLimitsAttachmentPackageByteCount", 
+            "default": 0, 
+            "required-when": {
+                "condition": {
+                    "property-name": "FirewallParserLimits", 
+                    "evaluation": "property-equals", 
+                    "value": "on"
+                }
+            }, 
+            "summary": "Maximum cumulative byte count for all parts", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "units": "bytes", 
+            "cli-alias": "attachment-package-byte-count", 
+            "display": "Attachment Package Byte Count Limit", 
+            "description": "Defines the maximum number of bytes allowed for all parts of an attachment package, including the root part. Attachment packages that exceed this size will result in a failure of the transaction. If this value is 0, no limit is enforced."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmExternalRefHandling"
+            }, 
+            "name": "ParserLimitsExternalReferences", 
+            "default": "forbid", 
+            "required-when": {
+                "condition": {
+                    "property-name": "FirewallParserLimits", 
+                    "evaluation": "property-equals", 
+                    "value": "on"
+                }
+            }, 
+            "summary": "Special handling for external references in XML", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "/mgmt/types/default/dmExternalRefHandling": {
+                "type": {
+                    "name": "dmExternalRefHandling", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Forbid", 
+                                "name": "forbid", 
+                                "description": "The parser forbids external references. An external reference causes the XML parser to stop when the document contains external references. This setting is the default value."
+                            }, 
+                            {
+                                "display": "Ignore", 
+                                "name": "ignore", 
+                                "description": "The parser accesses and resolves external references, but replaces each for further processing with an empty string. This setting can be a security risk."
+                            }, 
+                            {
+                                "display": "Allow", 
+                                "name": "allow", 
+                                "description": "The parser allows and resolves external references. This setting is a security risk."
+                            }
+                        ]
+                    }, 
+                    "display": "XML External Reference Handling"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmExternalRefHandling"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmExternalRefHandling"
+                    }
+                }
+            }, 
+            "cli-alias": "external-references", 
+            "display": "XML External Reference Handling", 
+            "description": "Select the special handling for input documents that contain external references, such as an external entity or external DTD definition."
+        }, 
+        {
+            "name": "CredentialCharset", 
+            "default": "protocol", 
+            "cli-alias": "credential-charset", 
+            "summary": "Character encoding of the original basic authentication values", 
+            "/mgmt/types/default/dmCredentialCharset": {
+                "type": {
+                    "summary": "Credential Character Set", 
+                    "display": "Credential Character Set", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Protocol defined character set", 
+                                "display": "Protocol", 
+                                "name": "protocol"
+                            }, 
+                            {
+                                "summary": "US-ASCII (7 bit)", 
+                                "display": "ASCII", 
+                                "name": "ascii"
+                            }, 
+                            {
+                                "summary": "UTF-8", 
+                                "display": "UTF-8", 
+                                "name": "utf8"
+                            }, 
+                            {
+                                "summary": "Big5 CP950 Chinese (Traditional)", 
+                                "display": "Big5", 
+                                "name": "big5"
+                            }, 
+                            {
+                                "summary": "Windows Central European and Eastern European", 
+                                "display": "Cp1250", 
+                                "name": "cp1250"
+                            }, 
+                            {
+                                "summary": "Windows Cyrillic", 
+                                "display": "Cp1251", 
+                                "name": "cp1251"
+                            }, 
+                            {
+                                "summary": "Windows Latin-1", 
+                                "display": "Cp1252", 
+                                "name": "cp1252"
+                            }, 
+                            {
+                                "summary": "Windows Greek", 
+                                "display": "Cp1253", 
+                                "name": "cp1253"
+                            }, 
+                            {
+                                "summary": "Windows Turkish", 
+                                "display": "Cp1254", 
+                                "name": "cp1254"
+                            }, 
+                            {
+                                "summary": "Windows Hebrew", 
+                                "display": "Cp1255", 
+                                "name": "cp1255"
+                            }, 
+                            {
+                                "summary": "Windows Arabic", 
+                                "display": "Cp1256", 
+                                "name": "cp1256"
+                            }, 
+                            {
+                                "summary": "Windows Baltic, UDB/Latvia, Lithuanian", 
+                                "display": "Cp1257", 
+                                "name": "cp1257"
+                            }, 
+                            {
+                                "summary": "Windows Vietnamese", 
+                                "display": "Cp1258", 
+                                "name": "cp1258"
+                            }, 
+                            {
+                                "summary": "EUC-JP Japanese", 
+                                "display": "EUC-JP", 
+                                "name": "euc_jp"
+                            }, 
+                            {
+                                "summary": "EUC-KR Korean", 
+                                "display": "EUC-KR", 
+                                "name": "euc_kr"
+                            }, 
+                            {
+                                "summary": "GB18030 Chinese", 
+                                "display": "GB18030", 
+                                "name": "gb18030"
+                            }, 
+                            {
+                                "summary": "GB2312 Chinese (Simplified)", 
+                                "display": "GB2312", 
+                                "name": "gb2312"
+                            }, 
+                            {
+                                "summary": "ISO-2022-JP Japanese", 
+                                "display": "ISO-2022-JP", 
+                                "name": "iso2022_jp"
+                            }, 
+                            {
+                                "summary": "ISO-2022-KR Korean", 
+                                "display": "ISO-2022-KR", 
+                                "name": "iso2022_kr"
+                            }, 
+                            {
+                                "summary": "ISO-8859-1 Latin 1 including Albanian, Catalan, Danish, Dutch, English, Finnish, French, German, Italian, Norwegian, Portuguese, Spanish, and Swedish", 
+                                "display": "ISO-8859-1", 
+                                "name": "iso8859_1"
+                            }, 
+                            {
+                                "summary": "ISO-8859-2 including Bosnian, Croatian, Czech, Hungarian, Polish, Romanian, Slovakian, and Slovenian", 
+                                "display": "ISO-8859-2", 
+                                "name": "iso8859_2"
+                            }, 
+                            {
+                                "summary": "ISO-8859-4 including Estonian, Greenlandic, Latvian, Lithuanian, and Sami", 
+                                "display": "ISO-8859-4", 
+                                "name": "iso8859_4"
+                            }, 
+                            {
+                                "summary": "ISO-8859-5 including Belarusian, Bulgarian, Kazakh, Macedonian, Russian, Serbian, Turkish, and Ukrainian", 
+                                "display": "ISO-8859-5", 
+                                "name": "iso8859_5"
+                            }, 
+                            {
+                                "summary": "ISO-8859-6 Arabic", 
+                                "display": "ISO-8859-6", 
+                                "name": "iso8859_6"
+                            }, 
+                            {
+                                "summary": "ISO-8859-7 Greek", 
+                                "display": "ISO-8859-7", 
+                                "name": "iso8859_7"
+                            }, 
+                            {
+                                "summary": "ISO-8859-8 Hebrew", 
+                                "display": "ISO-8859-8", 
+                                "name": "iso8859_8"
+                            }, 
+                            {
+                                "summary": "ISO-8859-9 UDB/Turkish", 
+                                "display": "ISO-8859-9", 
+                                "name": "iso8859_9"
+                            }, 
+                            {
+                                "summary": "ISO-8859-15 Latin9", 
+                                "display": "ISO-8859-15", 
+                                "name": "iso8859_15"
+                            }, 
+                            {
+                                "summary": "Shift-JIS Japanese", 
+                                "display": "SJIS", 
+                                "name": "sjis"
+                            }, 
+                            {
+                                "summary": "TIS620 Thai", 
+                                "display": "TIS620", 
+                                "name": "tis620"
+                            }, 
+                            {
+                                "summary": "UNICODE Little-Endian", 
+                                "display": "UTF16-LE", 
+                                "name": "unicode_le"
+                            }
+                        ]
+                    }, 
+                    "name": "dmCredentialCharset"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmCredentialCharset"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmCredentialCharset"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmCredentialCharset"
+            }, 
+            "display": "Credential Character Set", 
+            "description": "Specifies the character encoding of the original basic authentication values. Basic authentication credentials are combined and base64 encoded in the authorization header of the request. The DataPower Gateway transcodes the contents of the authorization header to UTF-8. Defaults to Protocol which is ISO-8859-1, Latin 1."
+        }, 
+        {
+            "/mgmt/types/default/dmSSLConfigType": {
+                "type": {
+                    "name": "dmSSLConfigType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "proxy", 
+                                "display": "Proxy Profile"
+                            }, 
+                            {
+                                "name": "server", 
+                                "display": "Server Profile"
+                            }, 
+                            {
+                                "name": "sni", 
+                                "display": "SNI Server Profile"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSLConfigType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSLConfigType"
+                    }
+                }
+            }, 
+            "name": "SSLConfigType", 
+            "default": "proxy", 
+            "cli-alias": "ssl-config-type", 
+            "summary": "Set the TLS profile type to secure connections between clients and the DataPower Gateway", 
+            "type": {
+                "href": "/mgmt/types/default/dmSSLConfigType"
+            }, 
+            "display": "TLS type", 
+            "description": "The TLS profile type to secure connections between clients and the DataPower Gateway."
+        }, 
+        {
+            "name": "SSLServer", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLServerProfile"
+                }
+            }, 
+            "summary": "Set the TLS server profile to secure connections between clients and the DataPower Gateway", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "SSLConfigType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "server"
+                }
+            }, 
+            "cli-alias": "ssl-server", 
+            "display": "TLS server profile", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "the TLS server profile to secure connections between clients and the DataPower Gateway."
+        }, 
+        {
+            "name": "SSLSNIServer", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLSNIServerProfile"
+                }
+            }, 
+            "summary": "Set the TLS SNI server profile to secure connections between clients and the DataPower Gateway", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "SSLConfigType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "sni"
+                }
+            }, 
+            "cli-alias": "ssl-sni-server", 
+            "display": "TLS SNI server profile", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The TLS SNI server profile to secure connections between clients and the DataPower Gateway."
+        }, 
+        {
+            "name": "SSLClient", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                }
+            }, 
+            "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and its targets", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "SSLConfigType", 
+                    "evaluation": "property-equals", 
+                    "value": "proxy"
+                }
+            }, 
+            "cli-alias": "ssl-client", 
+            "display": "TLS client profile", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The TLS client profile to secure connections between the DataPower Gateway and its targets."
+        }
+    ]
+}

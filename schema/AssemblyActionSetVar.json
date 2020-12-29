@@ -1,0 +1,241 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for Assembly action.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "Title", 
+            "cli-alias": "title", 
+            "summary": "The title for Assembly action.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Title"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "The correlation path specifies the part of the API definition that correlates with the assembly action. This path is exposed in the debug data by the API Gateway for use by debugging tools. For example, for an API configuration that is retrieved from API Connect and specified in an OpenAPI (Swagger 2.0) document with IBM extensions, this path is the JSON path to the assembly policy in the IBM extensions section of the document. The path can be expressed in any form that the debugging tool can correlate to the API definition.", 
+            "cli-alias": "correlation-path", 
+            "summary": "The path which correlates the assembly action to a specific part of the API specification.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Correlation path", 
+            "name": "CorrelationPath"
+        }, 
+        {
+            "name": "ActionDebug", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to enable GatewayScript debugger in assembly actions", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "debug", 
+            "display": "Enable debugging", 
+            "description": "&lt;p>Controls whether to enable the GatewayScript debugger to troubleshoot the following GatewayScript file or script. &lt;ul>&lt;li>Troubleshoot the GatewayScript file that is called from the assembly GatewayScript action.&lt;/li>&lt;li>Troubleshoot the GatewayScript file that is invoked by the GatewayScript associated XSLT extension functions or elements, such as the &lt;tt>gatewayscript()&lt;/tt> extension function, from the assembly XSLT action.&lt;/li>&lt;li>Troubleshoot the GatewayScript script that is invoked through the &lt;tt>value&lt;/tt> or the &lt;tt>default&lt;/tt> property in the JSON file from the assembly map action.&lt;/li>&lt;/ul>&lt;/p>&lt;p>To debug a file or script, the following conditions must be met:&lt;/p>&lt;ul>&lt;li>The file contains one or more &lt;tt>debugger;&lt;/tt> statements at the points in your script where you want to start debugging.&lt;/li>&lt;li>The GatewayScript debugger is enabled.&lt;/li>&lt;/ul>&lt;p>Then you can run the &lt;tt>debug-action&lt;/tt> command to debug.&lt;/p>"
+        }, 
+        {
+            "name": "Variable", 
+            "type": {
+                "href": "/mgmt/types/default/dmAssemblyActionSetVar"
+            }, 
+            "required": "true", 
+            "summary": "Setting, adding, or clearing an API context variable", 
+            "/mgmt/types/default/dmAssemblyActionSetVar": {
+                "type": {
+                    "name": "dmAssemblyActionSetVar", 
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Indicates that you can set, add, or clear a variable.", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmSetVarAction"
+                                }, 
+                                "summary": "The actions for managing a variable", 
+                                "cli-alias": "action", 
+                                "display": "Action", 
+                                "name": "Action"
+                            }, 
+                            {
+                                "name": "Name", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "required": "true", 
+                                "summary": "The variable name", 
+                                "cli-alias": "name", 
+                                "display": "Variable name", 
+                                "description": "Specifies the name of the variable that you want to set, add, or clear. You can also reference a custom API property that resolves as the value. To reference an API property, use the $(api.properties.property_name) format, where &lt;tt>property_name&lt;/tt> is the name of the property to reference. You can also use the short form $(property_name) when the assembly action does not have a property with the same name."
+                            }, 
+                            {
+                                "name": "Type", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmSetVarType"
+                                }, 
+                                "summary": "The data type of the variable", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Action", 
+                                        "evaluation": "property-equals", 
+                                        "value": "clear"
+                                    }
+                                }, 
+                                "cli-alias": "type", 
+                                "display": "Variable type", 
+                                "description": "Specifies the data type of the variable that you want to set or add."
+                            }, 
+                            {
+                                "name": "Value", 
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "Action", 
+                                        "evaluation": "property-does-not-equal", 
+                                        "value": "clear"
+                                    }
+                                }, 
+                                "summary": "The value of the variable", 
+                                "cli-alias": "value", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Action", 
+                                        "evaluation": "property-equals", 
+                                        "value": "clear"
+                                    }
+                                }, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Variable value", 
+                                "description": "&lt;p>Specifies the value of the variable that you want to set or add. You can also reference a custom API property that resolves as the value. To reference an API property, use the $(api.properties.property_name) format, where &lt;tt>property_name&lt;/tt> is the name of the property to reference. You can also use the short form $(property_name) when the assembly action does not have a property with the same name.&lt;/p>&lt;p>When you assign value to the variable, follow these rules. Otherwise, error occurs and the current set variable action is terminated. &lt;ul>&lt;li>The value must match the specified data type: number, string, or Boolean.&lt;/li>&lt;li>When you assign value to the &lt;tt>message.status.code&lt;/tt> variable, the value must be a valid HTTP status code.&lt;/li>&lt;/ul>&lt;/p>"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAssemblyActionSetVar"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAssemblyActionSetVar"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "variable", 
+            "display": "Variables", 
+            "description": "Specifies setting, adding, or clearing a variable."
+        }
+    ]
+}

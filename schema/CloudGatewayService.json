@@ -1,0 +1,391 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for user annotation.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "name": "Priority", 
+            "default": "normal", 
+            "type": {
+                "href": "/mgmt/types/default/dmSchedulerPriority"
+            }, 
+            "/mgmt/types/default/dmSchedulerPriority": {
+                "type": {
+                    "name": "dmSchedulerPriority", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "unknown", 
+                                "display": "unknown"
+                            }, 
+                            {
+                                "name": "high-min", 
+                                "display": "high-min"
+                            }, 
+                            {
+                                "summary": "", 
+                                "display": "High", 
+                                "name": "high", 
+                                "description": "A service or transaction assigned this priority setting will receive above normal scheduling priority and resource allocation."
+                            }, 
+                            {
+                                "name": "high-max", 
+                                "display": "high-max"
+                            }, 
+                            {
+                                "name": "normal-min", 
+                                "display": "normal-min"
+                            }, 
+                            {
+                                "summary": "", 
+                                "display": "Normal", 
+                                "name": "normal", 
+                                "description": "A service or transaction assigned this priority setting will receive normal scheduling priority and resource allocation."
+                            }, 
+                            {
+                                "name": "normal-max", 
+                                "display": "normal-max"
+                            }, 
+                            {
+                                "name": "low-min", 
+                                "display": "low-min"
+                            }, 
+                            {
+                                "summary": "", 
+                                "display": "Low", 
+                                "name": "low", 
+                                "description": "A service or transaction assigned this priority setting will receive below normal scheduling priority and resource allocation."
+                            }, 
+                            {
+                                "name": "low-max", 
+                                "display": "low-max"
+                            }
+                        ]
+                    }, 
+                    "display": "Transaction Priority"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSchedulerPriority"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSchedulerPriority"
+                    }
+                }
+            }, 
+            "summary": "Service-scheduling priority", 
+            "cli-alias": "priority", 
+            "display": "Service priority", 
+            "description": "Select the service scheduling priority. When system resources are in high demand, high priority services are favored over lower priority services."
+        }, 
+        {
+            "name": "ConnTimeout", 
+            "default": 0, 
+            "type": {
+                "href": "/mgmt/types/default/dmTimeInterval"
+            }, 
+            "required": "true", 
+            "maximum": 86400, 
+            "summary": "Maximum duration for transactions", 
+            "/mgmt/types/default/dmTimeInterval": {
+                "type": {
+                    "cli-arg": "seconds", 
+                    "minimum": 0, 
+                    "name": "dmTimeInterval", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                }
+            }, 
+            "minimum": 0, 
+            "units": "Seconds", 
+            "cli-alias": "connection-timeout", 
+            "display": "Transaction timeout", 
+            "description": "Specify the maximum duration for transactions. This timer monitors the duration of end-to-end transactions. If the specified connection time is exceeded, the client connection is torn down. Enter a value in the range 0 - 86400. The value of 0 indicates that the timer is disabled. The default value is 0."
+        }, 
+        {
+            "/mgmt/types/default/dmLocalIPHostAddress": {
+                "type": {
+                    "cli-arg": "dotted-ip or 0 for any", 
+                    "name": "dmLocalIPHostAddress", 
+                    "format": "(a.b.c.d or 0 for any)"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLocalIPHostAddress"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                    }
+                }
+            }, 
+            "name": "LocalAddress", 
+            "default": "0.0.0.0", 
+            "type": {
+                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+            }, 
+            "required": "true", 
+            "summary": "Local address", 
+            "cli-alias": "address", 
+            "display": "Local address", 
+            "description": "Specify the IPv4 or IPv6 address or the host alias on which the Cloud Gateway service listens. The default value of 0.0.0.0 indicates that the service is active on all IPv4 addresses."
+        }, 
+        {
+            "name": "LocalPort", 
+            "cli-alias": "local-port", 
+            "required": "true", 
+            "maximum": "0xFFFF", 
+            "summary": "Local listening port", 
+            "listener": "LocalAddress", 
+            "minimum": 1, 
+            "type": {
+                "href": "/mgmt/types/default/dmIPPort"
+            }, 
+            "/mgmt/types/default/dmIPPort": {
+                "type": {
+                    "cli-arg": "ip-port", 
+                    "minimum": 0, 
+                    "name": "dmIPPort", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                }
+            }, 
+            "display": "Local port", 
+            "description": "Specify the local listening port for the service."
+        }, 
+        {
+            "name": "SSLProxy", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                }
+            }, 
+            "required": "true", 
+            "summary": "TLS proxy profile to secure connections", 
+            "cli-alias": "ssl", 
+            "display": "TLS proxy profile", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "Select a TLS proxy profile defined with the reverse direction to manage TLS communications with the cloud-based clients. The TLS proxy profile identifies the keys and certificates for the handshake."
+        }, 
+        {
+            "name": "FrontTimeout", 
+            "default": 0, 
+            "type": {
+                "href": "/mgmt/types/default/dmTimeInterval"
+            }, 
+            "required": "true", 
+            "maximum": 86400, 
+            "summary": "Maximum idle time for cloud-based client connections in a transaction", 
+            "/mgmt/types/default/dmTimeInterval": {
+                "type": {
+                    "cli-arg": "seconds", 
+                    "minimum": 0, 
+                    "name": "dmTimeInterval", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                }
+            }, 
+            "minimum": 0, 
+            "units": "Seconds", 
+            "cli-alias": "front-timeout", 
+            "display": "Cloud-based client timeout", 
+            "description": "Specify the maximum idle time for client connections in a transaction. This timer monitors the idle time in the data transfer process. If the specified idle time is exceeded, the connection is torn down. Enter a value in the range 0 - 86400. The value of 0 indicates that the timer is disabled. The default value is 0."
+        }, 
+        {
+            "/mgmt/types/default/dmCloudGatewayTarget": {
+                "type": {
+                    "name": "dmCloudGatewayTarget", 
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Service name associated with the enterprise application.", 
+                                "minimum-length": 1, 
+                                "required": "true", 
+                                "summary": "Service name", 
+                                "maximum-length": 255, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Service name", 
+                                "name": "ServiceName"
+                            }, 
+                            {
+                                "description": "Specify the host name or IP address of the application server.", 
+                                "required": "true", 
+                                "summary": "Host name or IP address of the application server.", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmHostname"
+                                }, 
+                                "display": "Application host", 
+                                "name": "RemoteAddress"
+                            }, 
+                            {
+                                "name": "RemotePort", 
+                                "required": "true", 
+                                "maximum": "0xFFFF", 
+                                "summary": "Listening port on the application server", 
+                                "minimum": 1, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmIPPort"
+                                }, 
+                                "display": "Application port", 
+                                "description": "Specify the listening port number of the application server."
+                            }, 
+                            {
+                                "name": "BackTimeout", 
+                                "default": 0, 
+                                "required": "true", 
+                                "maximum": 86400, 
+                                "summary": "Maximum idle time for a server connection in a transaction", 
+                                "minimum": 0, 
+                                "units": "Seconds", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmTimeInterval"
+                                }, 
+                                "display": "Server-side timeout", 
+                                "description": "Specify the maximum idle time for server connections in a transaction. This timer monitors the idle time in the data transfer process. If the specified idle time is exceeded, the connection is torn down. Enter a value in the range 0 - 86400. The value of 0 indicates that the timer is disabled. The default value is 0."
+                            }, 
+                            {
+                                "name": "ConnLimit", 
+                                "default": 100, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmUInt32"
+                                }, 
+                                "required": "true", 
+                                "maximum": 65535, 
+                                "summary": "Maximum number of concurrent client connections", 
+                                "minimum": 0, 
+                                "cli-alias": "maximum-connections", 
+                                "display": "Maximum connections", 
+                                "description": "Specify the maximum number of concurrent client connections to the service. Enter a value in the range 0 - 65535. The value of 0 indicates an unlimited number of connections. The default value is 100."
+                            }, 
+                            {
+                                "summary": "TLS proxy profile to secure the connection to the application server", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/SSLProxyProfile"
+                                    }
+                                }, 
+                                "display": "TLS proxy profile", 
+                                "name": "SSLProxy", 
+                                "description": "Select a TLS proxy profile defined with the forward direction for TLS communications with the application server. The TLS proxy profile identifies the keys and certificates for the handshake."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmCloudGatewayTarget"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmCloudGatewayTarget"
+                    }
+                }
+            }, 
+            "name": "BackConnections", 
+            "type": {
+                "href": "/mgmt/types/default/dmCloudGatewayTarget"
+            }, 
+            "required": "true", 
+            "summary": "Allowed enterprise application connections", 
+            "array": "true", 
+            "cli-alias": "back-connections", 
+            "display": "Allowed enterprise application connections", 
+            "description": "Allowed enterprise application connections. Each enterprise application connection has a unique service name."
+        }
+    ]
+}

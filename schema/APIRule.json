@@ -1,0 +1,211 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for user annotation.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "description": "Specifies whether to use dynamic actions instead of explicit actions. Dynamic actions take configuration values at run time and override the default properties in API actions. API rules that contain dynamic actions can be included in user-defined policies that API Connect advertises and makes available in the API Connect assembly editor.", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "dynamic-actions-mode", 
+            "display": "Use dynamic actions", 
+            "name": "DynamicActionsMode"
+        }, 
+        {
+            "name": "Actions", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "base-class": "StylePolicyActionBase"
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "DynamicActionsMode", 
+                    "evaluation": "property-equals", 
+                    "value": "on"
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "action", 
+            "display": "API actions", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "Specifies the processing actions to associate with the API rule. When multiple actions are specified, ensure that the actions are in the correct processing sequence."
+        }, 
+        {
+            "/mgmt/types/default/dmDynamicStylePolicyActionBaseReference": {
+                "type": {
+                    "name": "dmDynamicStylePolicyActionBaseReference", 
+                    "properties": {
+                        "property": [
+                            {
+                                "name": "URL", 
+                                "cli-alias": "url", 
+                                "summary": "Specifies the URL of a resource with one or more properties for the dynamic object", 
+                                "subtype": "dmURLorContext", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "URL reference", 
+                                "description": "Specifies a URL to a file that contains serialized XML or JSON properties to be merged into the dynamic object. These properties override any existing literal or default properties. The URL can contain variable references, and fields within the associated file can also contain variable references."
+                            }, 
+                            {
+                                "description": "Specifies a literal string that defines serialized XML or JSON properties for merging into the dynamic object. These properties override the existing default properties. The literal string can contain variable references.", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "summary": "Specifies a literal configuration string with one or more properties for the dynamic object", 
+                                "cli-alias": "literal", 
+                                "display": "Literal configuration", 
+                                "name": "Literal"
+                            }, 
+                            {
+                                "description": "Specifies an existing object from which to retrieve default property values for the dynamic object. If an object is not specified, then the URL reference, the literal configuration, or the combination of URL reference and literal configuration fully define the action.", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "base-class": "StylePolicyActionBase"
+                                    }
+                                }, 
+                                "summary": "Specifies an existing object with default property values for the dynamic object", 
+                                "cli-alias": "default", 
+                                "display": "Object reference", 
+                                "name": "Default"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmDynamicStylePolicyActionBaseReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmDynamicStylePolicyActionBaseReference"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmDynamicStylePolicyActionBaseReference"
+            }, 
+            "name": "DynamicActions", 
+            "required-when": {
+                "condition": {
+                    "property-name": "DynamicActionsMode", 
+                    "evaluation": "property-equals", 
+                    "value": "on"
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "DynamicActionsMode", 
+                    "evaluation": "property-equals", 
+                    "value": "off"
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "dynamic-action", 
+            "display": "API dynamic actions", 
+            "description": "Specifies the dynamic actions to associate with the API rule. When multiple dynamic actions are specified, ensure that the actions are in the correct processing sequence."
+        }
+    ]
+}

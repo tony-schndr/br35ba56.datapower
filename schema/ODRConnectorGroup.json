@@ -1,0 +1,331 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Contains a brief summary for user annotation.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "name": "ODRGroupConnectors", 
+            "type": {
+                "href": "/mgmt/types/default/dmODRConnector"
+            }, 
+            "/mgmt/types/default/dmODRConnector": {
+                "type": {
+                    "summary": "ODR Connector", 
+                    "properties": {
+                        "property": [
+                            {
+                                "name": "DmgrHostname", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmHostname"
+                                }, 
+                                "required": "true", 
+                                "summary": "Sets the host name of the server where the Intelligent management service is enabled", 
+                                "cli-alias": "dmgr-host", 
+                                "display": "Connector host", 
+                                "description": "The host name of the server where the Intelligent management service is enabled."
+                            }, 
+                            {
+                                "name": "DmgrPort", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmIPPort"
+                                }, 
+                                "required": "true", 
+                                "summary": "Sets the port on the server where the Intelligent management service is enabled", 
+                                "cli-alias": "dmgr-port", 
+                                "display": "Connector port", 
+                                "description": "The port on the server where the Intelligent management service is enabled."
+                            }
+                        ]
+                    }, 
+                    "name": "dmODRConnector"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmODRConnector"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmODRConnector"
+                    }
+                }
+            }, 
+            "summary": "Define the ODR connectors that are used to retrieve ODR information", 
+            "array": "true", 
+            "cli-alias": "odr-connector", 
+            "display": "ODR connectors", 
+            "description": "The ODR connectors that are used to retrieve ODR information. An ODR connector defines a connection to the Intelligent Management service. The DataPower Gateway retrieves topology, weights, session affinity, and other information from the WebSphere cell over the connection. If multiple connectors are configured, the top most connection is tried first, followed by the second, and so on. After a connection is established, other endpoints might be retrieved and used if the configured connector endpoint is down. You must define at least one connector in an ODR connector group but cannot define more than 16 connectors."
+        }, 
+        {
+            "name": "SSLProxy", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                }
+            }, 
+            "summary": "The TLS proxy profile is deprecated. Use a TLS client profile.", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "SSLClientConfigType", 
+                    "evaluation": "property-equals", 
+                    "value": "client"
+                }
+            }, 
+            "cli-alias": "ssl", 
+            "display": "TLS proxy profile (deprecated)", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "Sets the TLS proxy profile with the cryptographic profiles to secure connections."
+        }, 
+        {
+            "name": "MaxRetryInterval", 
+            "default": 60, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt16"
+            }, 
+            "maximum": 120, 
+            "summary": "Set the time to wait before attempting to reestablish a connection to the Intelligent Management service", 
+            "minimum": 1, 
+            "units": "seconds", 
+            "/mgmt/types/default/dmUInt16": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt16", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                }
+            }, 
+            "cli-alias": "max-retry-interval", 
+            "display": "Maximum retry interval", 
+            "description": "The time to wait before attempting to reestablish a connection to the Intelligent Management Service. Enter a value in the range 1 - 120. The default value is 60."
+        }, 
+        {
+            "name": "XMLManager", 
+            "default": "default", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/XMLManager"
+                }
+            }, 
+            "required": "true", 
+            "summary": "Set the XML manager to use when processing transactions with the Intelligent management service", 
+            "cli-alias": "xml-manager", 
+            "display": "XML manager", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The XML manager to use when processing transactions with the Intelligent management service."
+        }, 
+        {
+            "name": "ODRConnGroupProperties", 
+            "/mgmt/types/default/dmODRConnProperty": {
+                "type": {
+                    "summary": "ODR Connector", 
+                    "properties": {
+                        "property": [
+                            {
+                                "name": "ConnGroupPropName", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "required": "true", 
+                                "summary": "Set the name for a connector group property", 
+                                "cli-alias": "odr-conn-prop-name", 
+                                "display": "Name", 
+                                "description": "The name for a connector group property."
+                            }, 
+                            {
+                                "name": "ConnGroupPropValue", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "required": "true", 
+                                "summary": "Set the value for the connector group property", 
+                                "cli-alias": "odr-conn-prop-value", 
+                                "display": "Value", 
+                                "description": "The value for the connector group property."
+                            }
+                        ]
+                    }, 
+                    "name": "dmODRConnProperty"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmODRConnProperty"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmODRConnProperty"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmODRConnProperty"
+            }, 
+            "summary": "Define the custom properties that are associated with the ODR connector group", 
+            "array": "true", 
+            "cli-alias": "odr-conn-group-properties", 
+            "display": "Custom properties", 
+            "description": "The custom properties that are associated with the ODR connector group."
+        }, 
+        {
+            "name": "SSLClientConfigType", 
+            "/mgmt/types/default/dmSSLClientConfigType": {
+                "type": {
+                    "name": "dmSSLClientConfigType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "proxy", 
+                                "display": "Proxy Profile"
+                            }, 
+                            {
+                                "name": "client", 
+                                "display": "Client Profile"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSLClientConfigType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSLClientConfigType"
+                    }
+                }
+            }, 
+            "default": "proxy", 
+            "type": {
+                "href": "/mgmt/types/default/dmSSLClientConfigType"
+            }, 
+            "summary": "Set the TLS profile type to secure connections between the DataPower Gateway and its targets", 
+            "cli-alias": "ssl-client-type", 
+            "display": "TLS client type", 
+            "description": "The TLS profile type to secure connections between the DataPower Gateway and its targets."
+        }, 
+        {
+            "name": "SSLClient", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                }
+            }, 
+            "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and its targets", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "SSLClientConfigType", 
+                    "evaluation": "property-equals", 
+                    "value": "proxy"
+                }
+            }, 
+            "cli-alias": "ssl-client", 
+            "display": "TLS client profile", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The TLS client profile to secure connections between the DataPower Gateway and its targets."
+        }
+    ]
+}

@@ -1,0 +1,134 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for user annotation.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "/mgmt/types/default/dmSOAPHeaderDispositionItem": {
+                "type": {
+                    "description": "Specify what the SOAP header is and how to process it.", 
+                    "display": "SOAP Header Disposition Item", 
+                    "properties": {
+                        "property": [
+                            {
+                                "summary": "The SOAP Header namespace URI", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Namespace URI", 
+                                "name": "Namespace", 
+                                "description": "Specify the namespace URI of the SOAP header element, the default value is a blank string, which indicates no restriction."
+                            }, 
+                            {
+                                "summary": "The SOAP Header element local name", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Header Local Name", 
+                                "name": "LocalName", 
+                                "description": "Specify the local name of the SOAP header element, the default value is a blank string, which indicates no restriction."
+                            }, 
+                            {
+                                "summary": "The SOAP Header's chile element local name", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Child Element Local Name", 
+                                "name": "ChildLocalName", 
+                                "description": "Specify the local name of the SOAP header's child element, the default value is a blank string, which indicates no restriction."
+                            }, 
+                            {
+                                "description": "Specify what action to take for this SOAP header and/or child element.", 
+                                "required": "true", 
+                                "summary": "The action to take for this SOAP header.", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmSOAPHeaderRefineType"
+                                }, 
+                                "display": "Refine Action", 
+                                "name": "Action"
+                            }
+                        ]
+                    }, 
+                    "name": "dmSOAPHeaderDispositionItem", 
+                    "summary": "The instruction to dispose a SOAP header"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSOAPHeaderDispositionItem"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSOAPHeaderDispositionItem"
+                    }
+                }
+            }, 
+            "name": "Refine", 
+            "type": {
+                "href": "/mgmt/types/default/dmSOAPHeaderDispositionItem"
+            }, 
+            "summary": "Define an instruction to process a SOAP header and/or child element.", 
+            "array": "true", 
+            "cli-alias": "refine", 
+            "display": "SOAP Header Refine Instruction", 
+            "description": "Customer specifically asks this transformation to simply remove/keep/fault a SOAP header; or indicates whether a header was processed or not by the prior action, then this action will take the default behaviors."
+        }
+    ]
+}

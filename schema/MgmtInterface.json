@@ -1,0 +1,538 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmLocalIPHostAddress": {
+                "type": {
+                    "cli-arg": "dotted-ip or 0 for any", 
+                    "name": "dmLocalIPHostAddress", 
+                    "format": "(a.b.c.d or 0 for any)"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLocalIPHostAddress"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                    }
+                }
+            }, 
+            "name": "LocalAddress", 
+            "default": "0.0.0.0", 
+            "type": {
+                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+            }, 
+            "required": "true", 
+            "summary": "Enter the local IP address or host alias.", 
+            "cli-alias": "ip-address", 
+            "display": "Local address", 
+            "description": "&lt;p>Enter a host alias or the IP address that the service listens on. Host aliases can ease migration tasks among appliances.&lt;/p>&lt;ul>&lt;li>0 or 0.0.0.0 indicates all configured IPv4 addresses.&lt;/li>&lt;li>:: indicates all configured IPv4 and IPv6 addresses.&lt;/li>&lt;/ul>&lt;p>&lt;b>Attention:&lt;/b> For management services, the value of 0.0.0.0 or :: is a security risk. Use an explicit IP address to isolate management traffic from application data traffic.&lt;/p>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "A descriptive summary for the configuration.", 
+            "cli-alias": "summary", 
+            "summary": "Enter a descriptive summary for the configuration.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments", 
+            "name": "UserSummary"
+        }, 
+        {
+            "name": "LocalPort", 
+            "default": 5550, 
+            "cli-alias": "port", 
+            "required": "true", 
+            "maximum": "0xFFFF", 
+            "summary": "Enter the TCP port that the XML management interface monitors.", 
+            "minimum": 1, 
+            "type": {
+                "href": "/mgmt/types/default/dmIPPort"
+            }, 
+            "/mgmt/types/default/dmIPPort": {
+                "type": {
+                    "cli-arg": "ip-port", 
+                    "minimum": 0, 
+                    "name": "dmIPPort", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                }
+            }, 
+            "display": "Port number", 
+            "description": "The TCP listening port that the XML management interface monitors. The default value is 5550."
+        }, 
+        {
+            "name": "SSLProxy", 
+            "required-when": {
+                "condition": {
+                    "property-name": "SSLConfigType", 
+                    "evaluation": "property-equals", 
+                    "value": "proxy"
+                }
+            }, 
+            "summary": "The custom TLS proxy profile is deprecated. Use a custom TLS server profile or custom TLS SNI server profile.", 
+            "cli-alias": "ssl", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                }
+            }, 
+            "display": "Custom TLS proxy profile (deprecated)", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The TLS proxy profile that the web management service uses to secure connections. If you do not assign one, the service uses one with a self-signed certificate."
+        }, 
+        {
+            "description": "The user agent that the web management service uses.", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/HTTPUserAgent"
+                }
+            }, 
+            "summary": "Assign a custom user agent.", 
+            "cli-alias": "user-agent", 
+            "display": "Custom user agent", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "UserAgent"
+        }, 
+        {
+            "name": "ACL", 
+            "default": "xml-mgmt", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/AccessControlList"
+                }
+            }, 
+            "summary": "Edit the access control list.", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "cli-alias": "acl", 
+            "display": "Access control list", 
+            "hoverhelp": "Edit the \"xml-mgmt\" access control list to define client IP addresses to allow or deny access.", 
+            "description": "The access control list uses the defined client IP addresses to allow or deny access."
+        }, 
+        {
+            "name": "WSManagement", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "NONTRANSLATABLE", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "ws-management", 
+            "display": "NONTRANSLATABLE", 
+            "description": "NONTRANSLATABLE"
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/XMLFirewallService"
+                }
+            }, 
+            "name": "XMLFirewall", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmUInt16"
+            }, 
+            "name": "SLMPeering", 
+            "default": 10, 
+            "required-when": {
+                "condition": {
+                    "property-name": "Mode", 
+                    "evaluation": "property-equals", 
+                    "value": "slm"
+                }
+            }, 
+            "summary": "Enter the frequency to push SLM updates to peers.", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "units": "Seconds", 
+            "/mgmt/types/default/dmUInt16": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt16", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                }
+            }, 
+            "cli-alias": "slm-peering", 
+            "display": "SLM update interval", 
+            "description": "The interval sets the frequency that the scheduled task pushes SLM updates to peers."
+        }, 
+        {
+            "description": "Select which service endpoints to enable. For each enabled endpoint, the interface listens for requests from those services.", 
+            "cli-alias": "mode", 
+            "/mgmt/types/default/dmXMLMgmtModes": {
+                "type": {
+                    "name": "dmXMLMgmtModes", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "SOAP management URI", 
+                                "display": "SOAP management URI", 
+                                "name": "any", 
+                                "description": "Enable processing of messages from any (*) URI for older applications. An example is an application that posts SOAP management requests to '/'."
+                            }, 
+                            {
+                                "summary": "SOAP configuration management", 
+                                "display": "SOAP configuration management", 
+                                "name": "soma", 
+                                "description": "Enable support for SOAP configuration management. The URI is /service/mgmt/current."
+                            }, 
+                            {
+                                "display": "SOAP configuration management (v2004)", 
+                                "name": "v2004", 
+                                "description": "Enable support for the older SOAP management format. The URI is /service/mgmt/2004."
+                            }, 
+                            {
+                                "summary": "Appliance management protocol endpoint", 
+                                "display": "AMP endpoint", 
+                                "name": "amp", 
+                                "description": "&lt;p>Expose AMP endpoints. Use the URI for the wanted version.&lt;/p>&lt;ul>&lt;li>/service/mgmt/amp/3.0&lt;/li>&lt;li>/service/mgmt/amp/2.0&lt;/li>&lt;li>/service/mgmt/amp/1.0&lt;/li>&lt;/ul>"
+                            }, 
+                            {
+                                "summary": "Service level management endpoint", 
+                                "display": "SLM endpoint", 
+                                "name": "slm", 
+                                "description": "Expose the management endpoint that supports the SLM protocol. The URI is /service/slm/datashare/1.0. This protocol manages SLM data among appliances and is not a public web service."
+                            }, 
+                            {
+                                "summary": "Web service management endpoint", 
+                                "display": "WS-Management endpoint", 
+                                "name": "wsm", 
+                                "description": "Expose the management endpoint that supports the WS-Management family of protocols. The URI is /service/ws-management."
+                            }, 
+                            {
+                                "summary": "WSDM management endpoint", 
+                                "display": "WSDM endpoint", 
+                                "name": "wsdm", 
+                                "description": "Expose the management endpoint that supports the WSDM 1.0 family of protocols. The URI is /service/wsdm10"
+                            }, 
+                            {
+                                "summary": "UDDI subscription endpoint", 
+                                "display": "UDDI subscription (deprecated)", 
+                                "name": "uddi-subscription", 
+                                "description": "&lt;p>The UDDI subscription is deprecated. Instead, use WebSphere Service Registry and Repository (WSRR) subscription.&lt;/p>&lt;p>Expose the service endpoint that is the UDDI subscription listener web service. This service endpoint must be configured in the UDDI registry as the service endpoint of the subscription. Multiple subscriptions can use this endpoint. This endpoint processes subscription updates for all domains. The URI is /service/uddi-subscription.&lt;/p>"
+                            }, 
+                            {
+                                "summary": "WSRR subscription endpoint", 
+                                "display": "WSRR subscription", 
+                                "name": "wsrr-subscription", 
+                                "description": "&lt;p>Exposes the service endpoint that is a WebSphere Service Registry and Repository listener web service. When exposed, a subscription receives a notification of changes to a subscribed resource in the WebSphere Service Registry and Repository server. Expose this service endpoint when a subscription uses automatic synchronization. Multiple subscriptions can use this endpoint. This endpoint processes subscription updates for all domains. The URI is /service/wsrr-subscription.&lt;/p>&lt;p>&lt;b>Attention:&lt;/b> When you enable this service endpoint and subscriptions are set to automatic notifications, you must configure the local address of the XML management interface to listen on a specific IP address. When the interface listens on a host alias or &lt;tt>0.0.0.0&lt;/tt> , the configuration of these subscriptions are marked down.&lt;/p>"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmXMLMgmtModes"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmXMLMgmtModes"
+                    }
+                }
+            }, 
+            "summary": "Select which service endpoints to enable.", 
+            "type": {
+                "href": "/mgmt/types/default/dmXMLMgmtModes"
+            }, 
+            "display": "Enabled services", 
+            "name": "Mode"
+        }, 
+        {
+            "default": 3.0, 
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "name": "AMPVersion"
+        }, 
+        {
+            "/mgmt/types/default/dmSSLConfigType": {
+                "type": {
+                    "name": "dmSSLConfigType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "proxy", 
+                                "display": "Proxy Profile"
+                            }, 
+                            {
+                                "name": "server", 
+                                "display": "Server Profile"
+                            }, 
+                            {
+                                "name": "sni", 
+                                "display": "SNI Server Profile"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSLConfigType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSLConfigType"
+                    }
+                }
+            }, 
+            "name": "SSLConfigType", 
+            "default": "server", 
+            "cli-alias": "ssl-config-type", 
+            "summary": "Set the TLS profile type to secure connections between clients and the DataPower Gateway", 
+            "type": {
+                "href": "/mgmt/types/default/dmSSLConfigType"
+            }, 
+            "display": "Custom TLS server type", 
+            "description": "The TLS profile type to secure connections between clients and the DataPower Gateway."
+        }, 
+        {
+            "name": "SSLServer", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLServerProfile"
+                }
+            }, 
+            "summary": "Assign a custom TLS server profile.", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "SSLConfigType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "server"
+                }
+            }, 
+            "cli-alias": "ssl-server", 
+            "display": "Custom TLS server profile", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The TLS server profile that the web management service uses to secure connections. If you do not assign one, the service uses one with a self-signed certificate."
+        }, 
+        {
+            "name": "SSLSNIServer", 
+            "required-when": {
+                "condition": {
+                    "property-name": "SSLConfigType", 
+                    "evaluation": "property-equals", 
+                    "value": "sni"
+                }
+            }, 
+            "summary": "Set the TLS SNI server profile to secure connections between clients and the DataPower Gateway", 
+            "cli-alias": "ssl-sni-server", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLSNIServerProfile"
+                }
+            }, 
+            "display": "Custom TLS SNI server profile", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The TLS SNI server profile to secure connections between clients and the DataPower Gateway."
+        }
+    ]
+}

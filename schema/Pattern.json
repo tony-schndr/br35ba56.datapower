@@ -1,0 +1,856 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "valid-regexp": "^.{0,128}$", 
+            "summary": "Pattern name", 
+            "cli-alias": "name", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Pattern name", 
+            "hoverhelp": "Specify the name of the pattern that is displayed in the user interface.", 
+            "description": "Brief summary of the Pattern."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Specifies the user annotation of the pattern.", 
+            "cli-alias": "description", 
+            "summary": "Brief summary for user annotation", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Documentation", 
+            "hoverhelp": "The documentation for the pattern in html or plain text, which appears on the Pattern browser.", 
+            "name": "Description"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Indicates when the pattern is created.", 
+            "cli-alias": "createDate", 
+            "summary": "Time of creation", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Created on", 
+            "name": "CreateDate"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Indicates when the pattern is last modified.", 
+            "cli-alias": "modifyDate", 
+            "summary": "Time of last modification", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Last Modified on", 
+            "name": "ModifyDate"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Indicates the user ID of the pattern author.", 
+            "cli-alias": "author", 
+            "summary": "User id of the pattern author", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Author", 
+            "name": "Author"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Indicates which person or entity owns this pattern.", 
+            "cli-alias": "owner", 
+            "summary": "Owner of the pattern", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Owner", 
+            "hoverhelp": "Person or entity that owns the pattern.", 
+            "name": "Owner"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Specifies which category the pattern belongs to.", 
+            "cli-alias": "category", 
+            "summary": "Category of the pattern", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Category", 
+            "hoverhelp": "Specify which category the pattern belongs to. Select an existing category or enter a new category.", 
+            "name": "Category"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "A version is a string that can be any combination of any characters.", 
+            "cli-alias": "version", 
+            "summary": "Version of the pattern", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Version", 
+            "hoverhelp": "Specify the version of the pattern. A version is a string that can be any combination of any characters.", 
+            "name": "Version"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "Tags", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "summary": "Keywords of the pattern", 
+            "array": "true", 
+            "cli-alias": "tags", 
+            "display": "Keywords", 
+            "hoverhelp": "Specify the keywords to associate with the pattern. A pattern can have multiple keywords. To add a keyword, press Enter or Space after you enter the keyword.", 
+            "description": "Specifies the keywords that are associated with the pattern. A pattern can have multiple keywords."
+        }, 
+        {
+            "name": "DeploymentPolicy", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/ConfigDeploymentPolicy"
+                }
+            }, 
+            "required": "true", 
+            "summary": "Deployment policy of the pattern", 
+            "cli-alias": "deployment-policy", 
+            "display": "Deployment Policy", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "Specifies the policy that is enforced when deploying the pattern."
+        }, 
+        {
+            "name": "POV", 
+            "/mgmt/types/default/dmPOV": {
+                "type": {
+                    "name": "dmPOV", 
+                    "properties": {
+                        "property": [
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "CatID"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "FormID"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "Resource"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "ObjClass"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "ObjName"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "PropName"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "PropValue"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "PropType"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmTruthValue"
+                                }, 
+                                "name": "PropExposed"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmTruthValue"
+                                }, 
+                                "name": "PropRequired"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmTruthValue"
+                                }, 
+                                "name": "PropShow"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "PropClass"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "ExempClass"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "ExempName"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "VectorType"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmPOV"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmPOV"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmPOV"
+            }, 
+            "summary": "Points of variability", 
+            "array": "true", 
+            "cli-alias": "pov", 
+            "display": "POVs", 
+            "description": ""
+        }, 
+        {
+            "name": "POVCategory", 
+            "cli-alias": "pov-category", 
+            "summary": "", 
+            "type": {
+                "href": "/mgmt/types/default/dmPOVCategory"
+            }, 
+            "array": "true", 
+            "/mgmt/types/default/dmPOVCategory": {
+                "type": {
+                    "name": "dmPOVCategory", 
+                    "properties": {
+                        "property": [
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "CatID"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "CatLabel"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "CatDescription"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmPOVCategory"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmPOVCategory"
+                    }
+                }
+            }, 
+            "display": "POV categories", 
+            "description": ""
+        }, 
+        {
+            "/mgmt/types/default/dmPOVVariable": {
+                "type": {
+                    "name": "dmPOVVariable", 
+                    "properties": {
+                        "property": [
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "VarID"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "VarLabel"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "VarDescription"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "VarValue"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "VarShow"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "VarValidation"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmPOVVariable"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmPOVVariable"
+                    }
+                }
+            }, 
+            "name": "POVVariable", 
+            "type": {
+                "href": "/mgmt/types/default/dmPOVVariable"
+            }, 
+            "summary": "", 
+            "array": "true", 
+            "cli-alias": "pov-var", 
+            "display": "POV variables", 
+            "description": ""
+        }, 
+        {
+            "/mgmt/types/default/dmSharedObjects": {
+                "type": {
+                    "name": "dmSharedObjects", 
+                    "properties": {
+                        "property": [
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "ObjectClass"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "ObjectName"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmTruthValue"
+                                }, 
+                                "name": "Shared"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSharedObjects"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSharedObjects"
+                    }
+                }
+            }, 
+            "name": "SharedObjects", 
+            "type": {
+                "href": "/mgmt/types/default/dmSharedObjects"
+            }, 
+            "summary": "", 
+            "array": "true", 
+            "cli-alias": "shared-obj", 
+            "display": "Shared Objects", 
+            "description": ""
+        }, 
+        {
+            "name": "Exemplar", 
+            "cli-alias": "export-file", 
+            "required": "true", 
+            "summary": "", 
+            "/mgmt/types/default/dmURL": {
+                "type": {
+                    "cli-arg": "url", 
+                    "name": "dmURL"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmURL"
+            }, 
+            "display": "Exemplar service export file", 
+            "description": ""
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "", 
+            "cli-alias": "exemplar-class", 
+            "summary": "", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Source service class", 
+            "name": "ExemplarClass"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "", 
+            "cli-alias": "exemplar-instance", 
+            "summary": "", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Source service name", 
+            "name": "ExemplarInstance"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "TargetRole", 
+            "default": "deployer", 
+            "cli-alias": "target-role", 
+            "summary": "", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Target Role", 
+            "description": ""
+        }, 
+        {
+            "name": "ExtraExemplarServices", 
+            "type": {
+                "href": "/mgmt/types/default/dmExemplarServices"
+            }, 
+            "summary": "", 
+            "/mgmt/types/default/dmExemplarServices": {
+                "type": {
+                    "name": "dmExemplarServices", 
+                    "properties": {
+                        "property": [
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "ObjectClass"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "ObjectName"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmExemplarServices"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmExemplarServices"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "exemplar-services", 
+            "display": "Additional source services", 
+            "description": ""
+        }, 
+        {
+            "name": "Predefined", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "predefined", 
+            "display": "Pre-defined", 
+            "description": ""
+        }, 
+        {
+            "name": "ComplexPoV", 
+            "type": {
+                "href": "/mgmt/types/default/dmComplexPOV"
+            }, 
+            "summary": "", 
+            "/mgmt/types/default/dmComplexPOV": {
+                "type": {
+                    "name": "dmComplexPOV", 
+                    "properties": {
+                        "property": [
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "POVPropName"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "Resource"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "ObjClass"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "ObjName"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "PropName"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "PropValue"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "PropType"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmTruthValue"
+                                }, 
+                                "name": "PropExposed"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmTruthValue"
+                                }, 
+                                "name": "PropRequired"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmTruthValue"
+                                }, 
+                                "name": "PropShow"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "PropClass"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "ExempClass"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "ExempName"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "PropIndex"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmComplexPOV"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmComplexPOV"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "complex-pov", 
+            "display": "Complex PoV", 
+            "description": ""
+        }
+    ]
+}

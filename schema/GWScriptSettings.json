@@ -1,0 +1,171 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Specifies a brief descriptive summary for the configuration.", 
+            "cli-alias": "summary", 
+            "summary": "A descriptive summary for the configuration", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments", 
+            "name": "UserSummary"
+        }, 
+        {
+            "name": "FrozenEnabled", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to freeze the GatewayScript built-in object prototypes", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "freeze-prototype", 
+            "display": "Freeze prototype", 
+            "description": "&lt;p>Controls whether to freeze the built-in object prototypes. &lt;ul>&lt;li>When frozen, you cannot modify, add or removal prototypes. This is the default setting.&lt;/li>&lt;li>When not frozen, you can manipulate prototypes.&lt;/li>&lt;/ul>&lt;/p>"
+        }, 
+        {
+            "name": "UntrustedCodeMitigated", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to enable untrusted code mitigations to protect against SSCA", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "untrusted-code-mitigations", 
+            "display": "Untrusted code mitigations", 
+            "description": "&lt;p>Controls whether to enable untrusted code mitigations to protect against Speculative Side-Channel Attacks (SSCA) vulnerabilities. &lt;ul>&lt;li>When enabled, untrusted code is protected against SSCA. This is the default setting.&lt;/li>&lt;li>When not enabled, untrusted code is not protected against SSCA.&lt;/li>&lt;/ul>&lt;/p>"
+        }, 
+        {
+            "name": "TerminateTime", 
+            "default": 0, 
+            "type": {
+                "href": "/mgmt/types/default/dmTimeInterval"
+            }, 
+            "maximum": 300, 
+            "summary": "Maximum allowed synchronous processing duration", 
+            "/mgmt/types/default/dmTimeInterval": {
+                "type": {
+                    "cli-arg": "seconds", 
+                    "minimum": 0, 
+                    "name": "dmTimeInterval", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                }
+            }, 
+            "minimum": 0, 
+            "units": "seconds", 
+            "cli-alias": "max-processing-duration", 
+            "display": "Maximum processing duration", 
+            "description": "Specifies the maximum allowed number of seconds that the GatewayScript action can continuously use the CPU, without yielding back to the system event loop. When the maximum synchronous execution duration elapses and the GatewayScript action is still processing, the action is terminated and causes the transaction to throw an error. Enter a value in the range 1 - 300. The default value is 0 second, which indicates an unlimited duration."
+        }
+    ]
+}

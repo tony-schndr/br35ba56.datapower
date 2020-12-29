@@ -1,0 +1,3584 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Enter a descriptive summary for the configuration.", 
+            "cli-alias": "summary", 
+            "summary": "A brief descriptive summary for the configuration", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments", 
+            "name": "UserSummary"
+        }, 
+        {
+            "name": "EnableDebugMode", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to enable debug mode to put security error details in response headers", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "enable-debug-mode", 
+            "display": "Enable debug headers", 
+            "description": "When you use a validation endpoint, specifies whether to enable debug mode. In debug mode, security error details are sent in the &lt;tt>x-apic-debug-oauth-error&lt;/tt> and &lt;tt>x-apic-debug-oauth-error-desc&lt;/tt> response headers."
+        }, 
+        {
+            "required": "true", 
+            "name": "ProviderType", 
+            "cli-alias": "provider-type", 
+            "/mgmt/types/default/dmOAuthProviderType": {
+                "type": {
+                    "name": "dmOAuthProviderType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "API Connect", 
+                                "display": "API Connect", 
+                                "name": "native", 
+                                "description": "Uses IBM API Connect as the OAuth provider."
+                            }, 
+                            {
+                                "summary": "Third-party", 
+                                "display": "Third-party", 
+                                "name": "third_party", 
+                                "description": "Uses an OAuth provider other than IBM API Connect."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmOAuthProviderType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmOAuthProviderType"
+                    }
+                }
+            }, 
+            "summary": "The type of the provider", 
+            "type": {
+                "href": "/mgmt/types/default/dmOAuthProviderType"
+            }, 
+            "display": "Provider type", 
+            "description": "Specifies the type of the OAuth provider."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Specifies the scopes that the access token is valid to access. To specify multiple scopes, use a space between each scope. The order of scopes does not matter. Scopes ensure that the granted access token is valid to access only specific protected resources.", 
+            "cli-alias": "scopes-allowed", 
+            "summary": "The scopes that the access token is valid to access", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Allowed scopes", 
+            "name": "ScopesAllowed"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "DefaultScopes", 
+            "cli-alias": "default-scopes", 
+            "summary": "The default scopes to apply when the request does not contain a scope", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "ProviderType", 
+                    "evaluation": "property-equals", 
+                    "value": "third_party"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Default scopes", 
+            "description": "&lt;p>Specifies the default scopes to apply when the request does not contain a scope. To specify multiple scopes, use a space between each scope. The order of scopes does not matter.&lt;/p>&lt;p>The default scopes must be a subset of the allowed scopes that are defined by the API security OAuth requirement configuration. When no default scope is defined and the request does not contain a scope, an invalid scope error is returned for the request.&lt;/p>&lt;p>Scopes ensure that the granted access token is valid to access only specific protected resources.&lt;/p>"
+        }, 
+        {
+            "name": "SupportedGrantTypes", 
+            "type": {
+                "href": "/mgmt/types/default/dmOAuthProviderGrantType"
+            }, 
+            "required": "true", 
+            "summary": "Supported methods to grant authorization", 
+            "/mgmt/types/default/dmOAuthProviderGrantType": {
+                "type": {
+                    "name": "dmOAuthProviderGrantType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Uses the implicit grant type to obtain authorization", 
+                                "display": "Implicit", 
+                                "name": "implicit", 
+                                "description": "In the implicit flow, the client receives the access token directly from the resource owner."
+                            }, 
+                            {
+                                "summary": "Uses the password credential of the resource owner to obtain authorization", 
+                                "display": "Resource owner - Password", 
+                                "name": "password", 
+                                "description": "In the resource owner password credentials flow, the client uses password credentials of the resource owner to obtain authorization."
+                            }, 
+                            {
+                                "summary": "Uses JSON Web Token (JWT) Bearer Token to obtain authorization", 
+                                "display": "Resource owner - JSON Web Token", 
+                                "name": "jwt", 
+                                "description": "In the JWT flow, the client uses a previously obtained JSON Web Token to obtain authorization."
+                            }, 
+                            {
+                                "summary": "Uses client credentials to obtain authorization", 
+                                "display": "Client credentials", 
+                                "name": "application", 
+                                "description": "In the client credentials flow, the client uses its own credentials to obtain authorization."
+                            }, 
+                            {
+                                "summary": "Uses authorization codes to obtain authorization", 
+                                "display": "Authorization code", 
+                                "name": "access_code", 
+                                "description": "In the authorization code flow, the client directs the resource owner to an intermediary authorization server. The server issues access token to the client after authenticating the client."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmOAuthProviderGrantType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmOAuthProviderGrantType"
+                    }
+                }
+            }, 
+            "cli-alias": "supported-grant-types", 
+            "display": "Supported grant types", 
+            "description": "Specifies the supported grant types where each grant type defines a method to grant authorization to client applications."
+        }, 
+        {
+            "name": "SupportedClientTypes", 
+            "/mgmt/types/default/dmAllowedClientType": {
+                "type": {
+                    "name": "dmAllowedClientType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Confidential client - web application", 
+                                "display": "Confidential", 
+                                "name": "confidential", 
+                                "description": "Confidential clients are capable of maintaining the confidentiality of their credentials, or capable of secure client authentication using other means. A web application is a confidential client."
+                            }, 
+                            {
+                                "summary": "Public client - native application or user-agent-based application", 
+                                "display": "Public", 
+                                "name": "public", 
+                                "description": "Public clients are incapable of maintaining the confidentiality of their credentials, and incapable of secure client authentication via any other means. Native applications and user-agent-based applications are public clients. &lt;ul>&lt;li>A native application is installed and executed on the device used by the resource owner.&lt;/li>&lt;li>In a user-agent-based application, the client code is downloaded from a web server and executes within a user-agent (for example, a web browser) on the device used by the resource owner.&lt;/li>&lt;/ul>"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAllowedClientType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAllowedClientType"
+                    }
+                }
+            }, 
+            "required-when": {
+                "condition": {
+                    "property-name": "ProviderType", 
+                    "evaluation": "property-equals", 
+                    "value": "native"
+                }
+            }, 
+            "summary": "Types of client who can obtain access tokens", 
+            "cli-alias": "supported-client-types", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmAllowedClientType"
+            }, 
+            "display": "Supported client types", 
+            "description": "Specifies the supported client types that are authorized to obtain an access token."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "name": "APICProviderBasePath", 
+            "default": "/", 
+            "required-when": {
+                "condition": {
+                    "property-name": "ProviderType", 
+                    "evaluation": "property-equals", 
+                    "value": "native"
+                }
+            }, 
+            "summary": "Base path URL for the OAuth provider API", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "apic-provider-base-path", 
+            "display": "Provider base path", 
+            "description": "When the provider type is API Connect, specifies the base path on which the OAuth provider API is served. The default base path is &lt;tt>/&lt;/tt> ."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "name": "APICAuthorizeEndpoint", 
+            "default": "/oauth2/authorize", 
+            "required-when": {
+                "condition": {
+                    "property-name": "ProviderType", 
+                    "evaluation": "property-equals", 
+                    "value": "native"
+                }
+            }, 
+            "summary": "URL to the authorization endpoint", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "apic-authorize-endpoint", 
+            "display": "Authorization endpoint", 
+            "description": "When the provider is API Connect, specifies the endpoint where the client application obtains authorization grant. The default authorization endpoint is &lt;tt>/oauth2/authorize&lt;/tt> ."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "name": "APICTokenEndpoint", 
+            "default": "/oauth2/token", 
+            "required-when": {
+                "condition": {
+                    "property-name": "ProviderType", 
+                    "evaluation": "property-equals", 
+                    "value": "native"
+                }
+            }, 
+            "summary": "URL to the token endpoint", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "apic-token-endpoint", 
+            "display": "Token endpoint", 
+            "description": "When the provider is API Connect, specifies the endpoint where the client application exchanges an authorization grant for an access token. The default token endpoint is &lt;tt>/oauth2/token&lt;/tt> ."
+        }, 
+        {
+            "name": "APICEnableIntrospection", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to enable introspection of access tokens", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "ProviderType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "native"
+                }
+            }, 
+            "cli-alias": "apic-enable-introspection", 
+            "display": "Enable token introspection", 
+            "description": "When the OAuth provider is API Connect, specifies whether to enable the introspection of access tokens. When enabled, authorized protected resources can introspect the access token to determine the metadata for making appropriate authorization decisions. By default, token introspection is disabled."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "name": "APICIntrospectEndpoint", 
+            "default": "/oauth2/introspect", 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-equals", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "APICEnableIntrospection", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }
+                    ]
+                }
+            }, 
+            "summary": "URL to the introspection endpoint", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "apic-introspect-endpoint", 
+            "display": "Introspection endpoint", 
+            "description": "When the provider is API Connect, specifies the endpoint through which the token introspection operation is accomplished. The default introspection endpoint is &lt;tt>/oauth2/introspect&lt;/tt> ."
+        }, 
+        {
+            "name": "APICEnableRevocation", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "When to enable token revocation", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "ProviderType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "native"
+                }
+            }, 
+            "cli-alias": "apic-enable-revocation", 
+            "display": "Enable token revocation", 
+            "description": "When the OAuth provider is API Connect, specifies whether to enable the revocation of access tokens. When enabled, users can revoke the access token when they change their mind and decide that they do not want the client application to continue to have access to their resources. By default, token revocation is disabled."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "name": "APICRevocationEndpoint", 
+            "default": "/oauth2/revocation", 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-equals", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "APICEnableRevocation", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }
+                    ]
+                }
+            }, 
+            "summary": "URL to the revocation endpoint", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "apic-revocation-endpoint", 
+            "display": "Revocation endpoint", 
+            "description": "When the provider is API Connect, specifies the endpoint through which the token revocation is accomplished. The default revocation endpoint is &lt;tt>/oauth2/revocation&lt;/tt> ."
+        }, 
+        {
+            "name": "APICTokenSecret", 
+            "required-when": {
+                "condition": {
+                    "property-name": "ProviderType", 
+                    "evaluation": "property-equals", 
+                    "value": "native"
+                }
+            }, 
+            "summary": "The secret of the token", 
+            "cli-alias": "apic-token-secret", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/CryptoSSKey"
+                }
+            }, 
+            "display": "Token secret", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "When the provider is API Connect, specifies the secret of the generated token."
+        }, 
+        {
+            "name": "APICOneTimeUseAccesstoken", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to enable the one-time use of an access token.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "EnableTokenManagement", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "TokenManagerType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "native"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "apic-enable-one-time-use-access-token", 
+            "display": "One-time use access token", 
+            "description": "When the OAuth provider is API Connect, controls whether to set access tokens to one-time use."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "APICAccessTokenTTL", 
+            "default": 3600, 
+            "required-when": {
+                "condition": {
+                    "property-name": "ProviderType", 
+                    "evaluation": "property-equals", 
+                    "value": "native"
+                }
+            }, 
+            "maximum": 63244800, 
+            "summary": "The lifetime for the access token", 
+            "minimum": 1, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "apic-access-token-ttl", 
+            "display": "Access token TTL", 
+            "description": "When the provider is API Connect, specifies the time that an access token remains valid in seconds. The default value is 3600."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "APICAuthCodeTTL", 
+            "default": 300, 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-equals", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "EnableTokenManagement", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "TokenManagerType", 
+                            "evaluation": "property-equals", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "SupportedGrantTypes", 
+                            "evaluation": "property-value-in-list", 
+                            "value": "access_code"
+                        }
+                    ]
+                }
+            }, 
+            "maximum": 600, 
+            "summary": "The lifetime for the authorization code", 
+            "minimum": 1, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "apic-auth-code-ttl", 
+            "display": "Authorization code TTL", 
+            "description": "When the provider is API Connect, specifies the time that an authorization code remains valid in seconds. The default value is 300."
+        }, 
+        {
+            "name": "APICEnableRefreshToken", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to enable the use of refresh tokens", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "ProviderType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "native"
+                }
+            }, 
+            "cli-alias": "apic-enable-refresh-token", 
+            "display": "Enable refresh tokens", 
+            "description": "When the OAuth provider is API Connect, controls whether to enable issuing refresh tokens. Refresh tokens are issued to the client. Refresh tokens are used to obtain a new access token when the current access token becomes invalid or expires or are used to obtain additional access tokens with identical or narrower scope. By default, this setting is disabled."
+        }, 
+        {
+            "name": "APICOneTimeUseRefreshtoken", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to disable the one-time use of a refresh token.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "APICEnableRefreshToken", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "EnableTokenManagement", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "TokenManagerType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "native"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "apic-enable-one-time-use-refresh-token", 
+            "display": "One-time use refresh token", 
+            "description": "When the OAuth provider is API Connect, controls whether a refresh tokens is one-time use. &lt;ul>&lt;li>When enabled, the refresh token is one-time use. This setting is the default value.&lt;/li>&lt;li>When disabled, the refresh token can be reused until it expires or is revoked.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "APICRefreshTokenLimit", 
+            "default": 10, 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-equals", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "APICEnableRefreshToken", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }
+                    ]
+                }
+            }, 
+            "maximum": 4096, 
+            "summary": "The maximum number of refresh tokens allowed", 
+            "minimum": 1, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "apic-refresh-token-limit", 
+            "display": "APIC refresh token count", 
+            "description": "Specifies the number of refresh tokens allowed to be generated. The default value is 10."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "APICRefreshTokenTTL", 
+            "default": 5400, 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-equals", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "APICEnableRefreshToken", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }
+                    ]
+                }
+            }, 
+            "maximum": 252979200, 
+            "summary": "The lifetime for the refresh token", 
+            "minimum": 2, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "apic-refresh-token-ttl", 
+            "display": "Refresh token TTL", 
+            "description": "When the provider is API Connect and the refresh token is enabled, specifies the time that a refresh token remains valid in seconds. The default value is 5400."
+        }, 
+        {
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "APICMaximumConsentTTL", 
+            "default": 0, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "maximum": 2529792000, 
+            "summary": "The lifetime for the consent", 
+            "minimum": 0, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "APICEnableRefreshToken", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "native"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "apic-maximum-consent-ttl", 
+            "display": "Consent TTL", 
+            "description": "When the provider is API Connect, specifies the time that a consent remains valid in seconds. The default value is 0 which disables maximum consent."
+        }, 
+        {
+            "name": "AdvScopeValidationEnabled", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to enable advanced scope validation", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "advanced-scope-validation-enabled", 
+            "display": "Enable advanced scope validation", 
+            "description": "Indicates whether to enable advanced scope validation that you can use to provide additional scope checking."
+        }, 
+        {
+            "name": "AdvancedScopeURLOverride", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to use the URL from the API Security Definition or from the OAuth Provider Settings.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "AdvScopeValidationEnabled", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "on"
+                }
+            }, 
+            "cli-alias": "advanced-scope-url-from-security", 
+            "display": "Use URL from API Security Definition", 
+            "description": "Indicates whether to use the URL from the API Security Definition or from the OAuth Provider Settings."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "name": "AdvancedScopeURL", 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "AdvancedScopeURLOverride", 
+                            "evaluation": "property-equals", 
+                            "value": "off"
+                        }, 
+                        {
+                            "property-name": "AdvScopeValidationEnabled", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }
+                    ]
+                }
+            }, 
+            "summary": "Advanced scope URL to send updated scope for validation.", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "AdvScopeValidationEnabled", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "on"
+                }
+            }, 
+            "cli-alias": "advanced-scope-url", 
+            "display": "Advanced scope URL", 
+            "description": "Adds the ability to send scope information to an external endpoint where the given scope is verified. The property is required when advanced scope validation is enabled."
+        }, 
+        {
+            "name": "AdvScopeTLSProfile", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                }
+            }, 
+            "summary": "TLS client profile to secure the HTTPS connection to the advanced scope URL", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "AdvScopeValidationEnabled", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "on"
+                }
+            }, 
+            "cli-alias": "advanced-scope-tls-profile", 
+            "display": "TLS profile to access advanced scope URL", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "When the advanced scope URL uses the HTTPS protocol, specifies the TLS client profile to secure the connection."
+        }, 
+        {
+            "name": "AdvScopeURLSecurityEnabled", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to enable security on the advanced scope endpoint", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "AdvScopeValidationEnabled", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "on"
+                }
+            }, 
+            "cli-alias": "advanced-scope-url-security-enabled", 
+            "display": "Enable advanced scope endpoint security", 
+            "description": "Indicates whether to secure connections to the advanced scope endpoint."
+        }, 
+        {
+            "name": "AdvScopeURLSecurity", 
+            "default": "basic-auth", 
+            "type": {
+                "href": "/mgmt/types/default/dmSecurityType"
+            }, 
+            "summary": "How to secure the advanced scope endpoint", 
+            "/mgmt/types/default/dmSecurityType": {
+                "type": {
+                    "name": "dmSecurityType", 
+                    "value-list": {
+                        "value": {
+                            "summary": "Basic authentication header", 
+                            "display": "Basic authentication header", 
+                            "name": "basic-auth", 
+                            "description": "When you use basic authentication header, you require users to provide valid user name and password to access the endpoint."
+                        }
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSecurityType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSecurityType"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "AdvScopeURLSecurityEnabled", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "AdvScopeValidationEnabled", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "advanced-scope-url-security", 
+            "display": "Advanced scope endpoint security", 
+            "description": "Specifies how to secure connections to the advanced scope endpoint."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "AdvScopeBasicAuthUserName", 
+            "cli-alias": "advanced-scope-basic-auth-username", 
+            "summary": "User name for authentication", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "AdvScopeValidationEnabled", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "AdvScopeURLSecurityEnabled", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "AdvScopeURLSecurity", 
+                            "evaluation": "property-value-not-in-list", 
+                            "value": "basic-auth"
+                        }
+                    ]
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Basic authentication user name", 
+            "description": "When the security type is basic authorization header, specifies the user name for authentication."
+        }, 
+        {
+            "name": "AdvScopeBasicAuthPassword", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/PasswordAlias"
+                }
+            }, 
+            "summary": "Password for authentication", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "AdvScopeValidationEnabled", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "AdvScopeURLSecurityEnabled", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "AdvScopeURLSecurity", 
+                            "evaluation": "property-value-not-in-list", 
+                            "value": "basic-auth"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "advanced-scope-basic-auth-password-alias", 
+            "display": "Basic authentication password", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "When the security type is basic authorization header, specifies the password for authentication."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "AdvScopeBasicAuthHeaderName", 
+            "cli-alias": "advanced-scope-basic-auth-headername", 
+            "summary": "Header name to use for sending encoded or non-encoded authentication string in the header", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "AdvScopeValidationEnabled", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "AdvScopeURLSecurityEnabled", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "AdvScopeURLSecurity", 
+                            "evaluation": "property-value-not-in-list", 
+                            "value": "basic-auth"
+                        }
+                    ]
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Basic authentication header name", 
+            "description": "When the security type is basic authorization header, specifies the header name to use in the &lt;tt>curl&lt;/tt> command when you want to append encoded or non-encoded authentication string in the header. For example, &lt;tt>x-basic-authorization-header&lt;/tt> ."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "AdvancedScopeCustomHeaders", 
+            "cli-alias": "advanced-scope-request-headers", 
+            "summary": "Custom headers to send with the advanced scope validation request", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "AdvScopeValidationEnabled", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "on"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Request headers", 
+            "description": "Adds ability to send additional headers in the advanced scope validation step. Use a regular expression match to include headers from the initial request."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "AdvancedScopeCustomContexts", 
+            "cli-alias": "advanced-scope-response-contexts", 
+            "summary": "Custom context variables that can be selected with the advanced scope validation request", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "AdvScopeValidationEnabled", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "on"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Response context variables", 
+            "description": "Adds ability to save headers in the advanced scope validation step as context variables. Use a regular expression to include headers from the advanced scope endpoint response."
+        }, 
+        {
+            "name": "APICEnableOIDC", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to enable OIDC for authentication", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "native"
+                        }, 
+                        {
+                            "evaluation": "logical-and", 
+                            "condition": [
+                                {
+                                    "property-name": "SupportedGrantTypes", 
+                                    "evaluation": "property-value-not-in-list", 
+                                    "value": "access_code"
+                                }, 
+                                {
+                                    "property-name": "SupportedGrantTypes", 
+                                    "evaluation": "property-value-not-in-list", 
+                                    "value": "implicit"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "apic-enable-oidc", 
+            "display": "Enable OIDC", 
+            "description": "When the OAuth provider is API Connect, specifies whether to enable OIDC to verify the identity of the user. When enabled, the client application verifies the identity of the user based on the requirement of an OIDC provider before requesting access to client resources. By default, OIDC token generation is enabled. OIDC is only available for Implicit and Authorization Code grant types."
+        }, 
+        {
+            "name": "APICOIDCHybridResponseTypes", 
+            "type": {
+                "href": "/mgmt/types/default/dmOIDCHybridResponseType"
+            }, 
+            "summary": "Which artifacts are supported with the OIDC Hybrid Flow", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "native"
+                        }, 
+                        {
+                            "evaluation": "logical-and", 
+                            "condition": [
+                                {
+                                    "property-name": "SupportedGrantTypes", 
+                                    "evaluation": "property-value-not-in-list", 
+                                    "value": "access_code"
+                                }, 
+                                {
+                                    "property-name": "SupportedGrantTypes", 
+                                    "evaluation": "property-value-not-in-list", 
+                                    "value": "implicit"
+                                }
+                            ]
+                        }, 
+                        {
+                            "property-name": "APICEnableOIDC", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "apic-oidc-hybrid-response-types", 
+            "display": "OIDC Hybrid Flow Response Types", 
+            "/mgmt/types/default/dmOIDCHybridResponseType": {
+                "type": {
+                    "name": "dmOIDCHybridResponseType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "AZ Code and ID Token", 
+                                "display": "code id_token", 
+                                "name": "code_id_token", 
+                                "description": "Supports request of ID Token as well as AZ Code from authentication endpoint."
+                            }, 
+                            {
+                                "summary": "AZ Code and Access Token", 
+                                "display": "code token", 
+                                "name": "code_access_token", 
+                                "description": "Supports request of Access Token as well as AZ Code from authentication endpoint."
+                            }, 
+                            {
+                                "summary": "AZ Code, ID Token and Access Token", 
+                                "display": "code id_token token", 
+                                "name": "code_id_token_access_token", 
+                                "description": "Supports request of ID Token and Access Token as well as AZ Code from authentication endpoint."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmOIDCHybridResponseType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmOIDCHybridResponseType"
+                    }
+                }
+            }, 
+            "description": "When the OAuth provider is API Connect, specifies which OIDC Hybrid Flow artifacts can be returned from the authorization endpoint."
+        }, 
+        {
+            "name": "APICSupportPKCE", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether application will support PKCE", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "SupportedGrantTypes", 
+                            "evaluation": "property-value-not-in-list", 
+                            "value": "access_code"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "apic-support-pkce", 
+            "display": "Support PKCE", 
+            "description": "When the grant type is Authorization code, indicates whether the application should enforce PKCE if provided by the client. For more information, see RFC 7636."
+        }, 
+        {
+            "name": "APICRequirePKCE", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether application must enforce PKCE", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "SupportedGrantTypes", 
+                            "evaluation": "property-value-not-in-list", 
+                            "value": "access_code"
+                        }, 
+                        {
+                            "property-name": "APICSupportPKCE", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "apic-require-pkce", 
+            "display": "Require PKCE", 
+            "description": "When the grant type is Authorization code, indicates whether the application must enforce PKCE. For more information, see RFC 7636."
+        }, 
+        {
+            "name": "APICSupportPKCEPlain", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to support the PKCE 'plain' code challenge transform method", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "SupportedGrantTypes", 
+                            "evaluation": "property-value-not-in-list", 
+                            "value": "access_code"
+                        }, 
+                        {
+                            "property-name": "APICSupportPKCE", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "apic-support-pkce-plain", 
+            "display": "Support PKCE 'plain' challenge method", 
+            "description": "When the grant type is Authorization code, indicates whether to support the PKCE &lt;tt>plain&lt;/tt> code challenge transform method. For more information, see RFC 7636."
+        }, 
+        {
+            "name": "APICTokenTypeToGenerate", 
+            "type": {
+                "href": "/mgmt/types/default/dmTokenType"
+            }, 
+            "summary": "The type of access token to generate", 
+            "/mgmt/types/default/dmTokenType": {
+                "type": {
+                    "name": "dmTokenType", 
+                    "value-list": {
+                        "value": {
+                            "summary": "Bearer access token", 
+                            "display": "Bearer access token", 
+                            "name": "Bearer", 
+                            "description": "Generates Bearer access tokens."
+                        }
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTokenType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmTokenType"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "ProviderType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "native"
+                }
+            }, 
+            "cli-alias": "apic-token-type-to-generate", 
+            "display": "Type of token to generate", 
+            "description": "When the provider is API Connect, specifies the type of access token to generate."
+        }, 
+        {
+            "name": "MetadataFrom", 
+            "type": {
+                "href": "/mgmt/types/default/dmMetadataFromType"
+            }, 
+            "summary": "Where to obtain custom metadata", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "ProviderType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "native"
+                }
+            }, 
+            "/mgmt/types/default/dmMetadataFromType": {
+                "type": {
+                    "name": "dmMetadataFromType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "From the response headers received from the authentication URL", 
+                                "display": "authentication URL", 
+                                "name": "authentication_url", 
+                                "description": "An HTTP GET request is sent to the authentication URL and the metadata is returned in specified response headers."
+                            }, 
+                            {
+                                "summary": "From the response headers received from an external metadata URL", 
+                                "display": "external metadata URL", 
+                                "name": "external_url", 
+                                "description": "An HTTP GET request is sent to an external metadata URL and the metadata is returned in specified response headers. Metadata obtained from the metadata URL overwrites any existing metadata obtained from the authentication URL."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmMetadataFromType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmMetadataFromType"
+                    }
+                }
+            }, 
+            "cli-alias": "metadata-from", 
+            "display": "Obtain metadata from", 
+            "description": "When the provider is API Connect, specifies where to obtain custom metadata of the access tokens."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmURL"
+            }, 
+            "name": "MetadataURL", 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-equals", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "MetadataFrom", 
+                            "evaluation": "property-value-in-list", 
+                            "value": "external_url"
+                        }
+                    ]
+                }
+            }, 
+            "summary": "The URL to a remote server where to obtain the metadata", 
+            "/mgmt/types/default/dmURL": {
+                "type": {
+                    "cli-arg": "url", 
+                    "name": "dmURL"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "metadata-url", 
+            "display": "External metadata URL", 
+            "description": "When the provider is API Connect, specifies the URL to a remote server where the custom metadata is stored."
+        }, 
+        {
+            "name": "MetadataSSLProfile", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                }
+            }, 
+            "summary": "TLS client profile to secure the HTTPS connection to a remote metadata provider", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "MetadataFrom", 
+                            "evaluation": "property-value-not-in-list", 
+                            "value": "external_url"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "metadata-ssl-profile", 
+            "display": "TLS profile to access metadata URL", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "When the external metadata URL uses the HTTPS protocol, specifies the TLS client profile to secure the connection."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "MetadataHeaderForAccessToken", 
+            "default": "X-API-OAuth-Metadata-For-AccessToken", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "summary": "Response header for access token", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "MetadataFrom", 
+                            "evaluation": "property-value-not-in-list", 
+                            "value": [
+                                "authentication_url", 
+                                "external_url"
+                            ]
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "mdheader-for-accesstoken", 
+            "display": "Response header for access token", 
+            "description": "Specifies which value, among the response header values that the authentication or metadata URL returns, to place in the access token."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "MetadataHeaderForPayload", 
+            "default": "X-API-OAuth-Metadata-For-Payload", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "summary": "Response header for payload", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "MetadataFrom", 
+                            "evaluation": "property-value-not-in-list", 
+                            "value": [
+                                "authentication_url", 
+                                "external_url"
+                            ]
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "mdheader-for-payload", 
+            "display": "Response header for payload", 
+            "description": "Specifies which value, among the response header values that the authentication or metadata URL returns, to place in the response payload."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmURL"
+            }, 
+            "name": "ExternalRevocationURL", 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-equals", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "EnableTokenManagement", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "TokenManagerType", 
+                            "evaluation": "property-equals", 
+                            "value": "external"
+                        }
+                    ]
+                }
+            }, 
+            "summary": "URL to an external management endpoint", 
+            "/mgmt/types/default/dmURL": {
+                "type": {
+                    "cli-arg": "url", 
+                    "name": "dmURL"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "external-revocation-url", 
+            "display": "External management URL", 
+            "description": "Specifies an external endpoint through which the token management is accomplished."
+        }, 
+        {
+            "name": "ExternalRevocationSSLProfile", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                }
+            }, 
+            "summary": "TLS client profile to secure connection to the external management service", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "EnableTokenManagement", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "TokenManagerType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "external"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "external-revocation-ssl-profile", 
+            "display": "External management TLS client profile", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "Specifies the client profile to use for TLS connection to the external management service."
+        }, 
+        {
+            "name": "ExternalRevocationURLSecurity", 
+            "default": "basic-auth", 
+            "type": {
+                "href": "/mgmt/types/default/dmSecurityType"
+            }, 
+            "summary": "How the external management endpoint is secured", 
+            "/mgmt/types/default/dmSecurityType": {
+                "type": {
+                    "name": "dmSecurityType", 
+                    "value-list": {
+                        "value": {
+                            "summary": "Basic authentication header", 
+                            "display": "Basic authentication header", 
+                            "name": "basic-auth", 
+                            "description": "When you use basic authentication header, you require users to provide valid user name and password to access the endpoint."
+                        }
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSecurityType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSecurityType"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "EnableTokenManagement", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "TokenManagerType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "external"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "external-revocation-url-security", 
+            "display": "External management security", 
+            "description": "When the native OAuth provider uses an external management service, specifies how to secure connections to the service endpoint."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "ExternalRevocationBasicAuthUserName", 
+            "cli-alias": "external-revocation-basic-auth-username", 
+            "summary": "User name for authentication", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "EnableTokenManagement", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "TokenManagerType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "external"
+                        }, 
+                        {
+                            "property-name": "ExternalRevocationURLSecurity", 
+                            "evaluation": "property-value-not-in-list", 
+                            "value": "basic-auth"
+                        }
+                    ]
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Basic authentication user name", 
+            "description": "When the security type is basic authorization header, specifies the user name for authentication."
+        }, 
+        {
+            "name": "ExternalRevocationBasicAuthPassword", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/PasswordAlias"
+                }
+            }, 
+            "summary": "Password for authentication", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "EnableTokenManagement", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "TokenManagerType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "external"
+                        }, 
+                        {
+                            "property-name": "ExternalRevocationURLSecurity", 
+                            "evaluation": "property-value-not-in-list", 
+                            "value": "basic-auth"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "external-revocation-basic-auth-password-alias", 
+            "display": "Basic authentication password", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "When the security type is basic authorization header, specifies the password for authentication."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "ExternalRevocationBasicAuthHeaderName", 
+            "cli-alias": "external-revocation-basic-auth-headername", 
+            "summary": "Header name to use for sending encoded or non-encoded authentication string in the header", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "EnableTokenManagement", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "TokenManagerType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "external"
+                        }, 
+                        {
+                            "property-name": "ExternalRevocationURLSecurity", 
+                            "evaluation": "property-value-not-in-list", 
+                            "value": "basic-auth"
+                        }
+                    ]
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Basic authentication header name", 
+            "description": "When the native OAuth provider uses an external management service, specifies the header name to use in the &lt;tt>curl&lt;/tt> command when you want to append encoded or non-encoded authentication string in the header. For example, &lt;tt>x-introspect-basic-authorization-header&lt;/tt> ."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "ExternalRevocationCustomHeaderFormat", 
+            "cli-alias": "external-revocation-custom-headername-format", 
+            "summary": "Pattern of header names to use for sending additional information in the header", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "EnableTokenManagement", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "TokenManagerType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "external"
+                        }
+                    ]
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Custom header pattern", 
+            "description": "When the native OAuth provider uses an external management service, this specifies the pattern of header names to include from the original message. For example, &lt;tt>x-external-management-*&lt;/tt> ."
+        }, 
+        {
+            "name": "ExternalRevocationCacheType", 
+            "default": "NoCache", 
+            "type": {
+                "href": "/mgmt/types/default/dmThirdPartyCacheType"
+            }, 
+            "summary": "How to cache external management service responses", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "EnableTokenManagement", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "TokenManagerType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "external"
+                        }
+                    ]
+                }
+            }, 
+            "/mgmt/types/default/dmThirdPartyCacheType": {
+                "type": {
+                    "summary": "Cache Type", 
+                    "display": "Cache Type", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Uses the cache behavior that is defined by any returned Cache-Control header.", 
+                                "display": "Protocol", 
+                                "name": "Protocol", 
+                                "description": "Uses the cache behavior that is defined by the &lt;tt>Cache-Control&lt;/tt> header on the response from the external service."
+                            }, 
+                            {
+                                "summary": "Disables caching.", 
+                                "display": "No Cache", 
+                                "name": "NoCache", 
+                                "description": "Does not cache documents. This setting is the default value."
+                            }, 
+                            {
+                                "summary": "Caches for the specified time.", 
+                                "display": "Time to Live", 
+                                "name": "TimeToLive", 
+                                "description": "Keeps documents in the cache for the specified time."
+                            }
+                        ]
+                    }, 
+                    "name": "dmThirdPartyCacheType"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmThirdPartyCacheType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmThirdPartyCacheType"
+                    }
+                }
+            }, 
+            "cli-alias": "external-revocation-cache-type", 
+            "display": "Cache type", 
+            "description": "When the native OAuth provider uses an external management service, controls how to cache management responses."
+        }, 
+        {
+            "name": "ExternalRevocationCacheTimeToLive", 
+            "default": 900, 
+            "type": {
+                "href": "/mgmt/types/default/dmTimeInterval"
+            }, 
+            "summary": "The validity period for external management service responses in the cache.", 
+            "/mgmt/types/default/dmTimeInterval": {
+                "type": {
+                    "cli-arg": "seconds", 
+                    "minimum": 0, 
+                    "name": "dmTimeInterval", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "EnableTokenManagement", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "TokenManagerType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "external"
+                        }, 
+                        {
+                            "property-name": "ExternalRevocationCacheType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "TimeToLive"
+                        }
+                    ]
+                }
+            }, 
+            "units": "seconds", 
+            "cli-alias": "external-revocation-cache-ttl", 
+            "display": "Time to live", 
+            "description": "Sets the validity period in seconds for external management service responses in the cache. The default value is 900."
+        }, 
+        {
+            "name": "ExternalRevocationFailOnError", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Indicates whether to stop processing if connection to external management service fails.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "EnableTokenManagement", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "TokenManagerType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "external"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "external-revocation-fail-on-error", 
+            "display": "Fail on error", 
+            "description": "Whether to stop processing if external management query fails. If failed, stops the token generation or use and returns an error."
+        }, 
+        {
+            "name": "EnableTokenManagement", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Specify if security token details should be managed and stored.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-equals", 
+                            "value": "third_party"
+                        }, 
+                        {
+                            "property-name": "ThirdPartyIntrospectCacheType", 
+                            "evaluation": "property-equals", 
+                            "value": "NoCache"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "enable-token-management", 
+            "display": "Enable token management", 
+            "description": "Enabling token management for security token details provides the ability to create one-time use tokens, prevent AZ code reuse, and support allow listing through the use of the token manager."
+        }, 
+        {
+            "/mgmt/types/default/dmTokenManagerType": {
+                "type": {
+                    "name": "dmTokenManagerType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Use internal token manager", 
+                                "display": "Native", 
+                                "name": "native", 
+                                "description": "Manage and store security token details using an internal token manager."
+                            }, 
+                            {
+                                "summary": "External token manager", 
+                                "display": "External", 
+                                "name": "external", 
+                                "description": "Delegate token management operations to an external service."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTokenManagerType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmTokenManagerType"
+                    }
+                }
+            }, 
+            "name": "TokenManagerType", 
+            "default": "native", 
+            "type": {
+                "href": "/mgmt/types/default/dmTokenManagerType"
+            }, 
+            "summary": "Token manager type", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "EnableTokenManagement", 
+                            "evaluation": "property-equals", 
+                            "value": "off"
+                        }, 
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-equals", 
+                            "value": "third_party"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "token-manager-type", 
+            "display": "Token manager type", 
+            "description": "Specifies the token manager type to manage and store security token details."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/APISecurityTokenManager"
+                }
+            }, 
+            "name": "APISecurityTokenManager", 
+            "default": "default", 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "EnableTokenManagement", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "TokenManagerType", 
+                            "evaluation": "property-equals", 
+                            "value": "native"
+                        }, 
+                        {
+                            "evaluation": "logical-or", 
+                            "condition": [
+                                {
+                                    "property-name": "ProviderType", 
+                                    "evaluation": "property-equals", 
+                                    "value": "native"
+                                }, 
+                                {
+                                    "property-name": "ThirdPartyIntrospectCacheType", 
+                                    "evaluation": "property-does-not-equal", 
+                                    "value": "NoCache"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }, 
+            "summary": "The security token manager.", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "api-security-token-manager", 
+            "display": "API security token manager", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The security token manager that stores security token details. This property is read-only."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "name": "EnableApplicationRevocation", 
+            "default": "off", 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "EnableTokenManagement", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "TokenManagerType", 
+                            "evaluation": "property-equals", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-equals", 
+                            "value": "native"
+                        }
+                    ]
+                }
+            }, 
+            "summary": "Enable revocation by application.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "apic-app-revoke-enable", 
+            "display": "Application revocation", 
+            "description": "Enabling application revocation will allow the application to revoke the consent provided before the token expires."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "name": "ApplicationRevocationEndpoint", 
+            "default": "/oauth2/revoke", 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "EnableApplicationRevocation", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "EnableTokenManagement", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "TokenManagerType", 
+                            "evaluation": "property-equals", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-equals", 
+                            "value": "native"
+                        }
+                    ]
+                }
+            }, 
+            "summary": "The application revocation endpoint.", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "apic-app-revoke-endpoint", 
+            "display": "Application revocation endpoint", 
+            "description": "The endpoint that will process application revocations."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "name": "EnableOwnerRevocation", 
+            "default": "off", 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "EnableTokenManagement", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "TokenManagerType", 
+                            "evaluation": "property-equals", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-equals", 
+                            "value": "native"
+                        }
+                    ]
+                }
+            }, 
+            "summary": "Enable revocation by resource owner.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "apic-owner-revoke-enable", 
+            "display": "Resource owner revocation", 
+            "description": "Enabling resource owner revocation will allow the resource owner to revoke the consent provided before the token expires."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "name": "OwnerRevocationEndpoint", 
+            "default": "/oauth2/issued", 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "EnableOwnerRevocation", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "EnableTokenManagement", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "TokenManagerType", 
+                            "evaluation": "property-equals", 
+                            "value": "native"
+                        }, 
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-equals", 
+                            "value": "native"
+                        }
+                    ]
+                }
+            }, 
+            "summary": "The resource owner revocation endpoint.", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "apic-owner-revoke-endpoint", 
+            "display": "Resource owner revocation endpoint", 
+            "description": "The endpoint that will process resource owner revocations."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmTokenValidationReq"
+            }, 
+            "name": "TokenValidationReq", 
+            "required-when": {
+                "condition": {
+                    "property-name": "ProviderType", 
+                    "evaluation": "property-equals", 
+                    "value": "third_party"
+                }
+            }, 
+            "/mgmt/types/default/dmTokenValidationReq": {
+                "type": {
+                    "name": "dmTokenValidationReq", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Connected successfully", 
+                                "display": "200 OK", 
+                                "name": "connected", 
+                                "description": "Connected successfully to the third-party endpoint."
+                            }, 
+                            {
+                                "summary": "Connected successfully and access token is valid", 
+                                "display": "200 OK + active:true", 
+                                "name": "active", 
+                                "description": "Connected successfully to the third-party endpoint and the access token is valid."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTokenValidationReq"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmTokenValidationReq"
+                    }
+                }
+            }, 
+            "summary": "Requirement to indicate when a token is valid", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "token-validation-requirement", 
+            "display": "Token validation requirement", 
+            "description": "When checking responses from the third-party endpoint, specify the requirement that must be satisfied to prove that a token is valid."
+        }, 
+        {
+            "name": "ThirdPartyAZURL", 
+            "cli-alias": "third-party-az-url", 
+            "summary": "URL to the authorization endpoint", 
+            "/mgmt/types/default/dmURL": {
+                "type": {
+                    "cli-arg": "url", 
+                    "name": "dmURL"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "ProviderType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "third_party"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmURL"
+            }, 
+            "display": "Authorization endpoint", 
+            "description": "When the OAuth provider type is third-party, specifies the endpoint where the client application obtains authorization grant."
+        }, 
+        {
+            "name": "ThirdPartyTokenURL", 
+            "cli-alias": "third-party-token-url", 
+            "summary": "URL to the token endpoint", 
+            "/mgmt/types/default/dmURL": {
+                "type": {
+                    "cli-arg": "url", 
+                    "name": "dmURL"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "ProviderType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "third_party"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmURL"
+            }, 
+            "display": "Token endpoint", 
+            "description": "When the OAuth provider type is third-party, specifies the endpoint where the client application exchanges an authorization grant for an access token."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmURL"
+            }, 
+            "name": "ThirdPartyIntrospectURL", 
+            "required-when": {
+                "condition": {
+                    "property-name": "ProviderType", 
+                    "evaluation": "property-equals", 
+                    "value": "third_party"
+                }
+            }, 
+            "summary": "URL to the introspection endpoint", 
+            "/mgmt/types/default/dmURL": {
+                "type": {
+                    "cli-arg": "url", 
+                    "name": "dmURL"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "third-party-introspect-url", 
+            "display": "Introspection endpoint", 
+            "description": "When the OAuth provider type is third-party, specifies the endpoint through which the token introspection operation is accomplished."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmThirdPartyCacheType"
+            }, 
+            "name": "ThirdPartyIntrospectCacheType", 
+            "default": "NoCache", 
+            "required-when": {
+                "condition": {
+                    "property-name": "ProviderType", 
+                    "evaluation": "property-equals", 
+                    "value": "third_party"
+                }
+            }, 
+            "summary": "How to cache third-party provider responses", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "/mgmt/types/default/dmThirdPartyCacheType": {
+                "type": {
+                    "summary": "Cache Type", 
+                    "display": "Cache Type", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Uses the cache behavior that is defined by any returned Cache-Control header.", 
+                                "display": "Protocol", 
+                                "name": "Protocol", 
+                                "description": "Uses the cache behavior that is defined by the &lt;tt>Cache-Control&lt;/tt> header on the response from the external service."
+                            }, 
+                            {
+                                "summary": "Disables caching.", 
+                                "display": "No Cache", 
+                                "name": "NoCache", 
+                                "description": "Does not cache documents. This setting is the default value."
+                            }, 
+                            {
+                                "summary": "Caches for the specified time.", 
+                                "display": "Time to Live", 
+                                "name": "TimeToLive", 
+                                "description": "Keeps documents in the cache for the specified time."
+                            }
+                        ]
+                    }, 
+                    "name": "dmThirdPartyCacheType"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmThirdPartyCacheType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmThirdPartyCacheType"
+                    }
+                }
+            }, 
+            "cli-alias": "third-party-introspect-cache-type", 
+            "display": "Cache type", 
+            "description": "When the OAuth provider type is third-party, controls whether to cache successful responses on the gateway, and for how long."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmTimeInterval"
+            }, 
+            "name": "ThirdPartyIntrospectCacheTimeToLive", 
+            "default": 900, 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-equals", 
+                            "value": "third_party"
+                        }, 
+                        {
+                            "property-name": "ThirdPartyIntrospectCacheType", 
+                            "evaluation": "property-equals", 
+                            "value": "TimeToLive"
+                        }
+                    ]
+                }
+            }, 
+            "summary": "The validity period for third party provider responses in the cache.", 
+            "/mgmt/types/default/dmTimeInterval": {
+                "type": {
+                    "cli-arg": "seconds", 
+                    "minimum": 0, 
+                    "name": "dmTimeInterval", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "units": "seconds", 
+            "cli-alias": "third-party-introspect-cache-ttl", 
+            "display": "Time to live", 
+            "description": "Sets the validity period in seconds for third-party provider responses in the cache. The default value is 900."
+        }, 
+        {
+            "name": "ThirdPartyAuthorizationHeaderPassThru", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Controls whether to retain the Authorization header for a bearer token.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "ProviderType", 
+                    "evaluation": "property-equals", 
+                    "value": "native"
+                }
+            }, 
+            "cli-alias": "third-party-authorization-header-pass-thru", 
+            "display": "Retain Authorization header", 
+            "description": "When the OAuth provider type is third-party, whether to retain or remove the &lt;tt>Authorization&lt;/tt> header for a bearer token. The default behavior is to remove this header."
+        }, 
+        {
+            "name": "ThirdPartyIntrospectURLSecurity", 
+            "default": "basic-auth", 
+            "type": {
+                "href": "/mgmt/types/default/dmSecurityType"
+            }, 
+            "summary": "How to secure the introspection endpoint", 
+            "/mgmt/types/default/dmSecurityType": {
+                "type": {
+                    "name": "dmSecurityType", 
+                    "value-list": {
+                        "value": {
+                            "summary": "Basic authentication header", 
+                            "display": "Basic authentication header", 
+                            "name": "basic-auth", 
+                            "description": "When you use basic authentication header, you require users to provide valid user name and password to access the endpoint."
+                        }
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSecurityType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSecurityType"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "ProviderType", 
+                    "evaluation": "property-equals", 
+                    "value": "native"
+                }
+            }, 
+            "cli-alias": "third-party-introspect-url-security", 
+            "display": "Introspection endpoint security", 
+            "description": "When the OAuth provider type is third-party, specifies how to secure connections to the introspection endpoint."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "ThirdPartyIntrospectBasicAuthUserName", 
+            "cli-alias": "third-party-introspect-basic-auth-username", 
+            "summary": "User name for authentication", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "third_party"
+                        }, 
+                        {
+                            "property-name": "ThirdPartyIntrospectURLSecurity", 
+                            "evaluation": "property-value-not-in-list", 
+                            "value": "basic-auth"
+                        }
+                    ]
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Basic authentication user name", 
+            "description": "When the security type is basic authorization header, specifies the user name for authentication."
+        }, 
+        {
+            "name": "ThirdPartyIntrospectBasicAuthPassword", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/PasswordAlias"
+                }
+            }, 
+            "summary": "Password for authentication", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "third_party"
+                        }, 
+                        {
+                            "property-name": "ThirdPartyIntrospectURLSecurity", 
+                            "evaluation": "property-value-not-in-list", 
+                            "value": "basic-auth"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "third-party-introspect-basic-auth-password-alias", 
+            "display": "Basic authentication password", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "When the security type is basic authorization header, specifies the password for authentication."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "ThirdPartyBasicAuthHeaderName", 
+            "cli-alias": "third-party-introspect-basic-auth-headername", 
+            "summary": "Header name to use for sending encoded or non-encoded authentication string in the header", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ProviderType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "third_party"
+                        }, 
+                        {
+                            "property-name": "ThirdPartyIntrospectURLSecurity", 
+                            "evaluation": "property-value-not-in-list", 
+                            "value": "basic-auth"
+                        }
+                    ]
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Basic authentication header name", 
+            "description": "When the OAuth provider type is third-party and the security type is basic authorization header, specifies the header name to use in the &lt;tt>curl&lt;/tt> command when you want to append encoded or non-encoded authentication string in the header. For example, &lt;tt>x-introspect-basic-authorization-header&lt;/tt> ."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "ThirdPartyCustomHeaderNameFormat", 
+            "cli-alias": "third-party-introspect-custom-headername-format", 
+            "summary": "Pattern of header name to use for sending additional information in the header", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "ProviderType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "third_party"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Custom header pattern", 
+            "description": "When the OAuth provider type is third-party, specifies the pattern of header name to use in the &lt;tt>curl&lt;/tt> command when you want to append additional information in the header. For example, &lt;tt>x-introspect-*&lt;/tt> ."
+        }, 
+        {
+            "name": "ThirdPartyIntrospectSSLProfile", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                }
+            }, 
+            "summary": "TLS client profile to secure connection to a remote endpoint", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "ProviderType", 
+                    "evaluation": "property-equals", 
+                    "value": "native"
+                }
+            }, 
+            "cli-alias": "third-party-introspect-ssl-profile", 
+            "display": "TLS client profile", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "Specifies the client profile to use for TLS connection."
+        }
+    ]
+}

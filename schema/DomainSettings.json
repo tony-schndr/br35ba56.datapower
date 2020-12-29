@@ -1,0 +1,132 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Enter a descriptive summary for the configuration.", 
+            "cli-alias": "summary", 
+            "summary": "Enter a descriptive summary for the configuration.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments", 
+            "name": "UserSummary"
+        }, 
+        {
+            "/mgmt/types/default/dmPasswordTreatment": {
+                "type": {
+                    "name": "dmPasswordTreatment", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "None", 
+                                "name": "none", 
+                                "description": "No passwords are emitted or stored in persisted configuration."
+                            }, 
+                            {
+                                "display": "Masked", 
+                                "name": "masked", 
+                                "description": "All passwords are emitted and stored in the persisted configuration in a masked, obfuscated form. Obfuscation uses a passphrase."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmPasswordTreatment"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmPasswordTreatment"
+                    }
+                }
+            }, 
+            "name": "PasswordTreatment", 
+            "default": "none", 
+            "type": {
+                "href": "/mgmt/types/default/dmPasswordTreatment"
+            }, 
+            "required": "true", 
+            "summary": "Set the method to handle password data in the persisted configuration.", 
+            "cli-alias": "password-treatment", 
+            "display": "Password treatment", 
+            "description": "Set the method to handle password data in the persisted configuration."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Enter the passphrase that obfuscates passwords in the persisted configuration.", 
+            "minimum-length": 8, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "summary": "Enter the passphrase that obfuscates passwords in the persisted configuration.", 
+            "maximum-length": 24, 
+            "cli-alias": "passphrase", 
+            "display": "Passphrase", 
+            "name": "Passphrase"
+        }
+    ]
+}

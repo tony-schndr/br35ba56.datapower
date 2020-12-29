@@ -1,0 +1,148 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for user annotation.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "name": "URLRefreshRule", 
+            "type": {
+                "href": "/mgmt/types/default/dmURLRefreshRule"
+            }, 
+            "required": "true", 
+            "/mgmt/types/default/dmURLRefreshRule": {
+                "type": {
+                    "name": "dmURLRefreshRule", 
+                    "properties": {
+                        "property": [
+                            {
+                                "name": "URLMap", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/URLMap"
+                                    }
+                                }, 
+                                "required": "true", 
+                                "summary": "A URL map", 
+                                "cli-alias": "urlmap", 
+                                "display": "URL Map", 
+                                "description": "URL maps contain one or more shell-style (wildcard) match patterns. Use the values list to select the URL map that supplies the match criteria for the URL Refresh Policy."
+                            }, 
+                            {
+                                "description": "Specify how to cache a stylesheet that is obtained with a URL refresh operation. The default is default.", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmURLRefreshPolicyType"
+                                }, 
+                                "summary": "Type of refresh rule", 
+                                "cli-alias": "type", 
+                                "display": "Refresh Rule Type", 
+                                "name": "URLRefreshPolicy"
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmTimeInterval"
+                                }, 
+                                "name": "URLRefreshInterval", 
+                                "default": 0, 
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "URLRefreshPolicy", 
+                                        "evaluation": "property-value-in-list", 
+                                        "value": [
+                                            "default", 
+                                            "no-flush", 
+                                            "protocol-specified"
+                                        ]
+                                    }
+                                }, 
+                                "summary": "The refresh frequency in seconds", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "URLRefreshPolicy", 
+                                        "evaluation": "property-equals", 
+                                        "value": "no-cache"
+                                    }
+                                }, 
+                                "units": "seconds", 
+                                "cli-alias": "interval", 
+                                "display": "Refresh Interval", 
+                                "description": "Not used when the refresh rule type is no-cache, specifies the update frequency for stylesheets that fulfill the match criteria."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURLRefreshRule"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmURLRefreshRule"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "rule", 
+            "display": "URL Refresh Rule", 
+            "description": "Add, edit or delete a refresh rule"
+        }
+    ]
+}

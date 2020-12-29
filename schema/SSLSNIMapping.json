@@ -1,0 +1,122 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "A descriptive summary for the configuration.", 
+            "cli-alias": "summary", 
+            "summary": "Enter a descriptive summary for the configuration.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments", 
+            "name": "UserSummary"
+        }, 
+        {
+            "name": "SNIMapping", 
+            "type": {
+                "href": "/mgmt/types/default/dmHostToSSLServerProfile"
+            }, 
+            "required": "true", 
+            "summary": "A table of match patterns to pick a TLS Server Profile based on the SNI host name that the TLS client sends.", 
+            "/mgmt/types/default/dmHostToSSLServerProfile": {
+                "type": {
+                    "description": "This map allows virtual TLS server configuration where different TLS Server Profiles can be used in response to the host name value in the TLS client's SNI extension. In this way, a single IP address and TCP port can be used to host multiple TLS Servers with separate cryptographic keys and certificates.", 
+                    "display": "Map Host Name to TLS Server Profile", 
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Specify a match pattern for use against the host name in the incoming ClientHello SNI extension.", 
+                                "required": "true", 
+                                "summary": "A shell-style match pattern for matching host names.", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Host name matching expression", 
+                                "name": "HostNameWildmat"
+                            }, 
+                            {
+                                "description": "Specify the TLS Server Profile to use in response to a host name that matches the pattern.", 
+                                "required": "true", 
+                                "summary": "TLS server profile", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/SSLServerProfile"
+                                    }
+                                }, 
+                                "display": "TLS Server Profile", 
+                                "name": "SSLServer"
+                            }
+                        ]
+                    }, 
+                    "name": "dmHostToSSLServerProfile", 
+                    "summary": "Host Name to TLS Server Profile mapping"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostToSSLServerProfile"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostToSSLServerProfile"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "sni-mapping", 
+            "display": "Host Name to TLS Server Profile Mapping", 
+            "description": "Specify a table of match patterns to pick a TLS Server Profile based on the SNI host name that the TLS client sends."
+        }
+    ]
+}

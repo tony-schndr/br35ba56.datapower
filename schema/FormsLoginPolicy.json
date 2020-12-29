@@ -1,0 +1,988 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for user annotation.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "LoginForm", 
+            "default": "/LoginPage.htm", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "required": "true", 
+            "summary": "URL fragment of login form", 
+            "cli-alias": "login-url", 
+            "display": "Login", 
+            "description": "The URL fragment of the login page on the application server. The login page collects user name and password information. The default is /LoginPage.htm."
+        }, 
+        {
+            "name": "UseCookieAttributes", 
+            "default": "no", 
+            "type": {
+                "href": "/mgmt/types/default/dmUseCookieAttributes"
+            }, 
+            "required": "true", 
+            "summary": "Indicate whether to attach a policy that describes cookie attributes.", 
+            "/mgmt/types/default/dmUseCookieAttributes": {
+                "type": {
+                    "name": "dmUseCookieAttributes", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Do not attach a cookie attribute policy.", 
+                                "display": "No", 
+                                "name": "no", 
+                                "description": "Do not attach a cookie attribute policy."
+                            }, 
+                            {
+                                "summary": "Attach a cookie attribute policy.", 
+                                "display": "Yes", 
+                                "name": "yes", 
+                                "description": "Attach a cookie attribute policy."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUseCookieAttributes"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUseCookieAttributes"
+                    }
+                }
+            }, 
+            "cli-alias": "use-cookie-attribute", 
+            "display": "Attach Cookie Attribute Policy", 
+            "description": "Whether to attach a cookie attribute policy. If you do not use a cookie attribute policy, the configuration use the properties of the forms login policy. The default behavior is not to attach a cookie attribute policy."
+        }, 
+        {
+            "name": "CookieAttributes", 
+            "required-when": {
+                "condition": {
+                    "property-name": "UseCookieAttributes", 
+                    "evaluation": "property-equals", 
+                    "value": "yes"
+                }
+            }, 
+            "summary": "Set the policy that describes cookie attributes.", 
+            "cli-alias": "cookie-attributes", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/CookieAttributePolicy"
+                }
+            }, 
+            "display": "Cookie Attributes", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "&lt;p>Use a cookie attribute policy to allow predefined or custom attributes to be included in forms login cookie. Properties in the policy override common attributes of the forms login policy. &lt;ul>&lt;li>&lt;tt>Max-Age&lt;/tt> overrides inactivity timeout and session lifetime.&lt;/li>&lt;li>&lt;tt>Path&lt;/tt> replaces the form POST action URL.&lt;/li>&lt;li>&lt;tt>Secure&lt;/tt> replaces the use TLS for login.&lt;/li>&lt;/ul>&lt;/p>"
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "name": "UseSSLForLogin", 
+            "default": "on", 
+            "required-when": {
+                "condition": {
+                    "property-name": "FormSupportType", 
+                    "evaluation": "property-equals", 
+                    "value": "static"
+                }
+            }, 
+            "summary": "Whether to use TLS for the login", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "use-ssl", 
+            "display": "Use TLS for Login", 
+            "description": "Whether to use a secure connection for the login exchange. If enabled, you must provide the TLS port. The default is enabled."
+        }, 
+        {
+            "name": "EnableMigration", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "required": "true", 
+            "summary": "Whether to allow sessions to migrate between cluster members if a DataPower Gateway fails", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "enable-migration", 
+            "display": "Enable Session Migration", 
+            "description": "Whether to permit session failover between cluster members. If enabled, you must specify a shared secret. The default is disabled."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "SSLPort", 
+            "default": 8080, 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "FormSupportType", 
+                            "evaluation": "property-equals", 
+                            "value": "static"
+                        }, 
+                        {
+                            "property-name": "UseSSLForLogin", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }
+                    ]
+                }
+            }, 
+            "maximum": 65535, 
+            "summary": "Port for TLS login redirection", 
+            "minimum": 1, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "ssl-port", 
+            "display": "TLS Port", 
+            "description": "The port the service uses for TLS redirection during the login transaction. Specify the port of the HTTPS handler that the Web application firewall uses for secure communication. The default is 8080."
+        }, 
+        {
+            "name": "SharedSecret", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/CryptoSSKey"
+                }
+            }, 
+            "summary": "Shared secret, common to all DataPower Gateways to which a session may migrate", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "EnableMigration", 
+                    "evaluation": "property-equals", 
+                    "value": "off"
+                }
+            }, 
+            "cli-alias": "shared-secret", 
+            "display": "Shared Secret", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "Shared secret object that will be used to protect the migration cookie. All cluster members must specify the same shared secret."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "ErrorPage", 
+            "default": "/ErrorPage.htm", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "required": "true", 
+            "summary": "URL fragment of error page", 
+            "cli-alias": "error-url", 
+            "display": "Error", 
+            "description": "The URL fragment of the error page on the application server. The error page is displayed after a login failure. The default is /ErrorPage.htm."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "LogoutPage", 
+            "default": "/LogoutPage.htm", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "required": "true", 
+            "summary": "URL of logout page", 
+            "cli-alias": "logout-url", 
+            "display": "Logout", 
+            "description": "The URL fragment of the logout page on the application server. An empty string disables logout. The default is /LogoutPage.htm."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "DefaultURL", 
+            "default": "/", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "required": "true", 
+            "summary": "URL fragment to go to after successful login", 
+            "cli-alias": "default-url", 
+            "display": "Default URL", 
+            "description": "The URL fragment to visit after a successful login when no other target is available. In most cases, login is triggered via an attempt to access a URL in the application, and the client is redirected to this URL after successfully logging in. However, if users explicitly visit the URL of the login form, they are redirected to this URL after logging in. This URL fragment is relative to the root directory. Although the default is /, you must specify the filename of the page to go after a successful login."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmFormsLocation"
+            }, 
+            "name": "FormsLocation", 
+            "default": "backend", 
+            "required-when": {
+                "condition": {
+                    "property-name": "FormSupportType", 
+                    "evaluation": "property-equals", 
+                    "value": "static"
+                }
+            }, 
+            "summary": "Location of HTML pages", 
+            "/mgmt/types/default/dmFormsLocation": {
+                "type": {
+                    "name": "dmFormsLocation", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Retrieve forms from their mapped locations on the application server.", 
+                                "display": "Application server", 
+                                "name": "backend"
+                            }, 
+                            {
+                                "summary": "Stores forms locally on the file system.", 
+                                "display": "Appliance", 
+                                "name": "appliance"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFormsLocation"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFormsLocation"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "forms-location", 
+            "display": "Forms Storage Location", 
+            "description": "The location for where the DataPower Gateway retrieves the login, logout and error pages. The default is the remote application server."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmFSFile"
+            }, 
+            "name": "LocalLoginForm", 
+            "default": "store:///LoginPage.htm", 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "FormsLocation", 
+                            "evaluation": "property-equals", 
+                            "value": "appliance"
+                        }, 
+                        {
+                            "property-name": "FormSupportType", 
+                            "evaluation": "property-equals", 
+                            "value": "static"
+                        }
+                    ]
+                }
+            }, 
+            "locations": {
+                "location": [
+                    "local", 
+                    "store"
+                ]
+            }, 
+            "summary": "Location of local login form", 
+            "/mgmt/types/default/dmFSFile": {
+                "type": {
+                    "cli-arg": "file", 
+                    "name": "dmFSFile"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "FormSupportType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "static"
+                        }, 
+                        {
+                            "property-name": "FormsLocation", 
+                            "evaluation": "property-equals", 
+                            "value": "backend"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "local-login-page", 
+            "display": "On-DataPower Gateway Login Form", 
+            "description": "The location of the login form on the DataPower Gateway. The default is store:///LoginPage.htm."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmFSFile"
+            }, 
+            "name": "LocalErrorPage", 
+            "default": "store:///ErrorPage.htm", 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "FormsLocation", 
+                            "evaluation": "property-equals", 
+                            "value": "appliance"
+                        }, 
+                        {
+                            "property-name": "FormSupportType", 
+                            "evaluation": "property-equals", 
+                            "value": "static"
+                        }
+                    ]
+                }
+            }, 
+            "locations": {
+                "location": [
+                    "local", 
+                    "store"
+                ]
+            }, 
+            "summary": "Location of local error page", 
+            "/mgmt/types/default/dmFSFile": {
+                "type": {
+                    "cli-arg": "file", 
+                    "name": "dmFSFile"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "FormSupportType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "static"
+                        }, 
+                        {
+                            "property-name": "FormsLocation", 
+                            "evaluation": "property-equals", 
+                            "value": "backend"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "local-error-page", 
+            "display": "On-DataPower Gateway Error Page", 
+            "description": "The location of the error page on the DataPower Gateway. The default is store:///ErrorPage.htm."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmFSFile"
+            }, 
+            "name": "LocalLogoutPage", 
+            "default": "store:///LogoutPage.htm", 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "FormsLocation", 
+                            "evaluation": "property-equals", 
+                            "value": "appliance"
+                        }, 
+                        {
+                            "property-name": "FormSupportType", 
+                            "evaluation": "property-equals", 
+                            "value": "static"
+                        }
+                    ]
+                }
+            }, 
+            "locations": {
+                "location": [
+                    "local", 
+                    "store"
+                ]
+            }, 
+            "summary": "Location of local logout page", 
+            "/mgmt/types/default/dmFSFile": {
+                "type": {
+                    "cli-arg": "file", 
+                    "name": "dmFSFile"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "FormSupportType", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "static"
+                        }, 
+                        {
+                            "property-name": "FormsLocation", 
+                            "evaluation": "property-equals", 
+                            "value": "backend"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "local-logout-page", 
+            "display": "On-DataPower Gateway Logout Page", 
+            "description": "The location of the logout page on the DataPower Gateway. The default is store:///LogoutPage.htm."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UsernameField", 
+            "default": "j_username", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "required": "true", 
+            "summary": "Attribute value of the user name field", 
+            "cli-alias": "username-field", 
+            "display": "User Name Field Name", 
+            "description": "The value of the 'name' attribute for the user name field on the login form. The default is j_username."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "PasswordField", 
+            "default": "j_password", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "required": "true", 
+            "summary": "Attribute value of the password field", 
+            "cli-alias": "password-field", 
+            "display": "Password Field Name", 
+            "description": "The value of the 'name' attribute for the password field on the login form. The default is j_password."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "RedirectField", 
+            "default": "originalUrl", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "required": "true", 
+            "summary": "Attribute value of the hidden field for the target URL", 
+            "cli-alias": "redirect-field", 
+            "display": "Target URL Field Name", 
+            "description": "The value of the 'name' attribute for the hidden field on the login form. This field stores the original target URL, which is the URL that the client is attempting to access. The default is originalUrl."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "FormProcessingURL", 
+            "default": "/j_security_check", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "required": "true", 
+            "summary": "Processing URL fragment", 
+            "cli-alias": "post-action-url", 
+            "display": "Form POST Action URL", 
+            "description": "The URL fragment to which the login form posts its results when a user submits the request. The default is /j_security_check."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "InactivityTimeout", 
+            "default": 600, 
+            "required-when": {
+                "condition": {
+                    "property-name": "UseCookieAttributes", 
+                    "evaluation": "property-equals", 
+                    "value": "no"
+                }
+            }, 
+            "summary": "Allowable duration for an inactive session", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "units": "Seconds", 
+            "cli-alias": "inactivity-timeout", 
+            "display": "Inactivity Timeout", 
+            "description": "The number of seconds before an inactive session is invalidated. The default is 600. A value of 0 disables the inactivity timer."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "SessionLifetime", 
+            "default": 10800, 
+            "required-when": {
+                "condition": {
+                    "property-name": "UseCookieAttributes", 
+                    "evaluation": "property-equals", 
+                    "value": "no"
+                }
+            }, 
+            "summary": "Maximum time before requiring re-authentication", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "units": "Seconds", 
+            "cli-alias": "session-lifetime", 
+            "display": "Session Lifetime", 
+            "description": "The maximum time in seconds that a session can persist before that session becomes invalid and requires re-authentication. The minimum value is 1. The default is 10800."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmRedirectURLType"
+            }, 
+            "name": "RedirectURLType", 
+            "default": "urlin", 
+            "required-when": {
+                "condition": {
+                    "property-name": "FormSupportType", 
+                    "evaluation": "property-equals", 
+                    "value": "static"
+                }
+            }, 
+            "/mgmt/types/default/dmRedirectURLType": {
+                "type": {
+                    "name": "dmRedirectURLType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Value of the var://service/URL-in variable", 
+                                "display": "URL-in", 
+                                "name": "urlin", 
+                                "description": "Use the value of the &lt;tt>var://service/URL-in&lt;/tt> variable as the host information."
+                            }, 
+                            {
+                                "summary": "Value of the Host HTTP header field", 
+                                "display": "Host", 
+                                "name": "host", 
+                                "description": "Use the value of the &lt;tt>Host&lt;/tt> HTTP header field as the host information."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmRedirectURLType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmRedirectURLType"
+                    }
+                }
+            }, 
+            "summary": "How to retrieve host information for HTTP URL-redirects", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "redirect-url-type", 
+            "display": "Redirect URL Type", 
+            "description": "Control how the service retrieves host information for HTTP URL-redirects. The default behavior is to use the variable value."
+        }, 
+        {
+            "/mgmt/types/default/dmFormSupportType": {
+                "type": {
+                    "name": "dmFormSupportType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Static HTML pages", 
+                                "display": "Static", 
+                                "name": "static", 
+                                "description": "Use static HTML login, logout, and error pages from an explicit location. These HTML pages can be on the DataPower Gateway or on a remote server."
+                            }, 
+                            {
+                                "summary": "HTML pages from custom processing", 
+                                "display": "Custom", 
+                                "name": "custom", 
+                                "description": "Use a custom stylesheet or a GatewayScript file that generates the HTML login, logout, error pages, and the form."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFormSupportType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFormSupportType"
+                    }
+                }
+            }, 
+            "name": "FormSupportType", 
+            "default": "static", 
+            "cli-alias": "support-type", 
+            "summary": "Source for HTML pages", 
+            "type": {
+                "href": "/mgmt/types/default/dmFormSupportType"
+            }, 
+            "display": "Source for Form-processing", 
+            "description": "Manage the source for HTML pages. The default behavior is to use static HTML pages from an explicit location."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmFSFile"
+            }, 
+            "name": "FormSupportScript", 
+            "default": "store:///Form-Generate-HTML.xsl", 
+            "required-when": {
+                "condition": {
+                    "property-name": "FormSupportType", 
+                    "evaluation": "property-equals", 
+                    "value": "custom"
+                }
+            }, 
+            "locations": {
+                "location": [
+                    "local", 
+                    "store"
+                ]
+            }, 
+            "summary": "Location of the custom processing to generate HTML pages and form", 
+            "/mgmt/types/default/dmFSFile": {
+                "type": {
+                    "cli-arg": "file", 
+                    "name": "dmFSFile"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "FormSupportType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "custom"
+                }
+            }, 
+            "cli-alias": "script-location", 
+            "display": "Custom Processing for Form", 
+            "description": "&lt;p>Specify the location of the custom XSLT stylesheet or GatewayScript file that generates the HTML pages.&lt;/p>&lt;p>This stylesheet or GatewayScript file must generate the following HTML pages:&lt;/p>&lt;ul>&lt;li>A login form request allows processing to generate a login form with the &lt;tt>login&lt;/tt> operation.&lt;/li>&lt;li>A logout page request allows processing to generate a logout page with the &lt;tt>logout&lt;/tt> operation.&lt;/li>&lt;li>An error page request allows processing to generate an error page with the &lt;tt>error&lt;/tt> operation.&lt;/li>&lt;/ul>"
+        }
+    ]
+}

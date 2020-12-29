@@ -1,0 +1,91 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "name": "AccessControlEntry", 
+            "type": {
+                "href": "/mgmt/types/default/dmACE"
+            }, 
+            "summary": "IP addresses to allow or deny access", 
+            "array": "true", 
+            "cli-alias": "entry", 
+            "display": "Entry", 
+            "/mgmt/types/default/dmACE": {
+                "type": {
+                    "summary": "Access Control Entry", 
+                    "properties": {
+                        "property": [
+                            {
+                                "required": "true", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmACEAccess"
+                                }, 
+                                "display": "Access", 
+                                "name": "Access", 
+                                "description": "With allow selected, the range of IP addresses is granted access to the service. With deny selected, the range of IP address is denied access to the service."
+                            }, 
+                            {
+                                "required": "true", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmIPNetAddress"
+                                }, 
+                                "display": "Address Range", 
+                                "name": "Address", 
+                                "description": "An IP address and network mask that defines a contiguous range of IP addresses, either granted or denied access to the current service."
+                            }
+                        ]
+                    }, 
+                    "name": "dmACE", 
+                    "display": "ACL"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmACE"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmACE"
+                    }
+                }
+            }, 
+            "description": "Defines the range of IP addresses to which to allow access and from which to deny access."
+        }
+    ]
+}

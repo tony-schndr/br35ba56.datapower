@@ -1,0 +1,260 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for user annotation.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "description": "&lt;p>Specifies the WSRR Server that stores the saved searches, WSRR resources, and possibly associated XSD or XML files, required for WS-Proxy operations.&lt;/p>", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/WSRRServer"
+                }
+            }, 
+            "required": "true", 
+            "label": "WSRR server", 
+            "cli-alias": "server", 
+            "display": "WSRR Server", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "Server"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "&lt;p>Specifies the name of an existing saved search or named query on the WSRR server that returns the subscribed-to resource.&lt;/p>", 
+            "cli-alias": "saved-search-name", 
+            "required": "true", 
+            "label": "Saved search", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Saved Search or Named Query", 
+            "name": "SavedSearchName"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "&lt;p>Specifies the parameters for the saved search or named query that requires parameters. The parameters are used in the query that is sent to the WSRR server. A parameter can be up to 255 characters in length. You can define a maximum of 9 parameters for a query. If a saved search or named query requires query parameters, you must specify the required parameters. It is an error to define parameters for a saved search or named query that does not require parameters.&lt;/p>&lt;p>&lt;b>Note:&lt;/b> In WSRR, a named query and a saved search can have the same name. WSRR matches named queries before saved searches. Therefore, WSRR never finds a saved search with the same name as a named query.&lt;/p>&lt;p>See the WebSphere Service Registry and Repository information center for information about creating a saved search or named query with parameters or modifying an existing saved search or named query to accept parameters.&lt;/p>", 
+            "minimum-length": 1, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "label": "Saved search parameters", 
+            "maximum-length": 255, 
+            "array": "true", 
+            "cli-alias": "params", 
+            "display": "Query Parameters", 
+            "name": "SavedSearchParameters"
+        }, 
+        {
+            "description": "&lt;p>Specifies the method for synchronizing updates from the saved search result set stored on the remote WSRR server.&lt;/p>", 
+            "default": "poll", 
+            "type": {
+                "href": "/mgmt/types/default/dmWsrrSynchronization"
+            }, 
+            "/mgmt/types/default/dmWsrrSynchronization": {
+                "type": {
+                    "name": "dmWsrrSynchronization", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Manual", 
+                                "name": "manual", 
+                                "description": "Manually synchronize. Use the Synchronize action located on the WSRR Saved Search Subscription object configuration screen."
+                            }, 
+                            {
+                                "display": "Poll", 
+                                "name": "poll", 
+                                "description": "Poll the registry for updates. Refreshes the subscription by regularly scheduled WSRR queries that request the latest resource version."
+                            }, 
+                            {
+                                "display": "Automatic", 
+                                "name": "automatic", 
+                                "description": "&lt;p>Automatically update subscription based on changes to registry server.&lt;/p>&lt;p>&lt;b>Attention:&lt;/b> When subscriptions are set to automatic notifications, you must configure the local address of the XML management interface to listen on a specific IP address. When the interface listens on a host alias or &lt;tt>0.0.0.0&lt;/tt> , the configuration of the subscription is marked down.&lt;/p>"
+                            }
+                        ]
+                    }, 
+                    "display": "Synchronization Method"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmWsrrSynchronization"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmWsrrSynchronization"
+                    }
+                }
+            }, 
+            "cli-alias": "method", 
+            "display": "Synchronization Method", 
+            "name": "Method"
+        }, 
+        {
+            "name": "RefreshInterval", 
+            "default": 86400, 
+            "type": {
+                "href": "/mgmt/types/default/dmTimeInterval"
+            }, 
+            "maximum": 4294967, 
+            "/mgmt/types/default/dmTimeInterval": {
+                "type": {
+                    "cli-arg": "seconds", 
+                    "minimum": 0, 
+                    "name": "dmTimeInterval", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                }
+            }, 
+            "minimum": 60, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "Method", 
+                    "evaluation": "property-value-not-in-list", 
+                    "value": "poll"
+                }
+            }, 
+            "units": "seconds", 
+            "cli-alias": "refresh-interval", 
+            "display": "Refresh Interval", 
+            "description": "&lt;p>Specify the refresh interval in seconds. Enter any value of 60 - 4294967. The default is 86400.&lt;/p>&lt;p>Used only with the Poll method, the refresh interval is the interval in seconds between regularly-scheduled WSRR queries used to synchronize updates from the saved search result set stored on the remote WSRR server.&lt;/p>"
+        }, 
+        {
+            "description": "&lt;p>Fetch attached policy from the registry.&lt;/p>&lt;p>If enabled, the subscription will query the registry for external WS-Policy PolicyAttachments that apply to the retrieved WSRR resources. Retrieved policies will be processed by any DataPower service that is using this subscription and is configured to allow external policy attachments.&lt;/p>", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "fetch-policy-attachments", 
+            "display": "Fetch Policy Attachments", 
+            "name": "FetchPolicyAttachments"
+        }
+    ]
+}

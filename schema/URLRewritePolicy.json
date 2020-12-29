@@ -1,0 +1,255 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "name": "Direction", 
+            "default": "all", 
+            "type": {
+                "href": "/mgmt/types/default/dmURLRewriteDirection"
+            }, 
+            "summary": "URL Rewrite Direction", 
+            "/mgmt/types/default/dmURLRewriteDirection": {
+                "type": {
+                    "summary": "Direction of URL Rewrite Policy", 
+                    "display": "URLRewritePolicy Direction", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "The policy applies to both requests and responses", 
+                                "display": "Both", 
+                                "name": "all"
+                            }, 
+                            {
+                                "summary": "The policy applies to requests only", 
+                                "display": "Request", 
+                                "name": "request"
+                            }, 
+                            {
+                                "summary": "The policy applies to responses only", 
+                                "display": "Response", 
+                                "name": "response"
+                            }
+                        ]
+                    }, 
+                    "name": "dmURLRewriteDirection"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURLRewriteDirection"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmURLRewriteDirection"
+                    }
+                }
+            }, 
+            "cli-alias": "direction", 
+            "display": "URL Rewrite Direction", 
+            "description": "Restricts the URL Rewrite Policy to a specified direction. Direction is applied at the service object level and has no effect on policies used from multistep or elsewhere."
+        }, 
+        {
+            "description": "Add, edit, or delete a URL rewrite rule", 
+            "type": {
+                "href": "/mgmt/types/default/dmURLRewriteRule"
+            }, 
+            "/mgmt/types/default/dmURLRewriteRule": {
+                "type": {
+                    "name": "dmURLRewriteRule", 
+                    "properties": {
+                        "property": [
+                            {
+                                "name": "Type", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmURLRewriteType"
+                                }, 
+                                "required": "true", 
+                                "summary": "Rule type", 
+                                "cli-alias": "type", 
+                                "display": "URL Rewrite Type", 
+                                "description": "Select the type of rule for the URL Rewrite Policy."
+                            }, 
+                            {
+                                "name": "MatchRegexp", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmPCRE"
+                                }, 
+                                "required": "true", 
+                                "summary": "PCRE", 
+                                "cli-alias": "match", 
+                                "display": "Match Expression", 
+                                "description": "&lt;p>Specify a PCRE that defines the match condition that triggers the rewrite rule. Depending on the rule type, a candidate URL or header field is matched against the expression.&lt;/p>&lt;ul>&lt;li>For &lt;b>absolute-rewrite&lt;/b> , &lt;b>content-type&lt;/b> , and &lt;b>post-body&lt;/b> , defines the expression to be matched against the URL. For example, .* or * matches any string, while (.*)xsl=(.*)\\?(.*) matches a text subpattern followed by xsl= followed by a text subpattern followed by a ? followed by a text subpattern.&lt;/li>&lt;li>For &lt;b>header-rewrite&lt;/b> , defines the expression to be matched against the contents of a specific header field. For example, *.* matches any value.&lt;/li>&lt;/ul>&lt;p>PCRE documentation is available at http://www.pcre.org&lt;/p>"
+                            }, 
+                            {
+                                "name": "InputReplaceRegexp", 
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "Type", 
+                                        "evaluation": "property-equals", 
+                                        "value": "header-rewrite"
+                                    }
+                                }, 
+                                "summary": "Perl-style replacement expression", 
+                                "cli-alias": "input-expression", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Input Replace Expression", 
+                                "description": "&lt;p>Specify a Perl-style replacement that defines the rewritten URL, header field, or HTTP POST body.&lt;/p>&lt;ul>&lt;li>For &lt;b>absolute-rewrite&lt;/b> , defines the rewritten URL. If the match pattern is *, specify the complete replacement. If the match pattern is (.*)xsl=(.*)\\?(.*), specify the evaluation replacement for any text subpattern or retain the original subpattern. To retain the first subpattern, specify $1; to retain the second text subpattern, specify $2; and so forth. To replace the second text subpattern only, specify $1xsl=ident.xsl$3. &lt;p>If a rewritten URL begins with a host name or port that is different from the configured remote address, the host name or port portion of the rewritten URL is ignored.&lt;/p>&lt;/li>&lt;li>For &lt;b>content-type&lt;/b> , define the replace value for the Content-Type header.&lt;/li>&lt;li>For &lt;b>header-rewrite&lt;/b> , define the replacement value for the specified header.&lt;/li>&lt;li>For &lt;b>post-body&lt;/b> , define the rewritten body of the HTTP POST. If the match pattern is .*, specify the complete replacement. If the match pattern is (.*)xsl=(.*)\\?(.*), specify the evaluation replacement for any text subpattern or retain the original subpattern. To retain the first subpattern, specify $1; to retain the second text subpattern, specify $2; and so forth. To omit the second text subpattern only, specify $1$3.&lt;/li>&lt;/ul>"
+                            }, 
+                            {
+                                "name": "StyleReplaceRegexp", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "summary": "Perl-style replacement expression", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Type", 
+                                        "evaluation": "property-value-in-list", 
+                                        "value": [
+                                            "header-rewrite", 
+                                            "content-type"
+                                        ]
+                                    }
+                                }, 
+                                "cli-alias": "stylesheet-expression", 
+                                "display": "Stylesheet Replace Expression", 
+                                "description": "&lt;p>Specify a Perl-style replacement that identifies the replacement stylesheet. This option is available for &lt;b>absolute-rewrite&lt;/b> and &lt;b>post-body&lt;/b> only.&lt;/p>&lt;p>If the match pattern is .*, specify the complete replacement. If the match pattern is (.*)xsl=(.*)\\?(.*), specify the evaluation replacement for any text subpattern or retain the original subpattern. To retain the first subpattern, specify $1; to retain the second text subpattern, specify $2; and so forth. To retain the second text subpattern only and not use the third text subpattern, specify http://mantis:8000$2.&lt;/p>"
+                            }, 
+                            {
+                                "name": "InputUnescape", 
+                                "default": "off", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                }, 
+                                "summary": "Decode/encode input URLs", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Type", 
+                                        "evaluation": "property-value-in-list", 
+                                        "value": [
+                                            "header-rewrite", 
+                                            "content-type"
+                                        ]
+                                    }
+                                }, 
+                                "cli-alias": "input-unescape", 
+                                "display": "Input URL Unescape", 
+                                "description": "Replace URL-encoded characters (for example, \"%2F\") with the equivalent literal character. Select on to replace escape sequences, or off to retain them."
+                            }, 
+                            {
+                                "name": "StylesheetUnescape", 
+                                "default": "on", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                }, 
+                                "summary": "Decode/encode stylesheet URLs", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Type", 
+                                        "evaluation": "property-value-in-list", 
+                                        "value": [
+                                            "header-rewrite", 
+                                            "content-type"
+                                        ]
+                                    }
+                                }, 
+                                "cli-alias": "stylesheet-unescape", 
+                                "display": "Stylesheet URL Unescape", 
+                                "description": "Replace URL-encoded characters (for example, \"%2F\") with the equivalent literal character. Select on to replace escape sequences, or off to retain them."
+                            }, 
+                            {
+                                "name": "Header", 
+                                "default": "none", 
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "Type", 
+                                        "evaluation": "property-equals", 
+                                        "value": "header-rewrite"
+                                    }
+                                }, 
+                                "summary": "Name HTTP Header to Rewrite", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Type", 
+                                        "evaluation": "property-value-in-list", 
+                                        "value": [
+                                            "post-body", 
+                                            "rewrite", 
+                                            "absolute-rewrite", 
+                                            "content-type"
+                                        ]
+                                    }
+                                }, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Header Name"
+                            }, 
+                            {
+                                "name": "NormalizeURL", 
+                                "default": "off", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                }, 
+                                "summary": "Normalize URL", 
+                                "cli-alias": "normalize-url", 
+                                "display": "URL Normalization", 
+                                "description": "Normalize URL by converting '\\' to '/' and compressing '.' and '..'"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURLRewriteRule"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmURLRewriteRule"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "rule", 
+            "display": "URL Rewrite Rule", 
+            "name": "URLRewriteRule"
+        }
+    ]
+}

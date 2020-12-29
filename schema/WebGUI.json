@@ -1,0 +1,461 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmLocalIPHostAddress": {
+                "type": {
+                    "cli-arg": "dotted-ip or 0 for any", 
+                    "name": "dmLocalIPHostAddress", 
+                    "format": "(a.b.c.d or 0 for any)"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLocalIPHostAddress"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                    }
+                }
+            }, 
+            "name": "LocalAddress", 
+            "default": "0.0.0.0", 
+            "type": {
+                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+            }, 
+            "required": "true", 
+            "summary": "Enter the local IP address or host alias.", 
+            "cli-alias": "ip-address", 
+            "display": "Local address", 
+            "description": "&lt;p>Enter a host alias or the IP address that the service listens on. Host aliases can ease migration tasks among appliances.&lt;/p>&lt;ul>&lt;li>0 or 0.0.0.0 indicates all configured IPv4 addresses.&lt;/li>&lt;li>:: indicates all configured IPv4 and IPv6 addresses.&lt;/li>&lt;/ul>&lt;p>&lt;b>Attention:&lt;/b> For management services, the value of 0.0.0.0 or :: is a security risk. Use an explicit IP address to isolate management traffic from application data traffic.&lt;/p>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "A descriptive summary for the configuration.", 
+            "cli-alias": "summary", 
+            "summary": "Enter a descriptive summary for the configuration.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments", 
+            "name": "UserSummary"
+        }, 
+        {
+            "name": "LocalPort", 
+            "default": 9090, 
+            "cli-alias": "port", 
+            "required": "true", 
+            "maximum": "0xFFFF", 
+            "summary": "Enter the TCP port that the web management service monitors", 
+            "listener": "LocalAddress", 
+            "minimum": 1, 
+            "type": {
+                "href": "/mgmt/types/default/dmIPPort"
+            }, 
+            "/mgmt/types/default/dmIPPort": {
+                "type": {
+                    "cli-arg": "ip-port", 
+                    "minimum": 0, 
+                    "name": "dmIPPort", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                }
+            }, 
+            "display": "Port number", 
+            "description": "The TCP port that the web management service monitors. The default value is 9090."
+        }, 
+        {
+            "name": "SSLProxy", 
+            "required-when": {
+                "condition": {
+                    "property-name": "SSLServerConfigType", 
+                    "evaluation": "property-equals", 
+                    "value": "proxy"
+                }
+            }, 
+            "summary": "The custom TLS proxy profile is deprecated. Use a custom TLS server profile or custom TLS SNI server profile.", 
+            "cli-alias": "ssl", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                }
+            }, 
+            "display": "Custom TLS proxy profile (deprecated)", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The TLS proxy profile that the web management service uses to secure connections. If you do not assign one, the service uses one with a self-signed certificate."
+        }, 
+        {
+            "description": "The user agent that the web management service uses.", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/HTTPUserAgent"
+                }
+            }, 
+            "summary": "Assign a custom user agent.", 
+            "cli-alias": "user-agent", 
+            "display": "Custom user agent", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "UserAgent"
+        }, 
+        {
+            "name": "SaveConfigOverwrites", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "required": "true", 
+            "summary": "Whether saved configurations overwrite the startup configuration.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "save-config-overwrite", 
+            "display": "Save configuration overwrites", 
+            "description": "When enabled, saving a configuration overwrites the startup configuration with the running configuration. When disabled, a manual step is required that prevents overwriting the manually edited startup configuration."
+        }, 
+        {
+            "name": "IdleTimeout", 
+            "default": 600, 
+            "type": {
+                "href": "/mgmt/types/default/dmTimeInterval"
+            }, 
+            "required": "true", 
+            "maximum": 65535, 
+            "summary": "Enter the time after which to invalidate idle sessions.", 
+            "/mgmt/types/default/dmTimeInterval": {
+                "type": {
+                    "cli-arg": "seconds", 
+                    "minimum": 0, 
+                    "name": "dmTimeInterval", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                }
+            }, 
+            "minimum": 0, 
+            "units": "Seconds", 
+            "cli-alias": "idle-timeout", 
+            "display": "Idle timeout", 
+            "description": "The time after which to invalidate idle sessions. When invalidated, requires reauthentication. Enter a value in the range 0 - 65535. The default value is 600. A value of 0 disables the timer."
+        }, 
+        {
+            "name": "ACL", 
+            "default": "web-mgmt", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/AccessControlList"
+                }
+            }, 
+            "summary": "Edit the access control list.", 
+            "cli-alias": "acl", 
+            "display": "Access control list", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The &lt;tt>web-mgmt&lt;/tt> access control list defines the client IP addresses to allow or deny."
+        }, 
+        {
+            "/mgmt/types/default/dmSSLConfigType": {
+                "type": {
+                    "name": "dmSSLConfigType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "proxy", 
+                                "display": "Proxy Profile"
+                            }, 
+                            {
+                                "name": "server", 
+                                "display": "Server Profile"
+                            }, 
+                            {
+                                "name": "sni", 
+                                "display": "SNI Server Profile"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSLConfigType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSLConfigType"
+                    }
+                }
+            }, 
+            "name": "SSLServerConfigType", 
+            "default": "server", 
+            "cli-alias": "ssl-config-type", 
+            "summary": "Set the TLS profile type to secure connections between clients and the DataPower Gateway", 
+            "type": {
+                "href": "/mgmt/types/default/dmSSLConfigType"
+            }, 
+            "display": "Custom TLS server type", 
+            "description": "The TLS profile type to secure connections between clients and the DataPower Gateway."
+        }, 
+        {
+            "name": "SSLServer", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLServerProfile"
+                }
+            }, 
+            "summary": "Assign a custom TLS server profile.", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "SSLServerConfigType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "server"
+                }
+            }, 
+            "cli-alias": "ssl-server", 
+            "display": "Custom TLS server profile", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The TLS server profile that the web management service uses to secure connections. If you do not assign one, the service uses one with a self-signed certificate."
+        }, 
+        {
+            "name": "SSLSNIServer", 
+            "required-when": {
+                "condition": {
+                    "property-name": "SSLServerConfigType", 
+                    "evaluation": "property-equals", 
+                    "value": "sni"
+                }
+            }, 
+            "summary": "Set the TLS SNI server profile to secure connections between clients and the DataPower Gateway", 
+            "cli-alias": "ssl-sni-server", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLSNIServerProfile"
+                }
+            }, 
+            "display": "Custom TLS SNI server profile", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The TLS SNI server profile to secure connections between clients and the DataPower Gateway."
+        }, 
+        {
+            "name": "EnableSTS", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to enable HTTP Strict Transport Security headers.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "enable-sts", 
+            "display": "Enable HTTP Strict Transport Security", 
+            "description": "When enabled, responses from the web management service inject HTTP Strict Transport Security headers."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/XMLFirewallService"
+                }
+            }, 
+            "name": "XMLFirewall", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }
+        }
+    ]
+}

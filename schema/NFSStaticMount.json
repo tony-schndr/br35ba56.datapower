@@ -1,0 +1,396 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for user annotation.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "remote", 
+            "cli-alias": "remote", 
+            "required": "true", 
+            "summary": "Exported NFS file system to mount.", 
+            "valid-regexp": "^[^:/]+:/[^/]*(/[^/]+)*$", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Remote NFS Export", 
+            "description": "Specifies remote NFS-exported filesystem to mount. In the form host:/path, where host is the DNS name or IP address of the NFS server, and path is the path exported by the host to mount."
+        }, 
+        {
+            "name": "LocalFilesystemAccess", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Allow local filesystem access through folder nfs-name:.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "local-filesystem-access", 
+            "display": "Local Filesystem Access", 
+            "description": "If enabled, makes the NFS mount available for filesystem access through the command line interface, under the folder name nfs- &lt;i>mountName&lt;/i> , where &lt;i>mountName&lt;/i> is the name of this mount."
+        }, 
+        {
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "Version", 
+            "default": 3, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "maximum": 4, 
+            "summary": "Preferred version of NFS protocol to use.", 
+            "minimum": 2, 
+            "cli-alias": "version", 
+            "display": "NFS Version", 
+            "description": "Preferred NFS protocol version for this mount. If the Version is 3, but the server only implements Version 2, the client will fall back to Version 2. But if the Version is 4, there is no fallback, since the remote export paths are not the same."
+        }, 
+        {
+            "name": "Transport", 
+            "default": "tcp", 
+            "type": {
+                "href": "/mgmt/types/default/dmNFSTransportType"
+            }, 
+            "summary": "Starting transport protocol", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "Version", 
+                    "evaluation": "property-equals", 
+                    "value": 4
+                }
+            }, 
+            "cli-alias": "transport", 
+            "display": "Transport Protocol", 
+            "/mgmt/types/default/dmNFSTransportType": {
+                "type": {
+                    "summary": "NFS transport protocol", 
+                    "display": "NFS Transport", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "TCP", 
+                                "name": "tcp", 
+                                "description": "Uses TCP. TCP is more reliable and allows larger read and write operations than UDP. If selected and not available, falls back to UDP."
+                            }, 
+                            {
+                                "display": "UDP", 
+                                "name": "udp", 
+                                "description": "Uses UDP. Some early NFS Version 2 servers support only UDP."
+                            }
+                        ]
+                    }, 
+                    "name": "dmNFSTransportType"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmNFSTransportType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmNFSTransportType"
+                    }
+                }
+            }, 
+            "description": "Select the transport protocol to start with. For NFS versions 2 and 3, if TCP is selected and it is not available on the NFS server, UDP will be used instead. When NFS version 4 is selected, this option is ignored and always defaults to TCP."
+        }, 
+        {
+            "/mgmt/types/default/dmNFSMountHardSoft": {
+                "type": {
+                    "summary": "NFS mount type", 
+                    "display": "NFS Mount Type", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Hard", 
+                                "name": "hard", 
+                                "description": "Makes this NFS mount a hard mount, which is the default behavior. Hard mounts ensure the reliable transfer of data. If the NFS server is unavailable for more than two minutes, the appliance might reboot due to a watchdog error."
+                            }, 
+                            {
+                                "display": "Soft", 
+                                "name": "soft", 
+                                "description": "Makes this NFS mount a soft mount. Soft mounts can expose the risk of undetected data corruption and the loss of files read or written via NFS. If the NFS server is unavailable and the retransmit timeout and count does not complete in less than two minutes, soft mounts might prevent a reboot due to a watchdog error. Select this behavior only if preventing watchdog errors is more important than data integrity."
+                            }
+                        ]
+                    }, 
+                    "name": "dmNFSMountHardSoft"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmNFSMountHardSoft"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmNFSMountHardSoft"
+                    }
+                }
+            }, 
+            "name": "MountType", 
+            "default": "hard", 
+            "type": {
+                "href": "/mgmt/types/default/dmNFSMountHardSoft"
+            }, 
+            "summary": "Type of NFS mount to use", 
+            "cli-alias": "mount-type", 
+            "display": "Mount Type", 
+            "description": "Select the type of NFS mount to use. The default behavior is to use NFS hard mounts, which is generally the appropriate behavior."
+        }, 
+        {
+            "name": "ReadOnly", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Allow only file reads on this mount.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "read-only", 
+            "display": "Read-Only"
+        }, 
+        {
+            "name": "ReadSize", 
+            "default": 4096, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "maximum": 32768, 
+            "summary": "Size of NFS read operations.", 
+            "minimum": 1024, 
+            "units": "bytes", 
+            "cli-alias": "rsize", 
+            "display": "Read Size", 
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }
+        }, 
+        {
+            "name": "WriteSize", 
+            "default": 4096, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "maximum": 32768, 
+            "summary": "Size of NFS write operations.", 
+            "minimum": 1024, 
+            "units": "bytes", 
+            "cli-alias": "wsize", 
+            "display": "Write Size", 
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }
+        }, 
+        {
+            "name": "Timeout", 
+            "default": 7, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "maximum": 600, 
+            "summary": "Time until first retransmission on RPC timeout.", 
+            "minimum": 1, 
+            "units": "tenths of seconds", 
+            "cli-alias": "timeo", 
+            "display": "Retransmission Timeout", 
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }
+        }, 
+        {
+            "name": "Retransmissions", 
+            "default": 3, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "maximum": 60, 
+            "summary": "Number of minor RPC timeouts and retransmissions until major timeout.", 
+            "minimum": 1, 
+            "cli-alias": "retrans", 
+            "display": "Maximum Retransmissions", 
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }
+        }
+    ]
+}

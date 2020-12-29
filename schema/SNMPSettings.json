@@ -1,0 +1,837 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for user annotation.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "/mgmt/types/default/dmLocalIPHostAddress": {
+                "type": {
+                    "cli-arg": "dotted-ip or 0 for any", 
+                    "name": "dmLocalIPHostAddress", 
+                    "format": "(a.b.c.d or 0 for any)"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLocalIPHostAddress"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                    }
+                }
+            }, 
+            "name": "LocalAddress", 
+            "default": "0.0.0.0", 
+            "type": {
+                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+            }, 
+            "summary": "IP address monitored for incoming SNMP requests", 
+            "cli-alias": "ip-address", 
+            "display": "Local IP Address", 
+            "description": "A specific IP address monitored by the SNMP agent or engine for incoming SNMP requests. The default value of 0.0.0.0 allows the agent or engine to listen on all interfaces. Selecting the address of one interface restricts SNMP to that interface."
+        }, 
+        {
+            "name": "LocalPort", 
+            "default": 161, 
+            "/mgmt/types/default/dmIPPort": {
+                "type": {
+                    "cli-arg": "ip-port", 
+                    "minimum": 0, 
+                    "name": "dmIPPort", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                }
+            }, 
+            "required": "true", 
+            "summary": "UDP port monitored for incoming SNMP requests", 
+            "type": {
+                "href": "/mgmt/types/default/dmIPPort"
+            }, 
+            "cli-alias": "port", 
+            "display": "Local Port", 
+            "description": "A specific UDP port monitored by the SNMP agent or engine for incoming SNMP requests. By default, the agent or engine monitors port 161."
+        }, 
+        {
+            "name": "Policies", 
+            "type": {
+                "href": "/mgmt/types/default/dmSnmpPolicy"
+            }, 
+            "summary": "Define access policies for SNMPv1 and SNMPv2c by communities, and their mapping to an application domain.", 
+            "/mgmt/types/default/dmSnmpPolicy": {
+                "type": {
+                    "summary": "SNMP community properties", 
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Enter the name of a specific SNMP community. All SNMP Version 1 or Version 2c managers identifying themselves as a member of this community will have the Mode permissions set here for the Associated Domains selected here and must originate from the Remote Host Address specified here.", 
+                                "required": "true", 
+                                "summary": "The name of an SNMP community", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Community", 
+                                "name": "Community"
+                            }, 
+                            {
+                                "description": "Specifies the application domain visible to the SNMP managers belonging to this community. The default value is the default application domain.", 
+                                "required": "true", 
+                                "summary": "Associated Application Domain", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/Domain"
+                                    }
+                                }, 
+                                "display": "Associated Domain", 
+                                "name": "Domain"
+                            }, 
+                            {
+                                "description": "Select the access privileges accorded to SNMP managers that belong to this community. Use none to disable SNMP access.", 
+                                "required": "true", 
+                                "summary": "SNMP access privileges", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmSnmpAccessMode"
+                                }, 
+                                "display": "Mode", 
+                                "name": "Mode"
+                            }, 
+                            {
+                                "description": "The IP address of an SNMP manager belonging to this community. The default value of '0.0.0.0/0' indicates all hosts, or all SNMP managers claiming membership in the community.", 
+                                "default": "0.0.0.0/0", 
+                                "summary": "IP address of an SNMP manager", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmIPNetAddress"
+                                }, 
+                                "display": "Remote Host Address", 
+                                "name": "Host"
+                            }
+                        ]
+                    }, 
+                    "name": "dmSnmpPolicy"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSnmpPolicy"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSnmpPolicy"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "community", 
+            "display": "SNMPv1/v2c Communities"
+        }, 
+        {
+            "/mgmt/types/default/dmSnmpPolicyMQ": {
+                "type": {
+                    "summary": "SNMP community properties", 
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Enter the name of a specific SNMP community. All SNMP Version 1 or Version 2c managers identifying themselves as a member of this community will have the Mode permissions set here for the Associated Domains selected here and must originate from the Remote Host Address specified here.", 
+                                "required": "true", 
+                                "summary": "The name of an SNMP community", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Community", 
+                                "name": "Community"
+                            }, 
+                            {
+                                "description": "Select the access privileges accorded to SNMP managers that belong to this community. Use none to disable SNMP access.", 
+                                "required": "true", 
+                                "summary": "SNMP access privileges", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmSnmpAccessMode"
+                                }, 
+                                "display": "Mode", 
+                                "name": "Mode"
+                            }, 
+                            {
+                                "description": "The IP address of an SNMP manager belonging to this community. The default value of '0.0.0.0/0' indicates all hosts, or all SNMP managers claiming membership in the community.", 
+                                "default": "0.0.0.0/0", 
+                                "summary": "IP address of an SNMP manager", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmIPNetAddress"
+                                }, 
+                                "display": "Remote Host Address", 
+                                "name": "Host"
+                            }
+                        ]
+                    }, 
+                    "name": "dmSnmpPolicyMQ"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSnmpPolicyMQ"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSnmpPolicyMQ"
+                    }
+                }
+            }, 
+            "name": "PoliciesMQ", 
+            "type": {
+                "href": "/mgmt/types/default/dmSnmpPolicyMQ"
+            }, 
+            "summary": "Define access policies for SNMPv1 and SNMPv2c by communities.", 
+            "array": "true", 
+            "cli-alias": "snmp-community", 
+            "display": "SNMPv1/v2c Communities"
+        }, 
+        {
+            "name": "Targets", 
+            "type": {
+                "href": "/mgmt/types/default/dmSnmpTarget"
+            }, 
+            "summary": "Specify SNMP Trap and Notification recipients", 
+            "array": "true", 
+            "cli-alias": "trap-target", 
+            "display": "Trap and Notification Targets", 
+            "/mgmt/types/default/dmSnmpTarget": {
+                "type": {
+                    "name": "dmSnmpTarget", 
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Specifies the IP address of a recipient of SNMP Traps and Notifications generated by the local SNMP agent or engine. The IP address must be unique for each recipient.", 
+                                "required": "true", 
+                                "summary": "IP address of a recipient of SNMP Traps and Notifications", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmIPHostAddress"
+                                }, 
+                                "display": "Remote Host Address", 
+                                "name": "Host"
+                            }, 
+                            {
+                                "description": "Specifies the destination UDP port for SNMP Traps and Notifications generated by the local SNMP agent or engine. By default, SNMP Traps and Notifications are sent to port 162.", 
+                                "default": 162, 
+                                "summary": "Destination port for SNMP traps/notifications", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmIPPort"
+                                }, 
+                                "display": "Remote Port", 
+                                "name": "Port"
+                            }, 
+                            {
+                                "description": "The SNMP community name included in SNMP Version 1 Traps and SNMP Version 2 Notifications. By default, a community name of public is used.", 
+                                "minimum-length": 0, 
+                                "default": "public", 
+                                "summary": "The name of an SNMP community", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "TrapVersion", 
+                                        "evaluation": "property-value-not-in-list", 
+                                        "value": [
+                                            1, 
+                                            "2c"
+                                        ]
+                                    }
+                                }, 
+                                "maximum-length": 255, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Community", 
+                                "name": "Community"
+                            }, 
+                            {
+                                "description": "Select the SNMP version to use for sending Traps and Notifications to the recipient. The default is version 1.", 
+                                "default": 1, 
+                                "summary": "Version to use for Traps/Notifications", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmSnmpVersion"
+                                }, 
+                                "display": "Version", 
+                                "name": "TrapVersion"
+                            }, 
+                            {
+                                "description": "The name of the local SNMPv3 user to use for Notifications to this recipient. Determines what authentication and privacy (encryption) protocols are used, and what keys.", 
+                                "minimum-length": 0, 
+                                "default": "", 
+                                "summary": "Security name for SNMPv3 notifications", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "TrapVersion", 
+                                        "evaluation": "property-does-not-equal", 
+                                        "value": 3
+                                    }
+                                }, 
+                                "maximum-length": 32, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Security Name", 
+                                "name": "SecurityName"
+                            }, 
+                            {
+                                "name": "SecurityLevel", 
+                                "default": "authPriv", 
+                                "summary": "The SNMPv3 security level for notifications", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "TrapVersion", 
+                                        "evaluation": "property-does-not-equal", 
+                                        "value": 3
+                                    }
+                                }, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmSnmpSecurityLevel"
+                                }, 
+                                "display": "Security Level", 
+                                "description": "The SNMPv3 security level at which Notifications are sent to the recipient. The default is Authentication, Privacy."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSnmpTarget"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSnmpTarget"
+                    }
+                }
+            }
+        }, 
+        {
+            "name": "Users", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/User"
+                }
+            }, 
+            "summary": "Define SNMPv3 users", 
+            "array": "true", 
+            "cli-alias": "user", 
+            "display": "SNMPv3 Users", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The name of a user (which must have SNMP credential parameters) which is authorized to use SNMPv3 to access the MIBs on this system."
+        }, 
+        {
+            "/mgmt/types/default/dmSnmpContext": {
+                "type": {
+                    "summary": "SNMPv3 Context Properties", 
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "An SNMPv3 context that will allow access to an application domain.", 
+                                "minimum-length": 1, 
+                                "required": "true", 
+                                "summary": "The name of an SNMPv3 context", 
+                                "maximum-length": 32, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Context Name", 
+                                "name": "Context"
+                            }, 
+                            {
+                                "description": "The local application domain whose SNMP MIB may be accessed via this context using SNMPv3.", 
+                                "required": "true", 
+                                "summary": "Local application domain for this context.", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/Domain"
+                                    }
+                                }, 
+                                "display": "Application Domain", 
+                                "name": "Domain"
+                            }
+                        ]
+                    }, 
+                    "name": "dmSnmpContext", 
+                    "description": "SNMPv3 context definitions, which provide SNMPv3 access to non-default application domains."
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSnmpContext"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSnmpContext"
+                    }
+                }
+            }, 
+            "name": "Contexts", 
+            "type": {
+                "href": "/mgmt/types/default/dmSnmpContext"
+            }, 
+            "summary": "Create non-default SNMPv3 contexts, and define their mapping to an application domain. The default (empty string) context is always mapped to the default application domain.", 
+            "array": "true", 
+            "cli-alias": "context", 
+            "display": "SNMPv3 Contexts", 
+            "description": "SNMPv3 context definitions, which provide SNMPv3 access to non-default application domains."
+        }, 
+        {
+            "name": "SecurityLevel", 
+            "default": "authPriv", 
+            "type": {
+                "href": "/mgmt/types/default/dmSnmpSecurityLevel"
+            }, 
+            "required": "true", 
+            "summary": "Set minimum security level required for incoming SNMPv3 requests.", 
+            "/mgmt/types/default/dmSnmpSecurityLevel": {
+                "type": {
+                    "summary": "SNMP Security Level", 
+                    "display": "SNMP Security Level", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "No Authentication, No Privacy", 
+                                "name": "noAuthNoPriv", 
+                                "description": "Does not require authentication or encryption."
+                            }, 
+                            {
+                                "display": "Authentication, No Privacy", 
+                                "name": "authNoPriv", 
+                                "description": "Requires authentication, but does not require encryption."
+                            }, 
+                            {
+                                "display": "Authentication, Privacy", 
+                                "name": "authPriv", 
+                                "description": "Requires authentication and encryption."
+                            }
+                        ]
+                    }, 
+                    "name": "dmSnmpSecurityLevel"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSnmpSecurityLevel"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSnmpSecurityLevel"
+                    }
+                }
+            }, 
+            "cli-alias": "security-level", 
+            "display": "SNMPv3 Security Level", 
+            "description": "The minimum security level required for incoming SNMPv3 Get and Set requests. The default is Authentication, Privacy."
+        }, 
+        {
+            "name": "AccessLevel", 
+            "default": "read-only", 
+            "type": {
+                "href": "/mgmt/types/default/dmSnmpAccessMode"
+            }, 
+            "required": "true", 
+            "/mgmt/types/default/dmSnmpAccessMode": {
+                "type": {
+                    "summary": "SNMP Access Mode", 
+                    "display": "SNMP Access Mode", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "none", 
+                                "name": "none", 
+                                "description": "No access is allowed."
+                            }, 
+                            {
+                                "display": "read-only", 
+                                "name": "read-only", 
+                                "description": "SNMPv3 get, get-next, and get-bulk operations are allowed."
+                            }, 
+                            {
+                                "display": "read-write", 
+                                "name": "read-write", 
+                                "description": "SNMPv3 get, get-next, get-bulk, and set operations are allowed."
+                            }
+                        ]
+                    }, 
+                    "name": "dmSnmpAccessMode"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSnmpAccessMode"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSnmpAccessMode"
+                    }
+                }
+            }, 
+            "summary": "Set limits on MIB access for incoming SNMPv3 requests.", 
+            "cli-alias": "access-level", 
+            "display": "SNMPv3 Access Level", 
+            "description": "The type of access allowed to MIB objects for incoming SNMPv3 Get and Set requests."
+        }, 
+        {
+            "name": "EnableDefaultTrapSubscriptions", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Enable Default Event Subscriptions", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "trap-default-subscriptions", 
+            "display": "Enable Default Event Subscriptions", 
+            "description": "Enable or Disable the default list of event codes that generate traps. The default is Enable Trap Subscriptions."
+        }, 
+        {
+            "name": "TrapPriority", 
+            "default": "error", 
+            "type": {
+                "href": "/mgmt/types/default/dmLogLevel"
+            }, 
+            "summary": "Minimum trap event priority", 
+            "/mgmt/types/default/dmLogLevel": {
+                "type": {
+                    "summary": "Log level", 
+                    "display": "Log Level", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "System unusable", 
+                                "display": "emergency", 
+                                "name": "emerg", 
+                                "description": "An emergency-level message. The system is unusable."
+                            }, 
+                            {
+                                "summary": "Immediate action required", 
+                                "display": "alert", 
+                                "name": "alert", 
+                                "description": "An alert-level message. Immediate action must be taken."
+                            }, 
+                            {
+                                "summary": "Critical condition", 
+                                "display": "critical", 
+                                "name": "critic", 
+                                "description": "A critical message. Immediate action should be taken."
+                            }, 
+                            {
+                                "summary": "Error condition", 
+                                "display": "error", 
+                                "name": "error", 
+                                "description": "An error message. Processing might continue, but action should be taken."
+                            }, 
+                            {
+                                "summary": "Warning condition", 
+                                "display": "warning", 
+                                "name": "warn", 
+                                "description": "A warning message. Processing should continue, but action should be taken."
+                            }, 
+                            {
+                                "summary": "Normal but significant condition", 
+                                "display": "notice", 
+                                "name": "notice", 
+                                "description": "A notice message. Processing continues, but action might need to be taken."
+                            }, 
+                            {
+                                "summary": "Informational message", 
+                                "display": "information", 
+                                "name": "info", 
+                                "description": "An information message. No action required."
+                            }, 
+                            {
+                                "summary": "Debug message", 
+                                "display": "debug", 
+                                "name": "debug", 
+                                "description": "A debug message for processing information to help during troubleshooting."
+                            }
+                        ]
+                    }, 
+                    "name": "dmLogLevel"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLogLevel"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmLogLevel"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "EnableDefaultTrapSubscriptions", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "on"
+                }
+            }, 
+            "cli-alias": "trap-priority", 
+            "display": "Minimum Priority", 
+            "description": "Select a minimum trap event priority. The priorities are hierarchical. The lowest is listed last. Set to the minimum that is required for your trap events."
+        }, 
+        {
+            "name": "TrapEventCode", 
+            "type": {
+                "href": "/mgmt/types/default/dmEventCode"
+            }, 
+            "/mgmt/types/default/dmEventCode": {
+                "type": {
+                    "cli-arg": "event-code", 
+                    "name": "dmEventCode"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmEventCode"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmEventCode"
+                    }
+                }
+            }, 
+            "summary": "Trap event-code subscriptions", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "EnableDefaultTrapSubscriptions", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "on"
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "trap-code", 
+            "display": "Event Subscriptions", 
+            "description": "The list of event codes generating traps. You can add event codes which will be triggering traps send to the configured trap targets."
+        }, 
+        {
+            "name": "ConfigMib", 
+            "default": "/drConfigMIB.txt", 
+            "/mgmt/types/default/dmFSFile": {
+                "type": {
+                    "cli-arg": "file", 
+                    "name": "dmFSFile"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                }
+            }, 
+            "summary": "Link to the DataPower Enterprise Configuration MIB.", 
+            "cli-alias": "config-mib", 
+            "type": {
+                "href": "/mgmt/types/default/dmFSFile"
+            }, 
+            "display": "Configuration"
+        }, 
+        {
+            "name": "ConfigMibMQ", 
+            "default": "/mqConfigMIB.txt", 
+            "/mgmt/types/default/dmFSFile": {
+                "type": {
+                    "cli-arg": "file", 
+                    "name": "dmFSFile"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                }
+            }, 
+            "summary": "Link to the IBM MQ DataPower Gateway Enterprise Configuration MIB.", 
+            "cli-alias": "config-mib", 
+            "type": {
+                "href": "/mgmt/types/default/dmFSFile"
+            }, 
+            "display": "Configuration"
+        }, 
+        {
+            "name": "StatusMib", 
+            "default": "/drStatusMIB.txt", 
+            "/mgmt/types/default/dmFSFile": {
+                "type": {
+                    "cli-arg": "file", 
+                    "name": "dmFSFile"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                }
+            }, 
+            "summary": "Link to the DataPower Enterprise Status MIB.", 
+            "cli-alias": "status-mib", 
+            "type": {
+                "href": "/mgmt/types/default/dmFSFile"
+            }, 
+            "display": "Status"
+        }, 
+        {
+            "name": "StatusMibMQ", 
+            "default": "/mqStatusMIB.txt", 
+            "/mgmt/types/default/dmFSFile": {
+                "type": {
+                    "cli-arg": "file", 
+                    "name": "dmFSFile"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                }
+            }, 
+            "summary": "Link to the IBM MQ DataPower Gateway Enterprise Status MIB.", 
+            "cli-alias": "status-mib", 
+            "type": {
+                "href": "/mgmt/types/default/dmFSFile"
+            }, 
+            "display": "Status"
+        }, 
+        {
+            "name": "NotifMib", 
+            "default": "/drNotificationMIB.txt", 
+            "/mgmt/types/default/dmFSFile": {
+                "type": {
+                    "cli-arg": "file", 
+                    "name": "dmFSFile"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                }
+            }, 
+            "summary": "Link to the DataPower Enterprise Notification MIB.", 
+            "cli-alias": "notification-mib", 
+            "type": {
+                "href": "/mgmt/types/default/dmFSFile"
+            }, 
+            "display": "Notifications"
+        }, 
+        {
+            "name": "NotifMibMQ", 
+            "default": "/mqNotificationMIB.txt", 
+            "/mgmt/types/default/dmFSFile": {
+                "type": {
+                    "cli-arg": "file", 
+                    "name": "dmFSFile"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                }
+            }, 
+            "summary": "Link to the IBM MQ DataPower Gateway Enterprise Notification MIB.", 
+            "cli-alias": "notification-mib", 
+            "type": {
+                "href": "/mgmt/types/default/dmFSFile"
+            }, 
+            "display": "Notifications"
+        }
+    ]
+}

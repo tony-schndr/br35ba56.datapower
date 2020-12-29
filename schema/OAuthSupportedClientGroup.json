@@ -1,0 +1,363 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Specifies a brief comment that describes the configuration.", 
+            "cli-alias": "summary", 
+            "summary": "Brief, descriptive summary of the configuration", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments", 
+            "name": "UserSummary"
+        }, 
+        {
+            "name": "Customized", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether the configuration is for a customized OAuth client group", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "customized", 
+            "display": "Customized OAuth", 
+            "description": "Indicates whether the configuration is for a customized OAuth client group."
+        }, 
+        {
+            "name": "CustomizedType", 
+            "default": "custom", 
+            "type": {
+                "href": "/mgmt/types/default/dmOAuthCustomizedType"
+            }, 
+            "/mgmt/types/default/dmOAuthCustomizedType": {
+                "type": {
+                    "name": "dmOAuthCustomizedType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Use a custom stylesheet or GatewayScript file to define all the details of the OAuth client configuration.", 
+                                "display": "Custom", 
+                                "name": "custom", 
+                                "description": "Uses a custom stylesheet or GatewayScript file to define all the details of the OAuth client configuration."
+                            }, 
+                            {
+                                "summary": "Use a combination of a stylesheet or GatewayScript file and a client template to define the OAuth client configuration.", 
+                                "display": "Template", 
+                                "name": "template", 
+                                "description": "Uses a combination of a stylesheet or GatewayScript file and a template to define the OAuth client configuration."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmOAuthCustomizedType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmOAuthCustomizedType"
+                    }
+                }
+            }, 
+            "summary": "How to customize an OAuth client", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "Customized", 
+                    "evaluation": "property-equals", 
+                    "value": "off"
+                }
+            }, 
+            "cli-alias": "customized-type", 
+            "display": "Customization Type", 
+            "description": "Sets the method to customize an OAuth client."
+        }, 
+        {
+            "name": "OAuthRole", 
+            "required-when": {
+                "condition": {
+                    "property-name": "Customized", 
+                    "evaluation": "property-equals", 
+                    "value": "off"
+                }
+            }, 
+            "summary": "Roles of clients in the group", 
+            "cli-alias": "oauth-role", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "/mgmt/types/default/dmOAuthRole": {
+                "type": {
+                    "name": "dmOAuthRole", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Role is authorization server endpoints: authorization endpoint and token endpoint", 
+                                "display": "Authorization and Token Endpoints", 
+                                "name": "azsvr", 
+                                "description": "For requests, the DataPower Gateway is the authorization server endpoints: authorization endpoint and token endpoint."
+                            }, 
+                            {
+                                "summary": "Role is the enforcement point for the resource server", 
+                                "display": "Enforcement Point for Resource Server", 
+                                "name": "rssvr", 
+                                "description": "For requests, the DataPower Gateway is the enforcement point for a resource server."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmOAuthRole"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmOAuthRole"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmOAuthRole"
+            }, 
+            "display": "OAuth Role", 
+            "description": "Identifies the roles of clients in the group. This property is mutually exclusive to the &lt;b>Customized OAuth&lt;/b> property."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/OAuthSupportedClient"
+                }
+            }, 
+            "name": "Client", 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "Customized", 
+                            "evaluation": "property-equals", 
+                            "value": "off"
+                        }, 
+                        {
+                            "evaluation": "logical-and", 
+                            "condition": [
+                                {
+                                    "property-name": "Customized", 
+                                    "evaluation": "property-equals", 
+                                    "value": "on"
+                                }, 
+                                {
+                                    "property-name": "CustomizedType", 
+                                    "evaluation": "property-equals", 
+                                    "value": "custom"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }, 
+            "summary": "Group of OAuth clients", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "client", 
+            "display": "Client", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "Manages the group of OAuth clients. Use the controls to add or remove clients from the group."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmFSFile"
+            }, 
+            "name": "TemplateProcessUrl", 
+            "/mgmt/types/default/dmFSFile": {
+                "type": {
+                    "cli-arg": "file", 
+                    "name": "dmFSFile"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                }
+            }, 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "Customized", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "CustomizedType", 
+                            "evaluation": "property-equals", 
+                            "value": "template"
+                        }
+                    ]
+                }
+            }, 
+            "locations": {
+                "location": [
+                    "local", 
+                    "store"
+                ]
+            }, 
+            "summary": "Location of the stylesheet or GatewayScript file that defines the OAuth client.", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "template-process-url", 
+            "display": "OAuth Template Process", 
+            "description": "&lt;p>Specifies the location of the stylesheet or GatewayScript file that defines the OAuth client. You can define parts of the configuration parameters in the stylesheet or GatewayScript file and then specify an OAuth client template to derive the remaining information. Note that the stylesheet or GatewayScript file must at least provide the \"client-id\" node. The stylesheet or GatewayScript file must be in the local: or store: directory.&lt;/p>&lt;p>The stylesheet or GatewayScript file must follow the guidelines when it returns the information: &lt;ul>&lt;li>The stylesheet or GatewayScript file must return the &amp;lt;client-id> element.&lt;/li>&lt;li>If the &amp;lt;customized> element value is set to \"on\", the &amp;lt;customized-process-url> element value must be provided by either the stylesheet or GatewayScript file or the template.&lt;/li>&lt;li>If the &amp;lt;customized> element value is set to \"on\" in the client template, the &amp;lt;customized-process-url> element cannot unset this value.&lt;/li>&lt;li>If the &amp;lt;use-validation-url> element value is set to \"on\", the &amp;lt;validation-url> element value must be provided by either the stylesheet or GatewayScript file or the template.&lt;/li>&lt;li>If the &amp;lt;custom-scope-check> element value is set to \"on\", the &amp;lt;scope-url> element value must be provided by either the stylesheet or GatewayScript file or the template.&lt;/li>&lt;li>If the &amp;lt;custom-resource-owner> element value is set to \"on\", the &amp;lt;resource-owner-url> element value must be provided by either the stylesheet or GatewayScript file or the template.&lt;/li>&lt;li>If the &amp;lt;role> element value is set, the value must be the same or a subset of what is defined in the template.&lt;/li>&lt;li>If the &amp;lt;client-type> element value is set, the value must be the same or a subset of what is defined in the template.&lt;/li>&lt;li>If the &amp;lt;az-grant> element value is set, the value must be the same or a subset of what is defined in the template.&lt;/li>&lt;li>If the &amp;lt;az-grant> element value is set to \"+code+\" or \"+token+\", the &amp;lt;local-az-page-url> element value must be provided by either the stylesheet or GatewayScript file or the template.&lt;/li>&lt;li>If the &amp;lt;caching> element value is set to \"custom\", the &amp;lt;additional-oauth-processing-url> element value must be provided by either the stylesheet or GatewayScript file or the template.&lt;/li>&lt;li>If the &amp;lt;refresh-token-allowed> is set to a non-zero value, the &amp;lt;refresh-token-lifetime> element value must be provided by either the stylesheet or GatewayScript file or the template.&lt;/li>&lt;li>If the &amp;lt;check-client-credential> element value is set to \"on\", the &amp;lt;client-authen-method> element value must be provided by either the stylesheet or GatewayScript file or the template.&lt;/li>&lt;li>If the &amp;lt;client-authen-method> element value is set to \"secret\", the &amp;lt;client-secret> element value must be provided by either the stylesheet or GatewayScript file or the template.&lt;/li>&lt;li>If the &amp;lt;client-authen-method> element value is set to \"ssl\", the &amp;lt;client-valcred> element value must be provided by either the stylesheet or GatewayScript file or the template.&lt;/li>&lt;/ul>&lt;/p>"
+        }, 
+        {
+            "name": "ClientTemplate", 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "Customized", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "CustomizedType", 
+                            "evaluation": "property-equals", 
+                            "value": "template"
+                        }
+                    ]
+                }
+            }, 
+            "summary": "Template to derive the configuration parameters of the OAuth client", 
+            "cli-alias": "client-template", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/OAuthSupportedClient"
+                }
+            }, 
+            "display": "OAuth Client Template", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "&lt;p>Specifies the OAuth client template that is used to derive the configuration parameters that are not specified in the stylesheet or GatewayScript file of the OAuth client.&lt;/p>"
+        }
+    ]
+}

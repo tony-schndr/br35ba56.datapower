@@ -1,0 +1,528 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "A descriptive summary for the API Operation configuration.", 
+            "cli-alias": "summary", 
+            "summary": "Enter a brief descriptive summary for the API Operation configuration.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments", 
+            "name": "UserSummary"
+        }, 
+        {
+            "/mgmt/types/default/dmAPIVerb": {
+                "type": {
+                    "summary": "Select the HTTP method to perform", 
+                    "display": "HTTP method", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Specifies the HTTP GET method", 
+                                "display": "GET", 
+                                "name": "GET"
+                            }, 
+                            {
+                                "summary": "Specifies the HTTP POST method", 
+                                "display": "POST", 
+                                "name": "POST"
+                            }, 
+                            {
+                                "summary": "Specifies the HTTP PUT method", 
+                                "display": "PUT", 
+                                "name": "PUT"
+                            }, 
+                            {
+                                "summary": "Specifies the HTTP DELETE method", 
+                                "display": "DELETE", 
+                                "name": "DELETE"
+                            }, 
+                            {
+                                "summary": "Specifies the HTTP HEAD method", 
+                                "display": "HEAD", 
+                                "name": "HEAD"
+                            }, 
+                            {
+                                "summary": "Specifies the HTTP PATCH method", 
+                                "display": "PATCH", 
+                                "name": "PATCH"
+                            }, 
+                            {
+                                "summary": "Specifies the HTTP OPTIONS method", 
+                                "display": "OPTIONS", 
+                                "name": "OPTIONS"
+                            }
+                        ]
+                    }, 
+                    "name": "dmAPIVerb"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAPIVerb"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAPIVerb"
+                    }
+                }
+            }, 
+            "name": "Method", 
+            "type": {
+                "href": "/mgmt/types/default/dmAPIVerb"
+            }, 
+            "required": "true", 
+            "summary": "HTTP method", 
+            "cli-alias": "method", 
+            "display": "Method", 
+            "description": "Specifies the HTTP method to perform against the resource."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Specifies the ID of the operation.", 
+            "cli-alias": "operation-id", 
+            "summary": "A unique identifier of the operation", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Operation ID", 
+            "name": "OperationId"
+        }, 
+        {
+            "name": "RemoveConsume", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to remove the API-level consume declaration", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "remove-consume", 
+            "display": "Remove consume", 
+            "description": "Specifies whether to remove the API-level consume declaration. By default, the API-level consume declaration is applied to the operation. When removed, the operation can always be performed regardless of the content type."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "name": "Consume", 
+            "cli-alias": "consume", 
+            "summary": "MIME types that the operation can consume", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "RemoveConsume", 
+                    "evaluation": "property-equals", 
+                    "value": "on"
+                }
+            }, 
+            "array": "true", 
+            "valid-regexp": "[a-zA-Z0-9][a-zA-Z0-9!#$&amp;\\-^_]{0,126}\\/[a-zA-Z0-9][a-zA-Z0-9!#$&amp;\\-^_+.]{0,126}(;\\s*[a-zA-Z0-9][a-zA-Z0-9!#$&amp;\\-^_=\"]{0,126})*$", 
+            "display": "Consumes", 
+            "description": "Specifies a list of MIME types that the operation can consume. This setting overrides the API-level consume declaration that you define for the API definition."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "Produce", 
+            "cli-alias": "produce", 
+            "summary": "MIME types that the operation can produce", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "array": "true", 
+            "valid-regexp": "^(application|audio|image|message|multipart|text|video)\\/[a-zA-Z-]+$", 
+            "display": "Produces", 
+            "description": "Specifies a list of MIME types that the operation can produce. This setting overrides the API-level produce declaration that you define for the API definition."
+        }, 
+        {
+            "description": "Specifies the request schema that describes the valid request messages for the API operation.", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/APISchema"
+                }
+            }, 
+            "summary": "The request schema for the API operation", 
+            "cli-alias": "request-schema", 
+            "display": "Request Schema", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "RequestSchema"
+        }, 
+        {
+            "name": "ResponseSchema", 
+            "type": {
+                "href": "/mgmt/types/default/dmAPIResponseSchema"
+            }, 
+            "summary": "The response schema for the API operation", 
+            "/mgmt/types/default/dmAPIResponseSchema": {
+                "type": {
+                    "name": "dmAPIResponseSchema", 
+                    "properties": {
+                        "property": [
+                            {
+                                "name": "StatusCode", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "required": "true", 
+                                "summary": "Status code", 
+                                "valid-regexp": "^(default|[1-9][0-9]{2})$", 
+                                "display": "Status Code", 
+                                "description": "Enter the HTTP status code of the response message that this schema describes. The value can be the string \"default\", or any valid HTTP status code, like 200."
+                            }, 
+                            {
+                                "summary": "Response schema", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/APISchema"
+                                    }
+                                }, 
+                                "display": "Response schema", 
+                                "name": "ResponseSchema", 
+                                "description": "Specifies the API schema to describe the response message."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAPIResponseSchema"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAPIResponseSchema"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "response-schema", 
+            "display": "Response Schema", 
+            "description": "Specifies a list of response schemas that describe the possible response messages returned for the API operation."
+        }, 
+        {
+            "/mgmt/types/default/dmAPIParameter": {
+                "type": {
+                    "name": "dmAPIParameter", 
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Specifies a name for your parameter. Parameter names are case sensitive.", 
+                                "required": "true", 
+                                "summary": "The name of the parameter", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Name", 
+                                "name": "Name"
+                            }, 
+                            {
+                                "name": "Required", 
+                                "default": "off", 
+                                "required": "true", 
+                                "summary": "Whether this parameter is mandatory", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                }, 
+                                "display": "Required", 
+                                "description": "Controls whether the parameter is required for a call to be valid. By default, a parameter is optional."
+                            }, 
+                            {
+                                "description": "Specifies the type of the parameter.", 
+                                "required": "true", 
+                                "summary": "The type of the parameter", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmAPIParameterType"
+                                }, 
+                                "display": "Type", 
+                                "name": "Type"
+                            }, 
+                            {
+                                "description": "Specifies the location of the parameter.", 
+                                "required": "true", 
+                                "summary": "The location of the parameter", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmAPIParameterWhere"
+                                }, 
+                                "display": "Where", 
+                                "name": "Where"
+                            }, 
+                            {
+                                "summary": "The schema or format depending on the location of the parameter", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Schema or format", 
+                                "name": "SchemaOrFormat", 
+                                "description": "Depending on the location of the parameter, specifies the schema or the format. &lt;ul>&lt;li>If the parameter is located in &lt;tt>body&lt;/tt> , specify the schema that defines the input and output data types that are used for the body parameter. The definition follows JSON Schema Specification Draft 4.&lt;/li>&lt;li>If the parameter is not located in &lt;tt>body&lt;/tt> , specify the format for the parameter type.&lt;/li>&lt;/ul>"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAPIParameter"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAPIParameter"
+                    }
+                }
+            }, 
+            "name": "Parameter", 
+            "cli-alias": "parameter", 
+            "summary": "Applicable parameters for the API operation", 
+            "array": "true", 
+            "type": {
+                "href": "/mgmt/types/default/dmAPIParameter"
+            }, 
+            "display": "Parameters", 
+            "description": "Specifies a list of parameters that are applicable for the API operation. The setting here overrides the setting in the API Path configuration for the same parameter."
+        }, 
+        {
+            "name": "RemoveSecurity", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to remove the API-level security declaration", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "remove-security", 
+            "display": "Remove security", 
+            "description": "Specifies whether to remove the API-level security declaration that is defined for the API. By default, the API-level security declaration is applied to the operation. When removed, the operation can be performed without security check."
+        }, 
+        {
+            "name": "Security", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/APISecurityRequirement"
+                }
+            }, 
+            "summary": "Security schemes for the operation", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "RemoveSecurity", 
+                    "evaluation": "property-equals", 
+                    "value": "on"
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "security", 
+            "display": "Security requirements", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "Specifies the alternative security requirements to enforce for the operation (that is, there is a logical OR between the security requirements). This setting overrides any declared API-level security."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Specifies the value of the SOAPAction header that would be sent to the backend web service.", 
+            "cli-alias": "soap-action", 
+            "summary": "SOAP Action", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "SOAP Action", 
+            "name": "SOAPAction"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Specifies the name of the root element in SOAP Body of a SOAP request.", 
+            "cli-alias": "soap-element-name", 
+            "summary": "SOAP Element Name", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "SOAP Element Name", 
+            "name": "SOAPElementName"
+        }
+    ]
+}

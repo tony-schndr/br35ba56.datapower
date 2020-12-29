@@ -64,27 +64,47 @@ class DPManageConfigSchema:
     
     def __init__(self, schema_resp):
         self.build(schema_resp)
-        
+        self.types = schema_resp['types']
+
     def build(self, schema_resp):
         self.set_props(schema_resp)
     
+    def is_valid_param(self, key, value):
+        prop = self.get_prop(key)
+        href = self.get_type_href_from_prop(prop)
+        type_ = self.get_type(href)
+
+        if type_['type']['name'] == 'dmReference':
+            if 'value' in value:
+                return True
+        elif 'value-list' in type_['type']:
+            for val in type_['type']['value-list']['value']:
+                if val['name'] == value:
+                    return True
+        elif type_['type']['name'] == 'dmString':
+            return isinstance(value, str)
+        elif 'format' in type_['type']:
+            #TODO: Need to look at all the different 'format's datapower
+            # uses to try and come up with a better way to validate input....  Maybe
+            return isinstance(value, str)
+        else:
+            return False
+        return False
+
     def set_props(self, schema_resp):
-        self.props = []
-        for dp_prop in schema_resp['parent']['object']['properties']['property']:
-            prop_href = dp_prop['type']['href']
-            prop_type = self.get_prop_type(schema_resp, prop_href)
-            dp_prop[prop_href] = prop_type
+        self.props = []        
+        for dp_prop in schema_resp['metadata']['object']['properties']['property']:
             self.props.append(dp_prop)
 
-    def get_prop_href(self, prop):
-        return prop['type']['href']
-
-    def get_prop_type(self, schema_resp, href):
-        for prop_type in schema_resp['children']:
-            if prop_type['_links']['self']['href'] == href:
-                return prop_type
+    def get_type(self, type_href):
+        for type_ in self.types:
+            if type_href == type_['_links']['self']['href']:
+                return type_
         else:
-            raise AttributeError('Property not found, debug...')
+            return None
+
+    def get_type_href_from_prop(self, prop):
+        return prop['type']['href']
 
     def get_prop(self, name):
         for prop in self.props:
@@ -104,24 +124,6 @@ class DPManageConfigSchema:
         else:
             maximum = int(type_['maximum'], 0)
         return minimum, maximum
-
-
-    def is_valid_param(self, key, value):
-        prop = self.get_prop(key)
-        href = self.get_prop_href(prop)
-        if prop[href]['type']['name'] == 'dmReference':
-            if 'value' in value:
-                return True
-        elif 'value-list' in prop[href]['type']:
-            for val in prop[href]['type']['value-list']['value']:
-                if val['name'] == value:
-                    return True
-        elif prop[href]['type']['name'] == 'dmString':
-            return isinstance(value, str)
-        else:
-            return False
-        
-        return False
 
 
 def is_valid_object_class(obj):

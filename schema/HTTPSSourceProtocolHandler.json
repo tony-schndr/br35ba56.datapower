@@ -1,0 +1,1163 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "A descriptive summary for the configuration.", 
+            "cli-alias": "summary", 
+            "summary": "Enter a descriptive summary for the configuration.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments", 
+            "name": "UserSummary"
+        }, 
+        {
+            "/mgmt/types/default/dmLocalIPHostAddress": {
+                "type": {
+                    "cli-arg": "dotted-ip or 0 for any", 
+                    "name": "dmLocalIPHostAddress", 
+                    "format": "(a.b.c.d or 0 for any)"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLocalIPHostAddress"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                    }
+                }
+            }, 
+            "name": "LocalAddress", 
+            "default": "0.0.0.0", 
+            "type": {
+                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+            }, 
+            "required": "true", 
+            "summary": "Enter the IP address or host alias on which the HTTPS handler listens.", 
+            "label": "IP address", 
+            "cli-alias": "local-address", 
+            "display": "Local IP address", 
+            "hoverhelp": "Enter the IP address or host alias on which the HTTPS handler listens. The default value indicates that The handler listens on all IPv4 addresses.", 
+            "description": "The address on which the HTTPS handler listens. The default value 0.0.0.0 indicates that The handler listens on all IPv4 addresses."
+        }, 
+        {
+            "name": "LocalPort", 
+            "default": 443, 
+            "cli-alias": "port", 
+            "required": "true", 
+            "maximum": "0xFFFF", 
+            "summary": "Enter the port on which the HTTPS handler listens.", 
+            "listener": "LocalAddress", 
+            "minimum": 1, 
+            "type": {
+                "href": "/mgmt/types/default/dmIPPort"
+            }, 
+            "/mgmt/types/default/dmIPPort": {
+                "type": {
+                    "cli-arg": "ip-port", 
+                    "minimum": 0, 
+                    "name": "dmIPPort", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                }
+            }, 
+            "display": "Port", 
+            "hoverhelp": "Enter the port on which the HTTPS handler listens. The default value is 443.", 
+            "description": "The port on which the HTTPS handler listens. The default value is 443."
+        }, 
+        {
+            "name": "HTTPVersion", 
+            "default": "HTTP/1.1", 
+            "type": {
+                "href": "/mgmt/types/default/dmHTTPVersion"
+            }, 
+            "summary": "Set the HTTP version for client side connections.", 
+            "/mgmt/types/default/dmHTTPVersion": {
+                "type": {
+                    "summary": "HTTP Version", 
+                    "display": "HTTP Version", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "HTTP version 1.0", 
+                                "display": "HTTP 1.0", 
+                                "name": "HTTP/1.0"
+                            }, 
+                            {
+                                "summary": "HTTP version 1.1", 
+                                "display": "HTTP 1.1", 
+                                "name": "HTTP/1.1"
+                            }
+                        ]
+                    }, 
+                    "name": "dmHTTPVersion"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHTTPVersion"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmHTTPVersion"
+                    }
+                }
+            }, 
+            "cli-alias": "http-client-version", 
+            "display": "HTTP version to client", 
+            "description": "The HTTP version for client side connections. The default value is HTTP 1.1. For the HTTP/2 protocol, requests and responses are always HTTP/2. When HTTP/2, this setting is ignored."
+        }, 
+        {
+            "name": "AllowedFeatures", 
+            "/mgmt/types/default/dmSourceHTTPFeatureType": {
+                "type": {
+                    "name": "dmSourceHTTPFeatureType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Support HTTP/1.0 requests", 
+                                "display": "HTTP/1.0", 
+                                "name": "HTTP-1.0"
+                            }, 
+                            {
+                                "summary": "Support HTTP/1.1 requests", 
+                                "display": "HTTP/1.1", 
+                                "name": "HTTP-1.1"
+                            }, 
+                            {
+                                "summary": "Support HTTP/2 requests", 
+                                "display": "HTTP/2", 
+                                "name": "HTTP-2.0"
+                            }, 
+                            {
+                                "summary": "Allow POST methods in requests", 
+                                "display": "POST method", 
+                                "name": "POST"
+                            }, 
+                            {
+                                "summary": "Allow GET methods in requests", 
+                                "display": "GET method", 
+                                "name": "GET"
+                            }, 
+                            {
+                                "summary": "Allow PUT methods in requests", 
+                                "display": "PUT method", 
+                                "name": "PUT"
+                            }, 
+                            {
+                                "summary": "Allow PATCH methods in requests", 
+                                "display": "PATCH method", 
+                                "name": "PATCH"
+                            }, 
+                            {
+                                "summary": "Allow HEAD methods in requests", 
+                                "display": "HEAD method", 
+                                "name": "HEAD"
+                            }, 
+                            {
+                                "summary": "Allow OPTIONS methods in requests", 
+                                "display": "OPTIONS", 
+                                "name": "OPTIONS"
+                            }, 
+                            {
+                                "summary": "Allow TRACE methods in requests", 
+                                "display": "TRACE method", 
+                                "name": "TRACE"
+                            }, 
+                            {
+                                "summary": "Allow DELETE methods in requests", 
+                                "display": "DELETE method", 
+                                "name": "DELETE"
+                            }, 
+                            {
+                                "summary": "Allow requests with any other method, which supports protocol extensions", 
+                                "display": "Custom methods", 
+                                "name": "CustomMethods"
+                            }, 
+                            {
+                                "summary": "Allow requests when the URL contains a ?", 
+                                "display": "URL with ?", 
+                                "name": "QueryString"
+                            }, 
+                            {
+                                "summary": "Allow requests when the URL contains a #", 
+                                "display": "URL with #", 
+                                "name": "FragmentIdentifiers"
+                            }, 
+                            {
+                                "summary": "Allow requests when the URL contains a ..", 
+                                "display": "URL with ..", 
+                                "name": "DotDot"
+                            }, 
+                            {
+                                "summary": "Allow requests when the URL path contains a ..", 
+                                "display": "URL with .. in path", 
+                                "name": "DotDotInPath"
+                            }, 
+                            {
+                                "summary": "Allow requests when the query string contains a ..", 
+                                "display": "URL with .. after ?", 
+                                "name": "DotDotInQueryString"
+                            }, 
+                            {
+                                "summary": "Allow requests when the URL contains cmd.exe", 
+                                "display": "URL with cmd.exe", 
+                                "name": "CmdExe"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSourceHTTPFeatureType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSourceHTTPFeatureType"
+                    }
+                }
+            }, 
+            "default": "0x0617", 
+            "type": {
+                "href": "/mgmt/types/default/dmSourceHTTPFeatureType"
+            }, 
+            "summary": "Set the methods and versions to allow for incoming requests.", 
+            "cli-alias": "allowed-features", 
+            "display": "Allowed methods and versions", 
+            "description": "The methods and versions to allow for incoming requests."
+        }, 
+        {
+            "name": "PersistentConnections", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Indicate whether to negotiate persistent client side connections.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "persistent-connections", 
+            "display": "Negotiate persistent connections", 
+            "description": "Whether to negotiate persistent client side connections. The default is enabled. The HTTP/2 protocol controls persistent connections and reuse. Therefore, these settings are ignored."
+        }, 
+        {
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "MaxPersistentConnectionsReuse", 
+            "default": 0, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "summary": "Enter the maximum number of times a persistent client side connection is reused.", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "PersistentConnections", 
+                    "evaluation": "property-equals", 
+                    "value": "off"
+                }
+            }, 
+            "cli-alias": "max-persistent-reuse", 
+            "display": "Maximum persistent reuse", 
+            "description": "The maximum number of times a persistent client side connection is reused. When the maximum reuse count is reached, an explicit &lt;tt>HTTP Connection: close&lt;/tt> header is sent in the response, and the TCP connection is closed. The default value is 0, which means unlimited reuse."
+        }, 
+        {
+            "name": "AllowCompression", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Indicate whether to negotiate GZIP compression for client side connections.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "compression", 
+            "display": "Enable compression", 
+            "description": "&lt;p>Whether to negotiate GZIP compression for client side connections.&lt;/p>&lt;p>The default is disabled. If enabled, the DataPower service uses GZIP to compress HTTP transmissions when the &lt;tt>Accept-Encoding&lt;/tt> HTTP header indicates that compressed documents can be processed.&lt;/p>&lt;p>The &lt;tt>Transfer-Encoding&lt;/tt> HTTP header indicates compression.&lt;/p>"
+        }, 
+        {
+            "name": "AllowWebSocketUpgrade", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Indicate whether to allow WebSocket upgrade requests from clients.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "HTTPVersion", 
+                    "evaluation": "property-equals", 
+                    "value": "HTTP/1.0"
+                }
+            }, 
+            "cli-alias": "websocket-upgrade", 
+            "display": "Allow WebSocket upgrade", 
+            "description": "Whether to allow WebSocket upgrade requests from clients. The default is disabled. This request is to switch the existing connection to use the WebSocket protocol. WebSocket upgrade requests require that The handler allows GET methods."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmTimeInterval"
+            }, 
+            "name": "WebSocketIdleTimeout", 
+            "default": 0, 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "AllowWebSocketUpgrade", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }, 
+                        {
+                            "property-name": "HTTPVersion", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "HTTP/1.0"
+                        }
+                    ]
+                }
+            }, 
+            "maximum": 86400, 
+            "summary": "Enter the maximum idle time for client connections.", 
+            "/mgmt/types/default/dmTimeInterval": {
+                "type": {
+                    "cli-arg": "seconds", 
+                    "minimum": 0, 
+                    "name": "dmTimeInterval", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                }
+            }, 
+            "minimum": 0, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "units": "Seconds", 
+            "cli-alias": "websocket-idle-timeout", 
+            "display": "WebSocket idle timeout", 
+            "description": "The maximum idle time for client connections. This timer monitors the idle time in the data transfer process. When the specified idle time is exceeded, the connection is torn down. Enter a value in the range 0 - 86400. The default value is 0, which indicates that the timer is disabled."
+        }, 
+        {
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "MaxURLLen", 
+            "default": 16384, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "maximum": 128000, 
+            "summary": "Enter the length of the longest incoming URL to accept.", 
+            "minimum": 1, 
+            "units": "Bytes", 
+            "cli-alias": "max-url-len", 
+            "display": "Maximum URL length", 
+            "description": "The length of the longest incoming URL to accept. The length includes any query string or fragment identifier. Enter a value in the range 1 - 128000. The default value is 16384."
+        }, 
+        {
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "MaxTotalHdrLen", 
+            "default": 128000, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "maximum": 128000, 
+            "summary": "Enter the maximum aggregate length of HTTP headers to allow.", 
+            "minimum": 5, 
+            "units": "Bytes", 
+            "cli-alias": "max-total-header-len", 
+            "display": "Maximum total header length", 
+            "description": "The maximum aggregate length of HTTP headers to allow. Enter a value in the range 5 - 128000. The default value is 128000."
+        }, 
+        {
+            "name": "MaxHdrCount", 
+            "default": 0, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt16"
+            }, 
+            "summary": "Enter the maximum number of headers to allow in client requests.", 
+            "/mgmt/types/default/dmUInt16": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt16", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                }
+            }, 
+            "cli-alias": "max-header-count", 
+            "display": "Maximum number of headers", 
+            "description": "The maximum number of headers to allow in client requests. The default value is 0, which indicates no limit."
+        }, 
+        {
+            "name": "MaxNameHdrLen", 
+            "default": 0, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt16"
+            }, 
+            "summary": "Enter the maximum length of a header name to allow in client requests.", 
+            "units": "Bytes", 
+            "/mgmt/types/default/dmUInt16": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt16", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                }
+            }, 
+            "cli-alias": "max-header-name-len", 
+            "display": "Maximum header name length", 
+            "description": "The maximum length of a header name to allow in client requests. Each HTTP header is expressed as a name-value pair. This setting sets the maximum length of the name portion of a header. The default value is 0, which indicates no limit."
+        }, 
+        {
+            "name": "MaxValueHdrLen", 
+            "default": 0, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt16"
+            }, 
+            "summary": "Enter the maximum length of a header value to allow in client requests.", 
+            "units": "Bytes", 
+            "/mgmt/types/default/dmUInt16": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt16", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                }
+            }, 
+            "cli-alias": "max-header-value-len", 
+            "display": "Maximum header value length", 
+            "description": "The maximum length of a header value to allow in client requests. Each HTTP header is expressed as a name-value pair. This setting sets the maximum length of the value portion of a header. The default value is 0, which indicates no limit."
+        }, 
+        {
+            "name": "MaxQueryStringLen", 
+            "default": 0, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt16"
+            }, 
+            "summary": "Enter the maximum length of the query string to allow in client requests.", 
+            "units": "Bytes", 
+            "/mgmt/types/default/dmUInt16": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt16", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                }
+            }, 
+            "cli-alias": "max-querystring-len", 
+            "display": "Maximum query string length", 
+            "description": "The maximum length of the query string to allow in client requests. The query string is the portion of the URL after the question mark (?) character. The default value is 0, which indicates no limit."
+        }, 
+        {
+            "description": "The access control list uses the defined client IP addresses to allow or deny access.", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/AccessControlList"
+                }
+            }, 
+            "summary": "Assign the access control list.", 
+            "cli-alias": "acl", 
+            "display": "Access control list", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "ACL"
+        }, 
+        {
+            "name": "CredentialCharset", 
+            "default": "protocol", 
+            "cli-alias": "credential-charset", 
+            "summary": "Set the character encoding of the original basic authentication values.", 
+            "/mgmt/types/default/dmCredentialCharset": {
+                "type": {
+                    "summary": "Credential Character Set", 
+                    "display": "Credential Character Set", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Protocol defined character set", 
+                                "display": "Protocol", 
+                                "name": "protocol"
+                            }, 
+                            {
+                                "summary": "US-ASCII (7 bit)", 
+                                "display": "ASCII", 
+                                "name": "ascii"
+                            }, 
+                            {
+                                "summary": "UTF-8", 
+                                "display": "UTF-8", 
+                                "name": "utf8"
+                            }, 
+                            {
+                                "summary": "Big5 CP950 Chinese (Traditional)", 
+                                "display": "Big5", 
+                                "name": "big5"
+                            }, 
+                            {
+                                "summary": "Windows Central European and Eastern European", 
+                                "display": "Cp1250", 
+                                "name": "cp1250"
+                            }, 
+                            {
+                                "summary": "Windows Cyrillic", 
+                                "display": "Cp1251", 
+                                "name": "cp1251"
+                            }, 
+                            {
+                                "summary": "Windows Latin-1", 
+                                "display": "Cp1252", 
+                                "name": "cp1252"
+                            }, 
+                            {
+                                "summary": "Windows Greek", 
+                                "display": "Cp1253", 
+                                "name": "cp1253"
+                            }, 
+                            {
+                                "summary": "Windows Turkish", 
+                                "display": "Cp1254", 
+                                "name": "cp1254"
+                            }, 
+                            {
+                                "summary": "Windows Hebrew", 
+                                "display": "Cp1255", 
+                                "name": "cp1255"
+                            }, 
+                            {
+                                "summary": "Windows Arabic", 
+                                "display": "Cp1256", 
+                                "name": "cp1256"
+                            }, 
+                            {
+                                "summary": "Windows Baltic, UDB/Latvia, Lithuanian", 
+                                "display": "Cp1257", 
+                                "name": "cp1257"
+                            }, 
+                            {
+                                "summary": "Windows Vietnamese", 
+                                "display": "Cp1258", 
+                                "name": "cp1258"
+                            }, 
+                            {
+                                "summary": "EUC-JP Japanese", 
+                                "display": "EUC-JP", 
+                                "name": "euc_jp"
+                            }, 
+                            {
+                                "summary": "EUC-KR Korean", 
+                                "display": "EUC-KR", 
+                                "name": "euc_kr"
+                            }, 
+                            {
+                                "summary": "GB18030 Chinese", 
+                                "display": "GB18030", 
+                                "name": "gb18030"
+                            }, 
+                            {
+                                "summary": "GB2312 Chinese (Simplified)", 
+                                "display": "GB2312", 
+                                "name": "gb2312"
+                            }, 
+                            {
+                                "summary": "ISO-2022-JP Japanese", 
+                                "display": "ISO-2022-JP", 
+                                "name": "iso2022_jp"
+                            }, 
+                            {
+                                "summary": "ISO-2022-KR Korean", 
+                                "display": "ISO-2022-KR", 
+                                "name": "iso2022_kr"
+                            }, 
+                            {
+                                "summary": "ISO-8859-1 Latin 1 including Albanian, Catalan, Danish, Dutch, English, Finnish, French, German, Italian, Norwegian, Portuguese, Spanish, and Swedish", 
+                                "display": "ISO-8859-1", 
+                                "name": "iso8859_1"
+                            }, 
+                            {
+                                "summary": "ISO-8859-2 including Bosnian, Croatian, Czech, Hungarian, Polish, Romanian, Slovakian, and Slovenian", 
+                                "display": "ISO-8859-2", 
+                                "name": "iso8859_2"
+                            }, 
+                            {
+                                "summary": "ISO-8859-4 including Estonian, Greenlandic, Latvian, Lithuanian, and Sami", 
+                                "display": "ISO-8859-4", 
+                                "name": "iso8859_4"
+                            }, 
+                            {
+                                "summary": "ISO-8859-5 including Belarusian, Bulgarian, Kazakh, Macedonian, Russian, Serbian, Turkish, and Ukrainian", 
+                                "display": "ISO-8859-5", 
+                                "name": "iso8859_5"
+                            }, 
+                            {
+                                "summary": "ISO-8859-6 Arabic", 
+                                "display": "ISO-8859-6", 
+                                "name": "iso8859_6"
+                            }, 
+                            {
+                                "summary": "ISO-8859-7 Greek", 
+                                "display": "ISO-8859-7", 
+                                "name": "iso8859_7"
+                            }, 
+                            {
+                                "summary": "ISO-8859-8 Hebrew", 
+                                "display": "ISO-8859-8", 
+                                "name": "iso8859_8"
+                            }, 
+                            {
+                                "summary": "ISO-8859-9 UDB/Turkish", 
+                                "display": "ISO-8859-9", 
+                                "name": "iso8859_9"
+                            }, 
+                            {
+                                "summary": "ISO-8859-15 Latin9", 
+                                "display": "ISO-8859-15", 
+                                "name": "iso8859_15"
+                            }, 
+                            {
+                                "summary": "Shift-JIS Japanese", 
+                                "display": "SJIS", 
+                                "name": "sjis"
+                            }, 
+                            {
+                                "summary": "TIS620 Thai", 
+                                "display": "TIS620", 
+                                "name": "tis620"
+                            }, 
+                            {
+                                "summary": "UNICODE Little-Endian", 
+                                "display": "UTF16-LE", 
+                                "name": "unicode_le"
+                            }
+                        ]
+                    }, 
+                    "name": "dmCredentialCharset"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmCredentialCharset"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmCredentialCharset"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmCredentialCharset"
+            }, 
+            "display": "Credential character set", 
+            "description": "The character encoding of the original basic authentication values. Basic authentication credentials are combined and base64 encoded in the authorization header of the request. The DataPower Gateway transcodes the contents of the authorization header to UTF-8. The default value represents ISO-8859-1 Latin 1."
+        }, 
+        {
+            "name": "SSLProxy", 
+            "required-when": {
+                "condition": {
+                    "property-name": "SSLServerConfigType", 
+                    "evaluation": "property-equals", 
+                    "value": "proxy"
+                }
+            }, 
+            "summary": "The TLS proxy profile is deprecated. Use a TLS server profile or TLS SNI server profile.", 
+            "cli-alias": "ssl", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                }
+            }, 
+            "display": "TLS proxy profile (deprecated)", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The TLS proxy profile with the cryptographic profiles to secure connections."
+        }, 
+        {
+            "/mgmt/types/default/dmSSLConfigType": {
+                "type": {
+                    "name": "dmSSLConfigType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "proxy", 
+                                "display": "Proxy Profile"
+                            }, 
+                            {
+                                "name": "server", 
+                                "display": "Server Profile"
+                            }, 
+                            {
+                                "name": "sni", 
+                                "display": "SNI Server Profile"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSLConfigType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSLConfigType"
+                    }
+                }
+            }, 
+            "name": "SSLServerConfigType", 
+            "default": "proxy", 
+            "cli-alias": "ssl-config-type", 
+            "summary": "Set the TLS profile type to secure connections between clients and the DataPower Gateway", 
+            "type": {
+                "href": "/mgmt/types/default/dmSSLConfigType"
+            }, 
+            "display": "TLS server type", 
+            "description": "The TLS profile type to secure connections between clients and the DataPower Gateway."
+        }, 
+        {
+            "name": "SSLServer", 
+            "required-when": {
+                "condition": {
+                    "property-name": "SSLServerConfigType", 
+                    "evaluation": "property-equals", 
+                    "value": "server"
+                }
+            }, 
+            "summary": "Set the TLS server profile to secure connections between clients and the DataPower Gateway", 
+            "cli-alias": "ssl-server", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLServerProfile"
+                }
+            }, 
+            "display": "TLS server profile", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "&lt;p>The TLS server profile to secure connections between clients and the DataPower Gateway.&lt;/p>&lt;p>&lt;b>Note:&lt;/b> The TLS server profile that secures the HTTP/2 connection must use the TLS 1.2 or better protocol with a cipher that is secure according to RFC 7540.&lt;/p>"
+        }, 
+        {
+            "name": "SSLSNIServer", 
+            "required-when": {
+                "condition": {
+                    "property-name": "SSLServerConfigType", 
+                    "evaluation": "property-equals", 
+                    "value": "sni"
+                }
+            }, 
+            "summary": "Set the TLS SNI server profile to secure connections between clients and the DataPower Gateway", 
+            "cli-alias": "ssl-sni-server", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLSNIServerProfile"
+                }
+            }, 
+            "display": "TLS SNI server profile", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "&lt;p>The TLS SNI server profile to secure connections between clients and the DataPower Gateway.&lt;/p>&lt;p>&lt;b>Note:&lt;/b> The TLS SNI server profile that secures the HTTP/2 connection must use the TLS 1.2 or better protocol with a cipher that is secure according to RFC 7540.&lt;/p>"
+        }, 
+        {
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "HTTP2MaxStreams", 
+            "default": 100, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "maximum": 500, 
+            "summary": "Enter the maximum number of current streams that a client can have", 
+            "minimum": 1, 
+            "cli-alias": "http2-max-streams", 
+            "display": "HTTP/2 maximum streams", 
+            "description": "&lt;p>The maximum number of concurrent streams that the client can have outstanding at the same time with The handler. The limit applies to the number of streams that the client allows the target to create.&lt;/p>&lt;p>The greater the number of streams in use, the more resources the client uses. Resources include memory and the network connections to the destination.&lt;/p>&lt;p>Enter a value in the range 1 - 500. The default value is 100.&lt;/p>"
+        }, 
+        {
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "HTTP2MaxFrameSize", 
+            "default": 16384, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "maximum": 16777215, 
+            "summary": "Enter the largest payload frame size that clients can send", 
+            "minimum": 16384, 
+            "units": "Octets", 
+            "cli-alias": "http2-max-frame", 
+            "display": "HTTP/2 maximum frame size", 
+            "description": "The largest payload frame size that the client can send. Enter a value in the range 16384 - 16777215. The default value is 16384."
+        }, 
+        {
+            "name": "HTTP2StreamHeader", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to enable the HTTP/2 stream identifier header in the request or response", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "http2-stream-header", 
+            "display": "Enable HTTP/2 stream header", 
+            "description": "&lt;p>Indicates whether to enable the HTTP/2 stream identifier header in the request or response. When enabled, the HTTP/2 stream identifier is included in the &lt;tt>X-DP-http2-stream&lt;/tt> header. With this header, you can correlate the HTTP/2 stream. The default behavior is disabled.&lt;/p>"
+        }, 
+        {
+            "name": "ChunkedEncoding", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to enable the responses to use Transfer-Encoding: chunked", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "chunked-encoding", 
+            "display": "Enable chunked encoding responses", 
+            "description": "When enabled, the HTTP response will use Transfer-Encoding: chunked. The default behavior is enabled."
+        }
+    ]
+}

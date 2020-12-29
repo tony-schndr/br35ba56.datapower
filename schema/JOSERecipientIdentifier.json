@@ -1,0 +1,230 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Brief summary for user annotation.", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for user annotation", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments", 
+            "name": "UserSummary"
+        }, 
+        {
+            "description": "Key material type used to verify the recipient.", 
+            "type": {
+                "href": "/mgmt/types/default/dmDecryptKeyType"
+            }, 
+            "/mgmt/types/default/dmDecryptKeyType": {
+                "type": {
+                    "name": "dmDecryptKeyType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Private Key", 
+                                "display": "Private Key", 
+                                "name": "key"
+                            }, 
+                            {
+                                "summary": "Shared Secret Key", 
+                                "display": "Shared Secret Key", 
+                                "name": "sskey"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmDecryptKeyType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmDecryptKeyType"
+                    }
+                }
+            }, 
+            "summary": "Key material type used to verify the recipient", 
+            "cli-alias": "type", 
+            "display": "Key Material Type", 
+            "name": "Type"
+        }, 
+        {
+            "name": "Key", 
+            "required-when": {
+                "condition": {
+                    "property-name": "Type", 
+                    "evaluation": "property-value-in-list", 
+                    "value": "key"
+                }
+            }, 
+            "summary": "Private key", 
+            "cli-alias": "key", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/CryptoKey"
+                }
+            }, 
+            "display": "Key Material", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "Use the private key to verify the recipient."
+        }, 
+        {
+            "name": "SSKey", 
+            "required-when": {
+                "condition": {
+                    "property-name": "Type", 
+                    "evaluation": "property-value-in-list", 
+                    "value": "sskey"
+                }
+            }, 
+            "summary": "Shared secret key", 
+            "cli-alias": "sskey", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/CryptoSSKey"
+                }
+            }, 
+            "display": "Key Material", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "Use the shared secret key to verify the recipient."
+        }, 
+        {
+            "name": "HeaderParam", 
+            "type": {
+                "href": "/mgmt/types/default/dmJOSEHeader"
+            }, 
+            "required": "true", 
+            "summary": "The JOSE header parameters used to identify the recipient", 
+            "/mgmt/types/default/dmJOSEHeader": {
+                "type": {
+                    "name": "dmJOSEHeader", 
+                    "properties": {
+                        "property": [
+                            {
+                                "summary": "Name", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Name", 
+                                "name": "HeaderName", 
+                                "description": "Name of a JOSE header."
+                            }, 
+                            {
+                                "description": "Value of a JOSE header. If Name is 'crit', the value can be a comma separated list to have more than one value set to 'crit'. Other headers' values only accept string.", 
+                                "required": "true", 
+                                "summary": "Value", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Value", 
+                                "name": "HeaderValue"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmJOSEHeader"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmJOSEHeader"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "header-param", 
+            "display": "Header Parameters", 
+            "description": "The JOSE header parameters used to identify the recipient."
+        }
+    ]
+}

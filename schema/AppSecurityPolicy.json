@@ -1,0 +1,221 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for user annotation.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "name": "RequestMaps", 
+            "type": {
+                "href": "/mgmt/types/default/dmWebAppRequestPolicyMap"
+            }, 
+            "required": "true", 
+            "/mgmt/types/default/dmWebAppRequestPolicyMap": {
+                "type": {
+                    "name": "dmWebAppRequestPolicyMap", 
+                    "properties": {
+                        "property": [
+                            {
+                                "required": "true", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/Matching"
+                                    }
+                                }, 
+                                "display": "Matching Rule", 
+                                "name": "Match", 
+                                "description": "Select the Matching Rule that defines the matching criteria."
+                            }, 
+                            {
+                                "required": "true", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/WebAppRequest"
+                                    }
+                                }, 
+                                "display": "Request Profile", 
+                                "name": "Rule", 
+                                "description": "Select the Web Request Profile to run."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmWebAppRequestPolicyMap"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmWebAppRequestPolicyMap"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "request-match", 
+            "display": "Request Maps", 
+            "description": "A list of Web Request Profile objects and their matching criteria. If the client request meets the matching criteria, its Web Request Profile runs."
+        }, 
+        {
+            "name": "ResponseMaps", 
+            "type": {
+                "href": "/mgmt/types/default/dmWebAppResponsePolicyMap"
+            }, 
+            "required": "true", 
+            "/mgmt/types/default/dmWebAppResponsePolicyMap": {
+                "type": {
+                    "name": "dmWebAppResponsePolicyMap", 
+                    "properties": {
+                        "property": [
+                            {
+                                "required": "true", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/Matching"
+                                    }
+                                }, 
+                                "display": "Matching Rule", 
+                                "name": "Match", 
+                                "description": "Select the Matching Rule that defines the matching criteria."
+                            }, 
+                            {
+                                "required": "true", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/WebAppResponse"
+                                    }
+                                }, 
+                                "display": "Response Profile", 
+                                "name": "Rule", 
+                                "description": "Select the Web Response Profile to run."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmWebAppResponsePolicyMap"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmWebAppResponsePolicyMap"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "response-match", 
+            "display": "Response Maps", 
+            "description": "A list of Web Response Profile objects and their matching criteria. If the server response meets the matching criteria, its Web Response Profile runs."
+        }, 
+        {
+            "description": "A list of Error Policy objects (Processing Rules) and their matching criteria. If an error meets the matching criteria, its Error Policy runs.", 
+            "type": {
+                "href": "/mgmt/types/default/dmPolicyMap"
+            }, 
+            "/mgmt/types/default/dmPolicyMap": {
+                "type": {
+                    "name": "dmPolicyMap", 
+                    "properties": {
+                        "property": [
+                            {
+                                "required": "true", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/Matching"
+                                    }
+                                }, 
+                                "display": "Matching Rule", 
+                                "name": "Match", 
+                                "description": "Select the Matching Rule that defines the matching criteria."
+                            }, 
+                            {
+                                "required": "true", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/StylePolicyRule"
+                                    }
+                                }, 
+                                "display": "Processing Rule", 
+                                "name": "Rule", 
+                                "description": "Select the Processing Rule to run."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmPolicyMap"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmPolicyMap"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "error-match", 
+            "display": "Error Maps", 
+            "name": "ErrorMaps"
+        }
+    ]
+}

@@ -1,0 +1,296 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "A descriptive summary for the API LDAP registry.", 
+            "cli-alias": "summary", 
+            "summary": "Enter a brief descriptive summary for the API LDAP registry.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments", 
+            "name": "UserSummary"
+        }, 
+        {
+            "name": "LDAPHost", 
+            "cli-alias": "ldap-host", 
+            "required": "true", 
+            "summary": "Host name or IP address of the the LDAP server", 
+            "/mgmt/types/default/dmHostname": {
+                "type": {
+                    "cli-arg": "dotted-ip or hostname", 
+                    "name": "dmHostname", 
+                    "format": "(a.b.c.d or hostname)"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostname"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostname"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmHostname"
+            }, 
+            "display": "Host", 
+            "description": "Specifies the host name or IP address of the LDAP server."
+        }, 
+        {
+            "name": "LDAPPort", 
+            "default": 636, 
+            "/mgmt/types/default/dmIPPort": {
+                "type": {
+                    "cli-arg": "ip-port", 
+                    "minimum": 0, 
+                    "name": "dmIPPort", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                }
+            }, 
+            "required": "true", 
+            "summary": "The listening port on the LDAP server", 
+            "type": {
+                "href": "/mgmt/types/default/dmIPPort"
+            }, 
+            "cli-alias": "ldap-port", 
+            "display": "Port", 
+            "description": "Specifies the listening port on the LDAP server. The default value is 636."
+        }, 
+        {
+            "description": "Set the TLS client profile to secure connections between the DataPower Gateway and the LDAP server.", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                }
+            }, 
+            "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and the LDAP server.", 
+            "cli-alias": "ssl-client", 
+            "display": "TLS client profile", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "SSLClientProfile"
+        }, 
+        {
+            "name": "LDAPVersion", 
+            "default": "v3", 
+            "type": {
+                "href": "/mgmt/types/default/dmLDAPVersion"
+            }, 
+            "summary": "Version of the LDAP protocol for bind", 
+            "/mgmt/types/default/dmLDAPVersion": {
+                "type": {
+                    "name": "dmLDAPVersion", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "LDAP v2", 
+                                "display": "v2", 
+                                "name": "v2"
+                            }, 
+                            {
+                                "summary": "LDAP v3", 
+                                "display": "v3", 
+                                "name": "v3"
+                            }
+                        ]
+                    }, 
+                    "summary": "LDAP Version"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLDAPVersion"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmLDAPVersion"
+                    }
+                }
+            }, 
+            "cli-alias": "ldap-version", 
+            "display": "LDAP version", 
+            "description": "Select the LDAP protocol version to use for the bind operation. The default value is v3."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Specifies the DN to bind to the LDAP server for the LDAP search.", 
+            "cli-alias": "ldap-bind-dn", 
+            "summary": "Distinguished name to bind to the LDAP server", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "LDAP bind DN", 
+            "name": "LDAPBindDN"
+        }, 
+        {
+            "description": "Specifies the password alias of the LDAP administrator password to bind to the LDAP server for the LDAP search.", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/PasswordAlias"
+                }
+            }, 
+            "summary": "Password alias of the LDAP administrator password", 
+            "cli-alias": "ldap-bind-password-alias", 
+            "display": "LDAP bind password alias", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "LDAPBindPasswordAlias"
+        }, 
+        {
+            "name": "LDAPSearchParameters", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/LDAPSearchParameters"
+                }
+            }, 
+            "required": "true", 
+            "summary": "The parameters for the LDAP search", 
+            "cli-alias": "ldap-search-param", 
+            "display": "LDAP search parameters", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "Specifies the LDAP search parameters to perform an LDAP search to retrieve the user DN."
+        }, 
+        {
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "LDAPReadTimeout", 
+            "default": 60, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "maximum": 86400, 
+            "summary": "Time to wait for a response from LDAP server before closing the connection", 
+            "minimum": 0, 
+            "units": "seconds", 
+            "cli-alias": "ldap-readtimeout", 
+            "display": "LDAP read timeout", 
+            "description": "Specifies the time to wait for a response from the LDAP server before the DataPower Gateway closes the LDAP connection. Enter a value in the range 0 - 86400. The default value is 60. A value of 0 indicates that the connection never times out."
+        }
+    ]
+}

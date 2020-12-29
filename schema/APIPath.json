@@ -1,0 +1,227 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "A descriptive summary for the API Path configuration.", 
+            "cli-alias": "summary", 
+            "summary": "Enter a brief descriptive summary for the API Path configuration.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments", 
+            "name": "UserSummary"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "Path", 
+            "default": "/", 
+            "cli-alias": "path", 
+            "required": "true", 
+            "summary": "The relative path to access the REST APIs", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "valid-regexp": "^\\/$||^\\/([0-9a-zA-Z-_.~%!$&amp;'()*+,;=:@\\{\\}]+\\/)*[0-9a-zA-Z-_.~%!$&amp;'()*+,;=:@\\{\\}]+$", 
+            "display": "Path", 
+            "description": "&lt;p>Specifies the route to access the REST APIs. The path is appended to the base path to construct the full URI to access the APIs. The path must start but not end with the / character. When the path contains a parameter, make sure that you define the path parameter at either or both the path and operation levels.&lt;/p>&lt;ul>&lt;li>A parameter at the end of the path can contain a + qualifier to match multiple path levels as in the following example. &lt;p>&lt;tt>/petstore/{type}/{+category}&lt;/tt>&lt;/p>&lt;p>The &lt;tt>{type}&lt;/tt> parameter matches one path level. The &lt;tt>{+category}&lt;/tt> parameter matches multiple levels. The following paths match this path template.&lt;/p>&lt;ul>&lt;li>&lt;tt>/petstore/cats/supplies&lt;/tt>&lt;/li>&lt;li>&lt;tt>/petstore/cats/supplies/health&lt;/tt>&lt;/li>&lt;li>&lt;tt>/petstore/cats/supplies/health/medicines&lt;/tt>&lt;/li>&lt;li>&lt;tt>/petstore/cats/supplies/health/medicines/a/b/c&lt;/tt>&lt;/li>&lt;/ul>&lt;/li>&lt;li>The parameter at the end of the path can be the &lt;tt>+any&lt;/tt> qualified parameter to accept all paths that begin with the base path as in the following example. &lt;p>&lt;tt>/{+any}&lt;/tt>&lt;/p>&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "name": "Operation", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/APIOperation"
+                }
+            }, 
+            "summary": "Operations available on the path", 
+            "array": "true", 
+            "cli-alias": "operation", 
+            "display": "Operation", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "Describes the operations that can be executed under the path. When no operation is defined, all operations are accepted under this path."
+        }, 
+        {
+            "description": "Specifies the request schema that describes the valid request messages for the API path.", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/APISchema"
+                }
+            }, 
+            "summary": "The request schema for the API path", 
+            "cli-alias": "request-schema", 
+            "display": "Request schema", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "RequestSchema"
+        }, 
+        {
+            "/mgmt/types/default/dmAPIParameter": {
+                "type": {
+                    "name": "dmAPIParameter", 
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Specifies a name for your parameter. Parameter names are case sensitive.", 
+                                "required": "true", 
+                                "summary": "The name of the parameter", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Name", 
+                                "name": "Name"
+                            }, 
+                            {
+                                "name": "Required", 
+                                "default": "off", 
+                                "required": "true", 
+                                "summary": "Whether this parameter is mandatory", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                }, 
+                                "display": "Required", 
+                                "description": "Controls whether the parameter is required for a call to be valid. By default, a parameter is optional."
+                            }, 
+                            {
+                                "description": "Specifies the type of the parameter.", 
+                                "required": "true", 
+                                "summary": "The type of the parameter", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmAPIParameterType"
+                                }, 
+                                "display": "Type", 
+                                "name": "Type"
+                            }, 
+                            {
+                                "description": "Specifies the location of the parameter.", 
+                                "required": "true", 
+                                "summary": "The location of the parameter", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmAPIParameterWhere"
+                                }, 
+                                "display": "Where", 
+                                "name": "Where"
+                            }, 
+                            {
+                                "summary": "The schema or format depending on the location of the parameter", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Schema or format", 
+                                "name": "SchemaOrFormat", 
+                                "description": "Depending on the location of the parameter, specifies the schema or the format. &lt;ul>&lt;li>If the parameter is located in &lt;tt>body&lt;/tt> , specify the schema that defines the input and output data types that are used for the body parameter. The definition follows JSON Schema Specification Draft 4.&lt;/li>&lt;li>If the parameter is not located in &lt;tt>body&lt;/tt> , specify the format for the parameter type.&lt;/li>&lt;/ul>"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAPIParameter"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAPIParameter"
+                    }
+                }
+            }, 
+            "name": "Parameter", 
+            "cli-alias": "parameter", 
+            "summary": "Parameters applicable for all operations under this path", 
+            "array": "true", 
+            "type": {
+                "href": "/mgmt/types/default/dmAPIParameter"
+            }, 
+            "display": "Parameters", 
+            "description": "Specifies the parameters that are applicable for all operations under this path. The setting here can be overridden by the setting in the API Operation configuration for the same parameter."
+        }
+    ]
+}

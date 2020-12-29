@@ -1,0 +1,1808 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Enter the descriptive summary for the configuration.", 
+            "cli-alias": "summary", 
+            "summary": "Descriptive summary for the configuration", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments", 
+            "name": "UserSummary"
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "name": "ADUseAD", 
+            "default": "off", 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "TAMVersion", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "v801"
+                        }, 
+                        {
+                            "property-name": "TAMVersion", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "v901"
+                        }, 
+                        {
+                            "property-name": "TAMVersion", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "v903"
+                        }
+                    ]
+                }
+            }, 
+            "summary": "Use Active Directory instead of LDAP as the registry", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "TAMVersion", 
+                            "evaluation": "property-equals", 
+                            "value": "v801"
+                        }, 
+                        {
+                            "property-name": "TAMVersion", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "v901"
+                        }, 
+                        {
+                            "property-name": "TAMVersion", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "v903"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "ad-use-ad", 
+            "display": "Use Active Directory", 
+            "description": "&lt;p>Select whether the Access Manager client uses Microsoft Active Directory instead of LDAP as the registry. The default registry for an Access Manager deployment is LDAP. This selection will cause this client to use Microsoft Active Directory. Active Directory type is not supported after ISAM 7.0 .&lt;/p>&lt;p>&lt;b>Note:&lt;/b> The type of registry that an Access Manager deployment supports is determined by the configuration of the Access Manager server. The registry that you define in this configuration is for a client and must match the registry of the server.&lt;/p>"
+        }, 
+        {
+            "description": "&lt;p>Select the Access Manager client version to use. The default value is 9.0.3.&lt;/p>", 
+            "type": {
+                "href": "/mgmt/types/default/dmTAMVersionType"
+            }, 
+            "summary": "The version of the Access Manager client", 
+            "/mgmt/types/default/dmTAMVersionType": {
+                "type": {
+                    "name": "dmTAMVersionType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Default version", 
+                                "display": "Default", 
+                                "name": "default", 
+                                "description": "Uses the version in the configuration file."
+                            }, 
+                            {
+                                "summary": "IBM Security Access Manager Version 7.0 or later fix packs", 
+                                "display": "7.0 (deprecated)", 
+                                "name": "v70", 
+                                "description": "Uses version 7.0 as the client version."
+                            }, 
+                            {
+                                "summary": "IBM Security Access Manager Version 8.0.1 or later fix pack", 
+                                "display": "8.0.1 (deprecated)", 
+                                "name": "v801", 
+                                "description": "Uses version 8.0.1 as the client version."
+                            }, 
+                            {
+                                "summary": "IBM Security Access Manager Version 9.0.1 or later fix packs", 
+                                "display": "9.0.1 (deprecated)", 
+                                "name": "v901", 
+                                "description": "Uses version 9.0.1 as the client version. If possible, upgrade to version 9.0.3."
+                            }, 
+                            {
+                                "summary": "IBM Security Access Manager Version 9.0.3 or later fix pack", 
+                                "display": "9.0.3", 
+                                "name": "v903", 
+                                "description": "Uses version 9.0.3 as the client version."
+                            }
+                        ]
+                    }, 
+                    "display": "IBM Security Access Manager Version"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTAMVersionType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmTAMVersionType"
+                    }
+                }
+            }, 
+            "cli-alias": "tam-version", 
+            "display": "Access Manager Client Version", 
+            "name": "TAMVersion"
+        }, 
+        {
+            "name": "ConfigurationFile", 
+            "/mgmt/types/default/dmFSFile": {
+                "type": {
+                    "cli-arg": "file", 
+                    "name": "dmFSFile"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                }
+            }, 
+            "required": "true", 
+            "locations": {
+                "location": [
+                    "local", 
+                    "store", 
+                    "cert", 
+                    "sharedcert"
+                ]
+            }, 
+            "summary": "Location of the configuration file for the Access Manager client", 
+            "type": {
+                "href": "/mgmt/types/default/dmFSFile"
+            }, 
+            "cli-alias": "file", 
+            "display": "Configuration File for Access Manager", 
+            "description": "Select the location of the configuration file for the Access Manager client. To be available for selection, files must have .conf or .cfg as their file extension."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmFSFile"
+            }, 
+            "name": "ADConfigurationFile", 
+            "/mgmt/types/default/dmFSFile": {
+                "type": {
+                    "cli-arg": "file", 
+                    "name": "dmFSFile"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                }
+            }, 
+            "required-when": {
+                "condition": {
+                    "property-name": "ADUseAD", 
+                    "evaluation": "property-equals", 
+                    "value": "true"
+                }
+            }, 
+            "locations": {
+                "location": [
+                    "local", 
+                    "store", 
+                    "cert", 
+                    "sharedcert"
+                ]
+            }, 
+            "summary": "Location of the configuration file for user directories", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "TAMVersion", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "v801"
+                        }, 
+                        {
+                            "property-name": "TAMVersion", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "v901"
+                        }, 
+                        {
+                            "property-name": "TAMVersion", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "v903"
+                        }, 
+                        {
+                            "property-name": "ADUseAD", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "true"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "reg_file", 
+            "display": "Configuration File for Directories", 
+            "description": "Select the location of the configuration file for user directories. To be available for selection, files must have .conf or .cfg as their file extension."
+        }, 
+        {
+            "name": "SSLKeyFile", 
+            "/mgmt/types/default/dmFSFile": {
+                "type": {
+                    "cli-arg": "file", 
+                    "name": "dmFSFile"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                }
+            }, 
+            "required": "true", 
+            "locations": {
+                "location": [
+                    "cert", 
+                    "sharedcert"
+                ]
+            }, 
+            "summary": "Location of the TLS key file", 
+            "type": {
+                "href": "/mgmt/types/default/dmFSFile"
+            }, 
+            "cli-alias": "ssl-key", 
+            "display": "TLS Key File", 
+            "description": "Select the location of the key file for TLS communication. To be available for selection, files must have .kdb as their file extension. Generally, these files are in the cert: directory or the sharedcert: directory."
+        }, 
+        {
+            "name": "SSLKeyStashFile", 
+            "/mgmt/types/default/dmFSFile": {
+                "type": {
+                    "cli-arg": "file", 
+                    "name": "dmFSFile"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                }
+            }, 
+            "required": "true", 
+            "locations": {
+                "location": [
+                    "cert", 
+                    "sharedcert"
+                ]
+            }, 
+            "summary": "Location of the TLS key stash file", 
+            "type": {
+                "href": "/mgmt/types/default/dmFSFile"
+            }, 
+            "cli-alias": "ssl-key-stash", 
+            "display": "TLS Key Stash File", 
+            "description": "Select the location of the key stash file for TLS communication. To be available for selection, files must have .sth as their file extension. Generally, these files are in the cert: directory or the sharedcert: directory."
+        }, 
+        {
+            "name": "UseLocalMode", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "required": "true", 
+            "summary": "Use the policy database that is cached locally instead of accessed remotely", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "use-local-mode", 
+            "display": "Use Local Policy Database", 
+            "description": "Select whether to create a local copy of the policy database. Set this property to cache the policy database locally instead of accessing the remote policy server. This property must match the behavior defined in the configuration files for the Access Manager client."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "name": "PollInterval", 
+            "default": "default", 
+            "required-when": {
+                "condition": {
+                    "property-name": "UseLocalMode", 
+                    "evaluation": "property-equals", 
+                    "value": "on"
+                }
+            }, 
+            "summary": "Refresh interval for the local policy database", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "UseLocalMode", 
+                    "evaluation": "property-equals", 
+                    "value": "off"
+                }
+            }, 
+            "cli-alias": "cache-refresh-interval", 
+            "display": "Local Database Refresh Interval", 
+            "description": "Enter the interval between requests to update the local policy database from the remote policy server. &lt;ul>&lt;li>&lt;b>default&lt;/b> - Uses the default value, which is 600 seconds.&lt;/li>&lt;li>&lt;b>disable&lt;/b> - Disables requests to the policy database for requests.&lt;/li>&lt;li>&lt;i>seconds&lt;/i> - Specifies the time interval in seconds.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "name": "ListenMode", 
+            "default": "off", 
+            "required-when": {
+                "condition": {
+                    "property-name": "UseLocalMode", 
+                    "evaluation": "property-equals", 
+                    "value": "on"
+                }
+            }, 
+            "summary": "Whether the DataPower Gateway accepts update notifications from the policy server", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "UseLocalMode", 
+                    "evaluation": "property-equals", 
+                    "value": "off"
+                }
+            }, 
+            "cli-alias": "listen-mode", 
+            "display": "Accept Update Notifications", 
+            "description": "Select whether to accept notifications to update the local policy database from the policy server. When you set this property, it overrides the behavior defined in configuration files for the Access Manager client."
+        }, 
+        {
+            "/mgmt/types/default/dmIPPort": {
+                "type": {
+                    "cli-arg": "ip-port", 
+                    "minimum": 0, 
+                    "name": "dmIPPort", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                }
+            }, 
+            "name": "ListenPort", 
+            "type": {
+                "href": "/mgmt/types/default/dmIPPort"
+            }, 
+            "summary": "Listening port for update notifications from the policy server", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ListenMode", 
+                            "evaluation": "property-equals", 
+                            "value": "off"
+                        }, 
+                        {
+                            "property-name": "UseLocalMode", 
+                            "evaluation": "property-equals", 
+                            "value": "off"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "listen-port", 
+            "display": "Update Notification Port", 
+            "description": "Enter the listening port on the DataPower Gateway to receive update notifications from the remote policy server."
+        }, 
+        {
+            "name": "ReturningUserAttributes", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether the registry returns user attributes.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "return-attributes", 
+            "display": "Return User Attributes", 
+            "description": "Select whether the registry returns users attributes for successful authorization requests. When set, the registry returns user attributes."
+        }, 
+        {
+            "name": "LDAPUseSSL", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to use TLS communication with the registry", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "use-ldap-ssl", 
+            "display": "Use TLS with Registry Server", 
+            "description": "Select whether to use TLS communication between the Access Manager client and the LDAP or Active Directory server."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmIPPort"
+            }, 
+            "name": "LDAPSSLPort", 
+            "default": 636, 
+            "/mgmt/types/default/dmIPPort": {
+                "type": {
+                    "cli-arg": "ip-port", 
+                    "minimum": 0, 
+                    "name": "dmIPPort", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                }
+            }, 
+            "summary": "Listening port for TLS communication on the LDAP server", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "LDAPUseSSL", 
+                            "evaluation": "property-equals", 
+                            "value": "off"
+                        }, 
+                        {
+                            "property-name": "ADUseAD", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "ldap-ssl-port", 
+            "display": "LDAP TLS Port", 
+            "description": "Enter the listening port that the LDAP server uses for TLS communication. This property does not apply for TLS communication with an Active Directory server."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmFSFile"
+            }, 
+            "name": "LDAPSSLKeyFile", 
+            "/mgmt/types/default/dmFSFile": {
+                "type": {
+                    "cli-arg": "file", 
+                    "name": "dmFSFile"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                }
+            }, 
+            "required-when": {
+                "condition": {
+                    "property-name": "LDAPUseSSL", 
+                    "evaluation": "property-equals", 
+                    "value": "on"
+                }
+            }, 
+            "locations": {
+                "location": [
+                    "cert", 
+                    "sharedcert"
+                ]
+            }, 
+            "summary": "Location of the key file with the certificates for TLS communication with the registry server", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "ldap-ssl-key-file", 
+            "display": "Registry Server TLS Key File", 
+            "description": "&lt;p>Select the location of the key file that contains the certificates for TLS communication with the registry server.&lt;/p>&lt;ul>&lt;li>For server-only authentication, the key file must contain the signer certificate for the registry server.&lt;/li>&lt;li>For mutual authentication, the key file must also contain a personal certificate that the registry server can validate. If the personal certificate is not the default personal certificate in the key file, you must enter the label of the personal certificate.&lt;/li>&lt;/ul>&lt;p>This file must be in the cert: or the sharedcert: directory.&lt;/p>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "LDAPSSLKeyFilePassword", 
+            "cli-alias": "ldap-ssl-key-file-password", 
+            "summary": "Password for the key file for TLS communication with the registry server.", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "LDAPUseSSL", 
+                            "evaluation": "property-equals", 
+                            "value": "off"
+                        }, 
+                        {
+                            "property-name": "LDAPSSLKeyFilePassword", 
+                            "evaluation": "property-equals", 
+                            "value": ""
+                        }
+                    ]
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Registry Server TLS Key File Password (deprecated)", 
+            "description": "Enter the password for the key file that contains the certificates for TLS communication with the registry server."
+        }, 
+        {
+            "name": "LDAPSSLKeyFilePasswordAlias", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/PasswordAlias"
+                }
+            }, 
+            "summary": "Password alias of the password for the key file for TLS communication with the registry server.", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "LDAPUseSSL", 
+                    "evaluation": "property-equals", 
+                    "value": "off"
+                }
+            }, 
+            "cli-alias": "ldap-ssl-key-file-password-alias", 
+            "display": "Registry Server TLS Key File Password Alias", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "Enter the password alias of the password for the key file that contains the certificates for TLS communication with the registry server."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "LDAPSSLKeyFileLabel", 
+            "cli-alias": "ldap-ssl-key-file-dn", 
+            "summary": "Label of the personal certificate in the key file for client authentication", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "LDAPUseSSL", 
+                    "evaluation": "property-equals", 
+                    "value": "off"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Registry Server TLS Key File Label", 
+            "description": "&lt;p>Enter the label of the personal certificate in the key file for client authentication.&lt;/p>&lt;ul>&lt;li>When using mutual authentication with the registry server and the personal certificate is not the default personal certificate in the key file, enter the label of the personal certificate. The personal certificate allows client authentication.&lt;/li>&lt;li>For server-only authentication, do not enter a value.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "name": "TAMUseFIPS", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether secure communication runs in FIPS mode", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "use-fips", 
+            "display": "Run in FIPS Mode", 
+            "description": "Select whether the secure communication between the Access Manager client and the authorization server runs in FIPS mode."
+        }, 
+        {
+            "name": "TAMChooseNIST", 
+            "/mgmt/types/default/dmNISTComplianceMode": {
+                "type": {
+                    "name": "dmNISTComplianceMode", 
+                    "display": "NIST Compliance Modes", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "FIPS 140-2 compliance", 
+                                "display": "FIPS", 
+                                "name": "fips", 
+                                "description": "Enable FIPS 140-2 compliance. This is a legacy compliance mode that is deprecated. Use other modes instead."
+                            }, 
+                            {
+                                "summary": "NIST SP 800-131a support at the transition level", 
+                                "display": "NIST SP 800-131a transition", 
+                                "name": "sp800_131_transition", 
+                                "description": "Enable NIST SP 800-131a support at the transition level. The transition level has fewer restrictions than the strict level. This is a legacy compliance mode that is deprecated. Use other modes instead."
+                            }, 
+                            {
+                                "summary": "NIST SP 800-131a support at the strict level", 
+                                "display": "NIST SP 800-131a strict", 
+                                "name": "sp800_131_strict", 
+                                "description": "Enable NIST SP 800-131a support at the strict level. This enforcement is required by some federal agencies and enterprises that work with the federal government starting in 2014."
+                            }, 
+                            {
+                                "summary": "NSA Suite B at the 128-bit support level", 
+                                "display": "NSA Suite B 128", 
+                                "name": "suite_b_128", 
+                                "description": "Enable NSA Suite B at the 128-bit support level."
+                            }, 
+                            {
+                                "summary": "NSA Suite B at the 192-bit support level", 
+                                "display": "NSA Suite B 192", 
+                                "name": "suite_b_192", 
+                                "description": "Enable NSA Suite B at the 192-bit support level."
+                            }
+                        ]
+                    }, 
+                    "description": "The list of allowable NIST compliance levels for FIPS compliance."
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmNISTComplianceMode"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmNISTComplianceMode"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmNISTComplianceMode"
+            }, 
+            "summary": "Which compliance mode to use", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "TAMUseFIPS", 
+                            "evaluation": "property-equals", 
+                            "value": "off"
+                        }, 
+                        {
+                            "evaluation": "logical-and", 
+                            "condition": [
+                                {
+                                    "property-name": "TAMVersion", 
+                                    "evaluation": "property-does-not-equal", 
+                                    "value": "default"
+                                }, 
+                                {
+                                    "property-name": "TAMVersion", 
+                                    "evaluation": "property-does-not-equal", 
+                                    "value": "v70"
+                                }, 
+                                {
+                                    "property-name": "TAMVersion", 
+                                    "evaluation": "property-does-not-equal", 
+                                    "value": "v801"
+                                }, 
+                                {
+                                    "property-name": "TAMVersion", 
+                                    "evaluation": "property-does-not-equal", 
+                                    "value": "v901"
+                                }, 
+                                {
+                                    "property-name": "TAMVersion", 
+                                    "evaluation": "property-does-not-equal", 
+                                    "value": "v903"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "choose-nist", 
+            "display": "Select a NIST Compliance Mode", 
+            "description": "In FIPS mode, there is a mandatory NIST compliance level to select. Select a level that is compatible with the corresponding Access Manager servers and registry servers. Note that the NIST and NSA options are available only in Access Manager versions 7.0 and later."
+        }, 
+        {
+            "name": "TAMUseBasicUser", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "required": "true", 
+            "summary": "Whether to support basic users in the client", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "use-basic-user", 
+            "display": "Enable basic user mode", 
+            "description": "Control whether to support basic users in the client. When enabled, you can use LDAP user entries for authentication or authorization without importing them into the ISAM domain."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "name": "UserPrincipalAttribute", 
+            "default": "uid", 
+            "required-when": {
+                "condition": {
+                    "property-name": "TAMUseBasicUser", 
+                    "evaluation": "property-equals", 
+                    "value": "on"
+                }
+            }, 
+            "summary": "The attribute that identifies the basic user in the LDAP user entry", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "TAMUseBasicUser", 
+                    "evaluation": "property-equals", 
+                    "value": "off"
+                }
+            }, 
+            "cli-alias": "user-principal-attribute", 
+            "display": "User principal attribute", 
+            "description": "Specify the attribute that identifies the basic user in the LDAP user entry. The default value is uid."
+        }, 
+        {
+            "name": "UserNoDuplicates", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to allow duplicate principals", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "TAMUseBasicUser", 
+                    "evaluation": "property-equals", 
+                    "value": "off"
+                }
+            }, 
+            "cli-alias": "user-no-duplicates", 
+            "display": "Disallow duplicate principals", 
+            "description": "&lt;p>Control whether to allow duplicate principals.&lt;/p>&lt;ul>&lt;li>When enabled, the search for basic users covers all suffixes to ensure that no users with the same name are found. If duplicate principals are found in this client, the system returns an error.&lt;/li>&lt;li>When disabled, the search for basic users ignores possible duplicates. By default, duplicate principals are not allowed.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSearchSuffixes", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "summary": "The LDAP suffixes to be searched for principals", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "TAMUseBasicUser", 
+                    "evaluation": "property-equals", 
+                    "value": "off"
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "user-search-suffixes", 
+            "display": "Principal search suffixes", 
+            "description": "&lt;p>Specify the ordered list of LDAP suffixes to be searched for principals. When specified and suffix optimization is disabled, the suffixes are searched in entry order. If suffix optimization is enabled, this order is overridden by the suffix optimization order.&lt;/p>&lt;p>If you do not specify any suffixes, the system searches all available suffixes.&lt;/p>"
+        }, 
+        {
+            "name": "UserSuffixOptimiser", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to search the suffixes in an optimized order", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "TAMUseBasicUser", 
+                            "evaluation": "property-equals", 
+                            "value": "off"
+                        }, 
+                        {
+                            "property-name": "UserNoDuplicates", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "user-suffix-optimiser", 
+            "display": "Enable suffix optimization", 
+            "description": "&lt;p>Control whether to search the suffixes in an optimized order.&lt;/p>&lt;ul>&lt;li>When enabled and uplicate principals are allowed, the suffixes are searched in an optimized order based on hit count, with the most hit of the suffix at the head of the search suffix list. This can help reduce the number of suffixes searched. If duplicate principals are not allowed, the suffix optimization setting is disregarded and all suffixes are searched to check for duplicates.&lt;/li>&lt;li>When disabled, the search order is provided by the order that is defined by the search suffixes property.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmTAMFedDir": {
+                "type": {
+                    "name": "dmTAMFedDir", 
+                    "properties": {
+                        "property": [
+                            {
+                                "name": "FedName", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "required": "true", 
+                                "summary": "Name of the federated directory entry", 
+                                "cli-alias": "federate-name", 
+                                "display": "Name", 
+                                "description": "Specify the name of the federated directory entry to uniquely identify the entry in the federation."
+                            }, 
+                            {
+                                "name": "Suffix", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "required": "true", 
+                                "summary": "Single search suffix", 
+                                "cli-alias": "suffix", 
+                                "display": "Suffix", 
+                                "description": "Specify a single LDAP suffix that is to be searched for users."
+                            }, 
+                            {
+                                "name": "Host", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmHostname"
+                                }, 
+                                "required": "true", 
+                                "summary": "The host name or IP address of the LDAP server", 
+                                "cli-alias": "hostname", 
+                                "display": "LDAP host", 
+                                "description": "Specify the host name or IP address of the LDAP server."
+                            }, 
+                            {
+                                "name": "Port", 
+                                "default": 389, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmIPPort"
+                                }, 
+                                "required": "true", 
+                                "summary": "The listening port on the LDAP server", 
+                                "cli-alias": "port", 
+                                "display": "LDAP port", 
+                                "description": "Specify the listening port on the LDAP server. The default value is 389."
+                            }, 
+                            {
+                                "name": "BindDN", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "required": "true", 
+                                "summary": "The distinguished name (DN) of an LDAP administrative user", 
+                                "cli-alias": "bind-dn", 
+                                "display": "LDAP administrator DN", 
+                                "description": "Specify the distinguished name (DN) of an LDAP administrative user to bind with the LDAP registry."
+                            }, 
+                            {
+                                "name": "BindPw", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/PasswordAlias"
+                                    }
+                                }, 
+                                "required": "true", 
+                                "summary": "The password alias of the password for the LDAP administrative user", 
+                                "cli-alias": "bind-pw", 
+                                "display": "LDAP administrator password alias", 
+                                "description": "Enter the password alias of the password for the LDAP administrator that corresponds to the entered distinguished name."
+                            }, 
+                            {
+                                "name": "UseSSL", 
+                                "default": "off", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                }, 
+                                "required": "true", 
+                                "summary": "Whether to use TLS to secure connections with the LDAP server", 
+                                "cli-alias": "UseSSL", 
+                                "display": "Use TLS", 
+                                "description": "Control whether to use TLS to connect to the LDAP server."
+                            }, 
+                            {
+                                "description": "&lt;p>Enter the label of the personal certificate in the key file for client authentication.&lt;/p>&lt;ul>&lt;li>When using mutual authentication with the registry server and the personal certificate is not the default personal certificate in the key file, enter the label of the personal certificate. The personal certificate allows client authentication.&lt;/li>&lt;li>For server-only authentication, do not enter a value.&lt;/li>&lt;/ul>", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "summary": "Label of the personal certificate in the key file for client authentication", 
+                                "cli-alias": "key-file-label", 
+                                "display": "LDAP server TLS key file label", 
+                                "name": "KeyFileLabel"
+                            }, 
+                            {
+                                "name": "BasicPrincipalAttribute", 
+                                "default": "uid", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "summary": "The attribute to use as the user identifier in the LDAP registry entry", 
+                                "cli-alias": "basic-principal-attribute", 
+                                "display": "Basic user principal attribute", 
+                                "description": "Specify the attribute that represents a user in the LDAP registry entry. The attribute overrides the global basic user principal for the client. The attribute is optional when the basic user mode is disabled."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTAMFedDir"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmTAMFedDir"
+                    }
+                }
+            }, 
+            "name": "TAMFedDirs", 
+            "type": {
+                "href": "/mgmt/types/default/dmTAMFedDir"
+            }, 
+            "summary": "List of LDAP federated directories", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "TAMVersion", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "default"
+                        }, 
+                        {
+                            "property-name": "TAMVersion", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "v801"
+                        }, 
+                        {
+                            "property-name": "TAMVersion", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "v901"
+                        }, 
+                        {
+                            "property-name": "TAMVersion", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "v903"
+                        }
+                    ]
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "federated-directory", 
+            "display": "Federated directories", 
+            "description": "Specify a list of federated directories. Each entry describes a unique set of LDAP suffixes and LDAP server. Federated directories define all the suffixes that can be searched for user identities."
+        }, 
+        {
+            "name": "TAMAZReplicas", 
+            "type": {
+                "href": "/mgmt/types/default/dmTAMAZReplica"
+            }, 
+            "summary": "List of remote authorization servers", 
+            "/mgmt/types/default/dmTAMAZReplica": {
+                "type": {
+                    "name": "dmTAMAZReplica", 
+                    "properties": {
+                        "property": [
+                            {
+                                "name": "TAMAZReplica", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmHostname"
+                                }, 
+                                "required": "true", 
+                                "summary": "TCP host name", 
+                                "cli-alias": "host", 
+                                "display": "Host", 
+                                "description": "Specify the TCP host name of the authorization server replica."
+                            }, 
+                            {
+                                "name": "TAMAZReplicaPort", 
+                                "default": 7136, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmIPPort"
+                                }, 
+                                "required": "true", 
+                                "summary": "Port number", 
+                                "cli-alias": "port", 
+                                "display": "Port", 
+                                "description": "Specify the listening port on the authorization server replica. The default value is 7136."
+                            }, 
+                            {
+                                "name": "TAMAZReplicaWeight", 
+                                "default": 10, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmUInt32"
+                                }, 
+                                "required": "true", 
+                                "maximum": 10, 
+                                "summary": "Preference", 
+                                "minimum": 1, 
+                                "cli-alias": "weight", 
+                                "display": "Weight", 
+                                "description": "Specify the weight of the authorization server replica. The greater the weight, the higher the preference. Enter a value in the range 1 - 10. The default value is 10."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTAMAZReplica"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmTAMAZReplica"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "replica", 
+            "display": "Authorization Server Replicas", 
+            "description": "&lt;p>Replicas indicate the network location of remote authorization servers. You must configure at least one replica. You can configure additional replicas for failover purposes.&lt;/p>&lt;p>&lt;b>Note:&lt;/b> If you uploaded a file that was created previously, it must define at least one replica.&lt;/p>"
+        }, 
+        {
+            "description": "&lt;p>Trace logging is a useful debugging tool. By default, trace logging is not enabled. Trace logging collects large amounts of data in a short amount of time and might result in a significant performance degradation. Enable trace logging only at the direction of IBM Support.&lt;/p>&lt;p>When enabled, the DataPower Gateway creates two trace files for each library. The DataPower Gateway writes the files cyclically. Double the size of the files to obtain the total allowable file size.&lt;/p>", 
+            "/mgmt/types/default/dmTAMRASTrace": {
+                "type": {
+                    "name": "dmTAMRASTrace", 
+                    "properties": {
+                        "property": [
+                            {
+                                "name": "TAMTraceEnable", 
+                                "default": "off", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                }, 
+                                "required": "true", 
+                                "summary": "Enable tracing for Access Manager", 
+                                "cli-alias": "enable-tam-trace", 
+                                "display": "Enable Access Manager Tracing", 
+                                "description": "Indicates whether to enable tracing in the client libraries for the Access Manager client."
+                            }, 
+                            {
+                                "name": "TAMTraceFile", 
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "TAMTraceEnable", 
+                                        "evaluation": "property-equals", 
+                                        "value": "on"
+                                    }
+                                }, 
+                                "summary": "Base file name for Access Manager trace messages", 
+                                "cli-alias": "tam-trace-file", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "TAMTraceEnable", 
+                                        "evaluation": "property-equals", 
+                                        "value": "off"
+                                    }
+                                }, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Trace File", 
+                                "description": "Specifies the base name of the trace file for Access Manager trace messages. The DataPower Gateway writes events to this trace file in the temporary: &lt;i>client-name&lt;/i> directory."
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmUInt32"
+                                }, 
+                                "name": "TAMTraceSize", 
+                                "default": 100, 
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "TAMTraceEnable", 
+                                        "evaluation": "property-equals", 
+                                        "value": "on"
+                                    }
+                                }, 
+                                "maximum": 1000000, 
+                                "summary": "Maximum number of entries", 
+                                "minimum": 100, 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "TAMTraceEnable", 
+                                        "evaluation": "property-equals", 
+                                        "value": "off"
+                                    }
+                                }, 
+                                "units": "entries", 
+                                "cli-alias": "tam-trace-size", 
+                                "display": "Trace File Entries", 
+                                "description": "Specifies the maximum number of log entries for the trace file. Enter a value in the range 100 - 1000000. The default value is 100."
+                            }, 
+                            {
+                                "name": "TAMTraceType", 
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "TAMTraceEnable", 
+                                        "evaluation": "property-equals", 
+                                        "value": "on"
+                                    }
+                                }, 
+                                "summary": "Format of trace messages", 
+                                "cli-alias": "tam-trace-type", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "TAMTraceEnable", 
+                                        "evaluation": "property-equals", 
+                                        "value": "off"
+                                    }
+                                }, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmTraceFileType"
+                                }, 
+                                "display": "Trace Format", 
+                                "description": "Specifies the format of trace messages in the file."
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "name": "TAMTraceComponents", 
+                                "default": "*:*.9", 
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "TAMTraceEnable", 
+                                        "evaluation": "property-equals", 
+                                        "value": "on"
+                                    }
+                                }, 
+                                "summary": "Components and levels to trace", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "TAMTraceEnable", 
+                                        "evaluation": "property-equals", 
+                                        "value": "off"
+                                    }
+                                }, 
+                                "cli-alias": "tam-trace-components", 
+                                "display": "Trace Components", 
+                                "description": "Specifies the components and debug level. The default value is &lt;tt>*:*.9&lt;/tt> , which is to trace all components and subcomponents at the highest debug level. Contact IBM Support to set the value needed to help resolve your problem."
+                            }, 
+                            {
+                                "name": "LDAPTraceEnable", 
+                                "default": "off", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                }, 
+                                "required": "true", 
+                                "summary": "Enable tracing for LDAP", 
+                                "cli-alias": "enable-ldap-trace", 
+                                "display": "Enable Tracing for LDAP", 
+                                "description": "Indicates whether to enable LDAP tracing in the client libraries for the Access Manager client."
+                            }, 
+                            {
+                                "name": "LDAPTraceFile", 
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "LDAPTraceEnable", 
+                                        "evaluation": "property-equals", 
+                                        "value": "on"
+                                    }
+                                }, 
+                                "summary": "Base file name for LDAP trace messages", 
+                                "cli-alias": "ldap-trace-file", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "LDAPTraceEnable", 
+                                        "evaluation": "property-equals", 
+                                        "value": "off"
+                                    }
+                                }, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Trace File for LDAP", 
+                                "description": "Specifies the base name of the trace file for LDAP trace messages. The DataPower Gateway writes events to this trace file in the temporary: &lt;i>client-name&lt;/i> directory."
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmUInt32"
+                                }, 
+                                "name": "LDAPTraceSize", 
+                                "default": 10000, 
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "LDAPTraceEnable", 
+                                        "evaluation": "property-equals", 
+                                        "value": "on"
+                                    }
+                                }, 
+                                "maximum": 10000000, 
+                                "summary": "Maximum number of characters", 
+                                "minimum": 10000, 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "LDAPTraceEnable", 
+                                        "evaluation": "property-equals", 
+                                        "value": "off"
+                                    }
+                                }, 
+                                "units": "characters", 
+                                "cli-alias": "ldap-trace-size", 
+                                "display": "Trace File Size for LDAP", 
+                                "description": "Specifies the maximum number of characters for the trace file. Enter a value in the range 10000 - 10000000. The default value is 10000."
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmUInt32"
+                                }, 
+                                "name": "LDAPTraceLevel", 
+                                "default": 1, 
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "LDAPTraceEnable", 
+                                        "evaluation": "property-equals", 
+                                        "value": "on"
+                                    }
+                                }, 
+                                "maximum": 65535, 
+                                "summary": "Level of tracing", 
+                                "minimum": 1, 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "LDAPTraceEnable", 
+                                        "evaluation": "property-equals", 
+                                        "value": "off"
+                                    }
+                                }, 
+                                "cli-alias": "ldap-trace-level", 
+                                "display": "Trace Level for LDAP", 
+                                "description": "Specifies the levels for the LDAP trace. Enter a value in the range 1 - 65535. The default value is 1. A value of 65535 enables all levels. Contact IBM Support to set the value needed to help resolve your problem."
+                            }, 
+                            {
+                                "name": "GSKitTraceEnable", 
+                                "default": "off", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                }, 
+                                "required": "true", 
+                                "summary": "Enable tracing for GSKit", 
+                                "cli-alias": "enable-gskit-trace", 
+                                "display": "Enable Tracing for GSKit", 
+                                "description": "Indicates whether to enable GSKit tracing in the client libraries for the Access Manager client."
+                            }, 
+                            {
+                                "name": "GSKitTraceFile", 
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "GSKitTraceEnable", 
+                                        "evaluation": "property-equals", 
+                                        "value": "on"
+                                    }
+                                }, 
+                                "summary": "Base file name for the GSKit trace", 
+                                "cli-alias": "gskit-trace-file", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "GSKitTraceEnable", 
+                                        "evaluation": "property-equals", 
+                                        "value": "off"
+                                    }
+                                }, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Trace File for GSKit", 
+                                "description": "Specifies the base name for the trace file for GSKit messages. The DataPower Gateway writes event to this trace file in the temporary: &lt;i>client-name&lt;/i> directory."
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                }, 
+                                "name": "GSKitTraceFlush", 
+                                "default": "off", 
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "GSKitTraceEnable", 
+                                        "evaluation": "property-equals", 
+                                        "value": "on"
+                                    }
+                                }, 
+                                "summary": "Flushes trace to file without buffering", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "GSKitTraceEnable", 
+                                        "evaluation": "property-equals", 
+                                        "value": "off"
+                                    }
+                                }, 
+                                "cli-alias": "gskit-trace-flush", 
+                                "display": "Flush GSkit Trace to File", 
+                                "description": "Indicates whether to sets the NOBUFFERING flag to force the trace to be written to the file without buffering."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTAMRASTrace"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmTAMRASTrace"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmTAMRASTrace"
+            }, 
+            "cli-alias": "tam-ras-trace", 
+            "display": "Trace Logging", 
+            "name": "TAMRASTrace"
+        }, 
+        {
+            "name": "AutoRetry", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to attempt starting the client after an initial failure", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "auto-retry", 
+            "display": "Enable Automatic Restart Attempts", 
+            "description": "&lt;p>Select whether to attempt starting the Access Manager client after an initial failure. The DataPower Gateway automatically attempts to start the client after a critical error. This property controls the behavior after the initial attempt to restart.&lt;/p>&lt;ul>&lt;li>When enabled, the DataPower Gateway attempts to start the client with the defined configuration.&lt;/li>&lt;li>When disabled, the client is marked as &lt;tt>down&lt;/tt> .&lt;/li>&lt;/ul>&lt;p>The default behavior is to not attempt to start the client after an initial failure.&lt;/p>"
+        }, 
+        {
+            "name": "RetryInterval", 
+            "default": 180, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt16"
+            }, 
+            "summary": "Interval to wait between attempts to start the client.", 
+            "minimum": 1, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "AutoRetry", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "on"
+                }
+            }, 
+            "units": "seconds", 
+            "/mgmt/types/default/dmUInt16": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt16", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                }
+            }, 
+            "cli-alias": "retry-interval", 
+            "display": "Attempt Interval", 
+            "description": "&lt;p>Enter the number of seconds to wait between attempts to start the Access Manager client. Enter a value in the range 1 - 65535. The default value is 180.&lt;/p>"
+        }, 
+        {
+            "name": "RetryAttempts", 
+            "default": 3, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt16"
+            }, 
+            "summary": "Number of attempts before using the long attempt interval.", 
+            "minimum": 0, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "AutoRetry", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "on"
+                }
+            }, 
+            "units": "attempts", 
+            "/mgmt/types/default/dmUInt16": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt16", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                }
+            }, 
+            "cli-alias": "retry-attempts", 
+            "display": "Number of Attempts", 
+            "description": "Enter the number of attempts to perform for the Access Manager client. After performing these attempts and the client did not start, each additional attempt waits the number of seconds defined by the long interval. Enter a value in the range 0 - 65535. A value of 0 disables the long interval. The default value is 3."
+        }, 
+        {
+            "name": "LongRetryInterval", 
+            "default": 900, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt16"
+            }, 
+            "summary": "Long attempt interval before trying the failed connection again", 
+            "minimum": 1, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "AutoRetry", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "on"
+                }
+            }, 
+            "units": "seconds", 
+            "/mgmt/types/default/dmUInt16": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt16", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                }
+            }, 
+            "cli-alias": "long-retry-interval", 
+            "display": "Long Attempt Interval", 
+            "description": "Specifies the number of seconds to wait after reaching the number of retry attempts. Enter a value in the range 1 - 65535. The default value is 900."
+        }
+    ]
+}

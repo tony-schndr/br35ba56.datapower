@@ -1,0 +1,583 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for Assembly action.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "Title", 
+            "cli-alias": "title", 
+            "summary": "The title for Assembly action.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Title"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "The correlation path specifies the part of the API definition that correlates with the assembly action. This path is exposed in the debug data by the API Gateway for use by debugging tools. For example, for an API configuration that is retrieved from API Connect and specified in an OpenAPI (Swagger 2.0) document with IBM extensions, this path is the JSON path to the assembly policy in the IBM extensions section of the document. The path can be expressed in any form that the debugging tool can correlate to the API definition.", 
+            "cli-alias": "correlation-path", 
+            "summary": "The path which correlates the assembly action to a specific part of the API specification.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Correlation path", 
+            "name": "CorrelationPath"
+        }, 
+        {
+            "name": "ActionDebug", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to enable GatewayScript debugger in assembly actions", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "debug", 
+            "display": "Enable debugging", 
+            "description": "&lt;p>Controls whether to enable the GatewayScript debugger to troubleshoot the following GatewayScript file or script. &lt;ul>&lt;li>Troubleshoot the GatewayScript file that is called from the assembly GatewayScript action.&lt;/li>&lt;li>Troubleshoot the GatewayScript file that is invoked by the GatewayScript associated XSLT extension functions or elements, such as the &lt;tt>gatewayscript()&lt;/tt> extension function, from the assembly XSLT action.&lt;/li>&lt;li>Troubleshoot the GatewayScript script that is invoked through the &lt;tt>value&lt;/tt> or the &lt;tt>default&lt;/tt> property in the JSON file from the assembly map action.&lt;/li>&lt;/ul>&lt;/p>&lt;p>To debug a file or script, the following conditions must be met:&lt;/p>&lt;ul>&lt;li>The file contains one or more &lt;tt>debugger;&lt;/tt> statements at the points in your script where you want to start debugging.&lt;/li>&lt;li>The GatewayScript debugger is enabled.&lt;/li>&lt;/ul>&lt;p>Then you can run the &lt;tt>debug-action&lt;/tt> command to debug.&lt;/p>"
+        }, 
+        {
+            "name": "EnforceAPISecurity", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "required": "true", 
+            "summary": "Indicates whether the API security configuration from the routed API definition or operation is enforced.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "enforce-api-security", 
+            "display": "Enforce API security", 
+            "description": "The API security definitions and requirements are configured on the API definition or operation. The routed definition and operation dictate the security that the transaction must fulfill."
+        }, 
+        {
+            "name": "StopOnError", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Controls whether to stop processing if client security fails.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "stop-on-error", 
+            "display": "Stop on error", 
+            "description": "Whether to stop processing if client security fails. If failed, stops the assembly and return an error."
+        }, 
+        {
+            "name": "SecretRequired", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Controls whether to require the client secret.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "secret-required", 
+            "display": "Secret required", 
+            "description": "Whether to require the client secret. When required, the secret is compared to the registered secret on the application that is identified by the client ID."
+        }, 
+        {
+            "name": "ExtractCredentialMethod", 
+            "default": "header", 
+            "type": {
+                "href": "/mgmt/types/default/dmExtractClientOption"
+            }, 
+            "summary": "Specifies the method to extract client credentials from the request", 
+            "cli-alias": "extract-credential-method", 
+            "display": "Credentials extraction method", 
+            "/mgmt/types/default/dmExtractClientOption": {
+                "type": {
+                    "summary": "Options for extracting client's credentials", 
+                    "display": "Extract client option", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Header", 
+                                "name": "header", 
+                                "description": "Extracts client credentials from the identified header."
+                            }, 
+                            {
+                                "display": "Query", 
+                                "name": "query", 
+                                "description": "Extracts client credentials from query parameters."
+                            }, 
+                            {
+                                "display": "Form", 
+                                "name": "form", 
+                                "description": "Extracts client credentials from the &lt;tt>x-www-form-urlencoded&lt;/tt> body."
+                            }, 
+                            {
+                                "display": "Cookie", 
+                                "name": "cookie", 
+                                "description": "Extracts client credentials from the cookie."
+                            }, 
+                            {
+                                "display": "HTTP", 
+                                "name": "http", 
+                                "description": "Extracts client credentials from the HTTP &lt;tt>Authorization&lt;/tt> header."
+                            }, 
+                            {
+                                "display": "Context variable", 
+                                "name": "context-var", 
+                                "description": "Extracts client credentials from the runtime context variable."
+                            }
+                        ]
+                    }, 
+                    "name": "dmExtractClientOption"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmExtractClientOption"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmExtractClientOption"
+                    }
+                }
+            }, 
+            "description": "&lt;p>The method to extract client credentials from the request.&lt;/p>&lt;ul>&lt;li>For all methods except HTTP, use the ID name and the Secret name to specify the locations that contains the ID and the location that contain the secret. &lt;ul>&lt;li>When cookie, specify which cookie.&lt;/li>&lt;li>When context variable, specify which runtime context variable.&lt;/li>&lt;li>When form data, specify the form data.&lt;/li>&lt;li>When header, specify which header.&lt;/li>&lt;li>When query parameter, specify which query parameter.&lt;/li>&lt;/ul>&lt;/li>&lt;li>For the HTTP method, use the HTTP type to specify the format of the &lt;tt>Authorization&lt;/tt> header, which expects the basic form in the &lt;tt>Basic &lt;i>base64_id:secret&lt;/i>&lt;/tt> format.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "name": "IdName", 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ExtractCredentialMethod", 
+                            "evaluation": "property-equals", 
+                            "value": "header"
+                        }, 
+                        {
+                            "property-name": "ExtractCredentialMethod", 
+                            "evaluation": "property-equals", 
+                            "value": "cookie"
+                        }, 
+                        {
+                            "property-name": "ExtractCredentialMethod", 
+                            "evaluation": "property-equals", 
+                            "value": "query"
+                        }, 
+                        {
+                            "property-name": "ExtractCredentialMethod", 
+                            "evaluation": "property-equals", 
+                            "value": "form"
+                        }, 
+                        {
+                            "property-name": "ExtractCredentialMethod", 
+                            "evaluation": "property-equals", 
+                            "value": "context-var"
+                        }
+                    ]
+                }
+            }, 
+            "summary": "Specifies the location where to find the client ID to extract.", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "id-name", 
+            "display": "ID name", 
+            "description": "&lt;p>The location where to find the client ID to extract.&lt;/p>&lt;ul>&lt;li>When cookie, specify which cookie.&lt;/li>&lt;li>When context variable, specify which runtime context variable.&lt;/li>&lt;li>When form data, specify the form data.&lt;/li>&lt;li>When header, specify which header.&lt;/li>&lt;li>When query parameter, specify which query parameter.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "name": "SecretName", 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "SecretRequired", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }, 
+                        {
+                            "evaluation": "logical-or", 
+                            "condition": [
+                                {
+                                    "property-name": "ExtractCredentialMethod", 
+                                    "evaluation": "property-equals", 
+                                    "value": "header"
+                                }, 
+                                {
+                                    "property-name": "ExtractCredentialMethod", 
+                                    "evaluation": "property-equals", 
+                                    "value": "cookie"
+                                }, 
+                                {
+                                    "property-name": "ExtractCredentialMethod", 
+                                    "evaluation": "property-equals", 
+                                    "value": "query"
+                                }, 
+                                {
+                                    "property-name": "ExtractCredentialMethod", 
+                                    "evaluation": "property-equals", 
+                                    "value": "form"
+                                }, 
+                                {
+                                    "property-name": "ExtractCredentialMethod", 
+                                    "evaluation": "property-equals", 
+                                    "value": "context-var"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }, 
+            "summary": "Specifies the location where to find the secret to extract.", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": {
+                        "property-name": "ExtractCredentialMethod", 
+                        "evaluation": "property-equals", 
+                        "value": "http"
+                    }
+                }
+            }, 
+            "cli-alias": "secret-name", 
+            "display": "Secret name", 
+            "description": "&lt;p>The location where to find the secret to extract.&lt;/p>&lt;ul>&lt;li>When cookie, specify which cookie.&lt;/li>&lt;li>When context variable, specify which runtime context variable.&lt;/li>&lt;li>When form data, specify the form data.&lt;/li>&lt;li>When header, specify which header.&lt;/li>&lt;li>When query parameter, specify which query parameter.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmHTTPOption": {
+                "type": {
+                    "summary": "Options for extracting client's credentials from authorization header", 
+                    "display": "HTTP option", 
+                    "value-list": {
+                        "value": {
+                            "display": "Basic", 
+                            "name": "basic", 
+                            "description": "Extracts client credentials from the &lt;tt>Authorization&lt;/tt> header, which expects the basic form in the &lt;tt>Basic &lt;i>base64_id:secret&lt;/i>&lt;/tt> format"
+                        }
+                    }, 
+                    "name": "dmHTTPOption"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHTTPOption"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmHTTPOption"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmHTTPOption"
+            }, 
+            "name": "HTTPType", 
+            "required-when": {
+                "condition": {
+                    "property-name": "ExtractCredentialMethod", 
+                    "evaluation": "property-equals", 
+                    "value": "http"
+                }
+            }, 
+            "summary": "Specifies the format of the Authorization header.", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "http-type", 
+            "display": "HTTP type", 
+            "description": "The format of the &lt;tt>Authorization&lt;/tt> header."
+        }, 
+        {
+            "name": "AuthenticateClientMethod", 
+            "default": "native", 
+            "type": {
+                "href": "/mgmt/types/default/dmClientAuthOption"
+            }, 
+            "required": "true", 
+            "summary": "Specifies the method to authenticate the extracted client credentials", 
+            "/mgmt/types/default/dmClientAuthOption": {
+                "type": {
+                    "summary": "Options for authenticating client using extracted credentials", 
+                    "display": "Authenticate client options", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "API Connect", 
+                                "name": "native", 
+                                "description": "Uses API Connect for authentication."
+                            }, 
+                            {
+                                "display": "Third-party", 
+                                "name": "third-party", 
+                                "description": "Uses the specified user registry for authentication."
+                            }
+                        ]
+                    }, 
+                    "name": "dmClientAuthOption"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmClientAuthOption"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmClientAuthOption"
+                    }
+                }
+            }, 
+            "cli-alias": "client-auth-method", 
+            "display": "Authenticate client method", 
+            "description": "The method to authenticate the extracted client credentials. When third-party, specify the user-registry to authenticate the extracted client credentials."
+        }, 
+        {
+            "name": "UserRegistry", 
+            "required-when": {
+                "condition": {
+                    "property-name": "AuthenticateClientMethod", 
+                    "evaluation": "property-equals", 
+                    "value": "third-party"
+                }
+            }, 
+            "summary": "Specifies the API registry to authenticate the extracted client credentials.", 
+            "cli-alias": "user-registry", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "base-class": "APIUserRegistry"
+                }
+            }, 
+            "display": "User registry", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The API registry to authenticate the extracted client credentials. The supported registries are API authentication URL and API LDAP."
+        }
+    ]
+}

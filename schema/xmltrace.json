@@ -1,0 +1,91 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "name": "Mode", 
+            "default": "off", 
+            "cli-alias": "mode", 
+            "summary": "File Capture Mode", 
+            "/mgmt/types/default/dmXMLTracingMode": {
+                "type": {
+                    "summary": "XML Tracing Mode", 
+                    "display": "XML Tracing Mode", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Disable", 
+                                "display": "None", 
+                                "name": "off", 
+                                "description": "Disables the file capture trace utility."
+                            }, 
+                            {
+                                "summary": "Capture all traffic", 
+                                "display": "All", 
+                                "name": "always", 
+                                "description": "Enables the file capture trace utility and provides a trace of all device traffic."
+                            }, 
+                            {
+                                "summary": "Capture failures only", 
+                                "display": "Errors", 
+                                "name": "errors", 
+                                "description": "Enables the file capture trace utility and provides a trace for failed transactions."
+                            }
+                        ]
+                    }, 
+                    "name": "dmXMLTracingMode"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmXMLTracingMode"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmXMLTracingMode"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmXMLTracingMode"
+            }, 
+            "display": "Mode", 
+            "description": "Selects the File Capturing diagnostic mode. The default is None."
+        }
+    ]
+}

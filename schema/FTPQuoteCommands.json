@@ -1,0 +1,102 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for user annotation.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "name": "FTPQuotedCommands", 
+            "type": {
+                "href": "/mgmt/types/default/dmFTPQuotedCommand"
+            }, 
+            "summary": "Quoted Commands", 
+            "/mgmt/types/default/dmFTPQuotedCommand": {
+                "type": {
+                    "name": "dmFTPQuotedCommand", 
+                    "properties": {
+                        "property": {
+                            "description": "The command to send to the remote FTP server. The command must not be one that would create an FTP data connection. Normally this will be a SITE command. This command must return a result code in the 200 series.", 
+                            "required": "true", 
+                            "summary": "Quoted Command", 
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            }, 
+                            "display": "Quoted Command", 
+                            "name": "QuotedCommand"
+                        }
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPQuotedCommand"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPQuotedCommand"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "quoted-command", 
+            "display": "Quoted Commands", 
+            "description": "The list of commands to send to the remote FTP server."
+        }
+    ]
+}

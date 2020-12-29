@@ -1,0 +1,359 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmLocalIPHostAddress": {
+                "type": {
+                    "cli-arg": "dotted-ip or 0 for any", 
+                    "name": "dmLocalIPHostAddress", 
+                    "format": "(a.b.c.d or 0 for any)"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLocalIPHostAddress"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                    }
+                }
+            }, 
+            "name": "LocalAddress", 
+            "default": "0.0.0.0", 
+            "type": {
+                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+            }, 
+            "required": "true", 
+            "summary": "Enter the local IP address or host alias.", 
+            "cli-alias": "ip-address", 
+            "display": "Local address", 
+            "description": "&lt;p>Enter a host alias or the IP address that the service listens on. Host aliases can ease migration tasks among appliances.&lt;/p>&lt;ul>&lt;li>0 or 0.0.0.0 indicates all configured IPv4 addresses.&lt;/li>&lt;li>:: indicates all configured IPv4 and IPv6 addresses.&lt;/li>&lt;/ul>&lt;p>&lt;b>Attention:&lt;/b> For management services, the value of 0.0.0.0 or :: is a security risk. Use an explicit IP address to isolate management traffic from application data traffic.&lt;/p>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for user annotation.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "name": "Priority", 
+            "default": "normal", 
+            "type": {
+                "href": "/mgmt/types/default/dmSchedulerPriority"
+            }, 
+            "/mgmt/types/default/dmSchedulerPriority": {
+                "type": {
+                    "name": "dmSchedulerPriority", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "unknown", 
+                                "display": "unknown"
+                            }, 
+                            {
+                                "name": "high-min", 
+                                "display": "high-min"
+                            }, 
+                            {
+                                "summary": "", 
+                                "display": "High", 
+                                "name": "high", 
+                                "description": "A service or transaction assigned this priority setting will receive above normal scheduling priority and resource allocation."
+                            }, 
+                            {
+                                "name": "high-max", 
+                                "display": "high-max"
+                            }, 
+                            {
+                                "name": "normal-min", 
+                                "display": "normal-min"
+                            }, 
+                            {
+                                "summary": "", 
+                                "display": "Normal", 
+                                "name": "normal", 
+                                "description": "A service or transaction assigned this priority setting will receive normal scheduling priority and resource allocation."
+                            }, 
+                            {
+                                "name": "normal-max", 
+                                "display": "normal-max"
+                            }, 
+                            {
+                                "name": "low-min", 
+                                "display": "low-min"
+                            }, 
+                            {
+                                "summary": "", 
+                                "display": "Low", 
+                                "name": "low", 
+                                "description": "A service or transaction assigned this priority setting will receive below normal scheduling priority and resource allocation."
+                            }, 
+                            {
+                                "name": "low-max", 
+                                "display": "low-max"
+                            }
+                        ]
+                    }, 
+                    "display": "Transaction Priority"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSchedulerPriority"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSchedulerPriority"
+                    }
+                }
+            }, 
+            "summary": "Service scheduling priority", 
+            "cli-alias": "priority", 
+            "display": "Service Priority", 
+            "description": "Control the service scheduling priority. When system resources are in high demand, \"high\" priority services will be favored over lower priority services."
+        }, 
+        {
+            "name": "LocalPort", 
+            "default": 80, 
+            "cli-alias": "port", 
+            "required": "true", 
+            "maximum": "0xFFFF", 
+            "summary": "The local TCP port number that supports server operations", 
+            "listener": "LocalAddress", 
+            "minimum": 1, 
+            "type": {
+                "href": "/mgmt/types/default/dmIPPort"
+            }, 
+            "/mgmt/types/default/dmIPPort": {
+                "type": {
+                    "cli-arg": "ip-port", 
+                    "minimum": 0, 
+                    "name": "dmIPPort", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                }
+            }, 
+            "display": "Port Number", 
+            "description": "An integer (within the range 1 through 65535, with a default of 80) that specifies the port monitored by the HTTP server."
+        }, 
+        {
+            "name": "Mode", 
+            "default": "normal", 
+            "type": {
+                "href": "/mgmt/types/default/dmHTTPServiceMode"
+            }, 
+            "required": "true", 
+            "summary": "HTTP Server Mode", 
+            "/mgmt/types/default/dmHTTPServiceMode": {
+                "type": {
+                    "summary": "HTTP Server Mode", 
+                    "display": "HTTP Server Mode", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "normal", 
+                                "name": "normal", 
+                                "description": "The server returns the requested documents."
+                            }, 
+                            {
+                                "name": "webgui", 
+                                "display": "webgui"
+                            }, 
+                            {
+                                "display": "echo", 
+                                "name": "echo", 
+                                "description": "The server returns the GET and POST requests that it receives."
+                            }, 
+                            {
+                                "name": "filetrace", 
+                                "display": "filetrace"
+                            }
+                        ]
+                    }, 
+                    "name": "dmHTTPServiceMode"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHTTPServiceMode"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmHTTPServiceMode"
+                    }
+                }
+            }, 
+            "cli-alias": "mode", 
+            "display": "Mode", 
+            "description": "Selects the HTTP server mode. The default is Normal."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "This value is returned in the HTTP headers that Identify the HTTP Server.", 
+            "cli-alias": "identifier", 
+            "summary": "HTTP Server Identifier", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Identifier", 
+            "name": "Identifier"
+        }, 
+        {
+            "name": "BaseDir", 
+            "display": "Base Directory", 
+            "default": "store:///", 
+            "type": {
+                "href": "/mgmt/types/default/dmFSDirectory"
+            }, 
+            "required": "true", 
+            "example": "store:///subdir", 
+            "valid-regexp": "^(store|config|image|temporary|logtemp|logstore|audit|local):", 
+            "summary": "Base Directory", 
+            "cli-alias": "local-directory", 
+            "/mgmt/types/default/dmFSDirectory": {
+                "type": {
+                    "cli-arg": "directory", 
+                    "name": "dmFSDirectory"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSDirectory"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSDirectory"
+                    }
+                }
+            }, 
+            "description": "Specify the local flash directory from which the server serves documents (including the Start Page). This value is typically \"local:///\" (note the triple slashes) or \"store:///\". If no Start Page file exists in this directory, the server will return an automatically generated index of the contents of the directory."
+        }, 
+        {
+            "name": "StartPage", 
+            "/mgmt/types/default/dmFSFile": {
+                "type": {
+                    "cli-arg": "file", 
+                    "name": "dmFSFile"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                }
+            }, 
+            "locations": {
+                "location": [
+                    "store", 
+                    "config", 
+                    "image", 
+                    "local", 
+                    "temporary"
+                ]
+            }, 
+            "summary": "Start Page in base directory", 
+            "cli-alias": "start-page", 
+            "type": {
+                "href": "/mgmt/types/default/dmFSFile"
+            }, 
+            "display": "Start Page", 
+            "description": "Specify the page to display when the client first accesses the server. The HTML file has to be located in the configured base directory. If this is left blank, the server will return an automatically generated list of the contents of the Base Directory."
+        }, 
+        {
+            "description": "This Access Control List will be used to allow or deny access to this service based on the IP address of the client. When attached to a service, an Access Control List (ACL) denies all access by default. To deny access to only selected addresses, first grant access to all addresses (allow 0.0.0.0) and then create deny entries for the desired hosts.", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/AccessControlList"
+                }
+            }, 
+            "cli-alias": "acl", 
+            "display": "Access Control List", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "ACL"
+        }
+    ]
+}

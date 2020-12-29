@@ -1,0 +1,583 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "A descriptive summary for the configuration.", 
+            "cli-alias": "summary", 
+            "summary": "Enter a descriptive summary for the configuration.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments", 
+            "name": "UserSummary"
+        }, 
+        {
+            "name": "NeighborDomain", 
+            "default": "default", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/Domain"
+                }
+            }, 
+            "summary": "Manage which application domains have their local: directory visible to this application domain.", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "visible-domain", 
+            "display": "Visible application domains", 
+            "hoverhelp": "&lt;p>Set which application domains have their &lt;tt>local:&lt;/tt> directory visible to this application domain. References to visible application domains are explicit, not bidirectional. References to visible application domains cannot be circular.&lt;/p>", 
+            "description": "&lt;p>Which application domains have their &lt;tt>local:&lt;/tt> directory visible to this application domain.&lt;/p>&lt;p>References to visible application domains are explicit, not bidirectional. If application domain &lt;tt>domainB&lt;/tt> is made visible to application domain &lt;tt>domainA&lt;/tt> , the following conditions apply.&lt;/p>&lt;ul>&lt;li>Application domain &lt;tt>domainA&lt;/tt> has read-only access to the &lt;tt>local:&lt;/tt> directory of application domain &lt;tt>domainB&lt;/tt> .&lt;/li>&lt;li>Application domain &lt;tt>domainB&lt;/tt> cannot see application domain &lt;tt>domainA&lt;/tt> .&lt;/li>&lt;/ul>&lt;p>In this case, you cannot make application domain &lt;tt>domainA&lt;/tt> visible to application domain &lt;tt>domainB&lt;/tt> . References to visible application domains cannot be circular.&lt;/p>"
+        }, 
+        {
+            "name": "DomainUser", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/User"
+                }
+            }, 
+            "summary": "DEPRECATED -Domain CLI User Access", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "domain-user", 
+            "display": "DEPRECATED -CLI User Access", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "DEPRECATED -Specifies a set of CLI users having access to this domain. These users can log into this domain through the CLI. This setting can be superceded by an existing Access Policy of the user."
+        }, 
+        {
+            "description": "&lt;p>Which file permissions to apply to the &lt;tt>local:&lt;/tt> directory. When access permissions are defined in this configuration and with role-based management, users are granted the lesser privilege.&lt;/p>", 
+            "cli-alias": "file-permissions", 
+            "summary": "Set which file permissions to apply to the local: directory.", 
+            "/mgmt/types/default/dmDomainFileMap": {
+                "type": {
+                    "name": "dmDomainFileMap", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Allow files to be copied from", 
+                                "name": "CopyFrom", 
+                                "description": "&lt;p>Files can be copied from the &lt;tt>local:&lt;/tt> directory.&lt;/p>"
+                            }, 
+                            {
+                                "display": "Allow files to be copied to", 
+                                "name": "CopyTo", 
+                                "description": "&lt;p>Files can be copied to the &lt;tt>local:&lt;/tt> directory.&lt;/p>"
+                            }, 
+                            {
+                                "display": "Allow files to be deleted", 
+                                "name": "Delete", 
+                                "description": "&lt;p>Files can be deleted from the &lt;tt>local:&lt;/tt> directory.&lt;/p>"
+                            }, 
+                            {
+                                "display": "Allow file content to be displayed", 
+                                "name": "Display", 
+                                "description": "&lt;p>File content can be displayed for the &lt;tt>local:&lt;/tt> directory.&lt;/p>"
+                            }, 
+                            {
+                                "display": "Allow files to be run as scripts", 
+                                "name": "Exec", 
+                                "description": "&lt;p>Files in the &lt;tt>local:&lt;/tt> directory can be run as scripts.&lt;/p>"
+                            }, 
+                            {
+                                "display": "Allow subdirectories to be created", 
+                                "name": "Subdir", 
+                                "description": "&lt;p>Subdirectories can be created in the &lt;tt>local:&lt;/tt> directory.&lt;/p>"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmDomainFileMap"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmDomainFileMap"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmDomainFileMap"
+            }, 
+            "display": "File permission to the local: directory", 
+            "name": "FileMap"
+        }, 
+        {
+            "description": "&lt;p>Which types of events to generate when files are added to or deleted from the &lt;tt>local:&lt;/tt> directory.&lt;/p>", 
+            "type": {
+                "href": "/mgmt/types/default/dmDomainMonitoringMap"
+            }, 
+            "summary": "Set which types of events to generate when files are added to or deleted from the local: directory.", 
+            "/mgmt/types/default/dmDomainMonitoringMap": {
+                "type": {
+                    "name": "dmDomainMonitoringMap", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Enable auditing", 
+                                "name": "Audit", 
+                                "description": "Generate audit events."
+                            }, 
+                            {
+                                "display": "Enable logging", 
+                                "name": "Log", 
+                                "description": "Generate log events."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmDomainMonitoringMap"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmDomainMonitoringMap"
+                    }
+                }
+            }, 
+            "cli-alias": "file-monitoring", 
+            "display": "File-monitoring of the local: directory", 
+            "name": "MonitoringMap"
+        }, 
+        {
+            "name": "ConfigMode", 
+            "default": "local", 
+            "type": {
+                "href": "/mgmt/types/default/dmDomainConfigMode"
+            }, 
+            "/mgmt/types/default/dmDomainConfigMode": {
+                "type": {
+                    "name": "dmDomainConfigMode", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Local", 
+                                "name": "local", 
+                                "description": "The domain configuration is on the DataPower Gateway."
+                            }, 
+                            {
+                                "display": "Import from remote server", 
+                                "name": "import", 
+                                "description": "The domain configuration is on a remote server. The configuration is imported each time the domain is started. When selected, enter the URL and format of the configuration file."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmDomainConfigMode"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmDomainConfigMode"
+                    }
+                }
+            }, 
+            "summary": "Indicate whether the configuration file is local or remote.", 
+            "cli-alias": "config-mode", 
+            "display": "Configuration mode", 
+            "description": "Whether the configuration file is local or remote."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmURL"
+            }, 
+            "name": "ImportURL", 
+            "required-when": {
+                "condition": {
+                    "property-name": "ConfigMode", 
+                    "evaluation": "property-equals", 
+                    "value": "import"
+                }
+            }, 
+            "summary": "Set the URL of the configuration file on the remote server.", 
+            "/mgmt/types/default/dmURL": {
+                "type": {
+                    "cli-arg": "url", 
+                    "name": "dmURL"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "import-url", 
+            "display": "Import URL", 
+            "description": "The URL of the configuration file on the remote server."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmImportFormat"
+            }, 
+            "name": "ImportFormat", 
+            "default": "ZIP", 
+            "required-when": {
+                "condition": {
+                    "property-name": "ConfigMode", 
+                    "evaluation": "property-equals", 
+                    "value": "import"
+                }
+            }, 
+            "summary": "Set the format of the remote configuration file.", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "import-format", 
+            "display": "Import format", 
+            "/mgmt/types/default/dmImportFormat": {
+                "type": {
+                    "summary": "Import Format", 
+                    "display": "Import Format", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "ZIP bundle", 
+                                "display": "ZIP", 
+                                "name": "ZIP", 
+                                "description": "Imports the configuration from a compressed ZIP bundle."
+                            }, 
+                            {
+                                "summary": "XML configuration file", 
+                                "display": "XML", 
+                                "name": "XML", 
+                                "description": "Imports configuration from the exported XML configuration files."
+                            }
+                        ]
+                    }, 
+                    "name": "dmImportFormat"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmImportFormat"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmImportFormat"
+                    }
+                }
+            }, 
+            "description": "The format of the remote configuration file."
+        }, 
+        {
+            "name": "DeploymentPolicy", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/ConfigDeploymentPolicy"
+                }
+            }, 
+            "summary": "Set the deployment policy to preprocess the remote configuration file during import.", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "ConfigMode", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "import"
+                }
+            }, 
+            "cli-alias": "deployment-policy", 
+            "display": "Deployment policy", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The deployment policy to preprocess the remote configuration file during import."
+        }, 
+        {
+            "name": "DeploymentPolicyParameters", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/DeploymentPolicyParametersBinding"
+                }
+            }, 
+            "summary": "Set the collection of name-value pairs to replace variables in the deployment policy during import.", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "ConfigMode", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "import"
+                }
+            }, 
+            "cli-alias": "deployment-policy-variables", 
+            "display": "Deployment policy variables", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The collection of name-value pairs to replace variables in the deployment policy during import."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "name": "LocalIPRewrite", 
+            "default": "on", 
+            "required-when": {
+                "condition": {
+                    "property-name": "ConfigMode", 
+                    "evaluation": "property-equals", 
+                    "value": "import"
+                }
+            }, 
+            "summary": "Indicate whether to rewrite local IP addresses during import.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "local-ip-rewrite", 
+            "display": "Rewrite local IP addresses", 
+            "hoverhelp": "&lt;p>Indicate whether to rewrite local IP addresses during import. When enabled, local IP addresses in the import package are rewritten to match the local IP address on the DataPower Gateway. In other words, a service that binds to &lt;tt>eth10&lt;/tt> in the import package is rewritten to bind to the local IP address of &lt;tt>eth10&lt;/tt> on the DataPower Gateway.&lt;/p>", 
+            "description": "&lt;p>Whether to rewrite local IP addresses during import. When enabled, local IP addresses in the import package are rewritten to match the local IP address on the DataPower Gateway. In other words, a service that binds to &lt;tt>eth10&lt;/tt> in the import package is rewritten to bind to the local IP address of &lt;tt>eth10&lt;/tt> on the DataPower Gateway.&lt;/p>"
+        }, 
+        {
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "MaxChkpoints", 
+            "default": 3, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "maximum": 5, 
+            "summary": "Enter the maximum number of configuration checkpoints to support.", 
+            "minimum": 1, 
+            "cli-alias": "maxchkpoints", 
+            "display": "Configuration checkpoint limit", 
+            "description": "The maximum number of configuration checkpoints to support."
+        }, 
+        {
+            "name": "ConfigPermissionsMode", 
+            "default": "scope-domain", 
+            "cli-alias": "config-permissions-mode", 
+            "summary": "Security context in which configuration files are run in the domain", 
+            "/mgmt/types/default/dmDomainConfigPermissionsMode": {
+                "type": {
+                    "name": "dmDomainConfigPermissionsMode", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Domain scope mode", 
+                                "name": "scope-domain", 
+                                "description": "Configuration file permissions are limited to the current domain. That is, configuration files cannot modify the configuration in other domains."
+                            }, 
+                            {
+                                "display": "Global access profile mode", 
+                                "name": "global-profile", 
+                                "description": "Configuration file permissions are subject to the global domain access profile."
+                            }, 
+                            {
+                                "display": "Specific access profile mode", 
+                                "name": "specific-profile", 
+                                "description": "Configuration file permissions are subject to a specific access profile. For example, permissions to configuration files in a certain local are subject to the access profile that is associated to that local."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmDomainConfigPermissionsMode"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmDomainConfigPermissionsMode"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmDomainConfigPermissionsMode"
+            }, 
+            "display": "Configuration permissions mode", 
+            "description": "Specifies the the security context for the configuration files that are run in the domain."
+        }, 
+        {
+            "name": "ConfigPermissionsProfile", 
+            "required-when": {
+                "condition": {
+                    "property-name": "ConfigPermissionsMode", 
+                    "evaluation": "property-equals", 
+                    "value": "global-profile"
+                }
+            }, 
+            "summary": "Access profile that defines permissions for all configuration files run in the domain", 
+            "cli-alias": "config-permissions-profile", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "ConfigPermissionsMode", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "global-profile"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/AccessProfile"
+                }
+            }, 
+            "display": "Global permissions profile", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "When the configuration permissions mode is global access profile mode, specify a access profile that applies globally to all configuration files that are run in the domain."
+        }
+    ]
+}

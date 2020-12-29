@@ -1,0 +1,142 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "name": "Mode", 
+            "default": "activeBasic", 
+            "/mgmt/types/default/dmLunaHARecoveryModeType": {
+                "type": {
+                    "name": "dmLunaHARecoveryModeType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Default HA automatic recovery mode", 
+                                "display": "activeBasic", 
+                                "name": "activeBasic", 
+                                "description": "Checks the status of HA members. If required, runs synchronization."
+                            }, 
+                            {
+                                "summary": "Enhanced HA automatic recovery mode", 
+                                "display": "activeEnhanced", 
+                                "name": "activeEnhanced", 
+                                "description": "Checks the status of HA members. If required, runs synchronization. During synchronization, restores all sessions and their login states."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLunaHARecoveryModeType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmLunaHARecoveryModeType"
+                    }
+                }
+            }, 
+            "summary": "The HA recovery mode", 
+            "cli-alias": "recovery-mode", 
+            "type": {
+                "href": "/mgmt/types/default/dmLunaHARecoveryModeType"
+            }, 
+            "display": "Recovery mode", 
+            "description": "Sets the HA recovery mode."
+        }, 
+        {
+            "/mgmt/types/default/dmInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": "0x80000000", 
+                    "name": "dmInt32", 
+                    "maximum": 2147483647
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmInt32"
+                    }
+                }
+            }, 
+            "name": "Count", 
+            "default": 0, 
+            "type": {
+                "href": "/mgmt/types/default/dmInt32"
+            }, 
+            "maximum": 500, 
+            "summary": "The maximum number of recovery attempts for failed members", 
+            "minimum": -1, 
+            "cli-alias": "recovery-count", 
+            "display": "Recovery count", 
+            "description": "Sets the number of recovery attempts for failed members in the Luna HA group. Enter a value in the range 0 - 500. The default value of 0 disables automatic recovery."
+        }, 
+        {
+            "/mgmt/types/default/dmInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": "0x80000000", 
+                    "name": "dmInt32", 
+                    "maximum": 2147483647
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmInt32"
+                    }
+                }
+            }, 
+            "name": "Interval", 
+            "default": 60, 
+            "type": {
+                "href": "/mgmt/types/default/dmInt32"
+            }, 
+            "maximum": 1200, 
+            "summary": "The interval between recovery attempts", 
+            "minimum": 60, 
+            "units": "seconds", 
+            "cli-alias": "recovery-interval", 
+            "display": "Recovery interval", 
+            "description": "Sets the interval in seconds between recovery attempts for failed members in the Luna HSM HA group. Enter a value in the range 60 - 1200. The default value is 60."
+        }
+    ]
+}

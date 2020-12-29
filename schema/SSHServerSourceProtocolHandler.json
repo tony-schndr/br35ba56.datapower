@@ -1,0 +1,701 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for user annotation.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "/mgmt/types/default/dmLocalIPHostAddress": {
+                "type": {
+                    "cli-arg": "dotted-ip or 0 for any", 
+                    "name": "dmLocalIPHostAddress", 
+                    "format": "(a.b.c.d or 0 for any)"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLocalIPHostAddress"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                    }
+                }
+            }, 
+            "name": "LocalAddress", 
+            "default": "0.0.0.0", 
+            "type": {
+                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+            }, 
+            "required": "true", 
+            "summary": "Local IP address", 
+            "label": "IP address", 
+            "cli-alias": "address", 
+            "display": "Local IP Address", 
+            "hoverhelp": "Enter the IP address to listen on for incoming SFTP server traffic. The default value 0.0.0.0 indicates that the service listens on all IP addresses.", 
+            "description": "Specifies the address on which the SFTP server service listens. The default of 0.0.0.0 indicates that the service is active on all addresses. An alias name can be used to specify the address. Local host aliases can help ease migration tasks among machines."
+        }, 
+        {
+            "name": "LocalPort", 
+            "default": 22, 
+            "cli-alias": "port", 
+            "required": "true", 
+            "maximum": "0xFFFE", 
+            "summary": "Local TCP port for the SFTP server", 
+            "listener": "LocalAddress", 
+            "minimum": 1, 
+            "type": {
+                "href": "/mgmt/types/default/dmIPPort"
+            }, 
+            "label": "Port", 
+            "/mgmt/types/default/dmIPPort": {
+                "type": {
+                    "cli-arg": "ip-port", 
+                    "minimum": 0, 
+                    "name": "dmIPPort", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                }
+            }, 
+            "display": "Port Number", 
+            "hoverhelp": "Enter the port number to listen on for incoming SFTP server traffic. Specify a number in the range of 1 - 65535. The default value is 22.", 
+            "description": "Specifies the port that is monitored by the SFTP Server service. This port is the port on which SFTP connections can be established. This port does not control the TCP port that is used for the data connections. Enter any value of 1 - 65535. The default is 22."
+        }, 
+        {
+            "description": "&lt;p>Specifies an Access Control List to apply. The ACL allows or denies access to the SFTP server based on the IP address of the SFTP client. When attached to a server, the default for an ACL is to deny all access. To deny access to only select IP addresses, first grant access to all addresses (allow 0.0.0.0). Then, create deny entries for the desired hosts.&lt;/p>&lt;p>If an ACL with the same name as this handler exists, the system DataPower Gateway might inadvertently use that ACL rather than the one specified here.&lt;/p>", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/AccessControlList"
+                }
+            }, 
+            "cli-alias": "acl", 
+            "display": "Access Control List", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "ACL"
+        }, 
+        {
+            "name": "HostPrivateKeys", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/CryptoKey"
+                }
+            }, 
+            "summary": "The private keys to use for host authentication", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "label": "Host private keys", 
+            "cli-alias": "host-private-key", 
+            "display": "Host Private Keys", 
+            "hoverhelp": "Specify the private keys to use for host authentication. Keys that are used as host private keys cannot be password protected. To add a host private key, click Add, double-click the added box, and select the key from the list.", 
+            "description": "Specifies the private keys to use for Host authentication. Keys used as host private keys cannot be password protected."
+        }, 
+        {
+            "required": "true", 
+            "name": "SSHUserAuthentication", 
+            "default": "0x03", 
+            "type": {
+                "href": "/mgmt/types/default/dmSSHUserAuthenticationMethods"
+            }, 
+            "/mgmt/types/default/dmSSHUserAuthenticationMethods": {
+                "type": {
+                    "name": "dmSSHUserAuthenticationMethods", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "", 
+                                "display": "Public Key", 
+                                "name": "publickey"
+                            }, 
+                            {
+                                "summary": "", 
+                                "display": "Password", 
+                                "name": "password"
+                            }
+                        ]
+                    }, 
+                    "display": "SSH User Authentication Methods"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSHUserAuthenticationMethods"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSHUserAuthenticationMethods"
+                    }
+                }
+            }, 
+            "summary": "Allowable user authentication types", 
+            "cli-alias": "user-auth", 
+            "display": "User Authentication", 
+            "description": "Specifies the type(s) of SSH user authentication available for use by the client."
+        }, 
+        {
+            "name": "AllowBackendListings", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Indicates whether backend directory listings are allowed", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "FilesystemType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "transparent"
+                }
+            }, 
+            "cli-alias": "allow-backend-listings", 
+            "display": "Allow Backend Listings", 
+            "description": "In transparent mode, determines whether or not SFTP directory listing (SSH_FXP_READDIR) requests to the back-end servers are allowed. Requires an FTP or SFTP server on the back-end."
+        }, 
+        {
+            "name": "AllowBackendDelete", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Indicates whether requests to delete files are allowed", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "FilesystemType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "transparent"
+                }
+            }, 
+            "cli-alias": "allow-backend-delete", 
+            "display": "Allow File Deletes", 
+            "description": "In transparent mode, determines whether or not requests to delete files (SSH_FXP_REMOVE) to the back-end servers are allowed. Requires an FTP or SFTP server on the back-end."
+        }, 
+        {
+            "name": "AllowBackendStat", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Indicates whether requests to query file statistics are allowed", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "FilesystemType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "transparent"
+                }
+            }, 
+            "cli-alias": "allow-backend-stat", 
+            "display": "Allow Stat Operations", 
+            "description": "In transparent mode, determines whether or not SFTP directory listings requests to the back-end servers would query the back-end server to obtain a file's attributes (SSH_FXP_STAT/SSH_FXP_LSTAT/SSH_FXP_FSTAT), or use default values. Querying the back-end server may reduce performance, but is necessary for SFTP clients that do not follow the DataPower SFTP URL naming conventions. Requires an FTP or SFTP server on the back-end."
+        }, 
+        {
+            "name": "AllowBackendMkdir", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Indicates whether requests to create directories are allowed", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "FilesystemType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "transparent"
+                }
+            }, 
+            "cli-alias": "allow-backend-mkdir", 
+            "display": "Allow Directory Creates", 
+            "description": "In transparent mode, determines whether or not requests to create directories (SSH_FXP_MKDIR) on the back-end servers are allowed. Requires an FTP or SFTP server on the back-end."
+        }, 
+        {
+            "name": "AllowBackendRmdir", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Indicates whether requests to delete directories are allowed", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "FilesystemType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "transparent"
+                }
+            }, 
+            "cli-alias": "allow-backend-rmdir", 
+            "display": "Allow Directory Deletes", 
+            "description": "In transparent mode, determines whether or not requests to delete directories (SSH_FXP_RMDIR) from the back-end servers are allowed. Requires an FTP or SFTP server on the back-end."
+        }, 
+        {
+            "name": "AllowBackendRename", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Indicates whether requests to rename files are allowed", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "FilesystemType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "transparent"
+                }
+            }, 
+            "cli-alias": "allow-backend-rename", 
+            "display": "Allow File/Directory Renames", 
+            "description": "In transparent mode, determines whether or not requests to rename files or directories (SSH_FXP_RENAME) on the back-end servers are allowed. Requires an FTP or SFTP server on the back-end."
+        }, 
+        {
+            "description": "Specifies the AAA Policy to perform SSH user authentication of the information provided during SSH key exchange.", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/AAAPolicy"
+                }
+            }, 
+            "summary": "AAA Policy for SSH user authentication", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "label": "AAA policy", 
+            "cli-alias": "aaa-policy", 
+            "display": "AAA Policy", 
+            "hoverhelp": "Specify the AAA Policy to perform SSH user authentication on the information that is provided during SSH key exchange.", 
+            "name": "AAAPolicy"
+        }, 
+        {
+            "name": "FilesystemType", 
+            "default": "transparent", 
+            "cli-alias": "filesystem", 
+            "summary": "The type of filesystem the SFTP server will present", 
+            "/mgmt/types/default/dmSFTPFilesystemType": {
+                "type": {
+                    "name": "dmSFTPFilesystemType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Transparent", 
+                                "name": "transparent", 
+                                "description": "The SFTP server has a transparent file system. The files and directories shown are those on the back end of the associated DataPower service."
+                            }, 
+                            {
+                                "display": "Virtual Ephemeral", 
+                                "name": "virtual-ephemeral", 
+                                "description": "The SFTP server will have an ephemeral virtual file system with subdirectories created by configuration. The contents of this file system are private to an individual SFTP connection to the SFTP server. The contents of this file system will not persist after this SFTP connection ends."
+                            }, 
+                            {
+                                "display": "Virtual Persistent", 
+                                "name": "virtual-persistent", 
+                                "description": "The SFTP server will have a persistent virtual file system with subdirectories created by configuration. The contents of this file system are shared by all SFTP connections to this SFTP server with the same authenticated user identity. The user identity is determined by the SFTP user name. The contents of this file system will persist after all SFTP connections end for a duration defined by Persistent Filesystem Timeout."
+                            }
+                        ]
+                    }, 
+                    "display": "SFTP Server Filesystem Type"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSFTPFilesystemType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSFTPFilesystemType"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmSFTPFilesystemType"
+            }, 
+            "display": "Filesystem Type", 
+            "description": "Specifies the file system type that is presented by the SFTP server."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "DefaultDirectory", 
+            "default": "/", 
+            "cli-alias": "default-directory", 
+            "required": "true", 
+            "summary": "Default for current working directory", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "valid-regexp": "^/([^/]+(/[^/]+)*)?$", 
+            "display": "Default Directory", 
+            "description": "Specifies the initial working directory on the SFTP server (after users connect and authenticate)."
+        }, 
+        {
+            "name": "IdleTimeout", 
+            "default": 0, 
+            "type": {
+                "href": "/mgmt/types/default/dmTimeInterval"
+            }, 
+            "maximum": 65535, 
+            "summary": "Inactivity limit on SFTP connection", 
+            "/mgmt/types/default/dmTimeInterval": {
+                "type": {
+                    "cli-arg": "seconds", 
+                    "minimum": 0, 
+                    "name": "dmTimeInterval", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                }
+            }, 
+            "minimum": 0, 
+            "units": "seconds", 
+            "cli-alias": "idle-timeout", 
+            "display": "Idle Timeout", 
+            "description": "Specifies the number of seconds that the SFTP connection can be idle. After the specified duration elapses, the SFTP server closes the control connection. Enter any value of 0 - 65535. The default is 0, which disables the timeout."
+        }, 
+        {
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "PersistentFilesystemTimeout", 
+            "default": 600, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "maximum": 43200, 
+            "summary": "Controls how long a Virtual Persistent file system with no active connections is retained", 
+            "minimum": 1, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "FilesystemType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "virtual-persistent"
+                }
+            }, 
+            "units": "seconds", 
+            "cli-alias": "persistent-filesystem-timeout", 
+            "display": "Persistent Filesystem Timeout", 
+            "description": "Specifies the duration in seconds that a connection to a virtual file system is retained after all SFTP control connections from user identities are disconnected. When the timeout expires, the virtual file system object is destroyed. Enter any value of 1- 43200. The default is 600."
+        }, 
+        {
+            "name": "VirtualDirectories", 
+            "type": {
+                "href": "/mgmt/types/default/dmSFTPServerVirtualDirectory"
+            }, 
+            "summary": "Create directory in virtual file system of SFTP server", 
+            "/mgmt/types/default/dmSFTPServerVirtualDirectory": {
+                "type": {
+                    "name": "dmSFTPServerVirtualDirectory", 
+                    "properties": {
+                        "property": {
+                            "description": "Specifies the directory in the virtual file system of the SFTP server.", 
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            }, 
+                            "summary": "Directory in virtual file system of the SFTP server", 
+                            "valid-regexp": "^/[^/]+(/[^/]+)*$", 
+                            "display": "Virtual Directory", 
+                            "name": "VirtualPath"
+                        }
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSFTPServerVirtualDirectory"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSFTPServerVirtualDirectory"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "FilesystemType", 
+                    "evaluation": "property-value-not-in-list", 
+                    "value": [
+                        "virtual-ephemeral", 
+                        "virtual-persistent"
+                    ]
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "virtual-directory", 
+            "display": "Virtual Directories", 
+            "description": "In virtual mode, create a directory in the virtual file system that is presented by this SFTP server. The SFTP client can use all of these directories to write file to be processed. The root directory (/) is always present and cannot be created."
+        }
+    ]
+}

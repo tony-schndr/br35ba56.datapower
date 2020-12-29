@@ -1,0 +1,375 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "A descriptive summary for the configuration.", 
+            "cli-alias": "summary", 
+            "summary": "Enter a descriptive summary for the configuration.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments", 
+            "name": "UserSummary"
+        }, 
+        {
+            "name": "Algorithm", 
+            "default": "RS256", 
+            "type": {
+                "href": "/mgmt/types/default/dmJWSSignAlgorithm"
+            }, 
+            "required": "true", 
+            "/mgmt/types/default/dmJWSSignAlgorithm": {
+                "type": {
+                    "name": "dmJWSSignAlgorithm", 
+                    "summary": "JSON Web Signature algorithm", 
+                    "display": "JSON Web Signature algorithm", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "HMAC using SHA-256", 
+                                "display": "HS256", 
+                                "name": "HS256", 
+                                "description": "HMAC using SHA-256"
+                            }, 
+                            {
+                                "summary": "HMAC using SHA-384", 
+                                "display": "HS384", 
+                                "name": "HS384", 
+                                "description": "HMAC using SHA-384"
+                            }, 
+                            {
+                                "summary": "HMAC using SHA-512", 
+                                "display": "HS512", 
+                                "name": "HS512", 
+                                "description": "HMAC using SHA-512"
+                            }, 
+                            {
+                                "summary": "RSASSA-PKCS-v1_5 using SHA-256", 
+                                "display": "RS256", 
+                                "name": "RS256", 
+                                "description": "RSASSA-PKCS-v1_5 using SHA-256"
+                            }, 
+                            {
+                                "summary": "RSASSA-PKCS-v1_5 using SHA 384", 
+                                "display": "RS384", 
+                                "name": "RS384", 
+                                "description": "RSASSA-PKCS-v1_5 using SHA 384"
+                            }, 
+                            {
+                                "summary": "RSASSA-PKCS-v1_5 using SHA-512", 
+                                "display": "RS512", 
+                                "name": "RS512", 
+                                "description": "RSASSA-PKCS-v1_5 using SHA-512"
+                            }, 
+                            {
+                                "summary": "ECDSA using P-256 and SHA-256", 
+                                "display": "ES256", 
+                                "name": "ES256", 
+                                "description": "ECDSA using P-256 and SHA-256"
+                            }, 
+                            {
+                                "summary": "ECDSA using P-384 and SHA-384", 
+                                "display": "ES384", 
+                                "name": "ES384", 
+                                "description": "ECDSA using P-384 and SHA-384"
+                            }, 
+                            {
+                                "summary": "ECDSA using P-521 and SHA-512", 
+                                "display": "ES512", 
+                                "name": "ES512", 
+                                "description": "ECDSA using P-521 and SHA-512"
+                            }, 
+                            {
+                                "summary": "RSASSA-PSS using SHA-256 and MGF1 with SHA-256", 
+                                "display": "PS256", 
+                                "name": "PS256", 
+                                "description": "RSASSA-PSS using SHA-256 and MGF1 with SHA-256"
+                            }, 
+                            {
+                                "summary": "RSASSA-PSS using SHA-384 and MGF1 with SHA-384", 
+                                "display": "PS384", 
+                                "name": "PS384", 
+                                "description": "RSASSA-PSS using SHA-384 and MGF1 with SHA-384"
+                            }, 
+                            {
+                                "summary": "RSASSA-PSS using SHA-512 and MGF1 with SHA-512", 
+                                "display": "PS512", 
+                                "name": "PS512", 
+                                "description": "RSASSA-PSS using SHA-512 and MGF1 with SHA-512"
+                            }
+                        ]
+                    }, 
+                    "description": "The signature method for JSON Web Signature."
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmJWSSignAlgorithm"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmJWSSignAlgorithm"
+                    }
+                }
+            }, 
+            "summary": "Algorithm", 
+            "cli-alias": "alg", 
+            "display": "Algorithm", 
+            "description": "Algorithm."
+        }, 
+        {
+            "name": "Key", 
+            "required-when": {
+                "condition": {
+                    "property-name": "Algorithm", 
+                    "evaluation": "property-value-in-list", 
+                    "value": [
+                        "RS256", 
+                        "RS384", 
+                        "RS512", 
+                        "PS256", 
+                        "PS384", 
+                        "PS512", 
+                        "ES256", 
+                        "ES384", 
+                        "ES512"
+                    ]
+                }
+            }, 
+            "summary": "Private key", 
+            "cli-alias": "key", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "Algorithm", 
+                    "evaluation": "property-value-not-in-list", 
+                    "value": [
+                        "RS256", 
+                        "RS384", 
+                        "RS512", 
+                        "PS256", 
+                        "PS384", 
+                        "PS512", 
+                        "ES256", 
+                        "ES384", 
+                        "ES512"
+                    ]
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/CryptoKey"
+                }
+            }, 
+            "display": "Private Key", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "Private key."
+        }, 
+        {
+            "name": "SSKey", 
+            "required-when": {
+                "condition": {
+                    "property-name": "Algorithm", 
+                    "evaluation": "property-value-in-list", 
+                    "value": [
+                        "HS256", 
+                        "HS384", 
+                        "HS512"
+                    ]
+                }
+            }, 
+            "summary": "Shared secret key", 
+            "cli-alias": "sskey", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "Algorithm", 
+                    "evaluation": "property-value-not-in-list", 
+                    "value": [
+                        "HS256", 
+                        "HS384", 
+                        "HS512"
+                    ]
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/CryptoSSKey"
+                }
+            }, 
+            "display": "Shared Secret Key", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "Shared secret key."
+        }, 
+        {
+            "name": "ProtectedHeader", 
+            "type": {
+                "href": "/mgmt/types/default/dmJOSEHeader"
+            }, 
+            "summary": "Add a protected header to the JWS Sign action.", 
+            "/mgmt/types/default/dmJOSEHeader": {
+                "type": {
+                    "name": "dmJOSEHeader", 
+                    "properties": {
+                        "property": [
+                            {
+                                "summary": "Name", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Name", 
+                                "name": "HeaderName", 
+                                "description": "Name of a JOSE header."
+                            }, 
+                            {
+                                "description": "Value of a JOSE header. If Name is 'crit', the value can be a comma separated list to have more than one value set to 'crit'. Other headers' values only accept string.", 
+                                "required": "true", 
+                                "summary": "Value", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Value", 
+                                "name": "HeaderValue"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmJOSEHeader"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmJOSEHeader"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "protected-header", 
+            "display": "Protected Header", 
+            "description": "Add a protected header to the JWS Sign action."
+        }, 
+        {
+            "name": "UnprotectedHeader", 
+            "type": {
+                "href": "/mgmt/types/default/dmJOSEHeader"
+            }, 
+            "summary": "Add an unprotected header to the JWS Sign action.", 
+            "/mgmt/types/default/dmJOSEHeader": {
+                "type": {
+                    "name": "dmJOSEHeader", 
+                    "properties": {
+                        "property": [
+                            {
+                                "summary": "Name", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Name", 
+                                "name": "HeaderName", 
+                                "description": "Name of a JOSE header."
+                            }, 
+                            {
+                                "description": "Value of a JOSE header. If Name is 'crit', the value can be a comma separated list to have more than one value set to 'crit'. Other headers' values only accept string.", 
+                                "required": "true", 
+                                "summary": "Value", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Value", 
+                                "name": "HeaderValue"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmJOSEHeader"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmJOSEHeader"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "unprotected-header", 
+            "display": "Unprotected Header", 
+            "description": "Add an unprotected header to the JWS Sign action."
+        }
+    ]
+}

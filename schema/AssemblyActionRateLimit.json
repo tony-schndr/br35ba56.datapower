@@ -1,0 +1,352 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for Assembly action.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "Title", 
+            "cli-alias": "title", 
+            "summary": "The title for Assembly action.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Title"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "The correlation path specifies the part of the API definition that correlates with the assembly action. This path is exposed in the debug data by the API Gateway for use by debugging tools. For example, for an API configuration that is retrieved from API Connect and specified in an OpenAPI (Swagger 2.0) document with IBM extensions, this path is the JSON path to the assembly policy in the IBM extensions section of the document. The path can be expressed in any form that the debugging tool can correlate to the API definition.", 
+            "cli-alias": "correlation-path", 
+            "summary": "The path which correlates the assembly action to a specific part of the API specification.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Correlation path", 
+            "name": "CorrelationPath"
+        }, 
+        {
+            "name": "ActionDebug", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to enable GatewayScript debugger in assembly actions", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "debug", 
+            "display": "Enable debugging", 
+            "description": "&lt;p>Controls whether to enable the GatewayScript debugger to troubleshoot the following GatewayScript file or script. &lt;ul>&lt;li>Troubleshoot the GatewayScript file that is called from the assembly GatewayScript action.&lt;/li>&lt;li>Troubleshoot the GatewayScript file that is invoked by the GatewayScript associated XSLT extension functions or elements, such as the &lt;tt>gatewayscript()&lt;/tt> extension function, from the assembly XSLT action.&lt;/li>&lt;li>Troubleshoot the GatewayScript script that is invoked through the &lt;tt>value&lt;/tt> or the &lt;tt>default&lt;/tt> property in the JSON file from the assembly map action.&lt;/li>&lt;/ul>&lt;/p>&lt;p>To debug a file or script, the following conditions must be met:&lt;/p>&lt;ul>&lt;li>The file contains one or more &lt;tt>debugger;&lt;/tt> statements at the points in your script where you want to start debugging.&lt;/li>&lt;li>The GatewayScript debugger is enabled.&lt;/li>&lt;/ul>&lt;p>Then you can run the &lt;tt>debug-action&lt;/tt> command to debug.&lt;/p>"
+        }, 
+        {
+            "name": "Source", 
+            "default": "plan-default", 
+            "type": {
+                "href": "/mgmt/types/default/dmLimitSourceOption"
+            }, 
+            "required": "true", 
+            "summary": "Source of limits", 
+            "/mgmt/types/default/dmLimitSourceOption": {
+                "type": {
+                    "summary": "The source of rate limiting, burst limiting, and count limiting to apply.", 
+                    "display": "Source", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Plan default", 
+                                "name": "plan-default", 
+                                "description": "Use the rate limiting and burst limiting that are defined in the API plan."
+                            }, 
+                            {
+                                "display": "Collection named", 
+                                "name": "collection-named", 
+                                "description": "Use assembly-specific rate limiting, burst limiting, and count limiting from the API collection."
+                            }, 
+                            {
+                                "display": "Plan named", 
+                                "name": "plan-named", 
+                                "description": "Use assembly-specific rate limiting, burst limiting, and count limiting from the API plan."
+                            }, 
+                            {
+                                "display": "Gateway named", 
+                                "name": "gateway-named", 
+                                "description": "Use assembly-specific rate limiting, burst limiting, and count limiting from the API Gateway."
+                            }
+                        ]
+                    }, 
+                    "name": "dmLimitSourceOption"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLimitSourceOption"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmLimitSourceOption"
+                    }
+                }
+            }, 
+            "cli-alias": "source", 
+            "display": "Source", 
+            "description": "The source of the rate limits, burst limits, and count limits to apply to the assembly rate limit action. The default value is plan-default."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "BurstLimit", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "summary": "Names of burst limits", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "Source", 
+                    "evaluation": "property-equals", 
+                    "value": "plan-default"
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "burst-limit", 
+            "display": "Burst limits", 
+            "description": "The assembly burst limit names that are defined in the API collection."
+        }, 
+        {
+            "name": "RateLimit", 
+            "type": {
+                "href": "/mgmt/types/default/dmRateLimitInfo"
+            }, 
+            "summary": "Names of rate limits", 
+            "/mgmt/types/default/dmRateLimitInfo": {
+                "type": {
+                    "description": "Describes a rate limit and action.", 
+                    "display": "Rate Limit Information", 
+                    "properties": {
+                        "property": [
+                            {
+                                "name": "Name", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "required": "true", 
+                                "summary": "Rate limit name", 
+                                "cli-alias": "name", 
+                                "display": "Name", 
+                                "description": "The name of the rate limit."
+                            }, 
+                            {
+                                "description": "The action to apply to the rate limit.", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmRateLimitAction"
+                                }, 
+                                "summary": "Rate limit action", 
+                                "cli-alias": "action", 
+                                "display": "Action", 
+                                "name": "Action"
+                            }
+                        ]
+                    }, 
+                    "name": "dmRateLimitInfo", 
+                    "summary": "Rate limit name and action."
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmRateLimitInfo"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmRateLimitInfo"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "Source", 
+                    "evaluation": "property-equals", 
+                    "value": "plan-default"
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "rate-limit", 
+            "display": "Rate limits", 
+            "description": "The assembly rate limit names that are defined in the API collection."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmCountLimitInfo"
+            }, 
+            "name": "CountLimit", 
+            "/mgmt/types/default/dmCountLimitInfo": {
+                "type": {
+                    "description": "Describes a count limit and action.", 
+                    "display": "Count Limit Information", 
+                    "properties": {
+                        "property": [
+                            {
+                                "name": "Name", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "required": "true", 
+                                "summary": "Count limit name", 
+                                "cli-alias": "name", 
+                                "display": "Name", 
+                                "description": "The name of the count limit."
+                            }, 
+                            {
+                                "name": "Action", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmCountLimitAction"
+                                }, 
+                                "required": "true", 
+                                "summary": "Count limit action", 
+                                "cli-alias": "action", 
+                                "display": "Action", 
+                                "description": "The action to apply to the count limit count."
+                            }
+                        ]
+                    }, 
+                    "name": "dmCountLimitInfo", 
+                    "summary": "Count limit name and action."
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmCountLimitInfo"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmCountLimitInfo"
+                    }
+                }
+            }, 
+            "summary": "Names of count limits", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "Source", 
+                    "evaluation": "property-equals", 
+                    "value": "plan-default"
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "count-limit", 
+            "display": "Count limits", 
+            "description": "The assembly count limit names that are defined in the API collection."
+        }
+    ]
+}

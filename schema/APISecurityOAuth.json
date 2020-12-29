@@ -1,0 +1,223 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Enter a descriptive summary for the configuration.", 
+            "cli-alias": "summary", 
+            "summary": "A brief descriptive summary for the configuration.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments", 
+            "name": "UserSummary"
+        }, 
+        {
+            "description": "Specifies an OAuth provider settings configuration that defines the type of the provider and the authorization details about the provider.", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/OAuthProviderSettings"
+                }
+            }, 
+            "summary": "The OAuth provider to use", 
+            "cli-alias": "oauth-provider", 
+            "display": "OAuth provider", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "OAuthProvider"
+        }, 
+        {
+            "name": "OAuthFlow", 
+            "type": {
+                "href": "/mgmt/types/default/dmAPISecurityOAuthFlow"
+            }, 
+            "required": "true", 
+            "summary": "Which OAuth flow to enforce", 
+            "/mgmt/types/default/dmAPISecurityOAuthFlow": {
+                "type": {
+                    "summary": "Defines different types of OAuth flows. You create an OAuth security definition of a specific type according to the required OAuth grant type. Each of the flows corresponds to an OAuth grant type.", 
+                    "display": "API OAuth Flow", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "The Implicit flow corresponds to the implicit OAuth grant type.", 
+                                "display": "Implicit", 
+                                "name": "implicit", 
+                                "description": "In the implicit flow, the client receives the access token directly from the resource owner."
+                            }, 
+                            {
+                                "summary": "The Password flow corresponds to the OAuth grant type of Resource Owner Password Credentials.", 
+                                "display": "Password", 
+                                "name": "password", 
+                                "description": "In the resource owner password credentials flow, the client uses password credentials of the resource owner to obtain authorization."
+                            }, 
+                            {
+                                "summary": "The Application flow corresponds to the Client Credentials OAuth grant type.", 
+                                "display": "Application", 
+                                "name": "application", 
+                                "description": "In the client credentials flow, the client uses its own credentials to obtain authorization."
+                            }, 
+                            {
+                                "summary": "The Access code flow corresponds to the Authorization Code OAuth grant type.", 
+                                "display": "Access code", 
+                                "name": "accessCode", 
+                                "description": "In the authorization code flow, the client directs the resource owner to an intermediary authorization server. The server issues access token to the client after authenticating the client."
+                            }
+                        ]
+                    }, 
+                    "name": "dmAPISecurityOAuthFlow"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAPISecurityOAuthFlow"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAPISecurityOAuthFlow"
+                    }
+                }
+            }, 
+            "cli-alias": "oauth-flow", 
+            "display": "OAuth flow", 
+            "description": "Specifies the OAuth flow to enforce to protect the target. The value should be among the supported grant types that are defined by the referenced OAuth provider."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "&lt;p>Specifies the scopes that the access token is valid to access. To specify multiple scopes, use a space between each scope. The order of scopes does not matter.&lt;/p>&lt;ul>&lt;li>The allowed scopes for this configuration must be a subset of the allowed scopes set for the API OAuth security definition.&lt;/li>&lt;li>The allowed scopes for the API OAuth security definition must be a subset of the allowed scopes set for the OAuth provider settings.&lt;/li>&lt;/ul>&lt;p>Scopes ensure that the granted access token is valid to access only specific protected resources.&lt;/p>", 
+            "cli-alias": "oauth-scope", 
+            "summary": "The scopes that the access token is valid to access", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "OAuth scopes", 
+            "name": "OAuthScope"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "When specified the URL that overrides the advanced scope URL in the OAuth provider settings. The value must be a properly formatted URL.", 
+            "cli-alias": "oauth-advanced-scope-url", 
+            "summary": "The URL that overrides the advanced scope URL in the OAuth provider settings", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "OAuth advanced scope URL", 
+            "name": "OAuthAdvScopeURL"
+        }, 
+        {
+            "description": "When the OAuth advanced scope URL uses the HTTPS protocol, specifies the TLS client profile to secure the connection.", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                }
+            }, 
+            "summary": "TLS client profile to secure the HTTPS connection to the OAuth advanced scope URL", 
+            "cli-alias": "oauth-advanced-scope-tls-profile", 
+            "display": "OAuth TLS profile", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "OAuthAdvScopeTLSProfile"
+        }
+    ]
+}

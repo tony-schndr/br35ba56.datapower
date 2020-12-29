@@ -1,0 +1,181 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for user annotation.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "description": "The prefix and URI for namespaces that might be encountered in requests.", 
+            "type": {
+                "href": "/mgmt/types/default/dmNamespaceMapping"
+            }, 
+            "/mgmt/types/default/dmNamespaceMapping": {
+                "type": {
+                    "name": "dmNamespaceMapping", 
+                    "properties": {
+                        "property": [
+                            {
+                                "summary": "Prefix for namespace", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Prefix", 
+                                "name": "Prefix", 
+                                "description": "The prefix (Prefix:) used to map namespaces that might be encountered in client requests."
+                            }, 
+                            {
+                                "summary": "URI for namespace", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmURL"
+                                }, 
+                                "display": "URI", 
+                                "name": "URI", 
+                                "description": "The URI (URI:) used to map namespaces that might be encountered in client requests."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmNamespaceMapping"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmNamespaceMapping"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "namespace-mapping", 
+            "display": "Namespace Mappings", 
+            "name": "NameSpaceMappings"
+        }, 
+        {
+            "name": "XPathRoutingRules", 
+            "type": {
+                "href": "/mgmt/types/default/dmXPathRoutingRule"
+            }, 
+            "required": "true", 
+            "summary": "XPath routing rules", 
+            "array": "true", 
+            "cli-alias": "rule", 
+            "display": "Rules", 
+            "/mgmt/types/default/dmXPathRoutingRule": {
+                "type": {
+                    "summary": "XPath routing rules", 
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "&lt;p>The XPath expression applied to submitted documents. This expression evaluates to true or false. If the expression points to a particular node and that node is present in the submitted document, the expression evaluates to true.&lt;/p>&lt;p>This expression cannot exceed 330 characters. Use the Namespace Mapping tab to establish mapping that then allow the use of qualified names in the XPath expression, shortening the expression.&lt;/p>", 
+                                "required": "true", 
+                                "summary": "An XPath Expression", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmXPathExpr"
+                                }, 
+                                "display": "XPath Expression", 
+                                "name": "XPath"
+                            }, 
+                            {
+                                "description": "Specify the host name or IP address to which matching documents should be routed.", 
+                                "required": "true", 
+                                "summary": "Host name or IP address", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmHostname"
+                                }, 
+                                "display": "Remote Host", 
+                                "name": "Host"
+                            }, 
+                            {
+                                "description": "Specify the port to which matching documents should be routed.", 
+                                "required": "true", 
+                                "summary": "Port number", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmIPPort"
+                                }, 
+                                "display": "Remote Port", 
+                                "name": "Port"
+                            }, 
+                            {
+                                "name": "SSL", 
+                                "default": "off", 
+                                "required": "true", 
+                                "summary": "Whether to connect with TLS", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                }, 
+                                "display": "TLS", 
+                                "description": "Specify whether the connection to the target destination uses TLS communications. The default is off. When set to on, the DataPower Gateway uses the TLS profile that is specified at the service level to establish TLS communications to the destination host."
+                            }
+                        ]
+                    }, 
+                    "name": "dmXPathRoutingRule"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmXPathRoutingRule"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmXPathRoutingRule"
+                    }
+                }
+            }
+        }
+    ]
+}

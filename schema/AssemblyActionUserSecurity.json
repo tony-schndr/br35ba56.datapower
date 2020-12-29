@@ -1,0 +1,1372 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for Assembly action.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "Title", 
+            "cli-alias": "title", 
+            "summary": "The title for Assembly action.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Title"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "The correlation path specifies the part of the API definition that correlates with the assembly action. This path is exposed in the debug data by the API Gateway for use by debugging tools. For example, for an API configuration that is retrieved from API Connect and specified in an OpenAPI (Swagger 2.0) document with IBM extensions, this path is the JSON path to the assembly policy in the IBM extensions section of the document. The path can be expressed in any form that the debugging tool can correlate to the API definition.", 
+            "cli-alias": "correlation-path", 
+            "summary": "The path which correlates the assembly action to a specific part of the API specification.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Correlation path", 
+            "name": "CorrelationPath"
+        }, 
+        {
+            "name": "ActionDebug", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to enable GatewayScript debugger in assembly actions", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "debug", 
+            "display": "Enable debugging", 
+            "description": "&lt;p>Controls whether to enable the GatewayScript debugger to troubleshoot the following GatewayScript file or script. &lt;ul>&lt;li>Troubleshoot the GatewayScript file that is called from the assembly GatewayScript action.&lt;/li>&lt;li>Troubleshoot the GatewayScript file that is invoked by the GatewayScript associated XSLT extension functions or elements, such as the &lt;tt>gatewayscript()&lt;/tt> extension function, from the assembly XSLT action.&lt;/li>&lt;li>Troubleshoot the GatewayScript script that is invoked through the &lt;tt>value&lt;/tt> or the &lt;tt>default&lt;/tt> property in the JSON file from the assembly map action.&lt;/li>&lt;/ul>&lt;/p>&lt;p>To debug a file or script, the following conditions must be met:&lt;/p>&lt;ul>&lt;li>The file contains one or more &lt;tt>debugger;&lt;/tt> statements at the points in your script where you want to start debugging.&lt;/li>&lt;li>The GatewayScript debugger is enabled.&lt;/li>&lt;/ul>&lt;p>Then you can run the &lt;tt>debug-action&lt;/tt> command to debug.&lt;/p>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "FactorID", 
+            "default": "default", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "required": "true", 
+            "summary": "Enter the string that identifies the results of factor authentication.", 
+            "cli-alias": "factor-id", 
+            "display": "Factor identifier", 
+            "description": "The string that identifies the results of factor authentication in the API context."
+        }, 
+        {
+            "name": "ExtractIdentityMethod", 
+            "/mgmt/types/default/dmExtractIdentityOption": {
+                "type": {
+                    "summary": "Options for extracting resource owner's identity", 
+                    "display": "Extract identity option", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Disabled", 
+                                "name": "disabled", 
+                                "description": "Skips the identity-extraction step"
+                            }, 
+                            {
+                                "display": "Basic", 
+                                "name": "basic", 
+                                "description": "Extracts identity from basic authorization header"
+                            }, 
+                            {
+                                "display": "Context variable", 
+                                "name": "context-var", 
+                                "description": "Extracts identity from context variables"
+                            }, 
+                            {
+                                "display": "HTML form", 
+                                "name": "html-form", 
+                                "description": "Extracts identity by using an HTML form"
+                            }, 
+                            {
+                                "display": "Redirect", 
+                                "name": "redirect", 
+                                "description": "Extracts identity by using a redirect"
+                            }
+                        ]
+                    }, 
+                    "name": "dmExtractIdentityOption"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmExtractIdentityOption"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmExtractIdentityOption"
+                    }
+                }
+            }, 
+            "default": "basic", 
+            "type": {
+                "href": "/mgmt/types/default/dmExtractIdentityOption"
+            }, 
+            "required": "true", 
+            "summary": "Determines which identity extraction method to use", 
+            "cli-alias": "extract-identity-method", 
+            "display": "Identity extraction method", 
+            "description": "The method to extract end user credentials."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "name": "EIStopOnError", 
+            "default": "on", 
+            "required-when": {
+                "condition": {
+                    "property-name": "ExtractIdentityMethod", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "disabled"
+                }
+            }, 
+            "summary": "Indicates whether to stop processing if identity extraction fails.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "ei-stop-on-error", 
+            "display": "Stop on error", 
+            "description": "Whether to stop processing if identity extraction fails. If failed, stops the assembly and return an error."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "name": "UserContextVariable", 
+            "required-when": {
+                "condition": {
+                    "property-name": "ExtractIdentityMethod", 
+                    "evaluation": "property-equals", 
+                    "value": "context-var"
+                }
+            }, 
+            "summary": "Enter the period-delimited string to locate the context variable that contains the user's name.", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "user-context-var", 
+            "display": "User name context variable", 
+            "description": "The period-delimited string to navigate the API context to locate the context variable that contains the user's name."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "name": "PassContextVariable", 
+            "required-when": {
+                "condition": {
+                    "property-name": "ExtractIdentityMethod", 
+                    "evaluation": "property-equals", 
+                    "value": "context-var"
+                }
+            }, 
+            "summary": "Enter the period-delimited string to locate the context variable that contains the user's password.", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "pass-context-var", 
+            "display": "Password context variable", 
+            "description": "The period-delimited string to navigate the API context to locate context variable that contains the user's password."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "name": "RedirectURL", 
+            "required-when": {
+                "condition": {
+                    "property-name": "ExtractIdentityMethod", 
+                    "evaluation": "property-equals", 
+                    "value": "redirect"
+                }
+            }, 
+            "summary": "Enter the URL fragment to redirect the request, which can include context variables", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "redirect-url", 
+            "display": "Redirect URL", 
+            "description": "The URL fragment to redirect the request to obtain user credentials. The value can include one or more run time context variables in the format &lt;tt>$(context-variable)&lt;/tt> ."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "RedirectTimeLimit", 
+            "default": 300, 
+            "required-when": {
+                "condition": {
+                    "property-name": "ExtractIdentityMethod", 
+                    "evaluation": "property-equals", 
+                    "value": "redirect"
+                }
+            }, 
+            "maximum": 600, 
+            "summary": "Enter the allowable time for the transaction to complete before the redirect fails.", 
+            "minimum": 10, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "units": "Seconds", 
+            "cli-alias": "redirect-time-limit", 
+            "display": "Redirect time limit", 
+            "description": "The allowable time in seconds for the transaction to complete before the redirect fails."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "QueryParameters", 
+            "cli-alias": "query-parameters", 
+            "summary": "Query parameters to append to the redirect.", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "ExtractIdentityMethod", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "redirect"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Query parameters", 
+            "description": "Enter query parameters to append to the redirect. Query parameters provide additional information."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "name": "EIDefaultForm", 
+            "default": "on", 
+            "required-when": {
+                "condition": {
+                    "property-name": "ExtractIdentityMethod", 
+                    "evaluation": "property-equals", 
+                    "value": "html-form"
+                }
+            }, 
+            "summary": "Indicates whether to use the default form or a custom form.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "ei-default-form", 
+            "display": "Use default form?", 
+            "description": "Whether to use the default form or a custom form. When enabled, returns the default login page to obtain credentials. When disabled, define the configuration to return the custom login page."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "name": "EICustomForm", 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "ExtractIdentityMethod", 
+                            "evaluation": "property-equals", 
+                            "value": "html-form"
+                        }, 
+                        {
+                            "property-name": "EIDefaultForm", 
+                            "evaluation": "property-equals", 
+                            "value": "off"
+                        }
+                    ]
+                }
+            }, 
+            "summary": "Enter the URL fragment of the custom login page, which can include context variables", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "ei-custom-form", 
+            "display": "Custom form location", 
+            "description": "The URL fragment of the custom login page. This page collects user name and password information. The value can include one or more run time context variables in the format &lt;tt>$(context-variable)&lt;/tt> ."
+        }, 
+        {
+            "name": "EICustomFormClientProfile", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                }
+            }, 
+            "summary": "Specify the TLS client profile to secure the connection to retrieve the custom login page.", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ExtractIdentityMethod", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "html-form"
+                        }, 
+                        {
+                            "property-name": "EIDefaultForm", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "ei-custom-form-tls-client-profile", 
+            "display": "Custom form TLS client profile", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The TLS client profile to secure the connection to the remote server to retrieve the custom login page."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "EICustomFormContentSecurityPolicy", 
+            "default": "default-src 'self'", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "summary": "Specify the value to use for the HTTP Content-Security-Policy response header for the custom login page.", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "ExtractIdentityMethod", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "html-form"
+                        }, 
+                        {
+                            "property-name": "EIDefaultForm", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "ei-custom-form-csp", 
+            "display": "Custom form Content-Security-Policy", 
+            "description": "The value to use for the HTTP &lt;tt>Content-Security-Policy&lt;/tt> response header for the custom login page. This response header allows you to control which resources the user agent can load. Generally, you set server origins and script endpoints to detect and mitigate cross-site scripting (XSS), clickjacking, and other injection attacks."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "EIFormTimeLimit", 
+            "default": 300, 
+            "required-when": {
+                "condition": {
+                    "property-name": "ExtractIdentityMethod", 
+                    "evaluation": "property-equals", 
+                    "value": "html-form"
+                }
+            }, 
+            "maximum": 600, 
+            "summary": "Enter the time to limit the transaction.", 
+            "minimum": 10, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "units": "Seconds", 
+            "cli-alias": "ei-form-time-limit", 
+            "display": "HTML form time limit", 
+            "description": "The time to limit the transaction before the identity extraction request fails."
+        }, 
+        {
+            "name": "UserAuthMethod", 
+            "default": "user-registry", 
+            "type": {
+                "href": "/mgmt/types/default/dmUserAuthOption"
+            }, 
+            "required": "true", 
+            "/mgmt/types/default/dmUserAuthOption": {
+                "type": {
+                    "summary": "Options for authenticating the resource owner's identity", 
+                    "display": "User authentication option", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Disabled", 
+                                "name": "disabled", 
+                                "description": "Skips the authentication step"
+                            }, 
+                            {
+                                "display": "User registry", 
+                                "name": "user-registry", 
+                                "description": "Authenticates users by sending API requests to an API user registry"
+                            }
+                        ]
+                    }, 
+                    "name": "dmUserAuthOption"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUserAuthOption"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUserAuthOption"
+                    }
+                }
+            }, 
+            "summary": "Specify which authentication method to use.", 
+            "cli-alias": "user-auth-method", 
+            "display": "Authentication method", 
+            "description": "Which authentication method to use."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "name": "AUStopOnError", 
+            "default": "on", 
+            "required-when": {
+                "condition": {
+                    "property-name": "UserAuthMethod", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "disabled"
+                }
+            }, 
+            "summary": "Indicates whether to stop processing if authentication fails.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "au-stop-on-error", 
+            "display": "Stop on error", 
+            "description": "Whether to stop processing if authentication fails. If failed, stops the assembly and return an error."
+        }, 
+        {
+            "name": "UserRegistry", 
+            "required-when": {
+                "condition": {
+                    "property-name": "UserAuthMethod", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "disabled"
+                }
+            }, 
+            "summary": "The user registry to authenticate the incoming API request.", 
+            "cli-alias": "user-registry", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "base-class": "APIUserRegistry"
+                }
+            }, 
+            "display": "User registry", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "Specifies the API user registry to authenticate incoming API requests. The supported registries are API authentication URL and API LDAP."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "AuthResponseHeadersPattern", 
+            "default": "(?i)x-api*", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "summary": "Enter the regular expression to select which response headers to add to the API context, which can include context variables.", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "UserAuthMethod", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "user-registry"
+                }
+            }, 
+            "cli-alias": "auth-response-headers-pattern", 
+            "display": "Authentication response headers pattern", 
+            "description": "The regular expression to select which response headers to add to the API context for access by subsequent actions. The default value is a case-insensitive search on the &lt;tt>x-api&lt;/tt> prefix. The value can include one or more run time context variables in the format &lt;tt>$(context-variable)&lt;/tt> ."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "AuthResponseCredentialHeader", 
+            "default": "X-API-Authenticated-Credential", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "summary": "Enter the response header that contains the authenticated credentials, which can include context variables.", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "UserAuthMethod", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "user-registry"
+                }
+            }, 
+            "cli-alias": "auth-response-header-credential", 
+            "display": "Authenticated credential header", 
+            "description": "The response header that contains the authenticated credentials. The default value is &lt;tt>X-API-Authenticated-Credential&lt;/tt> . The value can include one or more run time context variables in the format &lt;tt>$(context-variable)&lt;/tt> ."
+        }, 
+        {
+            "/mgmt/types/default/dmUserAZOption": {
+                "type": {
+                    "summary": "Options for authorizing the resource owner", 
+                    "display": "User authorization option", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Disabled", 
+                                "name": "disabled", 
+                                "description": "Skips the authorization step"
+                            }, 
+                            {
+                                "display": "Authenticated", 
+                                "name": "authenticated", 
+                                "description": "Authorizes any authenticated users implicitly"
+                            }, 
+                            {
+                                "display": "HTML form", 
+                                "name": "html-form", 
+                                "description": "Authorizes users by using an HTML form"
+                            }
+                        ]
+                    }, 
+                    "name": "dmUserAZOption"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUserAZOption"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUserAZOption"
+                    }
+                }
+            }, 
+            "name": "UserAZMethod", 
+            "default": "authenticated", 
+            "type": {
+                "href": "/mgmt/types/default/dmUserAZOption"
+            }, 
+            "required": "true", 
+            "summary": "Specify which authorization method to use.", 
+            "cli-alias": "user-az-method", 
+            "display": "Authorization method", 
+            "description": "Which authorization method to use."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "name": "AZStopOnError", 
+            "default": "on", 
+            "required-when": {
+                "condition": {
+                    "property-name": "UserAZMethod", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "disabled"
+                }
+            }, 
+            "summary": "Indicates whether to stop processing if authorization fails.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "az-stop-on-error", 
+            "display": "Stop on error", 
+            "description": "Whether to stop processing if authorization fails. If failed, stops the assembly and return an error."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "name": "AZDefaultForm", 
+            "default": "on", 
+            "required-when": {
+                "condition": {
+                    "property-name": "UserAZMethod", 
+                    "evaluation": "property-equals", 
+                    "value": "html-form"
+                }
+            }, 
+            "summary": "Indicates whether to use the default form or a custom form.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "az-default-form", 
+            "display": "Use default form?", 
+            "description": "Whether to use the default form or a custom form. When enabled, returns the default authorization page to obtain authorization. When disabled, define the configuration to return the custom authorization page."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "name": "AZCustomForm", 
+            "required-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "UserAZMethod", 
+                            "evaluation": "property-equals", 
+                            "value": "html-form"
+                        }, 
+                        {
+                            "property-name": "AZDefaultForm", 
+                            "evaluation": "property-equals", 
+                            "value": "off"
+                        }
+                    ]
+                }
+            }, 
+            "summary": "Enter the URL fragment of the custom authorization page, which can include context variables.", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "az-custom-form", 
+            "display": "Custom form location", 
+            "description": "The URL fragment of the custom authorization page. This page obtains permission from the end user. The value can include one or more run time context variables in the format &lt;tt>$(context-variable)&lt;/tt> ."
+        }, 
+        {
+            "name": "AZCustomFormClientProfile", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                }
+            }, 
+            "summary": "Specify the TLS client profile to secure the connection to retrieve the custom authorization page.", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "UserAZMethod", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "html-form"
+                        }, 
+                        {
+                            "property-name": "AZDefaultForm", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "az-custom-form-tls-client-profile", 
+            "display": "Custom form TLS client profile", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The TLS client profile to secure the connection to the remote server to retrieve the custom authorization page."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "AZCustomFormContentSecurityPolicy", 
+            "default": "default-src 'self'", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "summary": "Specify the value to use for the HTTP Content-Security-Policy response header for the custom authorization page.", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "UserAZMethod", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "html-form"
+                        }, 
+                        {
+                            "property-name": "AZDefaultForm", 
+                            "evaluation": "property-equals", 
+                            "value": "on"
+                        }
+                    ]
+                }
+            }, 
+            "cli-alias": "az-custom-form-csp", 
+            "display": "Custom form Content-Security-Policy", 
+            "description": "The value to use for the HTTP &lt;tt>Content-Security-Policy&lt;/tt> response header for the custom authorization page. This response header allows you to control which resources the user agent can load. Generally, you set server origins and script endpoints to detect and mitigate cross-site scripting (XSS), clickjacking, and other injection attacks."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "AZFormTimeLimit", 
+            "default": 300, 
+            "required-when": {
+                "condition": {
+                    "property-name": "UserAZMethod", 
+                    "evaluation": "property-equals", 
+                    "value": "html-form"
+                }
+            }, 
+            "maximum": 600, 
+            "summary": "Enter the time to limit the transaction.", 
+            "minimum": 10, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "units": "Seconds", 
+            "cli-alias": "az-form-time-limit", 
+            "display": "HTML form time limit", 
+            "description": "The time to limit the transaction before the authorization request fails."
+        }, 
+        {
+            "name": "AZTableDisplayCheckboxes", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Add check boxes to the entries.", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "UserAZMethod", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "html-form"
+                }
+            }, 
+            "cli-alias": "az-table-display-checkboxes", 
+            "display": "Display table check boxes", 
+            "description": "Allows entries to be selected."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "AZTableDynamicEntries", 
+            "default": "user.default.az.dynamic_entries", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "summary": "Enter a period-delimited context variable that adds dynamic entries to display.", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "UserAZMethod", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "html-form"
+                }
+            }, 
+            "cli-alias": "az-table-dynamic-entries", 
+            "display": "Dynamic table entries", 
+            "description": "The period-delimited context variable supports space delimited names, a JSON array of names, or a JSON array of objects with name and description."
+        }, 
+        {
+            "name": "AZTableDefaultEntry", 
+            "type": {
+                "href": "/mgmt/types/default/dmTableEntry"
+            }, 
+            "summary": "Add an entry to the table. The entry contains a name and description.", 
+            "/mgmt/types/default/dmTableEntry": {
+                "type": {
+                    "summary": "", 
+                    "properties": {
+                        "property": [
+                            {
+                                "summary": "Display name of the entry", 
+                                "required": "true", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Name", 
+                                "name": "Name"
+                            }, 
+                            {
+                                "summary": "Description of the entry", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Description", 
+                                "name": "Description"
+                            }
+                        ]
+                    }, 
+                    "name": "dmTableEntry", 
+                    "display": "Table entry"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTableEntry"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmTableEntry"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "UserAZMethod", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "html-form"
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "az-table-default-entry", 
+            "display": "Default table entry", 
+            "description": "The table displays entries that are being authorized."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "Hostname", 
+            "cli-alias": "hostname", 
+            "summary": "The hostname to set instead of the incoming hostname", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-and", 
+                    "condition": [
+                        {
+                            "property-name": "ExtractIdentityMethod", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "redirect"
+                        }, 
+                        {
+                            "property-name": "ExtractIdentityMethod", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "html-form"
+                        }, 
+                        {
+                            "property-name": "UserAZMethod", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "html-form"
+                        }
+                    ]
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Hostname", 
+            "description": "The hostname for the original URL in the redirect or HTML form requests."
+        }
+    ]
+}

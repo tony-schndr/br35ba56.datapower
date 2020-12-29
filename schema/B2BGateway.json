@@ -1,0 +1,1306 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for user annotation.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "name": "Priority", 
+            "default": "normal", 
+            "type": {
+                "href": "/mgmt/types/default/dmSchedulerPriority"
+            }, 
+            "/mgmt/types/default/dmSchedulerPriority": {
+                "type": {
+                    "name": "dmSchedulerPriority", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "unknown", 
+                                "display": "unknown"
+                            }, 
+                            {
+                                "name": "high-min", 
+                                "display": "high-min"
+                            }, 
+                            {
+                                "summary": "", 
+                                "display": "High", 
+                                "name": "high", 
+                                "description": "A service or transaction assigned this priority setting will receive above normal scheduling priority and resource allocation."
+                            }, 
+                            {
+                                "name": "high-max", 
+                                "display": "high-max"
+                            }, 
+                            {
+                                "name": "normal-min", 
+                                "display": "normal-min"
+                            }, 
+                            {
+                                "summary": "", 
+                                "display": "Normal", 
+                                "name": "normal", 
+                                "description": "A service or transaction assigned this priority setting will receive normal scheduling priority and resource allocation."
+                            }, 
+                            {
+                                "name": "normal-max", 
+                                "display": "normal-max"
+                            }, 
+                            {
+                                "name": "low-min", 
+                                "display": "low-min"
+                            }, 
+                            {
+                                "summary": "", 
+                                "display": "Low", 
+                                "name": "low", 
+                                "description": "A service or transaction assigned this priority setting will receive below normal scheduling priority and resource allocation."
+                            }, 
+                            {
+                                "name": "low-max", 
+                                "display": "low-max"
+                            }
+                        ]
+                    }, 
+                    "display": "Transaction Priority"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSchedulerPriority"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSchedulerPriority"
+                    }
+                }
+            }, 
+            "summary": "Service scheduling priority", 
+            "cli-alias": "priority", 
+            "display": "Service Priority", 
+            "description": "Control the service scheduling priority. When system resources are in high demand, \"high\" priority services will be favored over lower priority services."
+        }, 
+        {
+            "name": "DocStoreLocation", 
+            "default": "(default)", 
+            "type": {
+                "href": "/mgmt/types/default/dmFSDirectory"
+            }, 
+            "/mgmt/types/default/dmFSDirectory": {
+                "type": {
+                    "cli-arg": "directory", 
+                    "name": "dmFSDirectory"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSDirectory"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSDirectory"
+                    }
+                }
+            }, 
+            "locations": {
+                "location": "local"
+            }, 
+            "summary": "Storage location for documents", 
+            "cli-alias": "doc-location", 
+            "display": "Document Storage Location", 
+            "description": "&lt;p>The URL to save copies of inbound documents, outbound documents, and intermediate documents that might be needed for retransmission. The location can be an NFS mount or an iSCSI server (deprecated), which stores documents off of the appliance. However, iSCSI locations cannot be set from the WebGUI.&lt;/p>&lt;ul>&lt;li>To use an NFS mount, select the NFS mount point. The list shows these mount points in the &lt;tt>nfs- &lt;i>name&lt;/i> :&lt;/tt> format, where &lt;i>name&lt;/i> is the name of the NFS static mount.&lt;/li>&lt;li>To use an iSCSI mount (deprecated), configure and initialize an iSCSI volume. Because the iSCSI volume is mounted in the local: directory, use the &lt;tt>local:/// &lt;i>directory&lt;/i>&lt;/tt> format, where &lt;i>directory&lt;/i> is the value defined by the directory property while in the iSCSI Volume configuration.&lt;/li>&lt;/ul>&lt;p>If unspecified, these documents are stored in the encrypted area on the RAID volume. If using this location, set the maximum disk use to 30 gigabytes.&lt;/p>"
+        }, 
+        {
+            "name": "ASFrontProtocol", 
+            "type": {
+                "href": "/mgmt/types/default/dmASFrontProtocol"
+            }, 
+            "summary": "Front Side Protocol Handlers", 
+            "/mgmt/types/default/dmASFrontProtocol": {
+                "type": {
+                    "name": "dmASFrontProtocol", 
+                    "properties": {
+                        "property": [
+                            {
+                                "name": "FrontProtocol", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "base-class": "SourceProtocolHandler"
+                                    }
+                                }, 
+                                "required": "true", 
+                                "summary": "Front Side Protocol", 
+                                "cli-alias": "front-protocol", 
+                                "display": "Front Side Protocol", 
+                                "description": "Specifies the name of the handler to assign."
+                            }, 
+                            {
+                                "name": "MDNReceiver", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                }, 
+                                "required": "true", 
+                                "summary": "Whether to use this handler as the MDN receiver", 
+                                "cli-alias": "mdn-receiver", 
+                                "display": "Set as MDN Receiver", 
+                                "description": "Indicates whether to set the handler as the default MDN receiver."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmASFrontProtocol"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmASFrontProtocol"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "as-fsph", 
+            "display": "Front Side Protocol Handlers", 
+            "description": "The front side protocol handlers to assign to the B2B gateway. Handlers determine the network communication protocol, address communication protocol, address, port, and other protocol-specific settings."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "For asynchronous MDN scenarios, the default e-mail address to send an AS1 asynchronous MDN. When sending outbound AS1 e-mail messages that request an MDN, this e-mail address can be used as the default e-mail address to send the response MDN. An e-mail address in the destination overrides this value.", 
+            "cli-alias": "as1-mdn-email", 
+            "summary": "Default e-mail address for AS1 asynchronous MDN", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Default AS1 MDN Return E-mail", 
+            "name": "AS1MDNEmail"
+        }, 
+        {
+            "description": "When an incoming AS1 message requests an MDN be sent as an e-mail request, the SMTP server connection describes how to send the MDN response to the specified e-mail address.", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SMTPServerConnection"
+                }
+            }, 
+            "summary": "SMTP server connection to send asynchronous MDN responses", 
+            "cli-alias": "as1-mdn-smtp-server-connection", 
+            "display": "AS1 MDN SMTP Server Connection", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "AS1MDNSMTPServerConnection"
+        }, 
+        {
+            "name": "AS2MDNURL", 
+            "cli-alias": "as2-mdn-url", 
+            "locations": {
+                "location": "\"NONE\""
+            }, 
+            "summary": "Default URL for AS2 asynchronous MDN", 
+            "/mgmt/types/default/dmURL": {
+                "type": {
+                    "cli-arg": "url", 
+                    "name": "dmURL"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmURL"
+            }, 
+            "display": "Default AS2 MDN Return URL", 
+            "protocols": {
+                "protocol": [
+                    "http", 
+                    "https"
+                ]
+            }, 
+            "description": "&lt;p>For asynchronous MDN scenarios, an explicit MDN URL can be provided for AS2 protocol. It can point to gateway itself or a firewall or proxy service that will eventually route the message back to gateway.&lt;/p>&lt;p>If the firewall or proxy between the external partner and the appliance does not forward the MDN to the appliance, the B2B gateway will keep retransmitting the message to the external partner. This property can be overridden in the destination configuration for the external partner.&lt;/p>"
+        }, 
+        {
+            "name": "AS3MDNURL", 
+            "cli-alias": "as3-mdn-url", 
+            "locations": {
+                "location": "\"NONE\""
+            }, 
+            "summary": "Default URL for AS3 asynchronous MDN", 
+            "/mgmt/types/default/dmURL": {
+                "type": {
+                    "cli-arg": "url", 
+                    "name": "dmURL"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmURL"
+            }, 
+            "display": "Default AS3 MDN Return URL", 
+            "protocols": {
+                "protocol": "ftp"
+            }, 
+            "description": "&lt;p>For AS3 asynchronous MDN scenarios, an explicit MDN URL can be provided for AS3 protocol. It can point to gateway itself or a firewall or proxy service that will eventually route the message back to gateway.&lt;/p>&lt;p>If the firewall or proxy between the external partner and the appliance does not forward the MDN to the appliance, the B2B gateway will keep retransmitting the message to the external partner. This property can be overridden in the destination configuration for the external partner.&lt;/p>"
+        }, 
+        {
+            "name": "B2BProfiles", 
+            "required-when": {
+                "condition": {
+                    "property-name": "B2BGroups", 
+                    "evaluation": "property-equals", 
+                    "value": ""
+                }
+            }, 
+            "summary": "Active partner profiles", 
+            "/mgmt/types/default/dmB2BActiveProfile": {
+                "type": {
+                    "name": "dmB2BActiveProfile", 
+                    "properties": {
+                        "property": [
+                            {
+                                "name": "PartnerProfile", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/B2BProfile"
+                                    }
+                                }, 
+                                "required": "true", 
+                                "summary": "Name of the partner profile", 
+                                "cli-alias": "profile", 
+                                "display": "B2B Partner Profile", 
+                                "description": "Specifies the name of the partner profile to attach."
+                            }, 
+                            {
+                                "name": "ProfileEnabled", 
+                                "default": "on", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                }, 
+                                "summary": "Whether to enable the profile", 
+                                "cli-alias": "enabled", 
+                                "display": "Profile Enabled?", 
+                                "description": "Controls whether the profile is enabled. This setting does not modify the administrative state in the B2B Partner Profile object."
+                            }, 
+                            {
+                                "description": "&lt;p>Specific the destination for this partner. The default is &lt;tt>default&lt;/tt> , which uses the setting in the B2B Profile object.&lt;/p>&lt;p>This setting overrides the setting in the B2B Profile object. This setting does not modify the destination in the B2B Partner Profile object.&lt;/p>", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "summary": "Profile Destination", 
+                                "cli-alias": "destination", 
+                                "display": "Profile Destination", 
+                                "name": "ProfileDest"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmB2BActiveProfile"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmB2BActiveProfile"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmB2BActiveProfile"
+            }, 
+            "array": "true", 
+            "cli-alias": "b2b-profile", 
+            "display": "Active Partner Profiles", 
+            "description": "Assigns B2B Partner Profile objects to the gateway."
+        }, 
+        {
+            "name": "B2BGroups", 
+            "type": {
+                "href": "/mgmt/types/default/dmB2BActiveGroup"
+            }, 
+            "summary": "Active profile groups", 
+            "/mgmt/types/default/dmB2BActiveGroup": {
+                "type": {
+                    "name": "dmB2BActiveGroup", 
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Specifies the name of the profile group to attach.", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/B2BProfileGroup"
+                                    }
+                                }, 
+                                "summary": "Name of the profile group.", 
+                                "cli-alias": "group", 
+                                "display": "B2B Profile Group", 
+                                "name": "ProfileGroup"
+                            }, 
+                            {
+                                "name": "GroupEnabled", 
+                                "default": "on", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                }, 
+                                "summary": "Whether to enable the profile group", 
+                                "cli-alias": "enabled", 
+                                "display": "Group Enabled", 
+                                "description": "Controls whether the profile group is enabled. This setting does not modify the administrative state in the B2B Partner Profile Group object."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmB2BActiveGroup"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmB2BActiveGroup"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "b2b-group", 
+            "display": "Active Profile Groups", 
+            "description": "Assigns B2B Partner Profile Groups objects to the gateway."
+        }, 
+        {
+            "name": "DocumentRoutingPreprocessorType", 
+            "/mgmt/types/default/dmB2BDocumentRoutingPreprocessorType": {
+                "type": {
+                    "name": "dmB2BDocumentRoutingPreprocessorType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Document Routing Preprocessor run as XSL stylesheet", 
+                                "display": "Stylesheet", 
+                                "name": "stylesheet"
+                            }, 
+                            {
+                                "summary": "Document Routing Preprocessor run as GatewayScript", 
+                                "display": "GatewayScript", 
+                                "name": "gatewayscript"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmB2BDocumentRoutingPreprocessorType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmB2BDocumentRoutingPreprocessorType"
+                    }
+                }
+            }, 
+            "default": "stylesheet", 
+            "type": {
+                "href": "/mgmt/types/default/dmB2BDocumentRoutingPreprocessorType"
+            }, 
+            "summary": "File type of document routing preprocessor", 
+            "cli-alias": "document-routing-preprocessor-type", 
+            "display": "Processor type", 
+            "description": "Specifies the file type of the document routing preprocessor to run against messages that are not received through AS or ebMS protocols. The default value is stylesheet."
+        }, 
+        {
+            "name": "DocumentRoutingPreprocessor", 
+            "default": "store:///b2b-routing.xsl", 
+            "type": {
+                "href": "/mgmt/types/default/dmURL"
+            }, 
+            "required": "true", 
+            "locations": {
+                "location": [
+                    "store", 
+                    "local"
+                ]
+            }, 
+            "summary": "Location of the document routing preprocessor file", 
+            "/mgmt/types/default/dmURL": {
+                "type": {
+                    "cli-arg": "url", 
+                    "name": "dmURL"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                }
+            }, 
+            "cli-alias": "document-routing-preprocessor", 
+            "display": "File location", 
+            "description": "Specifies the location of a stylesheet or a GatewayScript file, based on the processor type, to run against transactions that cannot be handled by B2B-specific handlers. &lt;ul>&lt;li>A stylesheet examines information from transport headers and other non-content sources to select relevant trading partners. The default stylesheet is &lt;tt>store:///b2b-routing.xsl&lt;/tt> .&lt;/li>&lt;li>A GatewayScript examines information from transport headers and payloads to select relevant trading partners. A Gatewayscript can parse messages of different data types, such as JSON, XML, and non-XML. A sample GatewayScript file is &lt;tt>store:///gateayscript/example-b2b-routing.js&lt;/tt> .&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "name": "DocumentRoutingPreprocessorDebug", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to enable GatewayScript debugger for document routing preprocessor", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "document-routing-preprocessor-debug", 
+            "display": "Enable GatewayScript debugging", 
+            "description": "Specifies whether to enable the GatewayScript debugger to detect and diagnose errors in your document routing preprocessor file. To debug a file, make sure that the file contains one or more debugger; statements at the points in your script where you want to start debugging."
+        }, 
+        {
+            "required": "true", 
+            "name": "ArchiveMode", 
+            "cli-alias": "arch-mode", 
+            "/mgmt/types/default/dmB2BArchiveMode": {
+                "type": {
+                    "name": "dmB2BArchiveMode", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Archive before deleting", 
+                                "display": "Archive and Purge", 
+                                "name": "archpurge"
+                            }, 
+                            {
+                                "summary": "Delete without archiving", 
+                                "display": "Purge Only", 
+                                "name": "purgeonly"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmB2BArchiveMode"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmB2BArchiveMode"
+                    }
+                }
+            }, 
+            "summary": "Archive mode", 
+            "type": {
+                "href": "/mgmt/types/default/dmB2BArchiveMode"
+            }, 
+            "display": "Archive Mode", 
+            "description": "Indicates whether to perform archive operations before removing messages."
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmURL"
+            }, 
+            "name": "ArchiveLocation", 
+            "required-when": {
+                "condition": {
+                    "property-name": "ArchiveMode", 
+                    "evaluation": "property-equals", 
+                    "value": "archpurge"
+                }
+            }, 
+            "summary": "Location of the message archive", 
+            "/mgmt/types/default/dmURL": {
+                "type": {
+                    "cli-arg": "url", 
+                    "name": "dmURL"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "ArchiveMode", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "archpurge"
+                }
+            }, 
+            "cli-alias": "arch-dir", 
+            "display": "Archive Directory URL", 
+            "description": "Specifies the URL of the directory that contains archive files. Use the fully qualified name of the directory. The supported off-device protocol schemes are: HTTP (http://) and HTTPS (https://), NFS (dpnfs://), FTP and FTPS (ftp://), and SFTP (sftp://). To store locally in RAID volume, specify a subdirectory in the configured Hard Disk Array; for example, local:///ondisk. The message archive is in Binary. When archiving to an FTP (or FTPS) destination, ensure that the FTP policies in the associated XML manager enable \"Image (Binary) Data\" for data transfer."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Specifies the base file name for archive files. When archiving, the archive operation appends the current timestamp.", 
+            "name": "ArchiveFileName", 
+            "cli-alias": "arch-file", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "ArchiveMode", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "archpurge"
+                }
+            }, 
+            "summary": "Base file name", 
+            "valid-regexp": "^[_a-zA-Z0-9.-]+$", 
+            "required-when": {
+                "condition": {
+                    "property-name": "ArchiveMode", 
+                    "evaluation": "property-equals", 
+                    "value": "archpurge"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Archive Filename Template", 
+            "maximum-length": 128
+        }, 
+        {
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "ArchiveMinimumSize", 
+            "default": 1024, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "summary": "Minimum size", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "ArchiveMode", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "archpurge"
+                }
+            }, 
+            "units": "KB", 
+            "cli-alias": "arch-minimum-size", 
+            "display": "Archive Minimum Size", 
+            "description": "Specifies the minimum size of the document store before triggering the archive operation. The default is 1024."
+        }, 
+        {
+            "name": "ArchiveDocumentAge", 
+            "default": 90, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt16"
+            }, 
+            "maximum": 3650, 
+            "summary": "Maximum age of processed documents", 
+            "minimum": 1, 
+            "units": "Days", 
+            "/mgmt/types/default/dmUInt16": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt16", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                }
+            }, 
+            "cli-alias": "arch-document-age", 
+            "display": "Archive Document Age", 
+            "description": "Specifies the maximum duration to retain processed documents. After exceeding this duration, automatically archive or purge processed documents. Use any value of 1 - 3650. The default is 90."
+        }, 
+        {
+            "name": "ArchiveMinimumDocuments", 
+            "default": 100, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt16"
+            }, 
+            "summary": "Minimum number of documents to retain", 
+            "minimum": 1, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "ArchiveMode", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "archpurge"
+                }
+            }, 
+            "units": "Documents", 
+            "/mgmt/types/default/dmUInt16": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt16", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                }
+            }, 
+            "cli-alias": "arch-minimum-documents", 
+            "display": "Archive Minimum Documents", 
+            "description": "Specifies the minimum number of documents to retain in the document store at the end of an archive operation. The minimum is 1. The default is 100."
+        }, 
+        {
+            "name": "DiskUseCheckInterval", 
+            "default": 60, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt16"
+            }, 
+            "maximum": 1440, 
+            "summary": "Interval between checks", 
+            "minimum": 1, 
+            "units": "Minutes", 
+            "/mgmt/types/default/dmUInt16": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt16", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                }
+            }, 
+            "cli-alias": "diskuse-check-interval", 
+            "display": "Disk Use Check Interval", 
+            "description": "Sets the interval between checks for documents that exceed the maximum age. During the check, documents that exceed the maximum age are archived or purged. Use any value of 1 - 1440. The default is 60."
+        }, 
+        {
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "MaxDocumentDiskUse", 
+            "default": 25165824, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "summary": "Maximum storage for documents", 
+            "minimum": 1, 
+            "units": "KB", 
+            "cli-alias": "max-diskuse", 
+            "display": "Maximum Disk Usage for Documents", 
+            "description": "Specifies the maximum storage size for documents. When storage exceeds this value, documents are archived or purged. The default is 25165824."
+        }, 
+        {
+            "name": "ArchiveMonitor", 
+            "default": "on", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to use a monitor for the archive task", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "arch-monitor", 
+            "display": "Use an Archive Monitor", 
+            "description": "The monitor can limit the message injection rate to prevent archive problems in a critical situation like performance testing or on a heavily loaded device. When enabled, specify the threshold for the archive monitor in the &lt;b>Threshold for Archive Monitor&lt;/b> field."
+        }, 
+        {
+            "name": "ShapingThreshold", 
+            "default": 200, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt16"
+            }, 
+            "maximum": 10000, 
+            "summary": "Threshold for archive monitor in transactions per second", 
+            "minimum": 10, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "ArchiveMonitor", 
+                    "evaluation": "property-equals", 
+                    "value": "off"
+                }
+            }, 
+            "units": "TPS", 
+            "/mgmt/types/default/dmUInt16": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt16", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                }
+            }, 
+            "cli-alias": "arch-shaping-threshold", 
+            "display": "Threshold for Archive Monitor", 
+            "description": "Specifies the maximum number of transactions to allow per second during the archive task. When the maximum number is reached, the service queues incoming transactions for later processing. If the queue is full, the service rejects incoming transactions and generates a log message. Use any value in the range 10 - 10000. The default value is 200."
+        }, 
+        {
+            "name": "ArchiveBackupDocuments", 
+            "type": {
+                "href": "/mgmt/types/default/dmB2BBackupMsgType"
+            }, 
+            "summary": "Types of document to back up", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "ArchiveMode", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "archpurge"
+                }
+            }, 
+            "/mgmt/types/default/dmB2BBackupMsgType": {
+                "type": {
+                    "name": "dmB2BBackupMsgType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "AS Input message seen from viewer", 
+                                "display": "AS Inbound Message", 
+                                "name": "InMessage"
+                            }, 
+                            {
+                                "summary": "AS Output message seen from viewer", 
+                                "display": "AS Outbound Message", 
+                                "name": "OutMessage"
+                            }, 
+                            {
+                                "summary": "AS MDN seen from viewer", 
+                                "display": "AS Inbound MDN", 
+                                "name": "InMDN"
+                            }, 
+                            {
+                                "summary": "AS MDN seen from viewer", 
+                                "display": "AS Outbound MDN", 
+                                "name": "OutMDN"
+                            }, 
+                            {
+                                "summary": "ebMS2 Input message seen from viewer", 
+                                "display": "ebMS2 Inbound Message", 
+                                "name": "EBMSInMessage"
+                            }, 
+                            {
+                                "summary": "ebMS2 Output message seen from viewer", 
+                                "display": "ebMS2 Outbound Message", 
+                                "name": "EBMSOutMessage"
+                            }, 
+                            {
+                                "summary": "ebMS2 ACK seen from viewer (including positive ACK and negative ACK)", 
+                                "display": "ebMS2 Inbound ACK", 
+                                "name": "EBMSInACK"
+                            }, 
+                            {
+                                "summary": "ebMS2 ACK seen from viewer (including positive ACK and negative ACK)", 
+                                "display": "ebMS2 Outbound ACK", 
+                                "name": "EBMSOutACK"
+                            }, 
+                            {
+                                "summary": "ebMS3 Input message seen from viewer", 
+                                "display": "ebMS3 Inbound Message", 
+                                "name": "EBMS3InMessage"
+                            }, 
+                            {
+                                "summary": "ebMS3 Output message seen from viewer", 
+                                "display": "ebMS3 Outbound Message", 
+                                "name": "EBMS3OutMessage"
+                            }, 
+                            {
+                                "summary": "ebMS3 Receipt seen from viewer (including positive receipt and negative receipt)", 
+                                "display": "ebMS3 Inbound Receipt", 
+                                "name": "EBMS3InRCPT"
+                            }, 
+                            {
+                                "summary": "ebMS3 Receipt seen from viewer (including positive receipt and negative receipt)", 
+                                "display": "ebMS3 Outbound Receipt", 
+                                "name": "EBMS3OutRCPT"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmB2BBackupMsgType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmB2BBackupMsgType"
+                    }
+                }
+            }, 
+            "cli-alias": "arch-backup-documents", 
+            "display": "Documents to Back Up", 
+            "description": "Specifies which type of documents to back up. The transaction viewer lists four types of documents: Content, Input, Output, and MDN/ACK/Receipt. Inbound Message, Outbound Message, and Inbound and outbound MDN/ACK/Receipt correspond to \"Input\", \"Output\", and \"MDN/ACK/Receipt\" respectively. This property does not indicate the inbound or outbound transaction to archive, instead, the property indicates the file type to archive. When the Inbound MDN/ACK/Receipt or Outbound MDN/ACK/Receipt is selected, the DataPower Gateway archives the MDN/ACK/Receipt message documents. When none of four AS/ebMS2/ebMS3 document types are selected, the DataPower Gateway does not archive any type of message documents for any transactions."
+        }, 
+        {
+            "name": "XPathRoutingPolicies", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/B2BXPathRoutingPolicy"
+                }
+            }, 
+            "summary": "XPath Routing Policy", 
+            "array": "true", 
+            "cli-alias": "xpath-routing", 
+            "display": "XPath Routing Policies", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "Specifies the set of policies to extract partner identifiers from XML EDI messages."
+        }, 
+        {
+            "name": "XMLManager", 
+            "default": "default", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/XMLManager"
+                }
+            }, 
+            "required": "true", 
+            "summary": "XML Manager", 
+            "cli-alias": "xml-manager", 
+            "display": "XML Manager", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The XML manager to manage the DataPower service. The XML manager contains the reference to a user agent. The user agent defines the default settings for how the service connects to external services."
+        }, 
+        {
+            "name": "DebugMode", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmDebugMode"
+            }, 
+            "summary": "Controls transaction diagnostic mode", 
+            "cli-alias": "debug-mode", 
+            "display": "Probe setting", 
+            "/mgmt/types/default/dmDebugMode": {
+                "type": {
+                    "name": "dmDebugMode", 
+                    "summary": "Controls for Multistep Probe", 
+                    "display": "Multistep Probe", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Enables the probe to contain a specified number of transactions", 
+                                "display": "On", 
+                                "name": "on", 
+                                "description": "Enables the probe to contain the number of transactions that is defined by the debug history."
+                            }, 
+                            {
+                                "summary": "Disables the probe", 
+                                "display": "Off", 
+                                "name": "off", 
+                                "description": "Disables the probe."
+                            }, 
+                            {
+                                "summary": "Enables the probe to contain 250 transactions", 
+                                "display": "Unbounded", 
+                                "name": "unbounded", 
+                                "description": "Enables the probe to contain 250 transactions. This property is equivalent to specifying a debug history value of 250 transactions."
+                            }
+                        ]
+                    }, 
+                    "description": "Select the behavior of the probe."
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmDebugMode"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmDebugMode"
+                    }
+                }
+            }, 
+            "description": "&lt;p>Select the diagnostic mode for processing policies. When enabled, you can view details about the state of variables and contexts for a captured transaction in the probe. The default value is &lt;tt>off&lt;/tt> .&lt;/p>&lt;p>Transaction diagnostic mode is not intended for use in a production environment. Transaction diagnostic mode consumes significant resources that can slow down transaction processing.&lt;/p>"
+        }, 
+        {
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "name": "DebugHistory", 
+            "default": 25, 
+            "required-when": {
+                "condition": {
+                    "property-name": "DebugMode", 
+                    "evaluation": "property-equals", 
+                    "value": "on"
+                }
+            }, 
+            "maximum": 250, 
+            "summary": "Set the number of records for transaction diagnostic mode in the probe", 
+            "minimum": 10, 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "cli-alias": "debug-history", 
+            "display": "Transaction History", 
+            "description": "Set the number of records for transaction diagnostic mode in the probe. Enter a value in the range 10 - 250. The default value is 25."
+        }, 
+        {
+            "name": "CPAEntries", 
+            "type": {
+                "href": "/mgmt/types/default/dmB2BCPAEntry"
+            }, 
+            "summary": "CPA Entries", 
+            "array": "true", 
+            "/mgmt/types/default/dmB2BCPAEntry": {
+                "type": {
+                    "property-group": {
+                        "member": [
+                            "", 
+                            "", 
+                            "", 
+                            ""
+                        ], 
+                        "name": "summary", 
+                        "display": "Summary"
+                    }, 
+                    "name": "dmB2BCPAEntry", 
+                    "properties": {
+                        "property": [
+                            {
+                                "name": "CPA", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/B2BCPA"
+                                    }
+                                }, 
+                                "required": "true", 
+                                "summary": "CPA", 
+                                "cli-alias": "cpa", 
+                                "display": "CPA", 
+                                "description": "Indicates the CPA to attach."
+                            }, 
+                            {
+                                "name": "Collaboration", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/B2BCPACollaboration"
+                                    }
+                                }, 
+                                "required": "true", 
+                                "summary": "Value of Service element in outbound ebMS request", 
+                                "cli-alias": "collaboration", 
+                                "display": "Service", 
+                                "description": "Indicates the service to attach. A service is either a business collaboration service for exchanging business messages, or an MSH signal service for exchanging MSH signals, including Acknowledgment, Error, StatusRequest, StatusResponse, Ping, and Pong. The value of an MSH signal service is \"urn:oasis:names:tc:ebxml-msg:service\"; A value other than this one represents a business collaboration service."
+                            }, 
+                            {
+                                "name": "InternalPartner", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/B2BProfile"
+                                    }
+                                }, 
+                                "required": "true", 
+                                "summary": "Name of the internal partner profile", 
+                                "cli-alias": "internal-partner", 
+                                "display": "Internal Partner Profile", 
+                                "description": "Indicates the name of the internal partner profile to attach."
+                            }, 
+                            {
+                                "name": "ExternalPartner", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/B2BProfile"
+                                    }
+                                }, 
+                                "required": "true", 
+                                "summary": "Name of the external partner profile", 
+                                "cli-alias": "external-partner", 
+                                "display": "External Partner Profile", 
+                                "description": "Indicates the name of the external partner profile to attach."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmB2BCPAEntry"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmB2BCPAEntry"
+                    }
+                }
+            }, 
+            "cli-alias": "cpa-entry", 
+            "display": "CPA", 
+            "description": "Each CPA entry binds an ebXML messaging service (ebMS) to provide partnership interactions between the internal partner and the external partner. If the message is sent by or to the external partner through an ebMS communication protocol (ebms2:// or ebms2s://), specify &lt;b>CPA ID&lt;/b>, &lt;b>Service&lt;/b>, &lt;b>Internal Partner Profile&lt;/b>, and &lt;b>External Partner Profile&lt;/b> to identify the received ebMS message or route the ebMS message to be sent. &lt;p>You can ping ebMS destination to send an ebMS ping message to the external partner, and requests a synchronous or an asynchronous pong message. The response can be: &lt;ul>&lt;li>&lt;b>Success&lt;/b>: The connection to the external partner is successful.&lt;/li>&lt;li>&lt;b>Unexpected Error&lt;/b>: An error occurs when getting the pong message. Go to &lt;b>View Logs&lt;/b> from the Control Panel for details about the error.&lt;/li>&lt;/ul>&lt;p>If you request an asynchronous pong message, the timeout for getting the response is 30 seconds. If you do not get any response after 30 seconds, go to &lt;b>View Logs&lt;/b> from the Control Panel to find the response in the system log.&lt;/p>&lt;/p>"
+        }, 
+        {
+            "description": "The SQL Data Source object that is associated with current B2B gateway. For transactions using IBM MQFTE destination, IBM MQFTE transfer metadata can be retrieved by clicking the integration ID from B2B viewer as long as IBM MQFTE logger is enabled and this SQL data source object is configured correctly to connect to the database which stores IBM MQFTE transfer metadata. It is recommended that all transactions within one B2B gateway that utilize IBM MQFTE front side handler or IBM MQFTE URL opener should use the same database as IBM MQFTE logger backend database because only one SQL data source object can be associated per B2B gateway.", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SQLDataSource"
+                }
+            }, 
+            "summary": "SQL Data Source", 
+            "cli-alias": "sql-source", 
+            "display": "SQL Data Source", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "SQLDataSource"
+        }, 
+        {
+            "name": "FrontSideTimeout", 
+            "default": 120, 
+            "type": {
+                "href": "/mgmt/types/default/dmTimeInterval"
+            }, 
+            "maximum": 86400, 
+            "summary": "The idle time allowed for a front side connection before the connection is canceled during a transaction.", 
+            "minimum": 1, 
+            "/mgmt/types/default/dmTimeInterval": {
+                "type": {
+                    "cli-arg": "seconds", 
+                    "minimum": 0, 
+                    "name": "dmTimeInterval", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                }
+            }, 
+            "cli-alias": "front-side-timeout", 
+            "display": "Front Side Timeout", 
+            "description": "Controls the amount of time when a front side client connection can be idle before the connection is canceled within a transaction. For a B2B outbound transaction, a front side connection means the connection between an internal back-end application and a B2B gateway. For aB2B inbound transaction, a front side connection means the connection between an external partner and a B2B gateway"
+        }
+    ]
+}

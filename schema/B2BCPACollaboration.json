@@ -1,0 +1,447 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for user annotation.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "name": "InternalRole", 
+            "required-when": {
+                "condition": {
+                    "property-name": "Service", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "urn:oasis:names:tc:ebxml-msg:service"
+                }
+            }, 
+            "summary": "Role of internal party", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "Service", 
+                    "evaluation": "property-equals", 
+                    "value": "urn:oasis:names:tc:ebxml-msg:service"
+                }
+            }, 
+            "cli-alias": "internal-role", 
+            "display": "Internal Role", 
+            "description": "Specifies the authorized role, such as \"buyer\", of the internal party in particular Business Collaboration. When sending an outbound message, the Internal Role is used as the Role element of the From Party; when receiving an inbound message, the Internal Role is used to authorize the Role element of the To Party. Required for a Business Collaboration. Imported from CPA the Role/@name value under the selected internal party. Correspondence between CPA and ebMS message header: Role/@name value of the To party when receiving an incoming ebMS message or of the From party when sending an outbound ebMS message."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "name": "ExternalRole", 
+            "required-when": {
+                "condition": {
+                    "property-name": "Service", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "urn:oasis:names:tc:ebxml-msg:service"
+                }
+            }, 
+            "summary": "Role of external party", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "Service", 
+                    "evaluation": "property-equals", 
+                    "value": "urn:oasis:names:tc:ebxml-msg:service"
+                }
+            }, 
+            "cli-alias": "external-role", 
+            "display": "External Role", 
+            "description": "Specifies the authorized role, such as \"seller\", of the external party in particular Business Collaboration. When sending an outbound message, the External Role is used as the Role element of the To Party; when receiving an inbound message, the External Role is used to authorize the Role element of the From Party. Required for a Business Collaboration. Imported from CPA the Role/@name value under the external party. Correspondence between CPA and ebMS message header: Role/@name value of the From party in the received incoming ebMS message or of the From party in the outbound ebMS message to be sent."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "", 
+            "cli-alias": "process-spec", 
+            "summary": "", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Process Specification", 
+            "name": "ProcessSpecification"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "Service", 
+            "cli-alias": "service", 
+            "required": "true", 
+            "summary": "Value of service", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Service", 
+            "description": "The required Service identifies the service that acts on the message. For outbound message, the value of the Service is used as the value of the Service element in the ebXML Message Header. For inbound transaction, the Service along with CPAId, Internal Partner, and External Partner are used to identify the CPA Entry; the Service value of Collaboration and the Action value of Action binding then provide routing of received message to correct endpoint. Imported from CPA the Service element under ServiceBinding element. Correspondence between CPA and ebMS message header: Service element."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "ServiceType", 
+            "cli-alias": "service-type", 
+            "summary": "Type attribute of service", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "Service", 
+                    "evaluation": "property-equals", 
+                    "value": "urn:oasis:names:tc:ebxml-msg:service"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Service Type", 
+            "description": "If the type is specified, the value will be present in the type attribute of the Service element within the message being sent. If the type is empty, the value of the Service element should be a URI. Imported from CPA the type attribute within the Service element."
+        }, 
+        {
+            "name": "SenderMshSetting", 
+            "required-when": {
+                "condition": {
+                    "property-name": "Service", 
+                    "evaluation": "property-equals", 
+                    "value": "urn:oasis:names:tc:ebxml-msg:service"
+                }
+            }, 
+            "summary": "Default setting for sending ebMS MSH level signals", 
+            "cli-alias": "sender-msh-setting", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/B2BCPASenderSetting"
+                }
+            }, 
+            "display": "Default MSH Signal Sender", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "Specifies the default sender action binding within the MSH Signal Service Collaboration in which the Service attribute is valued \"urn:oasis:names:tc:ebxml-msg:service\". This identifies the deafult setting for sending standalone MSH level signals (i.e., Acknowledgment, Error, StatusRequest, StatusResponse, Ping, Pong). The default can be overridden by Action entry. Created by referencing to the defaultMshChannelId of both parties when CPA import."
+        }, 
+        {
+            "name": "ReceiverMshSetting", 
+            "required-when": {
+                "condition": {
+                    "property-name": "Service", 
+                    "evaluation": "property-equals", 
+                    "value": "urn:oasis:names:tc:ebxml-msg:service"
+                }
+            }, 
+            "summary": "Default setting for receiving ebMS MSH level signals", 
+            "cli-alias": "receiver-msh-setting", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-true"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/B2BCPAReceiverSetting"
+                }
+            }, 
+            "display": "Default MSH Signal Receiver", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "Specifies the default receiver action binding within the MSH Signal Service Collaboration in which the Service attribute is valued \"urn:oasis:names:tc:ebxml-msg:service\". This identifies the deafult setting for receiving standalone MSH level signals (i.e., Acknowledgment, Error, StatusRequest, StatusResponse, Ping, Pong). The default can be optionally overridden by the receiver action entry which is named as the MSH level signal identifier. Created by referencing to the defaultMshChannelId of both parties when CPA import."
+        }, 
+        {
+            "name": "Actions", 
+            "required-when": {
+                "condition": {
+                    "property-name": "Service", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "urn:oasis:names:tc:ebxml-msg:service"
+                }
+            }, 
+            "summary": "Actions", 
+            "/mgmt/types/default/dmCPACollaborationAction": {
+                "type": {
+                    "property-group": [
+                        {
+                            "member": [
+                                "", 
+                                "", 
+                                ""
+                            ], 
+                            "name": "summary", 
+                            "display": "Summary"
+                        }, 
+                        {
+                            "member": [
+                                "", 
+                                "", 
+                                "", 
+                                "", 
+                                ""
+                            ], 
+                            "name": "Action", 
+                            "display": "Action"
+                        }
+                    ], 
+                    "name": "dmCPACollaborationAction", 
+                    "properties": {
+                        "property": [
+                            {
+                                "maximum-length": 128, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "description": "Specifies an ID for naming the action", 
+                                "required": "true", 
+                                "summary": "ID of action binding", 
+                                "cli-alias": "name", 
+                                "display": "Action ID", 
+                                "name": "Name"
+                            }, 
+                            {
+                                "maximum-length": 128, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "description": "Specifies the value of Action. For outbound message, the value will be used in the Action element of the ebXML Message Header; for inbound transaction, the Action value will be used to identify the action binding for processing the incoming message within the Service.", 
+                                "required": "true", 
+                                "summary": "Value of action", 
+                                "cli-alias": "value", 
+                                "display": "Action Value", 
+                                "name": "Value"
+                            }, 
+                            {
+                                "name": "Capability", 
+                                "default": "cansend", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmCPAActionCapability"
+                                }, 
+                                "required": "true", 
+                                "summary": "Type of action binding", 
+                                "cli-alias": "capability", 
+                                "display": "Capability", 
+                                "description": "Specifies the type of this action binding."
+                            }, 
+                            {
+                                "name": "SenderSetting", 
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "Capability", 
+                                        "evaluation": "property-equals", 
+                                        "value": "cansend"
+                                    }
+                                }, 
+                                "summary": "Setting for this sender action", 
+                                "cli-alias": "sender-setting", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Capability", 
+                                        "evaluation": "property-does-not-equal", 
+                                        "value": "cansend"
+                                    }
+                                }, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/B2BCPASenderSetting"
+                                    }
+                                }, 
+                                "display": "Sender Setting", 
+                                "description": "Specifies the name of sender setting to bind. A sender setting defines the Message-sending characteristics in Delivery Channels. It consists of document-exchange configurations and transport configurations."
+                            }, 
+                            {
+                                "name": "ReceiverSetting", 
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "Capability", 
+                                        "evaluation": "property-equals", 
+                                        "value": "canreceive"
+                                    }
+                                }, 
+                                "summary": "Setting for this receiver action", 
+                                "cli-alias": "receiver-setting", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Capability", 
+                                        "evaluation": "property-does-not-equal", 
+                                        "value": "canreceive"
+                                    }
+                                }, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/B2BCPAReceiverSetting"
+                                    }
+                                }, 
+                                "display": "Receiver Setting", 
+                                "description": "Specifies the name of receiver setting to bind. A receiver setting defines the Message-receiving characteristics in Delivery Channels. It consists of document-exchange configurations and transport configurations."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmCPACollaborationAction"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmCPACollaborationAction"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmCPACollaborationAction"
+            }, 
+            "array": "true", 
+            "cli-alias": "action", 
+            "display": "Actions", 
+            "description": "Defines the actions to bind. For a business Collaboration, each Action entry identifies an business message that a Party is capable of sending or receiving. For a Collaboration of MSH level signal, override the sending or receiving behaviors of default sender setting or default receiver setting using the value of \"Acknowledgment\", \"MessageError\", \"StatusRequest\", \"StatusResponse\", \"Ping\", or \"Pong\". Created when importing a CPA and are configurable."
+        }
+    ]
+}

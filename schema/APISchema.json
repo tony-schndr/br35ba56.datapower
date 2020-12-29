@@ -1,0 +1,386 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "A descriptive summary for the API Schema configuration.", 
+            "cli-alias": "summary", 
+            "summary": "Enter a brief descriptive summary for the API Schema configuration.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments", 
+            "name": "UserSummary"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Specifies the schema URL for JSON message validation. For example, &lt;tt>local:///petstore.json#/definitions/Pet&lt;/tt> . To accept all input, use the string &lt;tt>accept&lt;/tt> instead of entering a URL. To reject all input, use the string &lt;tt>reject&lt;/tt> instead of entering a URL.", 
+            "cli-alias": "json-schema", 
+            "summary": "JSON schema URL", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "JSON schema URL", 
+            "name": "JSONSchema"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Specifies the schema URL for GraphQL message validation. For example, &lt;tt>local:///petstore-Pet.graphql&lt;/tt> . To accept all input, use the string &lt;tt>accept&lt;/tt> instead of entering a URL. To reject all input, use the string &lt;tt>reject&lt;/tt> instead of entering a URL.", 
+            "cli-alias": "graphql-schema", 
+            "summary": "GraphQL schema URL", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "GraphQL schema URL", 
+            "name": "GraphQLSchema"
+        }, 
+        {
+            "description": "Specifies the type of XML validation to perform, either XML or WSDL.", 
+            "type": {
+                "href": "/mgmt/types/default/dmXmlSchemaType"
+            }, 
+            "summary": "XML type", 
+            "/mgmt/types/default/dmXmlSchemaType": {
+                "type": {
+                    "summary": "The type of XML schema to specify", 
+                    "display": "XML Schema Type", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "XML", 
+                                "name": "xml", 
+                                "description": "Specify the XML schema for validation."
+                            }, 
+                            {
+                                "display": "WSDL", 
+                                "name": "wsdl", 
+                                "description": "Specify the WSDL schema for validation."
+                            }
+                        ]
+                    }, 
+                    "name": "dmXmlSchemaType"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmXmlSchemaType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmXmlSchemaType"
+                    }
+                }
+            }, 
+            "cli-alias": "xml-type", 
+            "display": "XML type", 
+            "name": "XMLType"
+        }, 
+        {
+            "/mgmt/types/default/dmXmlValidationMode": {
+                "type": {
+                    "summary": "The type of XML validation to perform", 
+                    "display": "XML Validation Mode", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "XSD", 
+                                "name": "xsd", 
+                                "description": "Validate the entire message against the XML schema."
+                            }, 
+                            {
+                                "display": "SOAP Body", 
+                                "name": "soap-body", 
+                                "description": "Validate only the body of a SOAP message against the XML schema."
+                            }
+                        ]
+                    }, 
+                    "name": "dmXmlValidationMode"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmXmlValidationMode"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmXmlValidationMode"
+                    }
+                }
+            }, 
+            "name": "XMLValidationMode", 
+            "type": {
+                "href": "/mgmt/types/default/dmXmlValidationMode"
+            }, 
+            "summary": "The mode for XML validation", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "XMLType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "xml"
+                }
+            }, 
+            "cli-alias": "xml-validation-mode", 
+            "display": "XML validation mode", 
+            "description": "Specifies the mode to validate XML messages: validate the entire message or only the SOAP body of the message."
+        }, 
+        {
+            "name": "XMLSchemaURL", 
+            "cli-alias": "xml-schema-url", 
+            "summary": "XML schema URL", 
+            "/mgmt/types/default/dmURL": {
+                "type": {
+                    "cli-arg": "url", 
+                    "name": "dmURL"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "XMLType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "xml"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmURL"
+            }, 
+            "display": "XML schema URL", 
+            "description": "Specifies the schema URL for XML message validation. For example, &lt;tt>local:///petstore-Pet.xsd&lt;/tt> . To accept all input, use the string &lt;tt>accept&lt;/tt> instead of entering a URL. To reject all input, use the string &lt;tt>reject&lt;/tt> instead of entering a URL."
+        }, 
+        {
+            "name": "WSDLSchemaURL", 
+            "cli-alias": "wsdl-schema-url", 
+            "summary": "WSDL schema URL", 
+            "/mgmt/types/default/dmURL": {
+                "type": {
+                    "cli-arg": "url", 
+                    "name": "dmURL"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "XMLType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "wsdl"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmURL"
+            }, 
+            "display": "WSDL schema URL", 
+            "description": "Specifies the schema URL for WSDL message validation. For example, &lt;tt>local:///petstore-Pet.wsdl&lt;/tt> . To accept all input, use the string &lt;tt>accept&lt;/tt> instead of entering a URL. To reject all input, use the string &lt;tt>reject&lt;/tt> instead of entering a URL."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "WSDLPortQName", 
+            "cli-alias": "wsdl-port", 
+            "summary": "Validate messages from a specific wsdl:port", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "XMLType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "wsdl"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "WSDL Port QName", 
+            "description": "The QName of the WSDL port that defines the service traffic to validate. The value should be a QName in the form \"{namespace-uri}local-part\" or \"*\" for all ports that are defined in the WSDL file. If specified and not \"*\", only messages that are defined for the named port are considered valid."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "WSDLOperationName", 
+            "cli-alias": "wsdl-operation", 
+            "summary": "Validate messages that match the specified wsdl:operation", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "XMLType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "wsdl"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "WSDL Operation Name", 
+            "description": "The name of the WSDL operation that defines the service traffic to validate. The value should be the unqualified name of the operation or \"*\" for all operations that are defined in the WSDL file. If specified and not \"*\", only messages that are defined for operations that match the specified name are considered valid."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "WSDLMessageDirectionOrName", 
+            "cli-alias": "wsdl-message-direction-or-name", 
+            "summary": "Validate messages from wsdl:input, wsdl:output, or wsdl:faults that match the given name or direction", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "XMLType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "wsdl"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "WSDL Message Direction or Name", 
+            "description": "The name or direction of the WSDL input (wsdl:input), output (wsdl:output), or fault (wsdl:fault) that defines the service traffic to be validated. The value should be the name of one or more WSDL input, output, or fault components, or \"#input\" or \"#output\" for the request and response directions respectively, or \"*\" for all inputs, outputs, and faults that are defined in the WSDL file. If specified and not \"*\", only messages that are defined for inputs, outputs, and faults that match the specified name or direction are considered valid. Faults are considered valid for the response direction."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "WSDLAttachmentPart", 
+            "cli-alias": "wsdl-attachment-part", 
+            "summary": "Validate messages defined by mime:content in the WSDL that match the specified message part name", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "XMLType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "wsdl"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "WSDL Attachment Part Name", 
+            "description": "The name of the WSDL message part that defines the content of a MIME attachment (mime:content/@part). The value should be the unqualified name of the message part. The name is the same as the part attribute on the corresponding mime:content component in the WSDL file. When this property is not defined or has the special value \"*\", the root MIME part is validated. The root MIME part is bound to a soap:body."
+        }
+    ]
+}

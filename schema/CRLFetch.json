@@ -1,0 +1,381 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "description": "Define the configuration of an HTTP-enabled or an LDAP-enabled CRL (Certificate Revocation List) update policy. When HTTP, specify the Fetch URL. When LDAP, specify the LDAP bind information. For both, specify the validation credentials.", 
+            "/mgmt/types/default/dmCRLFetchConfig": {
+                "type": {
+                    "name": "dmCRLFetchConfig", 
+                    "actions": {
+                        "action": {
+                            "name": "Ping", 
+                            "parameters": {
+                                "parameter": {
+                                    "name": "RemoteHost", 
+                                    "select": "RemoteAddress"
+                                }
+                            }
+                        }
+                    }, 
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Enter the name of the CRL retrieval policy.", 
+                                "required": "true", 
+                                "summary": "The name of the CRL retrieval policy", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "Policy name", 
+                                "name": "Name"
+                            }, 
+                            {
+                                "description": "Select the protocol to obtain the CRL from the authority.", 
+                                "required": "true", 
+                                "summary": "The protocol to obtain the CRL", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmCRLFetchType"
+                                }, 
+                                "display": "Protocol", 
+                                "name": "FetchType"
+                            }, 
+                            {
+                                "name": "IssuerValcred", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/CryptoValCred"
+                                    }
+                                }, 
+                                "required": "true", 
+                                "summary": "Certificates of CRL issuer", 
+                                "cli-alias": "issuer", 
+                                "display": "Issuer validation credentials", 
+                                "description": "The validation credentials to verify the authenticity of the CRL issuer and, therefor, the CRL. The certificate that the CRL issuer uses must be in the validation credentials for the CRL to be valid."
+                            }, 
+                            {
+                                "name": "RefreshInterval", 
+                                "default": 240, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmTimeInterval"
+                                }, 
+                                "required": "true", 
+                                "maximum": 1440, 
+                                "summary": "Interval between CRL updates", 
+                                "minimum": 1, 
+                                "units": "minutes", 
+                                "cli-alias": "refresh", 
+                                "display": "Refresh interval", 
+                                "description": "The interval in minutes between CRL updates. Enter a value in the range 1 - 1440. The default value is 240."
+                            }, 
+                            {
+                                "name": "DefaultStatus", 
+                                "default": "ok", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmCRLDefaultStatus"
+                                }, 
+                                "summary": "Certificate status if there is no current CRL available", 
+                                "cli-alias": "default-status", 
+                                "display": "Default status", 
+                                "description": "The default status of a certificate if no current CRL is available in the cache."
+                            }, 
+                            {
+                                "name": "CryptographicProfile", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "summary": "The cryptographic profile is deprecated. Use a TLS client profile.", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "SSLClientConfigType", 
+                                        "evaluation": "property-does-not-equal", 
+                                        "value": "proxy"
+                                    }
+                                }, 
+                                "cli-alias": "ssl-profile", 
+                                "display": "Cryptographic profile (deprecated)", 
+                                "description": "A profile that describes the TLS credentials and configuration to establish a secure connection to fetch the CRL."
+                            }, 
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmURL"
+                                }, 
+                                "name": "URL", 
+                                "display": "Fetch URL", 
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "FetchType", 
+                                        "evaluation": "property-equals", 
+                                        "value": "http"
+                                    }
+                                }, 
+                                "summary": "URL of the Certificate Revocation List", 
+                                "cli-alias": "fetch-url", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "evaluation": "logical-true"
+                                    }
+                                }, 
+                                "valid-regexp": "^https?://\\[?[-_a-z0-9A-Z.:]+\\]?(:[0-9]+)?/[ -~]*$", 
+                                "example": "http://foo.com/crl", 
+                                "description": "A URL that specifies the location of the CRL."
+                            }, 
+                            {
+                                "name": "RemoteAddress", 
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "FetchType", 
+                                        "evaluation": "property-equals", 
+                                        "value": "ldap"
+                                    }
+                                }, 
+                                "summary": "LDAP Host name or IP address", 
+                                "cli-alias": "remote-address", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "evaluation": "logical-true"
+                                    }
+                                }, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmHostname"
+                                }, 
+                                "display": "LDAP server", 
+                                "description": "Specify the host name or IP address of the LDAP server to obtain the CRL."
+                            }, 
+                            {
+                                "name": "RemotePort", 
+                                "default": 389, 
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "FetchType", 
+                                        "evaluation": "property-equals", 
+                                        "value": "ldap"
+                                    }
+                                }, 
+                                "summary": "LDAP port", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "evaluation": "logical-true"
+                                    }
+                                }, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmIPPort"
+                                }, 
+                                "display": "LDAP port", 
+                                "description": "The remote LDAP port. Enter a value in the range 1 - 65535. The default value is 389. For LDAP over TLS, the standard port is 636."
+                            }, 
+                            {
+                                "name": "DN", 
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "FetchType", 
+                                        "evaluation": "property-equals", 
+                                        "value": "ldap"
+                                    }
+                                }, 
+                                "summary": "LDAP DN of issuing CA", 
+                                "cli-alias": "read-dn", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "evaluation": "logical-true"
+                                    }
+                                }, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "display": "LDAP read DN", 
+                                "description": "A string containing the DN of the CA that issued the target CRL."
+                            }, 
+                            {
+                                "name": "BindDN", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "summary": "LDAP DN to login", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "FetchType", 
+                                        "evaluation": "property-equals", 
+                                        "value": "http"
+                                    }
+                                }, 
+                                "cli-alias": "bind-dn", 
+                                "display": "LDAP bind DN", 
+                                "description": "A string containing the DN to login to the LDAP server."
+                            }, 
+                            {
+                                "name": "BindPass", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "summary": "LDAP bind password", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "evaluation": "logical-or", 
+                                        "condition": [
+                                            {
+                                                "property-name": "FetchType", 
+                                                "evaluation": "property-equals", 
+                                                "value": "http"
+                                            }, 
+                                            {
+                                                "property-name": "BindPass", 
+                                                "evaluation": "property-equals", 
+                                                "value": ""
+                                            }
+                                        ]
+                                    }
+                                }, 
+                                "cli-alias": "bind-pass", 
+                                "display": "LDAP bind password (deprecated)", 
+                                "description": "A string containing the password to login to the LDAP server. Use the LDAP bind password."
+                            }, 
+                            {
+                                "name": "BindPassAlias", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/PasswordAlias"
+                                    }
+                                }, 
+                                "summary": "LDAP bind password alias", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "FetchType", 
+                                        "evaluation": "property-equals", 
+                                        "value": "http"
+                                    }
+                                }, 
+                                "cli-alias": "bind-pass-alias", 
+                                "display": "LDAP bind password alias", 
+                                "description": "A string containing the password alias of the password to login to the LDAP server."
+                            }, 
+                            {
+                                "name": "LDAPVersion", 
+                                "default": "v2", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmLDAPVersion"
+                                }, 
+                                "summary": "LDAP version", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "FetchType", 
+                                        "evaluation": "property-equals", 
+                                        "value": "http"
+                                    }
+                                }, 
+                                "cli-alias": "ldap-version", 
+                                "display": "LDAP version", 
+                                "description": "The LDAP server version."
+                            }, 
+                            {
+                                "name": "LDAPReadTimeout", 
+                                "default": 60, 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmTimeInterval"
+                                }, 
+                                "maximum": 86400, 
+                                "summary": "Number of seconds to wait for a response from the LDAP server before the DataPower Gateway closes the connection", 
+                                "minimum": 0, 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "FetchType", 
+                                        "evaluation": "property-equals", 
+                                        "value": "http"
+                                    }
+                                }, 
+                                "units": "seconds", 
+                                "cli-alias": "ldap-readtimeout", 
+                                "display": "LDAP Read Timeout", 
+                                "description": "The number of seconds to wait for a response from the LDAP server before the DataPower Gateway closes the LDAP connection. Enter a value in the range 0 - 86400. The default value is 60. A value of 0 indicates that the connection never times out."
+                            }, 
+                            {
+                                "name": "SSLClientConfigType", 
+                                "default": "proxy", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmSSLClientConfigType"
+                                }, 
+                                "summary": "Set the TLS profile type to secure connections between the DataPower Gateway and its targets", 
+                                "cli-alias": "ssl-client-type", 
+                                "display": "TLS client type", 
+                                "description": "The TLS profile type to secure connections between the DataPower Gateway and its targets."
+                            }, 
+                            {
+                                "name": "SSLClient", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference", 
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/SSLClientProfile"
+                                    }
+                                }, 
+                                "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and its targets", 
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "SSLClientConfigType", 
+                                        "evaluation": "property-does-not-equal", 
+                                        "value": "client"
+                                    }
+                                }, 
+                                "cli-alias": "ssl-client", 
+                                "display": "TLS client profile", 
+                                "description": "The TLS client profile to secure connections between the DataPower Gateway and its targets."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmCRLFetchConfig"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmCRLFetchConfig"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "type": {
+                "href": "/mgmt/types/default/dmCRLFetchConfig"
+            }, 
+            "display": "CRL update policy", 
+            "name": "CRLFetchConfig"
+        }
+    ]
+}

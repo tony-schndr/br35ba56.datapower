@@ -30,8 +30,9 @@ valcred_cert_is_array = {
         "name": "valcred"
     }
 }
+
 schema_ethernet_interface = {
-    "children": [
+    "types": [
         {
             "_links": {
                 "doc": {
@@ -399,7 +400,7 @@ schema_ethernet_interface = {
             }
         }
     ],
-    "parent": {
+    "metadata": {
         "_links": {
             "doc": {
                 "href": "/mgmt/docs/metadata/EthernetInterface"
@@ -1600,9 +1601,710 @@ schema_ethernet_interface = {
     }
 }
 
+aaa_policy_schema_response = {
+    "_links": {
+        "self": {
+            "href": "/mgmt/metadata/default/AAAPolicy"
+        },
+        "doc": {
+            "href": "/mgmt/docs/metadata/AAAPolicy"
+        }
+    },
+    "object": {
+        "name": "AAAPolicy",
+        "uri": "xml/aaapolicy",
+        "cli-alias": "aaapolicy",
+        "cmd-group": "aaapolicy",
+        "licensed-feature": "IDG",
+        "property-group": [
+            {
+                "name": "main",
+                "member": [
+                    {
+                        "name": "mAdminState"
+                    },
+                    {
+                        "name": "UserSummary"
+                    },
+                    {
+                        "name": "DynConfig"
+                    },
+                    {
+                        "name": "ExternalAAATemplate"
+                    },
+                    {
+                        "name": "DynConfigCustomURL"
+                    },
+                    {
+                        "name": "AuthorizedCounter"
+                    },
+                    {
+                        "name": "RejectedCounter"
+                    },
+                    {
+                        "name": "SAMLValcred"
+                    },
+                    {
+                        "name": "SAMLSigningKey"
+                    },
+                    {
+                        "name": "SAMLSigningCert"
+                    },
+                    {
+                        "name": "SAMLSigningHashAlg"
+                    },
+                    {
+                        "name": "SAMLSigningAlg"
+                    },
+                    {
+                        "name": "LDAPsuffix"
+                    },
+                    {
+                        "name": "LogAllowed"
+                    },
+                    {
+                        "name": "LogAllowedLevel"
+                    },
+                    {
+                        "name": "LogRejected"
+                    },
+                    {
+                        "name": "LogRejectedLevel"
+                    },
+                    {
+                        "name": "WSSecureConversationCryptoKey"
+                    },
+                    {
+                        "name": "SAMLSourceIDMappingFile"
+                    },
+                    {
+                        "name": "PingIdentityCompatibility"
+                    },
+                    {
+                        "name": "SAML2MetadataFile"
+                    },
+                    {
+                        "name": "DoSValve"
+                    },
+                    {
+                        "name": "LDAPVersion"
+                    },
+                    {
+                        "name": "EnforceSOAPActor"
+                    },
+                    {
+                        "name": "WSSecActorRoleID"
+                    }
+                ],
+                "display": "Main"
+            },
+            {
+                "name": "summary",
+                "member": {
+                    "name": "UserSummary"
+                }
+            },
+            {
+                "name": "Identity",
+                "member": {
+                    "name": "ExtractIdentity"
+                },
+                "display": "Identity extraction"
+            },
+            {
+                "name": "Authenticate",
+                "member": [
+                    {
+                        "name": "Authenticate"
+                    },
+                    {
+                        "name": "AUSMHTTPHeader"
+                    }
+                ],
+                "display": "Authentication"
+            },
+            {
+                "name": "MapCredentials",
+                "member": {
+                    "name": "MapCredentials"
+                },
+                "display": "Credential mapping"
+            },
+            {
+                "name": "Resource",
+                "member": {
+                    "name": "ExtractResource"
+                },
+                "display": "Resource extraction"
+            },
+            {
+                "name": "MapResource",
+                "member": {
+                    "name": "MapResource"
+                },
+                "display": "Resource mapping"
+            },
+            {
+                "name": "Authorize",
+                "member": [
+                    {
+                        "name": "Authorize"
+                    },
+                    {
+                        "name": "AZSMHTTPHeader"
+                    }
+                ],
+                "display": "Authorization"
+            },
+            {
+                "name": "PostProcessing",
+                "member": {
+                    "name": "PostProcess"
+                },
+                "display": "Postprocessing"
+            }
+        ],
+        "actions": {
+            "action": {
+                "name": "FlushAAACache",
+                "parameters": {
+                    "parameter": {
+                        "name": "PolicyName",
+                        "select": "dmObjectName"
+                    }
+                },
+                "display": "Flush cache"
+            }
+        },
+        "display": "AAA Policy",
+        "summary": "A description of the policy for doing authentication and authorization.",
+        "description": "An AAA policy establishes the configuration to support the authentication and authorization of users requesting resources from the back-end servers. An AAA policy consists of the following components. &lt;table>&lt;tr>&lt;td valign=\"top\">Identity extraction&lt;/td>&lt;td>One of many methods that discovers which identity is asserted in the service request. This processing phase answers the question, \"What is your name?\"&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Authentication&lt;/td>&lt;td>One of many methods that authenticates the asserted identity. Methods include communication with external authorities, such as an LDAP server. The identity is accepted as authentic or rejected. When authenticated successfully, the identity is used as a credential.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Resource extraction&lt;/td>&lt;td>One of many methods that discovers which resource service is requested (such as query an account or perform an update) This processing phase answers the question, \"What do you want to do?\"&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Credential mapping&lt;/td>&lt;td>While an identity can be authenticated by one authority as valid, this identity or credential might not be known to the authority that authorizes the requested resource. This processing phase allows the mapping of credentials from one form to another for interoperability between systems.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Resource mapping&lt;/td>&lt;td>While a resource can be identified from the service request, this resource name might not be known to the authority that authorizes use of the requested resource. This processing phase allows the mapping of resource names from one form to another for interoperability between systems.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Authorization&lt;/td>&lt;td>The combination of the authenticated and possibly remapped credential with the requested and possibly remapped resource are submitted to an authority for authorization. That authority could reside elsewhere on the network. The request for service is accepted or rejected.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">Postprocessing&lt;/td>&lt;td>Additional processing to perform after authorization, such as the generation of a WS-Trust token or SAML assertion.&lt;/td>&lt;/tr>&lt;/table>",
+        "properties": {
+            "property": [
+                {
+                    "name": "mAdminState",
+                    "type": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    },
+                    "cli-alias": "admin-state",
+                    "default": "enabled",
+                    "display": "Administrative state",
+                    "summary": "Set the administrative state of this configuration.",
+                    "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>",
+                    "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                    "label": "Enable administrative state"
+                },
+                {
+                    "name": "UserSummary",
+                    "type": {
+                        "href": "/mgmt/types/default/dmString"
+                    },
+                    "cli-alias": "summary",
+                    "display": "Comments",
+                    "summary": "Brief summary for user annotation."
+                },
+                {
+                    "name": "AuthorizedCounter",
+                    "type": {
+                        "href": "/mgmt/types/default/dmReference",
+                        "reference-to": {
+                            "href": "/mgmt/metadata/default/CountMonitor"
+                        }
+                    },
+                    "cli-alias": "authorized-counter",
+                    "display": "Authorized counter",
+                    "summary": "Monitor for authorized messages. The count monitor should be configured with an XPath as the measure."
+                },
+                {
+                    "name": "RejectedCounter",
+                    "type": {
+                        "href": "/mgmt/types/default/dmReference",
+                        "reference-to": {
+                            "href": "/mgmt/metadata/default/CountMonitor"
+                        }
+                    },
+                    "cli-alias": "rejected-counter",
+                    "display": "Rejected counter",
+                    "summary": "Monitor for rejected messages. The count monitor should be configured with an XPath as the measure."
+                },
+                {
+                    "name": "NamespaceMapping",
+                    "array": "true",
+                    "type": {
+                        "href": "/mgmt/types/default/dmNamespaceMapping"
+                    },
+                    "cli-alias": "namespace-mapping",
+                    "display": "Namespace mapping",
+                    "summary": "Map namespaces to Namespace URIs.",
+                    "description": "Establishes namespace mappings for namespaces that might be encountered in requests. A mapping is a prefix and URI."
+                },
+                {
+                    "name": "ExtractIdentity",
+                    "type": {
+                        "href": "/mgmt/types/default/dmAAAPExtractIdentity"
+                    },
+                    "required": "true",
+                    "cli-alias": "extract-identity",
+                    "display": "Identity extraction",
+                    "summary": "How to extract identity information.",
+                    "description": "Select a method to extract the identity claimed or asserted in the service request."
+                },
+                {
+                    "name": "Authenticate",
+                    "type": {
+                        "href": "/mgmt/types/default/dmAAAPAuthenticate"
+                    },
+                    "required": "true",
+                    "cli-alias": "authenticate",
+                    "display": "Authentication",
+                    "summary": "How to authenticate the identity.",
+                    "description": "Select a method to authenticate the extracted identity."
+                },
+                {
+                    "name": "MapCredentials",
+                    "type": {
+                        "href": "/mgmt/types/default/dmAAAPMapCredentials"
+                    },
+                    "required": "true",
+                    "cli-alias": "map-credentials",
+                    "display": "Credential mapping",
+                    "summary": "How to map credentials to what can be used for authorization."
+                },
+                {
+                    "name": "ExtractResource",
+                    "type": {
+                        "href": "/mgmt/types/default/dmAAAPExtractResource"
+                    },
+                    "required": "true",
+                    "cli-alias": "extract-resource",
+                    "display": "Resource extraction",
+                    "summary": "How to extract resource information."
+                },
+                {
+                    "name": "MapResource",
+                    "type": {
+                        "href": "/mgmt/types/default/dmAAAPMapResource"
+                    },
+                    "required": "true",
+                    "cli-alias": "map-resource",
+                    "display": "Resource mapping",
+                    "summary": "How to map resources to what can be used for authorization."
+                },
+                {
+                    "name": "Authorize",
+                    "type": {
+                        "href": "/mgmt/types/default/dmAAAPAuthorize"
+                    },
+                    "required": "true",
+                    "cli-alias": "authorize",
+                    "display": "Authorization",
+                    "summary": "How to grant or deny a request."
+                },
+                {
+                    "name": "PostProcess",
+                    "type": {
+                        "href": "/mgmt/types/default/dmAAAPPostProcess"
+                    },
+                    "required": "true",
+                    "cli-alias": "post-process",
+                    "display": "Postprocessing",
+                    "summary": "Which postprocessing activities to perform."
+                },
+                {
+                    "name": "SAMLAttribute",
+                    "array": "true",
+                    "type": {
+                        "href": "/mgmt/types/default/dmSAMLAttributeNameAndValue"
+                    },
+                    "cli-alias": "saml-attribute",
+                    "display": "SAML attributes",
+                    "summary": "Namespace URI, local name, and expected value of SAML attributes."
+                },
+                {
+                    "name": "LTPAAttributes",
+                    "array": "true",
+                    "type": {
+                        "href": "/mgmt/types/default/dmLTPAUserAttributeNameAndValue"
+                    },
+                    "cli-alias": "ltpa-attribute",
+                    "display": "LTPA user attributes",
+                    "summary": "User attribute name-value pairs encoded in the generated LTPA token."
+                },
+                {
+                    "name": "TransactionPriority",
+                    "array": "true",
+                    "type": {
+                        "href": "/mgmt/types/default/dmAAATransactionPriority"
+                    },
+                    "cli-alias": "transaction-priority",
+                    "display": "Transaction priority",
+                    "summary": "Transaction priority."
+                },
+                {
+                    "name": "SAMLValcred",
+                    "type": {
+                        "href": "/mgmt/types/default/dmReference",
+                        "reference-to": {
+                            "href": "/mgmt/metadata/default/CryptoValCred"
+                        }
+                    },
+                    "cli-alias": "saml-valcred",
+                    "display": "SAML signature validation credentials",
+                    "summary": "SAML signature validation credentials."
+                },
+                {
+                    "name": "SAMLSigningKey",
+                    "type": {
+                        "href": "/mgmt/types/default/dmReference",
+                        "reference-to": {
+                            "href": "/mgmt/metadata/default/CryptoKey"
+                        }
+                    },
+                    "cli-alias": "saml-sign-key",
+                    "display": "SAML message signing key",
+                    "summary": "SAML message signing key."
+                },
+                {
+                    "name": "SAMLSigningCert",
+                    "type": {
+                        "href": "/mgmt/types/default/dmReference",
+                        "reference-to": {
+                            "href": "/mgmt/metadata/default/CryptoCertificate"
+                        }
+                    },
+                    "cli-alias": "saml-sign-cert",
+                    "display": "SAML message signing certificate",
+                    "summary": "SAML message signing certificate."
+                },
+                {
+                    "name": "SAMLSigningHashAlg",
+                    "type": {
+                        "href": "/mgmt/types/default/dmCryptoHashAlgorithm"
+                    },
+                    "cli-alias": "saml-sign-hash",
+                    "display": "SAML signing message digest algorithm",
+                    "summary": "The hash algorithm used for SAML signing message."
+                },
+                {
+                    "name": "SAMLSigningAlg",
+                    "type": {
+                        "href": "/mgmt/types/default/dmCryptoSigningAlgorithm"
+                    },
+                    "cli-alias": "saml-sign-alg",
+                    "display": "SAML message signing algorithm",
+                    "summary": "Algorithm to sign SAML messages.",
+                    "description": "Select the algorithm to sign SAML messages. rsa and dsa are supported by older releases. rsa is same as rsa-sha1. dsa is same as dsa-sha1."
+                },
+                {
+                    "name": "LDAPsuffix",
+                    "type": {
+                        "href": "/mgmt/types/default/dmString"
+                    },
+                    "cli-alias": "ldap-suffix",
+                    "default": "",
+                    "display": "LDAP suffix",
+                    "summary": "LDAP suffix.",
+                    "description": "The string to added to the username (separated by a comma) to form a distinguished name (DN) for LDAP authentication. For example, if the string value is \"O=example.com\" and the username is \"Bob\", the LDAP DN is \"CN=Bob,O=example.com\"."
+                },
+                {
+                    "name": "LogAllowed",
+                    "type": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    },
+                    "required": "true",
+                    "cli-alias": "log-allowed",
+                    "default": "on",
+                    "display": "Log allowed",
+                    "summary": "Log allowed AAA attempts.",
+                    "description": "Determines whether to log messages about allowed AAA attempts."
+                },
+                {
+                    "name": "LogAllowedLevel",
+                    "type": {
+                        "href": "/mgmt/types/default/dmLogLevel"
+                    },
+                    "cli-alias": "log-allowed-level",
+                    "default": "info",
+                    "required-when": {
+                        "condition": {
+                            "evaluation": "property-equals",
+                            "property-name": "LogAllowed",
+                            "value": "on"
+                        }
+                    },
+                    "ignored-when": {
+                        "condition": {
+                            "evaluation": "logical-true"
+                        }
+                    },
+                    "display": "Log allowed level",
+                    "summary": "Level to log allowed AAA attempts.",
+                    "description": "The level to log messages about allowed AAA attempts."
+                },
+                {
+                    "name": "LogRejected",
+                    "type": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    },
+                    "required": "true",
+                    "cli-alias": "log-rejected",
+                    "default": "on",
+                    "display": "Log rejected",
+                    "summary": "Log rejected AAA attempts.",
+                    "description": "Determines whether to log messages about rejected AAA attempts."
+                },
+                {
+                    "name": "LogRejectedLevel",
+                    "type": {
+                        "href": "/mgmt/types/default/dmLogLevel"
+                    },
+                    "cli-alias": "log-rejected-level",
+                    "default": "warn",
+                    "required-when": {
+                        "condition": {
+                            "evaluation": "property-equals",
+                            "property-name": "LogRejected",
+                            "value": "on"
+                        }
+                    },
+                    "ignored-when": {
+                        "condition": {
+                            "evaluation": "logical-true"
+                        }
+                    },
+                    "display": "Log rejected level",
+                    "summary": "Level to log rejected Level.",
+                    "description": "The level to log messages about rejected AAA attempts."
+                },
+                {
+                    "name": "WSSecureConversationCryptoKey",
+                    "type": {
+                        "href": "/mgmt/types/default/dmReference",
+                        "reference-to": {
+                            "href": "/mgmt/metadata/default/CryptoCertificate"
+                        }
+                    },
+                    "cli-alias": "wstrust-encrypt-key",
+                    "display": "WS-Trust encryption recipient certificate",
+                    "summary": "Certificate that corresponds to the key that encrypts a WS-Trust secret.",
+                    "description": "When generating a WS-Trust token associated with a secret key (such as a WS-SecureConversation token), use this key to encrypt the initial secret."
+                },
+                {
+                    "name": "SAMLSourceIDMappingFile",
+                    "type": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    },
+                    "cli-alias": "saml-artifact-mapping",
+                    "locations": {
+                        "location": [
+                            "local",
+                            "store"
+                        ]
+                    },
+                    "display": "SAML Artifact mapping file",
+                    "summary": "File that contains the SAML Artifact mapping.",
+                    "description": "The file that contains a mapping of SAML Artifact source IDs to artifact retrieval endpoints. This file is required only if artifacts are retrieved from multiple endpoints and the source ID for these endpoints are encoded in the artifact itself, as per the SAML specification. If there is only one artifact retrieval URL, it can be specified by the SAML Artifact responder URL in the authentication phase."
+                },
+                {
+                    "name": "PingIdentityCompatibility",
+                    "type": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    },
+                    "cli-alias": "ping-identity-compatibility",
+                    "default": "off",
+                    "display": "PingIdentity compatibility",
+                    "summary": "PingIdentity compatibility.",
+                    "description": "Enable PingIdentity compatibility when using SAML for authentication or authorization."
+                },
+                {
+                    "name": "SAML2MetadataFile",
+                    "type": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    },
+                    "cli-alias": "saml2-metadata",
+                    "locations": {
+                        "location": [
+                            "local",
+                            "store"
+                        ]
+                    },
+                    "display": "SAML 2.0 metadata file",
+                    "summary": "File that contains SAML 2.0 metadata.",
+                    "description": "The file that contains metadata used in SAML 2.0 protocol message exchanges. This metadata is used to identify Identity Provider endpoints and certificates needed to secure SAML 2.0 message exchanges. This file must have a &amp;lt;md:EntitiesDescriptor> top-level element, with one or more &amp;lt;EntityDescriptor> child elements (one per Identity Provider)."
+                },
+                {
+                    "name": "DoSValve",
+                    "type": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    },
+                    "cli-alias": "dos-valve",
+                    "minimum": 1,
+                    "maximum": 1000,
+                    "default": 3,
+                    "display": "DoS flooding attack valve",
+                    "summary": "Value to filter out denial-of-service (DoS) attacks.",
+                    "description": "Set the maximum times of same XML processing that AAA policy allows for each user request. The AAA policy assumes that more than this value of the same processing is caused by potential DoS flooding attacks. The AAA policy limits the number of times to process the same request. These processes can include encryption, decryption, message signing, or signature verification. Currently, only identity extraction with subject DN from certificate in message signature and authorization with signer certificate for digitally signed messages support this setting. These methods designate the number of signatures or signing reference URIs. &lt;p>The default value is 3. This value means that the AAA policy processes only the first 3 signature and each signature can contain up to 3 reference URIs. Additional signatures or reference URIs are ignored.&lt;/p>"
+                },
+                {
+                    "name": "LDAPVersion",
+                    "type": {
+                        "href": "/mgmt/types/default/dmLDAPVersion"
+                    },
+                    "cli-alias": "ldap-version",
+                    "default": "v2",
+                    "display": "LDAP version",
+                    "summary": "Version of the LDAP protocol for bind.",
+                    "description": "Select the LDAP protocol version to use for the bind operation. The default value is v2."
+                },
+                {
+                    "name": "EnforceSOAPActor",
+                    "type": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    },
+                    "cli-alias": "enforce-actor-role",
+                    "default": "on",
+                    "display": "Enforce actor or role for WS-Security message",
+                    "summary": "Enforce the S11::actor or S12:role when the message is a WS-Security message.",
+                    "description": "Most of the times a WS-Security message has an S11:actor or S12:role attribute for its wsse:Security header, we can enforce those attributes when AAA tries to utilize wsse:Security header, for example, there should be only one wsse:Security element having same actor/role, and AAA should only process the wsse:Security header for the designated Actor/Role Identifier. This setting takes effect for all AAA steps except postprocessing, which generally generate new message for next SOAP node. The default value for this setting is 'on', enabling SOAP actor/role enforcement."
+                },
+                {
+                    "name": "WSSecActorRoleID",
+                    "type": {
+                        "href": "/mgmt/types/default/dmString"
+                    },
+                    "cli-alias": "actor-role-id",
+                    "default": "",
+                    "ignored-when": {
+                        "condition": {
+                            "evaluation": "property-equals",
+                            "property-name": "EnforceSOAPActor",
+                            "value": "off"
+                        }
+                    },
+                    "display": "WS-Security actor or role identifier",
+                    "summary": "The assumed S11:actor or S12:role identifier that the AAA policy act as.",
+                    "description": "If specified, the AAA policy acts as the assumed actor or role when it consumes the wsse:Security headers. This setting takes effect only when the AAA policy tries to process the incoming WS-Security message before making an authorization decision. Postprocessing does not use this setting. Postprocessing uses its own setting in generating WS-Security messages for the next SOAP node. Some well-known values are as follows: &lt;table border=\"1\">&lt;tr>&lt;td valign=\"left\">http://schemas.xmlsoap.org/soap/actor/next&lt;/td>&lt;td>Every one, including the intermediary and ultimate receiver, receives the message should be able to processing the Security header.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"left\">http://www.w3.org/2003/05/soap-envelope/role/none&lt;/td>&lt;td>No one should process the Security Header.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"left\">http://www.w3.org/2003/05/soap-envelope/role/next&lt;/td>&lt;td>Every one, including the intermediary and ultimate receiver, receives the message should be able to processing the Security header.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"left\">http://www.w3.org/2003/05/soap-envelope/role/ultimateReceiver&lt;/td>&lt;td>The message ultimate receiver can process the Security header. This is the default value if such setting is not configured.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"left\">&amp;lt;blank or empty string>&lt;/td>&lt;td>The empty string \"\" (without quotes) indicates that no \"actor/role\" identifier is configured. if there is no actor/role setting configured, the ultimateReceiver is assumed when processing the message, and no actor/role attribute will be added when generating the WS-Security header. There should not be more than one Security headers omitting the actor/role identifier.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"left\">USE_MESSAGE_BASE_URI&lt;/td>&lt;td>The value \"USE_MESSAGE_BASE_URI\" without quotes indicates that the actor/role identifier will be the base URL of the message, if the SOAP message is transported using HTTP, the base URI is the Request-URI of the http request.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"left\">any other customized string&lt;/td>&lt;td>You can input any string to identify the actor or role of the Security header.&lt;/td>&lt;/tr>&lt;/table>&lt;p>The default value is a blank value.&lt;/p>"
+                },
+                {
+                    "name": "AUSMHTTPHeader",
+                    "array": "true",
+                    "type": {
+                        "href": "/mgmt/types/default/dmString"
+                    },
+                    "cli-alias": "au-sm-http-header",
+                    "ignored-when": {
+                        "condition": {
+                            "evaluation": "property-value-not-in-list",
+                            "property-name": "AUSMHeaderFlow",
+                            "value": [
+                                "frontend",
+                                "backend",
+                                "frontend+backend"
+                            ]
+                        }
+                    },
+                    "display": "HTTP headers",
+                    "summary": "HTTP headers of interest from CA Single Sign-on responses to include in responses or requests if configured",
+                    "description": "Specifies the HTTP headers from CA Single Sign-On responses. When specified, these headers are included into the request or response headers based on the setting of the CA Single Sign-on header flow."
+                },
+                {
+                    "name": "AZSMHTTPHeader",
+                    "array": "true",
+                    "type": {
+                        "href": "/mgmt/types/default/dmString"
+                    },
+                    "cli-alias": "az-sm-http-header",
+                    "ignored-when": {
+                        "condition": {
+                            "evaluation": "property-value-not-in-list",
+                            "property-name": "AZSMHeaderFlow",
+                            "value": [
+                                "frontend",
+                                "backend",
+                                "frontend+backend"
+                            ]
+                        }
+                    },
+                    "display": "HTTP headers",
+                    "summary": "HTTP headers of interest from CA Single Sign-on responses to include in responses or requests if configured",
+                    "description": "Specifies the HTTP headers from CA Single Sign-On responses. When specified, these headers are included into the request or response headers based on the setting of the CA Single Sign-on header flow."
+                },
+                {
+                    "name": "DynConfig",
+                    "type": {
+                        "href": "/mgmt/types/default/dmDynConfigType"
+                    },
+                    "required": "true",
+                    "cli-alias": "dyn-config",
+                    "default": "none",
+                    "display": "Dynamic configuration type",
+                    "summary": "How to obtain the AAA policy configuration dynamically",
+                    "description": "Specifies how to obtain the AAA policy configuration dynamically. Dynamic configuration enables users to configure AAA policy at run time. When enabled, the configuration of AAA is determined dynamically based on the template AAA policy and the parameters that the dynamic configuration custom URL returns."
+                },
+                {
+                    "name": "ExternalAAATemplate",
+                    "type": {
+                        "href": "/mgmt/types/default/dmReference",
+                        "reference-to": {
+                            "href": "/mgmt/metadata/default/AAAPolicy"
+                        }
+                    },
+                    "cli-alias": "external-aaa-template",
+                    "required-when": {
+                        "condition": {
+                            "evaluation": "property-value-in-list",
+                            "property-name": "DynConfig",
+                            "value": "external-aaa"
+                        }
+                    },
+                    "ignored-when": {
+                        "condition": {
+                            "evaluation": "logical-true"
+                        }
+                    },
+                    "display": "External AAA policy template",
+                    "summary": "The external AAA policy to use as the template",
+                    "description": "Specifies an external AAA policy to use as the template. When specified, it overwrites the configuration of the current AAA policy."
+                },
+                {
+                    "name": "DynConfigCustomURL",
+                    "type": {
+                        "href": "/mgmt/types/default/dmURL"
+                    },
+                    "cli-alias": "dyn-config-custom-url",
+                    "required-when": {
+                        "condition": {
+                            "evaluation": "logical-or",
+                            "condition": [
+                                {
+                                    "evaluation": "property-value-in-list",
+                                    "property-name": "DynConfig",
+                                    "value": "current-aaa"
+                                },
+                                {
+                                    "evaluation": "property-value-in-list",
+                                    "property-name": "DynConfig",
+                                    "value": "external-aaa"
+                                }
+                            ]
+                        }
+                    },
+                    "ignored-when": {
+                        "condition": {
+                            "evaluation": "logical-true"
+                        }
+                    },
+                    "display": "Dynamic configuration custom URL",
+                    "summary": "The location of the custom stylesheet or GatewayScript file",
+                    "description": "&lt;p>Specifies the location of the custom stylesheet or GatewayScript file where to obtain the AAA policy configuration. The obtained configuration overwrites the configuration that is defined in the template AAA policy. In the custom stylesheet or GatewayScript file, it is recommended that you modify only those properties to be dynamically overwritten in the template AAA policy.&lt;/p>&lt;p>See the &lt;tt>ModifyAAAPolicy&lt;/tt> element in the store:///xml-mgmt.xsd schema to construct a schema-compliant AAA configuration. For the nodeset that the custom URL is expected to return and a sample stylesheet, see the topic in IBM Knowledge Center.&lt;/p>"
+                }
+            ]
+        }
+    }
+}
 
-config_info_schema_response = {
-            "children": [
+valcred_schema_response = {
+            "types": [
                 {
                     "_links": {
                         "doc": {
@@ -1745,7 +2447,7 @@ config_info_schema_response = {
                     }
                 }
             ],
-            "parent": {
+            "metadata": {
                 "_links": {
                     "doc": {
                         "href": "/mgmt/docs/metadata/CryptoValCred"
@@ -1908,7 +2610,6 @@ config_info_schema_response = {
                 }
             }
         }
-    
 
 
 valcred_schema_resp = {

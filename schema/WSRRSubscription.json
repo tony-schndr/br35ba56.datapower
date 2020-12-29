@@ -1,0 +1,373 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for user annotation.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "description": "&lt;p>Use the values-list, a list of all WSRR server objects, to identify the WSRR Server that stores the WSRR resources, and possibly associated XSD or XML files, required for WS-Proxy operations.&lt;/p>", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/WSRRServer"
+                }
+            }, 
+            "required": "true", 
+            "label": "WSRR server", 
+            "cli-alias": "server", 
+            "display": "WSRR Server", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "Server"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "&lt;p>Use the Namespace property in conjunction with the Object Name property to unambiguously identify the subscribed-to WSSR resource.&lt;/p>&lt;p>Both the resource namespace and name are assigned when a resource is first loaded to a WSRR, or when a collection of resources is aggregated as a concept.If the namespace is specified, it must mach the Namespace on WSRR.&lt;/p>", 
+            "cli-alias": "namespace", 
+            "required-when": {
+                "condition": {
+                    "property-name": "ObjectType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "service-version"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Namespace", 
+            "name": "Namespace"
+        }, 
+        {
+            "/mgmt/types/default/dmWsrrSubscriptionType": {
+                "type": {
+                    "name": "dmWsrrSubscriptionType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "WSDL Document", 
+                                "name": "wsdl", 
+                                "description": "The resource is a single WSDL file."
+                            }, 
+                            {
+                                "display": "Concept", 
+                                "name": "concept", 
+                                "description": "The resource is a concept that is created and maintained by an WSRR administrator. A concept is a package for metadata and can contain one or more WSDL files. In addition to WSDL files, a concept can contain associated files such as XSD schemas and XML files."
+                            }, 
+                            {
+                                "display": "Service Version", 
+                                "name": "service-version", 
+                                "description": "The resource is a service version. A service version is an object in WSRR that describes a specific version of a service."
+                            }
+                        ]
+                    }, 
+                    "display": "WSRR Subscription Type"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmWsrrSubscriptionType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmWsrrSubscriptionType"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmWsrrSubscriptionType"
+            }, 
+            "description": "Select the WSRR resource type.", 
+            "required": "true", 
+            "cli-alias": "object-type", 
+            "display": "Subscription Object", 
+            "name": "ObjectType"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "&lt;p>Use the Object Name property in conjunction with the Namespace property to unambiguously identify the subscribed-to WSSR resource.&lt;/p>&lt;p>Both the resource name and namespace are assigned when a resource, such as a WSDL file, is first loaded to a WSRR, or when a collection of resources is aggregated as a concept.&lt;/p>", 
+            "cli-alias": "object-name", 
+            "required": "true", 
+            "label": "Object name", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Object Name", 
+            "name": "ObjectName"
+        }, 
+        {
+            "description": "Select the method to synchronize the the local copy of the subscribed object with the version stored on the remote WSRR server.", 
+            "default": "poll", 
+            "type": {
+                "href": "/mgmt/types/default/dmWsrrSynchronization"
+            }, 
+            "/mgmt/types/default/dmWsrrSynchronization": {
+                "type": {
+                    "name": "dmWsrrSynchronization", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Manual", 
+                                "name": "manual", 
+                                "description": "Manually synchronize. Use the Synchronize action located on the WSRR Saved Search Subscription object configuration screen."
+                            }, 
+                            {
+                                "display": "Poll", 
+                                "name": "poll", 
+                                "description": "Poll the registry for updates. Refreshes the subscription by regularly scheduled WSRR queries that request the latest resource version."
+                            }, 
+                            {
+                                "display": "Automatic", 
+                                "name": "automatic", 
+                                "description": "&lt;p>Automatically update subscription based on changes to registry server.&lt;/p>&lt;p>&lt;b>Attention:&lt;/b> When subscriptions are set to automatic notifications, you must configure the local address of the XML management interface to listen on a specific IP address. When the interface listens on a host alias or &lt;tt>0.0.0.0&lt;/tt> , the configuration of the subscription is marked down.&lt;/p>"
+                            }
+                        ]
+                    }, 
+                    "display": "Synchronization Method"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmWsrrSynchronization"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmWsrrSynchronization"
+                    }
+                }
+            }, 
+            "cli-alias": "method", 
+            "display": "Synchronization Method", 
+            "name": "Method"
+        }, 
+        {
+            "name": "RefreshInterval", 
+            "default": 86400, 
+            "type": {
+                "href": "/mgmt/types/default/dmTimeInterval"
+            }, 
+            "maximum": 4294967, 
+            "/mgmt/types/default/dmTimeInterval": {
+                "type": {
+                    "cli-arg": "seconds", 
+                    "minimum": 0, 
+                    "name": "dmTimeInterval", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                }
+            }, 
+            "minimum": 60, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "Method", 
+                    "evaluation": "property-value-not-in-list", 
+                    "value": "poll"
+                }
+            }, 
+            "units": "seconds", 
+            "cli-alias": "refresh-interval", 
+            "display": "Refresh Interval", 
+            "description": "&lt;p>Specify the refresh interval in seconds.&lt;/p>&lt;p>Used only with the Poll method, the refresh interval is the interval in seconds between regularly-scheduled WSRR queries used to synchronize the local copy of the subscribed resource with the WSSR-resident version.&lt;/p>"
+        }, 
+        {
+            "description": "&lt;p>Use the version field of the WSRR resurce provided by WSRR&lt;/p>&lt;p>If enabled, the subscription will query the registry for version specified in the Object Version field. Otherwise, it will not use the version field.&lt;/p>&lt;p>This field needs to be enabled when more than one version of the object exists on the WSRR server&lt;/p>", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "use-version", 
+            "display": "Use Object Version", 
+            "name": "UseVersion"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Version of the WSRR resource that applies to this subscription.", 
+            "cli-alias": "version", 
+            "label": "WSDL version", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "UseVersion", 
+                    "evaluation": "property-equals", 
+                    "value": "off"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Object Version", 
+            "name": "ObjectVersion"
+        }, 
+        {
+            "description": "&lt;p>Fetch attached policy from the registry.&lt;/p>&lt;p>If enabled, the subscription will query the registry for external WS-Policy PolicyAttachments that apply to the retrieved WSRR resources. Retrieved policies will be processed by any WS-Proxy that is using this subscription and is configured to allow external policy attachments.&lt;/p>", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "fetch-policy-attachments", 
+            "display": "Fetch Policy Attachments", 
+            "name": "FetchPolicyAttachments"
+        }
+    ]
+}

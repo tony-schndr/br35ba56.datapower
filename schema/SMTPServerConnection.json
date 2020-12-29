@@ -1,0 +1,421 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for user annotation.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "name": "MailServerHost", 
+            "cli-alias": "server-host", 
+            "required": "true", 
+            "summary": "IP address or host name of outgoing mail server", 
+            "/mgmt/types/default/dmHostname": {
+                "type": {
+                    "cli-arg": "dotted-ip or hostname", 
+                    "name": "dmHostname", 
+                    "format": "(a.b.c.d or hostname)"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostname"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostname"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmHostname"
+            }, 
+            "display": "Outgoing Mail Server (SMTP) Host", 
+            "description": "The IP address or host name of the SMTP server to send outgoing e-mail messages."
+        }, 
+        {
+            "name": "MailServerPort", 
+            "default": 25, 
+            "/mgmt/types/default/dmIPPort": {
+                "type": {
+                    "cli-arg": "ip-port", 
+                    "minimum": 0, 
+                    "name": "dmIPPort", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                }
+            }, 
+            "required": "true", 
+            "summary": "Listening port on outgoing mail server", 
+            "type": {
+                "href": "/mgmt/types/default/dmIPPort"
+            }, 
+            "cli-alias": "server-port", 
+            "display": "Mail Server Port", 
+            "description": "The listening port on the SMTP server to send outgoing e-mail messages."
+        }, 
+        {
+            "name": "SSLProxy", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                }
+            }, 
+            "summary": "The TLS proxy profile is deprecated. Use an TLS client profile.", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "SSLClientConfigType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "proxy"
+                }
+            }, 
+            "cli-alias": "ssl", 
+            "display": "TLS Proxy (deprecated)", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The TLS proxy profile to use to establish a secured connection with the mail server. If blank, the configuration uses the setting from the TLS proxy profile policy in the associated user agent."
+        }, 
+        {
+            "description": "The SMTP options to enable for the SMTP client. If blank, the configuration uses the setting from the SMTP client policy in the associated user agent.", 
+            "type": {
+                "href": "/mgmt/types/default/dmSMTPOptions"
+            }, 
+            "summary": "SMTP options to enable", 
+            "/mgmt/types/default/dmSMTPOptions": {
+                "type": {
+                    "name": "dmSMTPOptions", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "STARTTLS", 
+                                "name": "StartTLS", 
+                                "description": "Use the POP STARTTLS feature to negotiate a secure connection."
+                            }, 
+                            {
+                                "display": "Authentication", 
+                                "name": "Auth", 
+                                "description": "Use Simple Authentication and Security Layer (SASL) for SMTP client authentication."
+                            }
+                        ]
+                    }, 
+                    "display": "Options"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSMTPOptions"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSMTPOptions"
+                    }
+                }
+            }, 
+            "cli-alias": "options", 
+            "display": "Options", 
+            "name": "Options"
+        }, 
+        {
+            "name": "Auth", 
+            "default": "plain", 
+            "type": {
+                "href": "/mgmt/types/default/dmSMTPAuth"
+            }, 
+            "summary": "Method to authenticate SMTP client", 
+            "/mgmt/types/default/dmSMTPAuth": {
+                "type": {
+                    "name": "dmSMTPAuth", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "PLAIN", 
+                                "name": "plain", 
+                                "description": "Use the PLAIN authentication method."
+                            }, 
+                            {
+                                "display": "LOGIN", 
+                                "name": "login", 
+                                "description": "Use the LOGIN authentication method."
+                            }
+                        ]
+                    }, 
+                    "display": "Authentication"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSMTPAuth"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSMTPAuth"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "Options", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "Auth"
+                }
+            }, 
+            "cli-alias": "auth", 
+            "display": "Authentication Method", 
+            "description": "With the client authentication option, the method to authenticate the SMTP client. If blank, the configuration uses the setting from the SMTP client policy in the associated user agent."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "name": "AccountName", 
+            "required-when": {
+                "condition": {
+                    "property-name": "Options", 
+                    "evaluation": "property-equals", 
+                    "value": "Auth"
+                }
+            }, 
+            "summary": "Account or user name to authenticate", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "Options", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "Auth"
+                }
+            }, 
+            "cli-alias": "username", 
+            "display": "Account Name", 
+            "description": "The account or user name of the SMTP client to authenticate on the SMTP server. The account generally takes the &lt;tt>name@domain.com&lt;/tt> form. If blank, the configuration uses the setting from the basic authentication policy in the associated user agent."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "AccountPassword", 
+            "cli-alias": "password", 
+            "summary": "Password for account", 
+            "ignored-when": {
+                "condition": {
+                    "evaluation": "logical-or", 
+                    "condition": [
+                        {
+                            "property-name": "Options", 
+                            "evaluation": "property-does-not-equal", 
+                            "value": "Auth"
+                        }, 
+                        {
+                            "property-name": "AccountPassword", 
+                            "evaluation": "property-equals", 
+                            "value": ""
+                        }
+                    ]
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Account Password (deprecated)", 
+            "description": "The password for the SMTP client account or user name that is authenticated to the SMTP server. If either password or alias are blank, the configuration uses the setting from the basic authentication policy in the associated user agent."
+        }, 
+        {
+            "name": "AccountPasswordAlias", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/PasswordAlias"
+                }
+            }, 
+            "summary": "Password alias for account", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "Options", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "Auth"
+                }
+            }, 
+            "cli-alias": "password-alias", 
+            "display": "Account Password Alias", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The password alias of the password for the SMTP client account or the user name that is authenticated to the SMTP server. If password or alias are blank, the configuration uses the setting from the basic authentication policy in the associated user agent."
+        }, 
+        {
+            "name": "SSLClientConfigType", 
+            "/mgmt/types/default/dmSSLClientConfigType": {
+                "type": {
+                    "name": "dmSSLClientConfigType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "proxy", 
+                                "display": "Proxy Profile"
+                            }, 
+                            {
+                                "name": "client", 
+                                "display": "Client Profile"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSLClientConfigType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSLClientConfigType"
+                    }
+                }
+            }, 
+            "default": "proxy", 
+            "type": {
+                "href": "/mgmt/types/default/dmSSLClientConfigType"
+            }, 
+            "summary": "Set the TLS profile type to secure connections between the DataPower Gateway and its targets", 
+            "cli-alias": "ssl-client-type", 
+            "display": "TLS client type", 
+            "description": "The TLS profile type to secure connections between the DataPower Gateway and its targets."
+        }, 
+        {
+            "name": "SSLClient", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                }
+            }, 
+            "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and its targets", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "SSLClientConfigType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "client"
+                }
+            }, 
+            "cli-alias": "ssl-client", 
+            "display": "TLS client profile", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The TLS client profile to secure connections between the DataPower Gateway and its targets."
+        }
+    ]
+}

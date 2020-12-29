@@ -1,0 +1,139 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "A descriptive summary for the API Application Type configuration.", 
+            "cli-alias": "summary", 
+            "summary": "Enter a brief descriptive summary for the API Application Type configuration.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments", 
+            "name": "UserSummary"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "A descriptive title for the API Application Type configuration.", 
+            "cli-alias": "title", 
+            "summary": "Enter a title for the API Application Type configuration.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Title", 
+            "name": "Title"
+        }, 
+        {
+            "/mgmt/types/default/dmOAuthType": {
+                "type": {
+                    "summary": "", 
+                    "properties": {
+                        "property": [
+                            {
+                                "summary": "Supported OAuth client type", 
+                                "required": "true", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmOAuthClientType"
+                                }, 
+                                "display": "OAuth Client Type", 
+                                "name": "ClientType"
+                            }, 
+                            {
+                                "summary": "Supported OAuth flow", 
+                                "required": "true", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmAPISecurityOAuthFlow"
+                                }, 
+                                "display": "API OAuth Flow", 
+                                "name": "GrantType"
+                            }
+                        ]
+                    }, 
+                    "name": "dmOAuthType", 
+                    "display": "OAuth Type"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmOAuthType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmOAuthType"
+                    }
+                }
+            }, 
+            "name": "SupportedOAuthTypes", 
+            "type": {
+                "href": "/mgmt/types/default/dmOAuthType"
+            }, 
+            "summary": "OAuth client and grant type pairs.", 
+            "array": "true", 
+            "cli-alias": "supported-oauth-types", 
+            "display": "Supported OAuth Types", 
+            "description": "A list of supported OAuth client and grant type pairs."
+        }
+    ]
+}

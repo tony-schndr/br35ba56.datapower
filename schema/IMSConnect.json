@@ -1,0 +1,685 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "A descriptive summary for the configuration.", 
+            "cli-alias": "summary", 
+            "summary": "Enter a descriptive summary for the configuration.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments", 
+            "name": "UserSummary"
+        }, 
+        {
+            "description": "Specify the host name or IP address of the IMS Connect server.", 
+            "type": {
+                "href": "/mgmt/types/default/dmHostname"
+            }, 
+            "summary": "Host name or IP address", 
+            "/mgmt/types/default/dmHostname": {
+                "type": {
+                    "cli-arg": "dotted-ip or hostname", 
+                    "name": "dmHostname", 
+                    "format": "(a.b.c.d or hostname)"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostname"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostname"
+                    }
+                }
+            }, 
+            "cli-alias": "hostname", 
+            "display": "Host", 
+            "name": "HostName"
+        }, 
+        {
+            "/mgmt/types/default/dmUInt32": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt32", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt32"
+            }, 
+            "description": "Specify the port on which the IMS Connect server is running.", 
+            "summary": "Port number", 
+            "cli-alias": "port", 
+            "display": "Port", 
+            "name": "Port"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserName", 
+            "valid-regexp": "^[^ ]+$", 
+            "summary": "Host security ID to use for connecting to the IMS Connect", 
+            "cli-alias": "username", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "RACF ID", 
+            "description": "The plaintext string sent to the server for identifying the client."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "Password", 
+            "cli-alias": "password", 
+            "summary": "RACF Password", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "Password", 
+                    "evaluation": "property-equals", 
+                    "value": ""
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "RACF Password (deprecated)", 
+            "description": "The host security password to login to the IMS Connect server. Enter the password twice to confirm its accuracy."
+        }, 
+        {
+            "description": "The password alias of the host security password used to login to the IMS Connect server.", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/PasswordAlias"
+                }
+            }, 
+            "summary": "RACF Password Alias", 
+            "cli-alias": "password-alias", 
+            "display": "RACF Password Alias", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "name": "PasswordAlias"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "The IMS transaction code to invoke.", 
+            "cli-alias": "tran-code", 
+            "summary": "Transaction Code", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Transaction Code", 
+            "name": "TranCode"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "The group the Host security ID belongs to.", 
+            "cli-alias": "group", 
+            "summary": "RACF Group", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "RACF Group", 
+            "name": "Group"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "It specifies the Datastore name (IMS destination ID).", 
+            "cli-alias": "datastore", 
+            "summary": "Data Store of the IMS Server", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Data Store", 
+            "name": "Datastore"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "A string of 1 to 8 uppercase alphanumeric (A through Z, 0 to 9) or special (@, #, $) characters, left justified, and padded with blanks. The string specifies the name of the client ID that is used by IMS Connect. If this string is not supplied from the client, the user exit generates it.", 
+            "cli-alias": "clientid", 
+            "summary": "Client ID", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Client ID", 
+            "name": "ClientID"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "LTERM override value to be used by OTMA.", 
+            "cli-alias": "lterm-name", 
+            "summary": "Logical Terminal name", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Logical Terminal Name", 
+            "name": "LtermName"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "&lt;p>Specify the exit identifier to use for all the IMS connections. If no exit identifier is specified, *SAMPLE* is used.&lt;/p>&lt;p>The appliance supports the standard exit identifiers *SAMPLE* and *SAMPL1* and any identifiers that implement exits that conform to these wire protocols. If *SAMPL1*, or an identifier that conforms to *SAMPL1* wire protocol, is specified, set the Expect LLLL Response Header property to \"on\". Otherwise, the Expect LLLL Response Header property must be set to \"off\".&lt;/p>", 
+            "cli-alias": "exit-program", 
+            "summary": "Exit Identifier to use for all the IMS connections.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Exit Identifier", 
+            "name": "Exit"
+        }, 
+        {
+            "name": "EBCDICConversion", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Convert headers to EBCDIC", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "ebcdic-conversion", 
+            "display": "EBCDIC Header Conversion", 
+            "description": "This option can be turned on for converting the headers to EBCDIC. The IMS Connect exit should be able to process EBCDIC data. Some IMS Connect exits can handle both UTF-8 and EBCDIC. This conversion affects only the headers. Any data conversion should be done in the policy using transformation."
+        }, 
+        {
+            "description": "Select the Unicode encoding schema. Leave as (none) to be set dynamically in the IMS header. (For example, in the IMS proxy scenario, incoming IMS header value could be used directly.)", 
+            "/mgmt/types/default/dmEncodingScheme": {
+                "type": {
+                    "name": "dmEncodingScheme", 
+                    "display": "Encoding scheme", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "(none)", 
+                                "name": "NotSet", 
+                                "description": "Uses the encoding set by the IMS Connect Handler or by a transform action in the processing policy."
+                            }, 
+                            {
+                                "display": "Default", 
+                                "name": "Default", 
+                                "description": "Uses the encoding set by the message."
+                            }, 
+                            {
+                                "display": "UTF8", 
+                                "name": "UTF8", 
+                                "description": "Uses UTF8 encoding."
+                            }, 
+                            {
+                                "display": "UCS2", 
+                                "name": "UCS2", 
+                                "description": "Uses UCS2 encoding."
+                            }, 
+                            {
+                                "display": "UTF16", 
+                                "name": "UTF16", 
+                                "description": "Uses UTF16 encoding."
+                            }
+                        ]
+                    }, 
+                    "description": "Unicode encoding schema"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmEncodingScheme"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmEncodingScheme"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmEncodingScheme"
+            }, 
+            "summary": "Encoding scheme", 
+            "cli-alias": "encoding-scheme", 
+            "display": "Encoding scheme", 
+            "name": "EncodingScheme"
+        }, 
+        {
+            "name": "IRMTimer", 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt16"
+            }, 
+            "maximum": 255, 
+            "summary": "IRM Timer values", 
+            "minimum": 0, 
+            "/mgmt/types/default/dmUInt16": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt16", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                }
+            }, 
+            "cli-alias": "irm-timer", 
+            "display": "IRM Timer", 
+            "description": "Set the IRM_TIMER value to an appropriate wait time for IMS to return data to IMS Connect. See the IMS Connect documentation for details. An example value of 21 sets an IRM Timer value of 0.21 sec."
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Two letter prefix for the generated client ID. \"DP\" is used if not specified.", 
+            "minimum-length": 2, 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "summary": "Generate Client ID Prefix", 
+            "maximum-length": 2, 
+            "cli-alias": "client-id-prefix", 
+            "display": "Generate Client ID Prefix", 
+            "name": "GenerateClientIDPrefix"
+        }, 
+        {
+            "name": "MaxSegmentSize", 
+            "default": 0, 
+            "type": {
+                "href": "/mgmt/types/default/dmUInt16"
+            }, 
+            "maximum": 32, 
+            "summary": "Maximum Segment Size", 
+            "minimum": 0, 
+            "/mgmt/types/default/dmUInt16": {
+                "type": {
+                    "cli-arg": "number", 
+                    "minimum": 0, 
+                    "name": "dmUInt16", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                }
+            }, 
+            "cli-alias": "segment-size", 
+            "display": "Maximum Segment Size", 
+            "description": "Specify \"0\" (OFF) or an integer in the range 1 - 32 that represents the segment size in kilobytes. The default value is 0, which disables segmentation."
+        }, 
+        {
+            "name": "ExpectLLLLHeader", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Expect 4-Byte LLLL Response Message Header", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "expect-llll", 
+            "display": "Expect LLLL Response Header", 
+            "description": "Indicates whether the response message includes an extra 4-byte LLLL header that specifies the total response message size back from IMS Connect. The default value is off."
+        }, 
+        {
+            "description": "&lt;p>Indicates whether the Sync Level is 0x00 (NONE) or 0x01 (CONFIRM). The default value is 0x00 (NONE).&lt;/p>&lt;p>When communicating with the IMS Connect server and a transaction is specified with a Sync Level of 0x01 (CONFIRM), the client must send an ACK (successful) or a NAK (unsuccessful) after processing the response. The IMS Connect server then sends DEALLOCATE CONFIRM (successful) or DEALLOCATE ABORT (unsuccessful) back to the client.&lt;/p>&lt;p>The appliance always sends an ACK upon receiving the response and then checks for the DEALLOCATE CONFIRM.&lt;/p>", 
+            "type": {
+                "href": "/mgmt/types/default/dmSyncLevel"
+            }, 
+            "summary": "Sync Level: 0x00 (NONE) or 0x01 (CONFIRM)", 
+            "/mgmt/types/default/dmSyncLevel": {
+                "type": {
+                    "name": "dmSyncLevel", 
+                    "display": "Sync Level", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "0x00", 
+                                "name": "0x00", 
+                                "description": "IMS Sync Level 0x00 (NONE)."
+                            }, 
+                            {
+                                "display": "0x01", 
+                                "name": "0x01", 
+                                "description": "IMS Sync Level 0x01 (CONFIRM)."
+                            }
+                        ]
+                    }, 
+                    "description": "Sync Level"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSyncLevel"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSyncLevel"
+                    }
+                }
+            }, 
+            "cli-alias": "sync-level", 
+            "display": "Sync Level", 
+            "name": "SyncLevel"
+        }, 
+        {
+            "name": "CommitMode", 
+            "cli-alias": "commit-mode", 
+            "summary": "Commit Mode: 0 or 1", 
+            "/mgmt/types/default/dmCommitMode": {
+                "type": {
+                    "name": "dmCommitMode", 
+                    "display": "Commit Mode", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": 1, 
+                                "name": 1, 
+                                "description": "IMS Commit Mode 1."
+                            }, 
+                            {
+                                "display": 0, 
+                                "name": 0, 
+                                "description": "IMS Commit Mode 0."
+                            }
+                        ]
+                    }, 
+                    "description": "Commit Mode"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmCommitMode"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmCommitMode"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "SyncLevel", 
+                    "evaluation": "property-equals", 
+                    "value": "0x00"
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmCommitMode"
+            }, 
+            "display": "Commit Mode", 
+            "description": "Commit mode 0 (CM0) is known as commit-then-send, which is the IMS standard flow. When set to 0, IMS processes the transaction and commits the data before the response is returned to the DataPower service. The default commit mode is 1."
+        }, 
+        {
+            "name": "PurgeNotDeliv", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to purge or queue undeliverable transactions", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "CommitMode", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": 0
+                }
+            }, 
+            "cli-alias": "purge-not-deliverable", 
+            "display": "Purge Not Deliverable", 
+            "description": "&lt;p>Indicates whether to purge or queue undeliverable IMS transaction output that use commit mode 0. Undeliverable transaction output is when the IMS output cannot be returned to the OTMA client application that initiated the transaction. The OTMA client application is the DataPower service that initiated the original transaction. The default behavior is to queue undeliverable transaction output.&lt;/p>&lt;ul>&lt;li>When purge, the IRM_F3_PURGE flag is set in the IRM_F3 field. This flag with commit mode 0 configures IMS to purge transaction output when the IMS output cannot be delivered or returned to the DataPower appliance.&lt;/li>&lt;li>When queue, IMS stores undeliverable transaction output on the asynchronous hold queue. The undeliverable IMS output message remains on the IMS hold queue until you run the /DEQ TMEMBER TPIPE command to clean up the queue.&lt;/li>&lt;/ul>"
+        }
+    ]
+}

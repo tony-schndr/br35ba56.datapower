@@ -1,0 +1,295 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Contains a brief summary for user annotation.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "name": "ODCInfoHostname", 
+            "cli-alias": "odc-info-hostname", 
+            "required": "true", 
+            "summary": "Host name or IP address", 
+            "/mgmt/types/default/dmHostname": {
+                "type": {
+                    "cli-arg": "dotted-ip or hostname", 
+                    "name": "dmHostname", 
+                    "format": "(a.b.c.d or hostname)"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostname"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostname"
+                    }
+                }
+            }, 
+            "type": {
+                "href": "/mgmt/types/default/dmHostname"
+            }, 
+            "display": "Deployment Manager Host", 
+            "description": "Host name or IP address of the Deployment Manager. It is used to communicate with the ODCInfo servlet. The ODCInfo servlet must be installed in a WebSphere Application Server environment."
+        }, 
+        {
+            "/mgmt/types/default/dmIPPort": {
+                "type": {
+                    "cli-arg": "ip-port", 
+                    "minimum": 0, 
+                    "name": "dmIPPort", 
+                    "maximum": "0xFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                }
+            }, 
+            "name": "ODCInfoPort", 
+            "type": {
+                "href": "/mgmt/types/default/dmIPPort"
+            }, 
+            "required": "true", 
+            "summary": "Destination port of ODCInfo servlet", 
+            "cli-alias": "odc-info-port", 
+            "display": "Deployment Manager Port number", 
+            "description": "Specifies the listening port of the ODCInfo servlet on the deployment manager. To determine the listening port number, log in to the WebSphere Application Server administrative console and click System Administration > Deployment Manager > ports. From the list, use the port associated with WC_adminhost for HTTP or the port associated with WC_adminhost_secure for HTTPS."
+        }, 
+        {
+            "name": "SSLProxy", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                }
+            }, 
+            "summary": "The TLS proxy profile is deprecated. Use a TLS client profile.", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "SSLClientConfigType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "proxy"
+                }
+            }, 
+            "cli-alias": "ssl", 
+            "display": "TLS Proxy Profile (deprecated)", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "You must select a TLS proxy profile if you are using TLS (HTTPS) to connect to the ODCInfo servlet. If you do not specify a profile, an HTTP connection is used."
+        }, 
+        {
+            "name": "UpdateType", 
+            "default": "poll", 
+            "type": {
+                "href": "/mgmt/types/default/dmUpdateType"
+            }, 
+            "summary": "Method for retrieving WebSphere information", 
+            "/mgmt/types/default/dmUpdateType": {
+                "type": {
+                    "name": "dmUpdateType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "summary": "Poll for WebSphere Cell information", 
+                                "display": "Poll", 
+                                "name": "poll", 
+                                "description": "The WebSphere Cell information is retrieved on a fixed time interval regardless of whether the WebSphere Cell configuration has changed."
+                            }, 
+                            {
+                                "summary": "Subscribe for WebSphere Cell information", 
+                                "display": "Subscribe", 
+                                "name": "subscribe", 
+                                "description": "The WebSphere Cell information is retrieved with a request that waits for either the duration of the Time Interval to expire or for the WebSphere Cell information to change, whichever occurs first. After the DataPower Gateway receives the response, the DataPower Gateway immediately sends another request that again awaits for either the time interval expiration or an update. This method might result in several updates within a short amount of time. It consumes more resources on the DataPower Gateway and also on the server that is running the ODCInfo application. This method is more appropriate when application routing is enabled."
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUpdateType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmUpdateType"
+                    }
+                }
+            }, 
+            "cli-alias": "update-method", 
+            "display": "Update Method", 
+            "description": "Specifies the method for retrieving WebSphere information. The method defines the responsiveness of the updates received by the DataPower Gateway. The method also affects the amount of system resource used for providing those updates. The default is poll."
+        }, 
+        {
+            "name": "TimeInterval", 
+            "default": 10, 
+            "type": {
+                "href": "/mgmt/types/default/dmTimeInterval"
+            }, 
+            "required": "true", 
+            "maximum": 86400, 
+            "summary": "Interval for updates", 
+            "/mgmt/types/default/dmTimeInterval": {
+                "type": {
+                    "cli-arg": "seconds", 
+                    "minimum": 0, 
+                    "name": "dmTimeInterval", 
+                    "maximum": "0xFFFFFFFF"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                }
+            }, 
+            "minimum": 1, 
+            "units": "seconds", 
+            "cli-alias": "time-interval", 
+            "display": "Time Interval", 
+            "description": "&lt;p>If the update method is poll, the time interval specifies the amount of time in seconds between poll requests.&lt;/p>&lt;p>If the update method is subscribe, the time interval specifies the maximum duration of the request in seconds.&lt;/p>&lt;p>Use any value of 1 - 86400. The default is 10.&lt;/p>"
+        }, 
+        {
+            "name": "SSLClientConfigType", 
+            "/mgmt/types/default/dmSSLClientConfigType": {
+                "type": {
+                    "name": "dmSSLClientConfigType", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "proxy", 
+                                "display": "Proxy Profile"
+                            }, 
+                            {
+                                "name": "client", 
+                                "display": "Client Profile"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSLClientConfigType"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSLClientConfigType"
+                    }
+                }
+            }, 
+            "default": "proxy", 
+            "type": {
+                "href": "/mgmt/types/default/dmSSLClientConfigType"
+            }, 
+            "required": "true", 
+            "summary": "Set the TLS profile type to secure connections between the DataPower Gateway and its targets", 
+            "cli-alias": "ssl-client-type", 
+            "display": "TLS client type", 
+            "description": "The TLS profile type to secure connections between the DataPower Gateway and its targets."
+        }, 
+        {
+            "name": "SSLClient", 
+            "type": {
+                "href": "/mgmt/types/default/dmReference", 
+                "reference-to": {
+                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                }
+            }, 
+            "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and its targets", 
+            "ignored-when": {
+                "condition": {
+                    "property-name": "SSLClientConfigType", 
+                    "evaluation": "property-does-not-equal", 
+                    "value": "client"
+                }
+            }, 
+            "cli-alias": "ssl-client", 
+            "display": "TLS client profile", 
+            "/mgmt/types/default/dmReference": {
+                "type": {
+                    "cli-arg": "object", 
+                    "name": "dmReference"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                }
+            }, 
+            "description": "The TLS client profile to secure connections between the DataPower Gateway and its targets."
+        }
+    ]
+}

@@ -1,0 +1,224 @@
+{
+    "schema": [
+        {
+            "name": "mAdminState", 
+            "default": "enabled", 
+            "type": {
+                "href": "/mgmt/types/default/dmAdminState"
+            }, 
+            "summary": "Set the administrative state of this configuration.", 
+            "/mgmt/types/default/dmAdminState": {
+                "type": {
+                    "cli-arg": "enabled | disabled", 
+                    "name": "dmAdminState", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled", 
+                                "display": "enabled"
+                            }, 
+                            {
+                                "name": "disabled", 
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                }
+            }, 
+            "label": "Enable administrative state", 
+            "cli-alias": "admin-state", 
+            "display": "Administrative state", 
+            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>", 
+            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "UserSummary", 
+            "cli-alias": "summary", 
+            "summary": "Brief summary for Assembly action.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Comments"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "name": "Title", 
+            "cli-alias": "title", 
+            "summary": "The title for Assembly action.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Title"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "The correlation path specifies the part of the API definition that correlates with the assembly action. This path is exposed in the debug data by the API Gateway for use by debugging tools. For example, for an API configuration that is retrieved from API Connect and specified in an OpenAPI (Swagger 2.0) document with IBM extensions, this path is the JSON path to the assembly policy in the IBM extensions section of the document. The path can be expressed in any form that the debugging tool can correlate to the API definition.", 
+            "cli-alias": "correlation-path", 
+            "summary": "The path which correlates the assembly action to a specific part of the API specification.", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Correlation path", 
+            "name": "CorrelationPath"
+        }, 
+        {
+            "name": "ActionDebug", 
+            "default": "off", 
+            "type": {
+                "href": "/mgmt/types/default/dmToggle"
+            }, 
+            "summary": "Whether to enable GatewayScript debugger in assembly actions", 
+            "/mgmt/types/default/dmToggle": {
+                "type": {
+                    "cli-arg": "on | off", 
+                    "name": "dmToggle", 
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on", 
+                                "display": "on"
+                            }, 
+                            {
+                                "name": "off", 
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                }
+            }, 
+            "cli-alias": "debug", 
+            "display": "Enable debugging", 
+            "description": "&lt;p>Controls whether to enable the GatewayScript debugger to troubleshoot the following GatewayScript file or script. &lt;ul>&lt;li>Troubleshoot the GatewayScript file that is called from the assembly GatewayScript action.&lt;/li>&lt;li>Troubleshoot the GatewayScript file that is invoked by the GatewayScript associated XSLT extension functions or elements, such as the &lt;tt>gatewayscript()&lt;/tt> extension function, from the assembly XSLT action.&lt;/li>&lt;li>Troubleshoot the GatewayScript script that is invoked through the &lt;tt>value&lt;/tt> or the &lt;tt>default&lt;/tt> property in the JSON file from the assembly map action.&lt;/li>&lt;/ul>&lt;/p>&lt;p>To debug a file or script, the following conditions must be met:&lt;/p>&lt;ul>&lt;li>The file contains one or more &lt;tt>debugger;&lt;/tt> statements at the points in your script where you want to start debugging.&lt;/li>&lt;li>The GatewayScript debugger is enabled.&lt;/li>&lt;/ul>&lt;p>Then you can run the &lt;tt>debug-action&lt;/tt> command to debug.&lt;/p>"
+        }, 
+        {
+            "/mgmt/types/default/dmString": {
+                "type": {
+                    "cli-arg": "string", 
+                    "name": "dmString"
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                }
+            }, 
+            "description": "Specifies the data source that contains the content to redact or remove. If the root is not specified, the action is applied to the entire API context.", 
+            "cli-alias": "root", 
+            "summary": "The data source that contains the content", 
+            "type": {
+                "href": "/mgmt/types/default/dmString"
+            }, 
+            "display": "Root", 
+            "name": "Root"
+        }, 
+        {
+            "name": "Redact", 
+            "type": {
+                "href": "/mgmt/types/default/dmAssemblyActionRedact"
+            }, 
+            "required": "true", 
+            "summary": "The path expression and the action to perform", 
+            "/mgmt/types/default/dmAssemblyActionRedact": {
+                "type": {
+                    "name": "dmAssemblyActionRedact", 
+                    "properties": {
+                        "property": [
+                            {
+                                "name": "Path", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                }, 
+                                "required": "true", 
+                                "summary": "The path that identifies the content to redact or remove", 
+                                "cli-alias": "path", 
+                                "display": "Path", 
+                                "description": "&lt;p>Indicates the JSONata path expression that identifies the content to redact or remove.&lt;/p>&lt;p>You use a subset of JSONata notation to define the path. For more information about the supported subset of JSONata notation, see the \"JSONata and assembly actions\" topic in IBM Knowledge Center.&lt;/p>"
+                            }, 
+                            {
+                                "description": "Specifies whether to redact or remove the content.", 
+                                "type": {
+                                    "href": "/mgmt/types/default/dmRedactActionType"
+                                }, 
+                                "summary": "The type of action to perform", 
+                                "cli-alias": "action", 
+                                "display": "Action", 
+                                "name": "Action"
+                            }
+                        ]
+                    }
+                }, 
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAssemblyActionRedact"
+                    }, 
+                    "self": {
+                        "href": "/mgmt/types/default/dmAssemblyActionRedact"
+                    }
+                }
+            }, 
+            "array": "true", 
+            "cli-alias": "redact-action", 
+            "display": "Redactions", 
+            "description": "Specifies the path expression that identifies the content and the action to perform."
+        }
+    ]
+}

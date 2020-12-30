@@ -606,6 +606,114 @@
                         ]
                     }
                 }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                },
+                "type": {
+                    "cli-arg": "seconds",
+                    "minimum": 0,
+                    "name": "dmTimeInterval",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmValidationMode"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmValidationMode"
+                    }
+                },
+                "type": {
+                    "display": "XML Schema Validation Mode",
+                    "name": "dmValidationMode",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Default",
+                                "description": "XML documents are validated in accordance with validation processing instructions, if any, that are contained in the XML document.",
+                                "name": "default"
+                            },
+                            {
+                                "display": "Schema",
+                                "description": "XML documents are validated against the XML schema that is defined by the Schema URL property.",
+                                "name": "schema"
+                            },
+                            {
+                                "display": "Schema Rewrite",
+                                "description": "XML documents are validated against a rewritten schema reference. That is, a schema reference that is defined by the Schema URL property is rewritten in accordance with a URL Rewrite Policy that is defined by the URL Rewrite Policy property.",
+                                "name": "schema-rewrite"
+                            },
+                            {
+                                "display": "Attribute Rewrite",
+                                "description": "XML documents are validated against a rewritten schema reference. That is, a schema reference that is contained in the XML document is rewritten in accordance with the URL Rewrite Policy that is defined by the URL Rewrite Policy property.",
+                                "name": "attribute-rewrite"
+                            },
+                            {
+                                "display": "Dynamic Schema",
+                                "description": "XML documents are validated using a Schema Exception Map or Document Crypto Map. One of these maps identifies a schema and excepted elements.",
+                                "name": "dynamic-schema"
+                            }
+                        ]
+                    },
+                    "summary": "XML schema validation mode"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                },
+                "type": {
+                    "cli-arg": "url",
+                    "name": "dmURL"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmDocCachePolicyType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmDocCachePolicyType"
+                    }
+                },
+                "type": {
+                    "display": "Document Cache Policy Type",
+                    "name": "dmDocCachePolicyType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Protocol-Based",
+                                "description": "&lt;p>Caches documents that match the URL expression. HTTP caching rules, as defined in Section 13 of RFC 2616 \"Hypertext Transfer Protocol -- HTTP 1.1\", specify the cache-lifetime. Policy is set using the following criteria. &lt;ul>&lt;li>If the document does not contain a &lt;tt>Date&lt;/tt> or &lt;tt>Last-Modified&lt;/tt> header, do not cache.&lt;/li>&lt;li>If the document contains a &lt;tt>Vary&lt;/tt> header, do not cache.&lt;/li>&lt;li>If the document contains an HTTP 1.1 &lt;tt>Cache-Control&lt;/tt> header, cache and use the contents of that field to determine its cache-lifetime.&lt;/li>&lt;li>If the document contains an HTTP 1.0 &lt;tt>Expires&lt;/tt> header, cache and use the contents of that field to determine its cache-lifetime.&lt;/li>&lt;li>If the document contains a &lt;tt>Last-Modified&lt;/tt> header, cache and use the contents of that field in conjunction with the &lt;tt>Date&lt;/tt> header to determine its cache-lifetime. The cache-lifetime cannot exceed 8 hours.&lt;/li>&lt;/ul>&lt;/p>",
+                                "name": "protocol"
+                            },
+                            {
+                                "display": "No Cache",
+                                "description": "Does not cache documents that match the URL expression.",
+                                "name": "no-cache"
+                            },
+                            {
+                                "display": "Fixed",
+                                "description": "Caches documents that match the URL expression. The TTL specifies the validity period for the document in seconds.",
+                                "name": "fixed"
+                            }
+                        ]
+                    },
+                    "summary": "Document cache policy type"
+                }
             }
         ],
         "metadata": {

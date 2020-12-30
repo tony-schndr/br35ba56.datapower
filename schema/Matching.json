@@ -245,6 +245,153 @@
                         ]
                     }
                 }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmMatchType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmMatchType"
+                    }
+                },
+                "type": {
+                    "name": "dmMatchType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "URL",
+                                "name": "url",
+                                "summary": "Use the URL match pattern against the path part of a URL."
+                            },
+                            {
+                                "display": "HTTP",
+                                "name": "http",
+                                "summary": "Use the name of the HTTP header and the value match pattern against the values for HTTP headers."
+                            },
+                            {
+                                "display": "Error Code",
+                                "name": "errorcode",
+                                "summary": "Use the event code match pattern against event codes."
+                            },
+                            {
+                                "display": "XPath",
+                                "name": "xpath",
+                                "summary": "Use the XPath expression match pattern against file contents."
+                            },
+                            {
+                                "display": "Full URL",
+                                "name": "fullyqualifiedurl",
+                                "summary": "Use the URL match pattern against the full URL, which includes the protocol."
+                            },
+                            {
+                                "display": "Host (deprecated)",
+                                "name": "host",
+                                "summary": "Use the URL match pattern against the host and port portions of the URL. The match occurs against the HTTP host header, which is the way that HTTP 1.1 does virtual hosting. Deprecated: Use an HTTP match."
+                            },
+                            {
+                                "display": "HTTP method",
+                                "description": "Compare the HTTP method against the value of the HTTP request line.",
+                                "name": "method"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmEventCodeMatch"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmEventCodeMatch"
+                    }
+                },
+                "type": {
+                    "cli-arg": "event-code match",
+                    "name": "dmEventCodeMatch"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmXPathExpr"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmXPathExpr"
+                    }
+                },
+                "type": {
+                    "cli-arg": "xpath",
+                    "name": "dmXPathExpr"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHTTPMethodMatchType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHTTPMethodMatchType"
+                    }
+                },
+                "type": {
+                    "name": "dmHTTPMethodMatchType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "GET",
+                                "name": "GET",
+                                "summary": "Match against the HTTP GET method."
+                            },
+                            {
+                                "display": "POST",
+                                "name": "POST",
+                                "summary": "Match against the HTTP POST method."
+                            },
+                            {
+                                "display": "PUT",
+                                "name": "PUT",
+                                "summary": "Match against the HTTP PUT method."
+                            },
+                            {
+                                "display": "PATCH",
+                                "name": "PATCH",
+                                "summary": "Match against the HTTP PATCH method."
+                            },
+                            {
+                                "display": "DELETE",
+                                "name": "DELETE",
+                                "summary": "Match against the HTTP DELETE method."
+                            },
+                            {
+                                "display": "HEAD",
+                                "name": "HEAD",
+                                "summary": "Match against the HTTP HEAD method."
+                            },
+                            {
+                                "display": "OPTIONS",
+                                "name": "OPTIONS",
+                                "summary": "Match against the HTTP OPTIONS method."
+                            },
+                            {
+                                "display": "TRACE",
+                                "name": "TRACE",
+                                "summary": "Match against the HTTP TRACE method."
+                            },
+                            {
+                                "display": "Custom",
+                                "name": "custom",
+                                "summary": "Match against a custom method."
+                            },
+                            {
+                                "display": "Default",
+                                "name": "default",
+                                "summary": "Match against the HTTP GET or POST method."
+                            }
+                        ]
+                    }
+                }
             }
         ],
         "metadata": {

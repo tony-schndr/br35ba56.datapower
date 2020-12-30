@@ -319,6 +319,196 @@
                     "cli-arg": "object",
                     "name": "dmReference"
                 }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSLMIntervalType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSLMIntervalType"
+                    }
+                },
+                "type": {
+                    "display": "Interval Type",
+                    "name": "dmSLMIntervalType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Fixed",
+                                "description": "A discrete block of time. For example, from 8:00 AM to 9:00 AM. Fixed intervals are from the start of the schedule. Without a schedule, fixed intervals are from 12:00 AM.",
+                                "name": "fixed"
+                            },
+                            {
+                                "display": "Moving",
+                                "description": "A sliding window of time. For example, the last 60 minutes.",
+                                "name": "moving"
+                            },
+                            {
+                                "display": "Concurrent",
+                                "description": "&lt;p>Specifies that transactions are measured when they are received rather than in intervals. The threshold level value specifies the number of concurrent transactions that can be processed at a time before the threshold is enforced.&lt;/p>&lt;p>This parameter is only valid with the count all threshold type and cannot be used with the token bucket algorithm type. The threshold interval length is not relevant with the interval type is \"concurrent\".&lt;/p>",
+                                "name": "concurrent"
+                            }
+                        ]
+                    },
+                    "summary": "Interval Type"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSLMThresholdAlgorithm"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSLMThresholdAlgorithm"
+                    }
+                },
+                "type": {
+                    "display": "Algorithm",
+                    "name": "dmSLMThresholdAlgorithm",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Greater Than",
+                                "description": "A simple numeric algorithm that triggers the action when the threshold level is greater than the defined value. Enforcement continues until reaching the value specified by this threshold.",
+                                "name": "greater-than"
+                            },
+                            {
+                                "display": "Less Than",
+                                "description": "A simple numeric algorithm that triggers the action when the threshold level is less than the defined value. Enforcement continues until reaching the value specified by this threshold.",
+                                "name": "less-than"
+                            },
+                            {
+                                "display": "Token Bucket",
+                                "description": "A rate-based algorithm that allows bursting. The algorithm consists of a bucket with a maximum capacity of N tokens. The bucket refills at a rate of R tokens per second. Each token typically represent a quantity of the monitored resource.",
+                                "name": "token-bucket"
+                            },
+                            {
+                                "display": "High-Low",
+                                "description": "An algorithm that triggers the action after the high threshold and continues to trigger until reaching the high-low threshold. This algorithm uses the values of the threshold level and the high-low release level properties.",
+                                "name": "high-low-thresholds"
+                            }
+                        ]
+                    },
+                    "summary": "Algorithm"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSLMThreshType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSLMThreshType"
+                    }
+                },
+                "type": {
+                    "display": "Threshold Type",
+                    "name": "dmSLMThreshType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Count All",
+                                "description": "The threshold measures all requests for resources that are defined by the resource class.",
+                                "name": "count-all"
+                            },
+                            {
+                                "display": "Count Errors",
+                                "description": "The threshold measures only errors.",
+                                "name": "count-errors"
+                            },
+                            {
+                                "display": "Internal Latency",
+                                "description": "The threshold measures internal latency (processing time).",
+                                "name": "latency-internal"
+                            },
+                            {
+                                "display": "Back-end Latency",
+                                "description": "The threshold measures appliance-to-server latency.",
+                                "name": "latency-backend"
+                            },
+                            {
+                                "display": "Total Latency",
+                                "description": "The threshold measures the sum of back-end and internal latency.",
+                                "name": "latency-total"
+                            },
+                            {
+                                "display": "Request Message Payload",
+                                "description": "The threshold measures the payload for only the request message. The measure is in KB.",
+                                "name": "payload-request"
+                            },
+                            {
+                                "display": "Response Message Payload",
+                                "description": "The threshold measures the payload for only the response message. The measure is in KB.",
+                                "name": "payload-response"
+                            },
+                            {
+                                "display": "Total Message Payload",
+                                "description": "The threshold measures the payload for the entire transaction, which is both the request message and the response message. The measure is in KB.",
+                                "name": "payload-total"
+                            }
+                        ]
+                    },
+                    "summary": "Threshold Type"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt64"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt64"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt64",
+                    "maximum": "0xFFFFFFFFFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
             }
         ],
         "metadata": {

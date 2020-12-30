@@ -121,6 +121,174 @@
                         ]
                     }
                 }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAPIParameterType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAPIParameterType"
+                    }
+                },
+                "type": {
+                    "name": "dmAPIParameterType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "integer",
+                                "description": "&lt;tt>int32&lt;/tt>",
+                                "name": "integer",
+                                "summary": "integer"
+                            },
+                            {
+                                "display": "long",
+                                "description": "&lt;tt>int64&lt;/tt>",
+                                "name": "long",
+                                "summary": "long"
+                            },
+                            {
+                                "display": "float",
+                                "description": "&lt;tt>float&lt;/tt>",
+                                "name": "float",
+                                "summary": "float"
+                            },
+                            {
+                                "display": "double",
+                                "description": "&lt;tt>double&lt;/tt>",
+                                "name": "double",
+                                "summary": "double"
+                            },
+                            {
+                                "display": "string",
+                                "description": "&lt;tt>string&lt;/tt>",
+                                "name": "string",
+                                "summary": "string"
+                            },
+                            {
+                                "display": "byte",
+                                "description": "&lt;tt>byte&lt;/tt>",
+                                "name": "byte",
+                                "summary": "byte"
+                            },
+                            {
+                                "display": "binary",
+                                "description": "&lt;tt>binary&lt;/tt>",
+                                "name": "binary",
+                                "summary": "binary"
+                            },
+                            {
+                                "display": "boolean",
+                                "description": "&lt;tt>boolean&lt;/tt>",
+                                "name": "boolean",
+                                "summary": "boolean"
+                            },
+                            {
+                                "display": "date",
+                                "description": "As defined by &lt;tt>full-date&lt;/tt> - RFC3339",
+                                "name": "date",
+                                "summary": "date"
+                            },
+                            {
+                                "display": "dateTime",
+                                "description": "As defined by &lt;tt>date-time&lt;/tt> - RFC3339",
+                                "name": "dateTime",
+                                "summary": "dateTime"
+                            },
+                            {
+                                "display": "password",
+                                "description": "&lt;tt>password&lt;/tt>",
+                                "name": "password",
+                                "summary": "password"
+                            },
+                            {
+                                "display": "array",
+                                "description": "&lt;tt>array&lt;/tt>",
+                                "name": "array",
+                                "summary": "array"
+                            },
+                            {
+                                "display": "object",
+                                "description": "&lt;tt>object&lt;/tt>",
+                                "name": "object",
+                                "summary": "object"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAPIParameterWhere"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAPIParameterWhere"
+                    }
+                },
+                "type": {
+                    "name": "dmAPIParameterWhere",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "path",
+                                "description": "A path parameter is part of the operation's URL but does not include the host or base path of the API. A path parameter should take the whole section or segment of the path URI. For example, in &lt;tt>/items/{itemId}&lt;/tt> , the path parameter is &lt;tt>itemId&lt;/tt> .",
+                                "name": "path",
+                                "summary": "Path parameter"
+                            },
+                            {
+                                "display": "query",
+                                "description": "A query parameter is appended to the request URL. For example, in &lt;tt>/items?id=###&lt;/tt> , the query parameter is &lt;tt>id&lt;/tt> .",
+                                "name": "query",
+                                "summary": "Query parameter"
+                            },
+                            {
+                                "display": "body",
+                                "description": "A body parameter is the payload that is appended to the HTTP request. You can define only one body parameter. The name of the body parameter has no effect on the parameter itself and is used for documentation purposes only. Because form parameters are also in the payload, body and form parameters cannot exist together for the same operation.",
+                                "name": "body",
+                                "summary": "Body parameter"
+                            },
+                            {
+                                "display": "form",
+                                "description": "A form parameter is used to describe the payload of an HTTP request when the consumable MIME type of the request content contains &lt;tt>application/x-www-form-urlencoded&lt;/tt> or &lt;tt>multipart/form-data&lt;/tt> or both. This is the only parameter type that can be used to send files. Because body parameters are also in the payload, body and form parameters cannot exist together for the same operation. &lt;ul>&lt;li>When the content type is &lt;tt>application/x-www-form-urlencoded&lt;/tt> , the parameter format is similar to the format of query parameters but as a payload. For example, &lt;tt>foo=1&amp;amp;bar=swagger&lt;/tt> indicates that both &lt;tt>foo&lt;/tt> and &lt;tt>bar&lt;/tt> are form parameters. This is normally used for simple parameters that are being transferred.&lt;/li>&lt;li>When the content type is &lt;tt>multipart/form-data&lt;/tt> , each parameter takes a section in the payload with an internal header. For example, for the header &lt;tt>Content-Disposition: form-data; name=\"submit-name\"&lt;/tt> the name of the parameter is &lt;tt>submit-name&lt;/tt> . This type of form parameters is more commonly used for file transfers.&lt;/li>&lt;/ul>",
+                                "name": "formdata",
+                                "summary": "Form parameter"
+                            },
+                            {
+                                "display": "header",
+                                "description": "Custom headers that are expected as part of the request.",
+                                "name": "header",
+                                "summary": "Custom headers"
+                            }
+                        ]
+                    }
+                }
             }
         ],
         "metadata": {

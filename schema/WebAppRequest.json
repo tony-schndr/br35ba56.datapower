@@ -553,6 +553,42 @@
                     "cli-arg": "file",
                     "name": "dmFSFile"
                 }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmCookieProcessingType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmCookieProcessingType"
+                    }
+                },
+                "type": {
+                    "name": "dmCookieProcessingType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "None",
+                                "description": "The device does not perform any cryptographic action on outbound cookies.",
+                                "name": "none",
+                                "summary": "Neither sign nor encrypt"
+                            },
+                            {
+                                "display": "Sign",
+                                "description": "The device signs outbound cookies with the specified Key. When the client sends back the cookies, the device verifies and removes the signature.",
+                                "name": "sign",
+                                "summary": "Encrypt the contents"
+                            },
+                            {
+                                "display": "Encrypt",
+                                "description": "The device encrypts the contents of outbound cookies with the specified Key. When the client sends back the cookies, the device unencrypts the contents.",
+                                "name": "encrypt",
+                                "summary": "Sign the cookie"
+                            }
+                        ]
+                    },
+                    "summary": "Cookie Security Processing Type"
+                }
             }
         ],
         "metadata": {

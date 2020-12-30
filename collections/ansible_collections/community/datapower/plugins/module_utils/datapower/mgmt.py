@@ -73,7 +73,6 @@ class DPManageConfigSchema:
         prop = self.get_prop(key)
         href = self.get_type_href_from_prop(prop)
         type_ = self.get_type(href)
-
         if type_['type']['name'] == 'dmReference':
             if 'value' in value:
                 return True
@@ -99,6 +98,10 @@ class DPManageConfigSchema:
         self.props = []        
         for dp_prop in schema_resp['metadata']['object']['properties']['property']:
             self.props.append(dp_prop)
+        for type_ in schema_resp['types']:
+            if 'properties' in type_:
+                for prop in type_['properties']['property']:
+                    self.props.append(prop)
 
     def get_type(self, type_href):
         for type_ in self.types:
@@ -114,8 +117,13 @@ class DPManageConfigSchema:
         for prop in self.props:
             if prop['name'] == name:
                 return prop
-        else:
-            return None
+        else:#This could be a property within a type.
+            for type_ in self.types:
+                if 'properties' in type_['type']:
+                    for prop in type_['type']['properties']['property']:
+                        if prop['name'] == name:
+                            return prop
+        return None
 
     @staticmethod
     def get_type_int_boundries(type_):

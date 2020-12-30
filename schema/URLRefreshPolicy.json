@@ -111,6 +111,79 @@
                         ]
                     }
                 }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURLRefreshPolicyType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmURLRefreshPolicyType"
+                    }
+                },
+                "type": {
+                    "display": "URLRefreshPolicy Type",
+                    "name": "dmURLRefreshPolicyType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "default",
+                                "description": "Caches the stylesheet until the maximum cache size is exceeded. Then, the stylesheet is subject to removal from the cache.",
+                                "name": "default",
+                                "summary": "Cache until maximum size reached"
+                            },
+                            {
+                                "display": "no-cache",
+                                "description": "Does not cache the stylesheet.",
+                                "name": "no-cache",
+                                "summary": "Do not cache"
+                            },
+                            {
+                                "display": "no-flush",
+                                "description": "Caches the stylesheet on a preferential basis. The stylesheet will never be deleted from the stylesheet cache before its schedule refresh.",
+                                "name": "no-flush",
+                                "summary": "Cache on preferences"
+                            },
+                            {
+                                "display": "protocol-specified",
+                                "description": "Defers to expiration semantics of protocols, such as HTTP, if they provide such information.",
+                                "name": "protocol-specified",
+                                "summary": "Cache using protocol semantics"
+                            }
+                        ]
+                    },
+                    "summary": "URLRefreshPolicy Type"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                },
+                "type": {
+                    "cli-arg": "seconds",
+                    "minimum": 0,
+                    "name": "dmTimeInterval",
+                    "maximum": "0xFFFFFFFF"
+                }
             }
         ],
         "metadata": {

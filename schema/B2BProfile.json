@@ -2948,6 +2948,504 @@
                         ]
                     }
                 }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmB2BEnabledDocType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmB2BEnabledDocType"
+                    }
+                },
+                "type": {
+                    "name": "dmB2BEnabledDocType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "XML",
+                                "description": "Enables support for XML message bodies.",
+                                "name": "EnableXML",
+                                "summary": "XML"
+                            },
+                            {
+                                "display": "X12",
+                                "description": "Enables support for EDI (Electronic Data Interchange) ANSI X12 message bodies.",
+                                "name": "EnableX12",
+                                "summary": "X12"
+                            },
+                            {
+                                "display": "EDIFACT",
+                                "description": "Enables support for EDIFACT (Electronic Data Interchange for Administration, Commerce, and Transport) message bodies.",
+                                "name": "EnableEDIFACT",
+                                "summary": "EDIFACT"
+                            },
+                            {
+                                "display": "Binary",
+                                "description": "Enables support for Binary message bodies.",
+                                "name": "EnableBinary",
+                                "summary": "Binary"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                },
+                "type": {
+                    "cli-arg": "seconds",
+                    "minimum": 0,
+                    "name": "dmTimeInterval",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmEBMSMPCAuthMethod"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmEBMSMPCAuthMethod"
+                    }
+                },
+                "type": {
+                    "name": "dmEBMSMPCAuthMethod",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Username token",
+                                "description": "When a username token is selected for authentication, the MPC expects a username to be carried with the pull request and use the username to match the payload.",
+                                "name": "username-token",
+                                "summary": "Username token to authenticate pull request"
+                            },
+                            {
+                                "display": "Validation credential",
+                                "description": "When a validation credential is selected for authentication, the MPC expects a certificate to be carried in the pull request, matches the certificate against the MPC validation credential, and use the validation credential name to match the payload.",
+                                "name": "cert",
+                                "summary": "Validation credential to authenticate pull request"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPPassivePolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPPassivePolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmFTPPassivePolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Passive Mode Not Requested",
+                                "description": "Do not use the FTP PASV command to allow the client to open the FTP data connections. The FTP server will open all data connections to the FTP client. Often incompatible with firewalls",
+                                "name": "pasv-off"
+                            },
+                            {
+                                "display": "Request Passive Mode",
+                                "description": "Use the FTP PASV command to request that the FTP client be allowed to open all data connections to the FTP server, but do not fail if the server does not support PASV.",
+                                "name": "pasv-opt"
+                            },
+                            {
+                                "display": "Require Passive Mode",
+                                "description": "Use the FTP PASV command to request that the FTP client be allowed to open all data connections to the FTP server, and fail if the server does not support PASV.",
+                                "name": "pasv-req"
+                            }
+                        ]
+                    },
+                    "display": "FTP Passive Mode Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPAuthPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPAuthPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmFTPAuthPolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "No Authentication Requested",
+                                "description": "Do not use the FTP AUTH command to encrypt the command connection. The username and password will be passed in the clear.",
+                                "name": "auth-off"
+                            },
+                            {
+                                "display": "Request TLS Authentication",
+                                "description": "Use the FTP AUTH TLS command to encrypt the command connection using TLS, if available.",
+                                "name": "auth-tls-opt"
+                            },
+                            {
+                                "display": "Require TLS Authentication",
+                                "description": "Use the FTP AUTH TLS command to encrypt the command connection using TLS, fail if not available.",
+                                "name": "auth-tls-req"
+                            }
+                        ]
+                    },
+                    "display": "FTP Authentication Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPCCCPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPCCCPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmFTPCCCPolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Leave Encrypted",
+                                "description": "Leave the FTP command connection encrypted after (optional) authentication with the USER and PASS commands. The command connection will remain secure, but will be incompatible with NAT and many firewalls.",
+                                "name": "ccc-off"
+                            },
+                            {
+                                "display": "Request Stop Encryption",
+                                "description": "Use the FTP CCC command to request the end of encryption on the command connection using TLS, if supported by the server.",
+                                "name": "ccc-opt"
+                            },
+                            {
+                                "display": "Require Stop Encryption",
+                                "description": "Use the FTP CCC command to request the end of encryption on the command connection using TLS, fail if the server does not support CCC. (Very few server support CCC.) Required for compatibility with NAT and many firewalls.",
+                                "name": "ccc-req"
+                            }
+                        ]
+                    },
+                    "display": "FTP Stop Encryption After Authentication Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPDataEncryptionPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPDataEncryptionPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmFTPDataEncryptionPolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Unencrypted Data",
+                                "description": "Even when the command channel is encrypted, do not encrypt FTP data connections. Use the FTP PROT C command when the command channel is or has been encrypted.",
+                                "name": "enc-data-off"
+                            },
+                            {
+                                "display": "Request Data Encryption",
+                                "description": "Request encryption of FTP data connections using the FTP PROT P command. Required when the command channel is or has been encrypted. Do not fail if server does not support data encryption.",
+                                "name": "enc-data-opt"
+                            },
+                            {
+                                "display": "Require Data Encryption",
+                                "description": "Request encryption of FTP data connections using the FTP PROT P command. Required when the command channel is or has been encrypted. Fail if server does not support data encryption.",
+                                "name": "enc-data-req"
+                            }
+                        ]
+                    },
+                    "display": "FTP Data Encryption Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPDataTypePolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPDataTypePolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmFTPDataTypePolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "ASCII Data",
+                                "description": "Transfer files as ASCII data. This mode allow standardization of end-of-line conventions between different operating systems. This mode increases the overhead at both ends. Uses the FTP TYPE A command.",
+                                "name": "ascii"
+                            },
+                            {
+                                "display": "Image (Binary) Data",
+                                "description": "Transfer files as image data. This mode transfers data as binary 8-bit bytes. This mode is more efficient (less overhead at both ends). Some XML files, such as signed files, must be transferred in this mode. Uses the FTP TYPE I command.",
+                                "name": "binary"
+                            }
+                        ]
+                    },
+                    "display": "FTP Data Type Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPSlashSTOUPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPSlashSTOUPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmFTPSlashSTOUPolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Use Supplied File Name",
+                                "description": "&lt;p>Always use the supplied file name in the URL to generate the target file name requested on the server. If the URL ends in a slash, the request generally fails.&lt;/p>&lt;p>Uses the FTP STOR command to initiate the transfer. The STOR command is only a directory specification, without a file name specification.&lt;/p>",
+                                "name": "slash-stou-off"
+                            },
+                            {
+                                "display": "Request Unique File Name When Trailing Slash",
+                                "description": "&lt;p>If the supplied file name ends in a slash, use the STOU command to write a unique file name. The slash must be before the ? that initiates the query parameters or before the ; that begins the suffix.&lt;/p>&lt;p>Uses the FTP STOU command to initiate the transfer and requests that the server generate a unique file name within the target directory. This approach is the only safe way to have multiple systems write files to the same directory without overwriting any files.&lt;/p>&lt;p>The transfer fails if the FTP server does not support the STOU command.&lt;/p>",
+                                "name": "slash-stou-on"
+                            }
+                        ]
+                    },
+                    "display": "FTP Unique Filename Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPSizeCheckPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPSizeCheckPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmFTPSizeCheckPolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Optional",
+                                "description": "If the FTP SIZE command is available, uses this command to check the file transfer size after file transfer.",
+                                "name": "size-check-optional"
+                            },
+                            {
+                                "display": "Disabled",
+                                "description": "Do not check file size after transfer.",
+                                "name": "size-check-disabled"
+                            }
+                        ]
+                    },
+                    "display": "FTP Size Check Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmB2BBinaryTransferMode"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmB2BBinaryTransferMode"
+                    }
+                },
+                "type": {
+                    "name": "dmB2BBinaryTransferMode",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Auto detect",
+                                "name": "auto-detect",
+                                "summary": "The B2B Gateway detects automatically whether the message payload is processed in binary mode or ASCII mode, and then complete the transfer accordingly."
+                            },
+                            {
+                                "display": "Enforce",
+                                "name": "enforce",
+                                "summary": "The B2B Gateway transfers the message payload in binary mode regardless of protocol flags, which ensures that the message payload is transferred unaltered."
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmCMSEncryptionAlgorithm"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmCMSEncryptionAlgorithm"
+                    }
+                },
+                "type": {
+                    "name": "dmCMSEncryptionAlgorithm",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "3des",
+                                "name": "3des",
+                                "summary": "3DES EDE CBC algorithm"
+                            },
+                            {
+                                "display": "des",
+                                "name": "des",
+                                "summary": "DES CBC algorithm"
+                            },
+                            {
+                                "display": "rc2-128",
+                                "name": "rc2-128",
+                                "summary": "128-bit RC2 CBC algorithm"
+                            },
+                            {
+                                "display": "rc2-64",
+                                "name": "rc2-64",
+                                "summary": "64-bit RC2 CBC algorithm"
+                            },
+                            {
+                                "display": "rc2-40",
+                                "name": "rc2-40",
+                                "summary": "40-bit RC2 CBC algorithm"
+                            },
+                            {
+                                "display": "aes-128",
+                                "name": "aes-128",
+                                "summary": "128-bit AES CBC algorithm"
+                            },
+                            {
+                                "display": "aes-192",
+                                "name": "aes-192",
+                                "summary": "192-bit AES CBC algorithm"
+                            },
+                            {
+                                "display": "aes-256",
+                                "name": "aes-256",
+                                "summary": "256-bit AES CBC algorithm"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmCryptoEncryptionAlgorithm"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmCryptoEncryptionAlgorithm"
+                    }
+                },
+                "type": {
+                    "display": "Encryption Algorithm",
+                    "description": "The encryption algorithm to use.",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "3DES-CBC",
+                                "name": "http://www.w3.org/2001/04/xmlenc#tripledes-cbc",
+                                "summary": "http://www.w3.org/2001/04/xmlenc#tripledes-cbc"
+                            },
+                            {
+                                "display": "AES128-CBC",
+                                "name": "http://www.w3.org/2001/04/xmlenc#aes128-cbc",
+                                "summary": "http://www.w3.org/2001/04/xmlenc#aes128-cbc"
+                            },
+                            {
+                                "display": "AES192-CBC",
+                                "name": "http://www.w3.org/2001/04/xmlenc#aes192-cbc",
+                                "summary": "http://www.w3.org/2001/04/xmlenc#aes192-cbc"
+                            },
+                            {
+                                "display": "AES256-CBC",
+                                "name": "http://www.w3.org/2001/04/xmlenc#aes256-cbc",
+                                "summary": "http://www.w3.org/2001/04/xmlenc#aes256-cbc"
+                            },
+                            {
+                                "display": "AES128-GCM",
+                                "name": "http://www.w3.org/2009/xmlenc11#aes128-gcm",
+                                "summary": "http://www.w3.org/2009/xmlenc11#aes128-gcm"
+                            },
+                            {
+                                "display": "AES192-GCM",
+                                "name": "http://www.w3.org/2009/xmlenc11#aes192-gcm",
+                                "summary": "http://www.w3.org/2009/xmlenc11#aes192-gcm"
+                            },
+                            {
+                                "display": "AES256-GCM",
+                                "name": "http://www.w3.org/2009/xmlenc11#aes256-gcm",
+                                "summary": "http://www.w3.org/2009/xmlenc11#aes256-gcm"
+                            }
+                        ]
+                    },
+                    "name": "dmCryptoEncryptionAlgorithm"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmEBMSSyncReplyMode"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmEBMSSyncReplyMode"
+                    }
+                },
+                "type": {
+                    "name": "dmEBMSSyncReplyMode",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "mshSignalsOnly",
+                                "description": "Request for acknowledgment/error documents to be sent back over a synchronous connection.",
+                                "name": "mshSignalsOnly",
+                                "summary": "Request for synchronous reply of Acknowledgment/Error message"
+                            },
+                            {
+                                "display": "none",
+                                "description": "Do not request receiver to send acknowledgment/error documents back in a synchronous connection.",
+                                "name": "none",
+                                "summary": "Not request for synchronous reply of Acknowledgment/Error message"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmEBMSMEP"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmEBMSMEP"
+                    }
+                },
+                "type": {
+                    "name": "dmEBMSMEP",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "One-way push",
+                                "description": "In the one-way push pattern, the initiator is the business partner that sends the message. The responder is the business partner that receives the message.",
+                                "name": "one-way-push",
+                                "summary": "One-way push message exchange pattern"
+                            },
+                            {
+                                "display": "One-way pull",
+                                "description": "The initiator is the receiver. The receiver determines which message it wants to receive first and when it is ready to receive messages. The sender becomes the responder. When an initiator is ready to receive messages, the initiator notifies its message service handler (MSH), in our case, the DataPower Gateway, to send a pull request signal to the MSH of the responder.",
+                                "name": "one-way-pull",
+                                "summary": "One-way pull message exchange pattern"
+                            }
+                        ]
+                    }
+                }
             }
         ],
         "metadata": {

@@ -77,6 +77,78 @@
                     "name": "dmOAuthType",
                     "summary": ""
                 }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmOAuthClientType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmOAuthClientType"
+                    }
+                },
+                "type": {
+                    "name": "dmOAuthClientType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Confidential",
+                                "description": "Clients can maintain the confidentiality of their credentials or can secure client authentication through other means.",
+                                "name": "confidential",
+                                "summary": "Confidential"
+                            },
+                            {
+                                "display": "Public",
+                                "description": "Clients cannot maintain the confidentiality of their credentials or cannot secure client authentication through other means.",
+                                "name": "public",
+                                "summary": "Public"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAPISecurityOAuthFlow"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAPISecurityOAuthFlow"
+                    }
+                },
+                "type": {
+                    "display": "API OAuth Flow",
+                    "name": "dmAPISecurityOAuthFlow",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Implicit",
+                                "description": "In the implicit flow, the client receives the access token directly from the resource owner.",
+                                "name": "implicit",
+                                "summary": "The Implicit flow corresponds to the implicit OAuth grant type."
+                            },
+                            {
+                                "display": "Password",
+                                "description": "In the resource owner password credentials flow, the client uses password credentials of the resource owner to obtain authorization.",
+                                "name": "password",
+                                "summary": "The Password flow corresponds to the OAuth grant type of Resource Owner Password Credentials."
+                            },
+                            {
+                                "display": "Application",
+                                "description": "In the client credentials flow, the client uses its own credentials to obtain authorization.",
+                                "name": "application",
+                                "summary": "The Application flow corresponds to the Client Credentials OAuth grant type."
+                            },
+                            {
+                                "display": "Access code",
+                                "description": "In the authorization code flow, the client directs the resource owner to an intermediary authorization server. The server issues access token to the client after authenticating the client.",
+                                "name": "accessCode",
+                                "summary": "The Access code flow corresponds to the Authorization Code OAuth grant type."
+                            }
+                        ]
+                    },
+                    "summary": "Defines different types of OAuth flows. You create an OAuth security definition of a specific type according to the required OAuth grant type. Each of the flows corresponds to an OAuth grant type."
+                }
             }
         ],
         "metadata": {

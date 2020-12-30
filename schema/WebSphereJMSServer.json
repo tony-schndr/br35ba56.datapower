@@ -308,6 +308,79 @@
                     },
                     "name": "dmWebSphereJMSSSLCipher"
                 }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostname"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostname"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                },
+                "type": {
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmWebSphereJMSTransport"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmWebSphereJMSTransport"
+                    }
+                },
+                "type": {
+                    "name": "dmWebSphereJMSTransport",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "TCP",
+                                "description": "Uses the predefined BootstrapBasicMessaging transport chain (JFAP-TCP/IP).",
+                                "name": "TCP",
+                                "summary": "BootstrapBasicMessaging transport chain"
+                            },
+                            {
+                                "display": "TLS",
+                                "description": "Uses the predefined BootstrapSecureMessaging transport chain (JFAP-SSL-TCP/IP).",
+                                "name": "SSL",
+                                "summary": "BootstrapSecureMessaging transport chain"
+                            },
+                            {
+                                "display": "HTTP",
+                                "description": "Uses the predefined BootstrapTunneledMessaging transport chain (tunnels JFAP using HTTP wrappers)",
+                                "name": "HTTP",
+                                "summary": "BootstrapTunneledMessaging transport chain"
+                            },
+                            {
+                                "display": "HTTPS",
+                                "description": "Uses the predefined BootstrapTunneledSecureMessaging transport chain (tunnels JFAP using HTTPS wrappers).",
+                                "name": "HTTPS",
+                                "summary": "BootstrapTunneledSecureMessaging transport chain"
+                            }
+                        ]
+                    },
+                    "display": "WebSphere JMS connection protocol"
+                }
             }
         ],
         "metadata": {

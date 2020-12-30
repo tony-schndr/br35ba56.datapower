@@ -679,6 +679,73 @@
                     "name": "dmUInt16",
                     "maximum": "0xFFFF"
                 }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTraceFileType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmTraceFileType"
+                    }
+                },
+                "type": {
+                    "name": "dmTraceFileType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Text",
+                                "description": "Logs events in ASCII text format. Each entry is approximately 200 bytes.",
+                                "name": "textfile",
+                                "summary": "ASCII text"
+                            },
+                            {
+                                "display": "UTF-8",
+                                "description": "Logs events in UTF-8 text format. Each entry is approximately 200 bytes",
+                                "name": "utf8file",
+                                "summary": "UTF-8 text"
+                            },
+                            {
+                                "display": "XML",
+                                "description": "Logs events in the Tivoli XML format. Each entry is approximately 500 bytes",
+                                "name": "xmlfile",
+                                "summary": "Tivoli XML"
+                            }
+                        ]
+                    },
+                    "display": "ISAM Trace File Formats"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostname"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostname"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
+                }
             }
         ],
         "metadata": {

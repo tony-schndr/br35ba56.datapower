@@ -157,6 +157,66 @@
                     "cli-arg": "object",
                     "name": "dmReference"
                 }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAssemblyFunctionParameterValueType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAssemblyFunctionParameterValueType"
+                    }
+                },
+                "type": {
+                    "display": "Parameter value type",
+                    "name": "dmAssemblyFunctionParameterValueType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "string",
+                                "description": "Indicates that the value type is a string. The value is set on the parameter as a JSON string. For example, if the parameter name is &lt;tt>foo&lt;/tt> , the value is set on &lt;tt>local.parameter.foo&lt;/tt> in the API context. This setting is the default value.",
+                                "name": "string"
+                            },
+                            {
+                                "display": "payload",
+                                "description": "Indicates that the value type is a payload. The payload is set on the &lt;tt>body&lt;/tt> key of the parameter as a binary blob. For example, if the parameter name is &lt;tt>foo&lt;/tt> , the payload is set on &lt;tt>local.parameter.foo.body&lt;/tt> in the API context. If the root of the payload value is a JSON object, it must include a space after the first opening curly bracket &lt;tt>{&lt;/tt> . For an XML tree or JSON document, the payload must be explicitly parsed before being used.",
+                                "name": "payload"
+                            },
+                            {
+                                "display": "message",
+                                "description": "Indicates that the value type is a message. The message contents are copied and set on the parameter. For example, if the message is &lt;tt>foo&lt;/tt> and the parameter name is &lt;tt>bar&lt;/tt> , then the keys and values of &lt;tt>foo&lt;/tt> are copied and set on &lt;tt>local.parameter.bar&lt;/tt> in the API context. The message must be a JSON object. The message must have a payload set to the &lt;tt>body&lt;/tt> key. The payload cannot be a stream.",
+                                "name": "message"
+                            }
+                        ]
+                    },
+                    "summary": "The type of the parameter value"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
             }
         ],
         "metadata": {

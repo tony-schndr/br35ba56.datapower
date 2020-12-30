@@ -2,6 +2,9 @@
   hosts: dp1
   connection: local
   vars:
+    #objs:
+      #- DNSNameService
+      #- AAAPolicy
   tasks:
     - name: Get all supported objects
       community.datapower.config_info:
@@ -16,6 +19,7 @@
         config: {}
       register: all_objects_schema
       loop: "{{ config_info_result['config_info'] }}"
+      #loop: "{{ objs }}"
       ignore_errors: yes
     - name: Write object schemas to file
       copy:

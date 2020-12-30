@@ -96,6 +96,64 @@
                         ]
                     }
                 }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostname"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostname"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                },
+                "type": {
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSecureGatewayAccess"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSecureGatewayAccess"
+                    }
+                },
+                "type": {
+                    "name": "dmSecureGatewayAccess",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "allow",
+                                "description": "Allow access to this host and port.",
+                                "name": "allow"
+                            },
+                            {
+                                "display": "deny",
+                                "description": "Deny access to this host and port.",
+                                "name": "deny"
+                            }
+                        ]
+                    }
+                }
             }
         ],
         "metadata": {

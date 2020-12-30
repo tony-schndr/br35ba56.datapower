@@ -828,6 +828,407 @@
                         ]
                     }
                 }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSMTPOptions"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSMTPOptions"
+                    }
+                },
+                "type": {
+                    "name": "dmSMTPOptions",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "STARTTLS",
+                                "description": "Use the POP STARTTLS feature to negotiate a secure connection.",
+                                "name": "StartTLS"
+                            },
+                            {
+                                "display": "Authentication",
+                                "description": "Use Simple Authentication and Security Layer (SASL) for SMTP client authentication.",
+                                "name": "Auth"
+                            }
+                        ]
+                    },
+                    "display": "Options"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSMTPAuth"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSMTPAuth"
+                    }
+                },
+                "type": {
+                    "name": "dmSMTPAuth",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "PLAIN",
+                                "description": "Use the PLAIN authentication method.",
+                                "name": "plain"
+                            },
+                            {
+                                "display": "LOGIN",
+                                "description": "Use the LOGIN authentication method.",
+                                "name": "login"
+                            }
+                        ]
+                    },
+                    "display": "Authentication"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPPassivePolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPPassivePolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmFTPPassivePolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Passive Mode Not Requested",
+                                "description": "Do not use the FTP PASV command to allow the client to open the FTP data connections. The FTP server will open all data connections to the FTP client. Often incompatible with firewalls",
+                                "name": "pasv-off"
+                            },
+                            {
+                                "display": "Request Passive Mode",
+                                "description": "Use the FTP PASV command to request that the FTP client be allowed to open all data connections to the FTP server, but do not fail if the server does not support PASV.",
+                                "name": "pasv-opt"
+                            },
+                            {
+                                "display": "Require Passive Mode",
+                                "description": "Use the FTP PASV command to request that the FTP client be allowed to open all data connections to the FTP server, and fail if the server does not support PASV.",
+                                "name": "pasv-req"
+                            }
+                        ]
+                    },
+                    "display": "FTP Passive Mode Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPAuthPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPAuthPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmFTPAuthPolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "No Authentication Requested",
+                                "description": "Do not use the FTP AUTH command to encrypt the command connection. The username and password will be passed in the clear.",
+                                "name": "auth-off"
+                            },
+                            {
+                                "display": "Request TLS Authentication",
+                                "description": "Use the FTP AUTH TLS command to encrypt the command connection using TLS, if available.",
+                                "name": "auth-tls-opt"
+                            },
+                            {
+                                "display": "Require TLS Authentication",
+                                "description": "Use the FTP AUTH TLS command to encrypt the command connection using TLS, fail if not available.",
+                                "name": "auth-tls-req"
+                            }
+                        ]
+                    },
+                    "display": "FTP Authentication Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPCCCPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPCCCPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmFTPCCCPolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Leave Encrypted",
+                                "description": "Leave the FTP command connection encrypted after (optional) authentication with the USER and PASS commands. The command connection will remain secure, but will be incompatible with NAT and many firewalls.",
+                                "name": "ccc-off"
+                            },
+                            {
+                                "display": "Request Stop Encryption",
+                                "description": "Use the FTP CCC command to request the end of encryption on the command connection using TLS, if supported by the server.",
+                                "name": "ccc-opt"
+                            },
+                            {
+                                "display": "Require Stop Encryption",
+                                "description": "Use the FTP CCC command to request the end of encryption on the command connection using TLS, fail if the server does not support CCC. (Very few server support CCC.) Required for compatibility with NAT and many firewalls.",
+                                "name": "ccc-req"
+                            }
+                        ]
+                    },
+                    "display": "FTP Stop Encryption After Authentication Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPDataEncryptionPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPDataEncryptionPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmFTPDataEncryptionPolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Unencrypted Data",
+                                "description": "Even when the command channel is encrypted, do not encrypt FTP data connections. Use the FTP PROT C command when the command channel is or has been encrypted.",
+                                "name": "enc-data-off"
+                            },
+                            {
+                                "display": "Request Data Encryption",
+                                "description": "Request encryption of FTP data connections using the FTP PROT P command. Required when the command channel is or has been encrypted. Do not fail if server does not support data encryption.",
+                                "name": "enc-data-opt"
+                            },
+                            {
+                                "display": "Require Data Encryption",
+                                "description": "Request encryption of FTP data connections using the FTP PROT P command. Required when the command channel is or has been encrypted. Fail if server does not support data encryption.",
+                                "name": "enc-data-req"
+                            }
+                        ]
+                    },
+                    "display": "FTP Data Encryption Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPDataTypePolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPDataTypePolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmFTPDataTypePolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "ASCII Data",
+                                "description": "Transfer files as ASCII data. This mode allow standardization of end-of-line conventions between different operating systems. This mode increases the overhead at both ends. Uses the FTP TYPE A command.",
+                                "name": "ascii"
+                            },
+                            {
+                                "display": "Image (Binary) Data",
+                                "description": "Transfer files as image data. This mode transfers data as binary 8-bit bytes. This mode is more efficient (less overhead at both ends). Some XML files, such as signed files, must be transferred in this mode. Uses the FTP TYPE I command.",
+                                "name": "binary"
+                            }
+                        ]
+                    },
+                    "display": "FTP Data Type Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPSlashSTOUPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPSlashSTOUPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmFTPSlashSTOUPolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Use Supplied File Name",
+                                "description": "&lt;p>Always use the supplied file name in the URL to generate the target file name requested on the server. If the URL ends in a slash, the request generally fails.&lt;/p>&lt;p>Uses the FTP STOR command to initiate the transfer. The STOR command is only a directory specification, without a file name specification.&lt;/p>",
+                                "name": "slash-stou-off"
+                            },
+                            {
+                                "display": "Request Unique File Name When Trailing Slash",
+                                "description": "&lt;p>If the supplied file name ends in a slash, use the STOU command to write a unique file name. The slash must be before the ? that initiates the query parameters or before the ; that begins the suffix.&lt;/p>&lt;p>Uses the FTP STOU command to initiate the transfer and requests that the server generate a unique file name within the target directory. This approach is the only safe way to have multiple systems write files to the same directory without overwriting any files.&lt;/p>&lt;p>The transfer fails if the FTP server does not support the STOU command.&lt;/p>",
+                                "name": "slash-stou-on"
+                            }
+                        ]
+                    },
+                    "display": "FTP Unique Filename Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPSizeCheckPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPSizeCheckPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmFTPSizeCheckPolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Optional",
+                                "description": "If the FTP SIZE command is available, uses this command to check the file transfer size after file transfer.",
+                                "name": "size-check-optional"
+                            },
+                            {
+                                "display": "Disabled",
+                                "description": "Do not check file size after transfer.",
+                                "name": "size-check-disabled"
+                            }
+                        ]
+                    },
+                    "display": "FTP Size Check Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHeaderRetentionBitmap"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHeaderRetentionBitmap"
+                    }
+                },
+                "type": {
+                    "name": "dmHeaderRetentionBitmap",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "TE",
+                                "display": "TE"
+                            },
+                            {
+                                "name": "Accept-Encoding",
+                                "display": "Accept-Encoding"
+                            },
+                            {
+                                "name": "Range",
+                                "display": "Range"
+                            },
+                            {
+                                "name": "MQMD",
+                                "display": "MQMD"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSLClientConfigType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSLClientConfigType"
+                    }
+                },
+                "type": {
+                    "name": "dmSSLClientConfigType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "proxy",
+                                "display": "Proxy Profile"
+                            },
+                            {
+                                "name": "client",
+                                "display": "Client Profile"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostname"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostname"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                },
+                "type": {
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
             }
         ],
         "metadata": {

@@ -1828,6 +1828,350 @@
                         ]
                     }
                 }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmWSRMPolicyBitmap"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmWSRMPolicyBitmap"
+                    }
+                },
+                "type": {
+                    "display": "Reliable Messaging Options",
+                    "name": "dmWSRMPolicyBitmap",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "Optional",
+                                "display": "Reliable Messaging is optional"
+                            },
+                            {
+                                "name": "SequenceTransportSecurity",
+                                "display": "RM Sequence must be bound to underlying transport-level security protocol"
+                            },
+                            {
+                                "name": "InOrder",
+                                "display": "RM messages must be delivered in the same order as they have been sent by the source"
+                            },
+                            {
+                                "name": "TwoWay",
+                                "display": "Response messages require RM Sequence headers"
+                            }
+                        ]
+                    },
+                    "summary": "Reliable Messaging Options Selections"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmWSRMPolicyDeliveryAssurance"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmWSRMPolicyDeliveryAssurance"
+                    }
+                },
+                "type": {
+                    "display": "Reliable Messaging policy delivery assurance type",
+                    "name": "dmWSRMPolicyDeliveryAssurance",
+                    "value-list": {
+                        "value": {
+                            "display": "Message must be delivered exactly once",
+                            "name": "exactly-once",
+                            "summary": "Message must be delivered exactly once"
+                        }
+                    },
+                    "summary": "Reliable Messaging policy delivery assurance type"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmWSDLComponentType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmWSDLComponentType"
+                    }
+                },
+                "type": {
+                    "name": "dmWSDLComponentType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "All",
+                                "description": "Matches all input. Select all to include all component types in the matching criteria. If all is chosen (the default), the WSDL Component Value field is blank (the default). This combination eliminates the WSDL Component from consideration when selecting a Processing Rule.",
+                                "name": "all"
+                            },
+                            {
+                                "display": "Subscription",
+                                "description": "Matches UDDI subscription key.",
+                                "name": "subscription"
+                            },
+                            {
+                                "display": "WSDL",
+                                "description": "The selected Processing Rule will be run only when the operation requested in the current transaction is defined in the WSDL file that is identified by the WSDL Component Value field.",
+                                "name": "wsdl"
+                            },
+                            {
+                                "display": "Service",
+                                "description": "The selected Processing Rule will be run only when the operation requested in the current transaction is included in the WSDL service that is identified by the WSDL Component Value field. Matches wsdl:service/@name formatted {serviceNamespace}name",
+                                "name": "service"
+                            },
+                            {
+                                "display": "Port",
+                                "description": "Matches wsdl:service/wsdl:port/@name formatted {serviceNamespace}port-name",
+                                "name": "port"
+                            },
+                            {
+                                "display": "Operation",
+                                "description": "The selected Processing Rule will be run only when the operation requested in the current transaction is the operation that is identified by the WSDL Component Value field. Matches wsdl:binding/operation/@name formatted {bindingNamespace}name or via wsdl:service/wsdl:port when formatted {serviceNamespace}port-name/operation-name.",
+                                "name": "operation"
+                            },
+                            {
+                                "display": "Fragment Identifier",
+                                "description": "Match the Fragment Identifier",
+                                "name": "fragmentid"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFragmentID"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFragmentID"
+                    }
+                },
+                "type": {
+                    "cli-arg": "fragmentid",
+                    "display": "WSDL Fragment Identifier",
+                    "description": "Set the WSDL Fragment Identifier",
+                    "name": "dmFragmentID",
+                    "summary": "The WSDL Fragment Identifier"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmPolicySubjectBitmap"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmPolicySubjectBitmap"
+                    }
+                },
+                "type": {
+                    "display": "Policy Subjects",
+                    "name": "dmPolicySubjectBitmap",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "Service",
+                                "display": "Service Subject"
+                            },
+                            {
+                                "name": "Endpoint",
+                                "display": "Endpoint Subject"
+                            },
+                            {
+                                "name": "Operation",
+                                "display": "Operation Subject"
+                            },
+                            {
+                                "name": "MessageIn",
+                                "display": "Message Input Subject"
+                            },
+                            {
+                                "name": "MessageOut",
+                                "display": "Message Output Subject"
+                            }
+                        ]
+                    },
+                    "summary": "Policy Subject Selections"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmWSDLUserPolicyToggles"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmWSDLUserPolicyToggles"
+                    }
+                },
+                "type": {
+                    "display": "User Toggles",
+                    "name": "dmWSDLUserPolicyToggles",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Enable this component",
+                                "description": "Allows (selected) or disallows (unselected) requests for the operations and services included by this component level. A WSDL component, for example, includes all ports, services, and operation that are defined in the WSDL file.",
+                                "name": "Enable"
+                            },
+                            {
+                                "display": "Publish in WSDL",
+                                "description": "Includes (selected) the component in any WSDL file that is published to external directories or returned in the WSDL file that is produced by the Web Service Proxy in response to requests by external clients. It is possible to enable an operation but not publish it until some other time. Also, it is possible to discontinue publishing an operation after a sunset period.",
+                                "name": "Publish"
+                            },
+                            {
+                                "display": "Schema validate faults messages",
+                                "description": "Validates (selected) fault messages against the schema that is contained in the corresponding WSDL file. Not all WSDL files contain schema information for faults. For this reason, the Web Service Proxy can be configured to allow fault messages to pass when no fault schema information is available. When selected and the WSDL file contains fault schema information, fault messages are checked against that schema and rejected if they do not validate.",
+                                "name": "VerifyFaults"
+                            },
+                            {
+                                "display": "Schema validate SOAP headers",
+                                "description": "Validates (selected) SOAP headers. A WSDL file can contain schema information about SOAP headers.",
+                                "name": "VerifyHeaders"
+                            },
+                            {
+                                "display": "No Request Validation",
+                                "description": "Does not validate (selected) request messages against the schema that is contained in the corresponding WSDL file.",
+                                "name": "NoRequestValidation"
+                            },
+                            {
+                                "display": "No Response Validation",
+                                "description": "Does not validate (selected) response messages against the schema that is contained in the corresponding WSDL file.",
+                                "name": "NoResponseValidation"
+                            },
+                            {
+                                "display": "Strict Fault Document Style",
+                                "description": "When enabled, schema for fault messages disallows RPC operation wrapper. This setting applies to the full selected WSDLs.",
+                                "name": "SuppressFaultsElementsForRPCWrappers"
+                            },
+                            {
+                                "display": "Opt out of WS-Addressing",
+                                "description": "Opts out of any configured WS-Addressing.",
+                                "name": "NoWSA"
+                            },
+                            {
+                                "display": "Opt out of WS-ReliableMessaging",
+                                "description": "Opts out of any configured WS-ReliableMessaging.",
+                                "name": "NoWSRM"
+                            },
+                            {
+                                "display": "Accept MTOM/XOP Optimized Messages",
+                                "description": "&lt;p>When selected, this option modifies message validation to accept messages where base64-encoded binary content was optimized according to the MTOM/XOP specifications. XOP binary-optimization replaces base64-encoded binary data with an xop:Include reference element that references the unencoded binary data located in an attachment.&lt;/p>&lt;ul>&lt;li>When disabled, such optimized messages are rejected by validation of the optimized form. Rejection occurs because the schema specifies a simple type that accepts base64-encoded data, such as xs:base64Binary or xs:string, but the message contains an xop:Include element instead.&lt;/li>&lt;li>When enabled, an xop:Include element can optionally appear in place of content for any XML Schema simple type that validates base64-encoded binary data. The xop:Include element itself is validated according to the built-in schema in store:///schemas/xop.xsd.&lt;/li>&lt;/ul>&lt;p>This option is enabled by default.&lt;/p>",
+                                "name": "AllowXOPInclude"
+                            }
+                        ]
+                    },
+                    "summary": "User Toggles"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmPCRE"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmPCRE"
+                    }
+                },
+                "type": {
+                    "cli-arg": "pcre",
+                    "name": "dmPCRE"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmProcessingType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmProcessingType"
+                    }
+                },
+                "type": {
+                    "name": "dmProcessingType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "all",
+                                "display": "Any"
+                            },
+                            {
+                                "display": "Response",
+                                "name": "response",
+                                "summary": "Response rule (server-originated)"
+                            },
+                            {
+                                "display": "Request",
+                                "name": "request",
+                                "summary": "Request rule (client-originated)"
+                            },
+                            {
+                                "display": "Call",
+                                "name": "call",
+                                "summary": "Call processing rule"
+                            },
+                            {
+                                "display": "Error",
+                                "name": "error",
+                                "summary": "Error rule"
+                            },
+                            {
+                                "display": "Scheduled",
+                                "name": "scheduled",
+                                "summary": "Scheduled processing rule"
+                            },
+                            {
+                                "display": "Health",
+                                "name": "lbhealth",
+                                "summary": "Health-Check processing rule"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmXPathExpr"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmXPathExpr"
+                    }
+                },
+                "type": {
+                    "cli-arg": "xpath",
+                    "name": "dmXPathExpr"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHTTPHeaderLocationType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHTTPHeaderLocationType"
+                    }
+                },
+                "type": {
+                    "display": "Message Direction",
+                    "name": "dmHTTPHeaderLocationType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Front",
+                                "description": "The message travels from the DataPower device to the client.",
+                                "name": "front",
+                                "summary": "DataPower device to client"
+                            },
+                            {
+                                "display": "Back",
+                                "description": "The message travels from the DataPower device to the backend server.",
+                                "name": "back",
+                                "summary": "DataPower device to server"
+                            }
+                        ]
+                    },
+                    "summary": "The direction of the message"
+                }
             }
         ],
         "metadata": {

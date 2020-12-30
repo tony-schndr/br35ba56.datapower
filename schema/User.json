@@ -342,6 +342,99 @@
                         ]
                     }
                 }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSnmpAuthProtocol"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSnmpAuthProtocol"
+                    }
+                },
+                "type": {
+                    "name": "dmSnmpAuthProtocol",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "None",
+                                "name": "none",
+                                "summary": "The account has no authentication key."
+                            },
+                            {
+                                "display": "MD5",
+                                "name": "md5",
+                                "summary": "The account uses HMAC-MD5-96."
+                            },
+                            {
+                                "display": "SHA",
+                                "name": "sha",
+                                "summary": "The account uses HMAC-SHA-96."
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSnmpSecretType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSnmpSecretType"
+                    }
+                },
+                "type": {
+                    "name": "dmSnmpSecretType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Generate from plaintext string",
+                                "description": "The plaintext string is converted to an intermediate key with a standardized algorithm. The intermediate key is localized against the engine ID.",
+                                "name": "password",
+                                "summary": "Generate localized key from a plaintext string."
+                            },
+                            {
+                                "display": "Localized key",
+                                "description": "The secret is a fully localized key, which is useful when the key was created on another system.",
+                                "name": "key",
+                                "summary": "Use the provided value for the key."
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSnmpPrivProtocol"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSnmpPrivProtocol"
+                    }
+                },
+                "type": {
+                    "name": "dmSnmpPrivProtocol",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "None",
+                                "name": "none",
+                                "summary": "The account has no privacy key."
+                            },
+                            {
+                                "display": "DES",
+                                "name": "des",
+                                "summary": "The account uses CBC-DES"
+                            },
+                            {
+                                "display": "AES",
+                                "name": "aes",
+                                "summary": "The account uses CFB128-AES-128"
+                            }
+                        ]
+                    }
+                }
             }
         ],
         "metadata": {

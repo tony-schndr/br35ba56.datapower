@@ -840,6 +840,241 @@
                         ]
                     }
                 }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmWSProtocolType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmWSProtocolType"
+                    }
+                },
+                "type": {
+                    "display": "WS Binding Protocol Type",
+                    "name": "dmWSProtocolType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Default",
+                                "description": "Uses the protocol from the WSDL definition.",
+                                "name": "default"
+                            },
+                            {
+                                "display": "HTTP",
+                                "description": "Sets the protocol portion of the binding to http.",
+                                "name": "http"
+                            },
+                            {
+                                "display": "HTTPS",
+                                "description": "Sets the protocol portion of the binding to https.",
+                                "name": "https"
+                            }
+                        ]
+                    },
+                    "summary": "Protocol type for the WS Binding"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostname"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostname"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                },
+                "type": {
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmWSRemoteProtocolType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmWSRemoteProtocolType"
+                    }
+                },
+                "type": {
+                    "display": "WS Remote Binding Protocol Type",
+                    "name": "dmWSRemoteProtocolType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Default",
+                                "description": "Uses the protocol from the WSDL definition.",
+                                "name": "default"
+                            },
+                            {
+                                "display": "HTTP",
+                                "description": "Sets the protocol portion of the binding to http.",
+                                "name": "http"
+                            },
+                            {
+                                "display": "HTTPS",
+                                "description": "Sets the protocol portion of the binding to https.",
+                                "name": "https"
+                            },
+                            {
+                                "display": "DPMQ",
+                                "description": "Sets the protocol portion of the binding to IBM MQ.",
+                                "name": "dpmq"
+                            },
+                            {
+                                "display": "IBM MQ",
+                                "description": "Sets the protocol portion of the binding to dynamic IBM MQ.",
+                                "name": "mq"
+                            },
+                            {
+                                "display": "DPTIBEMS",
+                                "description": "Sets the protocol portion of the binding to Tibco EMS.",
+                                "name": "dptibems"
+                            },
+                            {
+                                "display": "TIBEMS",
+                                "description": "Sets the protocol portion of the binding to dynamic Tibco EMS.",
+                                "name": "tibems"
+                            },
+                            {
+                                "display": "DPWASJMS",
+                                "description": "Sets the protocol portion of the binding to WebSphere JMS.",
+                                "name": "dpwasjms"
+                            }
+                        ]
+                    },
+                    "summary": "Protocol type for the remote WS Binding"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLocalIPHostAddress"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip or 0 for any",
+                    "name": "dmLocalIPHostAddress",
+                    "format": "(a.b.c.d or 0 for any)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmWSDLBindingProtocol"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmWSDLBindingProtocol"
+                    }
+                },
+                "type": {
+                    "name": "dmWSDLBindingProtocol",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "default",
+                                "description": "Use the binding protocol that the WSDL specifies.",
+                                "name": "default"
+                            },
+                            {
+                                "display": "SOAP 1.1",
+                                "description": "Use the SOAP 1.1 binding for WSDL 1.1 (http://schemas.xmlsoap.org/wsdl/soap/).",
+                                "name": "soap-11"
+                            },
+                            {
+                                "display": "SOAP 1.2",
+                                "description": "Use the SOAP 1.2 binding for WSDL 1.1 (http://schemas.xmlsoap.org/wsdl/soap12/).",
+                                "name": "soap-12"
+                            },
+                            {
+                                "display": "HTTP GET",
+                                "description": "Use the HTTP binding for WSDL 1.1 (http://schemas.xmlsoap.org/wsdl/http/), using the GET verb.",
+                                "name": "http-get"
+                            },
+                            {
+                                "display": "HTTP POST",
+                                "description": "Use the HTTP binding for WSDL 1.1 (http://schemas.xmlsoap.org/wsdl/http/), using the POST verb.",
+                                "name": "http-post"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmPCRE"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmPCRE"
+                    }
+                },
+                "type": {
+                    "cli-arg": "pcre",
+                    "name": "dmPCRE"
+                }
             }
         ],
         "metadata": {

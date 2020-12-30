@@ -1087,6 +1087,269 @@
                     "name": "dmLBGroupAffinity",
                     "summary": "LB Group Affinity"
                 }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAffinityMode"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAffinityMode"
+                    }
+                },
+                "type": {
+                    "name": "dmAffinityMode",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "active",
+                                "description": "Forces session affinity for every HTTP request irrespective of the need for session affinity by the remote application.",
+                                "name": "active",
+                                "summary": "Active session affinity"
+                            },
+                            {
+                                "display": "active-conditional",
+                                "description": "Forces session affinity when the remote application indicates that session affinity is required. The list of monitored cookies is used to verify that the remote server is requesting session affinity.",
+                                "name": "activeConditional",
+                                "summary": "Active-conditional session affinity"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmInsertionAttributes"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmInsertionAttributes"
+                    }
+                },
+                "type": {
+                    "name": "dmInsertionAttributes",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Secure",
+                                "name": "secure",
+                                "summary": ""
+                            },
+                            {
+                                "display": "HttpOnly",
+                                "name": "httponly",
+                                "summary": ""
+                            }
+                        ]
+                    },
+                    "display": "Cookie attributes"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                },
+                "type": {
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLBHealthCheckType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLBHealthCheckType"
+                    }
+                },
+                "type": {
+                    "name": "dmLBHealthCheckType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Standard",
+                                "description": "The server is checked with an HTTP GET or a SOAP request to the server's health port, or if one is not specified, to the remote port.",
+                                "name": "Standard"
+                            },
+                            {
+                                "display": "LDAP (deprecated)",
+                                "description": "Deprecated - The load balancer group contains LDAP servers. The health check is performed with a TCP connection request on the remote port.",
+                                "name": "LDAP"
+                            },
+                            {
+                                "display": "IMS Connect (deprecated)",
+                                "description": "Deprecated - The load balancer group contains IMS Connect servers. The health check is performed with a TCP connection request on the mapped server port.",
+                                "name": "IMSConnect"
+                            },
+                            {
+                                "display": "TCP Connection",
+                                "description": "The server is checked by sending a TCP connection request to the server's health port, or if one is not specified, to the remote port.",
+                                "name": "TCPConnection"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                },
+                "type": {
+                    "cli-arg": "url",
+                    "name": "dmURL"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmXPathExpr"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmXPathExpr"
+                    }
+                },
+                "type": {
+                    "cli-arg": "xpath",
+                    "name": "dmXPathExpr"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLBHealthCheckGSMethod"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLBHealthCheckGSMethod"
+                    }
+                },
+                "type": {
+                    "name": "dmLBHealthCheckGSMethod",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "GET",
+                                "name": "GET",
+                                "summary": "Use the HTTP GET method for the health check request."
+                            },
+                            {
+                                "display": "HEAD",
+                                "name": "HEAD",
+                                "summary": "Use the HTTP HEAD method for the health check request."
+                            },
+                            {
+                                "display": "POST",
+                                "name": "POST",
+                                "summary": "Use the HTTP POST method for the health check request."
+                            },
+                            {
+                                "display": "PUT",
+                                "name": "PUT",
+                                "summary": "Use the HTTP PUT method for the health check request."
+                            },
+                            {
+                                "display": "Custom",
+                                "name": "Custom",
+                                "summary": "Use a custom method for the health check request."
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                },
+                "type": {
+                    "cli-arg": "file",
+                    "name": "dmFSFile"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLBHealthCheckTCPConnType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLBHealthCheckTCPConnType"
+                    }
+                },
+                "type": {
+                    "name": "dmLBHealthCheckTCPConnType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Full",
+                                "description": "Perform a three-way handshake to establish a connection and a four-way handshake to close the connection.",
+                                "name": "Full",
+                                "summary": "Full TCP Connection"
+                            },
+                            {
+                                "display": "Partial",
+                                "description": "Perform an incomplete three-way handshake, or half-open connection, by responding to a member's SYN-ACK with a RST.",
+                                "name": "Partial",
+                                "summary": "Partial TCP Connection"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSLClientConfigType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSLClientConfigType"
+                    }
+                },
+                "type": {
+                    "name": "dmSSLClientConfigType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "proxy",
+                                "display": "Proxy Profile"
+                            },
+                            {
+                                "name": "client",
+                                "display": "Client Profile"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostname"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostname"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
+                }
             }
         ],
         "metadata": {

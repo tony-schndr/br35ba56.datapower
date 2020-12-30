@@ -188,6 +188,64 @@
                     "name": "dmCountLimitInfo",
                     "display": "Count Limit Information"
                 }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmCountLimitAction"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmCountLimitAction"
+                    }
+                },
+                "type": {
+                    "display": "Action",
+                    "name": "dmCountLimitAction",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Increment",
+                                "description": "Increase the current count. When the count limit is exceeded, an error is generated.",
+                                "name": "inc"
+                            },
+                            {
+                                "display": "Decrement",
+                                "description": "Decrease the current count. If the current count is zero, the count is not changed.",
+                                "name": "dec"
+                            }
+                        ]
+                    },
+                    "summary": "Action to apply to the count limit."
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmRateLimitAction"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmRateLimitAction"
+                    }
+                },
+                "type": {
+                    "display": "Action",
+                    "name": "dmRateLimitAction",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Consume",
+                                "description": "Decrease the remaining number of requests allowed.",
+                                "name": "consume"
+                            },
+                            {
+                                "display": "Replenish",
+                                "description": "Increase the remaining number of requests allowed.",
+                                "name": "replenish"
+                            }
+                        ]
+                    },
+                    "summary": "Action to apply to the rate limit."
+                }
             }
         ],
         "metadata": {

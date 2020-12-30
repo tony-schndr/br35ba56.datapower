@@ -145,6 +145,82 @@
                         ]
                     }
                 }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSetVarAction"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSetVarAction"
+                    }
+                },
+                "type": {
+                    "name": "dmSetVarAction",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Set",
+                                "description": "&lt;p>Indicates that you can set a variable. This is the default value.&lt;/p>&lt;ul>&lt;li>When the specified variable does not exist, a new variable is added with assigned value.&lt;/li>&lt;li>When the specified variable exists and it is not read-only, the assigned value overrides the existing value.&lt;/li>&lt;/ul>",
+                                "name": "set",
+                                "summary": "Set a variable"
+                            },
+                            {
+                                "display": "Add",
+                                "description": "Indicates that you can add a variable. For example, this can be used to add new headers or to append a new entry of the same header. Note: You cannot add the &lt;tt>message.status.code&lt;/tt> , &lt;tt>message.status.reason&lt;/tt> , &lt;tt>policy.gatewayscript.enableDebugger&lt;/tt> , &lt;tt>error.message&lt;/tt> , &lt;tt>message.body&lt;/tt> , or &lt;tt>request.body&lt;/tt> variable. Instead, you can set it. For details about these variables, see the Variables in the API context topic.",
+                                "name": "add",
+                                "summary": "Add a variable"
+                            },
+                            {
+                                "display": "Clear",
+                                "description": "Indicates that you can delete a variable. For example, this can be used to remove a header when the data is processed in the assembly flow.",
+                                "name": "clear",
+                                "summary": "Delete a variable"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSetVarType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSetVarType"
+                    }
+                },
+                "type": {
+                    "name": "dmSetVarType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Any",
+                                "description": "Read the variable value as-is. This is the default value.",
+                                "name": "any",
+                                "summary": "Any value"
+                            },
+                            {
+                                "display": "String",
+                                "description": "Treat the variable value as a string.",
+                                "name": "string",
+                                "summary": "A string value"
+                            },
+                            {
+                                "display": "Number",
+                                "description": "Treat the variable value as a number.",
+                                "name": "number",
+                                "summary": "A number value"
+                            },
+                            {
+                                "display": "Boolean",
+                                "description": "Treat the variable value as a boolean and the value can be &lt;tt>true&lt;/tt> or &lt;tt>false&lt;/tt> .",
+                                "name": "boolean",
+                                "summary": "A Boolean value"
+                            }
+                        ]
+                    }
+                }
             }
         ],
         "metadata": {

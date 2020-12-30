@@ -66,11 +66,20 @@ class DPManageConfigRequestHandler(DPRequestHandler):
         # Need to continue looping until all types are processed off this stack and added types list
         # this is account for types that return nested properties, if we find a type that returned 
         # properties add the hrefs to be processed later  
-        while len(type_stack) > 0: 
+        while len(type_stack) > 0:
             type_ = type_stack.pop()
-            if 'properties' in type_.keys():
-                for prop in type_['properties']['property']:
-                    hrefs.append(prop['type']['href'])  
+            
+            if type_ not in types:
+                types.append(type_)
+
+            if 'properties' in type_['type']:
+                # property is returned from DataPower as a list or dict. A dict is returned if there 
+                # is only 1 property
+                if isinstance(type_['type']['properties']['property'], list):
+                    for prop_ in type_['type']['properties']['property']:
+                        hrefs.append(prop_['type']['href'])
+                elif isinstance(prop, dict):
+                    hrefs.append(type_['type']['properties']['property']['type']['href'])
 
             while len(hrefs) > 0:
                 href = hrefs.pop()

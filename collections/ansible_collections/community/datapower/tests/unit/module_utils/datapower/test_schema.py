@@ -22,10 +22,12 @@ class TestDPManageConfigObject:
     def setup_method(self, test_method):
         self.valcred_schema = DPManageConfigSchema(test_data.valcred_schema_response)
         self.eth_schema = DPManageConfigSchema(test_data.schema_ethernet_interface)
+        self.aaa_schema = DPManageConfigSchema(test_data.aaa_policy_schema_response)
     
     def teardown_method(self, test_method):
         del self.valcred_schema
         del self.eth_schema
+        del self.aaa_schema
 
     def test_DPManageConfigSchema(self):
         assert DPManageConfigSchema(test_data.valcred_schema_response)
@@ -120,13 +122,16 @@ class TestDPManageConfigObject:
         assert dp_schema.is_valid_param('IPAddress', '10.0.1.1')
 
     def test_DPManageConfigSchema_get_is_valid_param_9(self):
-        dp_schema = self.eth_schema
-        assert dp_schema.is_valid_param('IPAddress', '10.0.1.1/24')
+        dp_schema = self.aaa_schema
+        assert dp_schema.is_valid_param('ExtractIdentity', test_data.AAAPolicy_ExtractIdentity)
 
-    def test_DPManageConfigSchema_with_EthernetInterface_type(self):
+    def test_DPManageConfigSchema_get_is_valid_param_10(self):
         dp_schema = self.eth_schema
         assert dp_schema.is_valid_param('mAdminState', 'disabled')
-
+    
+    def test_DPManageConfigSchema_get_is_valid_param_11(self):
+        dp_schema = self.aaa_schema
+        assert dp_schema.is_valid_param('AZCacheTTL', 3) == True
 
     def test_DPManageConfigSchema_schema_get_type_int_boundries(self):
         type_ = test_data.int_type

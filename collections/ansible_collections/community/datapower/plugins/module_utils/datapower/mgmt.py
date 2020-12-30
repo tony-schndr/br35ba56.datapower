@@ -83,11 +83,13 @@ class DPManageConfigSchema:
                     return True
         elif type_['type']['name'] == 'dmString':
             return isinstance(value, str)
+        elif 'dmUInt' in type_['type']['name']:
+            return isinstance(value, int)
         elif 'format' in type_['type']:
             #TODO: Need to look at all the different 'format's datapower
             # uses to try and come up with a better way to validate input....  Maybe...
             return isinstance(value, str)
-        elif 'properties' in type_:
+        elif 'properties' in type_['type']:
             return isinstance(value, dict)
         else:
             return False

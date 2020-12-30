@@ -48,18 +48,44 @@ class DPManageConfigRequestHandler(DPRequestHandler):
             metadata.sort()
             return metadata
 
+        props = metadata['object']['properties']['property']
+        types = self.get_types(props)
+
+        return {'metadata': metadata, 'types': types}
+
+    def get_types(self, props):
         types = []
-        for prop in metadata['object']['properties']['property']:
-            for child in types:
-                if child["_links"]['self']['href'] == prop['type']['href']:
-                    break
-            else:
-                child_resp = self._make_request(prop['type']['href'], 'GET', body=None)
-                types.append(child_resp)
-                
-        return {'metadata' : metadata, 'types': types}
+        for prop in props:
+            href = prop['type']['href']
+            if not self.has_type(types, href):
+                type_ = self._make_request(prop['type']['href'], 'GET', None)
+                types.append(type_)
+        
+        hrefs = []
+        type_stack = list(types)
+        # Need to continue looping until all types are processed off this stack and added types list
+        # this is account for types that return nested properties, if we find a type that returned 
+        # properties add the hrefs to be processed later  
+        while len(type_stack) > 0: 
+            type_ = type_stack.pop()
+            if 'properties' in type_.keys():
+                for prop in type_['properties']['property']:
+                    hrefs.append(prop['type']['href'])  
 
+            while len(hrefs) > 0:
+                href = hrefs.pop()
+                if not self.has_type(types, href):
+                    type_ = self._make_request(href, 'GET', None)
+                    type_stack.append(type_)
+        return types
 
+    @staticmethod
+    def has_type(types, href):
+        for type_ in types:
+            if href == type_['_links']['self']['href']:
+                return True
+        else:
+            return False
 
 class DPGetConfigRequestHandler(DPRequestHandler):
     

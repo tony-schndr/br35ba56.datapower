@@ -73,13 +73,18 @@ class DPManageConfigSchema:
         prop = self.get_prop(key)
         href = self.get_type_href_from_prop(prop)
         type_ = self.get_type(href)
+
         if type_['type']['name'] == 'dmReference':
             if 'value' in value:
                 return True
+            else:
+                return False
         elif 'value-list' in type_['type']:
             for val in type_['type']['value-list']['value']:
                 if val['name'] == value:
                     return True
+            else:
+                return False
         elif type_['type']['name'] == 'dmString':
             return isinstance(value, str)
         elif 'dmUInt' in type_['type']['name']:
@@ -90,9 +95,9 @@ class DPManageConfigSchema:
             return isinstance(value, str)
         elif 'properties' in type_['type']:
             return isinstance(value, dict)
-        else:
-            return False
-        return False
+        else: # There are many types that aren't checked yet, we know the key a property
+              # so just return True without validating the value
+            return True
 
     def set_props(self, schema_resp):
         self.props = []        

@@ -10,23 +10,19 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower impo
     dp_diff
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
-    DPManageConfigObject,
     DPManageConfigSchema
 )
 from ansible_collections.community.datapower.tests.unit.module_utils.test_data import (
     dp_mgmt_test_data as test_data,
     dp_actionq_test_data as action_test_data
 )
-class TestDPManageConfigObject:
+class TestDPManageConfigSchema:
     
-    
-    def load_schema(self, class_):
+    @staticmethod
+    def load_schema(class_):
         with open('tests/unit/module_utils/test_data/schema/' + class_ +'.json') as f:
             data = json.loads(f.read())
         return DPManageConfigSchema(data['schema'])
-
-    def test_DPManageConfigSchema(self):
-        assert DPManageConfigSchema(test_data.valcred_schema_response)
         
     def test_DPManageConfigSchema_get_prop_1(self):   
         dp_schema = self.load_schema('CryptoValCred')

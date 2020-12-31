@@ -9,22 +9,31 @@ DOCUMENTATION = r'''
 ---
 module: community.datapower.upload_file
 
-short_description: Use for modifying various objects on IBM DataPower
+short_description: Use for uploading a file to DataPower
 
 
 version_added: "1.0.0"
 
-description: Use for modifying configuration.
+description: Use for uploading a file to DataPower
 
 options:
-    domains:
-        description: List of domains to execute on.
+    domain:
+        description: Domain to upload the file too
         required: true
         type: list
-    defintions:
-        description: DataPower object config defined in yaml.  Determine fromat using a GET and then convert to YAML.
+    content:
+        description: Base64 encoded string represenation of the file.
+        required: false
+        type: str
+    src:
+        description: The location of the file on the machine executing this module.
+        required: false
+        type: str
+    dest:
+        description: The location of the file in the DataPower Domain
         required: true
-        type: list of YAML dictionaries.
+        type: str
+    
 
 
 author:
@@ -67,56 +76,53 @@ my_useful_info:
     }
 '''
 from ansible.module_utils._text import to_text
-from ansible.module_utils.connection import ConnectionError
+from ansible.module_utils.connection import (
+    ConnectionError, 
+    Connection
+) 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower import DPUploadFile
 
+from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
+    DPFileStoreRequest
+)
+from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
+    DPRequestHandler
+)
 def run_module():
     # define available arguments/parameters a user can pass to the module
     module_args = dict(
         domain = dict(type='str', required=True),
-        content = dict(type='str', required=True),
-        dir = dict(type='str', required=True),
-        filename = dict(type='str', required=True),
-        overwrite = dict(type='bool', required=False, default=False),   
+        content = dict(type='str', required=False),
+        src = dict(type='str', required=False),
+        dest = dict(type='str', required=True),
+        backup = dict(type='bool', required=False),
+        overwrite = dict(type='bool', required=False, default=False)
     )
-    
-    # seed the result dict in the object
-    # we primarily care about changed and state
-    # changed is if this module effectively modified the target
-    # state will include any data that you want your module to pass back
-    # for consumption, for example, in a subsequent task
-  
 
-    # the AnsibleModule object will be our abstraction working with Ansible
-    # this includes instantiation, a couple of common attr would be the
-    # args/params passed to the execution, as well as if the module
-    # supports check mode
     module = AnsibleModule(
         argument_spec=module_args,
-        supports_check_mode=True
+        supports_check_mode=True,
+        mutually_exclusive=['content', 'src']
     )
-    
-    # if the user is working with this module in only check mode we do not
-    # want to make any changes to the environment, just return the current
-    # state with no modifications
-    if module.check_mode:
-        module.exit_json(**result)
 
-    # manipulate or modify the state as needed (this is going to be the
-    # part where your module will do what it needs to do)
-    result = dict(
-        changed=False
-    )
+    connection = Connection(module._socket_path)
+    dp_handler = DPRequestHandler(connection)
+    dp_req = DPFileStoreRequest(module.params)
+    result = {}
     
-    dp_up = DPUploadFile(module)
-    #dp_up.send_request()
-    try:
-        result = dp_up.send_request()
+
+    try:# put check code here, we can get the file, then determine if we need to 
+        # update it.  Hopefully coding here will allow the ability to recursively upload
+        # files
+        response = dp_handler.process_request(dp_req.path, dp_req.method, dp_req.body)
     except ConnectionError as ce:
-        result = dict()
+        response = to_text(ce)
+        result['request'] = {'path': dp_req.path,'method': dp_req.method,'body': dp_req.body}
         result['changed'] = False
-        module.fail_json(msg="Check if the file exists and if you intend to overwrite it. Also verify your path is correct.  " + to_text(ce), **result)
+        module.fail_json(msg=response, **result)
+
+    result['request'] = {'path': dp_req.path,'method': dp_req.method,'body': dp_req.body}    
+    result['response'] = response
     result['changed'] = True
     # in the event of a successful module execution, you will want to
     # simple AnsibleModule.exit_json(), passing the key/value results

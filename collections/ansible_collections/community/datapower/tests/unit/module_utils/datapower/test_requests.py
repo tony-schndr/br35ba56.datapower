@@ -9,11 +9,10 @@ import pytest
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     DPManageConfigRequest,
     DPGetConfigRequest,
-    DPActionQueueRequest
+    DPActionQueueRequest,
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
-    DPManageConfigObject,
-    DPManageConfigSchema
+    DPManageConfigObject
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.actionqueue import (
     DPActionQueue
@@ -23,6 +22,7 @@ from ansible_collections.community.datapower.tests.unit.module_utils.test_data i
     dp_actionq_test_data as action_test_data
 )
 # Tests building requests objects from the DPManageConfigObject.
+
 
 def test_DPActionQueueRequest_1():
     task_args = {
@@ -40,8 +40,7 @@ def test_DPActionQueueRequest_1():
         }
     assert dp_action_req.info_path == '/mgmt/actionqueue/default/operations/SaveConfig?schema-format=datapower'
     
-    #ACTION_QUEUE_SCHEMA_URI = '/mgmt/actionqueue/{0}/{1}?schema-format=datapower'
-    #ACTION_QUEUE_OPERATIONS_URI = '/mgmt/actionqueue/{0}/operations'
+
 def test_DPActionQueueRequest_2():
     task_args = {
         'domain':'default',
@@ -62,7 +61,6 @@ def test_DPActionQueueRequest_2():
     
     #ACTION_QUEUE_SCHEMA_URI = '/mgmt/actionqueue/{0}/{1}?schema-format=datapower'
     #ACTION_QUEUE_OPERATIONS_URI = '/mgmt/actionqueue/{0}/operations'
-
 
 def test_DPManageConfigRequest_mod_args():
     task_args = {
@@ -133,7 +131,6 @@ def test_DPManageConfigRequest_invalid_class():
         DPManageConfigObject(**task_args_w_invalid_class)
     except ValueError:
         assert True
-
 
 def test_DPGetConfigRequest_1():
     get_task_args = {

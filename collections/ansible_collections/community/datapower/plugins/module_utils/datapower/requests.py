@@ -4,6 +4,7 @@ __metaclass__ = type
 
 #from urllib.parse import quote
 import time
+import base64
 from copy import copy
 from ansible.module_utils._text import to_text
 from ansible.module_utils.six.moves.urllib.parse import urlencode
@@ -41,7 +42,10 @@ class DPRequest:
         self.path = None
         self.method = None
 
+        
+        
 class DPActionQueueRequest(DPRequest):
+    
     def __init__(self, dp_action):
         super(DPActionQueueRequest, self).__init__()
         self.path = ACTION_QUEUE_URI.format(dp_action.domain)

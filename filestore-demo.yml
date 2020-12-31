@@ -1,0 +1,11 @@
+- name: 'Demo filestore features'
+  hosts: dp1
+  connection: local
+
+  tasks:
+    - name: Upload a file to the local directory
+      community.datapower.copy:
+        domain: default
+        src: ./demo.txt
+        dest: /local/
+        overwrite: True

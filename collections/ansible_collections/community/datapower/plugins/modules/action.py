@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright: (c) 2020,Anthony Schneider tonyschndr@gmail.com
+# Copyright: (c) 2020, Anthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
@@ -14,7 +14,7 @@ short_description: Use for executing actions on IBM DataPower
 
 version_added: "1.0.0"
 
-description: Use for performing actions such as quiesce, save config, reboot, etc...  Get a list of actions from URI /mgmt/actionqueue/{domain}/operations
+description: Use for performing actions such as quiesce, save config, reboot, export, import etc...  
 
 options:
     domain:
@@ -37,9 +37,20 @@ author:
 
 EXAMPLES = r'''
 - name: Save a domains configuration.
-community.datapower.action:
-    domain: "{{ domain }}
-    action: SaveConfig
+    community.datapower.action:
+        domain: "{{ domain }}
+        action: SaveConfig
+
+- name: Quiesce DP prior to change
+    community.datapower.action:
+        domain: default
+        action: QuiesceDP
+        parameters:
+            timeout: 60
+- name: UnQuiesce DP prior to change
+    community.datapower.action:
+        domain: default
+        action: UnquiesceDP
 '''
 
 RETURN = r'''
@@ -48,9 +59,11 @@ request:
     type: dict
     returned: always
     sample: {
-        "body": null,
-        "method": "GET",
-        "path": "/mgmt/config/default/CryptoValCred?"
+        "body": {
+            "UnquiesceDP": {}
+        },
+        "method": "POST",
+        "path": "/mgmt/actionqueue/default"
     }
 
 response:
@@ -58,23 +71,21 @@ response:
     type: dict
     returned: on success
     sample: {
-        "SaveConfig": "Operation completed.",
         "_links": {
-            "doc": {
-                "href": "/mgmt/docs/actionqueue"
-            },
             "self": {
-                "href": "/mgmt/actionqueue/default"
+                "href": "/mgmt/actionqueue/default/pending/UnquiesceDP-20201231T105919Z-12"
             }
-        }
-    }      
+        },
+        "status": "completed"
+    }
 '''
 
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower.actionqueue import DPActionQueue
-
+from ansible_collections.community.datapower.plugins.module_utils.datapower.actionqueue import (
+    DPActionQueue
+)
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     DPActionQueueRequest
 )
@@ -85,8 +96,8 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
 def run_module():
     module_args = dict(
         domain = dict(type='str', required=True),
-        action = dict(type='str', required=True),
-        parameters = dict(type='dict', required=False, alias=['config'])
+        action = dict(type='str', required=True, aliases=['name']),
+        parameters = dict(type='dict', required=False)
     )
     
     module = AnsibleModule(
@@ -94,13 +105,21 @@ def run_module():
         supports_check_mode=False
     )
     connection = Connection(module._socket_path)
-    
-    dp_act = DPActionQueue(**module.params)
-    dp_act_req = DPActionQueueRequest(dp_act)
-    req_handler =  DPActionQueueRequestHandler(connection)
-    resp = req_handler.process_request(dp_act_req.path, dp_act_req.method, dp_act_req.body)
     result = {}
-    result['resp'] = resp
+    dp_act = DPActionQueue(**module.params)
+    dp_req = DPActionQueueRequest(dp_act)
+    req_handler =  DPActionQueueRequestHandler(connection)
+    try:
+        response = req_handler.process_request(dp_req.path, dp_req.method, dp_req.body)
+    except ConnectionError as e:
+        response = to_text(e)
+        result['changed'] = False
+        module.fail_json(msg=response, **result)
+
+    
+    result['response'] = response
+    result['request'] = {'path':dp_req.path, 'method': dp_req.method, 'body': dp_req.body}
+    result['changed'] = True
     module.exit_json(**result)
 
 

@@ -7,9 +7,9 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: community.datapower.mod_conf
+module: community.datapower.apply_config
 
-short_description: Use for modifying various objects on IBM DataPower
+short_description: Use for Creating/Modifying/Deleting various objects on IBM DataPower
 
 
 version_added: "1.0.0"
@@ -22,74 +22,90 @@ options:
         description: Target domain
         required: True
         type: str
-    object_class:
-        description: DataPower objects object_class.  Valid object_cass can be determined via GET at URI /mgmt/config/
-        required: Only when targeting a list property
+    class_name:
+        description: DataPower config object class name.  Valid class name can be determined via GET at URI /mgmt/config/ or the 
+        config_info module.
+        required: Only when not included in the object config dictionary
         type: str
-    object:
-        description: The configuration of the object as determined from a GET request.  
-            Typically you will create the object in the GUI first.  Then you can retrieve the configuration via JSON with a GET.
-            For list properties the object should represent that particiluar portion of the GET reponse, not the entire object.
+    name:
+        description: DataPower config object name.  
+        required: Only when not included in the object config dictionary
+        type: str
+    config:
+        description: The REST payload of the configuration object being targeted.  One way to determine a valid payload is to create
+            the object in the GUI first, then retrieve it with a GET request or the get_config module. 
         required: True
         type: dict
+    state:
+        description: Wether to create/modify or delete.
+        required: True
+        type: string
+        choices: present | absent
 author:
     - Anthony Schneider
 '''
 
 EXAMPLES = r'''
-# Modify a datapower object.  This example simply disables test_domain1.  
-# This is an example where the request targets a list property
+# Create a valcred in {{ domain }}.  With this example the class_name CryptoValCred and
+# name "valcred" are in the body of the request.
 - name: Modify the valcred Certificate list
+    community.datapower.apply_config:
+    domain: "{{ domain }}"
+    config:
+        CryptoValCred:
+            CRLDPHandling: ignore
+            CertValidationMode: legacy
+            Certificate:
+            - value: Test1
+            - value: Test2
+            CheckDates: 'on'
+            ExplicitPolicy: 'off'
+            RequireCRL: 'off'
+            UseCRL: 'off'
+            mAdminState: enabled
+            name: valcred
+
+# You can also just pass the paramters to the object by defining class_name and name.
+- name: Disable the valcred
     community.datapower.mod_conf:
     domain: "{{ domain }}"
     class_name: CryptoValCred
     name: valcred
-    obj_field: Certificate
     object:
-        Certificate:
-        - value: Test2
-
-# This example targets the object as a whole
-- name: Disable the valcred
-    community.datapower.mod_conf:
-    domain: "{{ domain }}"
-    object:
-        CryptoValCred:
-            name: valcred
-            mAdminState: disabled
+        mAdminState: disabled
 '''
 
 RETURN = r'''
 request:
-    description: The request that was sent to DataPower
+    description: The request that was sent to DataPower, can be useful to audit exactly what was sent to DataPower
+                to make the change
     type: dict
     returned: always
     sample: {
-        "object": {
-            "Certificate": [
-                {
-                    "value": "Test2"
-                }
-            ]
+        "body":{
+            "CryptoValCred":{
+                "mAdminState":"enabled",
+                "name":"valcred"
+            }
         },
-        "method": "POST",
-        "path": "/mgmt/config/default/CryptoValCred/valcred/Certificate"
+        "method":"PUT",
+        "path":"/mgmt/config/default/CryptoValCred/valcred"
     }
 
 response:
-    description: A Dictionary representing the response returned from DataPowers Rest MGMT Interface
+    description: The response returned from DataPowers Rest MGMT Interface.
     type: dict
     returned: on success
     sample: {
-        "Certificate": "Property was updated.",
         "_links": {
             "doc": {
-                "href": "/mgmt/docs/config/CryptoValCred/Certificate"
+                "href": "/mgmt/docs/config/CryptoValCred"
             },
             "self": {
-                "href": "/mgmt/config/default/CryptoValCred/valcred/Certificate"
+                "href": "/mgmt/config/default/CryptoValCred/valcred"
             }
-        }
+        },
+        "valcred": "Configuration was updated."
     }
 '''
 
@@ -117,7 +133,7 @@ def run_module():
     module_args = dict(
         domain = dict(type='str', required=True),
         config = dict(type='dict', required=True),
-        class_name=dict(type='str', required=False),
+        class_name = dict(type='str', required=False),
         name = dict(type='str', required=False),
         state = dict(type='str', choices=['present', 'absent'], required=True)
     )
@@ -167,7 +183,8 @@ def run_module():
         result['changed'] = False
         module.fail_json(msg=to_text(e), **result)
 
-    result['datapower_response'] = dp_mk_chg_resp
+    result['response'] = dp_mk_chg_resp
+    result['request'] = {'path':dp_req.path, 'method': dp_req.method, 'body': dp_req.body}
     result['changed'] = True
     module.exit_json(**result)
 

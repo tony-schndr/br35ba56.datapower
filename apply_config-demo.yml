@@ -2,11 +2,39 @@
   hosts: dp1
   connection: local
   tasks:
-    - name: Ensure valcred exists in domain
+
+    - name: Quiesce DP prior to change
+      community.datapower.action:
+        domain: default
+        name: QuiesceDP
+        parameters:
+          timeout: 60
+
+    - name: Get config
+      community.datapower.get_config:
+        domain: default
+        class_name: CryptoValCred
+        name: valcred
+
+    - name: Ensure CryptoValCred valcred is 
       community.datapower.apply_config:
         state: present
         domain: default
         config: 
           CryptoValCred:
             name: valcred
-            mAdminState: enabled
+            mAdminState: enabled    
+    
+    - name: Ensure CryptoValCred valcred is 
+      community.datapower.apply_config:
+        state: present
+        domain: default
+        class_name: CryptoValCred
+        name: valcred
+        config:
+            mAdminState: disabled
+    
+    - name: UnQuiesce DP prior to change
+      community.datapower.action:
+        domain: default
+        action: UnquiesceDP

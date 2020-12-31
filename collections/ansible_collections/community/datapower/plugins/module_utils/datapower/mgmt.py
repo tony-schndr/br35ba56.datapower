@@ -69,6 +69,14 @@ class DPManageConfigSchema:
     def build(self, schema_resp):
         self.set_props(schema_resp)
     
+    def is_valid_dp_obj(self, dp_obj):
+        class_name = list(dp_obj.keys())[0]
+        for k,v in dp_obj[class_name].items():
+            if self.is_valid_param(k,v):
+                return True
+            else:
+                return False
+
     def is_valid_param(self, key, value):
         prop = self.get_prop(key)
         href = self.get_type_href_from_prop(prop)

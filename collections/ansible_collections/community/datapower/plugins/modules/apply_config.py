@@ -100,8 +100,7 @@ from ansible.module_utils.connection import (
 ) 
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
-    DPManageConfigObject,
-    DPManageConfigSchema,
+    DPManageConfigObject
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     DPManageConfigRequest
@@ -144,27 +143,30 @@ def run_module():
             result['changed'] = False
             module.exit_json(**result)
 
-    #Gets rid of keys we don't want to compare (_links, href, state)
+    #Gets rid of keys we don't want compared (_links, href, state)
     clean_dp_dict(dp_state_resp)
-    #We need the schema of the object so we can handle arrays correctly.
-    schema_resp = dp_handler.config_info(dp_obj.domain, dp_obj.class_name)
-    #dp_schema = DPManageConfigSchema(schema_resp)
-    #module.exit_json(result={'schema' : dp_schema.props})
-    module.exit_json(result={'schema' : schema_resp})
-
-    change_dict = dp_diff.get_change_dict(dp_state_resp, dp_req.body, dp_schema)
-    if len(change_dict[dp_obj.class_name]) == 1: # Means only the name is in the body, nothing is changing
+    
+    if not dp_diff.is_changed(dp_state_resp, dp_req.body):
         result['changed'] = False
         module.exit_json(**result)
+    # If check mode grab the change list and return it.
+    if module.check_mode:
+        if dp_diff.is_changed(dp_state_resp, dp_req.body):
+            changes = dp_diff.get_change_list(dp_state_resp, dp_req.body)
+            result['changed'] = True
+            result['changes'] = changes
+        else:
+            result['changed'] = False
+        module.exit_json(**result)
+
     try:
-        dp_mk_chg_resp = dp_handler.process_request(dp_req.path, dp_req.method, change_dict)
+        dp_mk_chg_resp = dp_handler.process_request(dp_req.path, dp_req.method, dp_req.body)
     except ConnectionError as e:
         dp_mk_chg_resp = to_text(e)
         result['datapower_response'] = dp_mk_chg_resp
         result['changed'] = False
         module.fail_json(msg=to_text(e), **result)
 
-    result['applied_change'] = change_dict
     result['datapower_response'] = dp_mk_chg_resp
     result['changed'] = True
     module.exit_json(**result)

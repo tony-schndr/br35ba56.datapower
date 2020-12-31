@@ -10,16 +10,11 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower impo
     dp_diff
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
-    DPManageConfigObject,
-    DPManageConfigSchema
+    DPManageConfigObject
 )
 from ansible_collections.community.datapower.tests.unit.module_utils.test_data import (
     dp_mgmt_test_data as test_data,
     dp_actionq_test_data as action_test_data
-)
-
-from ansible_collections.community.datapower.tests.unit.module_utils.datapower.test_schema import (
-    load_schema
 )
 
 def test_get_changes_valcred_1():

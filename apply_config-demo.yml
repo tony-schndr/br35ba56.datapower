@@ -23,16 +23,7 @@
         config: 
           CryptoValCred:
             name: valcred
-            mAdminState: enabled    
-    
-    - name: Ensure CryptoValCred valcred is 
-      community.datapower.apply_config:
-        state: present
-        domain: default
-        class_name: CryptoValCred
-        name: valcred
-        config:
-            mAdminState: disabled
+            mAdminState: enabled
     
     - name: UnQuiesce DP prior to change
       community.datapower.action:

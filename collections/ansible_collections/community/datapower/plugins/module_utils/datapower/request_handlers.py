@@ -46,6 +46,7 @@ class DPManageConfigRequestHandler(DPRequestHandler):
         if metadata['_links']['self']['href'] == MGMT_CONFIG_URI:
             metadata = list(metadata['_links'].keys())
             metadata.sort()
+            metadata.remove('self')
             return metadata
 
         props = metadata['object']['properties']['property']

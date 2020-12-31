@@ -53,7 +53,7 @@ class DPActionQueueRequest(DPRequest):
         else:
             self.body = None
         self.method = 'POST'
-        if dp_action.action is not None:
+        if hasattr(dp_action, 'action') and dp_action.action is not None:
             self.info_path = ACTION_QUEUE_SCHEMA_URI.format(dp_action.domain, dp_action.action)
         else:
             self.info_path = ACTION_QUEUE_OPERATIONS_URI.format(dp_action.domain)

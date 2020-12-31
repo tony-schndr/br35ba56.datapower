@@ -1,0 +1,128 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPQuotedCommand"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPQuotedCommand"
+                    }
+                },
+                "type": {
+                    "name": "dmFTPQuotedCommand",
+                    "properties": {
+                        "property": {
+                            "description": "The command to send to the remote FTP server. The command must not be one that would create an FTP data connection. Normally this will be a SITE command. This command must return a result code in the 200 series.",
+                            "required": "true",
+                            "summary": "Quoted Command",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Quoted Command",
+                            "name": "QuotedCommand"
+                        }
+                    }
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "FTPQuoteCommands",
+                "display": "FTP Quoted Commands",
+                "uri": "network/ftp-quote-command-list",
+                "summary": "FTP Quoted Command List",
+                "cmd-group": "useragent",
+                "cli-alias": "ftp-quote-command-list",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "FTPQuotedCommands",
+                            "type": {
+                                "href": "/mgmt/types/default/dmFTPQuotedCommand"
+                            },
+                            "summary": "Quoted Commands",
+                            "array": "true",
+                            "cli-alias": "quoted-command",
+                            "display": "Quoted Commands",
+                            "description": "The list of commands to send to the remote FTP server."
+                        }
+                    ]
+                },
+                "description": "The configturation creates a named list of FTP commands to be quoted to a remote FTP server before a file transfer. These commands are referenced by the FTP Policies section of a User Agent configuration."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/FTPQuoteCommands"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/FTPQuoteCommands"
+                }
+            }
+        }
+    }
+}

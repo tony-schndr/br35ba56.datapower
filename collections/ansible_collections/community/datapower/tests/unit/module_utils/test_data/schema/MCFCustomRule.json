@@ -1,0 +1,130 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "MCFCustomRule",
+                "display": "Custom Rule Message Content Filter",
+                "uri": "policy/mcf-customrule",
+                "summary": "Filter based on a user created custom rule",
+                "cmd-group": "mpgw",
+                "cli-alias": "mcf-customrule",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation"
+                        },
+                        {
+                            "name": "CustomRuleName",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/StylePolicyRule"
+                                }
+                            },
+                            "required": "true",
+                            "summary": "The name of the processing rule to invoke to retrieve the value.",
+                            "cli-alias": "rulename",
+                            "display": "Rule"
+                        },
+                        {
+                            "name": "CustomRuleValue",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "summary": "The value to match",
+                            "cli-alias": "value",
+                            "display": "Value",
+                            "description": "&lt;p>Enter the value to match against the value that is retrieved from the named processing rule. Enter either a string that must match the outcome of the rule or enter an asterisk (*) to match any value.&lt;/p>&lt;p>When the value is a string, an identical literal string comparison result is a match. When the value is an asterisk, any value other than NULL or an empty string results in a match.&lt;/p>"
+                        }
+                    ]
+                },
+                "description": "A custom message content filter calls a processing rule to retrieve a specified value. The filter value is matched to the contents of variable 'var://context/policy/mcf/RULE-NAME'"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/MCFCustomRule"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/MCFCustomRule"
+                }
+            }
+        }
+    }
+}

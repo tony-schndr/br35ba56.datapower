@@ -1,0 +1,319 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPHostAddress"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPHostAddress"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip",
+                    "name": "dmIPHostAddress",
+                    "format": "(a.b.c.d)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostname"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostname"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                },
+                "type": {
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt16",
+                    "maximum": "0xFFFF"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "IPMulticast",
+                "display": "IP Multicast",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "MulticastGroup"
+                            },
+                            {
+                                "name": "NetworkInterface"
+                            },
+                            {
+                                "name": "Port"
+                            }
+                        ],
+                        "name": "summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "TTL"
+                            },
+                            {
+                                "name": "MaxDataSize"
+                            },
+                            {
+                                "name": "NAKRetransmissionTime"
+                            },
+                            {
+                                "name": "NAKRetries"
+                            },
+                            {
+                                "name": "BufferResendTime"
+                            }
+                        ],
+                        "name": "Advanced",
+                        "display": "Advanced"
+                    }
+                ],
+                "uri": "network/ip-multicast",
+                "summary": "IP Multicast",
+                "cmd-group": "config-management",
+                "cli-alias": "ip-multicast",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "MulticastGroup",
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPHostAddress"
+                            },
+                            "required": "true",
+                            "summary": "Specifies the multicast IP group address.",
+                            "cli-alias": "multicast-group",
+                            "valid-regexp": "^((([fF][fF]).*)|(((22[4-9])|(23[0-9]))\\..*))$",
+                            "display": "Multicast Group",
+                            "description": "Specifies the multicast IP group address. For IPv4, enter an address in the range 224.0.0.0 - 239.255.255.255. For IPv6, enter an address beginning with FF."
+                        },
+                        {
+                            "name": "Interface",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHostname"
+                            },
+                            "required": "true",
+                            "summary": "Specifies the local IP address, host name, or host alias that is used to transmit and receive multicast messages.",
+                            "cli-alias": "interface",
+                            "display": "Local Interface",
+                            "description": "The local IP interface address, host name, or host alias of the Ethernet interface or VLAN interface that is used to transmit and receive multicast messages. Specify an IP address, a host name, or an existing host alias that is mapped to an IP address."
+                        },
+                        {
+                            "name": "Port",
+                            "cli-alias": "port",
+                            "required": "true",
+                            "maximum": "0xFFFF",
+                            "summary": "Specifies the IP port used to transmit and receive multicast packets.",
+                            "minimum": 1,
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPPort"
+                            },
+                            "display": "Port",
+                            "description": "The IP port used to transmit and receive multicast packets. Enter a value in the range 1 - 0xFFFF."
+                        },
+                        {
+                            "description": "The key is optional. If a key is not specified, the packets are not signed and verified. All peers in the peer group must be configured with an identical key.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoSSKey"
+                                }
+                            },
+                            "summary": "The shared secret key to sign and verify packets.",
+                            "cli-alias": "key",
+                            "display": "Shared Secret Key",
+                            "name": "SSKey"
+                        },
+                        {
+                            "name": "MaxDataSize",
+                            "default": 512,
+                            "cli-alias": "max-data-size",
+                            "required": "true",
+                            "maximum": 65535,
+                            "summary": "Specifies the maximum allowable size of a transmitted data block.",
+                            "minimum": 200,
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Maximum Transmit Data Size",
+                            "description": "The maximum size of a transmitted data block within a multicast packet. The sum of the maximum transmit data size and the IP header should not exceed the MTU of the network."
+                        },
+                        {
+                            "name": "NAKRetransmissionTime",
+                            "default": 200,
+                            "cli-alias": "nak-time",
+                            "required": "true",
+                            "maximum": 60000,
+                            "summary": "Specifies the length of time to wait before an NAK is initially transmitted or is retransmitted.",
+                            "minimum": 100,
+                            "units": "ms",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "NAK Retransmission Time",
+                            "description": "The length of time before the first NAK packet is transmitted or the length of time between subsequent NAK transmissions. Enter a value in the range 100 - 60000. The default value is 200."
+                        },
+                        {
+                            "name": "NAKRetries",
+                            "default": 5,
+                            "cli-alias": "nak-retries",
+                            "required": "true",
+                            "maximum": 100,
+                            "summary": "Specifies the number of times a missing NAK packet is retransmitted.",
+                            "minimum": 0,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "NAK Retries",
+                            "description": "The number of times that an NAK packet is retransmitted. Enter a value in the range 0 - 100. The default value is 5."
+                        },
+                        {
+                            "name": "BufferResendTime",
+                            "default": 2,
+                            "cli-alias": "buffer-resend-time",
+                            "required": "true",
+                            "maximum": 60,
+                            "summary": "Specifies the number of seconds that a transmitted packet remains buffered.",
+                            "minimum": 1,
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Buffer Resend Time",
+                            "description": "The number of seconds that a transmitted multicast packet remains buffered. Enter a value in the range 1 - 60. The default value is 2."
+                        }
+                    ]
+                },
+                "description": "IP Multicast mode defines the properties for the multicast configuration used to transmit and receive peering update messages."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/IPMulticast"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/IPMulticast"
+                }
+            }
+        }
+    }
+}

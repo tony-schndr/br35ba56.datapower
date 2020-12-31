@@ -1,0 +1,813 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmJMSMessageType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmJMSMessageType"
+                    }
+                },
+                "type": {
+                    "name": "dmJMSMessageType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Byte",
+                                "description": "The message payload is accessed as a Java byte array.",
+                                "name": "byte"
+                            },
+                            {
+                                "display": "Text",
+                                "description": "The message payload is accessed as a Java string value. This message type is suitable for SOAP and XML input.",
+                                "name": "text"
+                            }
+                        ]
+                    },
+                    "display": "JMS Message Type"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt16",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSLClientConfigType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSLClientConfigType"
+                    }
+                },
+                "type": {
+                    "name": "dmSSLClientConfigType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "proxy",
+                                "display": "Proxy Profile"
+                            },
+                            {
+                                "name": "client",
+                                "display": "Client Profile"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmWebSphereJMSEndpoint"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmWebSphereJMSEndpoint"
+                    }
+                },
+                "type": {
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Specify the host name or IP address of a bootstrap server",
+                                "required": "true",
+                                "summary": "Host name or IP address",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmHostname"
+                                },
+                                "display": "WebSphere JMS Host",
+                                "name": "Host"
+                            },
+                            {
+                                "description": "Specify the port number of a bootstrap server.",
+                                "required": "true",
+                                "summary": "Port for bootstrap connection",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmIPPort"
+                                },
+                                "display": "WebSphere JMS Port",
+                                "name": "Port"
+                            },
+                            {
+                                "description": "Select the predefined transport chain that is supported by the WebSphere bootstrap server and used for information exchange between the WebSphere JMS object and the bootstrap server.",
+                                "required": "true",
+                                "summary": "Transport Protocol for bootstrap connection",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmWebSphereJMSTransport"
+                                },
+                                "display": "WebSphere JMS Transport Protocol",
+                                "name": "Transport"
+                            }
+                        ]
+                    },
+                    "display": "WebSphere JMS Endpoint",
+                    "name": "dmWebSphereJMSEndpoint"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmWebSphereJMSSSLCipher"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmWebSphereJMSSSLCipher"
+                    }
+                },
+                "type": {
+                    "display": "WebSphere JMS TLS Cipher Specifications",
+                    "description": "The available cipher specifications for use with WebSphere JMS",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "SSL_RSA_WITH_NULL_MD5",
+                                "display": "SSL_RSA_WITH_NULL_MD5"
+                            },
+                            {
+                                "name": "SSL_RSA_EXPORT_WITH_RC2_CBC_40_MD5",
+                                "display": "SSL_RSA_EXPORT_WITH_RC2_CBC_40_MD5"
+                            },
+                            {
+                                "name": "SSL_RSA_EXPORT_WITH_RC4_40_MD5",
+                                "display": "SSL_RSA_EXPORT_WITH_RC4_40_MD5"
+                            },
+                            {
+                                "name": "SSL_RSA_WITH_RC4_128_MD5",
+                                "display": "SSL_RSA_WITH_RC4_128_MD5"
+                            },
+                            {
+                                "name": "SSL_RSA_WITH_NULL_SHA",
+                                "display": "SSL_RSA_WITH_NULL_SHA"
+                            },
+                            {
+                                "name": "SSL_RSA_EXPORT1024_WITH_RC4_56_SHA",
+                                "display": "SSL_RSA_EXPORT1024_WITH_RC4_56_SHA"
+                            },
+                            {
+                                "name": "SSL_RSA_WITH_RC4_128_SHA",
+                                "display": "SSL_RSA_WITH_RC4_128_SHA"
+                            },
+                            {
+                                "name": "SSL_RSA_WITH_DES_CBC_SHA",
+                                "display": "SSL_RSA_WITH_DES_CBC_SHA"
+                            },
+                            {
+                                "name": "SSL_RSA_EXPORT1024_WITH_DES_CBC_SHA",
+                                "display": "SSL_RSA_EXPORT1024_WITH_DES_CBC_SHA"
+                            },
+                            {
+                                "name": "SSL_RSA_FIPS_WITH_DES_CBC_SHA",
+                                "display": "SSL_RSA_FIPS_WITH_DES_CBC_SHA"
+                            },
+                            {
+                                "name": "SSL_RSA_WITH_3DES_EDE_CBC_SHA",
+                                "display": "SSL_RSA_WITH_3DES_EDE_CBC_SHA"
+                            },
+                            {
+                                "name": "SSL_RSA_FIPS_WITH_3DES_EDE_CBC_SHA",
+                                "display": "SSL_RSA_FIPS_WITH_3DES_EDE_CBC_SHA"
+                            },
+                            {
+                                "name": "TLS_RSA_WITH_DES_CBC_SHA",
+                                "display": "TLS_RSA_WITH_DES_CBC_SHA"
+                            },
+                            {
+                                "name": "TLS_RSA_WITH_3DES_EDE_CBC_SHA",
+                                "display": "TLS_RSA_WITH_3DES_EDE_CBC_SHA"
+                            },
+                            {
+                                "name": "TLS_RSA_WITH_AES_128_CBC_SHA",
+                                "display": "TLS_RSA_WITH_AES_128_CBC_SHA"
+                            },
+                            {
+                                "name": "TLS_RSA_WITH_AES_256_CBC_SHA",
+                                "display": "TLS_RSA_WITH_AES_256_CBC_SHA"
+                            },
+                            {
+                                "name": "TLS_RSA_WITH_AES_128_CBC_SHA256",
+                                "display": "TLS_RSA_WITH_AES_128_CBC_SHA256"
+                            },
+                            {
+                                "name": "TLS_RSA_WITH_AES_256_CBC_SHA256",
+                                "display": "TLS_RSA_WITH_AES_256_CBC_SHA256"
+                            },
+                            {
+                                "name": "TLS_RSA_WITH_NULL_SHA256",
+                                "display": "TLS_RSA_WITH_NULL_SHA256"
+                            }
+                        ]
+                    },
+                    "name": "dmWebSphereJMSSSLCipher"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostname"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostname"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                },
+                "type": {
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmWebSphereJMSTransport"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmWebSphereJMSTransport"
+                    }
+                },
+                "type": {
+                    "name": "dmWebSphereJMSTransport",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "TCP",
+                                "description": "Uses the predefined BootstrapBasicMessaging transport chain (JFAP-TCP/IP).",
+                                "name": "TCP",
+                                "summary": "BootstrapBasicMessaging transport chain"
+                            },
+                            {
+                                "display": "TLS",
+                                "description": "Uses the predefined BootstrapSecureMessaging transport chain (JFAP-SSL-TCP/IP).",
+                                "name": "SSL",
+                                "summary": "BootstrapSecureMessaging transport chain"
+                            },
+                            {
+                                "display": "HTTP",
+                                "description": "Uses the predefined BootstrapTunneledMessaging transport chain (tunnels JFAP using HTTP wrappers)",
+                                "name": "HTTP",
+                                "summary": "BootstrapTunneledMessaging transport chain"
+                            },
+                            {
+                                "display": "HTTPS",
+                                "description": "Uses the predefined BootstrapTunneledSecureMessaging transport chain (tunnels JFAP using HTTPS wrappers).",
+                                "name": "HTTPS",
+                                "summary": "BootstrapTunneledSecureMessaging transport chain"
+                            }
+                        ]
+                    },
+                    "display": "WebSphere JMS connection protocol"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "WebSphere-JMS",
+                "name": "WebSphereJMSServer",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "SSLClientConfigType"
+                            },
+                            {
+                                "name": "SSLProfile"
+                            },
+                            {
+                                "name": "SSLClient"
+                            }
+                        ],
+                        "name": "summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "SSLClientConfigType"
+                            },
+                            {
+                                "name": "SSLProfile"
+                            },
+                            {
+                                "name": "SSLClient"
+                            },
+                            {
+                                "name": "SSLCipher"
+                            },
+                            {
+                                "name": "FIPS"
+                            }
+                        ],
+                        "name": "ssl",
+                        "display": "TLS"
+                    }
+                ],
+                "uri": "network/wasjms-server",
+                "display": "WebSphere JMS",
+                "cmd-group": "mpgw",
+                "cli-alias": "wasjms-server",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "UserName",
+                            "valid-regexp": "^[^ ]+$",
+                            "summary": "Username to use for connecting to the server",
+                            "cli-alias": "username",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "User Name",
+                            "description": "Specifies the account name used to access the remote server."
+                        },
+                        {
+                            "name": "Password",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Password to use for connecting to the server",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Password",
+                                    "evaluation": "property-equals",
+                                    "value": ""
+                                }
+                            },
+                            "cli-alias": "password",
+                            "display": "Password (deprecated)",
+                            "description": "Specifies the password used to access the remote server."
+                        },
+                        {
+                            "description": "Specifies the password alias of the password used to access the remote server.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/PasswordAlias"
+                                }
+                            },
+                            "summary": "Password alias of the password to use for connecting to the server",
+                            "cli-alias": "password-alias",
+                            "display": "Password Alias",
+                            "name": "PasswordAlias"
+                        },
+                        {
+                            "name": "Transactional",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Acknowledges messages only if transaction was successful.",
+                            "cli-alias": "transactional",
+                            "display": "Transactional",
+                            "description": "Enables (on) or disables (off) transaction-based processing in which messages are acknowledged only after the transaction has succeeded. Transaction-based processing is disabled by default."
+                        },
+                        {
+                            "name": "MemoryThreshold",
+                            "default": 268435456,
+                            "cli-alias": "memory-threshold",
+                            "maximum": 1073741824,
+                            "summary": "Maximum memory size allowed for pending messages",
+                            "minimum": 10485760,
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Memory Threshold",
+                            "description": "Specifies the maximum memory allocation for pending messages. Enter a value in the range 1048576 - 1073741824 that specifies the maximum memory in bytes to allocate for pending messages. By default, the maximum memory allocation is set at 268435456."
+                        },
+                        {
+                            "name": "MaximumMessageSize",
+                            "default": 1048576,
+                            "cli-alias": "maximum-message-size",
+                            "maximum": 1073741824,
+                            "summary": "Maximum message size the DataPower Gateway sends to the remote server",
+                            "minimum": 0,
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Maximum Message Size",
+                            "description": "Specifies the maximum message size that the DataPower Gateway supports over a connection to the remote server. Enter a value in the range 0 - 1073741824 that specifies the maximum message size in bytes. By default, the maximum message size is set at 1048576 bytes. You can use the special value, 0, to disable the enforcement of maximum message sizes."
+                        },
+                        {
+                            "name": "DefaultMessageType",
+                            "default": "byte",
+                            "type": {
+                                "href": "/mgmt/types/default/dmJMSMessageType"
+                            },
+                            "summary": "Default Message Type",
+                            "cli-alias": "default-message-type",
+                            "display": "Default Message Type",
+                            "description": "&lt;p>Select the default message type. This property is used only when the message type cannot be determined from the message headers.&lt;/p>&lt;p>On the transaction level, the DP_JMSMessageType header can change this setting.&lt;/p>"
+                        },
+                        {
+                            "name": "TotalConnectionLimit",
+                            "default": 64,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "summary": "Total number of connections limit",
+                            "minimum": 1,
+                            "cli-alias": "total-connection-limit",
+                            "display": "Total Connection Limit",
+                            "description": "&lt;p>Specifies the maximum number of simultaneous open connections to the remote server.&lt;/p>&lt;p>Session requests in excess of the total allowable number of sessions per connection trigger the establishment of a new connection to the remote server. The DataPower Gateway cannot establish a new connection unless the number of concurrent connections is less than the allowable total number of connections.&lt;/p>&lt;p>For example, with values of 20 for sessions per connection, 5 for connection limit and 3 active fully-subscribed connections, then a new session request generates the establishment of a 4th connection.&lt;/p>"
+                        },
+                        {
+                            "name": "SessionsPerConnection",
+                            "default": 100,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "summary": "Maximum number of sessions per connection",
+                            "minimum": 1,
+                            "cli-alias": "sessions-per-connection",
+                            "display": "Maximum number of Sessions per Connection",
+                            "description": "&lt;p>Specifies the maximum number of concurrent multiplexed sessions supported by a single connection to the remote server. Enter a value in the range 1 - 65535. The default is 100.&lt;/p>&lt;p>Session requests in excess of the value set by this property trigger the establishment of a new connection to the remote server. The DataPower Gateway cannot establish a new connection unless the number of concurrent connections is less than the allowable total number of connections.&lt;/p>&lt;p>For example, with values of 20 for sessions per connection, 5 for connection limit and 3 active fully-subscribed connections, then a new session request generates the establishment of a 4th connection.&lt;/p>"
+                        },
+                        {
+                            "name": "AutoRetry",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Advanced recovery after critical error.",
+                            "cli-alias": "auto-retry",
+                            "display": "Automatic Retry",
+                            "description": "Enables (on, the default state) or disables (off) an automatic critical error-recovery procedure that attempts to re-establish a connection that has been broken in response to an error condition."
+                        },
+                        {
+                            "name": "RetryInterval",
+                            "default": 1,
+                            "cli-alias": "retry-interval",
+                            "summary": "Seconds to wait before retrying failing connections.",
+                            "minimum": 1,
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Retry Interval",
+                            "description": "&lt;p>If &lt;em>Automatic Retry&lt;/em> is enabled (the default state), specifies the interval in seconds between connection re-establishment attempts.&lt;/p>"
+                        },
+                        {
+                            "name": "SSLProfile",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoProfile"
+                                }
+                            },
+                            "summary": "The cryoto profile is deprecated. Use a TLS client profile.",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SSLClientConfigType",
+                                    "evaluation": "property-equals",
+                                    "value": "client"
+                                }
+                            },
+                            "cli-alias": "ssl",
+                            "display": "Crypto Profile (deprecated)",
+                            "description": "&lt;p>Identifies the client crypto profile to establish a secured (TLS-enabled) connection to the server. Without a crypto profile, the DataPower Gateway establishes a nonsecure connection (no TLS support) to the server.&lt;/p>&lt;p>When defined for a WebSphere JMS Server, the cipher suite associated with the profile is replaced by an IBM default cipher suite (SSL_RSS_WITH_NULL_MD5).&lt;/p>"
+                        },
+                        {
+                            "name": "EnableLogging",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Enable JMS-specific logging",
+                            "cli-alias": "enable-logging",
+                            "display": "Enable JMS-Specific Logging",
+                            "description": "Enables (on) or disables (off, the default state) an expanded JMS logging facility."
+                        },
+                        {
+                            "name": "SSLClientConfigType",
+                            "default": "proxy",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSLClientConfigType"
+                            },
+                            "summary": "Set the TLS profile type to secure connections between the DataPower Gateway and its targets",
+                            "cli-alias": "ssl-client-type",
+                            "display": "TLS client type",
+                            "description": "The TLS profile type to secure connections between the DataPower Gateway and its targets."
+                        },
+                        {
+                            "name": "SSLClient",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                                }
+                            },
+                            "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and its targets",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SSLClientConfigType",
+                                    "evaluation": "property-equals",
+                                    "value": "proxy"
+                                }
+                            },
+                            "cli-alias": "ssl-client",
+                            "display": "TLS client profile",
+                            "description": "The TLS client profile to secure connections between the DataPower Gateway and its targets."
+                        },
+                        {
+                            "name": "XMLManager",
+                            "default": "default",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/XMLManager"
+                                }
+                            },
+                            "summary": "XML Manager",
+                            "cli-alias": "xml-manager",
+                            "display": "XML Manager",
+                            "description": "Invisible dependency on default XML Manager."
+                        },
+                        {
+                            "name": "Endpoint",
+                            "type": {
+                                "href": "/mgmt/types/default/dmWebSphereJMSEndpoint"
+                            },
+                            "required": "true",
+                            "summary": "WebSphere JMS Endpoint",
+                            "array": "true",
+                            "cli-alias": "endpoint",
+                            "display": "WebSphere JMS Endpoint",
+                            "description": "&lt;p>Identifies the connection host, port, and protocol to use for the bootstrap process.&lt;/p>&lt;p>A service integration bus (SIB) supports applications using message-based and service-oriented architectures. A bus is a group of interconnected servers and clusters that have been added as members of the bus. Applications connect to a bus at one of the messaging engines associated with its bus members.&lt;/p>&lt;p>A messaging engine is a component, running inside a server, that manages messaging resources for a bus member. Applications are connected to a messaging engine when accessing a SIB.&lt;/p>&lt;p>Applications (such as the JMS object) running outside the WebSphere environment cannot locate directly a suitable messaging engine to connect to the target bus. In such cases the remote clients or servers must access the bus through a bootstrap server that is a member of the target bus. A bootstrap server is an application server running the SIB process, but need not be running any message engines. Rather the bootstrap server selects a messaging engine that is running in an application server that supports the bootstrap protocol requested by the remote device.&lt;/p>&lt;p>To connect to a messaging engine the remote application first connects to a bootstrap server. The bootstrap server selects a messaging engine and tells the client application to connect to that message engine to gain bus access.&lt;/p>&lt;p>A bootstrap server uses a host name or IP address, a port number, and a bootstrap transport chain (which identifies the protocol stack offered by the bootstrap server) to define an endpoint address.&lt;/p>&lt;p>The transport chain used for bootstrap access does not need to match the transport chain that is used for message exchange.&lt;/p>&lt;p>You can add multiple nondefault bootstrap servers. For failover capability, the endpoints must be members of the same WebSphere Application Server cluster.&lt;/p>"
+                        },
+                        {
+                            "name": "TargetTransportChain",
+                            "default": "InboundBasicMessaging",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "WebSphere JMS Target Transport Chain",
+                            "cli-alias": "target-transport-chain",
+                            "display": "WebSphere JMS Target Transport Chain",
+                            "description": "&lt;p>Identifies the predefined transport chain provided by the WebSphere Application Server, and used for message exchange between the application server and the WAS JMS object.&lt;/p>&lt;p>This property takes one of the following values.&lt;/p>&lt;p>&lt;em>InboundBasicMessaging&lt;/em>&lt;/p>&lt;p>(The default) Specifies the predefined InboundBasicMessaging transport chain (JFAP-TCP/IP).&lt;/p>&lt;p>&lt;em>InboundHTTPMessaging&lt;/em>&lt;/p>&lt;p>Specifies the predefined InboundHTTPMessaging transport chain (tunnels JFAP using HTTP wrappers).&lt;/p>&lt;p>&lt;em>InboundHTTPSMessaging&lt;/em>&lt;/p>&lt;p>Specifies the predefined InboundHTTPSMessaging transport chain (tunnels JFAP using HTTPS wrappers).&lt;/p>&lt;p>&lt;em>InboundSecureMessaging&lt;/em>&lt;/p>&lt;p>Specifies the predefined InboundSecureMessaging transport chain (JFAP-SSL-TCP/IP).&lt;/p>&lt;p>If you have access to the WebSphere Administrative Console, you can view transport chain information through the &lt;em>Application Servers/serverName/Transport Chain&lt;/em> menu.&lt;/p>&lt;p>The transport chain used for message exchange need not match the chain used for bootstrap access.&lt;/p>"
+                        },
+                        {
+                            "name": "MessagingBus",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "summary": "WebSphere JMS Messaging Bus",
+                            "cli-alias": "messaging-bus",
+                            "display": "WebSphere JMS Messaging Bus",
+                            "description": "&lt;p>Identifies the Service Integration Bus (SIB) used to access the remote WebSphere Application Server.&lt;/p>&lt;p>A bus supports applications using message-based and service-oriented architectures. A bus is a group of interconnected servers and clusters that have been added as members of the bus.&lt;/p>&lt;p>Applications connect to a bus at one of the messaging engines associated with its bus members.&lt;/p>&lt;p>If you have access to the WebSphere Administrative Console, you can view bus information, to include bus members and messaging engines, queues and topics, and the bus-specific default topic space through the &lt;em>Service integration/Buses&lt;/em> menu.&lt;/p>"
+                        },
+                        {
+                            "name": "SSLCipher",
+                            "type": {
+                                "href": "/mgmt/types/default/dmWebSphereJMSSSLCipher"
+                            },
+                            "summary": "WebSphere JMS TLS Cipher Specification",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "SSLClientConfigType",
+                                                    "evaluation": "property-equals",
+                                                    "value": "proxy"
+                                                },
+                                                {
+                                                    "property-name": "SSLProfile",
+                                                    "evaluation": "property-equals",
+                                                    "value": ""
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "SSLClientConfigType",
+                                                    "evaluation": "property-equals",
+                                                    "value": "client"
+                                                },
+                                                {
+                                                    "property-name": "SSLClient",
+                                                    "evaluation": "property-equals",
+                                                    "value": ""
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "ssl-cipher",
+                            "display": "WebSphere JMS TLS Cipher Specification",
+                            "description": "Select the IBM cipher specification that the assigned client crypto profile uses when establishing a secure connection to the WebSphere Application Server. The selected specification replaces the cipher suite that is assigned in the TLS profile configuration. The selected cipher must be compatible with the protocol of the client crypto profile."
+                        },
+                        {
+                            "name": "FIPS",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "FIPS compliant ciphers suite",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "SSLClientConfigType",
+                                                    "evaluation": "property-equals",
+                                                    "value": "proxy"
+                                                },
+                                                {
+                                                    "property-name": "SSLProfile",
+                                                    "evaluation": "property-equals",
+                                                    "value": ""
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "SSLClientConfigType",
+                                                    "evaluation": "property-equals",
+                                                    "value": "client"
+                                                },
+                                                {
+                                                    "property-name": "SSLClient",
+                                                    "evaluation": "property-equals",
+                                                    "value": ""
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "ssl-fips",
+                            "display": "FIPS compliant ciphers suite",
+                            "description": "&lt;p>Forces (on) or makes optional (off, the default value) the use of IBM FIPS-compliant cipher specifications.&lt;/p>&lt;p>Setting this property to on prevents the usage of non-FIPS compliant cipher specifications, and requires the use of one of the following cipher specifications.&lt;/p>&lt;ul>&lt;li>TLS_RSA_WITH_AES_128_CBC_SHA&lt;/li>&lt;li>TLS_RSA_WITH_AES_256_CBC_SHA&lt;/li>&lt;li>TLS_RSA_WITH_AES_128_CBC_SHA256&lt;/li>&lt;li>TLS_RSA_WITH_AES_256_CBC_SHA256&lt;/li>&lt;/ul>"
+                        }
+                    ]
+                },
+                "description": "WebSphere JMS is responsible for messaging services for communicating applications by periodically monitoring/polling queues, by ensuring that sent messages are directed to the correct receive queue, or that messages are routed to another queue manager."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/WebSphereJMSServer"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/WebSphereJMSServer"
+                }
+            }
+        }
+    }
+}

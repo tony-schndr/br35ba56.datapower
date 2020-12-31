@@ -1,0 +1,131 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "MQ",
+                "name": "MQQMGroup",
+                "uri": "network/mq-qm-group",
+                "display": "IBM MQ Queue Manager Group",
+                "cmd-group": "mq-qm",
+                "cli-alias": "mq-qm-group",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "description": "Specify a queue manager to serve as the primary queue manager for this group. All connections for this group will go to the designated queue manager. If the primary queue manager becomes unavailable, the appliance will use an available backup IBM MQ queue manager.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/MQQM"
+                                }
+                            },
+                            "required": "true",
+                            "cli-alias": "primary",
+                            "display": "Primary IBM MQ Queue Manager",
+                            "name": "PrimaryQueueManager"
+                        },
+                        {
+                            "description": "Specify one or more queue managers to provide redundancy if the primary queue manager becomes unavailable.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/MQQM"
+                                }
+                            },
+                            "array": "true",
+                            "cli-alias": "backup",
+                            "display": "Backup IBM MQ Queue Managers",
+                            "name": "BackupQueueManagers"
+                        }
+                    ]
+                },
+                "description": "&lt;p>An IBM MQ Queue Manager Group enables automatic failover between queue managers when one (or more) queue manager becomes unavailable.&lt;/p>&lt;p>If you define multiple backup queue managers, the appliance searches in the order in which the queue managers are listed. The first active queue manager in the group replaces the primary queue manager.&lt;/p>&lt;p>&lt;b>Note:&lt;/b> In IBM MQ server 7.0.1 or later, you can configure the IBM MQ Queue Manager to work with the multi-instance feature in the IBM MQ server. Connect the primary queue manager to one of the instances of a queue manager in the IBM MQ server, and the backup queue manager to the other instance. All connections for the IBM MQ Queue Manager group in the DataPower appliance will go to the queue manager connected to the active instance. If the active instance in the IBM MQ server fails, the queue manager connected to the standby instance will automatically take over all the data and logs from the queue manager connected to the original active instance.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/MQQMGroup"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/MQQMGroup"
+                }
+            }
+        }
+    }
+}

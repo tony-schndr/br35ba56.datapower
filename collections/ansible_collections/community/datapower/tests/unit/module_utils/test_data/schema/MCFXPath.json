@@ -1,0 +1,126 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmXPathExpr"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmXPathExpr"
+                    }
+                },
+                "type": {
+                    "cli-arg": "xpath",
+                    "name": "dmXPathExpr"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "MCFXPath",
+                "display": "XPath Message Content Filter",
+                "uri": "policy/mcf-xpath",
+                "summary": "Filter based on specific data in the message",
+                "cmd-group": "mpgw",
+                "cli-alias": "mcf-xpath",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation"
+                        },
+                        {
+                            "name": "XPathExpression",
+                            "type": {
+                                "href": "/mgmt/types/default/dmXPathExpr"
+                            },
+                            "required": "true",
+                            "summary": "Designate the XPath used to retrieve the value for comparison.",
+                            "cli-alias": "location",
+                            "display": "XPath Expression"
+                        },
+                        {
+                            "name": "XPathValue",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "summary": "The value used for comparison for a XPath value match.",
+                            "cli-alias": "value",
+                            "display": "XPath Value"
+                        }
+                    ]
+                },
+                "description": "Filter based on specific data in the message. An XPath expression defines a data element to be matched in the request message."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/MCFXPath"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/MCFXPath"
+                }
+            }
+        }
+    }
+}

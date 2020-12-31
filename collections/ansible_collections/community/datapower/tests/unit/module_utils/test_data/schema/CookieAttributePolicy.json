@@ -1,0 +1,277 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmCookieAttribute"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmCookieAttribute"
+                    }
+                },
+                "type": {
+                    "display": "Cookie attributes",
+                    "name": "dmCookieAttribute",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Domain",
+                                "name": "domain",
+                                "summary": "Include the Domain attribute in the cookie."
+                            },
+                            {
+                                "display": "Path",
+                                "name": "path",
+                                "summary": "Include the Path attribute in the cookie."
+                            },
+                            {
+                                "display": "Secure",
+                                "description": "Indicates that the cookie is transmitted only over an encrypted connection.",
+                                "name": "secure",
+                                "summary": "Include the Secure attribute in the cookie."
+                            },
+                            {
+                                "display": "HTTPOnly",
+                                "description": "Indicates that the cookie is exposed only through HTTP and HTTPS channels. When this attribute is included, the cookie is not accessible through non-HTTP methods.",
+                                "name": "httponly",
+                                "summary": "Include the HttpOnly attribute in the cookie."
+                            },
+                            {
+                                "display": "Max-Age",
+                                "name": "max-age",
+                                "summary": "Include the Max-Age attribute in the cookie."
+                            },
+                            {
+                                "display": "Expires",
+                                "name": "expires",
+                                "summary": "Include the Expires attribute in the cookie."
+                            },
+                            {
+                                "display": "Custom attributes",
+                                "name": "custom",
+                                "summary": "Include custom attributes in the cookie."
+                            }
+                        ]
+                    },
+                    "summary": "Select the attributes to include in the cookie."
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "CookieAttributePolicy",
+                "display": "Cookie Attribute Policy",
+                "uri": "crypto/cookie-attribute-policy",
+                "summary": "Manage the cookie attributes",
+                "cmd-group": "crypto",
+                "cli-alias": "cookie-attribute-policy",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "A descriptive summary for the configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter a descriptive summary for the configuration.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "CookieAttribute",
+                            "type": {
+                                "href": "/mgmt/types/default/dmCookieAttribute"
+                            },
+                            "required": "true",
+                            "summary": "Select attributes to include in the cookie.",
+                            "cli-alias": "cookie-attribute",
+                            "display": "Cookie attributes",
+                            "description": "Specifies the attributes to include in the cookie. Acceptable values include domain, path, secure, httponly, max-age, expires, and custom. When an attribute is enabled, you can enter its value in the corresponding property and the enabled attribute is included in the cookie."
+                        },
+                        {
+                            "description": "Identifies domain to which a cookie belongs. A browser accepts cookies only when the current domain matches the value you enter here. The maximum length of the domain is 256 characters.",
+                            "name": "Domain",
+                            "minimum-length": 1,
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "CookieAttribute",
+                                    "evaluation": "property-value-in-list",
+                                    "value": "domain"
+                                }
+                            },
+                            "summary": "Enter the domain for which the cookie is sent.",
+                            "cli-alias": "domain",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Domain",
+                            "maximum-length": 256
+                        },
+                        {
+                            "description": "Identifies path attribute of a cookie. A browser accepts cookies only when the current path matches the value you enter there. If this policy object is attached to HTML Forms Login Policy, this property overrides Form POST Action URL property. The maximum length of the path is 256 characters.",
+                            "name": "Path",
+                            "minimum-length": 1,
+                            "default": "/",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "CookieAttribute",
+                                    "evaluation": "property-value-in-list",
+                                    "value": "path"
+                                }
+                            },
+                            "summary": "Enter the path for which the cookie is sent.",
+                            "cli-alias": "path",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Path",
+                            "maximum-length": 256
+                        },
+                        {
+                            "name": "Interval",
+                            "default": 3600,
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "CookieAttribute",
+                                    "evaluation": "property-value-in-list",
+                                    "value": [
+                                        "max-age",
+                                        "expires"
+                                    ]
+                                }
+                            },
+                            "maximum": 2678400,
+                            "summary": "Enter a value in seconds to set the cookie's maximum age and/or when the cookie expires.",
+                            "cli-alias": "interval",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Relative expiration interval",
+                            "description": "&lt;p>Sets the cookie's maximum age and/or the cookie's expiration date as an interval of seconds, relative to the time the transaction occurred on the object. For example, if this value is set to 3600 and the transaction on this object occurred on Feb 10, 2014 12:00:00 GMT, then the maximum age of the cookie is 3600 seconds and the expiration date is Feb 10, 2014 13:00:00 GMT, depending on whether the Max-Age and the Expires attribute are included.&lt;/p>&lt;p>When the maximum age or the expiration date is reached, the cookie is deleted. Enter a value in the range 1 - 2678400. The default value is 3600. Note that the Max-Age attribute in this policy overrides Inactivity Timeout and Session Lifetime attributes in HTML Forms Login policy.&lt;/p>"
+                        },
+                        {
+                            "name": "CustomAttribute",
+                            "minimum-length": 1,
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "CookieAttribute",
+                                    "evaluation": "property-value-in-list",
+                                    "value": "custom"
+                                }
+                            },
+                            "summary": "Enter additional attributes to include in the cookie.",
+                            "cli-alias": "custom-attribute",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Custom attributes",
+                            "description": "The additional attributes to include in the cookie. Enter each attribute in name-value pair. When you enter multiple pairs, use a semicolon (;) to separate them. A name-value pair with an empty value (name-only portion) can also be specified here. You can use variables instead of name-value pair(s). Enter a context variable as var://variablename"
+                        }
+                    ]
+                },
+                "description": "Cookie attribute policy manages pre-defined and custom attributes of a cookie."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/CookieAttributePolicy"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/CookieAttributePolicy"
+                }
+            }
+        }
+    }
+}

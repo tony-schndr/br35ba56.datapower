@@ -1,0 +1,178 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLDAPSearchScope"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLDAPSearchScope"
+                    }
+                },
+                "type": {
+                    "name": "dmLDAPSearchScope",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Subtree",
+                                "description": "Searches the entry-level of the tree and any of its descendants.",
+                                "name": "subtree"
+                            },
+                            {
+                                "display": "One Level",
+                                "description": "Searches the entry-level of the tree and any object that is one level below.",
+                                "name": "one-level"
+                            },
+                            {
+                                "display": "Base",
+                                "name": "base",
+                                "summary": "Searches the entry-level of the tree only."
+                            }
+                        ]
+                    },
+                    "summary": "LDAP Search Scope"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "name": "LDAPSearchParameters",
+                "display": "LDAP Search Parameters",
+                "uri": "access/ldap-search-parameters",
+                "summary": "LDAP Search Parameters configuration",
+                "cmd-group": "configuration",
+                "cli-alias": "ldap-search-parameters",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "LDAPBaseDN",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "summary": "LDAP base distinguished name",
+                            "cli-alias": "base-dn",
+                            "display": "LDAP Base DN",
+                            "description": "&lt;p>The base distinguished name to begin the search. This value identifies the entry level of the tree used by the &lt;b>LDAP Scope&lt;/b> property.&lt;/p>"
+                        },
+                        {
+                            "name": "LDAPReturnedAttribute",
+                            "default": "dn",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The LDAP attribute to be returned",
+                            "cli-alias": "returned-attribute",
+                            "display": "LDAP Returned Attribute",
+                            "description": "The attribute name whose value will be returned for each entry that matches the search filter. The default is dn."
+                        },
+                        {
+                            "name": "LDAPFilterPrefix",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "summary": "The LDAP search filter prefix",
+                            "cli-alias": "filter-prefix",
+                            "display": "LDAP Filter Prefix",
+                            "description": "&lt;p>Specifies the prefix of the LDAP filter expression. An LDAP filter expression is composed by &lt;tt>prefix + user name + suffix&lt;/tt> .&lt;/p>&lt;p>If the prefix is &lt;tt>(&amp;amp;(uid=&lt;/tt> and the user name is &lt;tt>bob&lt;/tt> , the LDAP search filter would be &lt;tt>(&amp;amp;(uid=bob&lt;/tt> .&lt;/p>"
+                        },
+                        {
+                            "description": "&lt;p>You can optionally specify a suffix for the LDAP filter expression.&lt;/p>&lt;p>If the prefix is &lt;tt>(&amp;amp;(uid=&lt;/tt> , the user name is &lt;tt>bob&lt;/tt> , and the suffix is &lt;tt>)(objectClass=person))&lt;/tt> , the LDAP search filter would be &lt;tt>(&amp;amp;(uid=bob)(objectClass=person))&lt;/tt> .&lt;/p>",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The LDAP search filter suffix",
+                            "cli-alias": "filter-suffix",
+                            "display": "LDAP Filter Suffix",
+                            "name": "LDAPFilterSuffix"
+                        },
+                        {
+                            "name": "LDAPScope",
+                            "default": "subtree",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLDAPSearchScope"
+                            },
+                            "summary": "The LDAP scope",
+                            "cli-alias": "scope",
+                            "display": "LDAP Scope",
+                            "description": "The depth of the LDAP search. The default is Subtree."
+                        }
+                    ]
+                },
+                "description": "An LDAP Search Parameters object is a container for the parameters to use to perform an LDAP search operation. When used with authentication, the search retrieves the distinguished name (DN) for the user. When used with credential authorization mapping, the search retrieves the group name (DN or attribute value) based on the DN of the authenticated user."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/LDAPSearchParameters"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/LDAPSearchParameters"
+                }
+            }
+        }
+    }
+}

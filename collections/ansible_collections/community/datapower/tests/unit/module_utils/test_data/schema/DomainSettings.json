@@ -1,0 +1,144 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmPasswordTreatment"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmPasswordTreatment"
+                    }
+                },
+                "type": {
+                    "name": "dmPasswordTreatment",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "None",
+                                "description": "No passwords are emitted or stored in persisted configuration.",
+                                "name": "none"
+                            },
+                            {
+                                "display": "Masked",
+                                "description": "All passwords are emitted and stored in the persisted configuration in a masked, obfuscated form. Obfuscation uses a passphrase.",
+                                "name": "masked"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "DomainSettings",
+                "display": "Domain Settings",
+                "uri": "config/domain-settings",
+                "summary": "",
+                "cmd-group": "configuration",
+                "cli-alias": "domain-settings",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "Enter a descriptive summary for the configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter a descriptive summary for the configuration.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "PasswordTreatment",
+                            "default": "none",
+                            "type": {
+                                "href": "/mgmt/types/default/dmPasswordTreatment"
+                            },
+                            "required": "true",
+                            "summary": "Set the method to handle password data in the persisted configuration.",
+                            "cli-alias": "password-treatment",
+                            "display": "Password treatment",
+                            "description": "Set the method to handle password data in the persisted configuration."
+                        },
+                        {
+                            "description": "Enter the passphrase that obfuscates passwords in the persisted configuration.",
+                            "name": "Passphrase",
+                            "minimum-length": 8,
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter the passphrase that obfuscates passwords in the persisted configuration.",
+                            "cli-alias": "passphrase",
+                            "display": "Passphrase",
+                            "maximum-length": 24
+                        }
+                    ]
+                },
+                "description": "The Domain Settings configuration provides properties to domain-specific characteristics when you save changes to the persisted configuration."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/DomainSettings"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/DomainSettings"
+                }
+            }
+        }
+    }
+}

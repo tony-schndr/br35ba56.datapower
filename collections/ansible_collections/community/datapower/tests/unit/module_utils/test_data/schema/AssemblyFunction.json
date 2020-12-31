@@ -1,0 +1,338 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAssemblyFunctionParameter"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAssemblyFunctionParameter"
+                    }
+                },
+                "type": {
+                    "properties": {
+                        "property": [
+                            {
+                                "name": "Name",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "required": "true",
+                                "summary": "Name of the parameter.",
+                                "cli-alias": "name",
+                                "display": "Name",
+                                "description": "Specifies the name of the parameter."
+                            },
+                            {
+                                "description": "Specifies the label to use for the parameter to explain it to API developers.",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "summary": "Label of the parameter.",
+                                "cli-alias": "label",
+                                "display": "Label",
+                                "name": "Label"
+                            },
+                            {
+                                "description": "Specifies a description of the parameter that can be used to advertise the parameter to API developers.",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "summary": "Description of the parameter.",
+                                "cli-alias": "description",
+                                "display": "Description",
+                                "name": "Description"
+                            },
+                            {
+                                "description": "Specifies the API schema that is used to verify the parameter type.",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference",
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/APISchema"
+                                    }
+                                },
+                                "summary": "API schema that is used to verify the parameter type.",
+                                "cli-alias": "schema",
+                                "display": "API schema",
+                                "name": "Schema"
+                            },
+                            {
+                                "description": "&lt;p>Specifies the default parameter value that is passed to the assembly function as a string. The default value is used when no value is passed in the request. If the default value is a JSON payload, enter the value as a JSON string. The default parameter value is required if the assembly function is called in an assembly function call action and no parameter value is defined in the action.&lt;/p>&lt;ul>&lt;li>When the assembly function is used as a user-defined policy in the API Connect Gateway Service.&lt;/li>&lt;li>When the assembly function is called in an assembly function call action and no default parameter value is defined in the action.&lt;/li>&lt;/ul>",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "summary": "Default value of the parameter.",
+                                "cli-alias": "value",
+                                "display": "Value",
+                                "name": "Value"
+                            },
+                            {
+                                "name": "ValueType",
+                                "default": "string",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmAssemblyFunctionParameterValueType"
+                                },
+                                "summary": "The type of the parameter value.",
+                                "cli-alias": "value-type",
+                                "display": "Value type",
+                                "description": "Specifies the type of the parameter value."
+                            },
+                            {
+                                "name": "Required",
+                                "default": "on",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "summary": "Indication that this parameter is required.",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Value",
+                                        "evaluation": "property-does-not-equal",
+                                        "value": ""
+                                    }
+                                },
+                                "cli-alias": "required",
+                                "display": "Required",
+                                "description": "Indicates that this parameter requires a value in an assembly function call."
+                            }
+                        ]
+                    },
+                    "summary": "Parameter to pass to the assembly function.",
+                    "description": "A parameter to pass to the assembly function.",
+                    "name": "dmAssemblyFunctionParameter",
+                    "display": "Passed parameter"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAssemblyFunctionParameterValueType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAssemblyFunctionParameterValueType"
+                    }
+                },
+                "type": {
+                    "display": "Parameter value type",
+                    "name": "dmAssemblyFunctionParameterValueType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "string",
+                                "description": "Indicates that the value type is a string. The value is set on the parameter as a JSON string. For example, if the parameter name is &lt;tt>foo&lt;/tt> , the value is set on &lt;tt>local.parameter.foo&lt;/tt> in the API context. This setting is the default value.",
+                                "name": "string"
+                            },
+                            {
+                                "display": "payload",
+                                "description": "Indicates that the value type is a payload. The payload is set on the &lt;tt>body&lt;/tt> key of the parameter as a binary blob. For example, if the parameter name is &lt;tt>foo&lt;/tt> , the payload is set on &lt;tt>local.parameter.foo.body&lt;/tt> in the API context. If the root of the payload value is a JSON object, it must include a space after the first opening curly bracket &lt;tt>{&lt;/tt> . For an XML tree or JSON document, the payload must be explicitly parsed before being used.",
+                                "name": "payload"
+                            },
+                            {
+                                "display": "message",
+                                "description": "Indicates that the value type is a message. The message contents are copied and set on the parameter. For example, if the message is &lt;tt>foo&lt;/tt> and the parameter name is &lt;tt>bar&lt;/tt> , then the keys and values of &lt;tt>foo&lt;/tt> are copied and set on &lt;tt>local.parameter.bar&lt;/tt> in the API context. The message must be a JSON object. The message must have a payload set to the &lt;tt>body&lt;/tt> key. The payload cannot be a stream.",
+                                "name": "message"
+                            }
+                        ]
+                    },
+                    "summary": "The type of the parameter value"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "AssemblyFunction",
+                "display": "Assembly Function",
+                "property-group": {
+                    "member": [
+                        {
+                            "name": "mAdminState"
+                        },
+                        {
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "Title"
+                        },
+                        {
+                            "name": "Description"
+                        },
+                        {
+                            "name": "Parameter"
+                        },
+                        {
+                            "name": "Assembly"
+                        }
+                    ],
+                    "name": "main",
+                    "display": "Main"
+                },
+                "uri": "assembly/assembly-function",
+                "summary": "An assembly function definition.",
+                "cmd-group": "assembly",
+                "cli-alias": "assembly-function",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "Specifies a descriptive summary of the assembly function that is used on the API Gateway.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "A descriptive summary of the assembly function that is not advertised to API developers.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "description": "Specifies the assembly function title that is advertised to API developers. When the title is not provided, DataPower Gateway provides a title to advertise to API Connect.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The title of the assembly function.",
+                            "cli-alias": "title",
+                            "display": "Title",
+                            "name": "Title"
+                        },
+                        {
+                            "description": "Specifies a description of the assembly function that is advertised to API developers. When the description is not provided, DataPower Gateway provides a description to advertise to API Connect.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "A description of the assembly function that is advertised to API developers.",
+                            "cli-alias": "description",
+                            "display": "Description",
+                            "name": "Description"
+                        },
+                        {
+                            "name": "Parameter",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAssemblyFunctionParameter"
+                            },
+                            "summary": "The parameters passed to the assembly function.",
+                            "array": "true",
+                            "cli-alias": "parameter",
+                            "display": "Parameters",
+                            "description": "Specifies the parameters passed to the assembly function."
+                        },
+                        {
+                            "description": "Specifies the assembly to apply to calls to the assembly function. An assembly comprises a rule that defines the actions to run against the call and how to handle errors during assembly execution.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/Assembly"
+                                }
+                            },
+                            "summary": "The assembly that implements this assembly function",
+                            "cli-alias": "assembly",
+                            "display": "Assembly",
+                            "name": "Assembly"
+                        }
+                    ]
+                },
+                "description": "&lt;p>An assembly function augments the actions performed by the API Gateway. You can implement an assembly function in one of the following ways.&lt;/p>&lt;ul>&lt;li>Define an assembly function to add custom logic to an assembly. After you define the assembly function, you can add it to an assembly function call action.&lt;/li>&lt;li>When you configure the API Connect Gateway Service as not V5 compatible, use assembly functions to specify user-defined policies that API Connect advertises and makes available in the API Connect assembly editor. User-defined policies provide custom processing control of APIs in the Gateway server.&lt;/li>&lt;/ul>&lt;p>For an assembly function that is intended to be used as a user-defined policy in the API Connect Gateway Service configuration, it is recommended to configure the assembly function using a mechanism other than a configuration file processed by a configuration sequence. Objects created using configuration files are not persisted to the domain startup configuration.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/AssemblyFunction"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/AssemblyFunction"
+                }
+            }
+        }
+    }
+}

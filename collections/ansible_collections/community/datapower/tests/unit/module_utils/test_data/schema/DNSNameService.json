@@ -1,0 +1,575 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSearchDomain"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSearchDomain"
+                    }
+                },
+                "type": {
+                    "name": "dmSearchDomain",
+                    "properties": {
+                        "property": {
+                            "name": "SearchDomain",
+                            "required": "true",
+                            "example": "datapower.com",
+                            "summary": "Enter the domain name.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHostname"
+                            },
+                            "display": "Domain name",
+                            "description": "The name of a domain to search. Examples are example.com and ibm.com."
+                        }
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmNameServer"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmNameServer"
+                    }
+                },
+                "type": {
+                    "name": "dmNameServer",
+                    "actions": {
+                        "action": {
+                            "name": "Ping",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "RemoteHost",
+                                    "select": "IPAddress"
+                                }
+                            }
+                        }
+                    },
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "The IP address of a DNS server.",
+                                "required": "true",
+                                "summary": "Enter the IP address of DNS server.",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmIPHostAddress"
+                                },
+                                "display": "IP address",
+                                "name": "IPAddress"
+                            },
+                            {
+                                "name": "UDPPort",
+                                "default": 53,
+                                "required": "true",
+                                "maximum": 65535,
+                                "summary": "Enter the UDP port on the DNS server.",
+                                "minimum": 1,
+                                "type": {
+                                    "href": "/mgmt/types/default/dmIPPort"
+                                },
+                                "display": "UDP port",
+                                "description": "&lt;p>The UDP port that the DNS server monitors. The default value is 53.&lt;/p>&lt;p>This setting is ignored with the first alive load balancing algorithm.&lt;/p>"
+                            },
+                            {
+                                "name": "TCPPort",
+                                "default": 53,
+                                "required": "true",
+                                "maximum": 65535,
+                                "summary": "Enter the TCP port on the DNS server.",
+                                "minimum": 1,
+                                "type": {
+                                    "href": "/mgmt/types/default/dmIPPort"
+                                },
+                                "display": "TCP port",
+                                "description": "&lt;p>The TCP port that the DNS server monitors. The default value is 53.&lt;/p>&lt;p>This setting is ignored with the first alive load balancing algorithm.&lt;/p>"
+                            },
+                            {
+                                "default": 0,
+                                "type": {
+                                    "href": "/mgmt/types/default/dmUInt32"
+                                },
+                                "name": "Flags"
+                            },
+                            {
+                                "description": "&lt;p>The maximum number of times to send a query to the DNS server. By default, an unacknowledged resolution request is attempted 3 times.&lt;/p>&lt;p>This setting is ignored with the first alive load balancing algorithm. For the first alive algorithm, define this behavior at the DNS settings level rather than the individual server level.&lt;/p>",
+                                "default": 3,
+                                "summary": "Set the maximum number of resolution attempts.",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmUInt32"
+                                },
+                                "display": "Attempts",
+                                "name": "MaxRetries"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmStaticHost"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmStaticHost"
+                    }
+                },
+                "type": {
+                    "name": "dmStaticHost",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Specify the host name of the target host.",
+                                "required": "true",
+                                "summary": "Enter the host name to map.",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmHostname"
+                                },
+                                "display": "Host name",
+                                "name": "Hostname"
+                            },
+                            {
+                                "description": "The IP address of the target host.",
+                                "required": "true",
+                                "summary": "Enter the IP address for the host name.",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmIPHostAddress"
+                                },
+                                "display": "IP address",
+                                "name": "IPAddress"
+                            },
+                            {
+                                "display": "Comments",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "description": "A descriptive summary for the configuration.",
+                                "name": "UserSummary",
+                                "summary": "Enter a descriptive summary for the configuration."
+                            },
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmUInt16"
+                                },
+                                "name": "IPVersion"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmDnsHostIPVersion"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmDnsHostIPVersion"
+                    }
+                },
+                "type": {
+                    "name": "dmDnsHostIPVersion",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "IPv4",
+                                "description": "IP version 4.",
+                                "name": 4,
+                                "summary": "Prefer IPv4 addresses."
+                            },
+                            {
+                                "display": "IPv6",
+                                "description": "IP version 6.",
+                                "name": 6,
+                                "summary": "Prefer IPv6 addresses."
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmDNSLoadBalanceAlgorithm"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmDNSLoadBalanceAlgorithm"
+                    }
+                },
+                "type": {
+                    "name": "dmDNSLoadBalanceAlgorithm",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Round robin",
+                                "description": "The round robin algorithm contacts DNS servers in the listed order. Each new connection is forwarded to the next server in the list.",
+                                "name": "round-robin",
+                                "summary": "Rotate among the DNS servers in listed order."
+                            },
+                            {
+                                "display": "First alive",
+                                "description": "The first alive algorithm uses a primary and one or more backup servers. When the primary server is up, all connections are forwarded to this server. When the primary server is not up, connections are forwarded to backup servers. The primary server is the first server in the list.",
+                                "name": "first-alive",
+                                "summary": "Use the first healthy DNS server."
+                            }
+                        ]
+                    },
+                    "display": "Load Balance Algorithm"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostname"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostname"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPHostAddress"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPHostAddress"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip",
+                    "name": "dmIPHostAddress",
+                    "format": "(a.b.c.d)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt16",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                },
+                "type": {
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "name": "DNSNameService",
+                "display": "DNS Settings",
+                "property-group": {
+                    "member": [
+                        {
+                            "name": "mAdminState"
+                        },
+                        {
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "IPPreference"
+                        },
+                        {
+                            "name": "ForceIPPreference"
+                        },
+                        {
+                            "name": "SearchDomains"
+                        },
+                        {
+                            "name": "NameServers"
+                        },
+                        {
+                            "name": "StaticHosts"
+                        },
+                        {
+                            "name": "LoadBalanceAlgorithm"
+                        },
+                        {
+                            "name": "MaxRetries"
+                        },
+                        {
+                            "name": "Timeout"
+                        }
+                    ],
+                    "name": "main",
+                    "display": "Main"
+                },
+                "uri": "network/dns",
+                "actions": {
+                    "action": {
+                        "name": "FlushDNSCache",
+                        "display": "Flush DNS Cache"
+                    }
+                },
+                "summary": "Configure DNS client",
+                "cmd-group": "network",
+                "cli-alias": "dns",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "A descriptive summary for the configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter a descriptive summary for the configuration.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "SearchDomains",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSearchDomain"
+                            },
+                            "summary": "Manage the list of search domains.",
+                            "array": "true",
+                            "cli-alias": "search-domain",
+                            "display": "Search domains",
+                            "description": "A list of domain names to use as the search criteria to resolve partial host names."
+                        },
+                        {
+                            "name": "NameServers",
+                            "type": {
+                                "href": "/mgmt/types/default/dmNameServer"
+                            },
+                            "summary": "Manage the list of DNS servers.",
+                            "array": "true",
+                            "cli-alias": "name-server",
+                            "display": "DNS servers",
+                            "hoverhelp": "Manage the list of DNS servers. If you define multiple servers, ensure that the sequence to contact the servers is your preferred order. To change the sequence, use the up and down arrows to move a server to the wanted position.",
+                            "description": "The list of DNS servers to contact to resolve host names. If you define multiple servers, ensure that the sequence to contact the servers is your preferred order."
+                        },
+                        {
+                            "name": "StaticHosts",
+                            "type": {
+                                "href": "/mgmt/types/default/dmStaticHost"
+                            },
+                            "summary": "Manage the static host name to IP address map.",
+                            "array": "true",
+                            "cli-alias": "static-host",
+                            "display": "Static hosts",
+                            "description": "A map of host names to host IP addresses that do not use DNS resolution. Because the local resolver uses a cache, Static hosts do not improve performance."
+                        },
+                        {
+                            "description": "The preferred IP version to resolve host names. When a host name resolves to both IPv4 and IPv6 addresses, this setting determines which version to use.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmDnsHostIPVersion"
+                            },
+                            "summary": "Set the preferred IP version.",
+                            "cli-alias": "ip-preference",
+                            "display": "IP preference",
+                            "name": "IPPreference"
+                        },
+                        {
+                            "name": "ForceIPPreference",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Indicate whether to restrict DNS queries to the preferred IP version.",
+                            "cli-alias": "force-ip-preference",
+                            "display": "Force IP preference",
+                            "description": "Whether to restrict DNS queries to the preferred IP version to resolve host names. You want to force the IP preference except when both IPv4 and IPv6 addresses are in use. When not forced, the appliance resolves each host name by querying A and AAAA records and waiting for both responses or a timeout. Waiting for the response or timeout for both records can introduce unnecessary latency in DNS resolution."
+                        },
+                        {
+                            "name": "LoadBalanceAlgorithm",
+                            "default": "first-alive",
+                            "type": {
+                                "href": "/mgmt/types/default/dmDNSLoadBalanceAlgorithm"
+                            },
+                            "required": "true",
+                            "summary": "Set the load balancing algorithm.",
+                            "cli-alias": "load-balance",
+                            "display": "Load balancing algorithm",
+                            "description": "The load balancing algorithm to use to resolve host names. The default algorithm is first-alive."
+                        },
+                        {
+                            "name": "MaxRetries",
+                            "default": 2,
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "LoadBalanceAlgorithm",
+                                    "evaluation": "property-equals",
+                                    "value": "first-alive"
+                                }
+                            },
+                            "summary": "Set the maximum number of resolution attempts.",
+                            "cli-alias": "retries",
+                            "minimum": 0,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "LoadBalanceAlgorithm",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "first-alive"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Attempts",
+                            "description": "For the first alive algorithm, the maximum number of times to send a query to the list of name servers before an error is returned. By default, an unacknowledged resolution request is attempted 3 times."
+                        },
+                        {
+                            "name": "Timeout",
+                            "default": 5,
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "LoadBalanceAlgorithm",
+                                    "evaluation": "property-equals",
+                                    "value": "first-alive"
+                                }
+                            },
+                            "summary": "Set the response timer.",
+                            "cli-alias": "timeout",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "LoadBalanceAlgorithm",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "first-alive"
+                                }
+                            },
+                            "units": "Seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Timeout",
+                            "description": "For the first alive algorithm, the time that the resolver waits for a response from a DNS server. After expiry, the resolver attempts the query to a different DNS server. The default value is 5."
+                        }
+                    ]
+                },
+                "description": "Configure the DNS name resolution service"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/DNSNameService"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/DNSNameService"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,588 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLocalIPHostAddress"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip or 0 for any",
+                    "name": "dmLocalIPHostAddress",
+                    "format": "(a.b.c.d or 0 for any)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt16",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmGatewayPeeringPersistenceLocation"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmGatewayPeeringPersistenceLocation"
+                    }
+                },
+                "type": {
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "memory",
+                                "description": "Memory backed persistence.",
+                                "name": "memory",
+                                "summary": "Memory backed persistence"
+                            },
+                            {
+                                "display": "local",
+                                "description": "Local filestore backed persistence.",
+                                "name": "local",
+                                "summary": "Local filestore backed persistence"
+                            },
+                            {
+                                "display": "raid",
+                                "description": "RAID backed persistence.",
+                                "name": "raid",
+                                "summary": "RAID backed persistence"
+                            }
+                        ]
+                    },
+                    "display": "Persistence location",
+                    "description": "Persistence location.",
+                    "name": "dmGatewayPeeringPersistenceLocation",
+                    "summary": "Persistence location"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSDirectory"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSDirectory"
+                    }
+                },
+                "type": {
+                    "cli-arg": "directory",
+                    "name": "dmFSDirectory"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "GatewayPeering",
+                "display": "Gateway Peering",
+                "uri": "services/gateway-peering",
+                "actions": {
+                    "action": [
+                        {
+                            "name": "GatewayPeeringSwitchPrimary",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "ObjectName",
+                                    "select": "dmObjectName"
+                                }
+                            },
+                            "display": "Switch primary"
+                        },
+                        {
+                            "name": "GatewayPeeringRemoveStalePeers",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "ObjectName",
+                                    "select": "dmObjectName"
+                                }
+                            },
+                            "display": "Remove stale peers"
+                        }
+                    ]
+                },
+                "summary": "A gateway peering configuration synchronizes the distributed state.",
+                "cmd-group": "configuration",
+                "cli-alias": "gateway-peering",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "Specifies a brief, descriptive summary for the configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "A descriptive summary for the configuration",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "LocalAddress",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "EnablePeerGroup",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "Management address that the gateway service listens on",
+                            "cli-alias": "local-address",
+                            "valid-regexp": "^(?!(127.0.0.1|0.0.0.0|::)).*$",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                            },
+                            "display": "Local address",
+                            "description": "&lt;p>Specifies the management address of the member that the gateway service listens on. The IP address can be the address of any DataPower network interface and must be accessible by other peers in the peer group. The IP address cannot be 127.0.0.1, 0.0.0.0 or ::. When gateway peering is peer group mode, this IP address uniquely identifies the API gateway among a peer group.&lt;/p>&lt;p>You can use a local host alias instead of a static IP address. A host alias resolves a locally configured alias to a static IP address. Aliasing can help when you move configurations.&lt;/p>"
+                        },
+                        {
+                            "name": "LocalPort",
+                            "default": 16380,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "required": "true",
+                            "summary": "TCP port that the gateway service listens on",
+                            "cli-alias": "local-port",
+                            "display": "Local port",
+                            "description": "&lt;p>Indicates the TCP port that the gateway service listens on. The default port is 16380.&lt;/p>&lt;p>&lt;b>Note:&lt;/b> When gateway peering is peer group mode, ensure that all peers in a group use the same TCP port.&lt;/p>"
+                        },
+                        {
+                            "name": "MonitorPort",
+                            "default": 26380,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "required": "true",
+                            "summary": "Monitor port that is used for state synchronization",
+                            "cli-alias": "monitor-port",
+                            "display": "Monitor port",
+                            "description": "&lt;p>Specifies the port to listen for state synchronization. The default port is 26380.&lt;/p>&lt;p>&lt;b>Note:&lt;/b> When gateway peering is peer group mode, ensure that all peers in a group use the same monitor port.&lt;/p>"
+                        },
+                        {
+                            "name": "EnablePeerGroup",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to enable the peer group mode",
+                            "cli-alias": "enable-peer-group",
+                            "display": "Peer group mode",
+                            "description": "Indicates whether the API gateway is defined to work in peer group mode. &lt;ul>&lt;li>When disabled, the API gateway works in standalone mode.&lt;/li>&lt;li>When enabled, you can add peers for the API gateway. In peer group mode, distributed state and configuration data is synchronized across API gateway members of the peer group. This setting is the default setting.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "Peers",
+                            "valid-regexp": "^(?!(127.0.0.1|0.0.0.0|::)).*$",
+                            "summary": "Management address of the peer members",
+                            "cli-alias": "peer",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "EnablePeerGroup",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "array": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                            },
+                            "display": "Peers",
+                            "description": "&lt;p>Specifies a list of peers for the current member. To add a peer, enter the management address of the target member. The member connects to each peer in the order that the peers are added in the list. It is not necessary to specify all peers in the list. When you add a peer into the group, the DataPower Gateway checks whether this peer is defined for any existent peer group:&lt;/p>&lt;ul>&lt;li>When no existent group is found, the current member is the primary member of a new peer group.&lt;/li>&lt;li>When an existent group is found, the current member joins the existent group as a secondary member.&lt;/li>&lt;/ul>&lt;p>You can use a local host alias instead of a static IP address. A host alias resolves a locally configured alias to a static IP address. Aliasing can help when you move configurations among gateways.&lt;/p>&lt;p>&lt;b>Note:&lt;/b> Do not specify the IP address or hostname of this gateway peering configuration.&lt;/p>"
+                        },
+                        {
+                            "name": "Priority",
+                            "default": 100,
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "EnablePeerGroup",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "maximum": 255,
+                            "summary": "The priority of the peer member",
+                            "cli-alias": "priority",
+                            "minimum": 0,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "EnablePeerGroup",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Priority",
+                            "description": "&lt;p>Indicates the priority that is used to elect the new primary. When failover occurs, the secondary member with the lowest priority number is promoted as the new primary.&lt;/p>&lt;p>Enter a value in the range 0 - 255. The default value is 100. A secondary member with priority of 0 can never be promoted.&lt;/p>"
+                        },
+                        {
+                            "name": "EnableSSL",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to enable TLS for secure connection",
+                            "cli-alias": "enable-ssl",
+                            "display": "Enable SSL",
+                            "description": "&lt;p>Indicates whether to use TLS to secure the connection among the members in the peer group. By default, TLS is enabled.&lt;/p>&lt;p>&lt;b>Note:&lt;/b> When gateway peering is peer group mode, ensure that all peers in a group use the same TLS configuration.&lt;/p>"
+                        },
+                        {
+                            "name": "Idcred",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "EnableSSL",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "SSLCryptoKey",
+                                            "evaluation": "property-equals",
+                                            "value": ""
+                                        },
+                                        {
+                                            "property-name": "SSLCryptoCertificate",
+                                            "evaluation": "property-equals",
+                                            "value": ""
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "The identification credentials that contains the credentials that the current member uses to identify itself to other peers.",
+                            "cli-alias": "idcred",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "EnableSSL",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoIdentCred"
+                                }
+                            },
+                            "display": "Identification credentials",
+                            "description": "Optionally specifies the identification credentials that the current member uses to identify itself to other peers. Client authentication uses mutual TLS."
+                        },
+                        {
+                            "name": "Valcred",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoValCred"
+                                }
+                            },
+                            "summary": "The validation credentials to validate the client certificate during the handshake.",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "EnableSSL",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "cli-alias": "valcred",
+                            "display": "Validation credentials",
+                            "description": "Specify the validation credentials to validate the client certificate during the handshake."
+                        },
+                        {
+                            "name": "SSLCryptoKey",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "EnableSSL",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "Idcred",
+                                            "evaluation": "property-equals",
+                                            "value": ""
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Private key alias",
+                            "cli-alias": "ssl-key",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "EnableSSL",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "Idcred",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": ""
+                                        },
+                                        {
+                                            "property-name": "SSLCryptoKey",
+                                            "evaluation": "property-equals",
+                                            "value": ""
+                                        }
+                                    ]
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoKey"
+                                }
+                            },
+                            "display": "Crypto key (deprecated)",
+                            "description": "Specifies the alias of the private key that the current member uses to secure the connection with its peers."
+                        },
+                        {
+                            "name": "SSLCryptoCertificate",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "EnableSSL",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "Idcred",
+                                            "evaluation": "property-equals",
+                                            "value": ""
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Certificate alias",
+                            "cli-alias": "ssl-cert",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "EnableSSL",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "Idcred",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": ""
+                                        },
+                                        {
+                                            "property-name": "SSLCryptoCertificate",
+                                            "evaluation": "property-equals",
+                                            "value": ""
+                                        }
+                                    ]
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoCertificate"
+                                }
+                            },
+                            "display": "Certificate (deprecated)",
+                            "description": "Specifies the alias of the public key that the peers use to negotiate secure connection to the current member."
+                        },
+                        {
+                            "name": "PersistenceLocation",
+                            "default": "memory",
+                            "type": {
+                                "href": "/mgmt/types/default/dmGatewayPeeringPersistenceLocation"
+                            },
+                            "summary": "Whether to store the data in the memory, local filestore, or RAID volume",
+                            "cli-alias": "persistence",
+                            "display": "Persistence location",
+                            "description": "&lt;p>Specifies where the peering data resides. When in the peer group mode, ensure that all peers in a group store data in the same location. &lt;ul>&lt;li>When you select &lt;tt>memory&lt;/tt> , the data is stored in the memory and cannot persist across a restart. This setting is the default value.&lt;/li>&lt;li>When you select &lt;tt>local&lt;/tt> , the data is stored in the local filestore and can persist across a restart.&lt;/li>&lt;li>When you select &lt;tt>raid&lt;/tt> , the data is stored in the RAID partition that can persist across a restart.&lt;/li>&lt;/ul>&lt;/p>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmFSDirectory"
+                            },
+                            "name": "LocalDirectory",
+                            "default": "local:///",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "PersistenceLocation",
+                                    "evaluation": "property-equals",
+                                    "value": "local"
+                                }
+                            },
+                            "summary": "Local filestore directory to persist the peering data in",
+                            "cli-alias": "local-directory",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "valid-regexp": "^(local):",
+                            "display": "Local directory",
+                            "description": "When the persistence location is &lt;tt>local&lt;/tt> , specifies the local filestore directory to persist the peering data in. Example: &lt;tt>local:///my_directory&lt;/tt>"
+                        },
+                        {
+                            "name": "MaxMemory",
+                            "default": 0,
+                            "cli-alias": "max-memory",
+                            "maximum": 1048576,
+                            "summary": "The maximum memory size allowed for the gateway peering to use. The default value is 0, which means no limits.",
+                            "minimum": 0,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "PersistenceLocation",
+                                    "evaluation": "property-value-not-in-list",
+                                    "value": "memory"
+                                }
+                            },
+                            "units": "MB",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Max memory",
+                            "description": "Do not allow the gateway peering to use more memory than the specified amount of bytes. When the memory limit is reached, gateway peering will attempt to remove keys according to least recently used (LRU) algorithm."
+                        }
+                    ]
+                },
+                "description": "&lt;p>The gateway peering configuration can work in standalone or in peer group mode. Standalone mode should be used for only development or testing purposes. When you enable peer group mode, you can add peers to the group and configure the connection among the peers.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/GatewayPeering"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/GatewayPeering"
+                }
+            }
+        }
+    }
+}

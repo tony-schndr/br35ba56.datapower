@@ -1,0 +1,437 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmValidationType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmValidationType"
+                    }
+                },
+                "type": {
+                    "name": "dmValidationType",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "The regular expression that the submitted names are matched against. If they match the value must also match against the corresponding value constraint to be passed through.",
+                                "required": "true",
+                                "summary": "Name Regular Expression",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmPCRE"
+                                },
+                                "display": "Name Expression",
+                                "name": "Name"
+                            },
+                            {
+                                "description": "The regular expression (PCRE style) that is applied to a value input to see if it is an expected input",
+                                "required": "true",
+                                "subtype": "dmWebAppPCRE",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmPCRE"
+                                },
+                                "display": "Value Constraint",
+                                "name": "Value"
+                            },
+                            {
+                                "name": "Fixup",
+                                "default": "error",
+                                "required": "true",
+                                "summary": "Validation Failure Policy",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmValidationFixupType"
+                                },
+                                "display": "Failure Policy",
+                                "description": "Select which action should be taken when a value constraint fails to validate an input. The default is Error."
+                            },
+                            {
+                                "description": "An value that fails validation is changed to this value if the failure policy is 'set'.",
+                                "summary": "Map unvalidated value constant",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Fixup",
+                                        "evaluation": "property-does-not-equal",
+                                        "value": "set"
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Map Value",
+                                "name": "MapValue"
+                            },
+                            {
+                                "description": "This property allows the value to be checked for Cross Site Scripting (XSS) signatures. These signatures are malicious attempts to input client-side script as the input to a web application. If this client-side script is later displayed in a browser, the script executes and can perform malicious activities. Enable this feature to filter input for malicious content that might get stored and displayed again later, such as the contents of a comment form. The check looks for invalid characters and various forms of the term &amp;lt;script that is often used to engage JavaScript on a browser without the user knowing.",
+                                "default": "off",
+                                "summary": "Check the value for Cross Site Scripting signatures",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "display": "Check XSS",
+                                "name": "XSS"
+                            },
+                            {
+                                "name": "XSSPatternsFile",
+                                "default": "store:///XSS-Patterns.xml",
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "XSS",
+                                        "evaluation": "property-equals",
+                                        "value": "on"
+                                    }
+                                },
+                                "locations": {
+                                    "location": [
+                                        "local",
+                                        "store"
+                                    ]
+                                },
+                                "summary": "XSS (Cross Site Scripting) Protection Patterns File",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "XSS",
+                                        "evaluation": "property-does-not-equal",
+                                        "value": "on"
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmFSFile"
+                                },
+                                "display": "XSS (Cross Site Scripting) Protection Patterns File",
+                                "description": "Specifies the patterns file that will be used by the XSS filter. The default file, store:///XSS-Patterns.xml, checks for invalid characters and various forms of the term &amp;lt;script. Specify a custom XML patterns file with PCRE patterns to be used by the XSS filter."
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmValidationFixupType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmValidationFixupType"
+                    }
+                },
+                "type": {
+                    "name": "dmValidationFixupType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Pass-Through",
+                                "name": "passthrough",
+                                "summary": "Continue processing the transaction without change"
+                            },
+                            {
+                                "display": "Strip",
+                                "name": "strip",
+                                "summary": "Remove the offending pair from the transaction"
+                            },
+                            {
+                                "display": "Error",
+                                "name": "error",
+                                "summary": "Raise an error and reject the transaction"
+                            },
+                            {
+                                "display": "Set",
+                                "name": "set",
+                                "summary": "Change the value to a known constant"
+                            }
+                        ]
+                    },
+                    "summary": "Validation Fix-up Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                },
+                "type": {
+                    "cli-arg": "file",
+                    "name": "dmFSFile"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmPCRE"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmPCRE"
+                    }
+                },
+                "type": {
+                    "cli-arg": "pcre",
+                    "name": "dmPCRE"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "NameValueProfile",
+                "display": "Name-Value Profile",
+                "uri": "webapp/name-value-profile",
+                "summary": "Validation Criteria for Name-Value pairs",
+                "cmd-group": "mpgw",
+                "cli-alias": "webapp-gnvc",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "MaxAttributes",
+                            "default": 256,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "summary": "Maximum Number of Name/Value Pairs",
+                            "minimum": 1,
+                            "cli-alias": "max-attributes",
+                            "display": "Maximum Count",
+                            "description": "The maximum number of name value pairs allowed in a single entity (header, cookie set, body, and so forth)."
+                        },
+                        {
+                            "name": "MaxAggregateSize",
+                            "default": 128000,
+                            "cli-alias": "max-aggregate-size",
+                            "summary": "Maximum total size of name value submission",
+                            "minimum": 1,
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Total Size",
+                            "description": "The lengths of all the names and values in a single entity (header, cookie set, body, query string, and so forth) in aggregate must not exceed this property."
+                        },
+                        {
+                            "name": "MaxNameSize",
+                            "default": 512,
+                            "cli-alias": "max-name-size",
+                            "summary": "Maximum length of an individual name",
+                            "minimum": 1,
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Maximum Name Length",
+                            "description": "The maximum size of a name attribute used in this profile."
+                        },
+                        {
+                            "name": "MaxValueSize",
+                            "default": 1024,
+                            "cli-alias": "max-value-size",
+                            "summary": "Maximum length of an individual value",
+                            "minimum": 1,
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Maximum Value Length",
+                            "description": "The maximum size of a value attribute used in this profile."
+                        },
+                        {
+                            "name": "ValidationList",
+                            "type": {
+                                "href": "/mgmt/types/default/dmValidationType"
+                            },
+                            "summary": "Validations Specification List",
+                            "array": "true",
+                            "cli-alias": "validation",
+                            "display": "Validation List",
+                            "description": "Each pair submitted to this profile consults this validation list, looking for the first regular expression match of the name against the name expression in the list. When that is found, the corresponding value constraint is matched against the value portion of the name-value pair. If that does not match, the policy applies the 'fixup' attribute to the submitted value. That may result in no change, the pair being removed, an error being generated, or the value being mapped to a known constant."
+                        },
+                        {
+                            "name": "DefaultFixup",
+                            "default": "strip",
+                            "type": {
+                                "href": "/mgmt/types/default/dmValidationFixupType"
+                            },
+                            "required": "true",
+                            "summary": "Policy for names that are in validation list",
+                            "cli-alias": "unvalidated-fixup-policy",
+                            "display": "No Match Policy",
+                            "description": "Select the action to taken when no matching entry in the validation list is found. The default is Strip."
+                        },
+                        {
+                            "name": "DefaultMapValue",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Map unmatched value to this constant",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "DefaultFixup",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "set"
+                                }
+                            },
+                            "cli-alias": "unvalidated-fixup-map",
+                            "display": "No Match Map Value",
+                            "description": "An value that does not have a matching entry in the validation list is changed to this value if the no match policy is 'set'."
+                        },
+                        {
+                            "name": "DefaultXSS",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Check the value for Cross Site Scripting signatures on values without a validation entry",
+                            "cli-alias": "unvalidated-xss-check",
+                            "display": "No Match XSS Policy",
+                            "description": "This property allows the value to be checked for Cross Site Scripting (XSS) signatures. These signatures are malicious attempts to input client-side script as the input to a web application. If this client-side script is later displayed in a browser, the script executes and can perform malicious activities. Enable this feature to filter input for malicious content that might get stored and displayed again later, such as the contents of a comment form. The check looks for invalid characters and various forms of the term &amp;lt;script that is often used to engage JavaScript on a browser without the user knowing."
+                        },
+                        {
+                            "name": "NoMatchXSSPatternsFile",
+                            "default": "store:///XSS-Patterns.xml",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "DefaultXSS",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "locations": {
+                                "location": [
+                                    "local",
+                                    "store"
+                                ]
+                            },
+                            "summary": "XSS (Cross Site Scripting) Protection Patterns File",
+                            "cli-alias": "unvalidated-xss-patternsfile",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "DefaultXSS",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "on"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmFSFile"
+                            },
+                            "display": "XSS (Cross Site Scripting) Protection Patterns File",
+                            "description": "Specifies the patterns file that will be used by the XSS filter when No Match XSS is selected. The default file, store:///XSS-Patterns.xml, checks for invalid characters and various forms of the term &amp;lt;script. Specify a custom XML patterns file with PCRE patterns to be used by the XSS filter."
+                        }
+                    ]
+                },
+                "description": "Many HTTP things are expressed as name value pairs. These include HTTP headers, cookie values, url-encoded query strings, and url-encoded request messages. This profile provides a mechanism for what kinds of names are expected and for each kind of name what properties should be enforced on the corresponding values. When a name-value pair is not validated successfully that may generate an error, the pair might be stripped from the transaction, or the value may be mapped to another default value."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/NameValueProfile"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/NameValueProfile"
+                }
+            }
+        }
+    }
+}

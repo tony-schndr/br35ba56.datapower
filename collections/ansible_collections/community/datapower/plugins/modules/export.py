@@ -118,36 +118,32 @@ response:
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower import DPExport
+from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import DPExport
 
 
 def run_module():
     module_args = dict(
         domain=dict(type='str', required=True),
-        body=dict(type='dict', required=True,
-            Export=dict(type='dict', required=True,
-                Format=dict(choices=['JSON', 'XML', 'ZIP'], required=True),
-                UserComments=dict(type='str', required=False),
-                AllFiles=dict(type='bool', required=True),
-                Persisted=dict(type='bool', required=True),
-                IncludeInternalFiles=dict(type='bool', required=True),
-                DeploymentPolicy=dict(type='str', required=False),
-                Domain=dict(
-                    type='list', required=False,
-                    name=dict(type='str', required=True),
-                    ref_objects=dict(type='bool', required=True),
-                    ref_files=dict(type='bool', required=True),
-                    include_debug=dict(type='bool', required=False)
-                ),
-                Object=dict(
-                    type='list', required=False,
-                    class_=dict(type='str', required=True),
-                    name=dict(type='str', required=True),
-                    ref_objects=dict(type='bool', required=True),
-                    ref_files=dict(type='bool', required=True),
-                    include_debug=dict(type='bool', required=False)
-                )
-            )
+        Format=dict(choices=['JSON', 'XML', 'ZIP'], required=True),
+        UserComments=dict(type='str', required=False),
+        AllFiles=dict(type='bool', required=True),
+        Persisted=dict(type='bool', required=True),
+        IncludeInternalFiles=dict(type='bool', required=True),
+        DeploymentPolicy=dict(type='str', required=False),
+        Domain=dict(
+            type='list', required=False,
+            name=dict(type='str', required=True),
+            ref_objects=dict(type='bool', required=True),
+            ref_files=dict(type='bool', required=True),
+            include_debug=dict(type='bool', required=False)
+        ),
+        Object=dict(
+            type='list', required=False,
+            class_=dict(type='str', required=True),
+            name=dict(type='str', required=True),
+            ref_objects=dict(type='bool', required=True),
+            ref_files=dict(type='bool', required=True),
+            include_debug=dict(type='bool', required=False)
         )
     )
 

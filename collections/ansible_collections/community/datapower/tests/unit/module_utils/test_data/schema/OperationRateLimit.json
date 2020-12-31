@@ -1,0 +1,478 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAPIRateLimit"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAPIRateLimit"
+                    }
+                },
+                "type": {
+                    "name": "dmAPIRateLimit",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Indicates the name of the rate limit scheme.",
+                                "required": "true",
+                                "summary": "Name of the rate limit",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Name",
+                                "name": "Name"
+                            },
+                            {
+                                "description": "Indicates the maximum number of requests that the API Gateway can handle within a time interval. The value of 0 indicates no limit.",
+                                "required": "true",
+                                "summary": "Maximum number of requests to handle",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmUInt32"
+                                },
+                                "display": "Rate",
+                                "name": "Rate"
+                            },
+                            {
+                                "name": "Interval",
+                                "default": 1,
+                                "summary": "Time interval for the rate limit",
+                                "minimum": 1,
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Rate",
+                                        "evaluation": "property-equals",
+                                        "value": 0
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmUInt16"
+                                },
+                                "display": "Interval",
+                                "description": "Indicates the time interval for the rate limit. Specify a value that is greater than or equal to 1. The default value is 1."
+                            },
+                            {
+                                "name": "Unit",
+                                "default": "second",
+                                "summary": "Time unit for the rate limit",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Rate",
+                                        "evaluation": "property-equals",
+                                        "value": 0
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmAPIRateLimitUnit"
+                                },
+                                "display": "Unit",
+                                "description": "Indicates the time unit for the rate limit. The default value is second."
+                            },
+                            {
+                                "name": "HardLimit",
+                                "default": "off",
+                                "summary": "Whether to enable hard limit",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Rate",
+                                        "evaluation": "property-equals",
+                                        "value": 0
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "display": "Enable hard limit",
+                                "description": "&lt;p>Indicates whether to reject requests when the specified rate limit is reached.&lt;/p>&lt;ul>&lt;li>When enabled, the API Gateway rejects requests when the limit is exceeded.&lt;/li>&lt;li>When disabled, the API Gateway still handles the requests but produces a warning message.&lt;/li>&lt;/ul>&lt;p>By default, the API Gateway does not reject requests when the limit is exceeded.&lt;/p>"
+                            },
+                            {
+                                "name": "CacheOnly",
+                                "default": "on",
+                                "summary": "Use the local cache first to enforce the rate limit",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Rate",
+                                        "evaluation": "property-equals",
+                                        "value": 0
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "display": "Cache only",
+                                "description": "Specifies whether to use the local cache first to enforce the rate limit. In peer group mode, using the local cache first can prevent transaction delays if communication problems arise across the peer group. However, the transaction count is less precise when this setting is enabled."
+                            },
+                            {
+                                "name": "IsClient",
+                                "default": "on",
+                                "summary": "Whether to apply the rate limit to the client",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Rate",
+                                        "evaluation": "property-equals",
+                                        "value": 0
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "display": "Is Client",
+                                "description": "Indicates whether to apply the rate limit to the client or to an internal component. Client rate limits return a 429 error when exceeded. Non-client rate limits return a 503 error when exceeded. When set to &lt;tt>off&lt;/tt> , rate limit information is not included in the response header."
+                            },
+                            {
+                                "name": "UseApiName",
+                                "default": "off",
+                                "summary": "Whether to use the API name as part of the rate limit key",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Rate",
+                                        "evaluation": "property-equals",
+                                        "value": 0
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "display": "Use API Name",
+                                "description": "Indicates whether to use the API name as part of the rate limit key."
+                            },
+                            {
+                                "name": "UseAppId",
+                                "default": "off",
+                                "summary": "Whether to use the application ID as part of the rate limit key",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Rate",
+                                        "evaluation": "property-equals",
+                                        "value": 0
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "display": "Use Application ID",
+                                "description": "Indicates whether to use the application ID as part of the rate limit key."
+                            },
+                            {
+                                "name": "UseClientId",
+                                "default": "off",
+                                "summary": "Whether to use the client ID as part of the rate limit key",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Rate",
+                                        "evaluation": "property-equals",
+                                        "value": 0
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "display": "Use Client ID",
+                                "description": "Indicates whether to use the client ID as part of the rate limit key."
+                            },
+                            {
+                                "name": "DynamicValue",
+                                "default": "",
+                                "summary": "The dynamic value for the rate limit",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Rate",
+                                        "evaluation": "property-equals",
+                                        "value": 0
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Dynamic Value",
+                                "description": "Indicates the dynamic value string for the rate limit, which should contain one or more context variables. The dynamic value makes it possible to use a context variable to enforce the rate limit based on parameters other than those defined in the rate limit scheme, such as a user name, incoming IP address, or server name. The context variable can be set in a GatewayScript action and then included in the dynamic value. &lt;p>The following example uses the context object in a GatewayScript action to add the &lt;tt>my.server&lt;/tt> variable to the API context.&lt;/p>&lt;p>&lt;tt>context.set(\"my.server\", \"server34\")&lt;/tt>&lt;/p>&lt;p>The dynamic value can then include the variable &lt;tt>my.server&lt;/tt> , which resolves to the server name &lt;tt>server34&lt;/tt> .&lt;/p>&lt;p>The default value is an empty string.&lt;/p>"
+                            },
+                            {
+                                "name": "Weight",
+                                "default": 1,
+                                "summary": "Expression determining how much weight to apply to the limit.",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Rate",
+                                        "evaluation": "property-equals",
+                                        "value": 0
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Weight expression",
+                                "description": "Specifies a JSONata expression that assigns a weight value to the transaction. For each API call, the value computed by the weight expression is applied to the rate limit. The default value is 1. If the weight expression evaluates to a value that is less than or equal to 0, it is set to 1. An empty string results in an error."
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt16",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAPIRateLimitUnit"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAPIRateLimitUnit"
+                    }
+                },
+                "type": {
+                    "name": "dmAPIRateLimitUnit",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "second",
+                                "description": "The time unit for the rate limit is second.",
+                                "name": "second",
+                                "summary": "per second"
+                            },
+                            {
+                                "display": "minute",
+                                "description": "The time unit for the rate limit is minute.",
+                                "name": "minute",
+                                "summary": "per minute"
+                            },
+                            {
+                                "display": "hour",
+                                "description": "The time unit for the rate limit is hour.",
+                                "name": "hour",
+                                "summary": "per hour"
+                            },
+                            {
+                                "display": "day",
+                                "description": "The time unit for the rate limit is day.",
+                                "name": "day",
+                                "summary": "per day"
+                            },
+                            {
+                                "display": "week",
+                                "description": "The time unit for the rate limit is week.",
+                                "name": "week",
+                                "summary": "per week"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "OperationRateLimit",
+                "display": "API Operation Rate Limit",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            }
+                        ],
+                        "name": "summary",
+                        "display": "Summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "Operation"
+                            },
+                            {
+                                "name": "RateLimit"
+                            }
+                        ],
+                        "name": "main",
+                        "display": "Main"
+                    }
+                ],
+                "uri": "config/operation-rate-limit",
+                "summary": "Configure the operation-specific rate limit scheme",
+                "cmd-group": "configuration",
+                "cli-alias": "api-operation-rate-limit",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "A descriptive summary for the API Operation Rate Limit Action configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter a brief descriptive summary for the API Operation Rate Limit configuration.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "Operation",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/APIOperation"
+                                }
+                            },
+                            "required": "true",
+                            "summary": "Name of the API operation",
+                            "cli-alias": "operation",
+                            "display": "API operation",
+                            "description": "Specifies the name of the API operation."
+                        },
+                        {
+                            "name": "RateLimit",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAPIRateLimit"
+                            },
+                            "required": "true",
+                            "summary": "Rate limit scheme",
+                            "array": "true",
+                            "cli-alias": "rate-limit",
+                            "display": "Rate limit",
+                            "description": "Specifies the rate limit scheme for the API operation. This setting overrides the rate limit scheme setting of the plan."
+                        }
+                    ]
+                },
+                "description": "An API Operation Rate Limit configuration defines the operation-specific rate limit scheme. By default, the rate limit scheme setting for the plan applies to all operations in the associated APIs. However, you can define a different rate limit scheme for an operation."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/OperationRateLimit"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/OperationRateLimit"
+                }
+            }
+        }
+    }
+}

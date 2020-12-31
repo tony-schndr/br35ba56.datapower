@@ -1,0 +1,431 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAPIParameter"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAPIParameter"
+                    }
+                },
+                "type": {
+                    "name": "dmAPIParameter",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Specifies a name for your parameter. Parameter names are case sensitive.",
+                                "required": "true",
+                                "summary": "The name of the parameter",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Name",
+                                "name": "Name"
+                            },
+                            {
+                                "name": "Required",
+                                "default": "off",
+                                "required": "true",
+                                "summary": "Whether this parameter is mandatory",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "display": "Required",
+                                "description": "Controls whether the parameter is required for a call to be valid. By default, a parameter is optional."
+                            },
+                            {
+                                "description": "Specifies the type of the parameter.",
+                                "required": "true",
+                                "summary": "The type of the parameter",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmAPIParameterType"
+                                },
+                                "display": "Type",
+                                "name": "Type"
+                            },
+                            {
+                                "description": "Specifies the location of the parameter.",
+                                "required": "true",
+                                "summary": "The location of the parameter",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmAPIParameterWhere"
+                                },
+                                "display": "Where",
+                                "name": "Where"
+                            },
+                            {
+                                "display": "Schema or format",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "description": "Depending on the location of the parameter, specifies the schema or the format. &lt;ul>&lt;li>If the parameter is located in &lt;tt>body&lt;/tt> , specify the schema that defines the input and output data types that are used for the body parameter. The definition follows JSON Schema Specification Draft 4.&lt;/li>&lt;li>If the parameter is not located in &lt;tt>body&lt;/tt> , specify the format for the parameter type.&lt;/li>&lt;/ul>",
+                                "name": "SchemaOrFormat",
+                                "summary": "The schema or format depending on the location of the parameter"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAPIParameterType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAPIParameterType"
+                    }
+                },
+                "type": {
+                    "name": "dmAPIParameterType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "integer",
+                                "description": "&lt;tt>int32&lt;/tt>",
+                                "name": "integer",
+                                "summary": "integer"
+                            },
+                            {
+                                "display": "long",
+                                "description": "&lt;tt>int64&lt;/tt>",
+                                "name": "long",
+                                "summary": "long"
+                            },
+                            {
+                                "display": "float",
+                                "description": "&lt;tt>float&lt;/tt>",
+                                "name": "float",
+                                "summary": "float"
+                            },
+                            {
+                                "display": "double",
+                                "description": "&lt;tt>double&lt;/tt>",
+                                "name": "double",
+                                "summary": "double"
+                            },
+                            {
+                                "display": "string",
+                                "description": "&lt;tt>string&lt;/tt>",
+                                "name": "string",
+                                "summary": "string"
+                            },
+                            {
+                                "display": "byte",
+                                "description": "&lt;tt>byte&lt;/tt>",
+                                "name": "byte",
+                                "summary": "byte"
+                            },
+                            {
+                                "display": "binary",
+                                "description": "&lt;tt>binary&lt;/tt>",
+                                "name": "binary",
+                                "summary": "binary"
+                            },
+                            {
+                                "display": "boolean",
+                                "description": "&lt;tt>boolean&lt;/tt>",
+                                "name": "boolean",
+                                "summary": "boolean"
+                            },
+                            {
+                                "display": "date",
+                                "description": "As defined by &lt;tt>full-date&lt;/tt> - RFC3339",
+                                "name": "date",
+                                "summary": "date"
+                            },
+                            {
+                                "display": "dateTime",
+                                "description": "As defined by &lt;tt>date-time&lt;/tt> - RFC3339",
+                                "name": "dateTime",
+                                "summary": "dateTime"
+                            },
+                            {
+                                "display": "password",
+                                "description": "&lt;tt>password&lt;/tt>",
+                                "name": "password",
+                                "summary": "password"
+                            },
+                            {
+                                "display": "array",
+                                "description": "&lt;tt>array&lt;/tt>",
+                                "name": "array",
+                                "summary": "array"
+                            },
+                            {
+                                "display": "object",
+                                "description": "&lt;tt>object&lt;/tt>",
+                                "name": "object",
+                                "summary": "object"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAPIParameterWhere"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAPIParameterWhere"
+                    }
+                },
+                "type": {
+                    "name": "dmAPIParameterWhere",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "path",
+                                "description": "A path parameter is part of the operation's URL but does not include the host or base path of the API. A path parameter should take the whole section or segment of the path URI. For example, in &lt;tt>/items/{itemId}&lt;/tt> , the path parameter is &lt;tt>itemId&lt;/tt> .",
+                                "name": "path",
+                                "summary": "Path parameter"
+                            },
+                            {
+                                "display": "query",
+                                "description": "A query parameter is appended to the request URL. For example, in &lt;tt>/items?id=###&lt;/tt> , the query parameter is &lt;tt>id&lt;/tt> .",
+                                "name": "query",
+                                "summary": "Query parameter"
+                            },
+                            {
+                                "display": "body",
+                                "description": "A body parameter is the payload that is appended to the HTTP request. You can define only one body parameter. The name of the body parameter has no effect on the parameter itself and is used for documentation purposes only. Because form parameters are also in the payload, body and form parameters cannot exist together for the same operation.",
+                                "name": "body",
+                                "summary": "Body parameter"
+                            },
+                            {
+                                "display": "form",
+                                "description": "A form parameter is used to describe the payload of an HTTP request when the consumable MIME type of the request content contains &lt;tt>application/x-www-form-urlencoded&lt;/tt> or &lt;tt>multipart/form-data&lt;/tt> or both. This is the only parameter type that can be used to send files. Because body parameters are also in the payload, body and form parameters cannot exist together for the same operation. &lt;ul>&lt;li>When the content type is &lt;tt>application/x-www-form-urlencoded&lt;/tt> , the parameter format is similar to the format of query parameters but as a payload. For example, &lt;tt>foo=1&amp;amp;bar=swagger&lt;/tt> indicates that both &lt;tt>foo&lt;/tt> and &lt;tt>bar&lt;/tt> are form parameters. This is normally used for simple parameters that are being transferred.&lt;/li>&lt;li>When the content type is &lt;tt>multipart/form-data&lt;/tt> , each parameter takes a section in the payload with an internal header. For example, for the header &lt;tt>Content-Disposition: form-data; name=\"submit-name\"&lt;/tt> the name of the parameter is &lt;tt>submit-name&lt;/tt> . This type of form parameters is more commonly used for file transfers.&lt;/li>&lt;/ul>",
+                                "name": "formdata",
+                                "summary": "Form parameter"
+                            },
+                            {
+                                "display": "header",
+                                "description": "Custom headers that are expected as part of the request.",
+                                "name": "header",
+                                "summary": "Custom headers"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "APIPath",
+                "display": "API Path",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "Path"
+                            }
+                        ],
+                        "name": "summary",
+                        "display": "Summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "Path"
+                            },
+                            {
+                                "name": "Operation"
+                            },
+                            {
+                                "name": "Parameter"
+                            }
+                        ],
+                        "name": "main",
+                        "display": "Main"
+                    }
+                ],
+                "uri": "config/api-path",
+                "summary": "Configure and manage the API paths",
+                "cmd-group": "configuration",
+                "cli-alias": "api-path",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "A descriptive summary for the API Path configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter a brief descriptive summary for the API Path configuration.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "Path",
+                            "default": "/",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "summary": "The relative path to access the REST APIs",
+                            "cli-alias": "path",
+                            "valid-regexp": "^\\/$||^\\/([0-9a-zA-Z-_.~%!$&amp;'()*+,;=:@\\{\\}]+\\/)*[0-9a-zA-Z-_.~%!$&amp;'()*+,;=:@\\{\\}]+$",
+                            "display": "Path",
+                            "description": "&lt;p>Specifies the route to access the REST APIs. The path is appended to the base path to construct the full URI to access the APIs. The path must start but not end with the / character. When the path contains a parameter, make sure that you define the path parameter at either or both the path and operation levels.&lt;/p>&lt;ul>&lt;li>A parameter at the end of the path can contain a + qualifier to match multiple path levels as in the following example. &lt;p>&lt;tt>/petstore/{type}/{+category}&lt;/tt>&lt;/p>&lt;p>The &lt;tt>{type}&lt;/tt> parameter matches one path level. The &lt;tt>{+category}&lt;/tt> parameter matches multiple levels. The following paths match this path template.&lt;/p>&lt;ul>&lt;li>&lt;tt>/petstore/cats/supplies&lt;/tt>&lt;/li>&lt;li>&lt;tt>/petstore/cats/supplies/health&lt;/tt>&lt;/li>&lt;li>&lt;tt>/petstore/cats/supplies/health/medicines&lt;/tt>&lt;/li>&lt;li>&lt;tt>/petstore/cats/supplies/health/medicines/a/b/c&lt;/tt>&lt;/li>&lt;/ul>&lt;/li>&lt;li>The parameter at the end of the path can be the &lt;tt>+any&lt;/tt> qualified parameter to accept all paths that begin with the base path as in the following example. &lt;p>&lt;tt>/{+any}&lt;/tt>&lt;/p>&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "Operation",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/APIOperation"
+                                }
+                            },
+                            "summary": "Operations available on the path",
+                            "array": "true",
+                            "cli-alias": "operation",
+                            "display": "Operation",
+                            "description": "Describes the operations that can be executed under the path. When no operation is defined, all operations are accepted under this path."
+                        },
+                        {
+                            "description": "Specifies the request schema that describes the valid request messages for the API path.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/APISchema"
+                                }
+                            },
+                            "summary": "The request schema for the API path",
+                            "cli-alias": "request-schema",
+                            "display": "Request schema",
+                            "name": "RequestSchema"
+                        },
+                        {
+                            "name": "Parameter",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAPIParameter"
+                            },
+                            "summary": "Parameters applicable for all operations under this path",
+                            "array": "true",
+                            "cli-alias": "parameter",
+                            "display": "Parameters",
+                            "description": "Specifies the parameters that are applicable for all operations under this path. The setting here can be overridden by the setting in the API Operation configuration for the same parameter."
+                        }
+                    ]
+                },
+                "description": "An API Path configuration describes the operations that are available on a single path."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/APIPath"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/APIPath"
+                }
+            }
+        }
+    }
+}

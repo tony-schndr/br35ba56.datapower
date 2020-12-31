@@ -1,0 +1,324 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmJWEKeyAlgorithm"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmJWEKeyAlgorithm"
+                    }
+                },
+                "type": {
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "RSA1_5",
+                                "description": "RSAES-PKCS1-V1_5",
+                                "name": "RSA1_5",
+                                "summary": "RSAES-PKCS1-V1_5"
+                            },
+                            {
+                                "display": "RSA-OAEP",
+                                "description": "RSAES OAEP using default parameters",
+                                "name": "RSA-OAEP",
+                                "summary": "RSAES OAEP using default parameters"
+                            },
+                            {
+                                "display": "RSA-OAEP-256",
+                                "description": "RSAES OAEP using SHA-256 and MGF1 with SHA-256",
+                                "name": "RSA-OAEP-256",
+                                "summary": "RSAES OAEP using SHA-256 and MGF1 with SHA-256"
+                            },
+                            {
+                                "display": "A128KW",
+                                "description": "AES Key Wrap with default initial value using 128 bit key",
+                                "name": "A128KW",
+                                "summary": "AES Key Wrap with default initial value using 128 bit key"
+                            },
+                            {
+                                "display": "A192KW",
+                                "description": "AES Key Wrap with default initial value using 192 bit key",
+                                "name": "A192KW",
+                                "summary": "AES Key Wrap with default initial value using 192 bit key"
+                            },
+                            {
+                                "display": "A256KW",
+                                "description": "AES Key Wrap with default initial value using 256 bit key",
+                                "name": "A256KW",
+                                "summary": "AES Key Wrap with default initial value using 256 bit key"
+                            },
+                            {
+                                "display": "dir",
+                                "description": "Direct use of a shared symmetric key as the CEK",
+                                "name": "dir",
+                                "summary": "Direct use of a shared symmetric key as the CEK"
+                            }
+                        ]
+                    },
+                    "display": "JSON Web Encrypt algorithm for key management",
+                    "description": "The key management algorithm for JSON Web Encrypt.",
+                    "name": "dmJWEKeyAlgorithm",
+                    "summary": "JSON Web Encrypt algorithm for key management"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmJOSEHeader"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmJOSEHeader"
+                    }
+                },
+                "type": {
+                    "name": "dmJOSEHeader",
+                    "properties": {
+                        "property": [
+                            {
+                                "display": "Name",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "description": "Name of a JOSE header.",
+                                "name": "HeaderName",
+                                "summary": "Name"
+                            },
+                            {
+                                "description": "Value of a JOSE header. If Name is 'crit', the value can be a comma separated list to have more than one value set to 'crit'. Other headers' values only accept string.",
+                                "required": "true",
+                                "summary": "Value",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Value",
+                                "name": "HeaderValue"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "JWERecipient",
+                "display": "JWE Recipient",
+                "property-group": {
+                    "member": [
+                        {
+                            "name": "mAdminState"
+                        },
+                        {
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "Algorithm"
+                        },
+                        {
+                            "name": "SSKey"
+                        },
+                        {
+                            "name": "Certificate"
+                        },
+                        {
+                            "name": "UnprotectedHeader"
+                        }
+                    ],
+                    "name": "main",
+                    "display": "Main"
+                },
+                "uri": "crypto/jwe-recipient",
+                "summary": "JWE recipient object presents the JWE Encryption and Decryption recipient information.",
+                "cmd-group": "crypto",
+                "cli-alias": "jwe-recipient",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "A descriptive summary for the configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter a descriptive summary for the configuration.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "Algorithm",
+                            "default": "RSA1_5",
+                            "type": {
+                                "href": "/mgmt/types/default/dmJWEKeyAlgorithm"
+                            },
+                            "required": "true",
+                            "summary": "JWE key management algorithm for the JWE recipient.",
+                            "cli-alias": "alg",
+                            "display": "Algorithm",
+                            "description": "JWE key management algorithm for the JWE recipient."
+                        },
+                        {
+                            "name": "SSKey",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Algorithm",
+                                    "evaluation": "property-value-in-list",
+                                    "value": [
+                                        "A128KW",
+                                        "A192KW",
+                                        "A256KW",
+                                        "dir"
+                                    ]
+                                }
+                            },
+                            "summary": "Shared secret key.",
+                            "cli-alias": "sskey",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Algorithm",
+                                    "evaluation": "property-value-not-in-list",
+                                    "value": [
+                                        "A128KW",
+                                        "A192KW",
+                                        "A256KW",
+                                        "dir"
+                                    ]
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoSSKey"
+                                }
+                            },
+                            "display": "Shared Secret Key",
+                            "description": "Shared secret key."
+                        },
+                        {
+                            "name": "Certificate",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Algorithm",
+                                    "evaluation": "property-value-in-list",
+                                    "value": [
+                                        "RSA1_5",
+                                        "RSA-OAEP",
+                                        "RSA-OAEP-256"
+                                    ]
+                                }
+                            },
+                            "summary": "Certificate.",
+                            "cli-alias": "cert",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Algorithm",
+                                    "evaluation": "property-value-not-in-list",
+                                    "value": [
+                                        "RSA1_5",
+                                        "RSA-OAEP",
+                                        "RSA-OAEP-256"
+                                    ]
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoCertificate"
+                                }
+                            },
+                            "display": "Certificate",
+                            "description": "Certificate."
+                        },
+                        {
+                            "name": "UnprotectedHeader",
+                            "type": {
+                                "href": "/mgmt/types/default/dmJOSEHeader"
+                            },
+                            "summary": "Unprotected header for the JWE recipient.",
+                            "array": "true",
+                            "cli-alias": "unprotected-header",
+                            "display": "Unprotected Header",
+                            "description": "Unprotected header for the JWE recipient."
+                        }
+                    ]
+                },
+                "description": "JWE recipient object includes several values required by the JWE JSON Serialization object."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/JWERecipient"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/JWERecipient"
+                }
+            }
+        }
+    }
+}

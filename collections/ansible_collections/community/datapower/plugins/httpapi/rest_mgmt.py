@@ -37,9 +37,6 @@ from ansible.module_utils.six.moves.urllib.error import HTTPError, URLError
 from ansible.plugins.httpapi import HttpApiBase
 
 
-CONTENT_TYPE = "application/json"
-
-
 class HttpApi(HttpApiBase):
     def send_request(self, data, path, method):
         if data:

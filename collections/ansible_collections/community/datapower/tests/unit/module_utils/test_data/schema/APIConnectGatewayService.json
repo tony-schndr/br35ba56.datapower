@@ -1,0 +1,516 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLocalIPHostAddress"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip or 0 for any",
+                    "name": "dmLocalIPHostAddress",
+                    "format": "(a.b.c.d or 0 for any)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt16",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmV5CSlmMode"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmV5CSlmMode"
+                    }
+                },
+                "type": {
+                    "name": "dmV5CSlmMode",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "auto-select unicast",
+                                "name": "autounicast",
+                                "summary": "System selects the unicast address based on the XML Management Interface configuration."
+                            },
+                            {
+                                "display": "unicast",
+                                "name": "unicast",
+                                "summary": "Specify a unicast address."
+                            },
+                            {
+                                "display": "multicast",
+                                "name": "multicast",
+                                "summary": "Specify a multicast configuration."
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "APIConnectGatewayService",
+                "display": "API Connect Gateway Service",
+                "property-group": {
+                    "member": [
+                        {
+                            "name": "mAdminState"
+                        },
+                        {
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "LocalAddress"
+                        },
+                        {
+                            "name": "LocalPort"
+                        },
+                        {
+                            "name": "SSLClient"
+                        },
+                        {
+                            "name": "SSLServer"
+                        },
+                        {
+                            "name": "APIGatewayAddress"
+                        },
+                        {
+                            "name": "APIGatewayPort"
+                        },
+                        {
+                            "name": "V5CompatibilityMode"
+                        },
+                        {
+                            "name": "GatewayPeering"
+                        },
+                        {
+                            "name": "V5CSlmMode"
+                        },
+                        {
+                            "name": "IPMulticast"
+                        },
+                        {
+                            "name": "IPUnicast"
+                        },
+                        {
+                            "name": "GatewayPeeringManager"
+                        },
+                        {
+                            "name": "UserDefinedPolicies"
+                        }
+                    ],
+                    "name": "main",
+                    "display": "Main"
+                },
+                "uri": "services/apic-gw-service",
+                "summary": "Configure and manage the connection to API Connect",
+                "cmd-group": "configuration",
+                "cli-alias": "apic-gw-service",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "A descriptive summary for the API Connect Gateway Service configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter a brief descriptive summary for the API Connect Gateway Service configuration.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "LocalAddress",
+                            "default": "0.0.0.0",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                            },
+                            "required": "true",
+                            "summary": "IP address or interface to bind this service to",
+                            "cli-alias": "local-address",
+                            "display": "Local address",
+                            "description": "IP address or interface through which API Connect will connect to manage the gateway service. The default address is 0.0.0.0."
+                        },
+                        {
+                            "name": "LocalPort",
+                            "default": 3000,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "required": "true",
+                            "summary": "TCP port of the API Connect Gateway service",
+                            "cli-alias": "local-port",
+                            "display": "Local port",
+                            "description": "&lt;p>Specifies the TCP port through which API Connect will connect to orchestrate this service. The default port number is 3000.&lt;/p>&lt;p>&lt;b>Note:&lt;/b> The gateway service uses two additional consecutive ports after the local port to bind to a loopback address. Therefore, you must clear the conflicts on all three consecutive ports starting from the local port and make sure these ports are available.&lt;/p>"
+                        },
+                        {
+                            "description": "&lt;p>The client profile to use to establish a secure connection to the API manager.&lt;/p>&lt;p>The following restrictions apply to this profile. &lt;ul>&lt;li>Keys and certificates are restricted to PEM and PKCS #12 formats.&lt;/li>&lt;li>The validation credentials must use PEM formatted material.&lt;/li>&lt;/ul>&lt;/p>",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                                }
+                            },
+                            "summary": "TLS client profile",
+                            "cli-alias": "ssl-client",
+                            "display": "TLS client",
+                            "name": "SSLClient"
+                        },
+                        {
+                            "description": "&lt;p>The server profile to use to allow the secure connection attempts from API Connect to this service.&lt;/p>&lt;p>The following restrictions apply to this profile. &lt;ul>&lt;li>Keys and certificates are restricted to PEM and PKCS #12 formats.&lt;/li>&lt;li>The validation credentials must use PEM formatted material.&lt;/li>&lt;/ul>&lt;/p>",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLServerProfile"
+                                }
+                            },
+                            "summary": "TLS server profile",
+                            "cli-alias": "ssl-server",
+                            "display": "TLS server",
+                            "name": "SSLServer"
+                        },
+                        {
+                            "name": "APIGatewayAddress",
+                            "default": "0.0.0.0",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                            },
+                            "summary": "IP address of the API gateway handler",
+                            "cli-alias": "api-gw-address",
+                            "display": "API gateway address",
+                            "description": "Specifies the IP address for the HTTPS handler of the API gateway that is managed by API Connect. The default address is 0.0.0.0."
+                        },
+                        {
+                            "name": "APIGatewayPort",
+                            "default": 9443,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "summary": "Port number of the API gateway handler",
+                            "cli-alias": "api-gw-port",
+                            "display": "API gateway port",
+                            "description": "Specifies the port number for the HTTPS handler of the API gateway that is managed by API Connect. The default port number is 9443."
+                        },
+                        {
+                            "name": "GatewayPeering",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "V5CompatibilityMode",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "Define peering for a cluster of API gateways",
+                            "cli-alias": "gateway-peering",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/GatewayPeering"
+                                }
+                            },
+                            "display": "Gateway Peering",
+                            "description": "&lt;p>Specifies a gateway peering configuration that defines peers for the current API gateway and the settings to use for synchronizing the distributed state among the peers.&lt;/p>&lt;p>The following restrictions apply to this gateway peering configuration. &lt;ul>&lt;li>When TLS and peer group mode are enabled, all peers must use the same cryptographic material.&lt;/li>&lt;li>Keys and certificates are restricted to PEM and PKCS #12 formats.&lt;/li>&lt;/ul>&lt;/p>"
+                        },
+                        {
+                            "name": "GatewayPeeringManager",
+                            "default": "default",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "V5CompatibilityMode",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "summary": "Define gateway peering manager for a cluster of API gateways",
+                            "cli-alias": "gateway-peering-manager",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "V5CompatibilityMode",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/GatewayPeeringManager"
+                                }
+                            },
+                            "display": "Gateway Peering Manager",
+                            "description": "Define gateway peering manager for a cluster of API gateways"
+                        },
+                        {
+                            "name": "V5CompatibilityMode",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to enable compatibility with API Connect V5",
+                            "cli-alias": "v5-compatibility-mode",
+                            "display": "V5 compatibility mode",
+                            "description": "Controls the gateway to load for API Connect: &lt;ui>&lt;li>When you enable V5 compatibility, DataPower loads a gateway framework that is compatible with V5. This is the default behavior.&lt;/li>&lt;li>When you disable V5 compatibility, DataPower creates an API Gateway that is not compatible with V5. The API Gateway is currently provided as technical preview.&lt;/li>&lt;/ui>"
+                        },
+                        {
+                            "name": "UserDefinedPolicies",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/AssemblyFunction"
+                                }
+                            },
+                            "summary": "User-defined policies to advertise to API Connect.",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "V5CompatibilityMode",
+                                    "evaluation": "property-value-not-in-list",
+                                    "value": "off"
+                                }
+                            },
+                            "array": "true",
+                            "cli-alias": "user-defined-policies",
+                            "display": "User-defined policies",
+                            "description": "When V5 compatibility mode is disabled, you can use assembly functions to specify user-defined policies to advertise to API Connect for use in the API Connect Assembly Editor. For an assembly function that is a user-defined policy, configure the assembly function with a mechanism other than a watched file processed by a configuration sequence. Objects created through configuration sequence processing are not persisted to the startup configuration. The preferred method for DataPower configuration for user-defined policies is to define them explicitly so that they persist to the startup configuration."
+                        },
+                        {
+                            "name": "V5CSlmMode",
+                            "default": "autounicast",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "V5CompatibilityMode",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "Specifies the peer group type for the SLM policy in V5 compatibility mode.",
+                            "cli-alias": "slm-mode",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "V5CompatibilityMode",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmV5CSlmMode"
+                            },
+                            "display": "SLM Peer Mode",
+                            "description": "Specifies the peer group type for the SLM policy in V5 compatibility mode."
+                        },
+                        {
+                            "name": "IPMulticast",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "V5CSlmMode",
+                                            "evaluation": "property-equals",
+                                            "value": "multicast"
+                                        },
+                                        {
+                                            "property-name": "V5CompatibilityMode",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Multicast configuration",
+                            "cli-alias": "ip-multicast",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "V5CSlmMode",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "multicast"
+                                        },
+                                        {
+                                            "property-name": "V5CompatibilityMode",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        }
+                                    ]
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/IPMulticast"
+                                }
+                            },
+                            "display": "IP multicast",
+                            "description": "Specifies the IP multicast configuration to use for the SLM policy in V5 compatibility mode."
+                        },
+                        {
+                            "name": "IPUnicast",
+                            "default": "",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "V5CSlmMode",
+                                            "evaluation": "property-equals",
+                                            "value": "unicast"
+                                        },
+                                        {
+                                            "property-name": "V5CompatibilityMode",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Unicast peering address.",
+                            "cli-alias": "ip-unicast",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "V5CSlmMode",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "unicast"
+                                        },
+                                        {
+                                            "property-name": "V5CompatibilityMode",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        }
+                                    ]
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                            },
+                            "display": "IP unicast",
+                            "description": "Specifies the SLM policy's unicast peer group address."
+                        }
+                    ]
+                },
+                "description": "&lt;p>The API Connect Gateway Service defines the connection to API Connect and settings to use for creating the gateway for service. When an API Connect Gateway Service is configured and starts to work, DataPower starts a process that retrieves data from API Connect, transmits into DataPower Gateway, and stores the data as DataPower configurations that the API gateway can subsequently use to handle API calls.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/APIConnectGatewayService"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/APIConnectGatewayService"
+                }
+            }
+        }
+    }
+}

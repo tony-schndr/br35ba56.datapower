@@ -1,0 +1,12 @@
+- name: 'Demo apply_conf'
+  hosts: dp1
+  connection: local
+  tasks:
+    - name: Ensure valcred exists in domain
+      community.datapower.apply_config:
+        state: present
+        domain: default
+        config: 
+          CryptoValCred:
+            name: valcred
+            mAdminState: enabled

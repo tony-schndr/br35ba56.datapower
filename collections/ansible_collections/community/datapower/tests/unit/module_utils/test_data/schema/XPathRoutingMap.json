@@ -1,0 +1,303 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmNamespaceMapping"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmNamespaceMapping"
+                    }
+                },
+                "type": {
+                    "name": "dmNamespaceMapping",
+                    "properties": {
+                        "property": [
+                            {
+                                "display": "Prefix",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "description": "The prefix (Prefix:) used to map namespaces that might be encountered in client requests.",
+                                "name": "Prefix",
+                                "summary": "Prefix for namespace"
+                            },
+                            {
+                                "display": "URI",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmURL"
+                                },
+                                "description": "The URI (URI:) used to map namespaces that might be encountered in client requests.",
+                                "name": "URI",
+                                "summary": "URI for namespace"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmXPathRoutingRule"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmXPathRoutingRule"
+                    }
+                },
+                "type": {
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "&lt;p>The XPath expression applied to submitted documents. This expression evaluates to true or false. If the expression points to a particular node and that node is present in the submitted document, the expression evaluates to true.&lt;/p>&lt;p>This expression cannot exceed 330 characters. Use the Namespace Mapping tab to establish mapping that then allow the use of qualified names in the XPath expression, shortening the expression.&lt;/p>",
+                                "required": "true",
+                                "summary": "An XPath Expression",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmXPathExpr"
+                                },
+                                "display": "XPath Expression",
+                                "name": "XPath"
+                            },
+                            {
+                                "description": "Specify the host name or IP address to which matching documents should be routed.",
+                                "required": "true",
+                                "summary": "Host name or IP address",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmHostname"
+                                },
+                                "display": "Remote Host",
+                                "name": "Host"
+                            },
+                            {
+                                "description": "Specify the port to which matching documents should be routed.",
+                                "required": "true",
+                                "summary": "Port number",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmIPPort"
+                                },
+                                "display": "Remote Port",
+                                "name": "Port"
+                            },
+                            {
+                                "name": "SSL",
+                                "default": "off",
+                                "required": "true",
+                                "summary": "Whether to connect with TLS",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "display": "TLS",
+                                "description": "Specify whether the connection to the target destination uses TLS communications. The default is off. When set to on, the DataPower Gateway uses the TLS profile that is specified at the service level to establish TLS communications to the destination host."
+                            }
+                        ]
+                    },
+                    "name": "dmXPathRoutingRule",
+                    "summary": "XPath routing rules"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmXPathExpr"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmXPathExpr"
+                    }
+                },
+                "type": {
+                    "cli-arg": "xpath",
+                    "name": "dmXPathExpr"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostname"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostname"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                },
+                "type": {
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                },
+                "type": {
+                    "cli-arg": "url",
+                    "name": "dmURL"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "XPathRoutingMap",
+                "display": "XPath Routing Map",
+                "uri": "xml/xpath-routing",
+                "actions": {
+                    "action": {
+                        "name": "Ping",
+                        "parameters": {
+                            "parameter": {
+                                "name": "RemoteHost",
+                                "select": "Host"
+                            }
+                        }
+                    }
+                },
+                "summary": "Information for routing documents based on XPath expressions",
+                "cmd-group": "xpath-routing",
+                "cli-alias": "xpath-routing",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "description": "The prefix and URI for namespaces that might be encountered in requests.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmNamespaceMapping"
+                            },
+                            "array": "true",
+                            "cli-alias": "namespace-mapping",
+                            "display": "Namespace Mappings",
+                            "name": "NameSpaceMappings"
+                        },
+                        {
+                            "name": "XPathRoutingRules",
+                            "type": {
+                                "href": "/mgmt/types/default/dmXPathRoutingRule"
+                            },
+                            "required": "true",
+                            "summary": "XPath routing rules",
+                            "array": "true",
+                            "cli-alias": "rule",
+                            "display": "Rules"
+                        }
+                    ]
+                },
+                "description": "&lt;p>An XPath Routing Map matches XPath expressions with corresponding destination URLs. When the XPath expression evaluates to true when applied to the message submitted, the target destination for the message is set to the corresponding URL.&lt;/p>&lt;p>Use the Rules tab to establish these mappings. Use the Namespace Mapping tab to determine Namespace URIs for namespaces used in the XPath Expressions.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/XPathRoutingMap"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/XPathRoutingMap"
+                }
+            }
+        }
+    }
+}

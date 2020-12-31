@@ -1,0 +1,194 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAssemblyLogMode"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAssemblyLogMode"
+                    }
+                },
+                "type": {
+                    "name": "dmAssemblyLogMode",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Gather only",
+                                "description": "Write transaction data to the &lt;tt>log&lt;/tt> variable in the API context.",
+                                "name": "gather-only",
+                                "summary": "Write data to the API context"
+                            },
+                            {
+                                "display": "Send only",
+                                "description": "Send transaction data from the &lt;tt>log&lt;/tt> variable in the API context to the analytics endpoint defined in the API collection.",
+                                "name": "send-only",
+                                "summary": "Send data to the analytics server"
+                            },
+                            {
+                                "display": "Gather and send",
+                                "description": "Write transaction data to the &lt;tt>log&lt;/tt> variable in the API context and send the data to the analytics endpoint defined in the API collection.",
+                                "name": "gather-and-send",
+                                "summary": "Write data to the API context and send the data to the analytics server"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "AssemblyActionLog",
+                "display": "Assembly Log Action",
+                "uri": "assembly/log",
+                "summary": "Configure and manage the log action for the assembly",
+                "cmd-group": "assembly",
+                "cli-alias": "assembly-log",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for Assembly action."
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Title",
+                            "cli-alias": "title",
+                            "name": "Title",
+                            "summary": "The title for Assembly action."
+                        },
+                        {
+                            "description": "The correlation path specifies the part of the API definition that correlates with the assembly action. This path is exposed in the debug data by the API Gateway for use by debugging tools. For example, for an API configuration that is retrieved from API Connect and specified in an OpenAPI (Swagger 2.0) document with IBM extensions, this path is the JSON path to the assembly policy in the IBM extensions section of the document. The path can be expressed in any form that the debugging tool can correlate to the API definition.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The path which correlates the assembly action to a specific part of the API specification.",
+                            "cli-alias": "correlation-path",
+                            "display": "Correlation path",
+                            "name": "CorrelationPath"
+                        },
+                        {
+                            "name": "ActionDebug",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to enable GatewayScript debugger in assembly actions",
+                            "cli-alias": "debug",
+                            "display": "Enable debugging",
+                            "description": "&lt;p>Controls whether to enable the GatewayScript debugger to troubleshoot the following GatewayScript file or script. &lt;ul>&lt;li>Troubleshoot the GatewayScript file that is called from the assembly GatewayScript action.&lt;/li>&lt;li>Troubleshoot the GatewayScript file that is invoked by the GatewayScript associated XSLT extension functions or elements, such as the &lt;tt>gatewayscript()&lt;/tt> extension function, from the assembly XSLT action.&lt;/li>&lt;li>Troubleshoot the GatewayScript script that is invoked through the &lt;tt>value&lt;/tt> or the &lt;tt>default&lt;/tt> property in the JSON file from the assembly map action.&lt;/li>&lt;/ul>&lt;/p>&lt;p>To debug a file or script, the following conditions must be met:&lt;/p>&lt;ul>&lt;li>The file contains one or more &lt;tt>debugger;&lt;/tt> statements at the points in your script where you want to start debugging.&lt;/li>&lt;li>The GatewayScript debugger is enabled.&lt;/li>&lt;/ul>&lt;p>Then you can run the &lt;tt>debug-action&lt;/tt> command to debug.&lt;/p>"
+                        },
+                        {
+                            "name": "Mode",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAssemblyLogMode"
+                            },
+                            "required": "true",
+                            "summary": "Mode to use for the assembly log action",
+                            "cli-alias": "mode",
+                            "display": "Mode",
+                            "description": "&lt;p>Specifies the mode to use for the assembly log action.&lt;/p>&lt;p>Analytics data must strictly conform to the format required by your analytics server. If you are using the IBM API Connect analytics server without offloading data to a third-party log server, the format is set correctly by default. Input and output payloads can be redacted, but the data format must not be modified. In this case, you must use gather only mode.&lt;/p>"
+                        }
+                    ]
+                },
+                "description": "&lt;p>An assembly log action writes transaction data to the API context to send to the analytics server. The API activity logging settings specified in the API definition determine the type of transaction data that is gathered.&lt;/p>&lt;p>This action is not supported in IBM Cloud. Any assembly that includes it will fail.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/AssemblyActionLog"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/AssemblyActionLog"
+                }
+            }
+        }
+    }
+}

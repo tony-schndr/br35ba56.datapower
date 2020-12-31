@@ -1,0 +1,212 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLunaLoginRole"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLunaLoginRole"
+                    }
+                },
+                "type": {
+                    "name": "dmLunaLoginRole",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Crypto Officer (CO)",
+                                "description": "Access with the Crypto Officer role.",
+                                "name": "co",
+                                "summary": ""
+                            },
+                            {
+                                "display": "Crypto User (CU)",
+                                "description": "Access with the Crypto User role.",
+                                "name": "cu",
+                                "summary": ""
+                            }
+                        ]
+                    },
+                    "display": "Login role"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "LunaPartition",
+                "property-group": {
+                    "member": [
+                        {
+                            "name": "mAdminState"
+                        },
+                        {
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "PartitionName"
+                        },
+                        {
+                            "name": "PartitionSerial"
+                        },
+                        {
+                            "name": "PasswordAlias"
+                        },
+                        {
+                            "name": "LoginRole"
+                        }
+                    ],
+                    "name": "main"
+                },
+                "uri": "networkhsm/luna-partition",
+                "display": "SafeNet Luna HSM Partition",
+                "cmd-group": "configuration",
+                "cli-alias": "luna-partition",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "A descriptive summary for the configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter a descriptive summary for the configuration.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "description": "Specifies the name of the partition that is assigned to the DataPower Gateway for key storage. The name identifies the partition on the Luna HSM. The minimum length of the name is 1 character. The maximum length is 32 characters.",
+                            "name": "PartitionName",
+                            "minimum-length": 1,
+                            "valid-regexp": "^[^ ]+$",
+                            "required": "true",
+                            "summary": "Enter the partition name.",
+                            "cli-alias": "partition",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Partition name",
+                            "maximum-length": 32
+                        },
+                        {
+                            "description": "Specifies the serial number of the Luna HSM partition.",
+                            "name": "PartitionSerial",
+                            "minimum-length": 9,
+                            "cli-alias": "serial",
+                            "required": "true",
+                            "summary": "Enter the serial number.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Partition serial",
+                            "maximum-length": 16
+                        },
+                        {
+                            "name": "PasswordAlias",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/PasswordAlias"
+                                }
+                            },
+                            "required": "true",
+                            "summary": "Select the alias of the password required to access the partition.",
+                            "cli-alias": "password-alias",
+                            "display": "Password alias",
+                            "description": "Specifies the alias of the cleartext password that is required to access the partition."
+                        },
+                        {
+                            "name": "LoginRole",
+                            "default": "co",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLunaLoginRole"
+                            },
+                            "required": "true",
+                            "summary": "The operator role to access the partition.",
+                            "cli-alias": "login-role",
+                            "display": "Login role",
+                            "description": "Specifies the operator role to access the partition."
+                        }
+                    ]
+                },
+                "description": "The SafeNet Luna Network HSM appliance stores the RSA keys in independent partitions. The configuration of the Luna HSM partition specifies the partition that the DataPower Gateway accesses in the Luna HSM."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/LunaPartition"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/LunaPartition"
+                }
+            }
+        }
+    }
+}

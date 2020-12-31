@@ -1,0 +1,230 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostname"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostname"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                },
+                "type": {
+                    "cli-arg": "seconds",
+                    "minimum": 0,
+                    "name": "dmTimeInterval",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimestamp"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimestamp"
+                    }
+                },
+                "type": {
+                    "cli-arg": "timestamp",
+                    "minimum": 0,
+                    "name": "dmTimestamp",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "name": "NTPService",
+                "display": "NTP Service",
+                "uri": "network/ntp-service",
+                "summary": "Configure NTP settings",
+                "platforms": {
+                    "platform": [
+                        "container",
+                        "software"
+                    ]
+                },
+                "cmd-group": "network",
+                "cli-alias": "ntp-service",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "A descriptive summary for the configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter a descriptive summary for the configuration.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "RemoteServer",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "mAdminState",
+                                    "evaluation": "property-equals",
+                                    "value": "enabled"
+                                }
+                            },
+                            "summary": "Enter the host name or IP address of the NTP server.",
+                            "cli-alias": "remote-server",
+                            "array": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHostname"
+                            },
+                            "display": "NTP server",
+                            "description": "The host name or IP address of an NTP server. If you define multiple servers, ensure that the sequence to contact the servers is your preferred order."
+                        },
+                        {
+                            "name": "RefreshInterval",
+                            "default": 900,
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "mAdminState",
+                                    "evaluation": "property-equals",
+                                    "value": "enabled"
+                                }
+                            },
+                            "maximum": 86400,
+                            "summary": "Modify the interval between clock synchronizations.",
+                            "cli-alias": "refresh-interval",
+                            "minimum": 60,
+                            "units": "Seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimeInterval"
+                            },
+                            "display": "Refresh interval",
+                            "description": "The interval between clock synchronizations. Enter a value in the range 60 - 86400. The default value is 900."
+                        },
+                        {
+                            "display": "Local time, last applied",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimestamp"
+                            },
+                            "description": "The current local time when last applied. This time is obtained from the timezone settings established on the Time Settings object and with the date and time settings set on the System Control page.",
+                            "name": "Time",
+                            "summary": "Current local time when last applied."
+                        },
+                        {
+                            "name": "Timeout",
+                            "default": 750,
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "mAdminState",
+                                    "evaluation": "property-equals",
+                                    "value": "enabled"
+                                }
+                            },
+                            "maximum": 3000,
+                            "summary": "Modify the timeout for a response from an NTP server.",
+                            "cli-alias": "timeout",
+                            "minimum": 750,
+                            "units": "Milliseconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Timeout",
+                            "description": "The time to wait for a response from an NTP server before trying the next server in the list. Enter a value in the range 750 - 3000. The default value is 750."
+                        }
+                    ]
+                },
+                "description": "Configure remote NTP (Network Time Protocol) server. This allows the automatic synchronization of the system clock."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/NTPService"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/NTPService"
+                }
+            }
+        }
+    }
+}

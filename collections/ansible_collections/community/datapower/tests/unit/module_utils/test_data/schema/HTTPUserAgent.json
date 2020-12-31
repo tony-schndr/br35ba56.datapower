@@ -1,0 +1,1461 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmProxyPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmProxyPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmProxyPolicy",
+                    "actions": {
+                        "action": {
+                            "name": "Ping",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "RemoteHost",
+                                    "select": "RemoteAddress"
+                                }
+                            }
+                        }
+                    },
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "A required shell-style expression that defines a URL set. This set is then assigned to a specific HTTP proxy.",
+                                "required": "true",
+                                "summary": "A shell-style match pattern for matching URLs",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "URL Matching Expression",
+                                "name": "RegExp"
+                            },
+                            {
+                                "name": "Skip",
+                                "default": "off",
+                                "required": "true",
+                                "summary": "Define an exception policy",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "display": "Skip",
+                                "description": "A switch specifying the treatment of the URL set defined by RegExp. If set to on, the URL set is not forwarded to an HTTP proxy, and, consequently, a proxy is not identified in the Remote Address and Remote Port fields. If set to off (the default condition), the URL set is forwarded to the HTTP proxy identified in the Remote Address and Remote Port fields."
+                            },
+                            {
+                                "name": "RemoteAddress",
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "Skip",
+                                        "evaluation": "property-equals",
+                                        "value": "off"
+                                    }
+                                },
+                                "summary": "host name or IP address",
+                                "ignored-when": {
+                                    "condition": {
+                                        "evaluation": "logical-true"
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmHostname"
+                                },
+                                "display": "Remote Host",
+                                "description": "Specify the host name or IP address that in conjunction with Remote Port identifies an HTTP proxy. Not used when Skip is on."
+                            },
+                            {
+                                "name": "RemotePort",
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "Skip",
+                                        "evaluation": "property-equals",
+                                        "value": "off"
+                                    }
+                                },
+                                "summary": "Port number",
+                                "ignored-when": {
+                                    "condition": {
+                                        "evaluation": "logical-true"
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmIPPort"
+                                },
+                                "display": "Remote Port",
+                                "description": "Specify the remote port that in conjunction with Remote Host identifies an HTTP proxy. Not used when Skip is on."
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSLPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSLPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmSSLPolicy",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "A required shell-style expression that defines a URL set assigned to a specific proxy.",
+                                "required": "true",
+                                "summary": "A shell-style match pattern",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "URL Matching Expression",
+                                "name": "RegExp"
+                            },
+                            {
+                                "name": "SSLProxyProfile",
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "SSLClientConfigType",
+                                        "evaluation": "property-equals",
+                                        "value": "proxy"
+                                    }
+                                },
+                                "summary": "The TLS proxy profile is deprecated. Use a TLS client profile.",
+                                "ignored-when": {
+                                    "condition": {
+                                        "evaluation": "logical-true"
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference",
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/SSLProxyProfile"
+                                    }
+                                },
+                                "display": "TLS proxy profile (deprecated)",
+                                "description": "The TLS proxy profile with the cryptographic profiles to secure connections."
+                            },
+                            {
+                                "name": "SSLClientConfigType",
+                                "default": "proxy",
+                                "required": "true",
+                                "summary": "Set the TLS profile type to secure connections between the DataPower Gateway and its targets",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmSSLClientConfigType"
+                                },
+                                "display": "TLS client type",
+                                "description": "The TLS profile type to secure connections between the DataPower Gateway and its targets."
+                            },
+                            {
+                                "name": "SSLClient",
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "SSLClientConfigType",
+                                        "evaluation": "property-equals",
+                                        "value": "client"
+                                    }
+                                },
+                                "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and its targets",
+                                "ignored-when": {
+                                    "condition": {
+                                        "evaluation": "logical-true"
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference",
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/SSLClientProfile"
+                                    }
+                                },
+                                "display": "TLS client profile",
+                                "description": "The TLS client profile to secure connections between the DataPower Gateway and its targets."
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmBasicAuthPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmBasicAuthPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmBasicAuthPolicy",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "A required shell-style expression that defines a URL set assigned to a specific HTTP proxy.",
+                                "required": "true",
+                                "summary": "A shell-style match pattern",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "URL Matching Expression",
+                                "name": "RegExp"
+                            },
+                            {
+                                "description": "The user name used for BasicAuth.",
+                                "required": "true",
+                                "summary": "A user name",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "User name",
+                                "name": "UserName"
+                            },
+                            {
+                                "description": "The password associated with the user name used for BasicAuth.",
+                                "summary": "A password",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Password",
+                                        "evaluation": "property-equals",
+                                        "value": ""
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Password (deprecated)",
+                                "name": "Password"
+                            },
+                            {
+                                "display": "Password Alias",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference",
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/PasswordAlias"
+                                    }
+                                },
+                                "description": "The password alias for the password associated with the user name used for BasicAuth.",
+                                "name": "PasswordAlias",
+                                "summary": "A password alias"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSoapActionPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSoapActionPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmSoapActionPolicy",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "A required shell-style expression that defines a URL set.",
+                                "required": "true",
+                                "summary": "A shell-style match pattern",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "URL Matching Expression",
+                                "name": "RegExp"
+                            },
+                            {
+                                "description": "The value of the SoapAction header. If the value \"http://example.org/add\" is entered here, the header looks like \"SoapAction: http://example.org/add\"",
+                                "required": "true",
+                                "summary": "Soap Action Header",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Soap Action",
+                                "name": "SoapAction"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmPubkeyAuthPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmPubkeyAuthPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmPubkeyAuthPolicy",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "A required shell-style expression that defines a URL set.",
+                                "required": "true",
+                                "summary": "A shell-style match pattern",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "URL Matching Expression",
+                                "name": "RegExp"
+                            },
+                            {
+                                "description": "This is the private key to use for Pubkey authentication. Select a Crypto Key object from the list of available Key objects.",
+                                "required": "true",
+                                "summary": "Private Key",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference",
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/CryptoKey"
+                                    }
+                                },
+                                "display": "Private Key",
+                                "name": "CryptoKey"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAllowCompressionPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAllowCompressionPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmAllowCompressionPolicy",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "A required shell-style expression that defines a URL set.",
+                                "required": "true",
+                                "summary": "A shell-style match pattern",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "URL Matching Expression",
+                                "name": "RegExp"
+                            },
+                            {
+                                "description": "If set to on and the protocol allows it, transactions matching this policy will use compression",
+                                "required": "true",
+                                "summary": "Allow Compression",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "display": "Allow Compression",
+                                "name": "AllowCompression"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHeaderRetentionPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHeaderRetentionPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmHeaderRetentionPolicy",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "A required shell-style expression that defines a URL set.",
+                                "required": "true",
+                                "summary": "A shell-style match pattern",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "URL Matching Expression",
+                                "name": "RegExp"
+                            },
+                            {
+                                "display": "Header Retention",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmHeaderRetentionBitmap"
+                                },
+                                "description": "Transactions matching this policy retain this header in the outgoing traffic at the backend.",
+                                "name": "HeaderRetention",
+                                "summary": "Header Retention"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmRestrict10Policy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmRestrict10Policy"
+                    }
+                },
+                "type": {
+                    "name": "dmRestrict10Policy",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "A required shell-style expression that defines a URL set.",
+                                "required": "true",
+                                "summary": "A shell-style match pattern",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "URL Matching Expression",
+                                "name": "RegExp"
+                            },
+                            {
+                                "description": "If set to on and the protocol is HTTP the transaction will not go above HTTP/1.0.",
+                                "required": "true",
+                                "summary": "Restrict to HTTP/1.0",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "display": "Restrict to HTTP/1.0",
+                                "name": "Restrict10"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAddHeaderPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAddHeaderPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmAddHeaderPolicy",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "A required shell-style expression that defines a URL set.",
+                                "required": "true",
+                                "summary": "A shell-style match pattern",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "URL Matching Expression",
+                                "name": "RegExp"
+                            },
+                            {
+                                "description": "Enter the Header field name here.",
+                                "required": "true",
+                                "summary": "Header Name",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Header Name",
+                                "name": "AddHeader"
+                            },
+                            {
+                                "description": "Enter the Header value (a string) here.",
+                                "required": "true",
+                                "summary": "Header Value",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Header Value",
+                                "name": "AddValue"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUploadChunkedPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUploadChunkedPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmUploadChunkedPolicy",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "A required shell-style expression that defines a URL set.",
+                                "required": "true",
+                                "summary": "A shell-style match pattern",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "URL Matching Expression",
+                                "name": "RegExp"
+                            },
+                            {
+                                "display": "Enable/Disable HTTP 1.1 Chunked Request Bodies",
+                                "required": "true",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "description": "Select on to enable RFC 2616-compliant chunked encoding. Note that the receiving server must implement the specification to receive this encoding.",
+                                "name": "UploadChunked"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmFTPPolicy",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "A required shell-style expression that defines a URL set.",
+                                "required": "true",
+                                "summary": "A shell-style match pattern",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "URL Matching Expression",
+                                "name": "RegExp"
+                            },
+                            {
+                                "name": "Passive",
+                                "default": "pasv-req",
+                                "required": "true",
+                                "summary": "Controls use of FTP Passive mode",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmFTPPassivePolicy"
+                                },
+                                "display": "Passive Mode",
+                                "description": "Select how to use the FTP Passive mode to control in which direction FTP data connections are made."
+                            },
+                            {
+                                "name": "AuthTLS",
+                                "default": "auth-off",
+                                "required": "true",
+                                "summary": "Controls use of TLS to secure connections",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmFTPAuthPolicy"
+                                },
+                                "display": "Encrypt Command Connection",
+                                "description": "Select how to use TLS to secure FTP command connections."
+                            },
+                            {
+                                "name": "UseCCC",
+                                "default": "ccc-off",
+                                "required": "true",
+                                "summary": "Stops command encryption after authentication",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "AuthTLS",
+                                        "evaluation": "property-equals",
+                                        "value": "auth-off"
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmFTPCCCPolicy"
+                                },
+                                "display": "Stop Command Encryption After Authentication",
+                                "description": "Select how to control the cessation of FTP command channel encryption after user authentication. Encryption must be stopped for compatibility with NAT (Network Address Translation) and other firewall applications. Although this might be a security risk, there is no other option when NAT is in use."
+                            },
+                            {
+                                "name": "EncryptData",
+                                "default": "enc-data-off",
+                                "required": "true",
+                                "summary": "Controls encryption file transfers",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "AuthTLS",
+                                        "evaluation": "property-equals",
+                                        "value": "auth-off"
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmFTPDataEncryptionPolicy"
+                                },
+                                "display": "Encrypt File Transfers",
+                                "description": "Select how to control encryption of file transfers. Compatible with NAT in all settings."
+                            },
+                            {
+                                "name": "DataType",
+                                "default": "binary",
+                                "required": "true",
+                                "summary": "Data type of file transfer",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmFTPDataTypePolicy"
+                                },
+                                "display": "Data Type",
+                                "description": "Select the default file transfer data type. In most cases, the value of binary is appropriate."
+                            },
+                            {
+                                "name": "SlashSTOU",
+                                "default": "slash-stou-on",
+                                "required": "true",
+                                "summary": "Creates a unique file if the name contains a trailing slash",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmFTPSlashSTOUPolicy"
+                                },
+                                "display": "Write Unique Filename if Trailing Slash",
+                                "description": "&lt;p>Select how to create unique files if the name contains a trailing slash.&lt;/p>&lt;p>Some FTP servers provide the STOU command. Use the command only if the FTP server supports this command. The STOU command allows the server to choose the unique file name in the current directory. Using the STOU command does not require the client to choose a unique file name.&lt;/p>&lt;p>When enabled and a URL is given to write that ends in a /, the server uses the STOU command instead of the STOR command.&lt;/p>"
+                            },
+                            {
+                                "display": "Quoted Commands",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference",
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/FTPQuoteCommands"
+                                    }
+                                },
+                                "description": "This specifies a list of FTP commands to be sent to the server before each FTP STOR, STOU, or RETR command. A typical use would be to use \"SITE\" commands, such as \"SITE RECFM=FB\" for the MVS domain on a z/OS system. These commands cannot be data-transfer related, such as STOU, RETR, PORT, PASV, etc.",
+                                "name": "QuotedCommands",
+                                "summary": "Quoted Commands"
+                            },
+                            {
+                                "description": "If set to Optional, do a size check after the file transfer is complete. This uses the SIZE command, and compares the returned number to the number of bytes transferred \"over the wire\" for the file transfer. If the number is not equal, the file transfer is marked as failing. If the FTP server does not support the SIZE command, no error results. Some FTP servers, particularly vsftpd in the default configuration, provide inaccurate SIZE responses for files transferred in ASCII mode. If you get such errors, you can disable this feature. (Alternately you can reconfigure vsftpd.)",
+                                "default": "size-check-optional",
+                                "summary": "Perform Size check after file transfer",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmFTPSizeCheckPolicy"
+                                },
+                                "display": "Size Check",
+                                "name": "SizeCheck"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSMTPPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSMTPPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmSMTPPolicy",
+                    "properties": {
+                        "property": [
+                            {
+                                "name": "RegExp",
+                                "default": "dpsmtp://*",
+                                "required": "true",
+                                "summary": "A shell-style match pattern",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "URL Matching Expression",
+                                "description": "A required shell-style expression that defines a URL set."
+                            },
+                            {
+                                "display": "Recipient e-mail",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "description": "The default e-mail address to which to send e-mails.",
+                                "name": "Recipient",
+                                "summary": "E-mail address of recipient (\"To:\")"
+                            },
+                            {
+                                "display": "Sender e-mail",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "description": "The default e-mail address that identifies the sender.",
+                                "name": "Sender",
+                                "summary": "E-mail address of sender (\"From:\")"
+                            },
+                            {
+                                "display": "Subject",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "description": "The default subject for e-mails.",
+                                "name": "Subject",
+                                "summary": "Subject line of e-mail"
+                            },
+                            {
+                                "display": "Options",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmSMTPOptions"
+                                },
+                                "description": "The SMTP options to enable for the SMTP client.",
+                                "name": "Options",
+                                "summary": "SMTP options"
+                            },
+                            {
+                                "name": "Auth",
+                                "default": "plain",
+                                "summary": "Authentication method",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Options",
+                                        "evaluation": "property-does-not-equal",
+                                        "value": "Auth"
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmSMTPAuth"
+                                },
+                                "display": "Authentication Method",
+                                "description": "With the client authentication option, the method to authenticate the SMTP client."
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSFTPPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSFTPPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmSFTPPolicy",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "A required shell-style expression that defines a URL set.",
+                                "required": "true",
+                                "summary": "A shell-style match pattern",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "URL Matching Expression",
+                                "name": "RegExp"
+                            },
+                            {
+                                "description": "Specifies the SSH client profile to be used for this SFTP Client policy.",
+                                "required": "true",
+                                "summary": "SSH client profile",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference",
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/SSHClientProfile"
+                                    }
+                                },
+                                "display": "SSH client profile",
+                                "name": "SSHClientProfile"
+                            },
+                            {
+                                "description": "Specifies whether or not to generate a unique file name for files written to an SSH FTP server. When the Backend URL represents a directory, a unique file name is generated. When the Backend URL represents a file name that already exists in the remote server, any transfers result into a new unique file being created and its name will be modified to include a unique prolog.",
+                                "required": "true",
+                                "summary": "Use unique file names",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "display": "Use unique file names",
+                                "name": "UseUniqueFilenames"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSMTPOptions"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSMTPOptions"
+                    }
+                },
+                "type": {
+                    "name": "dmSMTPOptions",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "STARTTLS",
+                                "description": "Use the POP STARTTLS feature to negotiate a secure connection.",
+                                "name": "StartTLS"
+                            },
+                            {
+                                "display": "Authentication",
+                                "description": "Use Simple Authentication and Security Layer (SASL) for SMTP client authentication.",
+                                "name": "Auth"
+                            }
+                        ]
+                    },
+                    "display": "Options"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSMTPAuth"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSMTPAuth"
+                    }
+                },
+                "type": {
+                    "name": "dmSMTPAuth",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "PLAIN",
+                                "description": "Use the PLAIN authentication method.",
+                                "name": "plain"
+                            },
+                            {
+                                "display": "LOGIN",
+                                "description": "Use the LOGIN authentication method.",
+                                "name": "login"
+                            }
+                        ]
+                    },
+                    "display": "Authentication"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPPassivePolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPPassivePolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmFTPPassivePolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Passive Mode Not Requested",
+                                "description": "Do not use the FTP PASV command to allow the client to open the FTP data connections. The FTP server will open all data connections to the FTP client. Often incompatible with firewalls",
+                                "name": "pasv-off"
+                            },
+                            {
+                                "display": "Request Passive Mode",
+                                "description": "Use the FTP PASV command to request that the FTP client be allowed to open all data connections to the FTP server, but do not fail if the server does not support PASV.",
+                                "name": "pasv-opt"
+                            },
+                            {
+                                "display": "Require Passive Mode",
+                                "description": "Use the FTP PASV command to request that the FTP client be allowed to open all data connections to the FTP server, and fail if the server does not support PASV.",
+                                "name": "pasv-req"
+                            }
+                        ]
+                    },
+                    "display": "FTP Passive Mode Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPAuthPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPAuthPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmFTPAuthPolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "No Authentication Requested",
+                                "description": "Do not use the FTP AUTH command to encrypt the command connection. The username and password will be passed in the clear.",
+                                "name": "auth-off"
+                            },
+                            {
+                                "display": "Request TLS Authentication",
+                                "description": "Use the FTP AUTH TLS command to encrypt the command connection using TLS, if available.",
+                                "name": "auth-tls-opt"
+                            },
+                            {
+                                "display": "Require TLS Authentication",
+                                "description": "Use the FTP AUTH TLS command to encrypt the command connection using TLS, fail if not available.",
+                                "name": "auth-tls-req"
+                            }
+                        ]
+                    },
+                    "display": "FTP Authentication Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPCCCPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPCCCPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmFTPCCCPolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Leave Encrypted",
+                                "description": "Leave the FTP command connection encrypted after (optional) authentication with the USER and PASS commands. The command connection will remain secure, but will be incompatible with NAT and many firewalls.",
+                                "name": "ccc-off"
+                            },
+                            {
+                                "display": "Request Stop Encryption",
+                                "description": "Use the FTP CCC command to request the end of encryption on the command connection using TLS, if supported by the server.",
+                                "name": "ccc-opt"
+                            },
+                            {
+                                "display": "Require Stop Encryption",
+                                "description": "Use the FTP CCC command to request the end of encryption on the command connection using TLS, fail if the server does not support CCC. (Very few server support CCC.) Required for compatibility with NAT and many firewalls.",
+                                "name": "ccc-req"
+                            }
+                        ]
+                    },
+                    "display": "FTP Stop Encryption After Authentication Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPDataEncryptionPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPDataEncryptionPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmFTPDataEncryptionPolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Unencrypted Data",
+                                "description": "Even when the command channel is encrypted, do not encrypt FTP data connections. Use the FTP PROT C command when the command channel is or has been encrypted.",
+                                "name": "enc-data-off"
+                            },
+                            {
+                                "display": "Request Data Encryption",
+                                "description": "Request encryption of FTP data connections using the FTP PROT P command. Required when the command channel is or has been encrypted. Do not fail if server does not support data encryption.",
+                                "name": "enc-data-opt"
+                            },
+                            {
+                                "display": "Require Data Encryption",
+                                "description": "Request encryption of FTP data connections using the FTP PROT P command. Required when the command channel is or has been encrypted. Fail if server does not support data encryption.",
+                                "name": "enc-data-req"
+                            }
+                        ]
+                    },
+                    "display": "FTP Data Encryption Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPDataTypePolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPDataTypePolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmFTPDataTypePolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "ASCII Data",
+                                "description": "Transfer files as ASCII data. This mode allow standardization of end-of-line conventions between different operating systems. This mode increases the overhead at both ends. Uses the FTP TYPE A command.",
+                                "name": "ascii"
+                            },
+                            {
+                                "display": "Image (Binary) Data",
+                                "description": "Transfer files as image data. This mode transfers data as binary 8-bit bytes. This mode is more efficient (less overhead at both ends). Some XML files, such as signed files, must be transferred in this mode. Uses the FTP TYPE I command.",
+                                "name": "binary"
+                            }
+                        ]
+                    },
+                    "display": "FTP Data Type Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPSlashSTOUPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPSlashSTOUPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmFTPSlashSTOUPolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Use Supplied File Name",
+                                "description": "&lt;p>Always use the supplied file name in the URL to generate the target file name requested on the server. If the URL ends in a slash, the request generally fails.&lt;/p>&lt;p>Uses the FTP STOR command to initiate the transfer. The STOR command is only a directory specification, without a file name specification.&lt;/p>",
+                                "name": "slash-stou-off"
+                            },
+                            {
+                                "display": "Request Unique File Name When Trailing Slash",
+                                "description": "&lt;p>If the supplied file name ends in a slash, use the STOU command to write a unique file name. The slash must be before the ? that initiates the query parameters or before the ; that begins the suffix.&lt;/p>&lt;p>Uses the FTP STOU command to initiate the transfer and requests that the server generate a unique file name within the target directory. This approach is the only safe way to have multiple systems write files to the same directory without overwriting any files.&lt;/p>&lt;p>The transfer fails if the FTP server does not support the STOU command.&lt;/p>",
+                                "name": "slash-stou-on"
+                            }
+                        ]
+                    },
+                    "display": "FTP Unique Filename Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFTPSizeCheckPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFTPSizeCheckPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmFTPSizeCheckPolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Optional",
+                                "description": "If the FTP SIZE command is available, uses this command to check the file transfer size after file transfer.",
+                                "name": "size-check-optional"
+                            },
+                            {
+                                "display": "Disabled",
+                                "description": "Do not check file size after transfer.",
+                                "name": "size-check-disabled"
+                            }
+                        ]
+                    },
+                    "display": "FTP Size Check Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHeaderRetentionBitmap"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHeaderRetentionBitmap"
+                    }
+                },
+                "type": {
+                    "name": "dmHeaderRetentionBitmap",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "TE",
+                                "display": "TE"
+                            },
+                            {
+                                "name": "Accept-Encoding",
+                                "display": "Accept-Encoding"
+                            },
+                            {
+                                "name": "Range",
+                                "display": "Range"
+                            },
+                            {
+                                "name": "MQMD",
+                                "display": "MQMD"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSLClientConfigType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSLClientConfigType"
+                    }
+                },
+                "type": {
+                    "name": "dmSSLClientConfigType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "proxy",
+                                "display": "Proxy Profile"
+                            },
+                            {
+                                "name": "client",
+                                "display": "Client Profile"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostname"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostname"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                },
+                "type": {
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "HTTPUserAgent",
+                "display": "User Agent",
+                "uri": "network/user-agent",
+                "summary": "Client Configuration",
+                "cmd-group": "useragent",
+                "cli-alias": "user-agent",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "description": "An optional string that specifies the contents of the User-Agent request-header field. By default, a User Agent request-header field is not transmitted.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "User Agent request-header field contents",
+                            "cli-alias": "identifier",
+                            "display": "HTTP Request-Header",
+                            "name": "Identifier"
+                        },
+                        {
+                            "name": "MaxRedirects",
+                            "default": 8,
+                            "cli-alias": "max-redirects",
+                            "maximum": 128,
+                            "summary": "Maximum number of redirects",
+                            "minimum": 0,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Maximum Redirects",
+                            "description": "An integer (within the range 0 through 128, with a default of 8) that specifies the maximum number of HTTP redirect messages received before the target URL is declared unreachable."
+                        },
+                        {
+                            "name": "Timeout",
+                            "default": 300,
+                            "cli-alias": "timeout",
+                            "maximum": 86400,
+                            "summary": "Seconds of Idle time Allowed",
+                            "minimum": 1,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Timeout",
+                            "description": "An integer (within the range 1 through 86400, with a default of 300) that specifies the maximum amount of idle time on an established connection before the connection is aborted."
+                        },
+                        {
+                            "name": "ProxyPolicies",
+                            "type": {
+                                "href": "/mgmt/types/default/dmProxyPolicy"
+                            },
+                            "summary": "User Agent policy definition",
+                            "array": "true",
+                            "cli-alias": "proxy",
+                            "display": "Proxy Policy",
+                            "description": "Configure a proxy policy that associates a set of URLs with a specific HTTP proxy"
+                        },
+                        {
+                            "name": "SSLPolicies",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSLPolicy"
+                            },
+                            "summary": "User Agent TLS policy definition",
+                            "array": "true",
+                            "cli-alias": "ssl",
+                            "display": "TLS Profile Policy",
+                            "description": "Configure a policy that associates a set of URLs with a specific TLS Profile. Whenever the Agent is given a URL that matches the set defined, it will use the corresponding TLS Profile for TLS communications with the resource."
+                        },
+                        {
+                            "name": "BasicAuthPolicies",
+                            "type": {
+                                "href": "/mgmt/types/default/dmBasicAuthPolicy"
+                            },
+                            "summary": "User Agent policy definition",
+                            "array": "true",
+                            "cli-alias": "basicauth",
+                            "display": "Basic-Auth Policy",
+                            "description": "Configure a proxy policy that associates a set of URLs with a specific username and password for Basic-Auth authentication."
+                        },
+                        {
+                            "name": "SoapActionPolicies",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSoapActionPolicy"
+                            },
+                            "summary": "User Agent policy definition",
+                            "array": "true",
+                            "cli-alias": "soapaction",
+                            "display": "Soap-Action Policy",
+                            "description": "Configure a policy that associates a set of URLs with a specific Soap-Action HTTP header"
+                        },
+                        {
+                            "name": "PubkeyAuthPolicies",
+                            "type": {
+                                "href": "/mgmt/types/default/dmPubkeyAuthPolicy"
+                            },
+                            "summary": "User Agent policy definition",
+                            "array": "true",
+                            "cli-alias": "pubkeyauth",
+                            "display": "Pubkey-Auth Policy",
+                            "description": "Configure a proxy policy that associates a set of URLs with a specific private key for Pubkey authentication. Note that this setting defines the private key used in Pubkey authentication; the remote host to which the Agent is connecting must possess and reference the corresponding certificate in order to successfully communicate."
+                        },
+                        {
+                            "name": "AllowCompressionPolicies",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAllowCompressionPolicy"
+                            },
+                            "summary": "Enable Compression policy definition",
+                            "array": "true",
+                            "cli-alias": "compression-policy",
+                            "display": "Allow-Compression Policy",
+                            "description": "The User Agent will compress messages that are sent to URLs that match the URL Matching Expression."
+                        },
+                        {
+                            "name": "HeaderRetentionPolicies",
+                            "default": "0x0",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHeaderRetentionPolicy"
+                            },
+                            "summary": "Header Retention policy definition",
+                            "array": "true",
+                            "cli-alias": "headerretention-policy",
+                            "display": "Header-Retention Policy",
+                            "description": "The User Agent retains the specified headers in messages that are sent to URLs that match the URL Matching Expression."
+                        },
+                        {
+                            "name": "Restrict10Policies",
+                            "type": {
+                                "href": "/mgmt/types/default/dmRestrict10Policy"
+                            },
+                            "summary": "Restrict to HTTP 1.0 Policy",
+                            "array": "true",
+                            "cli-alias": "restrict-http-policy",
+                            "display": "Restrict to HTTP 1.0 Policy",
+                            "description": "Associate a set of URLs with a specific policy limiting http request versions to 1.0. This policy is cumulative - if any transaction, url match, or gateway should have a restrictive policy, that transaction will be carried out at HTTP/1.0."
+                        },
+                        {
+                            "name": "AddHeaderPolicies",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAddHeaderPolicy"
+                            },
+                            "summary": "Inject Header Policy",
+                            "array": "true",
+                            "cli-alias": "add-header-policy",
+                            "display": "Inject Header Policy",
+                            "description": "Configure one or more URL Match Expressions and corresponding Header Injection Policies. If the URL matches the expression, the corresponding HTTP Header is injected into the message."
+                        },
+                        {
+                            "name": "UploadChunkedPolicies",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUploadChunkedPolicy"
+                            },
+                            "summary": "Enabled/Disable HTTP/1.1 Chunked Request Bodies",
+                            "array": "true",
+                            "cli-alias": "chunked-uploads-policy",
+                            "display": "Chunked Uploads Policy",
+                            "description": "When the device employs the HTTP/1.1 protocol, the body of the document can be delimited by either Content-Length or chunked encodings. While all servers will understand how to interpret Content-Length, many applications will fail to understand Chunked encoding. For this reason, Content-Length is the standard method used. However doing so interferes with the ability of the device to fully stream. To stream full documents towards the back end server, this property should be turned on. However, the back end server must be RFC 2616 compatible, because this feature cannot be renegotiated at run time, unlike all other HTTP/1.1 features which can be negotiated down at runtime if necessary."
+                        },
+                        {
+                            "name": "FTPPolicies",
+                            "type": {
+                                "href": "/mgmt/types/default/dmFTPPolicy"
+                            },
+                            "summary": "FTP Client Policies",
+                            "array": "true",
+                            "cli-alias": "ftp-policy",
+                            "display": "FTP Client Policies",
+                            "description": "Associate a set of FTP URLs with a specific policy that controls the default values of many client options for outgoing connections. These settings override the compiled-in defaults and can be further overridden by query parameters in the URL that initiates the file transfer."
+                        },
+                        {
+                            "name": "SMTPPolicies",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSMTPPolicy"
+                            },
+                            "summary": "SMTP Client Policies",
+                            "array": "true",
+                            "cli-alias": "smtp-policy",
+                            "display": "SMTP Client Policies",
+                            "description": "Associate a set of SMTP URLs with a specific policy that controls the default values of many client options for outgoing connections. These settings override the compiled-in defaults and can be further overridden by query parameters in the URL that sends the e-mail message."
+                        },
+                        {
+                            "name": "SFTPPolicies",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSFTPPolicy"
+                            },
+                            "summary": "SFTP Client Policies",
+                            "array": "true",
+                            "cli-alias": "sftp-policy",
+                            "display": "SFTP Client Policies",
+                            "description": "Associate a set of SFTP URLs with a specific policy that controls the default values of many SSH client options for outgoing connections. These settings override the compiled-in defaults and can be further overridden by query parameters in the URL that initiates the file transfer."
+                        }
+                    ]
+                },
+                "description": "&lt;p>Use this page to configure a User Agent, which the device uses to retrieve resources (for example, stylesheets or XML documents) from remote servers.&lt;/p>&lt;p>A User Agent can also affect the messages emitted by a Multi-Protocol Gateway&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/HTTPUserAgent"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/HTTPUserAgent"
+                }
+            }
+        }
+    }
+}

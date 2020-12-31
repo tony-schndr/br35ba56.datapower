@@ -1,0 +1,856 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSHProfileUsage"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSHProfileUsage"
+                    }
+                },
+                "type": {
+                    "display": "SSH Client Profile Usage",
+                    "description": "The intended usage of the SSH Client Profile.",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "SFTP",
+                                "description": "Profile used for Secure FTP.",
+                                "name": "sftp"
+                            },
+                            {
+                                "display": "Deprecated - SCC",
+                                "description": "Deprecated - Profile used for Secure Cloud Connector.",
+                                "name": "scc"
+                            }
+                        ]
+                    },
+                    "name": "dmSSHProfileUsage"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSHUserAuthenticationMethods"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSHUserAuthenticationMethods"
+                    }
+                },
+                "type": {
+                    "name": "dmSSHUserAuthenticationMethods",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Public Key",
+                                "name": "publickey",
+                                "summary": ""
+                            },
+                            {
+                                "display": "Password",
+                                "name": "password",
+                                "summary": ""
+                            }
+                        ]
+                    },
+                    "display": "SSH User Authentication Methods"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSHCipherSuite"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSHCipherSuite"
+                    }
+                },
+                "type": {
+                    "name": "dmSSHCipherSuite",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "CHACHA20-POLY1305_AT_OPENSSH.COM",
+                                "display": "chacha20-poly1305@openssh.com"
+                            },
+                            {
+                                "name": "AES128-CTR",
+                                "display": "aes128-ctr"
+                            },
+                            {
+                                "name": "AES192-CTR",
+                                "display": "aes192-ctr"
+                            },
+                            {
+                                "name": "AES256-CTR",
+                                "display": "aes256-ctr"
+                            },
+                            {
+                                "name": "AES128-GCM_AT_OPENSSH.COM",
+                                "display": "aes128-gcm@openssh.com"
+                            },
+                            {
+                                "name": "AES256-GCM_AT_OPENSSH.COM",
+                                "display": "aes256-gcm@openssh.com"
+                            },
+                            {
+                                "name": "AES128-CBC",
+                                "display": "aes128-cbc"
+                            },
+                            {
+                                "name": "AES192-CBC",
+                                "display": "aes192-cbc"
+                            },
+                            {
+                                "name": "AES256-CBC",
+                                "display": "aes256-cbc"
+                            },
+                            {
+                                "name": "3DES-CBC",
+                                "display": "3des-cbc"
+                            },
+                            {
+                                "name": "ARCFOUR",
+                                "display": "arcfour"
+                            },
+                            {
+                                "name": "ARCFOUR128",
+                                "display": "arcfour128"
+                            },
+                            {
+                                "name": "ARCFOUR256",
+                                "display": "arcfour256"
+                            },
+                            {
+                                "name": "BLOWFISH-CBC",
+                                "display": "blowfish-cbc"
+                            },
+                            {
+                                "name": "CAST128-CBC",
+                                "display": "cast128-cbc"
+                            },
+                            {
+                                "name": "RIJNDAEL-CBC_AT_LYSATOR.LIU.SE",
+                                "display": "rijndael-cbc@lysator.liu.se"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSHKEXList"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSHKEXList"
+                    }
+                },
+                "type": {
+                    "name": "dmSSHKEXList",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "DIFFIE-HELLMAN-GROUP1-SHA1",
+                                "display": "diffie-hellman-group1-sha1"
+                            },
+                            {
+                                "name": "DIFFIE-HELLMAN-GROUP14-SHA1",
+                                "display": "diffie-hellman-group14-sha1"
+                            },
+                            {
+                                "name": "DIFFIE-HELLMAN-GROUP-EXCHANGE-SHA1",
+                                "display": "diffie-hellman-group-exchange-sha1"
+                            },
+                            {
+                                "name": "DIFFIE-HELLMAN-GROUP-EXCHANGE-SHA256",
+                                "display": "diffie-hellman-group-exchange-sha256"
+                            },
+                            {
+                                "name": "ECDH-SHA2-NISTP256",
+                                "display": "ecdh-sha2-nistp256"
+                            },
+                            {
+                                "name": "ECDH-SHA2-NISTP384",
+                                "display": "ecdh-sha2-nistp384"
+                            },
+                            {
+                                "name": "ECDH-SHA2-NISTP521",
+                                "display": "ecdh-sha2-nistp521"
+                            },
+                            {
+                                "name": "CURVE25519-SHA256_AT_LIBSSH.ORG",
+                                "display": "curve25519-sha256@libssh.org"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSHMACList"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSHMACList"
+                    }
+                },
+                "type": {
+                    "name": "dmSSHMACList",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "HMAC-SHA1",
+                                "display": "hmac-sha1"
+                            },
+                            {
+                                "name": "HMAC-SHA1-96",
+                                "display": "hmac-sha1-96"
+                            },
+                            {
+                                "name": "HMAC-SHA2-256",
+                                "display": "hmac-sha2-256"
+                            },
+                            {
+                                "name": "HMAC-SHA2-512",
+                                "display": "hmac-sha2-512"
+                            },
+                            {
+                                "name": "HMAC-MD5",
+                                "display": "hmac-md5"
+                            },
+                            {
+                                "name": "HMAC-MD5-96",
+                                "display": "hmac-md5-96"
+                            },
+                            {
+                                "name": "HMAC-RIPEMD160",
+                                "display": "hmac-ripemd160"
+                            },
+                            {
+                                "name": "HMAC-RIPEMD160_AT_OPENSSH.COM",
+                                "display": "hmac-ripemd160@openssh.com"
+                            },
+                            {
+                                "name": "UMAC-64_AT_OPENSSH.COM",
+                                "display": "umac-64@openssh.com"
+                            },
+                            {
+                                "name": "UMAC-128_AT_OPENSSH.COM",
+                                "display": "umac-128@openssh.com"
+                            },
+                            {
+                                "name": "HMAC-SHA1-ETM_AT_OPENSSH.COM",
+                                "display": "hmac-sha1-etm@openssh.com"
+                            },
+                            {
+                                "name": "HMAC-SHA1-96-ETM_AT_OPENSSH.COM",
+                                "display": "hmac-sha1-96-etm@openssh.com"
+                            },
+                            {
+                                "name": "HMAC-SHA2-256-ETM_AT_OPENSSH.COM",
+                                "display": "hmac-sha2-256-etm@openssh.com"
+                            },
+                            {
+                                "name": "HMAC-SHA2-512-ETM_AT_OPENSSH.COM",
+                                "display": "hmac-sha2-512-etm@openssh.com"
+                            },
+                            {
+                                "name": "HMAC-MD5-ETM_AT_OPENSSH.COM",
+                                "display": "hmac-md5-etm@openssh.com"
+                            },
+                            {
+                                "name": "HMAC-MD5-96-ETM_AT_OPENSSH.COM",
+                                "display": "hmac-md5-96-etm@openssh.com"
+                            },
+                            {
+                                "name": "HMAC-RIPEMD160-ETM_AT_OPENSSH.COM",
+                                "display": "hmac-ripemd160-etm@openssh.com"
+                            },
+                            {
+                                "name": "UMAC-64-ETM_AT_OPENSSH.COM",
+                                "display": "umac-64-etm@openssh.com"
+                            },
+                            {
+                                "name": "UMAC-128-ETM_AT_OPENSSH.COM",
+                                "display": "umac-128-etm@openssh.com"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "SSHClientProfile",
+                "display": "SSH Client Profile",
+                "property-group": {
+                    "member": [
+                        {
+                            "name": "ProfileUsage"
+                        },
+                        {
+                            "name": "UserName"
+                        },
+                        {
+                            "name": "UserSummary"
+                        }
+                    ],
+                    "name": "summary"
+                },
+                "uri": "crypto/sshclientprofile",
+                "actions": {
+                    "action": {
+                        "name": "AddKnownHost",
+                        "parameters": {
+                            "parameter": {
+                                "name": "ClientName",
+                                "select": "dmObjectName"
+                            }
+                        }
+                    }
+                },
+                "summary": "Profile describing an SSH client",
+                "cmd-group": "crypto",
+                "cli-alias": "sshclientprofile",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "UserName",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "summary": "A user name",
+                            "cli-alias": "user-name",
+                            "display": "User name",
+                            "description": "Specifies the user to log in as on the remote SSH server."
+                        },
+                        {
+                            "name": "ProfileUsage",
+                            "default": "sftp",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSHProfileUsage"
+                            },
+                            "required": "true",
+                            "summary": "Allowable profile usage",
+                            "cli-alias": "profile-usage",
+                            "display": "Profile Usage",
+                            "description": "Specifies the usage of the profile. The usage can be either sftp or scc, but not both. scc is deprecated. If the profile is to be used with the SFTP protocol, the usage must be sftp. If the profile is to be used with a Secure Cloud Connector, the usage must be scc."
+                        },
+                        {
+                            "name": "SSHUserAuthentication",
+                            "default": "publickey+password",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "ProfileUsage",
+                                    "evaluation": "property-equals",
+                                    "value": "sftp"
+                                }
+                            },
+                            "summary": "Allowable user authentication types",
+                            "cli-alias": "user-auth",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "ProfileUsage",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "sftp"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSHUserAuthenticationMethods"
+                            },
+                            "display": "User Authentication",
+                            "description": "Specifies the type(s) of SSH user authentication available for use by the client. Authentication can be either public key or password or both public key and password. If the configuration includes both authentication methods, public key authentication is attempted first."
+                        },
+                        {
+                            "name": "UserPrivateKey",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "ProfileUsage",
+                                                    "evaluation": "property-equals",
+                                                    "value": "sftp"
+                                                },
+                                                {
+                                                    "property-name": "SSHUserAuthentication",
+                                                    "evaluation": "property-equals",
+                                                    "value": "publickey"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "ProfileUsage",
+                                            "evaluation": "property-equals",
+                                            "value": "scc"
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "user-private-key",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "ProfileUsage",
+                                                    "evaluation": "property-equals",
+                                                    "value": "sftp"
+                                                },
+                                                {
+                                                    "property-name": "SSHUserAuthentication",
+                                                    "evaluation": "property-does-not-equal",
+                                                    "value": "publickey"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "ProfileUsage",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "sftp"
+                                        }
+                                    ]
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoKey"
+                                }
+                            },
+                            "display": "User Private Key",
+                            "description": "&lt;p>Specifies the Crypto Key representing the private key to use for public key authentication. Keys used as user private keys must not be password protected.&lt;/p>"
+                        },
+                        {
+                            "name": "Password",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "A password",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "ProfileUsage",
+                                                    "evaluation": "property-equals",
+                                                    "value": "sftp"
+                                                },
+                                                {
+                                                    "property-name": "SSHUserAuthentication",
+                                                    "evaluation": "property-does-not-equal",
+                                                    "value": "password"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "ProfileUsage",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "sftp"
+                                        },
+                                        {
+                                            "property-name": "Password",
+                                            "evaluation": "property-equals",
+                                            "value": ""
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "user-password",
+                            "display": "Password (deprecated)",
+                            "description": "Specifies the password associated with the user name used for the SSH client."
+                        },
+                        {
+                            "name": "PasswordAlias",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "ProfileUsage",
+                                            "evaluation": "property-equals",
+                                            "value": "sftp"
+                                        },
+                                        {
+                                            "property-name": "SSHUserAuthentication",
+                                            "evaluation": "property-equals",
+                                            "value": "password"
+                                        },
+                                        {
+                                            "property-name": "Password",
+                                            "evaluation": "property-equals",
+                                            "value": ""
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "A password alias",
+                            "cli-alias": "user-password-alias",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "ProfileUsage",
+                                                    "evaluation": "property-equals",
+                                                    "value": "sftp"
+                                                },
+                                                {
+                                                    "property-name": "SSHUserAuthentication",
+                                                    "evaluation": "property-does-not-equal",
+                                                    "value": "password"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "ProfileUsage",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "sftp"
+                                        }
+                                    ]
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/PasswordAlias"
+                                }
+                            },
+                            "display": "Password Alias",
+                            "description": "Specifies the password alias of the password associated with the user name used for the SSH client."
+                        },
+                        {
+                            "name": "PersistentConnections",
+                            "default": "on",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "ProfileUsage",
+                                    "evaluation": "property-equals",
+                                    "value": "sftp"
+                                }
+                            },
+                            "summary": "Enable/Disable persistent connections for objects using this profile",
+                            "cli-alias": "persistent-connections",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "ProfileUsage",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "sftp"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "display": "Persistent Connections",
+                            "description": "When on, persistent connections are enabled. Persistent connections allow new SSH requests to reuse the connection of a previous SSH session without having to reauthenticate. When off, persistent connections are disabled. The default is on."
+                        },
+                        {
+                            "name": "PersistentConnectionTimeout",
+                            "default": 120,
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "ProfileUsage",
+                                            "evaluation": "property-equals",
+                                            "value": "sftp"
+                                        },
+                                        {
+                                            "property-name": "PersistentConnections",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        }
+                                    ]
+                                }
+                            },
+                            "maximum": 86400,
+                            "summary": "Timeout in seconds that a persistent connection can remain idle before closing the connection.",
+                            "cli-alias": "persistent-connection-timeout",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "ProfileUsage",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "sftp"
+                                        },
+                                        {
+                                            "property-name": "PersistentConnections",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "on"
+                                        }
+                                    ]
+                                }
+                            },
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Persistent Connection Idle Timeout",
+                            "description": "Specifies the number of seconds that a persistent connection can remain idle before closing the connection. Enter any value of 1 - 86000. The default is 120."
+                        },
+                        {
+                            "name": "StrictHostKeyChecking",
+                            "default": "off",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "ProfileUsage",
+                                    "evaluation": "property-equals",
+                                    "value": "sftp"
+                                }
+                            },
+                            "cli-alias": "strict-host-key-checking",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "ProfileUsage",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "sftp"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "display": "Strict Host Key Checking",
+                            "description": "&lt;p>Specifies how host keys are checked during the connection and authentication phase. By default strict host key checking is disabled. The SSH client verifies the incoming host key against the keys in the known hosts list. If the host key does not match an existing known host entry for the remote server, the connection is rejected. If the known host list does not contain a host key for the remote server, the SSH client automatically accepts the host and adds its host key to the known host list.&lt;/p>&lt;p>When strict host key checking is enabled, the SSH client connects only to known hosts with valid SSH host keys that are stored in the known hosts list. Host keys not listed in the known host list are rejected.&lt;/p>"
+                        },
+                        {
+                            "name": "Ciphers",
+                            "default": [
+                                "CHACHA20-POLY1305_AT_OPENSSH.COM",
+                                "AES128-CTR",
+                                "AES192-CTR",
+                                "AES256-CTR",
+                                "AES128-GCM_AT_OPENSSH.COM",
+                                "AES256-GCM_AT_OPENSSH.COM",
+                                "AES128-CBC",
+                                "BLOWFISH-CBC",
+                                "CAST128-CBC",
+                                "AES192-CBC",
+                                "AES256-CBC",
+                                "RIJNDAEL-CBC_AT_LYSATOR.LIU.SE"
+                            ],
+                            "cli-alias": "ciphers",
+                            "summary": "Which SSH cipher suites to support.",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "ProfileUsage",
+                                    "evaluation": "property-equals",
+                                    "value": "scc"
+                                }
+                            },
+                            "array": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSHCipherSuite"
+                            },
+                            "display": "Ciphers",
+                            "description": "Specifies the list of SSH cipher suites to support."
+                        },
+                        {
+                            "name": "KEXAlg",
+                            "default": [
+                                "CURVE25519-SHA256_AT_LIBSSH.ORG",
+                                "ECDH-SHA2-NISTP256",
+                                "ECDH-SHA2-NISTP384",
+                                "ECDH-SHA2-NISTP521",
+                                "DIFFIE-HELLMAN-GROUP-EXCHANGE-SHA256",
+                                "DIFFIE-HELLMAN-GROUP14-SHA1"
+                            ],
+                            "cli-alias": "kex-alg",
+                            "summary": "Which key exchange (KEX) algorithms to support.",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "ProfileUsage",
+                                    "evaluation": "property-equals",
+                                    "value": "scc"
+                                }
+                            },
+                            "array": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSHKEXList"
+                            },
+                            "display": "Key exchange algorithms",
+                            "description": "Specifies the list of SSH KEXs support."
+                        },
+                        {
+                            "name": "MACAlg",
+                            "default": [
+                                "UMAC-64-ETM_AT_OPENSSH.COM",
+                                "UMAC-128-ETM_AT_OPENSSH.COM",
+                                "HMAC-SHA2-256-ETM_AT_OPENSSH.COM",
+                                "HMAC-SHA2-512-ETM_AT_OPENSSH.COM",
+                                "HMAC-SHA1-ETM_AT_OPENSSH.COM",
+                                "UMAC-64_AT_OPENSSH.COM",
+                                "UMAC-128_AT_OPENSSH.COM",
+                                "HMAC-SHA2-256",
+                                "HMAC-SHA2-512",
+                                "HMAC-SHA1"
+                            ],
+                            "cli-alias": "mac-alg",
+                            "summary": "Which message authentication codes (MAC) to support.",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "ProfileUsage",
+                                    "evaluation": "property-equals",
+                                    "value": "scc"
+                                }
+                            },
+                            "array": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSHMACList"
+                            },
+                            "display": "Message authentication codes",
+                            "description": "Specifies the list of SSH MAC to support."
+                        }
+                    ]
+                },
+                "description": "An SSH Client Profile is associated with an SSH URLOpener or with a Secure Cloud Connector. Also, a Secure Cloud Connection requires an Application Optimization license. The remote server's public key must be contained in the SSH Client Profile known hosts list."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/SSHClientProfile"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/SSHClientProfile"
+                }
+            }
+        }
+    }
+}

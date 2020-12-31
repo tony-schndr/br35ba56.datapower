@@ -1,0 +1,457 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmEBMSSyncReplyMode"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmEBMSSyncReplyMode"
+                    }
+                },
+                "type": {
+                    "name": "dmEBMSSyncReplyMode",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "mshSignalsOnly",
+                                "description": "Request for acknowledgment/error documents to be sent back over a synchronous connection.",
+                                "name": "mshSignalsOnly",
+                                "summary": "Request for synchronous reply of Acknowledgment/Error message"
+                            },
+                            {
+                                "display": "none",
+                                "description": "Do not request receiver to send acknowledgment/error documents back in a synchronous connection.",
+                                "name": "none",
+                                "summary": "Not request for synchronous reply of Acknowledgment/Error message"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmCPARequestedPerMessage"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmCPARequestedPerMessage"
+                    }
+                },
+                "type": {
+                    "name": "dmCPARequestedPerMessage",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "never",
+                                "name": "never",
+                                "summary": "Indicates that the incoming message should not have the request element present else it will fail."
+                            },
+                            {
+                                "display": "always",
+                                "name": "always",
+                                "summary": "Indicates that the incoming message should have the request element present else it will fail."
+                            },
+                            {
+                                "display": "perMessage",
+                                "name": "perMessage",
+                                "summary": "Indicates that whether the request element present is a \"perMessage\" basis. And the request will be used for processing the inbound message in question."
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAllowDuplicateMessage"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAllowDuplicateMessage"
+                    }
+                },
+                "type": {
+                    "name": "dmAllowDuplicateMessage",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Never",
+                                "name": "never",
+                                "summary": "Never allow or reprocess a duplicate message."
+                            },
+                            {
+                                "display": "Always",
+                                "name": "always",
+                                "summary": "Always allow and reprocess a duplicate message. The DataPower Gateway uses a new record for the reprocessed transaction instead of updating the record for the previous transaction."
+                            },
+                            {
+                                "display": "On error",
+                                "name": "on-error",
+                                "summary": "Allow and reprocess a duplicate message only when an error occurs during the previous transaction. The error excludes failures in sending asynchronous MDN, ACK, or Receipt."
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "B2B",
+                "name": "B2BCPAReceiverSetting",
+                "display": "CPA Receiver Setting",
+                "property-group": [
+                    {
+                        "member": {
+                            "name": "UserSummary"
+                        },
+                        "name": "summary"
+                    },
+                    {
+                        "member": {
+                            "name": "LocalEndpointURI"
+                        },
+                        "name": "Transport",
+                        "display": "Transport Settings"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "SyncReplyMode"
+                            },
+                            {
+                                "name": "AckRequested"
+                            },
+                            {
+                                "name": "AckSignatureRequested"
+                            },
+                            {
+                                "name": "AllowDuplicateMessage"
+                            }
+                        ],
+                        "name": "MessageCharacteristics",
+                        "display": "Message Characteristics"
+                    },
+                    {
+                        "property-group": [
+                            {
+                                "member": {
+                                    "name": "PersistDuration"
+                                },
+                                "name": "ReliableMessaging",
+                                "display": "Reliable Messaging"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "EncryptionRequired"
+                                    },
+                                    {
+                                        "name": "DecryptIdCred"
+                                    },
+                                    {
+                                        "name": "SignatureRequired"
+                                    },
+                                    {
+                                        "name": "VerifyValCred"
+                                    },
+                                    {
+                                        "name": "DefaultSignerCert"
+                                    }
+                                ],
+                                "name": "Security",
+                                "display": "Security"
+                            }
+                        ],
+                        "name": "DocExchange",
+                        "display": "DocExchange Settings"
+                    }
+                ],
+                "uri": "b2b/cpa-receiver-setting",
+                "summary": "CPA Receiver Setting",
+                "cmd-group": "b2b",
+                "cli-alias": "cpa-receiver-setting",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "description": "&lt;p>Specifies the URI where messages can be received.&lt;/p>&lt;p>Implied by CPA the Endpoint element of the internal (receiving) party's TransportReceiver element. If the value is specified, then the incoming URI received by the Frontside Handler should match the pattern specified otherwise the transaction will fail and the gateway will attempt to report the error to the sender.&lt;/p>",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "URI to receive the message",
+                            "cli-alias": "local-uri",
+                            "display": "Local URI",
+                            "name": "LocalEndpointURI"
+                        },
+                        {
+                            "name": "SyncReplyMode",
+                            "default": "none",
+                            "type": {
+                                "href": "/mgmt/types/default/dmEBMSSyncReplyMode"
+                            },
+                            "summary": "Sync reply mode the receiver expects",
+                            "cli-alias": "syncreply-mode",
+                            "display": "Sync Reply Mode",
+                            "description": "&lt;p>Specifies the type of sync reply mode the receiver expects. The value of \"none\", which is the default value, indicates that all MSH level and Business level messages will be returned as separate asynchronous messages. The value other than \"none\" indicates the synchronous connection will be used to exchange all messages necessary for conducting the business transaction.&lt;/p>&lt;p>Imported from CPA the internal party's DeliveryChannel's syncReplyMode attribute within the MessagingCharacteristics element.&lt;/p>&lt;p>If the value configured is not identical to the implied mode requested by the received ebMS message, for example, the value is \"none\" but a SyncReply element is present in the received ebMS message header, the gateway will attempt to report the error to the sender.&lt;/p>"
+                        },
+                        {
+                            "name": "AckRequested",
+                            "default": "perMessage",
+                            "type": {
+                                "href": "/mgmt/types/default/dmCPARequestedPerMessage"
+                            },
+                            "summary": "Whether the receiver expects request for Acknowledgment",
+                            "cli-alias": "ack-requested",
+                            "display": "Acknowledgment Requested",
+                            "description": "&lt;p>Used by the receiver to control whether to expect the incoming message to request an Acknowledgment.&lt;/p>&lt;p>If the value is set to \"always\" (or \"never\"), then the AckRequested element should (not) be present within the MessageHeader element in the ebMS SOAP Header otherwise it will fail and the gateway will attempt to report the error to the sender. If the value is set to \"perMessage\", then it means whether the AckRequested element is present or absent can be varied on a \"per message\" basis and the receiving gateway will return an Acknowledgment signal if requested.&lt;/p>&lt;p>Imported from CPA the internal party's DeliveryChannel's ackRequested attribute within the MessagingCharacteristics element.&lt;/p>"
+                        },
+                        {
+                            "name": "AckSignatureRequested",
+                            "default": "perMessage",
+                            "type": {
+                                "href": "/mgmt/types/default/dmCPARequestedPerMessage"
+                            },
+                            "summary": "",
+                            "cli-alias": "ack-signature-requested",
+                            "display": "Signed Acknowledgment Requested",
+                            "description": "&lt;p>Used by the receiver to control whether to expect the incoming message to request a signed Acknowledgment.&lt;/p>&lt;p>If the value is set to \"always\" (or \"never\"), then the signed attribute within the AckRequested element should be set to \"true\" (or \"false\") otherwise it will fail and the gateway will attempt to report the error to the sender. If the value is set to \"perMessage\", then it means the receiving gateway will sign the Acknowledgment if requested.&lt;/p>&lt;p>Imported from CPA the internal party's DeliveryChannel's ackRequested attribute within the MessagingCharacteristics element.&lt;/p>"
+                        },
+                        {
+                            "name": "AllowDuplicateMessage",
+                            "default": "never",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAllowDuplicateMessage"
+                            },
+                            "summary": "When to allow and reprocess duplicate inbound messages",
+                            "cli-alias": "allow-dup-msg",
+                            "display": "Allow Duplicate Inbound Message",
+                            "description": "Controls when to allow and reprocess duplicate AS or ebMS inbound messages. Note that this option does not apply to MDN or ACK."
+                        },
+                        {
+                            "name": "PersistDuration",
+                            "default": 0,
+                            "cli-alias": "persist-duration",
+                            "maximum": 6000000,
+                            "summary": "Duration of message to be persisted",
+                            "minimum": 0,
+                            "units": "Seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Persist Duration",
+                            "description": "&lt;p>Indicates to the receiving gateway the minimum length of time the message should be kept in persistent storage. When receiving inbound message, the Persist Duration is used to compute the expiry time using the formula: Time to Persist = Persist Duration + Current Time. When a message is not expired, it is not eligible to be archived; once a message's expiry time has elapsed, the message will be archivable when performing archive operation.&lt;/p>&lt;p>Default to 0 to expire the received document at the time we receive the document.&lt;/p>&lt;p>Imported from CPA, the PersistDuration element within ReliableMessaging element under DocExchange/ebXMLReceiverBinding element.&lt;/p>"
+                        },
+                        {
+                            "name": "EncryptionRequired",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether the incoming message should be encrypted",
+                            "cli-alias": "encrypt-required",
+                            "display": "Require Encryption",
+                            "description": "&lt;p>Controls whether the body of received ebMS messages should be encrypted. The default is off. Note that this option is not applied for the MSH level signals which is not to be encrypted.&lt;/p>&lt;p>Implied by CPA the isConfidential attribute within this party action binding's BusinessTransactionCharacteristics element.&lt;/p>"
+                        },
+                        {
+                            "name": "DecryptIdCred",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "EncryptionRequired",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "Identification credentials used to decrypt inbound messages",
+                            "cli-alias": "decrypt-idcred",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoIdentCred"
+                                }
+                            },
+                            "display": "Inbound Decryption Identification Credentials",
+                            "description": "&lt;p>Sets the identification credentials to decrypt inbound messages.&lt;/p>&lt;p>Created when importing a CPA. Please set the correct identification credentials after import.&lt;/p>"
+                        },
+                        {
+                            "name": "SignatureRequired",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether the incoming message should be signed",
+                            "cli-alias": "sign-required",
+                            "display": "Require Signature",
+                            "description": "&lt;p>Controls whether the received ebMS messages should be signed. The default is off.&lt;/p>&lt;p>Implied by CPA the isNonRepudiationRequired attribute within this party action binding's BusinessTransactionCharacteristics element.&lt;/p>"
+                        },
+                        {
+                            "name": "VerifyValCred",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "SignatureRequired",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "Validation credentials used to verify inbound message",
+                            "cli-alias": "verify-valcred",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoValCred"
+                                }
+                            },
+                            "display": "Inbound Signature Validation Credentials",
+                            "description": "&lt;p>Sets the validation credentials to verify inbound messages' signature.&lt;/p>&lt;p>Imported from CPA. If the isNonRepudiationReceiptRequired is set true, the SenderNonRepudiation element under DocExchange/ebXMLSenderBinding and the ReceiverNonRepudiation element under DocExchange/ebXMLReceiverBinding describe the parameters related to the implementation of non-repudiation of origin - which includes the signing certificate, signature algorithm, the hashing algorithm, etc.&lt;/p>"
+                        },
+                        {
+                            "name": "DefaultSignerCert",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "SignatureRequired",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "Default validation certificate used to verify the signature of inbound message",
+                            "cli-alias": "default-signer-cert",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoCertificate"
+                                }
+                            },
+                            "display": "Default Inbound Signature Validation Certificate",
+                            "description": "Set the default validation certificate to verify the signature of an inbound ebMS message or an acknowledgment. The default signature validation certificate is used if either keyInfo element is missing or signature method is not supported."
+                        }
+                    ]
+                }
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/B2BCPAReceiverSetting"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/B2BCPAReceiverSetting"
+                }
+            }
+        }
+    }
+}

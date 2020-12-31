@@ -1,0 +1,265 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPNetAddress"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPNetAddress"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip/mask",
+                    "name": "dmIPNetAddress",
+                    "format": "(a.b.c.d/e)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHTTPMethod"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHTTPMethod"
+                    }
+                },
+                "type": {
+                    "display": "HTTP Method",
+                    "name": "dmHTTPMethod",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "any",
+                                "display": "any"
+                            },
+                            {
+                                "name": "OPTIONS",
+                                "display": "OPTIONS"
+                            },
+                            {
+                                "name": "GET",
+                                "display": "GET"
+                            },
+                            {
+                                "name": "HEAD",
+                                "display": "HEAD"
+                            },
+                            {
+                                "name": "POST",
+                                "display": "POST"
+                            },
+                            {
+                                "name": "PUT",
+                                "display": "PUT"
+                            },
+                            {
+                                "name": "PATCH",
+                                "display": "PATCH"
+                            },
+                            {
+                                "name": "DELETE",
+                                "display": "DELETE"
+                            },
+                            {
+                                "name": "TRACE",
+                                "display": "TRACE"
+                            },
+                            {
+                                "name": "CONNECT",
+                                "display": "CONNECT"
+                            }
+                        ]
+                    },
+                    "summary": "HTTP Method"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHTTPHeader"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHTTPHeader"
+                    }
+                },
+                "type": {
+                    "name": "dmHTTPHeader",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Enter the name of the HTTP header field to be examined.",
+                                "required": "true",
+                                "summary": "The name of an HTTP header field",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Name",
+                                "name": "Name"
+                            },
+                            {
+                                "description": "&lt;p>Provide a literal or wildcard expression to define a set of values to include in or exclude from the traffic definition. If the contents of the specified header field fulfill the defined match criterion, the match succeeds.&lt;/p>&lt;p>The following wildcard characters are available:&lt;/p>&lt;table>&lt;tr>&lt;td valign=\"top\">asterisk (*)&lt;/td>&lt;td>Matches 0 or more occurrences of any character&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">question mark (?)&lt;/td>&lt;td>Matches one occurrence of any single character&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">square brackets ([ ])&lt;/td>&lt;td>Defines a character or numeric range. &lt;p>For example, [1-5] matches 1, 2, 3, 4, or 5, while xs[dl] matches xsd or xsl.&lt;/p>&lt;/td>&lt;/tr>&lt;/table>",
+                                "required": "true",
+                                "summary": "The value of HTTP Header field",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Value Match",
+                                "name": "Value"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "MessageMatching",
+                "uri": "monitor/message-matching",
+                "display": "Message Matching",
+                "cmd-group": "messages",
+                "cli-alias": "message-matching",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "description": "Use an IP network address and prefix length to define a contiguous range of IP addresses included in this traffic definition (for example, 10.10.100.0/28 specifies IP addresses 10.10.100.0 through 10.10.100.15, and 10.10.100.19/32 specifies a single host address).",
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPNetAddress"
+                            },
+                            "summary": "Included address range",
+                            "cli-alias": "ip",
+                            "display": "IP Addresses",
+                            "name": "IPAddress"
+                        },
+                        {
+                            "description": "Use an IP network address and prefix length to define a contiguous range of IP addresses excluded from this traffic definition (for example, 10.10.100.0/28 specifies IP addresses 10.10.100.0 through 10.10.100.15, and 10.10.100.19/32 specifies a single host address).",
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPNetAddress"
+                            },
+                            "summary": "Excluded address range",
+                            "cli-alias": "ip-exclude",
+                            "display": "Excluded IP Addresses",
+                            "name": "IPExclude"
+                        },
+                        {
+                            "name": "HTTPMethod",
+                            "default": "any",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHTTPMethod"
+                            },
+                            "summary": "HTTP method",
+                            "cli-alias": "method",
+                            "display": "HTTP Method",
+                            "description": "Select the HTTP method included in this traffic definition. The default value is any, which indicates that HTTP method is not a match criteria."
+                        },
+                        {
+                            "name": "HTTPHeader",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHTTPHeader"
+                            },
+                            "summary": "Included HTTP header field/values",
+                            "array": "true",
+                            "cli-alias": "http-header",
+                            "display": "HTTP Headers",
+                            "description": "Click this tab to add match criteria for inclusive HTTP header fields to the traffic definition. The field with its corresponding value must appear in the HTTP header of the message to qualify for inclusion."
+                        },
+                        {
+                            "name": "HTTPHeaderExclude",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHTTPHeader"
+                            },
+                            "summary": "Excluded HTTP header field/values",
+                            "array": "true",
+                            "cli-alias": "http-header-exclude",
+                            "display": "Excluded HTTP Headers",
+                            "description": "Click this tab to add match criteria for exclusive HTTP header field to the traffic definition. The field with its corresponding value cannot appear in the HTTP header of the message to qualify for exclusion."
+                        },
+                        {
+                            "description": "Provide a literal or wildcard expression to define a URL set included in this traffic definition. The following wildcard characters are available when defining the URL set. &lt;table>&lt;tr>&lt;td valign=\"top\">asterisk (*)&lt;/td>&lt;td valign=\"top\">Matches 0 or more occurrences of any character&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">question mark (?)&lt;/td>&lt;td valign=\"top\">Matches one occurrence of any single character&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">brackets ( [ ] )&lt;/td>&lt;td valign=\"top\">Defines a character or numeric range. For example, [1-5] matches 1, 2, 3, 4, or 5, while xs[dl] matches xsd or xsl.&lt;/td>&lt;/tr>&lt;/table>",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Included URL set",
+                            "cli-alias": "request-url",
+                            "display": "Request URL",
+                            "name": "RequestURL"
+                        }
+                    ]
+                },
+                "description": "&lt;p>Message Matching determines what messages will be monitored by any monitor that uses the Message Matching object. It is a definition of the traffic flow that is monitored.&lt;/p>&lt;p>To capture all messages, set the HTTP Method field to 'any' and leave all other fields blank.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/MessageMatching"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/MessageMatching"
+                }
+            }
+        }
+    }
+}

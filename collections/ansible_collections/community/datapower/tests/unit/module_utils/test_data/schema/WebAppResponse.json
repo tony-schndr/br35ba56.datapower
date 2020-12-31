@@ -1,0 +1,695 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSatisfactionPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSatisfactionPolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmSatisfactionPolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Prerequisite",
+                                "description": "All matching profiles in the Application Security Policy are run. A failure of any of these profiles results in the failure of the transaction. Only when all matching profiles are successful will the transaction be accepted. A typical use of this style would be a broad match that enforces a basic item, such as maximum size, that is followed up with more specific matches with stronger criteria.",
+                                "name": "pre-requisite",
+                                "summary": "Validate this policy and all matching policies before accepting"
+                            },
+                            {
+                                "display": "Admission",
+                                "description": "Only this policy is run. If successful, the transaction is accepted.",
+                                "name": "admission",
+                                "summary": "Validate this policy only before accepting"
+                            }
+                        ]
+                    },
+                    "summary": "Satisfaction Policy"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHTTPResponseCodes"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHTTPResponseCodes"
+                    }
+                },
+                "type": {
+                    "display": "HTTP Response Codes Allowed",
+                    "name": "dmHTTPResponseCodes",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "100 Continue",
+                                "name": "HTTP-100",
+                                "summary": "The client continues with its request"
+                            },
+                            {
+                                "display": "101 Switching Protocols",
+                                "name": "HTTP-101",
+                                "summary": "The server uses the Upgrade message header field to change HTTP version or protocol"
+                            },
+                            {
+                                "display": "200 OK",
+                                "name": "HTTP-200",
+                                "summary": "The request succeeded"
+                            },
+                            {
+                                "display": "201 Created",
+                                "name": "HTTP-201",
+                                "summary": "The request succeeded and created a new resource"
+                            },
+                            {
+                                "display": "202 Accepted",
+                                "name": "HTTP-202",
+                                "summary": "The request accepted for processing, but processing not complete"
+                            },
+                            {
+                                "display": "203 Non-Authoritative Information",
+                                "name": "HTTP-203",
+                                "summary": "The request accepted, but the returned information is from a local or third-party copy"
+                            },
+                            {
+                                "display": "204 No Content",
+                                "name": "HTTP-204",
+                                "summary": "The request accepted and might return meta-information that does not change view"
+                            },
+                            {
+                                "display": "205 Reset Content",
+                                "name": "HTTP-205",
+                                "summary": "The request accepted and the view reset"
+                            },
+                            {
+                                "display": "206 Partial Content",
+                                "name": "HTTP-206",
+                                "summary": "The server fulfilled the partial GET request for the resource"
+                            },
+                            {
+                                "display": "300 Multiple Choices",
+                                "name": "HTTP-300",
+                                "summary": "The request matches one of a set of representations, and a choice must be made"
+                            },
+                            {
+                                "display": "301 Moved",
+                                "name": "HTTP-301",
+                                "summary": "The server returned the new permanent URI for a link"
+                            },
+                            {
+                                "display": "302 Found",
+                                "name": "HTTP-302",
+                                "summary": "The resource temporarily resides at a different URI"
+                            },
+                            {
+                                "display": "303 See Other",
+                                "name": "HTTP-303",
+                                "summary": "The resource resides at a different URI"
+                            },
+                            {
+                                "display": "304 Not Modified",
+                                "name": "HTTP-304",
+                                "summary": "The client is using a local, cached copy"
+                            },
+                            {
+                                "display": "305 Use Proxy",
+                                "name": "HTTP-305",
+                                "summary": "The request resource accessed through a proxy"
+                            },
+                            {
+                                "display": "307 Temporary Redirect",
+                                "name": "HTTP-307",
+                                "summary": "The resource temporarily resides at a different URI"
+                            },
+                            {
+                                "display": "400 Bad Request",
+                                "name": "HTTP-400",
+                                "summary": "The server does not understand the request because of syntax"
+                            },
+                            {
+                                "display": "401 Unauthorized",
+                                "name": "HTTP-401",
+                                "summary": "The request requires user authentication"
+                            },
+                            {
+                                "display": "402 Payment Required",
+                                "name": "HTTP-402",
+                                "summary": "The request requires a charge-to header"
+                            },
+                            {
+                                "display": "403 Forbidden",
+                                "name": "HTTP-403",
+                                "summary": "The server understood the request and denied access"
+                            },
+                            {
+                                "display": "404 Not Found",
+                                "name": "HTTP-404",
+                                "summary": "The server could not find the resource"
+                            },
+                            {
+                                "display": "405 Method Not Allowed",
+                                "name": "HTTP-405",
+                                "summary": "The resource does not allow the specified method"
+                            },
+                            {
+                                "display": "406 Not Acceptable",
+                                "name": "HTTP-406",
+                                "summary": "The resource cannot generate a response because the contents are not acceptable"
+                            },
+                            {
+                                "display": "407 Proxy Authentication Required",
+                                "name": "HTTP-407",
+                                "summary": "The request requires user authentication through a proxy"
+                            },
+                            {
+                                "display": "408 Request Timeout",
+                                "name": "HTTP-408",
+                                "summary": "The client did not response to the server in the allocated time"
+                            },
+                            {
+                                "display": "409 Conflict",
+                                "name": "HTTP-409",
+                                "summary": "The request could not complete because of a conflict is resource state"
+                            },
+                            {
+                                "display": "410 Gone",
+                                "name": "HTTP-410",
+                                "summary": "The resource is no longer on the server and no redirection known"
+                            },
+                            {
+                                "display": "411 Length required",
+                                "name": "HTTP-411",
+                                "summary": "The server refused the request because the Content-Length header is absent"
+                            },
+                            {
+                                "display": "412 Precondition Failed",
+                                "name": "HTTP-412",
+                                "summary": "A precondition in a request-header field evaluated to false"
+                            },
+                            {
+                                "display": "413 Request Entity Too Large",
+                                "name": "HTTP-413",
+                                "summary": "The server refused the request because it is too large"
+                            },
+                            {
+                                "display": "500 Server Error",
+                                "name": "HTTP-500",
+                                "summary": "The server encountered an unexpected error and cannot process request"
+                            },
+                            {
+                                "display": "503 Service Unavailable",
+                                "name": "HTTP-503",
+                                "summary": "The server cannot process the request because the service is not available"
+                            }
+                        ]
+                    },
+                    "summary": "HTTP response codes that are allowed"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHTTPVersionMask"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHTTPVersionMask"
+                    }
+                },
+                "type": {
+                    "display": "HTTP Version Mask",
+                    "name": "dmHTTPVersionMask",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "HTTP 1.0",
+                                "name": "HTTP-1.0",
+                                "summary": "HTTP version 1.0"
+                            },
+                            {
+                                "display": "HTTP 1.1",
+                                "name": "HTTP-1.1",
+                                "summary": "HTTP version 1.1"
+                            }
+                        ]
+                    },
+                    "summary": "HTTP versions that are allowed"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmPCRE"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmPCRE"
+                    }
+                },
+                "type": {
+                    "cli-arg": "pcre",
+                    "name": "dmPCRE"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmWebAppXMLPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmWebAppXMLPolicy"
+                    }
+                },
+                "type": {
+                    "display": "XML Policy",
+                    "name": "dmWebAppXMLPolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "No processing",
+                                "description": "Performs no additional processing.",
+                                "name": "nothing",
+                                "summary": "Perform no additional processing"
+                            },
+                            {
+                                "display": "Well Formed XML",
+                                "description": "Ensures that the XML message is well formed and runs the transform rule that is specified by the XML processing rule.",
+                                "name": "xml",
+                                "summary": "Ensure that the XML message is well formed"
+                            },
+                            {
+                                "display": "Well Formed SOAP",
+                                "description": "Ensures that the SOAP message is well formed and runs the transform rule that is specified by the XML processing rule.",
+                                "name": "soap",
+                                "summary": "Ensure that the SOAP message is well formed"
+                            }
+                        ]
+                    },
+                    "summary": "Specify the processing of XML content"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmWebAppNonXMLPolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmWebAppNonXMLPolicy"
+                    }
+                },
+                "type": {
+                    "display": "Non-XML Policy",
+                    "name": "dmWebAppNonXMLPolicy",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "No processing",
+                                "description": "Performs no additional processing.",
+                                "name": "nothing",
+                                "summary": "Perform no additional processing"
+                            },
+                            {
+                                "display": "Side-Effect Rule",
+                                "description": "Runs the specified non-XML processing rule. The rule cannot change the contents of the message. The rule cannot access the INPUT or OUTPUT context. The rule can perform such actions as authenticate and authorize, or can send a copy of the contents of the message to a third destination.",
+                                "name": "side",
+                                "summary": "Run a processing rule that cannot change message content"
+                            },
+                            {
+                                "display": "Binary Rule",
+                                "description": "Runs the specified non-XML processing rule. The message payload is submitted as an unparsed binary object. The rule can change the contents of the message. The rule can perform such actions as authentication and authorize, can convert to XML, can repackage with additional information, or can send a copy of the contents of the message to a third destination. The results of the rule is used as the payload for further processing.",
+                                "name": "binary",
+                                "summary": "Run the processing rule and submit the payload as unparsed binary"
+                            }
+                        ]
+                    },
+                    "summary": "Specify the processing of non-XML content"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "WebAppResponse",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "PolicyType"
+                            }
+                        ],
+                        "name": "summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "ErrorPolicy"
+                            },
+                            {
+                                "name": "ContentTypes"
+                            }
+                        ],
+                        "name": "Profile",
+                        "display": "Profile"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "OKCodes"
+                            },
+                            {
+                                "name": "OKVersions"
+                            }
+                        ],
+                        "name": "Versions",
+                        "display": "Codes &amp; Versions"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "XMLPolicy"
+                            },
+                            {
+                                "name": "XMLRule"
+                            },
+                            {
+                                "name": "NonXMLPolicy"
+                            },
+                            {
+                                "name": "NonXMLRule"
+                            }
+                        ],
+                        "name": "XML",
+                        "display": "Processing"
+                    },
+                    {
+                        "member": {
+                            "name": "HeaderGNVC"
+                        },
+                        "name": "GNVC",
+                        "display": "Name Value"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "MinBodySize"
+                            },
+                            {
+                                "name": "MaxBodySize"
+                            }
+                        ],
+                        "name": "Threat",
+                        "display": "Threat Protection"
+                    }
+                ],
+                "uri": "webapp/response-profile",
+                "display": "Web Response Profile",
+                "cmd-group": "mpgw",
+                "cli-alias": "webapp-response-profile",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "PolicyType",
+                            "default": "admission",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSatisfactionPolicy"
+                            },
+                            "required": "true",
+                            "summary": "Satisfaction Style",
+                            "cli-alias": "policy-type",
+                            "display": "Style",
+                            "description": "Select the satisfaction policy for the profile. The default is Admission."
+                        },
+                        {
+                            "name": "OKCodes",
+                            "default": "0xAD5D",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHTTPResponseCodes"
+                            },
+                            "summary": "Allowable Response Codes",
+                            "cli-alias": "response-codes",
+                            "display": "Response Codes",
+                            "description": "Specify which response codes from the backend server are acceptable."
+                        },
+                        {
+                            "name": "OKVersions",
+                            "default": "0x03",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHTTPVersionMask"
+                            },
+                            "summary": "Response Versions",
+                            "cli-alias": "response-versions",
+                            "display": "Response Versions",
+                            "description": "Specify which HTTP versions are acceptable from the backend server."
+                        },
+                        {
+                            "name": "MinBodySize",
+                            "default": 0,
+                            "cli-alias": "response-body-min",
+                            "summary": "Minimum Response Body Size",
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Minimum Size",
+                            "description": "Specify the minimum size of the response body."
+                        },
+                        {
+                            "name": "MaxBodySize",
+                            "default": 128000000,
+                            "cli-alias": "response-body-max",
+                            "summary": "Maximum Response Body Size",
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Maximum Size",
+                            "description": "Specify the maximum size of the response body."
+                        },
+                        {
+                            "description": "The validation profile allows you to specify what headers are expected, what headers should be stripped, and what headers should be mapped to known values. If no profile is specified, any header is allowed.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/NameValueProfile"
+                                }
+                            },
+                            "summary": "Name/Value validation profile for response headers",
+                            "cli-alias": "response-header-profile",
+                            "display": "Header Name-Value Profile",
+                            "name": "HeaderGNVC"
+                        },
+                        {
+                            "name": "ContentTypes",
+                            "default": ".*",
+                            "type": {
+                                "href": "/mgmt/types/default/dmPCRE"
+                            },
+                            "summary": "List of Acceptable Content-Type Expressions",
+                            "array": "true",
+                            "cli-alias": "response-content-type",
+                            "display": "Content-Type List",
+                            "description": "A list of PCRE regular expressions that indicate acceptable content-type MIME headers on the response. If this list is empty, any content-type is acceptable. If the response does not have a content type that will be represented as an empty string for matching purposes. An empty list will match all content types."
+                        },
+                        {
+                            "name": "XMLPolicy",
+                            "default": "nothing",
+                            "type": {
+                                "href": "/mgmt/types/default/dmWebAppXMLPolicy"
+                            },
+                            "summary": "Processing policy when encountering XML",
+                            "cli-alias": "response-xml-policy",
+                            "display": "XML Processing",
+                            "description": "Specify how the device handles responses that contain an XML MIME type."
+                        },
+                        {
+                            "name": "XMLRule",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "XMLPolicy",
+                                    "evaluation": "property-value-in-list",
+                                    "value": [
+                                        "xml",
+                                        "soap"
+                                    ]
+                                }
+                            },
+                            "summary": "Assign an additional processing rule for xml",
+                            "cli-alias": "response-xml-rule",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/StylePolicyRule"
+                                }
+                            },
+                            "display": "XML Transformation Rule",
+                            "description": "This is the transformation rule that is run when the response contains an XML MIME type and the XML processing policy is set to XML or SOAP."
+                        },
+                        {
+                            "name": "NonXMLPolicy",
+                            "default": "nothing",
+                            "type": {
+                                "href": "/mgmt/types/default/dmWebAppNonXMLPolicy"
+                            },
+                            "summary": "Processing policy when encountering Non-XML",
+                            "cli-alias": "response-nonxml-policy",
+                            "display": "Non-XML Processing",
+                            "description": "Specify how the device handles responses that do not contain an XML MIME type."
+                        },
+                        {
+                            "name": "NonXMLRule",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "NonXMLPolicy",
+                                    "evaluation": "property-value-in-list",
+                                    "value": [
+                                        "side",
+                                        "binary"
+                                    ]
+                                }
+                            },
+                            "summary": "Assign an additional processing rule for non-xml",
+                            "cli-alias": "response-nonxml-rule",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/StylePolicyRule"
+                                }
+                            },
+                            "display": "Non-XML Processing Rule",
+                            "description": "This is the transformation rule that is run when the response does not contain an XML MIME type and the Non-XML processing policy is set to binary or side-effect."
+                        },
+                        {
+                            "description": "If this response policy is violated the firewall error policy will be invoked unless this more specific error policy is provided, in which case this policy takes precedence.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/WebAppErrorHandlingPolicy"
+                                }
+                            },
+                            "summary": "Error Handling Policy",
+                            "cli-alias": "error-policy-override",
+                            "display": "Error Policy",
+                            "name": "ErrorPolicy"
+                        }
+                    ]
+                },
+                "description": "The web response profile specifies various properties about the response side of the transaction that must be satisfied."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/WebAppResponse"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/WebAppResponse"
+                }
+            }
+        }
+    }
+}

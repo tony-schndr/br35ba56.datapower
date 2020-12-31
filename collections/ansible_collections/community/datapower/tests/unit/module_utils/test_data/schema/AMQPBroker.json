@@ -1,0 +1,545 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostname"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostname"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                },
+                "type": {
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAMQPAuthorization"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAMQPAuthorization"
+                    }
+                },
+                "type": {
+                    "name": "dmAMQPAuthorization",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "None",
+                                "name": "none",
+                                "summary": "No authentication. This setting is the default value."
+                            },
+                            {
+                                "display": "Anonymous",
+                                "name": "anonymous",
+                                "summary": "Use anonymous authentication."
+                            },
+                            {
+                                "display": "Plain",
+                                "name": "plain",
+                                "summary": "Use basic authentication credentials, which are user and password."
+                            }
+                        ]
+                    },
+                    "display": "Authorization"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt16",
+                    "maximum": "0xFFFF"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "AMQPBroker",
+                "display": "AMQP Broker",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "HostName"
+                            },
+                            {
+                                "name": "UserSummary"
+                            }
+                        ],
+                        "name": "summary",
+                        "display": "Summary"
+                    },
+                    {
+                        "property-group": {
+                            "member": [
+                                {
+                                    "name": "mAdminState"
+                                },
+                                {
+                                    "name": "UserSummary"
+                                },
+                                {
+                                    "name": "HostName"
+                                },
+                                {
+                                    "name": "Port"
+                                },
+                                {
+                                    "name": "ContainerID"
+                                },
+                                {
+                                    "name": "Authorization"
+                                },
+                                {
+                                    "name": "UserName"
+                                },
+                                {
+                                    "name": "PasswordAlias"
+                                },
+                                {
+                                    "name": "MaximumFrameSize"
+                                },
+                                {
+                                    "name": "MaximumMessageSize"
+                                },
+                                {
+                                    "name": "XMLManager"
+                                },
+                                {
+                                    "name": "SSLClient"
+                                }
+                            ],
+                            "name": "general",
+                            "display": "General configuration"
+                        },
+                        "name": "main",
+                        "display": "Main"
+                    },
+                    {
+                        "property-group": {
+                            "member": [
+                                {
+                                    "name": "AutoRetry"
+                                },
+                                {
+                                    "name": "RetryInterval"
+                                },
+                                {
+                                    "name": "RetryAttempts"
+                                },
+                                {
+                                    "name": "LongRetryInterval"
+                                },
+                                {
+                                    "name": "ReportingInterval"
+                                }
+                            ],
+                            "name": "retry",
+                            "display": "Retry behavior"
+                        },
+                        "name": "connections",
+                        "display": "Connections"
+                    }
+                ],
+                "uri": "network/amqp",
+                "summary": "AMQP Broker",
+                "cmd-group": "mpgw",
+                "cli-alias": "amqp-broker",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "Enter a descriptive summary for the configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Brief descriptive summary for the configuration",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "HostName",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHostname"
+                            },
+                            "required": "true",
+                            "summary": "Host name or IP address of remote AMQP server",
+                            "cli-alias": "hostname",
+                            "display": "Host",
+                            "description": "Specify the host name or IP address of the remote AMQP server where the broker is running."
+                        },
+                        {
+                            "name": "Port",
+                            "default": 5672,
+                            "cli-alias": "port",
+                            "required": "true",
+                            "maximum": "0xFFFF",
+                            "summary": "Listening port on the AMQP server",
+                            "minimum": 1,
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPPort"
+                            },
+                            "display": "Port",
+                            "description": "Specify the listening port on the remote AMQP server where the broker is running."
+                        },
+                        {
+                            "name": "XMLManager",
+                            "default": "default",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/XMLManager"
+                                }
+                            },
+                            "required": "true",
+                            "summary": "XML manager",
+                            "cli-alias": "xml-manager",
+                            "display": "XML manager",
+                            "description": "Select the XML manager to control access to the remote AMQP server. The XML manager obtaisn and manages documents."
+                        },
+                        {
+                            "description": "Specify the identifier for the AMQP container.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Identifier for the AMQP container",
+                            "cli-alias": "container-id",
+                            "display": "AMQP container ID",
+                            "name": "ContainerID"
+                        },
+                        {
+                            "name": "Authorization",
+                            "default": "none",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAMQPAuthorization"
+                            },
+                            "required": "true",
+                            "summary": "SASL layer to authenticate with the AMQP server",
+                            "cli-alias": "authorization",
+                            "display": "Authorization",
+                            "description": "Specify the SASL layer that the AMQP broker uses to authenticate with the AMQP server. The default setting in no authentication."
+                        },
+                        {
+                            "name": "UserName",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Authorization",
+                                    "evaluation": "property-equals",
+                                    "value": "plain"
+                                }
+                            },
+                            "summary": "Account name to access the remote server",
+                            "cli-alias": "user",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Authorization",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "plain"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "User name",
+                            "description": "Specify the account name to access the remote AMQP server."
+                        },
+                        {
+                            "name": "PasswordAlias",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Authorization",
+                                    "evaluation": "property-equals",
+                                    "value": "plain"
+                                }
+                            },
+                            "summary": "Alias of the password to access the AMQP server",
+                            "cli-alias": "password-alias",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Authorization",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "plain"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/PasswordAlias"
+                                }
+                            },
+                            "display": "Password alias",
+                            "description": "Specify the password alias of the password to access the remote AMQP server."
+                        },
+                        {
+                            "name": "MaximumFrameSize",
+                            "default": 104857600,
+                            "cli-alias": "maximum-frame-size",
+                            "maximum": 104857600,
+                            "summary": "Maximum frame size to allow",
+                            "minimum": 512,
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Maximum frame size",
+                            "description": "Specify the maximum frame size in bytes to allow. Frames Frames that are larger are rejected. When rejected, the connection is closed. Enter a value in the range 512 - 104857600. The default value is 104857600."
+                        },
+                        {
+                            "name": "AutoRetry",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to enable the automatic retry procedure after an AMQP connection failure",
+                            "cli-alias": "auto-retry",
+                            "display": "Automatic retry",
+                            "description": "Indicates whether to enable the automatic retry procedure after an AMQP connection failure. By default, the automatic retry behavior is enabled. This setting does not affect attempts over an established connection."
+                        },
+                        {
+                            "name": "RetryInterval",
+                            "default": 10,
+                            "cli-alias": "retry-interval",
+                            "summary": "Interval to wait before attempting to reestablish a failed connection",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "AutoRetry",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "on"
+                                }
+                            },
+                            "units": "Seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Retry Interval",
+                            "description": "&lt;p>Specify the interval in seconds to wait before attempting to reestablish a failed connection. After the number of attempts is reached, attempts to reestablish a failed connection use the interval that is defined by the long retry interval. Enter a value in the range 1 - 65535. The default value is 10.&lt;/p>&lt;p>This setting does not affect attempts over an established connection.&lt;/p>"
+                        },
+                        {
+                            "name": "RetryAttempts",
+                            "default": 6,
+                            "cli-alias": "retry-attempts",
+                            "summary": "Number of attempts for a failed connection to the remote server",
+                            "minimum": 0,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "AutoRetry",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "on"
+                                }
+                            },
+                            "units": "Attempts",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Retry attempts",
+                            "description": "Specify the number of attempts for a failed connection to the remote AMQP server. After the number of attempts is reached, the long retry interval is used. Enter a value in the range 0 - 65535. The default value is 6. The special value of 0 disables the long interval, where the retry interval is used forever."
+                        },
+                        {
+                            "name": "LongRetryInterval",
+                            "default": 600,
+                            "cli-alias": "long-retry-interval",
+                            "summary": "Interval to use after the number of attempts is reached to attempt to reestablish a failed connection",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "AutoRetry",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "on"
+                                }
+                            },
+                            "units": "Seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Long retry interval",
+                            "description": "&lt;p>Specify the interval in seconds to use after the number of attempts is reached to attempt to reestablish a failed connection. Enter a value in the range 1 - 65535. The default value is 600.&lt;/p>&lt;p>This setting does not affect attempts over an established connection.&lt;/p>"
+                        },
+                        {
+                            "name": "ReportingInterval",
+                            "default": 10,
+                            "cli-alias": "reporting-interval",
+                            "summary": "Interval between writing identical messages for failed connection attempts",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "AutoRetry",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "on"
+                                }
+                            },
+                            "units": "Seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Reporting interval",
+                            "description": "Specify the interval in seconds between the writing of identical log message. Enter a value in the range 1 - 65535. The default value is 10."
+                        },
+                        {
+                            "description": "Specify the TLS client profile to secure connections between the DataPower Gateway and the remote AMQP broker.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                                }
+                            },
+                            "summary": "TLS client profile to secure connections with the AMQP broker",
+                            "cli-alias": "ssl-client",
+                            "display": "TLS client profile",
+                            "name": "SSLClient"
+                        }
+                    ]
+                },
+                "description": "In AMQP, distributed source and target termini are managed by a broker. The broker provides messaging services for communicating applications by periodically monitoring and polling termini. The broker ensures that sent messages are directed to the correct target terminus or are routed to another server. The AMQP broker configuration on the DataPower Gateway corresponds to an AMQP broker that is running on another host in the network. The configured properties enable communication between the DataPower Gateway and the remote AMQP broker."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/AMQPBroker"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/AMQPBroker"
+                }
+            }
+        }
+    }
+}

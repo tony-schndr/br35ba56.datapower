@@ -1,0 +1,298 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmNodeDirection"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmNodeDirection"
+                    }
+                },
+                "type": {
+                    "name": "dmNodeDirection",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "MQ2HTTP",
+                                "display": "MQ2HTTP"
+                            },
+                            {
+                                "name": "HTTP2MQ",
+                                "display": "HTTP2MQ"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmMQclient"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmMQclient"
+                    }
+                },
+                "type": {
+                    "name": "dmMQclient",
+                    "properties": {
+                        "property": [
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmTransportType"
+                                },
+                                "name": "ClientTransportType",
+                                "display": "Client Transport Type"
+                            },
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "name": "ClientGetQueue",
+                                "display": "Client Get Queue"
+                            },
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "name": "ClientPutQueue",
+                                "display": "Client Put Queue"
+                            },
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmIPPort"
+                                },
+                                "name": "ClientPort",
+                                "display": "Client Port"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmMQserver"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmMQserver"
+                    }
+                },
+                "type": {
+                    "name": "dmMQserver",
+                    "properties": {
+                        "property": [
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmTransportType"
+                                },
+                                "name": "ServerTransportType",
+                                "display": "Server Transport Type"
+                            },
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "name": "ServerGetQueue",
+                                "display": "Server Get Queue"
+                            },
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "name": "ServerPutQueue",
+                                "display": "Server Put Queue"
+                            },
+                            {
+                                "type": {
+                                    "href": "/mgmt/types/default/dmIPPort"
+                                },
+                                "name": "ServerPort",
+                                "display": "Server Port"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTransportType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmTransportType"
+                    }
+                },
+                "type": {
+                    "name": "dmTransportType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "mq",
+                                "name": "mq",
+                                "summary": "Use IBM MQ as the transport protocol"
+                            },
+                            {
+                                "display": "http",
+                                "name": "http",
+                                "summary": "Use HTTP as the transport protocol"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                },
+                "type": {
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "MQGW",
+                "uri": "",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "name": "UserSummary",
+                            "display": ""
+                        },
+                        {
+                            "required": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/MQQM"
+                                }
+                            },
+                            "name": "QueueManager",
+                            "display": ""
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmNodeDirection"
+                            },
+                            "name": "Direction",
+                            "display": ""
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "name": "URL",
+                            "display": ""
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmMQclient"
+                            },
+                            "name": "Client",
+                            "display": ""
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmMQserver"
+                            },
+                            "name": "Server",
+                            "display": ""
+                        }
+                    ]
+                },
+                "cmd-group": "",
+                "display": ""
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/MQGW"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/MQGW"
+                }
+            }
+        }
+    }
+}

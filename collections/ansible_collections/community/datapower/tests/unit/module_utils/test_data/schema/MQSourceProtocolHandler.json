@@ -1,0 +1,702 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmMQHeaders"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmMQHeaders"
+                    }
+                },
+                "type": {
+                    "name": "dmMQHeaders",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "MQCIH",
+                                "display": "CICS Bridge Header (MQCIH)"
+                            },
+                            {
+                                "name": "MQDLH",
+                                "display": "Dead Letter Header (MQDLH)"
+                            },
+                            {
+                                "name": "MQIIH",
+                                "display": "IMS Information Header (MQIIH)"
+                            },
+                            {
+                                "name": "MQRFH",
+                                "display": "Rules and Formatting Header (MQRFH)"
+                            },
+                            {
+                                "name": "MQRFH2",
+                                "display": "Rules and Formatting Header (MQRFH2)"
+                            },
+                            {
+                                "name": "MQWIH",
+                                "display": "Work Information Header (MQWIH)"
+                            }
+                        ]
+                    },
+                    "display": "IBM MQ Header Type"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt16",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmMQContentTypeHeader"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmMQContentTypeHeader"
+                    }
+                },
+                "type": {
+                    "name": "dmMQContentTypeHeader",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "None",
+                                "description": "No header to extract Content-Type",
+                                "name": "None"
+                            },
+                            {
+                                "display": "MQRFH",
+                                "description": "MQRFH header to extract Content-Type",
+                                "name": "MQRFH"
+                            },
+                            {
+                                "display": "MQRFH2",
+                                "description": "MQRFH2 header to extract Content-Type",
+                                "name": "MQRFH2"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmXPathExpr"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmXPathExpr"
+                    }
+                },
+                "type": {
+                    "cli-arg": "xpath",
+                    "name": "dmXPathExpr"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "MQ",
+                "name": "MQSourceProtocolHandler",
+                "status-bindings": {
+                    "status": {
+                        "binding": {
+                            "property": {
+                                "name": "MQSourceProtocolHandler",
+                                "select": "dmObjectName"
+                            }
+                        },
+                        "name": "MQSourceProtocolHandlerSummary",
+                        "display": {
+                            "property": {
+                                "name": "Quiesce",
+                                "display": "Quiesce State"
+                            }
+                        }
+                    }
+                },
+                "display": "IBM MQ Handler",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "QueueManager"
+                            },
+                            {
+                                "name": "GetQueue"
+                            },
+                            {
+                                "name": "SubscribeTopicString"
+                            },
+                            {
+                                "name": "SubscriptionName"
+                            },
+                            {
+                                "name": "PutQueue"
+                            },
+                            {
+                                "name": "PublishTopicString"
+                            }
+                        ],
+                        "name": "summary"
+                    },
+                    {
+                        "property-group": [
+                            {
+                                "member": [
+                                    {
+                                        "name": "mAdminState"
+                                    },
+                                    {
+                                        "name": "UserSummary"
+                                    },
+                                    {
+                                        "name": "QueueManager"
+                                    },
+                                    {
+                                        "name": "GetQueue"
+                                    },
+                                    {
+                                        "name": "PutQueue"
+                                    },
+                                    {
+                                        "name": "ConcurrentConnections"
+                                    },
+                                    {
+                                        "name": "GetMessageOptions"
+                                    },
+                                    {
+                                        "name": "PollingInterval"
+                                    },
+                                    {
+                                        "name": "RetrieveBackoutSettings"
+                                    },
+                                    {
+                                        "name": "UseQMNameInURL"
+                                    },
+                                    {
+                                        "name": "CodePage"
+                                    }
+                                ],
+                                "name": "general",
+                                "display": "General"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "SubscribeTopicString"
+                                    },
+                                    {
+                                        "name": "SubscriptionName"
+                                    },
+                                    {
+                                        "name": "PublishTopicString"
+                                    }
+                                ],
+                                "name": "pubsub",
+                                "display": "Publish and Subscribe"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "ParseProperties"
+                                    },
+                                    {
+                                        "name": "MessageSelector"
+                                    },
+                                    {
+                                        "name": "ExcludeHeaders"
+                                    },
+                                    {
+                                        "name": "ContentTypeHeader"
+                                    },
+                                    {
+                                        "name": "ContentTypeXPath"
+                                    }
+                                ],
+                                "name": "headers",
+                                "display": "Properties and Headers"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "AsyncPut"
+                                    },
+                                    {
+                                        "name": "BatchSize"
+                                    }
+                                ],
+                                "name": "advanced",
+                                "display": "Advanced"
+                            }
+                        ],
+                        "name": "main",
+                        "display": "Main"
+                    }
+                ],
+                "uri": "protocol/mq",
+                "actions": {
+                    "action": [
+                        {
+                            "name": "ServiceQuiesce",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "type",
+                                        "select": "dmObjectClass"
+                                    },
+                                    {
+                                        "name": "name",
+                                        "select": "dmObjectName"
+                                    },
+                                    {
+                                        "name": "timeout"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "ServiceUnquiesce",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "type",
+                                        "select": "dmObjectClass"
+                                    },
+                                    {
+                                        "name": "name",
+                                        "select": "dmObjectName"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "summary": "IBM MQ Handler",
+                "services": {
+                    "service": "APIGateway"
+                },
+                "cmd-group": "mpgw",
+                "cli-alias": "source-mq",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "QueueManager",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "base-class": "MQQMBase"
+                                }
+                            },
+                            "required": "true",
+                            "label": "Queue manager",
+                            "summary": "An IBM MQ Queue Manager name",
+                            "cli-alias": "queue-manager",
+                            "display": "Queue Manager",
+                            "hoverhelp": "Specify the queue manager that manages the distributed send and receive queues of IBM MQ. The queue manager provides messaging services for communicating applications by periodically monitoring or polling queues, and by ensuring that messages are directed to the correct receive queue or routed to another queue manager. The queue manager on the DataPower Gateway corresponds to a queue manager running on another host on the network.",
+                            "description": "Select a Queue Manager from the list of available Queue Managers. The queue manager provides messaging services for communicating applications by periodically monitoring or polling queues, and by ensuring that messages are directed to the correct receive queue or routed to another queue manager. The queue manager on the DataPower Gateway corresponds to a queue manager running on another host on the network."
+                        },
+                        {
+                            "name": "GetQueue",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "SubscribeTopicString",
+                                    "evaluation": "property-equals",
+                                    "value": ""
+                                }
+                            },
+                            "label": "GET queue",
+                            "cli-alias": "get-queue",
+                            "summary": "The GET queue associated with the queue manager",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Get Queue",
+                            "hoverhelp": "Specify the GET queue associated with the queue manager. The handler will get client-originated request messages from this queue.",
+                            "description": "Enter the name of the GET queue associated with the identified Queue Manager. The handler will get client-originated request messages from this queue."
+                        },
+                        {
+                            "name": "SubscribeTopicString",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "GetQueue",
+                                    "evaluation": "property-equals",
+                                    "value": ""
+                                }
+                            },
+                            "label": "Subscribe topic string",
+                            "cli-alias": "subscribe-topic-string",
+                            "summary": "The subscribe topic string associated with the queue manager",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Subscribe Topic String",
+                            "hoverhelp": "Enter the subscribe topic string associated with the queue manager. The handler will subscribe to this topic string and get messages from it.",
+                            "description": "Enter the topic string associated with the identified Queue Manager. The handler will subscribe to this topic string and get messages from it."
+                        },
+                        {
+                            "description": "Enter the subscription name of a durable subscription associated with the identified Queue Manager. This name identifies the subscription after reestablishing a lost connection.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "label": "Subscription name",
+                            "summary": "The subscription name of a durable subscription",
+                            "cli-alias": "sub-name",
+                            "display": "Subscription Name",
+                            "hoverhelp": "Specify the name of a durable subscription associated with the queue manager. This name identifies the subscription after reestablishing a lost connection.",
+                            "name": "SubscriptionName"
+                        },
+                        {
+                            "description": "Enter the name of the PUT queue associated with the identified Queue Manager. The handler will put server-originated reply messages to this queue.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "label": "PUT queue",
+                            "summary": "The PUT queue associated with the queue manager",
+                            "cli-alias": "put-queue",
+                            "display": "Put Queue",
+                            "hoverhelp": "Specify the Put queue associated with the queue manager. The handler will put server-originated reply messages to this queue.",
+                            "name": "PutQueue"
+                        },
+                        {
+                            "description": "&lt;p>Enter the topic string associated with the identified Queue Manager. The handler will publish messages to this topic string.&lt;/p>&lt;p>If the Put Queue field is specified, this field is ignored.&lt;/p>",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "label": "Publish topic string",
+                            "summary": "The publish topic string associated with the queue manager. The topic string describes the subject of the information that is published in a publish or subscribe message.",
+                            "cli-alias": "publish-topic-string",
+                            "display": "Publish Topic String",
+                            "hoverhelp": "Enter the publish topic string associated with the queue manager. The topic string describes the subject of the information that is published in a publish or subscribe message. The handler will publish messages to this topic string. If the Put Queue field is specified, this field is ignored.",
+                            "name": "PublishTopicString"
+                        },
+                        {
+                            "name": "CodePage",
+                            "default": 0,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "summary": "Coded Character Set Identifier",
+                            "cli-alias": "ccsi",
+                            "display": "CCSI",
+                            "description": "&lt;p>Specifies the Coded Character Set Identifier to which the remote IBM MQ queue manager converts output data. This property is meaningful only when the IBM MQ Queue Manager has the convert property set to on. The CCSI will be put in the CodeCharSetId field of MQMD.&lt;/p>&lt;p>The default CCSI is for ISO-8859-1 (latin-1).&lt;/p>&lt;p>For MQCCSI_EMBEDDED enter 4294967295; for MQCCSI_INHERIT enter 4294967294. For the other CCSIDs, refer to the IBM Code Pages in the Information Center.&lt;/p>"
+                        },
+                        {
+                            "name": "GetMessageOptions",
+                            "default": 1,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "summary": "Options flags for the MQGMO structure",
+                            "cli-alias": "get-message-options",
+                            "display": "Get Message Options",
+                            "description": "Specifies the cumulative value of the MQGET options that are applicable to an IBM MQ message in decimal or hex format. The value is passed directly to the IBM MQ API. The default value is 1, which is the decimal value for the MQGMO_WAIT option."
+                        },
+                        {
+                            "description": "A selector filters the messages delivered from a queue or a subscription by their properties. The selector uses the SQL92 conditional expression syntax. The selector enables The handler to filter messages delivered from a queue or a subscription.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "label": "Message selector",
+                            "summary": "The selector that filters the messages delivered from a queue or a subscription",
+                            "cli-alias": "selector",
+                            "display": "Selector",
+                            "hoverhelp": "Enter a conditional expression that filters messages by message properties. The selector uses the SQL92 conditional expression syntax. The selector enables The handler to filter messages delivered from a queue or a subscription.",
+                            "name": "MessageSelector"
+                        },
+                        {
+                            "name": "ParseProperties",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Parse the message properties",
+                            "cli-alias": "parse-properties",
+                            "display": "Parse Properties",
+                            "description": "Parse the properties of the incoming messages from a queue or a subscription. By default, the properties are not parsed."
+                        },
+                        {
+                            "name": "AsyncPut",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Asynchronously put a message to a queue.",
+                            "cli-alias": "async-put",
+                            "display": "Async Put",
+                            "description": "Asynchronously put a message to a queue without waiting for a response from the queue manager."
+                        },
+                        {
+                            "description": "Select which headers after MQMD to strip from the message. By default only the MQMD header is parsed.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmMQHeaders"
+                            },
+                            "summary": "Messages header to strip",
+                            "cli-alias": "exclude-headers",
+                            "display": "Exclude Message Headers",
+                            "name": "ExcludeHeaders"
+                        },
+                        {
+                            "name": "ConcurrentConnections",
+                            "default": 1,
+                            "cli-alias": "concurrent-connections",
+                            "summary": "The number of concurrent IBM MQ conversations allocated for this handler",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "GetQueue",
+                                            "evaluation": "property-equals",
+                                            "value": ""
+                                        },
+                                        {
+                                            "property-name": "SubscribeTopicString",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": ""
+                                        }
+                                    ]
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "The number of concurrent IBM MQ conversations",
+                            "description": "The number of concurrent IBM MQ conversations allocated for this handler. The default value is 1, but it can be increased to improve performance."
+                        },
+                        {
+                            "name": "PollingInterval",
+                            "default": 30,
+                            "cli-alias": "polling-interval",
+                            "summary": "The number of seconds before MQGET operation returns if no messages are available.",
+                            "minimum": 1,
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Polling Interval",
+                            "description": "The number of seconds before MQGET operation returns if no messages are available, the next attempt will be performed immediately. Setting this value to minimum will help to detect quickly network connectivity issues and queue manager power shutdown but at the same time will increase network traffic."
+                        },
+                        {
+                            "name": "BatchSize",
+                            "default": 0,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "summary": "The number of messages to process as a batch.",
+                            "minimum": 0,
+                            "cli-alias": "batch-size",
+                            "display": "Batch Size",
+                            "description": "The number of messages to process as a batch. The source protocol handler gathers the specified number of messages and processes them as a batch."
+                        },
+                        {
+                            "description": "IBM MQ Header to extract Content-Type with XPath expression.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmMQContentTypeHeader"
+                            },
+                            "summary": "IBM MQ Header to extract Content-Type with XPath expression",
+                            "cli-alias": "content-type-header",
+                            "display": "Header to extract Content-Type",
+                            "name": "ContentTypeHeader"
+                        },
+                        {
+                            "name": "ContentTypeXPath",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "ContentTypeHeader",
+                                    "evaluation": "property-value-in-list",
+                                    "value": [
+                                        "MQRFH",
+                                        "MQRFH2"
+                                    ]
+                                }
+                            },
+                            "summary": "XPath expression to extract Content-Type from IBM MQ header",
+                            "cli-alias": "content-type-xpath",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "ContentTypeHeader",
+                                    "evaluation": "property-value-in-list",
+                                    "value": "None"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmXPathExpr"
+                            },
+                            "display": "XPath expression to extract Content-Type from IBM MQ header",
+                            "description": "XPath expression to extract Content-Type from IBM MQ header"
+                        },
+                        {
+                            "name": "RetrieveBackoutSettings",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Controls retrieval of backout settings from the IBM MQ server",
+                            "cli-alias": "retrieve-backout-settings",
+                            "display": "Retrieve Backout Settings",
+                            "description": "&lt;p>Controls whether to retrieve backout setting from the IBM MQ server.&lt;/p>&lt;p>When enabled, retrieves the &lt;b>Backout Threshold&lt;/b> and &lt;b>Backout Requeue Queue Name&lt;/b> settings from the IBM MQ server and checks these values. On a reattempt, the IBM MQ handler uses the higher priority backout settings from the server. If the server does not contain backout settings, The handler uses any existing backout values, either empty or populated, from the local IBM MQ queue manager. If there are no backout settings, the backout function is disabled.&lt;/p>&lt;p>When an alias queue is used, its attributes are retrieved, not those of the base queue.&lt;/p>"
+                        },
+                        {
+                            "name": "UseQMNameInURL",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to use the queue manager or the queue manager group in the front side URL",
+                            "cli-alias": "use-qm-in-url",
+                            "display": "Use Queue Manager in URL",
+                            "description": "&lt;p>Indicates whether the var://service/URL-in variable returns the name of IBM MQ Queue Manager or the name of the IBM MQ Queue Manager Group when this configuration defines a queue manager group as the queue manager.&lt;/p>&lt;ul>&lt;li>When &lt;b>on&lt;/b>, the variable returns the name of the queue manager.&lt;/li>&lt;li>When &lt;b>off&lt;/b>, the default, the variable returns the name of the queue manager group.&lt;/li>&lt;/ul>"
+                        }
+                    ]
+                },
+                "description": ""
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/MQSourceProtocolHandler"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/MQSourceProtocolHandler"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,309 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "WebSphere-JMS",
+                "name": "WebSphereJMSSourceProtocolHandler",
+                "status-bindings": {
+                    "status": {
+                        "binding": {
+                            "property": {
+                                "name": "WebSphereJMSSourceProtocolHandler",
+                                "select": "dmObjectName"
+                            }
+                        },
+                        "name": "WebSphereJMSSourceProtocolHandlerSummary",
+                        "display": {
+                            "property": {
+                                "name": "Quiesce",
+                                "display": "Quiesce State"
+                            }
+                        }
+                    }
+                },
+                "display": "WebSphere JMS Handler",
+                "property-group": {
+                    "member": [
+                        {
+                            "name": "mAdminState"
+                        },
+                        {
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "Server"
+                        },
+                        {
+                            "name": "GetQueue"
+                        },
+                        {
+                            "name": "PutQueue"
+                        }
+                    ],
+                    "name": "summary"
+                },
+                "uri": "protocol/wasjms",
+                "actions": {
+                    "action": [
+                        {
+                            "name": "ServiceQuiesce",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "type",
+                                        "select": "dmObjectClass"
+                                    },
+                                    {
+                                        "name": "name",
+                                        "select": "dmObjectName"
+                                    },
+                                    {
+                                        "name": "timeout"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "ServiceUnquiesce",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "type",
+                                        "select": "dmObjectClass"
+                                    },
+                                    {
+                                        "name": "name",
+                                        "select": "dmObjectName"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "summary": "WebSphere JMS Handler",
+                "services": {
+                    "service": "APIGateway"
+                },
+                "cmd-group": "mpgw",
+                "cli-alias": "source-wasjms",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "GetQueue",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "label": "GET queue",
+                            "summary": "The name of the GET Queue that the JMS handler monitors for incoming client requests",
+                            "cli-alias": "get-queue",
+                            "display": "Get Queue",
+                            "hoverhelp": "Enter the name of the GET Queue that the JMS handler monitors for incoming client requests.",
+                            "description": "&lt;p>Enter the name of the GET queue associated with the WebSphere JMS or TIBCO EMS object supported by this protocol handler.&lt;/p>&lt;p>The handler monitors the GET queue for incoming client requests. Upon message receipt, The handler forwards the extracted message to the DataPower object that will gateway the message to a remote message provider.&lt;/p>"
+                        },
+                        {
+                            "description": "&lt;p>Enter the name of the PUT queue associated with the WebSphere JMS or TIBCO EMS object supported by this protocol handler.&lt;/p>&lt;p>The PUT queue contains server-originated WAS JMS or TIBCO EMS reply messages.&lt;/p>&lt;p>Such messages are originated by a remote WAS JMS or TIBCO EMS message provider and put into this queue by a local WebSphere JMS or TIBCO EMS object.&lt;/p>&lt;p>Configuration of a PUT queue is optional.&lt;/p>&lt;p>A PUT queue should be configured if server replies are expected; if reply messages are not expected, a PUT queue need not be configured.&lt;/p>&lt;p>In the absence of a PUT queue, any received replies are dropped.&lt;/p>",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "label": "PUT queue",
+                            "summary": "The name of the PUT Queue that contains the reply messages originated by the remote JMS message provider",
+                            "cli-alias": "put-queue",
+                            "display": "Put Queue",
+                            "hoverhelp": "Enter the name of the PUT Queue that contains the reply messages originated by the remote JMS message provider.",
+                            "name": "PutQueue"
+                        },
+                        {
+                            "description": "&lt;p>Provide an SQL-like expression to filter messages from the GET queue.&lt;/p>&lt;p>For example, &lt;tt>DeliveryMode LIKE PERSISTENT&lt;/tt>&lt;/p>&lt;p>This expression specifies that only client requests that have a DeliveryMode of PERSISTENT are forwarded to the WebSphere JMS or TIBCO EMS object for processing; all other messages are dropped from the GET queue.&lt;/p>&lt;p>The message selector is a conditional expression based on a subset of SQL92 conditional expression syntax. The conditional expression enables The handler to identify &lt;em>messages of interest&lt;/em> .&lt;/p>&lt;p>The conditional expression does not operate on the body of the message, rather it examines message headers and properties (proprietary user-created headers that might appear between the required headers and the message body).&lt;/p>&lt;p>The required headers are as follows:&lt;/p>&lt;ul>&lt;li>&lt;tt>Destination&lt;/tt> - contains the destination (queue) to which the message is being sent&lt;/li>&lt;li>&lt;tt>DeliveryMode&lt;/tt> - contains the delivery mode (PERSISTENT or NON_PERSISTENT)&lt;/li>&lt;li>&lt;tt>Expiration&lt;/tt> - contains a message TTL or a value of 0 indicating an unlimited TTL&lt;/li>&lt;li>&lt;tt>Priority&lt;/tt> - contains the message priority expressed as a digit from 0 (lowest priority) to 9 (highest priority)&lt;/li>&lt;li>&lt;tt>MessageID&lt;/tt> - contains a unique message identifier starting with the prefix ID:, or a null value, effectively disabling message ID&lt;/li>&lt;li>&lt;tt>Timestamp&lt;/tt> - contains the time the message was handed off for transmission, not the time it was actually sent&lt;/li>&lt;li>&lt;tt>CorrelationID&lt;/tt> - contains a means of associating one message (for example, a response) with another message (for example, the original request)&lt;/li>&lt;li>&lt;tt>ReplyTo&lt;/tt> - contains the destination (queue) to which a reply to this message should be sent&lt;/li>&lt;li>&lt;tt>Type&lt;/tt> - contains a message identifier provided by the application&lt;/li>&lt;li>&lt;tt>Redelivered&lt;/tt> - contains a boolean indicating that the message has been delivered in the past, but not yet acknowledged&lt;/li>&lt;/ul>&lt;p>Configuration of a message selector is optional. If a message selector is not specified, all incoming client request messages are transferred by The handler to the DataPower object for processing.&lt;/p>",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The conditional expression that filters messages from a queue or a subscription by message properties. The selector uses the SQL92 conditional expression syntax.",
+                            "cli-alias": "selector",
+                            "display": "Selector",
+                            "hoverhelp": "Enter a conditional expression that filters messages from a queue or a subscription by message properties. The selector uses the SQL92 conditional expression syntax.",
+                            "name": "Selector"
+                        },
+                        {
+                            "description": "&lt;p>If enabled messages taken from the GET queue will be processed not necessarily in the same order as they were queued.&lt;/p>&lt;p>This property may be set to improve performance only if associated Multi-Protocol Gateway or WS-Proxy isn't configured to process messages in order.&lt;/p>",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "cli-alias": "async-message-processing",
+                            "display": "Asynchronous Message Processing",
+                            "name": "AsyncMessageProcessing"
+                        },
+                        {
+                            "name": "Server",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/WebSphereJMSServer"
+                                }
+                            },
+                            "required": "true",
+                            "label": "WebSphere JMS server",
+                            "summary": "WebSphere JMS Server",
+                            "cli-alias": "server",
+                            "display": "WebSphere JMS Server",
+                            "hoverhelp": "Select the WebSphere JMS server object that is supported by this protocol handler.",
+                            "description": "&lt;p>Identify the WebSphere JMS server object supported by this protocol handler.&lt;/p>&lt;p>Select a server object from the list of available objects.&lt;/p>"
+                        },
+                        {
+                            "description": "&lt;p>Use this property to disambiguate a topic if the request destination is a topic whose name appears in multiple topic spaces.&lt;/p>&lt;p>A topic space is a hierarchy of topics used for publish/subscribe messaging. Topics with the same name can exist in multiple topic spaces, but there can be only one topic space with a given name in a service integration bus.&lt;/p>&lt;p>For example, consider a topic hierarchy split into the following topic spaces:&lt;/p>&lt;ul>&lt;li>library - topics for document management&lt;/li>&lt;li>sales - topics for marketing and sales tracking&lt;/li>&lt;li>engineering - topics for engineering and technology&lt;/li>&lt;/ul>&lt;p>The topic &lt;em>volumes&lt;/em> can appear in all three topic spaces, and have a different meaning in each.&lt;/p>&lt;p>Enter the name of the target topic space if necessary.&lt;/p>",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "WebSphere JMS Topic Space for Request",
+                            "cli-alias": "request-topic-space",
+                            "display": "WebSphere JMS Topic Space for Request",
+                            "name": "RequestTopicSpace"
+                        },
+                        {
+                            "description": "&lt;p>Use this property to disambiguate a topic if the response destination is a topic whose name appears in multiple topic spaces.&lt;/p>&lt;p>A topic space is a hierarchy of topics used for publish/subscribe messaging. Topics with the same name can exist in multiple topic spaces, but there can be only one topic space with a given name in a service integration bus.&lt;/p>&lt;p>For example, consider a topic hierarchy split into the following topic spaces:&lt;/p>&lt;ul>&lt;li>library - topics for document management&lt;/li>&lt;li>sales - topics for marketing and sales tracking&lt;/li>&lt;li>engineering - topics for engineering and technology&lt;/li>&lt;/ul>&lt;p>The topic &lt;em>volumes&lt;/em> can appear in all three topic spaces, and have a different meaning in each.&lt;/p>&lt;p>Enter the name of the target topic space if necessary.&lt;/p>",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "WebSphere JMS Topic Space for Reply",
+                            "cli-alias": "reply-topic-space",
+                            "display": "WebSphere JMS Topic Space for Reply",
+                            "name": "ReplyTopicSpace"
+                        },
+                        {
+                            "name": "StrictMessageOrder",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Enable Strict Message Ordering mode.",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "AsyncMessageProcessing",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "cli-alias": "strict-message-order",
+                            "display": "WebSphere JMS Strict Message Ordering",
+                            "description": "&lt;p>Enable \"Strict Message Ordering\" mode to work smoothly with WAS server when the \"Strict Message Ordering\" option in ithe corresponding WAS destination is checked.&lt;/p>"
+                        }
+                    ]
+                },
+                "description": ""
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/WebSphereJMSSourceProtocolHandler"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/WebSphereJMSSourceProtocolHandler"
+                }
+            }
+        }
+    }
+}

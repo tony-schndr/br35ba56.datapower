@@ -1,0 +1,383 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                },
+                "type": {
+                    "cli-arg": "seconds",
+                    "minimum": 0,
+                    "name": "dmTimeInterval",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLogLevel"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLogLevel"
+                    }
+                },
+                "type": {
+                    "display": "Log Level",
+                    "name": "dmLogLevel",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "emergency",
+                                "description": "An emergency-level message. The system is unusable.",
+                                "name": "emerg",
+                                "summary": "System unusable"
+                            },
+                            {
+                                "display": "alert",
+                                "description": "An alert-level message. Immediate action must be taken.",
+                                "name": "alert",
+                                "summary": "Immediate action required"
+                            },
+                            {
+                                "display": "critical",
+                                "description": "A critical message. Immediate action should be taken.",
+                                "name": "critic",
+                                "summary": "Critical condition"
+                            },
+                            {
+                                "display": "error",
+                                "description": "An error message. Processing might continue, but action should be taken.",
+                                "name": "error",
+                                "summary": "Error condition"
+                            },
+                            {
+                                "display": "warning",
+                                "description": "A warning message. Processing should continue, but action should be taken.",
+                                "name": "warn",
+                                "summary": "Warning condition"
+                            },
+                            {
+                                "display": "notice",
+                                "description": "A notice message. Processing continues, but action might need to be taken.",
+                                "name": "notice",
+                                "summary": "Normal but significant condition"
+                            },
+                            {
+                                "display": "information",
+                                "description": "An information message. No action required.",
+                                "name": "info",
+                                "summary": "Informational message"
+                            },
+                            {
+                                "display": "debug",
+                                "description": "A debug message for processing information to help during troubleshooting.",
+                                "name": "debug",
+                                "summary": "Debug message"
+                            }
+                        ]
+                    },
+                    "summary": "Log level"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "Throttler",
+                "display": "Throttle Settings",
+                "uri": "system/throttle",
+                "summary": "Memory throttle setting",
+                "cmd-group": "system",
+                "cli-alias": "throttle",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "default": "on",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "display": "Mode",
+                            "name": "Mode"
+                        },
+                        {
+                            "name": "ThrottleAt",
+                            "default": 20,
+                            "cli-alias": "memory-throttle",
+                            "required": "true",
+                            "maximum": 100,
+                            "summary": "Memory throttle inbound traffic threshold",
+                            "minimum": 0,
+                            "units": "%",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Memory Throttle At",
+                            "description": "Enter a value of 0 - 100 to establish the threshold of minimal available memory (in percent) at which traffic is throttled. When the threshold is reached, the system waits for the timeout period before rebooting, to allow memory usage to recover."
+                        },
+                        {
+                            "name": "TerminateAt",
+                            "default": 5,
+                            "cli-alias": "memory-terminate",
+                            "required": "true",
+                            "maximum": 100,
+                            "summary": "Memory terminate operation threshold",
+                            "minimum": 0,
+                            "units": "%",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Memory Terminate At",
+                            "description": "Enter a value of 0 - 100 to establish the threshold of minimal available memory (in percent) at which the system reboots."
+                        },
+                        {
+                            "name": "TempFSThrottleAt",
+                            "default": 0,
+                            "cli-alias": "temp-fs-throttle",
+                            "required": "true",
+                            "maximum": 100,
+                            "summary": "Temporary file space throttle inbound traffic threshold",
+                            "minimum": 0,
+                            "units": "%",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Temp File Space Throttle At",
+                            "description": "Enter a value of 0 - 100 to establish the threshold of minimal available temporary file space (in percent) at which traffic is throttled. When this threshold is reached, the system waits for the timeout period before rebooting, to allow temporary file space to recover."
+                        },
+                        {
+                            "name": "TempFSTerminateAt",
+                            "default": 0,
+                            "cli-alias": "temp-fs-terminate",
+                            "required": "true",
+                            "maximum": 100,
+                            "summary": "Temporary files space terminate operation threshold",
+                            "minimum": 0,
+                            "units": "%",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Temp File Space Terminate At",
+                            "description": "Enter a value 0 - 100 to establish the threshold of minimal available temporary file space (in percent) at which the system reboots."
+                        },
+                        {
+                            "name": "QnameWarnAt",
+                            "default": 10,
+                            "cli-alias": "qcode-warn",
+                            "required": "true",
+                            "maximum": 100,
+                            "summary": "XML Names and JSON Keys warn threshold",
+                            "minimum": 5,
+                            "units": "%",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "XML Names and JSON Keys Warn At",
+                            "description": "Enter a value in the range 5 - 65 to establish the threshold of minimal available XML Names and JSON Keys (in percent) for any of the pools. As this threshold is approached, the system attempts to free unused XML Names and JSON Keys resources, so that this threshold is never reached. If this threshold is reached, then the system logs an alert. Note that the system reboots with less than 5% free XML Names or JSON Keys available, for any of the pools. To see the percentage currently available, use the XML Names and JSON Keys status provider."
+                        },
+                        {
+                            "name": "Timeout",
+                            "default": 30,
+                            "cli-alias": "timeout",
+                            "required": "true",
+                            "summary": "Timeout period",
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimeInterval"
+                            },
+                            "display": "Timeout",
+                            "description": "Enter a value to set the number of seconds the system waits to take action when a throttling threshold is reached."
+                        },
+                        {
+                            "name": "Statistics",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Periodic status Log",
+                            "cli-alias": "status-log",
+                            "display": "Status Log",
+                            "description": "This setting controls the generation of throttle log messages. Select on or off."
+                        },
+                        {
+                            "name": "LogLevel",
+                            "default": "debug",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLogLevel"
+                            },
+                            "summary": "Status log level",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Statistics",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "on"
+                                }
+                            },
+                            "cli-alias": "status-loglevel",
+                            "display": "Log Level",
+                            "description": "Configure the level of the periodic status log."
+                        },
+                        {
+                            "name": "EnvironmentalLog",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Monitor Environmental Sensors",
+                            "cli-alias": "sensors-log",
+                            "display": "Environmental Monitor",
+                            "description": "This setting monitors system fan speeds and power supply status and generates log messages when a failure event occurs. Select on or off."
+                        },
+                        {
+                            "name": "BacklogSize",
+                            "default": 0,
+                            "cli-alias": "backlog-size",
+                            "maximum": 500,
+                            "summary": "Backlog Size",
+                            "minimum": 0,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Backlog Size",
+                            "description": "Enter a value of 0 - 500 to specify the size of the backlog queue where incoming requests are routed if a throttling threshold is reached. If the size is set to 0, no requests are routed to the backlog queue."
+                        },
+                        {
+                            "name": "BacklogTimeout",
+                            "default": 30,
+                            "cli-alias": "backlog-timeout",
+                            "summary": "Backlog Timeout",
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimeInterval"
+                            },
+                            "display": "Backlog Timeout",
+                            "description": "Enter a value to specify the number of seconds that a request remains in the backlog queue before it is rejected if a throttling threshold is reached."
+                        }
+                    ]
+                },
+                "description": "This setting throttles, or disallows, traffic when the total memory available to the system reaches the thresholds established here."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/Throttler"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/Throttler"
+                }
+            }
+        }
+    }
+}

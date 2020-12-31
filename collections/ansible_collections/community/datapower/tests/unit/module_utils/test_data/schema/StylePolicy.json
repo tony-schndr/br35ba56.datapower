@@ -1,0 +1,210 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                },
+                "type": {
+                    "cli-arg": "url",
+                    "name": "dmURL"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmPolicyMap"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmPolicyMap"
+                    }
+                },
+                "type": {
+                    "name": "dmPolicyMap",
+                    "properties": {
+                        "property": [
+                            {
+                                "display": "Matching Rule",
+                                "required": "true",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference",
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/Matching"
+                                    }
+                                },
+                                "description": "Select the Matching Rule that defines the matching criteria.",
+                                "name": "Match"
+                            },
+                            {
+                                "display": "Processing Rule",
+                                "required": "true",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference",
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/StylePolicyRule"
+                                    }
+                                },
+                                "description": "Select the Processing Rule to run.",
+                                "name": "Rule"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "StylePolicy",
+                "property-group": {
+                    "member": {
+                        "name": "UserSummary"
+                    },
+                    "name": "summary"
+                },
+                "uri": "xml/stylepolicy",
+                "display": "Processing Policy",
+                "cmd-group": "stylesheetpolicy",
+                "cli-alias": "stylepolicy",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "Enter a comment. This appears on the Policy catalog page.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Brief summary for user annotation.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "DefStylesheetForSoap",
+                            "default": "store:///filter-reject-all.xsl",
+                            "type": {
+                                "href": "/mgmt/types/default/dmURL"
+                            },
+                            "summary": "Identify the default style sheet used for SOAP filtering.",
+                            "cli-alias": "filter",
+                            "display": "Default style sheet for SOAP",
+                            "description": "Identify the default style sheet used for SOAP filtering. The default rejects all SOAP documents."
+                        },
+                        {
+                            "name": "DefStylesheetForXsl",
+                            "default": "store:///identity.xsl",
+                            "type": {
+                                "href": "/mgmt/types/default/dmURL"
+                            },
+                            "summary": "Identify the default style sheet used for XSL transformation",
+                            "cli-alias": "xsldefault",
+                            "display": "Default style sheet for XSL transforms",
+                            "description": "Identify the default style sheet used for XSL transformation. The default mirrors all documents."
+                        },
+                        {
+                            "name": "DefXQueryForJSON",
+                            "default": "store:///reject-all-json.xq",
+                            "type": {
+                                "href": "/mgmt/types/default/dmURL"
+                            },
+                            "summary": "Identify the default XQuery style sheet used for JSON transformation",
+                            "cli-alias": "xquerydefault",
+                            "display": "Default XQuery style sheet for JSON",
+                            "description": "Identify the default XQuery style sheet used for JSON transformation. The default rejects all JSON documents."
+                        },
+                        {
+                            "description": "A list of processing rules their corresponding matching rule that this policy will evaluate. If a match is found, the corresponding processing rule is run. The policy runs the first processing rule with a successful match. Therefore, the order of rules in this list is important.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmPolicyMap"
+                            },
+                            "array": "true",
+                            "cli-alias": "match",
+                            "display": "Policy Maps",
+                            "name": "PolicyMaps"
+                        }
+                    ]
+                },
+                "description": "Create, Edit or Delete a Processing Policy. A policy consists of one or more Processing Rules. Rules execute depending upon the direction of the message and on whether or not a corresponding matching rule selects the document for processing. A service may have only one policy active at a time. Click Services in the left-hand navigation menu and then click the appropriate policy link to use the graphical interface to create and edit policies."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/StylePolicy"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/StylePolicy"
+                }
+            }
+        }
+    }
+}

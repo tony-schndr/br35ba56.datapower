@@ -1,0 +1,2464 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLogType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLogType"
+                    }
+                },
+                "type": {
+                    "display": "Log type",
+                    "name": "dmLogType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Console",
+                                "description": "Writes log entries to the screen when using Telnet, SSH, or command-line access through the serial port.",
+                                "name": "console",
+                                "summary": "Writes to the screen"
+                            },
+                            {
+                                "display": "Cache",
+                                "description": "Writes log entries to system memory.",
+                                "name": "cache",
+                                "summary": "Writes to system memory"
+                            },
+                            {
+                                "display": "syslog",
+                                "description": "Forwards log entries using UDP to a remote syslog daemon. The local address, remote address, remote port, syslog facility can be set. The processing rate can be limited.",
+                                "name": "syslog",
+                                "summary": "Forwards to a remote syslog daemon (UDP)"
+                            },
+                            {
+                                "display": "syslog-tcp",
+                                "description": "Forwards log entries using TCP to a remote syslog daemon. The local address, remote address, remote port, syslog facility can be set. a TLS connection to the syslog host can be created. The processing rate can be limited.",
+                                "name": "syslog-tcp",
+                                "summary": "Forwards to a remote syslog daemon (TCP)"
+                            },
+                            {
+                                "display": "SMTP",
+                                "description": "Forwards log entries as email to the configured remote SMTP servers and email addresses. Before sending, the contents of the log can be encrypted or signed. The processing rate can be limited.",
+                                "name": "smtp",
+                                "summary": "Forwards as email"
+                            },
+                            {
+                                "display": "File",
+                                "description": "Writes log entries to a file in the DataPower file system. The file can be archived using the rotate or upload method. The file can be sent as email. The entire file can be encrypted and signed.",
+                                "name": "file",
+                                "summary": "Writes to a file in the DataPower file system"
+                            },
+                            {
+                                "display": "SOAP",
+                                "description": "Forwards log entries as SOAP messages. The log format must be XML or IBM Common Base Event (CBE). The URL can be set. The processing rate can be limited. Select a remote SOAP target. Routing logging messages to a local SOAP service can cause a large amount of logging feedback and increased resource consumption.",
+                                "name": "soap",
+                                "summary": "Forwards as SOAP messages"
+                            },
+                            {
+                                "display": "SNMP",
+                                "description": "Forwards log entries as SNMP traps to configured recipients. The processing rate can be limited.",
+                                "name": "snmp",
+                                "summary": "Forwards as SNMP traps"
+                            },
+                            {
+                                "display": "NFS",
+                                "description": "Writes log entries to a file on a remote NFS server. The file can be archived using the rotate method. The processing rate can be limited. Note that network-file type messages are not logged to NFS log targets.",
+                                "name": "nfs",
+                                "summary": "Writes to a file on an NFS server"
+                            }
+                        ]
+                    },
+                    "summary": "Type of log target"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSchedulerPriority"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSchedulerPriority"
+                    }
+                },
+                "type": {
+                    "name": "dmSchedulerPriority",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "unknown",
+                                "display": "unknown"
+                            },
+                            {
+                                "name": "high-min",
+                                "display": "high-min"
+                            },
+                            {
+                                "display": "High",
+                                "description": "A service or transaction assigned this priority setting will receive above normal scheduling priority and resource allocation.",
+                                "name": "high",
+                                "summary": ""
+                            },
+                            {
+                                "name": "high-max",
+                                "display": "high-max"
+                            },
+                            {
+                                "name": "normal-min",
+                                "display": "normal-min"
+                            },
+                            {
+                                "display": "Normal",
+                                "description": "A service or transaction assigned this priority setting will receive normal scheduling priority and resource allocation.",
+                                "name": "normal",
+                                "summary": ""
+                            },
+                            {
+                                "name": "normal-max",
+                                "display": "normal-max"
+                            },
+                            {
+                                "name": "low-min",
+                                "display": "low-min"
+                            },
+                            {
+                                "display": "Low",
+                                "description": "A service or transaction assigned this priority setting will receive below normal scheduling priority and resource allocation.",
+                                "name": "low",
+                                "summary": ""
+                            },
+                            {
+                                "name": "low-max",
+                                "display": "low-max"
+                            }
+                        ]
+                    },
+                    "display": "Transaction Priority"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSoapVersion"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSoapVersion"
+                    }
+                },
+                "type": {
+                    "display": "SOAP version",
+                    "name": "dmSoapVersion",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "SOAP 1.1",
+                                "description": "Log target uses SOAP 1.1.",
+                                "name": "soap11",
+                                "summary": "Use SOAP 1.1"
+                            },
+                            {
+                                "display": "SOAP 1.2",
+                                "description": "Log target uses SOAP 1.2.",
+                                "name": "soap12",
+                                "summary": "Use SOAP 1.2"
+                            }
+                        ]
+                    },
+                    "summary": "Version of SOAP to use for SOAP log targets"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLogFormat"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLogFormat"
+                    }
+                },
+                "type": {
+                    "display": "Log format",
+                    "name": "dmLogFormat",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Text",
+                                "name": "text",
+                                "summary": "Events as formatted text"
+                            },
+                            {
+                                "display": "Raw",
+                                "name": "raw",
+                                "summary": "Events as unformatted text"
+                            },
+                            {
+                                "display": "XML",
+                                "name": "xml",
+                                "summary": "Events in XML format"
+                            },
+                            {
+                                "display": "JSON (IBM Cloud Private)",
+                                "name": "json-icp",
+                                "summary": "Events in JSON for IBM Cloud Private format"
+                            },
+                            {
+                                "display": "CBE",
+                                "name": "cbe",
+                                "summary": "Events in IBM Common Base Event (CBE) format"
+                            },
+                            {
+                                "display": "CSV",
+                                "name": "csv",
+                                "summary": "Events in Comma Separated Value (CSV) format"
+                            },
+                            {
+                                "display": "Audit",
+                                "name": "audit",
+                                "summary": "Internal use only"
+                            },
+                            {
+                                "display": "Diagnostic",
+                                "name": "diag",
+                                "summary": "Internal use only"
+                            }
+                        ]
+                    },
+                    "summary": "Log format"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLogTimestampFormat"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLogTimestampFormat"
+                    }
+                },
+                "type": {
+                    "display": "Log timestamp format",
+                    "name": "dmLogTimestampFormat",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "syslog",
+                                "description": "Uses the syslog-style timestamp.",
+                                "name": "syslog",
+                                "summary": "syslog-style timestamp"
+                            },
+                            {
+                                "display": "Numeric",
+                                "description": "Uses a numeric timestamp.",
+                                "name": "numeric",
+                                "summary": "Numeric timestamp"
+                            },
+                            {
+                                "display": "zulu",
+                                "description": "Milliseconds used as the timestamp format in Coordinated Universal Time (UTC) in log messages yyyymmddThhmmss+oo:oo.",
+                                "name": "zulu",
+                                "summary": "ISO UTC format"
+                            }
+                        ]
+                    },
+                    "summary": "Log timestamp format"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostname"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostname"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                },
+                "type": {
+                    "cli-arg": "url",
+                    "name": "dmURL"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLogFileArchiveMode"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLogFileArchiveMode"
+                    }
+                },
+                "type": {
+                    "display": "Archive Mode",
+                    "name": "dmLogFileArchiveMode",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Rotate",
+                                "description": "Rotate the log file when the maximum size is reached. The DataPower Gateway creates a copy of the file and starts a new file. The DataPower Gateway retains the archived copies up to the specified number of rotations. After reaching the maximum number of rotations and the log file reaches its maximum size, the DataPower Gateway deletes the oldest file and copies the current file.",
+                                "name": "rotate"
+                            },
+                            {
+                                "display": "Upload",
+                                "description": "Upload the log file when the maximum size is reached. The DataPower Gateway uploads the file using the specified upload method.",
+                                "name": "upload"
+                            }
+                        ]
+                    },
+                    "summary": "Archive mode for log files"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLogFileUploadMethod"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLogFileUploadMethod"
+                    }
+                },
+                "type": {
+                    "display": "Upload Method",
+                    "name": "dmLogFileUploadMethod",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "FTP",
+                                "description": "Use the File Transfer Protocol (FTP) to upload the file.",
+                                "name": "ftp",
+                                "summary": "File Transfer Protocol (FTP)"
+                            },
+                            {
+                                "display": "SCP (deprecated)",
+                                "description": "Use the SSH Secure Copy (SCP) protocol to upload the file.",
+                                "name": "scp",
+                                "summary": "Secure Copy"
+                            },
+                            {
+                                "display": "SFTP",
+                                "description": "Use the SSH File Transfer Protocol (SFTP) to upload the file.",
+                                "name": "sftp",
+                                "summary": "SSH File Transfer Program"
+                            },
+                            {
+                                "display": "SMTP",
+                                "description": "Use the Simple Mail Transfer Protocol (SMTP) to upload the file.",
+                                "name": "smtp",
+                                "summary": "Simple Mail Transfer Protocol"
+                            }
+                        ]
+                    },
+                    "summary": "Upload method for log files"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                },
+                "type": {
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLocalIPHostAddress"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip or 0 for any",
+                    "name": "dmLocalIPHostAddress",
+                    "format": "(a.b.c.d or 0 for any)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSyslogFacility"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSyslogFacility"
+                    }
+                },
+                "type": {
+                    "display": "syslog facility",
+                    "name": "dmSyslogFacility",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "user",
+                                "name": "user",
+                                "summary": "Facility 1, user-level messages"
+                            },
+                            {
+                                "display": "security",
+                                "name": "security",
+                                "summary": "Facility 4, security and authorization messages"
+                            },
+                            {
+                                "display": "authpriv",
+                                "name": "authpriv",
+                                "summary": "Facility 10, security and authorization messages"
+                            },
+                            {
+                                "display": "local0",
+                                "name": "local0",
+                                "summary": "Facility 16, local use 0"
+                            },
+                            {
+                                "display": "local1",
+                                "name": "local1",
+                                "summary": "Facility 17, local use 1"
+                            },
+                            {
+                                "display": "local2",
+                                "name": "local2",
+                                "summary": "Facility 18, local use 2"
+                            },
+                            {
+                                "display": "local3",
+                                "name": "local3",
+                                "summary": "Facility 19, local use 3"
+                            },
+                            {
+                                "display": "local4",
+                                "name": "local4",
+                                "summary": "Facility 20, local use 4"
+                            },
+                            {
+                                "display": "local5",
+                                "name": "local5",
+                                "summary": "Facility 21, local use 5"
+                            },
+                            {
+                                "display": "local6",
+                                "name": "local6",
+                                "summary": "Facility 22, local use 6"
+                            },
+                            {
+                                "display": "local7",
+                                "name": "local7",
+                                "summary": "Facility 23, local use 7"
+                            }
+                        ]
+                    },
+                    "summary": "syslog facility, as defined by RFC 3164"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt16",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                },
+                "type": {
+                    "cli-arg": "seconds",
+                    "minimum": 0,
+                    "name": "dmTimeInterval",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmEventCode"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmEventCode"
+                    }
+                },
+                "type": {
+                    "cli-arg": "event-code",
+                    "name": "dmEventCode"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLogObject"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLogObject"
+                    }
+                },
+                "type": {
+                    "name": "dmLogObject",
+                    "properties": {
+                        "property": [
+                            {
+                                "display": "Object Type",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmObjectClass"
+                                },
+                                "description": "Specify the object type, which is the object class. With this filter, the log target collects log messages for only the specified object classes or for only particular instances of the specified object class.",
+                                "name": "Class",
+                                "summary": "Object type"
+                            },
+                            {
+                                "name": "Object",
+                                "required-when": {
+                                    "condition": {
+                                        "evaluation": "logical-false"
+                                    }
+                                },
+                                "summary": "Object name",
+                                "subtype": "dmObjectName",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Object Name",
+                                "description": "&lt;p>Optionally enter the name of an existing object of the selected type.&lt;/p>&lt;ul>&lt;li>To collect log messages for all instances of an object class, do not specify an object name.&lt;/li>&lt;li>To collect log messages for a specific instance of an object class, specify its object name.&lt;/li>&lt;/ul>"
+                            },
+                            {
+                                "description": "&lt;p>Indicate whether to include log messages for objects that the specified object instance references.&lt;/p>&lt;ul>&lt;li>When enabled, includes referenced objects.&lt;/li>&lt;li>When disabled, excludes referenced objects.&lt;/li>&lt;/ul>&lt;p>Included objects are a static snapshot when you apply the object filter. If referenced objects are added after you apply the object filter, messages for these referenced objects are not logged. For example, if you specify a particular service that has handlers and a handler is added after you apply the object filter, messages are not logged for the added handler.&lt;/p>",
+                                "default": "off",
+                                "summary": "Whether to include log messages for objects that the specified object instance references.",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "display": "Add Referenced Objects",
+                                "name": "FollowReferences"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLogIPFilter"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLogIPFilter"
+                    }
+                },
+                "type": {
+                    "name": "dmLogIPFilter",
+                    "properties": {
+                        "property": {
+                            "display": "IP Address",
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPHostAddress"
+                            },
+                            "description": "The explicit IP address on which to filter.",
+                            "name": "IPAddress",
+                            "summary": "IP Address"
+                        }
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLogTrigger"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLogTrigger"
+                    }
+                },
+                "type": {
+                    "name": "dmLogTrigger",
+                    "properties": {
+                        "property": [
+                            {
+                                "display": "Message ID",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "description": "Specify the message ID or event code to trigger the CLI command.",
+                                "name": "ID",
+                                "summary": "msgid"
+                            },
+                            {
+                                "description": "Optional: specify a regular expression as an additional trigger criteria. When a regular expression is provided, the expression must match the log message to trigger the CLI command.",
+                                "required-when": {
+                                    "condition": {
+                                        "evaluation": "logical-false"
+                                    }
+                                },
+                                "summary": "regexp",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmPCRE"
+                                },
+                                "display": "Regular Expression",
+                                "name": "Expression"
+                            },
+                            {
+                                "name": "OnlyOnce",
+                                "default": "on",
+                                "required": "true",
+                                "summary": "Only once",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "display": "Only Once",
+                                "description": "If enabled, the specified CLI command will only execute the first time the trigger conditions are met."
+                            },
+                            {
+                                "name": "StopProcessing",
+                                "default": "on",
+                                "required": "true",
+                                "summary": "Stop processing further rules on match",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "display": "Only this Trigger",
+                                "description": "If enabled, when this command is triggered, other commands that have the same trigger criteria will not be processed. If disabled, subsequent commands that share the same trigger criteria will process."
+                            },
+                            {
+                                "display": "CLI Command",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "description": "Specify the command to execute if the trigger criteria are met.",
+                                "name": "Command",
+                                "summary": "CLI command"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSLClientConfigType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSLClientConfigType"
+                    }
+                },
+                "type": {
+                    "name": "dmSSLClientConfigType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "proxy",
+                                "display": "Proxy Profile"
+                            },
+                            {
+                                "name": "client",
+                                "display": "Client Profile"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLogPrecision"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLogPrecision"
+                    }
+                },
+                "type": {
+                    "display": "Log Timestamp Precision",
+                    "name": "dmLogPrecision",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Second",
+                                "description": "Write log entries with one second precision. Fractional seconds are not shown in the timestamp.",
+                                "name": "second",
+                                "summary": "One second precision"
+                            },
+                            {
+                                "display": "Microsecond",
+                                "description": "Write log entries with microsecond precision. Six digits of subsecond precision are shown in the timestamp.",
+                                "name": "microsecond",
+                                "summary": "Microsecond precision"
+                            }
+                        ]
+                    },
+                    "summary": "Timestamp precision of the log entry"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLogEvent"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLogEvent"
+                    }
+                },
+                "type": {
+                    "name": "dmLogEvent",
+                    "properties": {
+                        "property": [
+                            {
+                                "display": "Event Category",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference",
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/LogLabel"
+                                    }
+                                },
+                                "description": "Sets an event category.",
+                                "name": "Class",
+                                "summary": "Log event category"
+                            },
+                            {
+                                "display": "Minimum Event Priority",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmLogLevel"
+                                },
+                                "description": "Sets the minimum event priority. The priorities are hierarchical. From lowest to highest, the hierarchy is debug, information, notice, warning, error, critical, alert, emergency.",
+                                "name": "Priority",
+                                "summary": "Sets the minimum priority for log event"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLogLevel"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLogLevel"
+                    }
+                },
+                "type": {
+                    "display": "Log Level",
+                    "name": "dmLogLevel",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "emergency",
+                                "description": "An emergency-level message. The system is unusable.",
+                                "name": "emerg",
+                                "summary": "System unusable"
+                            },
+                            {
+                                "display": "alert",
+                                "description": "An alert-level message. Immediate action must be taken.",
+                                "name": "alert",
+                                "summary": "Immediate action required"
+                            },
+                            {
+                                "display": "critical",
+                                "description": "A critical message. Immediate action should be taken.",
+                                "name": "critic",
+                                "summary": "Critical condition"
+                            },
+                            {
+                                "display": "error",
+                                "description": "An error message. Processing might continue, but action should be taken.",
+                                "name": "error",
+                                "summary": "Error condition"
+                            },
+                            {
+                                "display": "warning",
+                                "description": "A warning message. Processing should continue, but action should be taken.",
+                                "name": "warn",
+                                "summary": "Warning condition"
+                            },
+                            {
+                                "display": "notice",
+                                "description": "A notice message. Processing continues, but action might need to be taken.",
+                                "name": "notice",
+                                "summary": "Normal but significant condition"
+                            },
+                            {
+                                "display": "information",
+                                "description": "An information message. No action required.",
+                                "name": "info",
+                                "summary": "Informational message"
+                            },
+                            {
+                                "display": "debug",
+                                "description": "A debug message for processing information to help during troubleshooting.",
+                                "name": "debug",
+                                "summary": "Debug message"
+                            }
+                        ]
+                    },
+                    "summary": "Log level"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmPCRE"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmPCRE"
+                    }
+                },
+                "type": {
+                    "cli-arg": "pcre",
+                    "name": "dmPCRE"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPHostAddress"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPHostAddress"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip",
+                    "name": "dmIPHostAddress",
+                    "format": "(a.b.c.d)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmObjectClass"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmObjectClass"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object class",
+                    "name": "dmObjectClass"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "name": "LogTarget",
+                "display": "Log Target",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "Type"
+                            },
+                            {
+                                "name": "Format"
+                            },
+                            {
+                                "name": "UserSummary"
+                            }
+                        ],
+                        "name": "summary",
+                        "display": "Summary"
+                    },
+                    {
+                        "property-group": [
+                            {
+                                "member": [
+                                    {
+                                        "name": "mAdminState"
+                                    },
+                                    {
+                                        "name": "UserSummary"
+                                    },
+                                    {
+                                        "name": "Type"
+                                    },
+                                    {
+                                        "name": "Priority"
+                                    },
+                                    {
+                                        "name": "SoapVersion"
+                                    },
+                                    {
+                                        "name": "Format"
+                                    },
+                                    {
+                                        "name": "TimestampFormat"
+                                    },
+                                    {
+                                        "name": "FixedFormat"
+                                    },
+                                    {
+                                        "name": "UseANSIColor"
+                                    },
+                                    {
+                                        "name": "SyslogFacility"
+                                    },
+                                    {
+                                        "name": "RateLimit"
+                                    },
+                                    {
+                                        "name": "FeedbackDetection"
+                                    },
+                                    {
+                                        "name": "IdenticalEventSuppression"
+                                    },
+                                    {
+                                        "name": "IdenticalEventPeriod"
+                                    }
+                                ],
+                                "name": "general",
+                                "display": "General Configuration"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "LocalAddress"
+                                    },
+                                    {
+                                        "name": "LocalIdentifier"
+                                    },
+                                    {
+                                        "name": "SenderAddress"
+                                    },
+                                    {
+                                        "name": "SMTPDomain"
+                                    }
+                                ],
+                                "name": "source",
+                                "display": "Source Configuration"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "URL"
+                                    },
+                                    {
+                                        "name": "EmailAddress"
+                                    },
+                                    {
+                                        "name": "LocalFile"
+                                    },
+                                    {
+                                        "name": "NFSMount"
+                                    },
+                                    {
+                                        "name": "NFSFile"
+                                    },
+                                    {
+                                        "name": "RemoteAddress"
+                                    },
+                                    {
+                                        "name": "RemotePort"
+                                    },
+                                    {
+                                        "name": "RemoteLogin"
+                                    },
+                                    {
+                                        "name": "RemotePassword"
+                                    },
+                                    {
+                                        "name": "RemoteDirectory"
+                                    }
+                                ],
+                                "name": "destination",
+                                "display": "Destination Configuration"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "Size"
+                                    },
+                                    {
+                                        "name": "ArchiveMode"
+                                    },
+                                    {
+                                        "name": "UploadMethod"
+                                    },
+                                    {
+                                        "name": "Rotate"
+                                    }
+                                ],
+                                "name": "archival",
+                                "display": "Archival"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "ConnectTimeout"
+                                    },
+                                    {
+                                        "name": "IdleTimeout"
+                                    },
+                                    {
+                                        "name": "ActiveTimeout"
+                                    }
+                                ],
+                                "name": "connections",
+                                "display": "Connection Management"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "RetryInterval"
+                                    },
+                                    {
+                                        "name": "RetryAttempts"
+                                    },
+                                    {
+                                        "name": "LongRetryInterval"
+                                    }
+                                ],
+                                "name": "retry",
+                                "display": "Retry Behavior"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "SSLProxyProfile"
+                                    },
+                                    {
+                                        "name": "SSLClientProfile"
+                                    },
+                                    {
+                                        "name": "SSLClientConfigType"
+                                    }
+                                ],
+                                "name": "security",
+                                "display": "Security"
+                            }
+                        ],
+                        "name": "main",
+                        "display": "Main"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "LogEventCode"
+                            },
+                            {
+                                "name": "LogEventFilter"
+                            }
+                        ],
+                        "name": "eventcode",
+                        "display": "Event Filters"
+                    }
+                ],
+                "uri": "logging/target",
+                "actions": {
+                    "action": {
+                        "name": "Ping",
+                        "parameters": {
+                            "parameter": {
+                                "name": "RemoteHost",
+                                "select": "RemoteAddress"
+                            }
+                        }
+                    }
+                },
+                "summary": "Configured log target",
+                "cmd-group": "logging",
+                "cli-alias": "logging target",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "Specify a brief, descriptive summary.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Descriptive summary",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "Type",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLogType"
+                            },
+                            "required": "true",
+                            "summary": "Type of log target",
+                            "cli-alias": "type",
+                            "display": "Target Type",
+                            "description": "Specify the type of the log target. The default type is file."
+                        },
+                        {
+                            "name": "Priority",
+                            "default": "normal",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSchedulerPriority"
+                            },
+                            "summary": "Log target priority",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-not-in-list",
+                                    "value": "syslog-tcp"
+                                }
+                            },
+                            "cli-alias": "priority",
+                            "display": "Logging Priority",
+                            "description": "Control the log scheduling priority. When system resources are in high demand, \"high\" priority operations will be favored over lower priority operations."
+                        },
+                        {
+                            "name": "SoapVersion",
+                            "default": "soap11",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSoapVersion"
+                            },
+                            "summary": "SOAP version for log target",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-not-in-list",
+                                    "value": "soap"
+                                }
+                            },
+                            "cli-alias": "soap-version",
+                            "display": "SOAP version",
+                            "description": "Specify the SOAP version for SOAP log targets."
+                        },
+                        {
+                            "name": "Format",
+                            "default": "xml",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLogFormat"
+                            },
+                            "summary": "Format of log entries",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-in-list",
+                                    "value": [
+                                        "snmp",
+                                        "syslog",
+                                        "syslog-tcp"
+                                    ]
+                                }
+                            },
+                            "cli-alias": "format",
+                            "display": "Log Format",
+                            "description": "Specify the format in which to represent log entries."
+                        },
+                        {
+                            "name": "TimestampFormat",
+                            "default": "zulu",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLogTimestampFormat"
+                            },
+                            "summary": "Format of log timestamp",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-in-list",
+                                    "value": [
+                                        "smtp",
+                                        "syslog",
+                                        "syslog-tcp"
+                                    ]
+                                }
+                            },
+                            "cli-alias": "timestamp",
+                            "display": "Timestamp Format",
+                            "description": "Specify the format of the timestamp for log entries. The default format is ISO UTC format."
+                        },
+                        {
+                            "name": "FixedFormat",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Fix the format of logs",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "dmObjectName",
+                                            "evaluation": "property-equals",
+                                            "value": "default-log"
+                                        },
+                                        {
+                                            "property-name": "Format",
+                                            "evaluation": "property-equals",
+                                            "value": "json-icp"
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "fixed-format",
+                            "display": "Fixed Format",
+                            "description": "Makes the format of logs unchanging. The log format fixed at V6.0.1. New fields added to log formats afterwards are ignored."
+                        },
+                        {
+                            "name": "LocalIdentifier",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Format",
+                                            "evaluation": "property-equals",
+                                            "value": "cbe"
+                                        },
+                                        {
+                                            "property-name": "Type",
+                                            "evaluation": "property-value-in-list",
+                                            "value": [
+                                                "syslog",
+                                                "smtp"
+                                            ]
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "Type",
+                                                    "evaluation": "property-equals",
+                                                    "value": "file"
+                                                },
+                                                {
+                                                    "property-name": "UploadMethod",
+                                                    "evaluation": "property-equals",
+                                                    "value": "smtp"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Local system identifier",
+                            "cli-alias": "local-ident",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-not-in-list",
+                                    "value": "syslog-tcp"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Local Identifier",
+                            "description": "Specify a descriptive string that identifies the log target to remote recipients. For syslog destinations, do not include spaces."
+                        },
+                        {
+                            "name": "EmailAddress",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Type",
+                                            "evaluation": "property-equals",
+                                            "value": "smtp"
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "Type",
+                                                    "evaluation": "property-equals",
+                                                    "value": "file"
+                                                },
+                                                {
+                                                    "property-name": "UploadMethod",
+                                                    "evaluation": "property-equals",
+                                                    "value": "smtp"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Email address",
+                            "cli-alias": "email-address",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Email Address",
+                            "description": "Specify the email address to which to send log entries."
+                        },
+                        {
+                            "name": "SenderAddress",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Type",
+                                            "evaluation": "property-equals",
+                                            "value": "smtp"
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "Type",
+                                                    "evaluation": "property-equals",
+                                                    "value": "file"
+                                                },
+                                                {
+                                                    "property-name": "UploadMethod",
+                                                    "evaluation": "property-equals",
+                                                    "value": "smtp"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Email address",
+                            "cli-alias": "sender-address",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Sender Email Address",
+                            "description": "Specify the email address of the sender. The value must match the email address of the cryptographic key if email messages are signed."
+                        },
+                        {
+                            "name": "SMTPDomain",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Type",
+                                            "evaluation": "property-equals",
+                                            "value": "smtp"
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "Type",
+                                                    "evaluation": "property-equals",
+                                                    "value": "file"
+                                                },
+                                                {
+                                                    "property-name": "UploadMethod",
+                                                    "evaluation": "property-equals",
+                                                    "value": "smtp"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "SMTP client domain",
+                            "cli-alias": "smtp-domain",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-not-in-list",
+                                    "value": "smtp"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmHostname"
+                            },
+                            "display": "SMTP Client Domain",
+                            "description": "Specify the fully-qualified domain name of the SMTP client. This information will be part of the SMTP session initiation (HELO command)."
+                        },
+                        {
+                            "name": "Size",
+                            "default": 500,
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-in-list",
+                                    "value": [
+                                        "file",
+                                        "nfs"
+                                    ]
+                                }
+                            },
+                            "maximum": 50000,
+                            "summary": "Maximum log size",
+                            "cli-alias": "size",
+                            "minimum": 100,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "units": "kilobytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Log Size",
+                            "description": "Specify the maximum size of file-based log targets. Enter a value in the range 100 through 50000. The default value is 500."
+                        },
+                        {
+                            "name": "URL",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-equals",
+                                    "value": "soap"
+                                }
+                            },
+                            "summary": "POST URL",
+                            "cli-alias": "url",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmURL"
+                            },
+                            "display": "URL",
+                            "description": "Specify the HTTP URL to which to send log entries. The DataPower Gateway sends the entries with the POST method. The DataPower Gateway uses the default User Agent."
+                        },
+                        {
+                            "name": "NFSMount",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-equals",
+                                    "value": "nfs"
+                                }
+                            },
+                            "summary": "Instance of the NFS Static Mount",
+                            "cli-alias": "nfs-static-mount",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/NFSStaticMount"
+                                }
+                            },
+                            "display": "NFS Static Mount",
+                            "description": "Specify the name of an NFS Static Mount over which to write the log."
+                        },
+                        {
+                            "name": "SSLProxyProfile",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                                }
+                            },
+                            "summary": "The TLS proxy profile is deprecated. Use a TLS client profile.",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Type",
+                                            "evaluation": "property-value-not-in-list",
+                                            "value": [
+                                                "soap",
+                                                "syslog-tcp"
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "SSLClientConfigType",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "proxy"
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "ssl",
+                            "display": "TLS proxy profile (deprecated)",
+                            "description": "The TLS proxy profile with the cryptographic profiles to secure connections."
+                        },
+                        {
+                            "name": "LocalFile",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-equals",
+                                    "value": "file"
+                                }
+                            },
+                            "summary": "Name of the file for the file-based log target",
+                            "cli-alias": "local-file",
+                            "valid-regexp": "^(logtemp|logstore):[_a-z0-9A-Z/][-_a-z0-9A-Z/.]*$",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "example": "logtemp:///filename.log or logstore://subdir/filename.log",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "File Name",
+                            "description": "Specify the name of the log file. Examples: &lt;tt>logtemp:///filename.log&lt;/tt> or &lt;tt>logstore:///filename.log&lt;/tt> ."
+                        },
+                        {
+                            "name": "NFSFile",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-equals",
+                                    "value": "nfs"
+                                }
+                            },
+                            "summary": "Path to the file for the NFS-based log target",
+                            "cli-alias": "nfs-file",
+                            "valid-regexp": "^[_a-z0-9A-Z/][-_a-z0-9A-Z/.]*$",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "example": "dp-log/filename.log",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "NFS File Path",
+                            "description": "Specify the path to the log file. The path is relative to the NFS mount. Use a regular expression in the &lt;tt>^[_a-z0-9A-Z/][-_a-z0-9A-Z/.]*$&lt;/tt> format. Do not end the path with a forward slash (/)."
+                        },
+                        {
+                            "name": "ArchiveMode",
+                            "default": "rotate",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-in-list",
+                                    "value": "file"
+                                }
+                            },
+                            "summary": "Method to archives",
+                            "cli-alias": "archive-mode",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmLogFileArchiveMode"
+                            },
+                            "display": "Archive Mode",
+                            "description": "Specify the method to create archives."
+                        },
+                        {
+                            "name": "UploadMethod",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "ArchiveMode",
+                                            "evaluation": "property-equals",
+                                            "value": "upload"
+                                        },
+                                        {
+                                            "property-name": "Type",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "file"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Protocol to upload log files",
+                            "cli-alias": "upload-method",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmLogFileUploadMethod"
+                            },
+                            "display": "Upload Protocol",
+                            "description": "Specify the protocol to upload log files. If you use SCP to upload multiple log targets at the same time, a system error might occur. The DataPower Gateway supports only one SCP connection at a time. To minimize the risk when using SCP, configure log targets with different settings, such as different event subscriptions and different log sizes."
+                        },
+                        {
+                            "name": "Rotate",
+                            "default": 3,
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Type",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "nfs"
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "ArchiveMode",
+                                                    "evaluation": "property-equals",
+                                                    "value": "rotate"
+                                                },
+                                                {
+                                                    "property-name": "Type",
+                                                    "evaluation": "property-value-in-list",
+                                                    "value": "file"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "maximum": 100,
+                            "summary": "Maximum number of rotations",
+                            "cli-alias": "rotate",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Number of Rotations",
+                            "description": "Specify the maximum number of rotations to permit. Enter a value in the range 1 through 100. The default value is 3."
+                        },
+                        {
+                            "name": "UseANSIColor",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Use ANSI color scheme",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "console"
+                                }
+                            },
+                            "cli-alias": "ansi-color",
+                            "display": "Use ANSI Color Scheme",
+                            "description": "Enables the use of ANSI X3.64 escape sequences to color-code messages by log level."
+                        },
+                        {
+                            "name": "RemoteAddress",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Type",
+                                            "evaluation": "property-value-in-list",
+                                            "value": [
+                                                "syslog",
+                                                "syslog-tcp",
+                                                "smtp"
+                                            ]
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "ArchiveMode",
+                                                    "evaluation": "property-equals",
+                                                    "value": "upload"
+                                                },
+                                                {
+                                                    "property-name": "Type",
+                                                    "evaluation": "property-equals",
+                                                    "value": "file"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Host name or IP address",
+                            "cli-alias": "remote-address",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmHostname"
+                            },
+                            "display": "Remote Host",
+                            "description": "Specify the host name or IP address of the remote server. To establish a secure TLS connection to the server, set this value to the value of the remote host of a TLS Proxy service on the DataPower Gateway. The local TLS Proxy service then securely forwards the log entries to its configured remote server."
+                        },
+                        {
+                            "name": "RemotePort",
+                            "cli-alias": "remote-port",
+                            "maximum": "0xFFFF",
+                            "summary": "Port number",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "Type",
+                                                    "evaluation": "property-equals",
+                                                    "value": "file"
+                                                },
+                                                {
+                                                    "property-name": "ArchiveMode",
+                                                    "evaluation": "property-does-not-equal",
+                                                    "value": "upload"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "Type",
+                                            "evaluation": "property-value-not-in-list",
+                                            "value": [
+                                                "syslog",
+                                                "syslog-tcp",
+                                                "smtp",
+                                                "file"
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "dmObjectName",
+                                            "evaluation": "property-equals",
+                                            "value": "default-log"
+                                        }
+                                    ]
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPPort"
+                            },
+                            "display": "Remote Port",
+                            "description": "Specify the listening port on the remote server. If using a local TLS Proxy service to establish a secure TLS connection, set this value to the value of the remote port of the TLS Proxy service."
+                        },
+                        {
+                            "name": "RemoteLogin",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "UploadMethod",
+                                            "evaluation": "property-value-in-list",
+                                            "value": [
+                                                "ftp",
+                                                "scp",
+                                                "sftp"
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "ArchiveMode",
+                                            "evaluation": "property-equals",
+                                            "value": "upload"
+                                        },
+                                        {
+                                            "property-name": "Type",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "file"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Account (user name)",
+                            "cli-alias": "remote-login",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Remote Login",
+                            "description": "Specify the account or user name to access the remote server."
+                        },
+                        {
+                            "name": "RemotePassword",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "evaluation": "is-edit-new-object"
+                                        },
+                                        {
+                                            "property-name": "UploadMethod",
+                                            "evaluation": "property-equals",
+                                            "value": "ftp"
+                                        },
+                                        {
+                                            "property-name": "ArchiveMode",
+                                            "evaluation": "property-equals",
+                                            "value": "upload"
+                                        },
+                                        {
+                                            "property-name": "Type",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "file"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Password",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "UploadMethod",
+                                            "evaluation": "property-value-not-in-list",
+                                            "value": [
+                                                "ftp",
+                                                "scp",
+                                                "sftp"
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "ArchiveMode",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "upload"
+                                        },
+                                        {
+                                            "property-name": "Type",
+                                            "evaluation": "property-value-not-in-list",
+                                            "value": "file"
+                                        }
+                                    ]
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Remote Password",
+                            "description": "Specify the password for the account or user name for non-public key authentication. Public key authentication can be configured through the default instance of the User Agent."
+                        },
+                        {
+                            "name": "RemoteDirectory",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Directory on the remote server",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "UploadMethod",
+                                            "evaluation": "property-value-not-in-list",
+                                            "value": [
+                                                "ftp",
+                                                "scp",
+                                                "sftp"
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "ArchiveMode",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "upload"
+                                        },
+                                        {
+                                            "property-name": "Type",
+                                            "evaluation": "property-value-not-in-list",
+                                            "value": "file"
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "remote-directory",
+                            "display": "Remote Directory",
+                            "description": "&lt;p>Specify an existing writable directory on the remote server to which to upload files.&lt;/p>&lt;ul>&lt;li>To denote an absolute directory from the root directory, specify a single forward slash character (/) or equivalent encoded character (%2F) before the fully qualified path. &lt;ul>&lt;li>For SCP or SFTP, enter / to resolve to //.&lt;/li>&lt;li>For FTP, enter %2F to resolve to /%2F.&lt;/li>&lt;/ul>&lt;/li>&lt;li>To denote a directory that is relative to the user's home directory, do not specify a forward slash character or encoded character before the fully qualified file name.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "LocalAddress",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-in-list",
+                                    "value": [
+                                        "smtp",
+                                        "syslog-tcp"
+                                    ]
+                                }
+                            },
+                            "summary": "Local interface address",
+                            "cli-alias": "local-address",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-not-in-list",
+                                    "value": [
+                                        "syslog",
+                                        "soap"
+                                    ]
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmLocalIPHostAddress"
+                            },
+                            "display": "Local IP Address",
+                            "description": "Specify a host alias or IP address of a local interface."
+                        },
+                        {
+                            "name": "SyslogFacility",
+                            "default": "user",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-in-list",
+                                    "value": [
+                                        "syslog-tcp",
+                                        "syslog"
+                                    ]
+                                }
+                            },
+                            "summary": "syslog facility",
+                            "cli-alias": "facility",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmSyslogFacility"
+                            },
+                            "display": "syslog Facility",
+                            "description": "Set the log facility (per RFC 3164) to include in messages sent to the syslog log target."
+                        },
+                        {
+                            "name": "RateLimit",
+                            "default": 100,
+                            "cli-alias": "rate-limit",
+                            "maximum": 1000,
+                            "summary": "The maximum number of events logged",
+                            "minimum": 0,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-not-in-list",
+                                    "value": [
+                                        "nfs",
+                                        "smtp",
+                                        "soap",
+                                        "snmp",
+                                        "syslog",
+                                        "syslog-tcp"
+                                    ]
+                                }
+                            },
+                            "units": "events/second",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Rate Limit",
+                            "description": "&lt;p>Set the maximum number of events to be logged per second. Enter a value in the range 1 - 1000. The default value is 100.&lt;/p>&lt;ul>&lt;li>Remote log targets might receive more than this number of events within a second, depending on network latency and buffering. syslog over TCP log targets are exclusive, because only a single TCP connection is made to the server.&lt;/li>&lt;li>In the case of syslog over TCP log targets, the rate limit is the maximum number of events transmitted over the connection within one second. A value of 0 disables rate-limiting by the logging target.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "ConnectTimeout",
+                            "default": 60,
+                            "cli-alias": "connect-timeout",
+                            "maximum": 90,
+                            "summary": "Number of seconds to wait for a connection to the server to be established before generating an error.",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-not-in-list",
+                                    "value": "syslog-tcp"
+                                }
+                            },
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Connect Timeout",
+                            "description": "Set the number of seconds to wait for a connection to the server to be established before generating an error. A log message will be generated in the default log and connection retry attempts will be made. Enter a value in the range 1 - 90. The default value is 60."
+                        },
+                        {
+                            "name": "IdleTimeout",
+                            "default": 15,
+                            "cli-alias": "idle-timeout",
+                            "maximum": 600,
+                            "summary": "Number of seconds to wait before closing an established but inactive connection to the server.",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-not-in-list",
+                                    "value": "syslog-tcp"
+                                }
+                            },
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Idle Timeout",
+                            "description": "&lt;p>Set the number of seconds to wait before closing an established but inactive connection to the server. Enter a value in the range 1 - 600. The default value is 15.&lt;/p>&lt;p>Attention: If multiple log targets have the following configuration, they might share connections.&lt;/p>&lt;ul>&lt;li>The same local address and port&lt;/li>&lt;li>The same remote address and port&lt;/li>&lt;/ul>&lt;p>Because of potential connection-sharing, set the same idle timeout value for these log targets.&lt;/p>"
+                        },
+                        {
+                            "name": "ActiveTimeout",
+                            "default": 0,
+                            "cli-alias": "active-timeout",
+                            "maximum": 60,
+                            "summary": "Number of seconds to wait before closing an established and active connection to the server.",
+                            "minimum": 0,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-not-in-list",
+                                    "value": "syslog-tcp"
+                                }
+                            },
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Active Timeout",
+                            "description": "&lt;p>Set the number of seconds to wait before closing an established and active connection to the server. Enter a value in the range 0 - 60. A value of 0 allows the log target to most efficiently send messages to the server by maintaining a healthy connection indefinitely. The default value is 0.&lt;/p>&lt;p>Attention: If multiple log targets have the following configuration, they might share connections.&lt;/p>&lt;ul>&lt;li>The same local address and port&lt;/li>&lt;li>The same remote address and port&lt;/li>&lt;/ul>&lt;p>Because of potential connection-sharing, set the same active timeout value for these log targets.&lt;/p>"
+                        },
+                        {
+                            "name": "FeedbackDetection",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to suppress events from logging subsystem",
+                            "cli-alias": "feedback-detection",
+                            "display": "Feedback Detection",
+                            "description": "Indicate whether to suppress events from the logging subsystem itself. A log target always suppresses its own events, but will record events from other log targets. Under certain circumstances with multiple log targets, these events could create a positive feedback loop that could cause resource contention. Enable to suppress all log events from the logging subsystem and prevent resource contention."
+                        },
+                        {
+                            "name": "IdenticalEventSuppression",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Suppress identical events",
+                            "cli-alias": "event-detection",
+                            "display": "Identical Event Detection (deprecated)",
+                            "description": "Indicate whether to suppress identical events from the same object over a set time period. When enabled, the log target records only one instance of the event until the suppression period expires."
+                        },
+                        {
+                            "name": "IdenticalEventPeriod",
+                            "default": 10,
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "IdenticalEventSuppression",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "maximum": 3600,
+                            "summary": "Duration to suppress identical events",
+                            "cli-alias": "suppression-period",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimeInterval"
+                            },
+                            "display": "Event Suppression Period (deprecated)",
+                            "description": "Set the duration of the suppression period. The default value is 10."
+                        },
+                        {
+                            "name": "LogEventCode",
+                            "type": {
+                                "href": "/mgmt/types/default/dmEventCode"
+                            },
+                            "summary": "Filter to log specific event codes",
+                            "array": "true",
+                            "cli-alias": "event-code",
+                            "display": "Event Subscription Filter",
+                            "description": "Subscription filters allow only those log messages that contain the configured event codes to be written to this log target. With this filter, it is possible to create a log target that collects only log messages for a specific set of event codes."
+                        },
+                        {
+                            "name": "LogEventFilter",
+                            "type": {
+                                "href": "/mgmt/types/default/dmEventCode"
+                            },
+                            "summary": "Filter to suppress specific event codes",
+                            "array": "true",
+                            "cli-alias": "event-filter",
+                            "display": "Event Suppression Filter",
+                            "description": "Suppression filters suppress those log messages that contain the configured event codes to be written to this log target. With this filter, it is possible to create a log target that collects a wide range of log messages except for a specific set of event codes."
+                        },
+                        {
+                            "name": "LogObjects",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLogObject"
+                            },
+                            "summary": "Filter to log events for specific objects",
+                            "array": "true",
+                            "cli-alias": "object",
+                            "display": "Object Filters",
+                            "description": "Object filters allow only those log messages for specific objects to be written to this log target. Object filters are based on object classes. With this filter, you can create a log target that collects only log messages generated by particular instances of the specified object classes."
+                        },
+                        {
+                            "name": "LogIPFilter",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLogIPFilter"
+                            },
+                            "summary": "Filter to log events for specific IP addresses",
+                            "array": "true",
+                            "cli-alias": "ip-filter",
+                            "display": "IP Address Filters",
+                            "description": "IP address filters allow only those log messages from specific IP addresses to be written to this log target."
+                        },
+                        {
+                            "name": "LogTriggers",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLogTrigger"
+                            },
+                            "summary": "Event Trigger Points",
+                            "array": "true",
+                            "cli-alias": "trigger",
+                            "display": "Event Triggers",
+                            "description": "&lt;p>Event triggers perform actions only when triggered by a specified message ID or event code. With this filter, it is possible to create a log target that collects only the results of the specified trigger action. For example, to trigger the generation of an error report when a certain event occurs use the &lt;b>save error-report&lt;/b> command.&lt;/p>"
+                        },
+                        {
+                            "name": "SSLClientProfile",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                                }
+                            },
+                            "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and its targets",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Type",
+                                            "evaluation": "property-value-not-in-list",
+                                            "value": [
+                                                "soap",
+                                                "syslog-tcp"
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "SSLClientConfigType",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "client"
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "ssl-client",
+                            "display": "TLS client profile",
+                            "description": "The TLS client profile to secure connections between the DataPower Gateway and its targets."
+                        },
+                        {
+                            "name": "SSLClientConfigType",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSLClientConfigType"
+                            },
+                            "summary": "Set the TLS profile type to secure connections between the DataPower Gateway and its targets",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-not-in-list",
+                                    "value": [
+                                        "soap",
+                                        "syslog-tcp"
+                                    ]
+                                }
+                            },
+                            "cli-alias": "ssl-client-type",
+                            "display": "TLS client type",
+                            "description": "The TLS profile type to secure connections between the DataPower Gateway and its targets."
+                        },
+                        {
+                            "name": "RetryInterval",
+                            "default": 1,
+                            "cli-alias": "retry-interval",
+                            "maximum": 600,
+                            "summary": "Time to wait before attempting to reestablish a failed connection",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-not-in-list",
+                                    "value": "syslog-tcp"
+                                }
+                            },
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Retry Interval",
+                            "description": "Specify the number of seconds to wait before attempting to reestablish a failed connection to the syslog server. Enter a value in the range 1 - 600. The default value is 1."
+                        },
+                        {
+                            "name": "RetryAttempts",
+                            "default": 1,
+                            "cli-alias": "retry-attempts",
+                            "maximum": 100,
+                            "summary": "The number of attempts to retry the failed connections",
+                            "minimum": 0,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-not-in-list",
+                                    "value": "syslog-tcp"
+                                }
+                            },
+                            "units": "attempts",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Retry Attempts",
+                            "description": "&lt;p>Specify the number of attempts for a failed connection to the syslog server. After the number of attempts is reached, connection attempts use the value set by &lt;b>Long Retry Interval&lt;/b>. When the long interval is disabled, the log target repeatedly attempts to reconnect to the syslog server with the value set by &lt;b>Retry Interval&lt;/b>.&lt;/p>&lt;p>&lt;b>Note:&lt;/b> 0 means the &lt;b>Long Retry Interval&lt;/b> will not be used and will retry forever using &lt;b>Retry Interval&lt;/b>.&lt;/p>"
+                        },
+                        {
+                            "name": "LongRetryInterval",
+                            "default": 20,
+                            "cli-alias": "long-retry-interval",
+                            "maximum": 600,
+                            "summary": "Long retry interval before retrying the failed connections",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-not-in-list",
+                                    "value": "syslog-tcp"
+                                }
+                            },
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Long Retry Interval",
+                            "description": "&lt;p>Specify the time to wait before attempting to reestablish a failed connection to the syslog server after the number of attempts is reached. Enter a value in the range 0 - 600. The default value is 20.&lt;/p>&lt;p>&lt;b>Note:&lt;/b> The &lt;b>Long Retry Interval&lt;/b> must be greater than the &lt;b>Retry Interval&lt;/b> or it will take no effect.&lt;/p>"
+                        },
+                        {
+                            "name": "LogPrecision",
+                            "default": "second",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-in-list",
+                                    "value": "syslog-tcp"
+                                }
+                            },
+                            "summary": "Log Timestamp Precision",
+                            "cli-alias": "precision",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmLogPrecision"
+                            },
+                            "display": "Log Timestamp Precision",
+                            "description": "Log Timestamp Precision configuration of the format of the timestamp of the log messages."
+                        },
+                        {
+                            "name": "Backup",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/LogTarget"
+                                }
+                            },
+                            "summary": "Log Target",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "dmObjectName",
+                                            "evaluation": "property-equals",
+                                            "value": "default-log"
+                                        },
+                                        {
+                                            "property-name": "Type",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "file"
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "backup",
+                            "display": "Backup Log",
+                            "description": "Sets another Log Target object as a backup to receive redirected events in case of an error on the current file-based log target. This setting has no effect on network-based log targets. For network-based log targets, set a load balancer group as the remote host."
+                        },
+                        {
+                            "name": "LogEvents",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLogEvent"
+                            },
+                            "summary": "Log event subscription",
+                            "array": "true",
+                            "cli-alias": "event",
+                            "display": "Event Subscriptions",
+                            "description": "&lt;p>Subscribes the log target to particular event categories. Some example categories include:&lt;/p>&lt;dl>&lt;dt>auth&lt;/dt>&lt;dd>Authorization events&lt;/dd>&lt;dt>mgmt&lt;/dt>&lt;dd>Configuration management events&lt;/dd>&lt;dt>xslt&lt;/dt>&lt;dd>XSLT processing events&lt;/dd>&lt;/dl>&lt;p>For each event category chosen (including the &lt;tt>all&lt;/tt> category), you can establish a priority level that must be met before the log message will be captured by the log target. Without event subscriptions, no events are included by default. To allow the log target to capture messages, the configuration must include at least one event subscription. The category can be the &lt;tt>all&lt;/tt> category.&lt;/p>"
+                        }
+                    ]
+                },
+                "description": "&lt;p>Log targets capture messages that are posted by the various objects and services that are running on the appliance. Target types enable additional capabilities that include rotating files, encrypting and signing files or messages, and sending files to remote servers.&lt;/p>&lt;p>Messages in log targets can be restricted (filtered) by priority, event code, event category, object type, or IP address. By default, a log target cannot accept messages until it is subscribed to one or more events.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/LogTarget"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/LogTarget"
+                }
+            }
+        }
+    }
+}

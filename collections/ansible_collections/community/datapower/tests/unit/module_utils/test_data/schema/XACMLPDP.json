@@ -1,0 +1,318 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                },
+                "type": {
+                    "cli-arg": "url",
+                    "name": "dmURL"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmXACMLCombiningAlg"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmXACMLCombiningAlg"
+                    }
+                },
+                "type": {
+                    "name": "dmXACMLCombiningAlg",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "First Applicable",
+                                "description": "Evaluates each policy in the order that it appears in the XACML Policy Set. For an individual Policy or PolicySet element, if the target (resource) evaluates to \"TRUE\" and the policy conditions evaluate unambiguously to \"Permit\" or \"Deny\", the policy combination evaluates to the effect of that individual policy. If the target evaluates to \"FALSE\" or the policy conditions are determined to be \"Not Applicable\", the policy combination evaluates to \"Not Applicable\".",
+                                "name": "first-applicable",
+                                "summary": "First unambiguous evaluation results in final evaluation"
+                            },
+                            {
+                                "display": "Deny Overrides",
+                                "description": "Evaluates each policy in the order that it appears in the XACML Policy Set. If any Policy or PolicySet element evaluates to \"Deny\", the policy combination evaluates immediately to \"Deny\". In other words, a single \"Deny\" takes precedence over other policy evaluations. If all policies are determined to be \"Not Applicable\", the policy combination evaluates to \"NotApplicable\".",
+                                "name": "deny-overrides",
+                                "summary": "Any \"Deny\" evaluation results in a final \"Deny\" evaluation"
+                            },
+                            {
+                                "display": "Permit Overrides",
+                                "description": "Evaluates each policy in the order that it appears in the XACML Policy Set. If any Policy or PolicySet element evaluates to \"Permit\", the policy combination evaluates immediately to \"Permit\". In other words, a single \"Permit\" takes precedence over other policy evaluations. If all policies are determined to be \"Not Applicable\", the policy combination evaluates to \"Not Applicable\".",
+                                "name": "permit-overrides",
+                                "summary": "Any \"Permit\" evaluation results in a final \"Permit\" evaluation"
+                            },
+                            {
+                                "display": "Only One Applicable",
+                                "description": "Evaluates each policy in the order that it appears in the XACML Policy Set. Unlike the other combining algorithms, this algorithm evaluates all policies in the Policy Set to render a final evaluation. If no policy is considered applicable after evaluating all policies, the policy combination evaluates to \"Not Applicable\". If more than one policy is considered applicable after evaluating all policies, the policy combination evaluates to \"Indeterminate\". If only one single policy is considered applicable after evaluating all policies, the policy combination evaluates to the result of that single policy.",
+                                "name": "only-one-applicable",
+                                "summary": "Evaluate all policies to render a final evaluation"
+                            }
+                        ]
+                    },
+                    "display": "XACML Combining Algorithm"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSDirectory"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSDirectory"
+                    }
+                },
+                "type": {
+                    "cli-arg": "directory",
+                    "name": "dmFSDirectory"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "XACMLPDP",
+                "display": "XACML Policy Decision Point",
+                "property-group": {
+                    "member": [
+                        {
+                            "name": "dmAdminState"
+                        },
+                        {
+                            "name": "EqualPolicies"
+                        },
+                        {
+                            "name": "GeneralPolicy"
+                        },
+                        {
+                            "name": "CombiningAlg"
+                        },
+                        {
+                            "name": "DependentPolicy"
+                        },
+                        {
+                            "name": "CacheTTL"
+                        }
+                    ],
+                    "name": "summary"
+                },
+                "uri": "access/xacml-pdp",
+                "summary": "Define the object for a XACML Policy Decision Point",
+                "cmd-group": "aaapolicy",
+                "cli-alias": "xacml-pdp",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "EqualPolicies",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "All the policies are evaluated on the same level, there is no general policy-set.",
+                            "cli-alias": "equal-policies",
+                            "display": "Evaluate Individual Policies Equally",
+                            "description": "In case of a top level policy-set is undefined, all policies are evaluated equally, PDP will use the PolicyCombiningAlg for the final decision."
+                        },
+                        {
+                            "name": "GeneralPolicy",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "EqualPolicies",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "summary": "The URL of the top level XACML policy/policy-set file.",
+                            "cli-alias": "general-policy",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmURL"
+                            },
+                            "display": "General Policy File",
+                            "description": "The URL of top level XACML policy/policy-set file, if there is one. This file may reside on the local device (typically as local:///file) or on a remote server. Attempts to retrieve this file from remote servers may be governed by the User Agent in use by the XML Manager of the service. This may be useful for TLS connections, for example."
+                        },
+                        {
+                            "name": "CombiningAlg",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "EqualPolicies",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "The combining algorithm when there is not a top level general-policy.",
+                            "cli-alias": "combining-alg",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmXACMLCombiningAlg"
+                            },
+                            "display": "Dependent Policies Combining",
+                            "description": "Select the policy-combining algorithm when not using a top-level comprehensive XACML policy file. The default is First Applicable."
+                        },
+                        {
+                            "name": "DependentPolicy",
+                            "type": {
+                                "href": "/mgmt/types/default/dmURL"
+                            },
+                            "summary": "The URL of dependent xacml policy/policy-set files to be used by this PDP.",
+                            "array": "true",
+                            "cli-alias": "dependent-policy",
+                            "display": "Dependent Policy Files",
+                            "description": "Some of the XACML Policies/Policy-Sets are indirectly needed when the PDP evaluates a request. They are called Dependent Policy Files. Specify their URLs with this setting."
+                        },
+                        {
+                            "name": "Directory",
+                            "type": {
+                                "href": "/mgmt/types/default/dmFSDirectory"
+                            },
+                            "summary": "The directory of all the other dependent policy files.",
+                            "array": "true",
+                            "cli-alias": "directory",
+                            "display": "Other Policy Files from Directory",
+                            "description": "List directories that contain dependent files. In these directories, all files with the xml or xacml extension are available to the XACML PDP. Use this option when there are too many policy files to identify independently."
+                        },
+                        {
+                            "name": "CacheTTL",
+                            "default": 0,
+                            "cli-alias": "cache-ttl",
+                            "maximum": 2678400,
+                            "summary": "Time to cache the XACML policies.",
+                            "minimum": 0,
+                            "units": "Seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "XACML Policies Cache Lifetime",
+                            "description": "This sets the explicit time to live (TTL) for cached XACML policies, either raw or compiled. The default value 0 means the cache never expire unless PDP explicitly refreshes the policies. The maximum TTL is 31 days (2,678,400 seconds)."
+                        }
+                    ]
+                },
+                "description": "The XACML policies can be evaluated on a DataPower device, This on-box XACML Policy Decision Point (PDP) allows customers to define the necessary information so that it can evaluate the corresponding XACML policies against a XACML request for an XACML Policy Enforcement Point (PEP). The DataPower PEP is implemented with AAA action."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/XACMLPDP"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/XACMLPDP"
+                }
+            }
+        }
+    }
+}

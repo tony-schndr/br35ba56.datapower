@@ -1,0 +1,27 @@
+- name: 'Demo apply_conf'
+  hosts: dp1
+  connection: local
+  vars:
+    #objs:
+      #- DNSNameService
+      #- AAAPolicy
+  tasks:
+    - name: Get all supported objects
+      community.datapower.config_info:
+        domain: default
+      register: config_info_result
+    - name: Grab all objects schema.
+      community.datapower.apply_config:
+        state: present
+        domain: default
+        name: Something
+        class_name: "{{ item }}"
+        config: {}
+      register: all_objects_schema
+      loop: "{{ config_info_result['config_info'] }}"
+      #loop: "{{ objs }}"
+      ignore_errors: yes
+    - name: Write object schemas to file
+      copy:
+        content: "{{ all_objects_schema }}"
+        dest: ./all_dp_obj_schema.json 

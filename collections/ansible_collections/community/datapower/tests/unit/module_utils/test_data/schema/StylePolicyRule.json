@@ -1,0 +1,295 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmStyleRuleDirection"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmStyleRuleDirection"
+                    }
+                },
+                "type": {
+                    "display": "Rule Direction",
+                    "name": "dmStyleRuleDirection",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Both Directions",
+                                "name": "rule",
+                                "summary": "Applies to both client- and server-originated traffic"
+                            },
+                            {
+                                "display": "Client to Server",
+                                "name": "request-rule",
+                                "summary": "Applies to client-originated traffic"
+                            },
+                            {
+                                "display": "Server to Client",
+                                "name": "response-rule",
+                                "summary": "Applies to server-originated traffic"
+                            },
+                            {
+                                "display": "Error",
+                                "name": "error-rule",
+                                "summary": "Invoked when a processing error occurs"
+                            }
+                        ]
+                    },
+                    "summary": "Direction to which the Rule applies"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmStyleRuleFilterFormat"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmStyleRuleFilterFormat"
+                    }
+                },
+                "type": {
+                    "display": "Stylesheet Rule Filter Format",
+                    "name": "dmStyleRuleFilterFormat",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "None",
+                                "name": "none",
+                                "summary": "No algorithm for compression or decompression."
+                            },
+                            {
+                                "display": "gzip",
+                                "name": "gzip",
+                                "summary": "Use the gzip algorithms for compression and decompression."
+                            },
+                            {
+                                "display": "PKZIP",
+                                "name": "pkzip",
+                                "summary": "Uses the PKZIP algorithms for compression and decompression."
+                            }
+                        ]
+                    },
+                    "summary": "Stylesheet Rule Filter Format"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "StylePolicyRule",
+                "property-group": {
+                    "member": {
+                        "name": "Direction"
+                    },
+                    "name": "summary"
+                },
+                "uri": "xml/rule",
+                "display": "Processing Rule",
+                "cmd-group": "stylesheetrule",
+                "cli-alias": "rule",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "description": "Define XSL filters and/or transformations. Select the desired existing action from the list and click Add to add the action to the rule. Actions are executed in the order (top to bottom) in which they are listed in the box. Click the + button to create a new Action; select an action and click the ... button to edit an existing action. To delete an action, select it from the list and click Delete.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/StylePolicyAction"
+                                }
+                            },
+                            "array": "true",
+                            "cli-alias": "action",
+                            "display": "Rule Action",
+                            "name": "Actions"
+                        },
+                        {
+                            "name": "Direction",
+                            "default": "rule",
+                            "type": {
+                                "href": "/mgmt/types/default/dmStyleRuleDirection"
+                            },
+                            "required": "true",
+                            "summary": "A rule type",
+                            "cli-alias": "type",
+                            "display": "Rule Direction",
+                            "description": "Select a rule type. The default is Rule."
+                        },
+                        {
+                            "name": "InputFormat",
+                            "default": "none",
+                            "type": {
+                                "href": "/mgmt/types/default/dmStyleRuleFilterFormat"
+                            },
+                            "required": "true",
+                            "summary": "Filter or preprocess Processing Rule input",
+                            "cli-alias": "input-filter",
+                            "display": "Input Filter",
+                            "description": "Select a decompression algorithm to apply to all messages before any other processing occurs (a preprocess step). All messages are decompressed using the selected algorithm. If the message is not compressed with this algorithm, an error is raised. This setting is independent of transport-level decompression. The default is None."
+                        },
+                        {
+                            "name": "OutputFormat",
+                            "default": "none",
+                            "type": {
+                                "href": "/mgmt/types/default/dmStyleRuleFilterFormat"
+                            },
+                            "required": "true",
+                            "summary": "Filter or post-process Processing Rule output",
+                            "cli-alias": "output-filter",
+                            "display": "Output Filter",
+                            "description": "Select a compression algorithm to apply to all messages after any other processing occurs (a post-process step). All messages are compressed using the selected algorithm. The resulting archive contains only one file. This setting is independent of transport-level compression. The default is None."
+                        },
+                        {
+                            "name": "NonXMLProcessing",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Should Rule Apply to Non-XML traffic too",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Unprocessed",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "cli-alias": "non-xml-processing",
+                            "display": "Non-XML Processing",
+                            "description": "Normally, processing is only performed on XML content. This option allows processing actions to be performed on Non-XML content as well."
+                        },
+                        {
+                            "name": "Unprocessed",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Permit rule to pass-through data unprocessed",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "NonXMLProcessing",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "cli-alias": "unprocessed",
+                            "display": "Unprocessed",
+                            "description": "Permit rule to pass-through data unprocessed"
+                        }
+                    ]
+                },
+                "description": "Create, edit, or delete processing policy rules. Rules can also be created and edited using a drag and drop interface by opening the Services menu area on the left-hand navigation bar. Click the appropriate Policy link which will then present an opportunity to create both Rules and Actions."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/StylePolicyRule"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/StylePolicyRule"
+                }
+            }
+        }
+    }
+}

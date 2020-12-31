@@ -1,0 +1,393 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPHostAddress"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPHostAddress"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip",
+                    "name": "dmIPHostAddress",
+                    "format": "(a.b.c.d)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt64"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt64"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt64",
+                    "maximum": "0xFFFFFFFFFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                },
+                "type": {
+                    "cli-arg": "seconds",
+                    "minimum": 0,
+                    "name": "dmTimeInterval",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLVSDistributionAlgorithm"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLVSDistributionAlgorithm"
+                    }
+                },
+                "type": {
+                    "display": "Distribution algorithm",
+                    "name": "dmLVSDistributionAlgorithm",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Weighted least connections",
+                                "description": "The weighted least connection algorithm uses an internal CPU-based weight with the number of current connections to each member to distribute incoming connections among available member. A member receives a new connection that is based on a combination of its weight (or preference) and its number of active connections. The algorithm attempts to balance the connection completion rate across members so that each member has the same number of active connections.",
+                                "name": "wlc",
+                                "summary": "Weighted least connections algorithm"
+                            },
+                            {
+                                "display": "Round robin",
+                                "description": "The round robin algorithm maintains a list of members and evenly distributes incoming connections among available members. The algorithm attempts to balance the incoming connection rate across members.",
+                                "name": "rr",
+                                "summary": "Round robin algorithm"
+                            }
+                        ]
+                    },
+                    "summary": "Distribution algorithm"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "StandaloneStandbyControl",
+                "display": "Standalone Standby Control",
+                "marker-file": "store:///dp/ssc-marker",
+                "uri": "network/standalone-standby-control",
+                "actions": {
+                    "action": {
+                        "name": "YieldStandaloneStandby",
+                        "parameters": {
+                            "parameter": {
+                                "name": "Interface",
+                                "select": "dmObjectName"
+                            }
+                        },
+                        "display": "Yield standby"
+                    }
+                },
+                "summary": "Indicate whether to allow a standby configuration.",
+                "platforms": {
+                    "platform": [
+                        "container",
+                        "software"
+                    ]
+                },
+                "cmd-group": "interface",
+                "cli-alias": "standalone-standby-control",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "This property is read-only.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "This property is read-only.",
+                            "cli-alias": "summary",
+                            "display": "Comments (read-only)",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "Interface",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/StandaloneStandbyControlInterface"
+                                }
+                            },
+                            "required": "true",
+                            "summary": "The network interface for the standby group.",
+                            "cli-alias": "interface",
+                            "display": "Interface",
+                            "description": "The network interface that the standby group uses."
+                        },
+                        {
+                            "name": "Group",
+                            "default": 1,
+                            "cli-alias": "standby-group",
+                            "maximum": 255,
+                            "summary": "Set the number of the standby group in the multicast domain.",
+                            "minimum": 1,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Group number",
+                            "description": "&lt;p>The number of the standby group in a multicast domain. The multicast domain is a group of interfaces that receive traffic from each other on the IP address 224.0.0.2 (the all-routers IP multicast group). If the multicast domain becomes partitioned, which is an unusual situation, a member in each partition becomes the active member to handle connections in its partition.&lt;/p>&lt;p>&lt;b>Attention:&lt;/b> Do not use a group number that conflicts with the number of an existing standby group or any network group that uses Hot Standby Router Protocol (HSRP).&lt;/p>&lt;p>The interfaces of a standby group are on the same network segment and share the responsibility for one virtual IP address. Interfaces in the standby group require the following configuration.&lt;/p>&lt;ul>&lt;li>Belong to the same group.&lt;/li>&lt;li>Use the same primary virtual IP address.&lt;/li>&lt;li>Use the same authentication, or security token.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "VirtualIP",
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPHostAddress"
+                            },
+                            "required": "true",
+                            "summary": "Set the primary virtual IP address of standby group.",
+                            "cli-alias": "standby-virtual-ip",
+                            "display": "Primary virtual IP address",
+                            "description": "&lt;p>The primary virtual IP address of the standby group. The active member of the standby group uses this IP address. All interfaces in the standby group must use the same virtual IP address. External clients that contact the active member of the standby group should use this IP address.&lt;/p>&lt;p>&lt;b>Attention:&lt;/b> Virtual IP addresses in a standby configuration must be IPv4 addresses.&lt;/p>"
+                        },
+                        {
+                            "name": "SecondaryVirtualIP",
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPHostAddress"
+                            },
+                            "summary": "Manage secondary virtual IP addresses that follow the active virtual IP address to the active interface.",
+                            "array": "true",
+                            "cli-alias": "standby-secondary-virtual-ip",
+                            "display": "Secondary virtual IP addresses",
+                            "description": "&lt;p>Auxiliary, or secondary, virtual IP addresses to the standby configuration. Secondary addresses follow the active virtual IP address to the active interface. Secondary addresses are on the same interface as the primary address and are enabled and disabled in coordination with the primary address.&lt;/p>&lt;p>&lt;b>Attention:&lt;/b> Virtual IP addresses in a standby configuration must be IPv4 addresses.&lt;/p>"
+                        },
+                        {
+                            "name": "Preempt",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Indicates whether to support preemption in the standby group.",
+                            "cli-alias": "standby-preempt",
+                            "display": "Enable preemption",
+                            "hoverhelp": "&lt;p>Indicates whether to support preemption in the standby group. &lt;b>Attention:&lt;/b> Do not enable preemption.&lt;/p>",
+                            "description": "&lt;p>Whether to support preemption in the standby configuration for the initially active interface. Depending on the preemption setting, the follow activity occurs when the initially active member returns to service after a failure.&lt;/p>&lt;ul>&lt;li>When preemption is enabled, the interface resumes its active role. The standby interface becomes a passive member.&lt;/li>&lt;li>When preemption is disabled, the interface is a passive member.&lt;/li>&lt;/ul>&lt;p>&lt;b>Attention:&lt;/b> Do not enable preemption.&lt;/p>"
+                        },
+                        {
+                            "name": "Priority",
+                            "default": 100,
+                            "cli-alias": "standby-priority",
+                            "maximum": 255,
+                            "summary": "Set the priority of the interface in the standby group.",
+                            "minimum": 0,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Priority",
+                            "hoverhelp": "Set the priority of the interface in the standby group. Enter a value in the range 0 - 255. Use the default value unless one system or interface is in some way better than another one.",
+                            "description": "&lt;p>The priority of the interface in the standby group. Enter a value in the range 0 - 255. The default value is 100. Use the default value unless one system or interface is in some way better than another one.&lt;/p>&lt;p>For each standby group, there is one active member and one or more passive members. The interface with the highest priority seeks to be the active member. If multiple interfaces have the same priority, one becomes the active member.&lt;/p>"
+                        },
+                        {
+                            "name": "SelfBalance",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Indicates whether to use self-balancing in the standby group.",
+                            "cli-alias": "standby-self-balance",
+                            "display": "Enable self-balancing",
+                            "hoverhelp": "&lt;p>Indicates whether to use self-balancing in the standby group.&lt;/p>&lt;ul>&lt;li>When enabled, the active member distributes connections to available members.&lt;/li>&lt;li>When disabled, all connections go to the active member. The active member receives all TCP connections and processes all requests and responses. If the active member becomes unavailable, the standby member becomes the active members.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>Whether to use self-balancing in the standby group.&lt;/p>&lt;ul>&lt;li>When enabled, the active member distributes connections to available members.&lt;/li>&lt;li>When disabled, all connections go to the active member. The active member receives all TCP connections and processes all requests and responses. If the active member becomes unavailable, the standby member becomes the active members.&lt;/li>&lt;/ul>&lt;p>The active member manages all TCP connections to virtual IP addresses. When a client initiates a new TCP connection, the active member selects a member to act as the connection endpoint. The active member tracks member capabilities to distribute traffic appropriately. The selected member completes the establishment of the connection. The active member forwards all segments of the TCP connection to the member that is acting as the connection endpoint.&lt;/p>&lt;ul>&lt;li>In a non-graceful transition, if the active member becomes unavailable, the passive member with the next highest priority becomes the active member. The active member might become unavailable because of network issues, an appliance crash, power outage, or similar cause.&lt;/li>&lt;li>In a graceful transition, such as for scheduled maintenance, most connections can be preserved if the appliance that terminates the connection remains available. In practice, quiesce the active appliance to ensure that established connections complete before you start maintenance; for example, apply firmware. In some environments, the time for the takeover exceeds the client timeout value. Similarly, if the appliance timeout value is aggressive, connections can be lost because the appliance terminated the connection because of a timeout.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "Authentication",
+                            "default": "0x5841333500000000",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt64"
+                            },
+                            "summary": "Set the authentication string for the interface in the standby group.",
+                            "cli-alias": "standby-authentication",
+                            "display": "Authentication data",
+                            "hoverhelp": "Set the authentication string, or security token in hex. Every member in the standby group must use the same security token.",
+                            "description": "The authentication string, or security token in hex. The default value is 0x5841333500000000. Every member in the standby group must use the same security token."
+                        },
+                        {
+                            "name": "HelloTimer",
+                            "default": 3,
+                            "cli-alias": "standby-hello-timer",
+                            "maximum": 40,
+                            "summary": "Set the frequency to broadcast hello messages.",
+                            "minimum": 2,
+                            "units": "Seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimeInterval"
+                            },
+                            "display": "Hello timer",
+                            "hoverhelp": "Set the frequency to broadcast hello messages. Set this value to at least one third the duration of the hold timer. Enter a value in the range 2 - 40.",
+                            "description": "The frequency to broadcast hello messages. Set this value to at least one third the duration of the hold timer. Enter a value in the range 2 - 40. The default value is 3."
+                        },
+                        {
+                            "name": "HoldTimer",
+                            "default": 10,
+                            "cli-alias": "standby-hold-timer",
+                            "maximum": 120,
+                            "summary": "Set the duration to wait before the standby member attempts a failover.",
+                            "minimum": 6,
+                            "units": "Seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimeInterval"
+                            },
+                            "display": "Hold timer",
+                            "hoverhelp": "Set the duration to wait before the standby member attempts a failover. Set this value to at least three times the interval of hello messages. Enter a value in the range 6 - 120.",
+                            "description": "The duration to wait before the standby member attempts a failover. Set this value to at least three times the interval of hello messages. Enter a value in the range 6 - 120. The default value is 10."
+                        },
+                        {
+                            "name": "DistAlg",
+                            "default": "wlc",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "SelfBalance",
+                                    "evaluation": "property-value-in-list",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "Set the distribution algorithm for incoming connections when self-balancing is enabled.",
+                            "cli-alias": "standby-distribution-algorithm",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLVSDistributionAlgorithm"
+                            },
+                            "display": "Distribution algorithm",
+                            "description": "The algorithm to distribute incoming connections to available members when self-balancing is enabled."
+                        }
+                    ]
+                },
+                "description": "&lt;p>The standby configuration defines the policies for the group that this interface is a member. A standby group is the collection of interfaces on different appliances in the multicast domain that share the responsibility for one virtual IP address. When at least one member of a standby group can reach the multicast domain, the virtual IP group receives the traffic.&lt;/p>&lt;p>&lt;b>Attention:&lt;/b> Virtual IP addresses in a standby configuration must be IPv4 addresses.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/StandaloneStandbyControl"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/StandaloneStandbyControl"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,320 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "AMQPSourceProtocolHandler",
+                "status-bindings": {
+                    "status": {
+                        "binding": {
+                            "property": {
+                                "name": "AMQPSourceProtocolHandler",
+                                "select": "dmObjectName"
+                            }
+                        },
+                        "name": "AMQPSourceProtocolHandlerSummary",
+                        "display": {
+                            "property": {
+                                "name": "Quiesce",
+                                "display": "Quiesce State"
+                            }
+                        }
+                    }
+                },
+                "display": "AMQP Handler",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "Broker"
+                            },
+                            {
+                                "name": "From"
+                            },
+                            {
+                                "name": "To"
+                            }
+                        ],
+                        "name": "summary"
+                    },
+                    {
+                        "property-group": {
+                            "member": [
+                                {
+                                    "name": "mAdminState"
+                                },
+                                {
+                                    "name": "UserSummary"
+                                },
+                                {
+                                    "name": "Broker"
+                                },
+                                {
+                                    "name": "From"
+                                },
+                                {
+                                    "name": "To"
+                                },
+                                {
+                                    "name": "MaximumMessageSize"
+                                },
+                                {
+                                    "name": "Credit"
+                                },
+                                {
+                                    "name": "IgnoreReplyTo"
+                                }
+                            ],
+                            "name": "general",
+                            "display": "General"
+                        },
+                        "name": "main",
+                        "display": "Main"
+                    }
+                ],
+                "uri": "protocol/amqp",
+                "actions": {
+                    "action": [
+                        {
+                            "name": "ServiceQuiesce",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "type",
+                                        "select": "dmObjectClass"
+                                    },
+                                    {
+                                        "name": "name",
+                                        "select": "dmObjectName"
+                                    },
+                                    {
+                                        "name": "timeout"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "ServiceUnquiesce",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "type",
+                                        "select": "dmObjectClass"
+                                    },
+                                    {
+                                        "name": "name",
+                                        "select": "dmObjectName"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "summary": "AMQP Handler",
+                "services": {
+                    "service": "APIGateway"
+                },
+                "cmd-group": "mpgw",
+                "cli-alias": "source-amqp",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "Enter a descriptive summary for the configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Brief descriptive summary for the configuration",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "Broker",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/AMQPBroker"
+                                }
+                            },
+                            "required": "true",
+                            "summary": "AMQP broker name",
+                            "cli-alias": "broker",
+                            "display": "AMQP broker",
+                            "description": "Select an AMQP broker from the list."
+                        },
+                        {
+                            "name": "From",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "summary": "Name of the source terminus to retrieve the message",
+                            "cli-alias": "from",
+                            "display": "Source terminus",
+                            "description": "Specify the name of the terminus to retrieve the message that might be the reply to a posted message."
+                        },
+                        {
+                            "description": "Specify the name of the target terminus to post the message.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Name of the target terminus to post the message",
+                            "cli-alias": "to",
+                            "display": "Target terminus",
+                            "name": "To"
+                        },
+                        {
+                            "name": "Credit",
+                            "default": 100,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "summary": "Number of concurrent messages that a receiver can handle",
+                            "minimum": 1,
+                            "cli-alias": "credit",
+                            "display": "Credit",
+                            "description": "Specify the number of concurrent messages that a receiver can handle. The minimum value is 1. The default value is 10."
+                        },
+                        {
+                            "name": "IgnoreReplyTo",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to ignore the AMQP reply-to property",
+                            "cli-alias": "ignore-reply-to",
+                            "display": "Ignore reply-to",
+                            "description": "&lt;p>Indicate whether to ignore the AMQP &lt;tt>reply-to&lt;/tt> property. The default value is on. &lt;ul>&lt;li>When enabled, ignores the &lt;tt>reply-to&lt;/tt> address when sending an AMQP response message.&lt;/li>&lt;li>When disabled, uses the &lt;tt>reply-to&lt;/tt> address instead of the address of the target terminus.&lt;/li>&lt;/ul>&lt;/p>"
+                        }
+                    ]
+                },
+                "description": "In AMQP, distributed source and target termini are managed by a broker. The broker periodically monitors and polls termini. The broker ensures that sent messages are directed to the correct target terminus or are routed to another server. The AMQP broker configuration on the DataPower Gateway corresponds to an AMQP broker that is running on another host in the network."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/AMQPSourceProtocolHandler"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/AMQPSourceProtocolHandler"
+                }
+            }
+        }
+    }
+}

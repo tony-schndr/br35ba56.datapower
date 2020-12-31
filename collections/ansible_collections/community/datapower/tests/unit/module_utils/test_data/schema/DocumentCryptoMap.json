@@ -1,0 +1,228 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmNamespaceMapping"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmNamespaceMapping"
+                    }
+                },
+                "type": {
+                    "name": "dmNamespaceMapping",
+                    "properties": {
+                        "property": [
+                            {
+                                "display": "Prefix",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "description": "The prefix (Prefix:) used to map namespaces that might be encountered in client requests.",
+                                "name": "Prefix",
+                                "summary": "Prefix for namespace"
+                            },
+                            {
+                                "display": "URI",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmURL"
+                                },
+                                "description": "The URI (URI:) used to map namespaces that might be encountered in client requests.",
+                                "name": "URI",
+                                "summary": "URI for namespace"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmCryptoOperationType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmCryptoOperationType"
+                    }
+                },
+                "type": {
+                    "name": "dmCryptoOperationType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Encrypt",
+                                "description": "Encrypt, using standard XML encryption, the elements that are indicated by the XPath expression.",
+                                "name": "encrypt"
+                            },
+                            {
+                                "display": "Encrypt (WS-Security)",
+                                "description": "Encrypts, using WS-Security encryption, the elements that are indicated by the XPath expression.",
+                                "name": "encrypt-wssec",
+                                "summary": "Encrypt using WS-Security encryption"
+                            },
+                            {
+                                "display": "Decrypt",
+                                "description": "Decrypts the elements that are indicated by the XPath expression.",
+                                "name": "decrypt"
+                            },
+                            {
+                                "display": "Sign (WS-Security)",
+                                "description": "Signs, using WS-Security signature, the elements that are indicated by the XPath expression.",
+                                "name": "sign-wssec",
+                                "summary": "Sign using WS-Security signature"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmXPathExpr"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmXPathExpr"
+                    }
+                },
+                "type": {
+                    "cli-arg": "xpath",
+                    "name": "dmXPathExpr"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                },
+                "type": {
+                    "cli-arg": "url",
+                    "name": "dmURL"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "DocumentCryptoMap",
+                "display": "Document Crypto Map",
+                "uri": "xml/document-crypto-map",
+                "summary": "A map to drive partial document crypto operations",
+                "cmd-group": "document-crypto-map",
+                "cli-alias": "document-crypto-map",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "description": "The prefix and URI for namespaces that might be encountered in requests.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmNamespaceMapping"
+                            },
+                            "array": "true",
+                            "cli-alias": "namespace-mapping",
+                            "display": "Namespace Mappings",
+                            "name": "NameSpaceMappings"
+                        },
+                        {
+                            "name": "Operation",
+                            "default": "encrypt",
+                            "type": {
+                                "href": "/mgmt/types/default/dmCryptoOperationType"
+                            },
+                            "required": "true",
+                            "summary": "Operation to perform on selected document nodes",
+                            "cli-alias": "operation",
+                            "display": "Operation",
+                            "description": "Select the operation to perform on the selected document nodes."
+                        },
+                        {
+                            "name": "XPath",
+                            "type": {
+                                "href": "/mgmt/types/default/dmXPathExpr"
+                            },
+                            "required": "true",
+                            "summary": "An XPath Expression selecting document nodes for the specified operation.",
+                            "array": "true",
+                            "cli-alias": "select",
+                            "display": "XPath Expression",
+                            "description": "&lt;p>Enter the XPath expression identifying the elements on which to operate in the blank field in front of the Add button. Click Add to add the expression to those included in the map.&lt;/p>&lt;p>Click the XPath Tool button to use the graphically oriented XPath Tool to construct the message. You will need to upload an example document to use this tool. Note that this example should be the encrypted document when the operation is decrypt.&lt;/p>"
+                        }
+                    ]
+                },
+                "description": "A Document Crypto Map indicates which elements, of a complete schema, to encrypt or decrypt. The indicated element or elements may also be signed."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/DocumentCryptoMap"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/DocumentCryptoMap"
+                }
+            }
+        }
+    }
+}

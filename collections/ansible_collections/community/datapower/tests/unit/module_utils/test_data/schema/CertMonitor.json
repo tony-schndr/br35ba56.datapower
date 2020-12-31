@@ -1,0 +1,249 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt16",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLogLevel"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLogLevel"
+                    }
+                },
+                "type": {
+                    "display": "Log Level",
+                    "name": "dmLogLevel",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "emergency",
+                                "description": "An emergency-level message. The system is unusable.",
+                                "name": "emerg",
+                                "summary": "System unusable"
+                            },
+                            {
+                                "display": "alert",
+                                "description": "An alert-level message. Immediate action must be taken.",
+                                "name": "alert",
+                                "summary": "Immediate action required"
+                            },
+                            {
+                                "display": "critical",
+                                "description": "A critical message. Immediate action should be taken.",
+                                "name": "critic",
+                                "summary": "Critical condition"
+                            },
+                            {
+                                "display": "error",
+                                "description": "An error message. Processing might continue, but action should be taken.",
+                                "name": "error",
+                                "summary": "Error condition"
+                            },
+                            {
+                                "display": "warning",
+                                "description": "A warning message. Processing should continue, but action should be taken.",
+                                "name": "warn",
+                                "summary": "Warning condition"
+                            },
+                            {
+                                "display": "notice",
+                                "description": "A notice message. Processing continues, but action might need to be taken.",
+                                "name": "notice",
+                                "summary": "Normal but significant condition"
+                            },
+                            {
+                                "display": "information",
+                                "description": "An information message. No action required.",
+                                "name": "info",
+                                "summary": "Informational message"
+                            },
+                            {
+                                "display": "debug",
+                                "description": "A debug message for processing information to help during troubleshooting.",
+                                "name": "debug",
+                                "summary": "Debug message"
+                            }
+                        ]
+                    },
+                    "summary": "Log level"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "description": "The Certificate Monitor periodically checks all X.509 certificates stored on the device for expiration. The monitor automatically creates a log message for each certificate that is within the Reminder time of expiration. Expired certificates may be automatically disabled. Note that the Monitor checks all certificates immediately when the Monitor is first enabled.",
+                "uri": "crypto/cert-monitor",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "PollingInterval",
+                            "default": 1,
+                            "cli-alias": "poll",
+                            "required": "true",
+                            "maximum": "0xFFFF",
+                            "minimum": 1,
+                            "units": "day",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Polling Interval",
+                            "description": "Enter an integer indicating the number of days between checks for expired certificates."
+                        },
+                        {
+                            "name": "ReminderTime",
+                            "default": 30,
+                            "cli-alias": "reminder",
+                            "required": "true",
+                            "maximum": "0xFFFF",
+                            "minimum": 1,
+                            "units": "day",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Reminder Time",
+                            "description": "Enter an integer indicating the number of days in advance to send notification that a certificate will expire."
+                        },
+                        {
+                            "name": "LogLevel",
+                            "default": "warn",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLogLevel"
+                            },
+                            "required": "true",
+                            "cli-alias": "log-level",
+                            "display": "Log Level",
+                            "description": "Select the level of log messages sent to warn about certificates that will expire in the Reminder period. Log targets capture message at or above the configured level. The default is notice."
+                        },
+                        {
+                            "name": "DisableExpiredCerts",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "required": "true",
+                            "cli-alias": "disable-expired-certs",
+                            "display": "Disable Expired Certificates",
+                            "description": "By default, expired certificate objects are not disabled. Set this to on to disable expired certificates. Any object that uses the certificate object (such as a Validation Credential) will in turn be disabled."
+                        }
+                    ]
+                },
+                "cmd-group": "system",
+                "cli-alias": "cert-monitor",
+                "display": "Crypto Certificate Monitor",
+                "name": "CertMonitor"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/CertMonitor"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/CertMonitor"
+                }
+            }
+        }
+    }
+}

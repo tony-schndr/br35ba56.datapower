@@ -1,0 +1,215 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHTTPInputEncoding"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHTTPInputEncoding"
+                    }
+                },
+                "type": {
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Plain",
+                                "description": "The expected encoding is plain text and the requested processing is to XML escape the input. All &amp;lt;, >, and &amp;amp; characters are replaced by &amp;amp;lt;, &amp;amp;gt;, and &amp;amp;amp; respectively. This option is synonymous with URL-encoded, because URL-encoding in an HTTP GET or POST is always decoded.",
+                                "name": "plain"
+                            },
+                            {
+                                "display": "URL-encoded",
+                                "description": "The expected encoding is URL-encoded, as in HTML forms, and the requested processing is to URL unescape, then XML escape the input. All &amp;lt;, >, and &amp;amp; characters are replaced by &amp;amp;lt;, &amp;amp;gt;, and &amp;amp;amp; respectively.",
+                                "name": "urlencoded"
+                            },
+                            {
+                                "display": "XML",
+                                "description": "The expected encoding is an XML fragment and the requested processing, because the input is a literal, is no processing. If the fragment includes a leading XML declaration (of the form &amp;lt;?xml ?>), the declaration is removed. All other characters are passed unchanged. The input must be a balanced block of XML. If not balanced, the generated XML will not parse correctly. This option is synonymous with URL-encoded XML, because URL-encoding in an HTTP GET or POST is always decoded.",
+                                "name": "xml"
+                            },
+                            {
+                                "display": "URL-encoded XML",
+                                "description": "The expected encoding is a URL-encoded XML fragment and the requested processing, because the input is a literal, is no processing. If the fragment includes a leading XML declaration (of the form &amp;lt;?xml ?>), the declaration is removed. All other characters are passed unchanged. The input must be a balanced block of XML. If not balanced, the generated XML will not parse correctly.",
+                                "name": "urlencoded-xml"
+                            },
+                            {
+                                "display": "Base 64",
+                                "description": "The expected encoding is Base 64 and the requested processing is to pass the input through but add the XML attribute encoding=\"base64\" to the generated &amp;lt;arg> element for each argument which has this input encoding. If the base 64 data should include any illegal &amp;lt;, >, or &amp;amp; character, it is replaced by &amp;amp;lt;, &amp;amp;gt;, and &amp;amp;amp; respectively.",
+                                "name": "base64"
+                            },
+                            {
+                                "display": "JSON",
+                                "description": "The expected encoding is a JSON structure and the requested processing is convert to XML according to the JSONx XML specification. JSON content cannot be specified as part of a multipart form and is only supported as the default encoding. When specifying JSON as the default encoding type, a name-value encoding map is not used.",
+                                "name": "json"
+                            }
+                        ]
+                    },
+                    "display": "HTTP Input Encoding",
+                    "description": "Controls how the value in an HTTP form is traslated to generate XML. All of the options start with URL-decoding, except in an HTTP MIME POST. URL-decoding is not required for an HTTP MIME POST.",
+                    "name": "dmHTTPInputEncoding",
+                    "summary": "HTTP Input Encoding"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmInputEncoding"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmInputEncoding"
+                    }
+                },
+                "type": {
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "The PCRE pattern that will be matched against the name of an HTTP form field. If the name matches this PCRE, the associated value will be processed by the rules of the Encoding. If a form field has no name, an empty string is used for the pattern matching.",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmPCRE"
+                                },
+                                "summary": "The PCRE to match an HTTP form name against.",
+                                "cli-alias": "input-name",
+                                "display": "Input Match PCRE",
+                                "name": "InputMatch"
+                            },
+                            {
+                                "description": "Select how to translate the value of a form field to the contents of the &amp;lt;arg> element in the generated XML.",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmHTTPInputEncoding"
+                                },
+                                "summary": "The Encoding used for values whose name matches the Input Match",
+                                "cli-alias": "encoding",
+                                "display": "Encoding",
+                                "name": "Encoding"
+                            }
+                        ]
+                    },
+                    "name": "dmInputEncoding",
+                    "summary": "HTTP Input Conversion Map Entry"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmPCRE"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmPCRE"
+                    }
+                },
+                "type": {
+                    "cli-arg": "pcre",
+                    "name": "dmPCRE"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "HTTPInputConversionMap",
+                "display": "HTTP Input Conversion Map",
+                "uri": "xml/input-conversion-map",
+                "summary": "Input Conversion Map for HTTP Forms.",
+                "cmd-group": "input-conversion",
+                "cli-alias": "input-conversion-map",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "description": "Select the default encoding to use for any name-value pair in an HTTP form where the name does not match any of the patterns in the Encoding Map.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHTTPInputEncoding"
+                            },
+                            "summary": "The default Encoding that each value is assumed to have.",
+                            "cli-alias": "default-encoding",
+                            "display": "Default Encoding",
+                            "name": "DefaultInputEncoding"
+                        },
+                        {
+                            "name": "InputEncoding",
+                            "type": {
+                                "href": "/mgmt/types/default/dmInputEncoding"
+                            },
+                            "summary": "A map from HTTP form name patterns to Encoding rule.",
+                            "array": "true",
+                            "cli-alias": "rule",
+                            "display": "Encoding Map",
+                            "description": "This allows selecting the Encoding for values based on their name. The names are matched by PCREs. Each PCRE is associated with an Encoding that controls how the value is mapped to the contents of an &amp;lt;arg> element in the resulting XML. This is an ordered list, comparision of the name proceeds until the first match. If there is no match, the Encoding will be selected by the Default Encoding of this HTTP Input Conversion Map."
+                        }
+                    ]
+                },
+                "description": "This defines the rules for handling HTTP to XML conversion of form values in an HTTP GET or POST of a form. There are different conversion (Encoding) rules for the values. They control how the value is mapped to the contents of its &amp;lt;arg> element in the resulting XML. There is a default Encoding, which is all that is required. There can also be specific Encodings applied to values based on the name associated with a value, which is done using an ordered list of PCREs."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/HTTPInputConversionMap"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/HTTPInputConversionMap"
+                }
+            }
+        }
+    }
+}

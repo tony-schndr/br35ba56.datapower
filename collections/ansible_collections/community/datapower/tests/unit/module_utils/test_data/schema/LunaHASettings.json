@@ -1,0 +1,151 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmLunaHARecoveryModeType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmLunaHARecoveryModeType"
+                    }
+                },
+                "type": {
+                    "name": "dmLunaHARecoveryModeType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "activeBasic",
+                                "description": "Checks the status of HA members. If required, runs synchronization.",
+                                "name": "activeBasic",
+                                "summary": "Default HA automatic recovery mode"
+                            },
+                            {
+                                "display": "activeEnhanced",
+                                "description": "Checks the status of HA members. If required, runs synchronization. During synchronization, restores all sessions and their login states.",
+                                "name": "activeEnhanced",
+                                "summary": "Enhanced HA automatic recovery mode"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": "0x80000000",
+                    "name": "dmInt32",
+                    "maximum": 2147483647
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "LunaHASettings",
+                "uri": "networkhsm/luna-ha-settings",
+                "display": "SafeNet Luna HSM HA Settings",
+                "cmd-group": "system",
+                "cli-alias": "luna-ha-settings",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "Mode",
+                            "default": "activeBasic",
+                            "type": {
+                                "href": "/mgmt/types/default/dmLunaHARecoveryModeType"
+                            },
+                            "summary": "The HA recovery mode",
+                            "cli-alias": "recovery-mode",
+                            "display": "Recovery mode",
+                            "description": "Sets the HA recovery mode."
+                        },
+                        {
+                            "name": "Count",
+                            "default": 0,
+                            "cli-alias": "recovery-count",
+                            "maximum": 500,
+                            "summary": "The maximum number of recovery attempts for failed members",
+                            "minimum": -1,
+                            "type": {
+                                "href": "/mgmt/types/default/dmInt32"
+                            },
+                            "display": "Recovery count",
+                            "description": "Sets the number of recovery attempts for failed members in the Luna HA group. Enter a value in the range 0 - 500. The default value of 0 disables automatic recovery."
+                        },
+                        {
+                            "name": "Interval",
+                            "default": 60,
+                            "cli-alias": "recovery-interval",
+                            "maximum": 1200,
+                            "summary": "The interval between recovery attempts",
+                            "minimum": 60,
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmInt32"
+                            },
+                            "display": "Recovery interval",
+                            "description": "Sets the interval in seconds between recovery attempts for failed members in the Luna HSM HA group. Enter a value in the range 60 - 1200. The default value is 60."
+                        }
+                    ]
+                },
+                "description": "Defines the high availability (HA) settings for the SafeNet Luna Network HSM HA group."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/LunaHASettings"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/LunaHASettings"
+                }
+            }
+        }
+    }
+}

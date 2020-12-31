@@ -1,0 +1,222 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAssemblyCatch"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAssemblyCatch"
+                    }
+                },
+                "type": {
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Specifies the name of a custom error.",
+                                "required": "true",
+                                "summary": "The name of a custom error",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Error name",
+                                "name": "Error"
+                            },
+                            {
+                                "description": "Specifies the name of the error handler for the custom error.",
+                                "required": "true",
+                                "summary": "The error handler for the custom error",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference",
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/APIRule"
+                                    }
+                                },
+                                "display": "Error handler",
+                                "name": "Handler"
+                            }
+                        ]
+                    },
+                    "display": "The assembly catch",
+                    "name": "dmAssemblyCatch",
+                    "summary": "How to handle a specific error in the assembly"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "Assembly",
+                "display": "Assembly",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            }
+                        ],
+                        "name": "summary",
+                        "display": "Summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "Rule"
+                            },
+                            {
+                                "name": "Catch"
+                            },
+                            {
+                                "name": "DefaultCatch"
+                            }
+                        ],
+                        "name": "main",
+                        "display": "Main"
+                    }
+                ],
+                "uri": "assembly/assembly",
+                "summary": "Configure and manage the assembly",
+                "cmd-group": "assembly",
+                "cli-alias": "assembly",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "A descriptive summary for the assembly configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter a brief descriptive summary for the assembly configuration.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "Rule",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/APIRule"
+                                }
+                            },
+                            "required": "true",
+                            "summary": "The API rule to apply to the API call",
+                            "cli-alias": "rule",
+                            "display": "Rule",
+                            "description": "Specifies the API rule that comprises only assembly actions to apply to the API call."
+                        },
+                        {
+                            "name": "Catch",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAssemblyCatch"
+                            },
+                            "summary": "How to handle a specific error in the assembly",
+                            "array": "true",
+                            "cli-alias": "catch",
+                            "display": "Catch",
+                            "description": "Specifies how to handle a specific error when it occurs during the assembly execution."
+                        },
+                        {
+                            "description": "Specifies how to handle errors that are not caught by the catch setting during the assembly execution.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/APIRule"
+                                }
+                            },
+                            "summary": "How to handle errors that are not caught by the catch setting",
+                            "cli-alias": "default-catch",
+                            "display": "Default catch",
+                            "name": "DefaultCatch"
+                        }
+                    ]
+                },
+                "description": "An assembly specifies the API rule to apply to the API call and how to handle errors during the assembly execution. The API rule for the assembly comprises only assembly actions that are executed in order to control a specific aspect of processing such as data transformation during API call at run time. When an API is identified for the incoming request, its assembly is executed."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/Assembly"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/Assembly"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,316 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSLClientConfigType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSLClientConfigType"
+                    }
+                },
+                "type": {
+                    "name": "dmSSLClientConfigType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "proxy",
+                                "display": "Proxy Profile"
+                            },
+                            {
+                                "name": "client",
+                                "display": "Client Profile"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "WSRRServer",
+                "display": "WSRR Server",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "SoapURL"
+                            },
+                            {
+                                "name": "ServerPrefix"
+                            },
+                            {
+                                "name": "SSLClientConfigType"
+                            },
+                            {
+                                "name": "SSLProxy"
+                            },
+                            {
+                                "name": "SSLClient"
+                            },
+                            {
+                                "name": "UserSummary"
+                            }
+                        ],
+                        "name": "summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "SoapURL"
+                            },
+                            {
+                                "name": "ServerPrefix"
+                            },
+                            {
+                                "name": "SSLClientConfigType"
+                            },
+                            {
+                                "name": "SSLClient"
+                            },
+                            {
+                                "name": "SSLProxy"
+                            },
+                            {
+                                "name": "Username"
+                            },
+                            {
+                                "name": "Password"
+                            }
+                        ],
+                        "name": "main"
+                    }
+                ],
+                "uri": "config/wsrr-server",
+                "actions": {
+                    "action": {
+                        "name": "WsrrValidateServer",
+                        "parameters": {
+                            "parameter": {
+                                "name": "WSRRServer",
+                                "select": "dmObjectName"
+                            }
+                        },
+                        "display": "Test Connection"
+                    }
+                },
+                "summary": "WebSphere Service Registry and Repository",
+                "cmd-group": "webservice",
+                "cli-alias": "wsrr-server",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "SoapURL",
+                            "default": "https://host:9443/WSRRCoreSDO/services/WSRRCoreSDOPort",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "summary": "URL of the WSRR SOAP API endpoint.",
+                            "cli-alias": "soap-url",
+                            "display": "SOAP URL",
+                            "description": "The URL used to communicate with the Registry via WSRR SOAP API. A typical default looks like https://192.18.1.120:9443/WSRRCoreSDO/services/WSRRCoreSDOPort or http://192.18.1.120:9080/WSRRCoreSDO/services/WSRRCoreSDOPort depending on whether WebSphere global security is enabled."
+                        },
+                        {
+                            "description": "The prefix configured on the WSRR instance.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Prefix of the WSRR server if configured to use one.",
+                            "cli-alias": "server-prefix",
+                            "display": "WSRR Instance Prefix",
+                            "name": "ServerPrefix"
+                        },
+                        {
+                            "name": "SSLProxy",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                                }
+                            },
+                            "summary": "The TLS proxy profile is deprecated. Use a TLS client profile.",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SSLClientConfigType",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "proxy"
+                                }
+                            },
+                            "cli-alias": "ssl",
+                            "display": "TLS Proxy Profile (deprecated)",
+                            "description": "Select the TLS proxy profile to secure connections to the WSRR server."
+                        },
+                        {
+                            "description": "The username used to login to the WSRR server. Leave this field empty if authentication is not required.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Username",
+                            "cli-alias": "username",
+                            "display": "Username",
+                            "name": "Username"
+                        },
+                        {
+                            "name": "Password",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Password",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Password",
+                                    "evaluation": "property-equals",
+                                    "value": ""
+                                }
+                            },
+                            "cli-alias": "password",
+                            "display": "Password (deprecated)",
+                            "description": "The password used to login to the WSRR server. Leave this field empty if authentication is not required."
+                        },
+                        {
+                            "description": "The password alias of the password used to login to the WSRR server. Leave this field empty if authentication is not required.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/PasswordAlias"
+                                }
+                            },
+                            "summary": "Password Alias",
+                            "cli-alias": "password-alias",
+                            "display": "Password Alias",
+                            "name": "PasswordAlias"
+                        },
+                        {
+                            "name": "SSLClientConfigType",
+                            "default": "proxy",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSLClientConfigType"
+                            },
+                            "summary": "Set the TLS profile type to secure connections between the DataPower Gateway and its targets",
+                            "cli-alias": "ssl-client-type",
+                            "display": "TLS client type",
+                            "description": "The TLS profile type to secure connections between the DataPower Gateway and its targets."
+                        },
+                        {
+                            "name": "SSLClient",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                                }
+                            },
+                            "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and its targets",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SSLClientConfigType",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "client"
+                                }
+                            },
+                            "cli-alias": "ssl-client",
+                            "display": "TLS client profile",
+                            "description": "The TLS client profile to secure connections between the DataPower Gateway and its targets."
+                        }
+                    ]
+                },
+                "description": "Configuration required to locate and access WSRR (WebSphere Service Registry and Repository)."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/WSRRServer"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/WSRRServer"
+                }
+            }
+        }
+    }
+}

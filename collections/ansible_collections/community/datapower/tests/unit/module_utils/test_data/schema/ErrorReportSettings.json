@@ -1,0 +1,845 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmErrorReportDestinationProtocol"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmErrorReportDestinationProtocol"
+                    }
+                },
+                "type": {
+                    "display": "Report Destination Protocol",
+                    "description": "Error Report Destination Protocol",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "ftp",
+                                "description": "Use FTP protocol",
+                                "name": "ftp"
+                            },
+                            {
+                                "display": "nfs",
+                                "description": "Use NFS mount",
+                                "name": "nfs"
+                            },
+                            {
+                                "display": "raid",
+                                "description": "Use RAID volume",
+                                "name": "raid"
+                            },
+                            {
+                                "display": "iscsi",
+                                "description": "Use iSCSI volume - Deprecated",
+                                "name": "iscsi"
+                            },
+                            {
+                                "display": "smtp",
+                                "description": "Use SMTP protocol",
+                                "name": "smtp"
+                            },
+                            {
+                                "display": "temporary",
+                                "description": "Use the local temporary directory",
+                                "name": "temporary"
+                            }
+                        ]
+                    },
+                    "name": "dmErrorReportDestinationProtocol"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostname"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostname"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt16",
+                    "maximum": "0xFFFF"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "name": "ErrorReportSettings",
+                "display": "Failure Notification",
+                "uri": "system/failure-notification",
+                "actions": {
+                    "action": [
+                        {
+                            "name": "Ping",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "RemoteHost",
+                                    "select": "SmtpServer"
+                                }
+                            }
+                        },
+                        {
+                            "name": "Ping",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "RemoteHost",
+                                    "select": "FTPServer"
+                                }
+                            }
+                        }
+                    ]
+                },
+                "summary": "System Failure Notification",
+                "cmd-group": "failure-notification",
+                "cli-alias": "failure-notification",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "UploadReport",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to upload the error report to a specific destination",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "UseSmtp",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "cli-alias": "upload-report",
+                            "display": "Upload Error Report",
+                            "description": "&lt;p>Specify whether to upload the error report to an NFS, iSCSI (deprecated), RAID, SMTP, or FTP destination or write the error report to the local temporary directory. If you enable this feature:&lt;/p>&lt;ul>&lt;li>It enables the Failure Notification status provider, which tracks previous error reports&lt;/li>&lt;li>It changes the naming convention to include the serial number of the appliance and the timestamp, which prevents one report overwriting another&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "UseSmtp",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to send e-mail notification at start-up",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "UploadReport",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "cli-alias": "use-smtp",
+                            "display": "E-mail Notification",
+                            "description": "Specify whether to send an e-mail at start-up only that contains the error report. If you want to receive e-mail notification, use the upload error report property instead of this property."
+                        },
+                        {
+                            "name": "InternalState",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to include the internal state in the error report",
+                            "cli-alias": "internal-state",
+                            "display": "Include Internal State",
+                            "description": "Specify whether to include the internal state of the appliance in the error report. The internal state can be useful in diagnosing the cause of the error."
+                        },
+                        {
+                            "name": "FFDCPacketCapture",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to use a background packet capture",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "UploadReport",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "cli-alias": "ffdc packet-capture",
+                            "display": "Background Packet Capture",
+                            "description": "&lt;p>Specify whether to use a background packet capture. This feature enables network packet capture for all interfaces including the internal loopback interface. When enabled, this feature runs continuously.&lt;/p>&lt;p>If the appliance encounters a problem or a user triggers the generation of an error report, the error report includes the data from this packet capture data. This data helps to determine the messages that the appliance was processing when it encountered the problem.&lt;/p>"
+                        },
+                        {
+                            "name": "FFDCEventLogCapture",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to use a background log capture",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "UploadReport",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "cli-alias": "ffdc event-log",
+                            "display": "Background Log Capture",
+                            "description": "&lt;p>Specify whether to use a background log capture. This feature enables the capture of all log and trace points with minimal overhead. When enabled, this feature runs continuously.&lt;/p>&lt;p>If the appliance encounters a problem or a user triggers the generation of an error report, the error report includes data from this log capture. This data can help IBM Support identify the problem.&lt;/p>&lt;p>These messages are independent of messages written to log and trace targets.&lt;/p>"
+                        },
+                        {
+                            "name": "FFDCMemoryLeakCapture",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to use automatic leak detection",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "UploadReport",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "cli-alias": "ffdc memory-trace",
+                            "display": "Background Memory Trace",
+                            "description": "&lt;p>Specify whether to enable automatic leak detection. This feature finds gradual memory leaks that occur steadily over time. This feature does not help in situations where messages are larger than the appliance can parse.&lt;/p>&lt;p>When enabled and if memory falls below an internal threshold, the appliance tracks all memory allocations. When the appliance reaches a critical condition that will lead to a crash, it generates an error report that contains information about memory allocation.&lt;/p>&lt;p>The configuration of the Throttle Settings affects this feature. The throttle settings can prevent the appliance from reaching the internal threshold.&lt;/p>"
+                        },
+                        {
+                            "name": "AlwaysOnStartup",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to generate an error report when the appliance reboots or reloads",
+                            "cli-alias": "always-on-startup",
+                            "display": "Always On Startup",
+                            "description": "&lt;p>Specify whether the appliance generates an error report when it reboots or reloads. If this feature is enabled logs will be collected before they are overwritten when the system reloads. When the appliance reboots or reloads and when using the upload error report feature, the status provider lists &lt;tt>on-start&lt;/tt> as the reason code. If the appliance reloads due to a crash, the status provider lists &lt;tt>crash&lt;/tt> as the reason code.&lt;/p>&lt;p>&lt;b>Best Practices:&lt;/b>&lt;/p>&lt;ul>&lt;li>In general enable this feature.&lt;/li>&lt;li>In particular when in production, enable this feature to track reloads and reboots.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "AlwaysOnShutdown",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to generate an error report when the appliance shuts down",
+                            "cli-alias": "always-on-shutdown",
+                            "display": "Always On Shutdown",
+                            "description": "&lt;p>Specify whether the appliance generates an error report when it shuts down. When the appliance shuts down and when using the upload error report feature, the status provider lists &lt;tt>on-shutdown&lt;/tt> as the reason code. If the appliance shuts down due to a crash, the status provider lists &lt;tt>crash&lt;/tt> as the reason code.&lt;/p>&lt;p>&lt;b>Best Practices:&lt;/b>&lt;/p>&lt;ul>&lt;li>In general enable this feature.&lt;/li>&lt;li>In particular when in production, enable this feature to make sure debugging information is captured when the appliance shuts down.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "Protocol",
+                            "default": "ftp",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "UploadReport",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "Protocol to use to upload the error report",
+                            "cli-alias": "protocol",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "UploadReport",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmErrorReportDestinationProtocol"
+                            },
+                            "display": "Report Destination Protocol",
+                            "description": "Specify the protocol to use to upload the error report. Note that the selection you will see depends on your device features and licenses."
+                        },
+                        {
+                            "name": "LocationIdentifier",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "UseSmtp",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "Text to include in the subject of an e-mail notification",
+                            "cli-alias": "location-id",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Location",
+                            "description": "Specify text to include in the subject of an e-mail notification. In general, this value should be how you identify this appliance in your environment. When using the upload error report feature, this property is not necessary. In this case, failure notification uses the serial number of the appliance and the timestamp of the error report."
+                        },
+                        {
+                            "name": "SmtpServer",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "UseSmtp",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "UploadReport",
+                                                    "evaluation": "property-equals",
+                                                    "value": "on"
+                                                },
+                                                {
+                                                    "property-name": "Protocol",
+                                                    "evaluation": "property-equals",
+                                                    "value": "smtp"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Host name or IP address of the SMTP server",
+                            "cli-alias": "remote-address",
+                            "valid-regexp": "^(?!(127.0.0.1|localhost)).*$",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "example": "smtp.mycompany.com or 10.10.1.1",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHostname"
+                            },
+                            "display": "SMTP Server",
+                            "description": "Specify the host name or IP address of the remote SMTP server to which to send the error report."
+                        },
+                        {
+                            "name": "EmailAddress",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "UseSmtp",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "UploadReport",
+                                                    "evaluation": "property-equals",
+                                                    "value": "on"
+                                                },
+                                                {
+                                                    "property-name": "Protocol",
+                                                    "evaluation": "property-equals",
+                                                    "value": "smtp"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "E-mail address of the recipient",
+                            "cli-alias": "email-address",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "E-mail Address",
+                            "description": "Specify the e-mail address to which to send the error report."
+                        },
+                        {
+                            "name": "EmailSenderAddress",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "E-mail address of sender",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "UseSmtp",
+                                                    "evaluation": "property-equals",
+                                                    "value": "off"
+                                                },
+                                                {
+                                                    "property-name": "UploadReport",
+                                                    "evaluation": "property-equals",
+                                                    "value": "off"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "UseSmtp",
+                                                    "evaluation": "property-equals",
+                                                    "value": "off"
+                                                },
+                                                {
+                                                    "property-name": "UploadReport",
+                                                    "evaluation": "property-equals",
+                                                    "value": "on"
+                                                },
+                                                {
+                                                    "property-name": "Protocol",
+                                                    "evaluation": "property-does-not-equal",
+                                                    "value": "smtp"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "email-sender-address",
+                            "display": "E-mail Sender Address",
+                            "description": "Specify the e-mail address of the sender ( &lt;tt>MAIL FROM&lt;/tt> ). If not specified, the configuration uses the e-mail address of the recipient."
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "name": "FTPServer",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "UploadReport",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-equals",
+                                            "value": "ftp"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Host name or IP address of the FTP server",
+                            "cli-alias": "ftp-server",
+                            "example": "ftp.mycompany.com or 10.10.1.1",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "maximum-length": 128,
+                            "valid-regexp": "^(?!(127.0.0.1|localhost|ftp:/|smtp:/)).*$",
+                            "display": "FTP Server",
+                            "description": "Specify the host name or IP address of the remote FTP server to which to upload the error report."
+                        },
+                        {
+                            "name": "FTPPath",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Directory on FTP server to upload the error report",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "UploadReport",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "ftp"
+                                        }
+                                    ]
+                                }
+                            },
+                            "maximum-length": 128,
+                            "cli-alias": "ftp-path",
+                            "display": "FTP Path",
+                            "description": "Specify the directory on the FTP server to which to upload the error report. Use &lt;tt>%2F&lt;/tt> to specify an absolute path."
+                        },
+                        {
+                            "name": "FTPUserAgent",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "UploadReport",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-equals",
+                                            "value": "ftp"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "User Agent for FTP access",
+                            "cli-alias": "ftp-user-agent",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/HTTPUserAgent"
+                                }
+                            },
+                            "display": "FTP User Agent",
+                            "description": "Specify the User Agent that describes how to connect to remote FTP servers. In addition to the FTP Policy to define the connection, ensure that this User Agent defines the basic authentication policy (user name and password) to connect to the FTP server."
+                        },
+                        {
+                            "name": "NFSMount",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "UploadReport",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-equals",
+                                            "value": "nfs"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "NFS Mount",
+                            "cli-alias": "nfs-mount",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/NFSStaticMount"
+                                }
+                            },
+                            "display": "NFS Mount",
+                            "description": "Specify the NFS mount point to which to upload the error report."
+                        },
+                        {
+                            "name": "NFSPath",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "NFS Path",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "UploadReport",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "nfs"
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "nfs-path",
+                            "display": "NFS Path",
+                            "description": "This describes the NFS path location for the Error Report"
+                        },
+                        {
+                            "name": "RaidVolume",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "UploadReport",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-equals",
+                                            "value": "raid"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "RAID volume",
+                            "cli-alias": "raid-volume",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/RaidVolume"
+                                }
+                            },
+                            "display": "RAID Volume",
+                            "description": "Specify the volume on the RAID array to which to upload the error report."
+                        },
+                        {
+                            "name": "RaidPath",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Directory on RAID volume",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "UploadReport",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "raid"
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "raid-path",
+                            "display": "RAID Volume Path",
+                            "description": "Specify the directory on the RAID volume to which to upload the error report."
+                        },
+                        {
+                            "name": "IScsiVolume",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "UploadReport",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-equals",
+                                            "value": "iscsi"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "iSCSI volume",
+                            "cli-alias": "iscsi-volume",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/IScsiVolumeConfig"
+                                }
+                            },
+                            "display": "iSCSI Volume",
+                            "description": "&lt;p>The iSCSI protocol is deprecated.&lt;/p>&lt;p>Specify the iSCSI volume to which to upload the error report.&lt;/p>"
+                        },
+                        {
+                            "name": "IScsiPath",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Directory on iSCSI volume",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "UploadReport",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "Protocol",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "iscsi"
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "iscsi-path",
+                            "display": "iSCSI Volume Path",
+                            "description": "&lt;p>The iSCSI protocol is deprecated.&lt;/p>&lt;p>Specify the directory on the iSCSI volume to which to upload the error report.&lt;/p>"
+                        },
+                        {
+                            "name": "ReportHistoryKept",
+                            "default": 5,
+                            "cli-alias": "report-history",
+                            "maximum": 10,
+                            "summary": "Number of local error reports to maintain",
+                            "minimum": 2,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "UploadReport",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Report History",
+                            "description": "&lt;p>Specify the maximum number of local error reports to maintain when using the upload error report feature. After reaching this limit, the next local error report overwrites the oldest local error report. Use any value of 2 - 10. The default value is 5.&lt;/p>&lt;p>This feature only applies to locally stored error reports, including temporary and Raid.&lt;/p>&lt;p>To view the history, see the Failure Notification status provider.&lt;/p>"
+                        }
+                    ]
+                },
+                "description": "&lt;p>Failure notification is a serviceability tool. By default, failure notification is disabled. To use failure notification, you must enable the configuration and allow the error report to be uploaded.&lt;/p>&lt;p>The uploading of an error report allows the capture of more diagnostic information, which safely improves serviceability. Although there is a tradeoff between performance and serviceability, you should choose serviceability by enabling the following properties:&lt;/p>&lt;ul>&lt;li>Include Internal State&lt;/li>&lt;li>Background Packet Capture&lt;/li>&lt;li>Background Log Capture&lt;/li>&lt;li>Background Memory Trace&lt;/li>&lt;/ul>&lt;p>When you allow the error report to be uploaded, this setting enables the Failure Notification status provider. This status provide in combination with the report history tracks the error reports that the appliance generates, the reason why the appliance generated the error report, and its upload status to the specific destination.&lt;/p>&lt;p>You can specify an NFS, iSCSI (deprecated), RAID, SMTP, or FTP destination. You can also specify the local temporary directory as the destination. The appliance generates error reports, the naming convention includes the serial number of the appliance and the timestamp of the report. This naming convention prevents one report from overwriting another.&lt;/p>&lt;p>You can use Event Triggers to generate error reports automatically when specific events occur.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/ErrorReportSettings"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/ErrorReportSettings"
+                }
+            }
+        }
+    }
+}

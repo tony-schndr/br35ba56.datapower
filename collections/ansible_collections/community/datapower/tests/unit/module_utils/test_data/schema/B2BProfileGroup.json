@@ -1,0 +1,188 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmB2BGroupedProfile"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmB2BGroupedProfile"
+                    }
+                },
+                "type": {
+                    "name": "dmB2BGroupedProfile",
+                    "properties": {
+                        "property": [
+                            {
+                                "name": "PartnerProfile",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference",
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/B2BProfile"
+                                    }
+                                },
+                                "required": "true",
+                                "summary": "B2B Partner Profile",
+                                "cli-alias": "profile",
+                                "display": "B2B Partner Profile",
+                                "description": "Specifies the name of the partner profile."
+                            },
+                            {
+                                "description": "Specific the name of a destination for this partner profile. Without this property, the configuration uses the first destination.",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "summary": "Profile Destination",
+                                "cli-alias": "destination",
+                                "display": "Profile Destination",
+                                "name": "ProfileDest"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "B2B",
+                "name": "B2BProfileGroup",
+                "display": "B2B Partner Profile Group",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            }
+                        ],
+                        "name": "summary",
+                        "display": "Summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "name": "B2BProfiles"
+                            }
+                        ],
+                        "name": "main",
+                        "display": "Main"
+                    }
+                ],
+                "uri": "b2b/b2b-profile-group",
+                "summary": "B2B Partner Profile Group",
+                "cmd-group": "b2b",
+                "cli-alias": "b2b-profile-group",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "B2BProfiles",
+                            "type": {
+                                "href": "/mgmt/types/default/dmB2BGroupedProfile"
+                            },
+                            "required": "true",
+                            "summary": "Associated Partner Profiles",
+                            "array": "true",
+                            "cli-alias": "b2b-profiles",
+                            "display": "Associated Partner Profiles",
+                            "description": "Associates the partner profile with this group."
+                        }
+                    ]
+                },
+                "description": "A group of B2B Partner Profile objects that can be enable or disable at the same time. Each partner profile in the group is identified by its name and optional destination. Without a destination, the configuration uses the first destination for the partner profile."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/B2BProfileGroup"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/B2BProfileGroup"
+                }
+            }
+        }
+    }
+}

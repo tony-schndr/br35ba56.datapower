@@ -1,0 +1,295 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSAMLAttribute"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSAMLAttribute"
+                    }
+                },
+                "type": {
+                    "name": "dmSAMLAttribute",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Specify the data source to retrieve the value for each SAML attribute. &lt;p>If the Data Source Type is a variable, configure a DataPower service or context variable name with Data for Attribute Value. That variable must contain a result element with a list of attribute sub elements. Each attribute element must contain a name attribute, which is used to match the Supplementary Data setting. A sample to describe the format of the variable content:&lt;/p>&lt;p>&amp;lt;result> &amp;lt;attribute-value name=\"cn\">Alice&amp;lt;/attribute-value> &amp;lt;attribute-value name=\"sn\">Alice&amp;lt;/attribute-value> &amp;lt;attribute-value name=\"creatorsName\"> cn=Manager,dc=datapower,dc=com&amp;lt;/attribute-value> &amp;lt;/result>&lt;/p>",
+                                "required": "true",
+                                "summary": "The type of data source to get the value of the SAML attribute.",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmSAMLAttributeSource"
+                                },
+                                "display": "Data Source Type",
+                                "name": "SourceType"
+                            },
+                            {
+                                "description": "Specify the name of the SAML attribute to be generated. &lt;p>When the Data Source Type is variable, this setting can be an empty string. In that case, the attribute name that is carried by the variable's content is used.&lt;/p>",
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "SourceType",
+                                        "evaluation": "property-value-not-in-list",
+                                        "value": "var"
+                                    }
+                                },
+                                "summary": "The SAML attribute name.",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Name",
+                                "name": "Name"
+                            },
+                            {
+                                "display": "Attribute NameSpace/Format",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "description": "&lt;p>Specify the optional Namespace URI for the SAML 1.x attribute,&lt;/p>&lt;p>Optional: Specify the NameFormat value for the SAML 2.0 attribute.&lt;/p>",
+                                "name": "Format",
+                                "summary": "The optional URI to restrict the SAML attribute."
+                            },
+                            {
+                                "name": "XPath",
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "SourceType",
+                                        "evaluation": "property-value-in-list",
+                                        "value": "xpath"
+                                    }
+                                },
+                                "summary": "The XPath expression to extract the value of the SAML attribute from the input message.",
+                                "ignored-when": {
+                                    "condition": {
+                                        "evaluation": "logical-true"
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmXPathExpr"
+                                },
+                                "display": "XPath to Input Message",
+                                "description": "Specify the XPATH information to get the value for the SAML attribute when the attribute value is From Input Message, and specify the XPath expression to locate the value. &lt;p>The XML nodes that the XPath expression points to is the value for the SAML attribute.&lt;/p>"
+                            },
+                            {
+                                "description": "Specify the information to get the value for the SAML attribute. &lt;p>If the attribute contains a Static Value per each AAA Policy, specify the static string value.&lt;/p>&lt;p>If the Data Source Type is variable, specify the variable name. You can input an empty string as the variable name to use the default variable var://context/ldap/auxiliary-attributes. That variable is maintained by the LDAP authentication or authorization to query auxiliary LDAP attributes.&lt;/p>&lt;p>In any case, the variable that is being used here must contain a result element with a list of attribute sub elements. Each attribute element must contain a name attribute, which is used to match the Supplementary Data setting. The following sample describes the format of the variable content.&lt;/p>&lt;p>&amp;lt;result> &amp;lt;attribute-value name=\"cn\">Alice&amp;lt;/attribute-value> &amp;lt;attribute-value name=\"sn\">Alice&amp;lt;/attribute-value> &amp;lt;attribute-value name=\"creatorsName\"> cn=Manager,dc=datapower,dc=com&amp;lt;/attribute-value> &amp;lt;/result>&lt;/p>",
+                                "summary": "The data to get the value for the SAML attribute.",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "SourceType",
+                                        "evaluation": "property-value-in-list",
+                                        "value": "xpath"
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Data for Attribute Value",
+                                "name": "ValueData"
+                            },
+                            {
+                                "description": "&lt;p>When the SAML attribute value is retrieved from a variable as defined in Data for Attribute Value setting, specify the value to match the name attribute of the attribute-value elements that are carried by that variable.&lt;/p>&lt;p>&amp;lt;result> &amp;lt;attribute-value name=\"cn\">Alice&amp;lt;/attribute-value> &amp;lt;attribute-value name=\"sn\">Alice&amp;lt;/attribute-value> &amp;lt;attribute-value name=\"creatorsName\"> cn=Manager,dc=datapower,dc=com&amp;lt;/attribute-value> &amp;lt;/result>&lt;/p>&lt;p>When this value is empty, the value of each attribute-value element is treated as one SAML AttributeValue. Therefore, if multiple attribute-values are carried by the DataPower variable, there can be multiple SAML AttributeValues in one SAML Attribute element.&lt;/p>",
+                                "summary": "The extra information used to get the value of the SAML attribute.",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "SourceType",
+                                        "evaluation": "property-value-not-in-list",
+                                        "value": "var"
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Supplementary Data",
+                                "name": "SubValueData"
+                            },
+                            {
+                                "display": "Friendly Name",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "description": "Specify a meaningful name for the SAML attribute.",
+                                "name": "FriendlyName",
+                                "summary": "A more meaningful name for the SAML attribute."
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSAMLAttributeSource"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSAMLAttributeSource"
+                    }
+                },
+                "type": {
+                    "name": "dmSAMLAttributeSource",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "From Variable",
+                                "description": "The value of the SAML attribute is identified by the DataPower variable and XML element of an XML doc carried by that variable.",
+                                "name": "var",
+                                "summary": "Retrieve the value from a DataPower variable."
+                            },
+                            {
+                                "display": "From Input Message",
+                                "description": "The value of the SAML attribute is identified by the XPath expression.",
+                                "name": "xpath",
+                                "summary": "Fetch the value from the XML doc with an XPath expression."
+                            },
+                            {
+                                "display": "Static Value",
+                                "description": "The metadata category to support user-defined metadata items from any physical or virtual protocol header.",
+                                "name": "static",
+                                "summary": "The SAML attribute has a static value."
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmXPathExpr"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmXPathExpr"
+                    }
+                },
+                "type": {
+                    "cli-arg": "xpath",
+                    "name": "dmXPathExpr"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "SAMLAttributes",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            }
+                        ],
+                        "name": "summary",
+                        "display": "Summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "label-mode": "none",
+                                "name": "SAMLAttribute"
+                            }
+                        ],
+                        "name": "main",
+                        "display": "Main"
+                    }
+                ],
+                "uri": "xml/samlattr",
+                "display": "SAML Attributes",
+                "cmd-group": "aaapolicy",
+                "cli-alias": "samlattrs",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "SAMLAttribute",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSAMLAttribute"
+                            },
+                            "summary": "Define an SAML attribute.",
+                            "array": "true",
+                            "cli-alias": "attribute",
+                            "display": "SAML Attribute Definition",
+                            "description": "Define an attribute by selecting the source type and specifying the data source and SAML attribute name."
+                        }
+                    ]
+                },
+                "description": "Define a list of SAML attributes for the SAML Assertion generator."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/SAMLAttributes"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/SAMLAttributes"
+                }
+            }
+        }
+    }
+}

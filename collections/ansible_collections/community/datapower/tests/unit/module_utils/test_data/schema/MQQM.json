@@ -1,0 +1,1053 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostname"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostname"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt16",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                },
+                "type": {
+                    "cli-arg": "file",
+                    "name": "dmFSFile"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmMQSSLCiphers"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmMQSSLCiphers"
+                    }
+                },
+                "type": {
+                    "display": "IBM MQ TLS Cipher Specifications",
+                    "description": "The available cipher specifications for use with IBM MQ TLS",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "none",
+                                "display": "None"
+                            },
+                            {
+                                "name": "NULL_MD5",
+                                "display": "NULL_MD5"
+                            },
+                            {
+                                "name": "NULL_SHA",
+                                "display": "NULL_SHA"
+                            },
+                            {
+                                "name": "RC4_MD5_EXPORT",
+                                "display": "RC4_MD5_EXPORT"
+                            },
+                            {
+                                "name": "RC4_MD5_US",
+                                "display": "RC4_MD5_US"
+                            },
+                            {
+                                "name": "RC4_SHA_US",
+                                "display": "RC4_SHA_US"
+                            },
+                            {
+                                "name": "RC2_MD5_EXPORT",
+                                "display": "RC2_MD5_EXPORT"
+                            },
+                            {
+                                "name": "DES_SHA_EXPORT",
+                                "display": "DES_SHA_EXPORT"
+                            },
+                            {
+                                "name": "RC4_56_SHA_EXPORT1024",
+                                "display": "RC4_56_SHA_EXPORT1024"
+                            },
+                            {
+                                "name": "DES_SHA_EXPORT1024",
+                                "display": "DES_SHA_EXPORT1024"
+                            },
+                            {
+                                "name": "TRIPLE_DES_SHA_US",
+                                "display": "TRIPLE_DES_SHA_US"
+                            },
+                            {
+                                "name": "TLS_RSA_WITH_AES_128_CBC_SHA",
+                                "display": "TLS_RSA_WITH_AES_128_CBC_SHA"
+                            },
+                            {
+                                "name": "TLS_RSA_WITH_AES_256_CBC_SHA",
+                                "display": "TLS_RSA_WITH_AES_256_CBC_SHA"
+                            },
+                            {
+                                "name": "AES_SHA_US",
+                                "display": "AES_SHA_US"
+                            },
+                            {
+                                "name": "TLS_RSA_WITH_NULL_SHA256",
+                                "display": "TLS_RSA_WITH_NULL_SHA256"
+                            },
+                            {
+                                "name": "TLS_RSA_WITH_AES_128_CBC_SHA256",
+                                "display": "TLS_RSA_WITH_AES_128_CBC_SHA256"
+                            },
+                            {
+                                "name": "TLS_RSA_WITH_AES_256_CBC_SHA256",
+                                "display": "TLS_RSA_WITH_AES_256_CBC_SHA256"
+                            }
+                        ]
+                    },
+                    "name": "dmMQSSLCiphers"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSLClientConfigType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSLClientConfigType"
+                    }
+                },
+                "type": {
+                    "name": "dmSSLClientConfigType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "proxy",
+                                "display": "Proxy Profile"
+                            },
+                            {
+                                "name": "client",
+                                "display": "Client Profile"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "MQ",
+                "name": "MQQM",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "QMname"
+                            },
+                            {
+                                "name": "HostName"
+                            },
+                            {
+                                "name": "ChannelName"
+                            },
+                            {
+                                "name": "UserSummary"
+                            }
+                        ],
+                        "name": "summary",
+                        "display": "Summary"
+                    },
+                    {
+                        "property-group": [
+                            {
+                                "member": [
+                                    {
+                                        "name": "mAdminState"
+                                    },
+                                    {
+                                        "name": "UserSummary"
+                                    },
+                                    {
+                                        "name": "HostName"
+                                    },
+                                    {
+                                        "name": "QMname"
+                                    },
+                                    {
+                                        "name": "ChannelName"
+                                    },
+                                    {
+                                        "name": "Heartbeat"
+                                    },
+                                    {
+                                        "name": "UserName"
+                                    },
+                                    {
+                                        "name": "AlternateUser"
+                                    },
+                                    {
+                                        "name": "XMLManager"
+                                    },
+                                    {
+                                        "name": "MaximumMessageSize"
+                                    },
+                                    {
+                                        "name": "CacheTimeout"
+                                    }
+                                ],
+                                "name": "general",
+                                "display": "General Configuration"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "UnitsOfWork"
+                                    },
+                                    {
+                                        "name": "AutomaticBackout"
+                                    },
+                                    {
+                                        "name": "BackoutThreshold"
+                                    },
+                                    {
+                                        "name": "BackoutQueueName"
+                                    }
+                                ],
+                                "name": "UoW",
+                                "display": "Units of Work and Backout"
+                            }
+                        ],
+                        "name": "main",
+                        "display": "Main"
+                    },
+                    {
+                        "property-group": [
+                            {
+                                "member": [
+                                    {
+                                        "name": "TotalConnectionLimit"
+                                    },
+                                    {
+                                        "name": "InitialConnections"
+                                    },
+                                    {
+                                        "name": "LocalAddress"
+                                    },
+                                    {
+                                        "name": "PollingTolerance"
+                                    }
+                                ],
+                                "name": "open",
+                                "display": "Open Connections"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "AutoRetry"
+                                    },
+                                    {
+                                        "name": "RetryInterval"
+                                    },
+                                    {
+                                        "name": "RetryAttempts"
+                                    },
+                                    {
+                                        "name": "LongRetryInterval"
+                                    },
+                                    {
+                                        "name": "ReportingInterval"
+                                    }
+                                ],
+                                "name": "retry",
+                                "display": "Retry Behavior"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "SharingConversations"
+                                    },
+                                    {
+                                        "name": "ShareSingleConversation"
+                                    }
+                                ],
+                                "name": "share",
+                                "display": "Conversation Sharing"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "SSLClientConfigType"
+                                    },
+                                    {
+                                        "name": "SSLProxyProfile"
+                                    },
+                                    {
+                                        "name": "SSLClient"
+                                    },
+                                    {
+                                        "name": "SSLkey"
+                                    },
+                                    {
+                                        "name": "PermitInsecureServers"
+                                    },
+                                    {
+                                        "name": "PermitSSLv3"
+                                    },
+                                    {
+                                        "name": "SSLcipher"
+                                    }
+                                ],
+                                "on-glass": {
+                                    "value": "Secure communication with the remote queue manager in one of two ways. If both, TLS client profile takes precedence.",
+                                    "xml()": "&lt;on-glass markup=\"html\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">Secure communication with the remote queue manager in one of two ways. If both, TLS client profile takes precedence.                                              &lt;ul>&lt;li>With a TLS client profile: Specify the TLS client profile. Must use this method for IBM MQ for z/OS.&lt;/li>&lt;li>With artifacts from GSKit: Specify the TLS key repository and cipher specification.&lt;/li>&lt;/ul>&lt;/on-glass>"
+                                },
+                                "name": "secure",
+                                "display": "Security"
+                            }
+                        ],
+                        "name": "connections",
+                        "display": "Connections"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "CCSID"
+                            },
+                            {
+                                "name": "ConvertInput"
+                            }
+                        ],
+                        "name": "codesets",
+                        "display": "CCSI"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "CSPUserId"
+                            },
+                            {
+                                "name": "CSPPassword"
+                            },
+                            {
+                                "name": "CSPPasswordAlias"
+                            }
+                        ],
+                        "name": "csp",
+                        "display": "MQCSP"
+                    }
+                ],
+                "uri": "network/mq-qm",
+                "display": "IBM MQ Queue Manager",
+                "cmd-group": "mq-qm",
+                "cli-alias": "mq-qm",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "HostName",
+                            "type": {
+                                "href": "/mgmt/types/default/dmHostname"
+                            },
+                            "required": "true",
+                            "summary": "Host name or IP address with port",
+                            "cli-alias": "hostname",
+                            "display": "Host Name",
+                            "description": "&lt;p>Specify the host name or IP address with the listening port of the IBM MQ server where the queue manager is running. If you do not specify the port, the default is 1414.&lt;/p>&lt;p>The value depends on IP family.&lt;/p>&lt;ul>&lt;li>For IPv4 &lt;ul>&lt;li>hostname:port -- For example, server1:1414&lt;/li>&lt;li>hostname(port) -- For example, server1(1414)&lt;/li>&lt;li>hostname -- For example, server1&lt;/li>&lt;li>address:port -- For example, 10.10.1.2:1414&lt;/li>&lt;li>address(port) -- For example, 10.10.1.2(1414)&lt;/li>&lt;li>address -- For example, 10.10.1.2&lt;/li>&lt;/ul>&lt;/li>&lt;li>For IPv6 &lt;ul>&lt;li>hostname:port -- For example, server1:1414&lt;/li>&lt;li>hostname(port) -- For example, server1(1414)&lt;/li>&lt;li>hostname -- For example, server1&lt;/li>&lt;li>[address]:port -- For example, [2202::148:248]:1414&lt;/li>&lt;li>address(port) -- For example, 2202::148:248(1414)&lt;/li>&lt;li>address -- For example, 2202::148:248&lt;/li>&lt;/ul>&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "Specify the name of the queue manager when the queue manager is not the default on the identified host.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Name of queue manager",
+                            "cli-alias": "queue-manager",
+                            "display": "Queue Manager Name",
+                            "name": "QMname"
+                        },
+                        {
+                            "name": "CCSID",
+                            "default": 819,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "summary": "Coded character set identifier (CCSID)",
+                            "cli-alias": "ccsid",
+                            "display": "Coded Character Set ID",
+                            "description": "Specify the CCSID to present to the Queue Manager when the DataPower Gateway connects to it. This setting has the same effect as setting the MQCCSID environment variable for an IBM MQ client. Refer to the IBM MQ Knowledge Center for more information and a list of specific CCSID values. Unless necessary, use the default value."
+                        },
+                        {
+                            "name": "ChannelName",
+                            "default": "SYSTEM.DEF.SVRCONN",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Name of channel connection",
+                            "maximum-length": 20,
+                            "cli-alias": "channel-name",
+                            "display": "Channel Name",
+                            "description": "Specify the name of the channel to use as an alternative to the default SYSTEM.DEF.SVRCONN."
+                        },
+                        {
+                            "name": "CSPUserId",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "CSPPassword",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": ""
+                                }
+                            },
+                            "summary": "User ID value of the MQCSP connection security parameter",
+                            "cli-alias": "mqcsp-userid",
+                            "valid-regexp": "^[^ ]+$",
+                            "maximum-length": 1024,
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "MQCSP User ID",
+                            "description": "&lt;p>Specify the user ID value of the MQCSP connection security parameter when the MQCSP structure is used for authorization service.&lt;/p>&lt;p>The MQCSP support enables the authorization service to authenticate a user ID and password. You can specify the MQCSP connection security parameters structure on an MQCONNX call. Before using the MQCSP support, you need to define a security exit in the IBM MQ Queue Manager on the IBM MQ server. Ensure that your MQCSP user ID and password in the security exit are consistent with what you input in the IBM MQ Queue Manager configuration. Either an inconsistent MQCSP user ID or an inconsistent password causes a failure of connection between the DataPower Gateway and the IBM MQ server.&lt;/p>&lt;p>&lt;b>Notes:&lt;/b>&lt;/p>&lt;ul>&lt;li>If neither of the MQCSP user ID or the password is defined, the DataPower Gateway connects to the IBM MQ server without MQCSP settings.&lt;/li>&lt;li>If only one of them is defined, a warning occurs and the IBM MQ Queue Manager is not up.&lt;/li>&lt;li>If both of them are defined but one is not consistent with that defined on the IBM MQ server, the connection fails and the IBM MQ Queue Manager is not up.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "CSPPassword",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Password value of the MQCSP connection security parameter",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "CSPPassword",
+                                    "evaluation": "property-equals",
+                                    "value": ""
+                                }
+                            },
+                            "maximum-length": 1024,
+                            "cli-alias": "mqcsp-password",
+                            "display": "MQCSP Password (deprecated)",
+                            "description": "&lt;p>Specify the password value of the MQCSP connection security parameter when the MQCSP structure is used for authorization service.&lt;/p>&lt;p>The MQCSP support enables the authorization service to authenticate a user ID and password. You can specify the MQCSP connection security parameters structure on an MQCONNX call. Before using the MQCSP support, you need to define a security exit in the IBM MQ Queue Manager on the IBM MQ server. Ensure that your MQCSP user ID and password in the security exit are consistent with what you input in the IBM MQ Queue Manager configuration. Either an inconsistent MQCSP user ID or an inconsistent password causes a failure of connection between DataPower and the IBM MQ server.&lt;/p>&lt;p>&lt;b>Notes:&lt;/b>&lt;/p>&lt;ul>&lt;li>If neither of the MQCSP user ID or the password is defined, DataPower connects to the IBM MQ server without MQCSP settings.&lt;/li>&lt;li>If only one of them is defined, a warning occurs and the IBM MQ Queue Manager is not up.&lt;/li>&lt;li>If both of them are defined but one is not consistent with that defined on the IBM MQ server, the connection fails and the IBM MQ Queue Manager is not up.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "CSPPasswordAlias",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "CSPUserId",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": ""
+                                        },
+                                        {
+                                            "property-name": "CSPPassword",
+                                            "evaluation": "property-equals",
+                                            "value": ""
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Password alias of the password value of the MQCSP connection security parameter",
+                            "cli-alias": "mqcsp-password-alias",
+                            "maximum-length": 127,
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/PasswordAlias"
+                                }
+                            },
+                            "display": "MQCSP Password Alias",
+                            "description": "&lt;p>Specify the password alias of the password value of the MQCSP connection security parameter when the MQCSP structure is used for authorization service.&lt;/p>&lt;p>The MQCSP support enables the authorization service to authenticate a user ID and password. You can specify the MQCSP connection security parameters structure on an MQCONNX call. Before using the MQCSP support, you need to define a security exit in the IBM MQ Queue Manager on the IBM MQ server. Ensure that your MQCSP user ID and password in the security exit are consistent with what you input in the IBM MQ Queue Manager configuration. Either an inconsistent MQCSP user ID or an inconsistent password causes a failure of connection between DataPower and the IBM MQ server.&lt;/p>&lt;p>&lt;b>Notes:&lt;/b>&lt;/p>&lt;ul>&lt;li>If neither of the MQCSP user ID or the password is defined, DataPower connects to the IBM MQ server without MQCSP settings.&lt;/li>&lt;li>If only one of them is defined, a warning occurs and the IBM MQ Queue Manager is not up.&lt;/li>&lt;li>If both of them are defined but one is not consistent with that defined on the IBM MQ server, the connection fails and the IBM MQ Queue Manager is not up.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "Heartbeat",
+                            "default": 300,
+                            "cli-alias": "heartbeat",
+                            "maximum": 999999,
+                            "summary": "Time between heartbeat flows",
+                            "minimum": 0,
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Channel Heartbeat",
+                            "description": "Specify the approximate time in seconds between heartbeat flows on a channel when waiting for a message on a queue. Use an integer between 0 and 999999. If 0, there will not be heartbeat flows exchanged when waiting for a message on the channel. This property does not set the heartbeat on the channel. Instead, it is used to negotiate the heartbeat value with the channel. The greater of the two values is used."
+                        },
+                        {
+                            "name": "UserName",
+                            "valid-regexp": "^[^ ]+$",
+                            "summary": "Name that identifies this client",
+                            "cli-alias": "username",
+                            "maximum-length": 12,
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "User Name",
+                            "description": "Specify the plaintext string to send to the server for identifying the client."
+                        },
+                        {
+                            "name": "MaximumMessageSize",
+                            "default": 1048576,
+                            "cli-alias": "maximum-message-size",
+                            "maximum": 104857600,
+                            "summary": "Maximum size of messages to accept",
+                            "minimum": 1024,
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Maximum Message Size",
+                            "description": "Specify the maximum size in bytes of allowed messages. Use a value that is equal to or greater than the MaxMsgLength attribute of the channel and of the queue on the IBM MQ server. Messages that are bigger than this size are rejected. Use an integer between 1024 and 104857600."
+                        },
+                        {
+                            "name": "CacheTimeout",
+                            "default": 60,
+                            "cli-alias": "cache-timeout",
+                            "summary": "Maximum period to retain a dynamic connection in the connection cache",
+                            "minimum": 1,
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Cache Timeout",
+                            "description": "&lt;p>Specify the number of seconds that the DataPower Gateway retains (keeps alive) a dynamic connection in the connection cache. Use a value that is greater than the negotiated heartbeat interval but less than the keep alive interval.&lt;/p>&lt;ul>&lt;li>The negotiated heartbeat interval is between the DataPower Gateway and the backend IBM MQ server. Use the &lt;b>Channel Heartbeat&lt;/b> property to define the starting value for the negotiation.&lt;/li>&lt;li>The keep alive (timeout) interval is on the backend IBM MQ server. The &lt;tt>KAINT&lt;/tt> attribute on the IBM MQ server defines the timeout value for a channel. Not all channels have a defined, explicit keep alive interval on the IBM MQ server. Some queue managers use an automatic timeout setting when the &lt;tt>KAINT&lt;/tt> attribute set to &lt;tt>AUTO&lt;/tt> . In these cases, the keep alive interval is the negotiated heartbeat interval plus 60 seconds.&lt;/li>&lt;/ul>&lt;p>When an inactive connection reaches this threshold, the DataPower Gateway removes that dynamic connection from the cache. When the cache no longer contains dynamic connections, the DataPower Gateway deletes the dynamic queue manager. Without a dynamic queue manager, there is no connection with the backend IBM MQ server.&lt;/p>&lt;p>The timeout value for the &lt;b>Cache Timeout&lt;/b> property is the only way to configure a timeout value from the DataPower Gateway to the backend IBM MQ server. No other configuration setting on the DataPower Gateway can time out an IBM MQ connection.&lt;/p>"
+                        },
+                        {
+                            "name": "UnitsOfWork",
+                            "default": 0,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "summary": "Whether to use units-of-work",
+                            "minimum": 0,
+                            "cli-alias": "units-of-work",
+                            "display": "Units of Work",
+                            "description": "&lt;p>When set to 0 (zero), the default, causes the DataPower Gateway to get and put messages with no provision for roll back. Either the operation succeeds or not. Undeliverable messages are silently discarded, which leaves higher level protocols with the responsibility to detect and retransmit lost packets&lt;/p>&lt;p>When set to 1, the DataPower Gateway uses synch points. A synch point commits and rolls back each IBM MQ message, not the entire transaction. When specified, the DataPower Gateway does not remove the message that it gets from a queue until it completes its transaction using that message (such as placing the message on a server queue for processing). If the transaction fails and the message is left available on the queue, the DataPower Gateway can attempt to get the message and process it again.&lt;/p>&lt;p>&lt;b>Only the values 0 (zero) or 1 are valid.&lt;/b>&lt;/p>"
+                        },
+                        {
+                            "name": "AutomaticBackout",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Enables automatic routing of undeliverable messages",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "UnitsOfWork",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": 1
+                                }
+                            },
+                            "cli-alias": "automatic-backout",
+                            "display": "Automatic Backout",
+                            "description": "&lt;p>Use the radio buttons to enable (on) or disable (off) the automatic backout of poison messages. A poison message is any message that the receiving application does not know how to process.&lt;/p>&lt;p>Usually an application rolls back the GET of this message, which leaves the message on the input queue. However, the backout count (MQMD.Backoutcount) is incremented.&lt;/p>&lt;p>As the IBM MQ Queue Manager continues to re-get the message, the backout count continues to increase. When the backout count exceeds the backout threshold, the IBM MQ Queue Manager moves the message to the backout queue.&lt;/p>&lt;p>If disabled, the poison message remains on the GET queue and continues to be reprocessed by the DataPower Gateway until the Queue Manager that manages the GET queue removes it or the DataPower Gateway reroutes the offending message. The message could be rerouted by a custom stylesheet in the request rule.&lt;/p>"
+                        },
+                        {
+                            "name": "BackoutThreshold",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "summary": "Number of processing attempts",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "UnitsOfWork",
+                                            "evaluation": "property-less-than",
+                                            "value": 1
+                                        },
+                                        {
+                                            "property-name": "AutomaticBackout",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "on"
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "backout-threshold",
+                            "display": "Backout Threshold",
+                            "description": "&lt;p>Specify the total number of processing attempts. After this number of processing attempts fails, the following actions occur.&lt;/p>&lt;ul>&lt;li>The poison message is moved to the backout queue.&lt;/li>&lt;li>The unit of work that contains this message is committed.&lt;/li>&lt;/ul>&lt;p>Enter a value that is equal to or greater than 1.&lt;/p>"
+                        },
+                        {
+                            "name": "BackoutQueueName",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Queue for undeliverable messages",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "UnitsOfWork",
+                                            "evaluation": "property-less-than",
+                                            "value": 1
+                                        },
+                                        {
+                                            "property-name": "AutomaticBackout",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": "on"
+                                        }
+                                    ]
+                                }
+                            },
+                            "maximum-length": 48,
+                            "cli-alias": "backout-queue",
+                            "display": "Backout Queue Name",
+                            "description": "Specify the queue to contains messages that exceeded the backout threshold. This queue must be managed by the same IBM MQ Queue Manager as the defined GET queue. The backout queue, typically SYSTEM.DEAD.LETTER.QUEUE contains messages that cannot be processed or delivered."
+                        },
+                        {
+                            "name": "TotalConnectionLimit",
+                            "default": 250,
+                            "cli-alias": "total-connection-limit",
+                            "maximum": 10000,
+                            "summary": "Total number of TCP connections",
+                            "minimum": 1,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Total Connection Limit",
+                            "description": "Specify the total number of open TCP connections to allow. Use an integer between 1 and 10000. The default value is 250."
+                        },
+                        {
+                            "name": "InitialConnections",
+                            "default": 1,
+                            "cli-alias": "initial-connections",
+                            "maximum": 10000,
+                            "summary": "Number of preallocated TCP connections",
+                            "minimum": 0,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Initial Connections",
+                            "description": "Specify the number of TCP connections to open immediately when the IBM MQ Queue Manager starts. Use an integer between 0 and 10000. The default value is 1."
+                        },
+                        {
+                            "name": "SharingConversations",
+                            "default": 0,
+                            "cli-alias": "sharing-conversations",
+                            "maximum": 5000,
+                            "summary": "Maximum number of conversations to share in a TCP connection",
+                            "minimum": 0,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Sharing Conversations",
+                            "description": "Specify the maximum number of conversations to share a single TCP/IP connection. Use an integer of 0 - 5000. To enable conversation sharing, specify a value that is greater than 1. A value of 0 (the default value) or 1 disables conversation sharing."
+                        },
+                        {
+                            "name": "ShareSingleConversation",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Use a single shared conversation",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SharingConversations",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": 1
+                                }
+                            },
+                            "cli-alias": "share-single-conversation",
+                            "display": "Share Single Conversation",
+                            "description": "Specifies whether to enable conversation sharing between the DataPower Gateway and the IBM MQ server when the number of shared conversations is 1."
+                        },
+                        {
+                            "name": "SSLkey",
+                            "type": {
+                                "href": "/mgmt/types/default/dmFSFile"
+                            },
+                            "locations": {
+                                "location": [
+                                    "cert",
+                                    "sharedcert"
+                                ]
+                            },
+                            "summary": "Filename of the key database",
+                            "cli-alias": "ssl-key",
+                            "display": "TLS Key Repository",
+                            "description": "&lt;p>Specify the location of the key database file in which keys and certificates are stored.&lt;/p>&lt;p>Use this property with the TLS Cipher property to enable TLS communication when the TLS artifacts were created with IBM Global Security Kit (GSKit).&lt;/p>&lt;p>&lt;b>Note:&lt;/b> To integrate with IBM MQ for z/OS, do not use these properties. Use the TLS Client Profile property.&lt;/p>&lt;p>Each key database file has an associated stash file. The stash file holds encrypted passwords that allow programmatic access to the key database. The stash file must reside in the same directory as the key database file, have the same file name as the key database file, and have the &lt;tt>.sth&lt;/tt> file extension. For example, if the key database file is &lt;tt>MQkeys.pem&lt;/tt> or &lt;tt>MQkeys.kidb&lt;/tt> , the stash file must be &lt;tt>MQkeys.sth&lt;/tt> .&lt;/p>&lt;p>If these file are not on the DataPower Gateway, upload or fetch them.&lt;/p>"
+                        },
+                        {
+                            "name": "PermitInsecureServers",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SSLkey",
+                                    "evaluation": "property-equals",
+                                    "value": ""
+                                }
+                            },
+                            "cli-alias": "permit-insecure-servers",
+                            "display": "Permit Connections to Insecure TLS Servers When TLS Key Repository is used",
+                            "description": "When using TLS Key Repository, specifies whether to permit connections to IBM MQ servers that do not support RFC 5746. Such servers are vulnerable to man-in-the-middle attacks as documented in CVE-2009-3555. The default is off which means reject insecure connections during the TLS handshake."
+                        },
+                        {
+                            "description": "When using TLS Key Repository, specifies whether to allow SSL v3 cipher to be used. The default is off which means no SSL v3 Cipher allowed.",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "cli-alias": "permit-ssl-v3",
+                            "display": "Permit SSL v3",
+                            "name": "PermitSSLv3"
+                        },
+                        {
+                            "description": "&lt;p>Select the cipher suite for TLS communication when using a TLS key repository. The cipher suite must match the ciphers in use by the IBM MQ Queue Manager.&lt;/p>&lt;p>Use this property with the TLS Key Repository property to enable TLS communication when the TLS artifacts were created with IBM Global Security Kit (GSKit).&lt;/p>&lt;p>&lt;b>Note:&lt;/b> To integrate with IBM MQ for z/OS, do not use these properties. Use the TLS Client Profile property.&lt;/p>",
+                            "type": {
+                                "href": "/mgmt/types/default/dmMQSSLCiphers"
+                            },
+                            "summary": "Cipher suite",
+                            "cli-alias": "ssl-cipher",
+                            "display": "TLS Cipher Specification",
+                            "name": "SSLcipher"
+                        },
+                        {
+                            "name": "SSLProxyProfile",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                                }
+                            },
+                            "summary": "The TLS proxy profile is deprecated. Use a TLS client profile.",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SSLClientConfigType",
+                                    "evaluation": "property-equals",
+                                    "value": "client"
+                                }
+                            },
+                            "cli-alias": "ssl",
+                            "display": "TLS Proxy Profile (deprecated)",
+                            "description": "&lt;p>Select a TLS Proxy Profile.&lt;/p>&lt;p>The following table maps the relationship between the TLS Cipher Specification property and the setting required on the Crypto Profile of the TLS Proxy Profile that is assigned to the IBM MQ Queue Manager. Use this information when configuring the TLS Proxy Profile to communicate with the IBM MQ Queue Manager.&lt;/p>&lt;table border=\"1\">&lt;tr>&lt;th>IBM MQ TLS Cipher&lt;/th>&lt;th>TLS Cipher Specification&lt;/th>&lt;th>TLS Options&lt;/th>&lt;/tr>&lt;tr>&lt;td>NULL_MD5&lt;/td>&lt;td>NULL-MD5&lt;/td>&lt;td>OpenSSL-default+Disable-SSLv2+Disable-TLSv1+Disable-TLSv1d1+Disable-TLSv1d2&lt;/td>&lt;/tr>&lt;tr>&lt;td>NULL_SHA&lt;/td>&lt;td>NULL-SHA&lt;/td>&lt;td>OpenSSL-default+Disable-SSLv2+Disable-TLSv1+Disable-TLSv1d1+Disable-TLSv1d2&lt;/td>&lt;/tr>&lt;tr>&lt;td>RC4_MD5_EXPORT&lt;/td>&lt;td>EXP-RC4-MD5&lt;/td>&lt;td>OpenSSL-default+Disable-SSLv2+Disable-TLSv1+Disable-TLSv1d1+Disable-TLSv1d2&lt;/td>&lt;/tr>&lt;tr>&lt;td>RC4_MD5_US&lt;/td>&lt;td>RC4-MD5&lt;/td>&lt;td>OpenSSL-default+Disable-SSLv2+Disable-TLSv1+Disable-TLSv1d1+Disable-TLSv1d2&lt;/td>&lt;/tr>&lt;tr>&lt;td>RC4_SHA_US&lt;/td>&lt;td>RC4-SHA&lt;/td>&lt;td>OpenSSL-default+Disable-SSLv2+Disable-TLSv1+Disable-TLSv1d1+Disable-TLSv1d2&lt;/td>&lt;/tr>&lt;tr>&lt;td>RC2_MD5_EXPORT&lt;/td>&lt;td>EXP-RC2-CBC-MD5&lt;/td>&lt;td>OpenSSL-default+Disable-SSLv2+Disable-TLSv1+Disable-TLSv1d1+Disable-TLSv1d2&lt;/td>&lt;/tr>&lt;tr>&lt;td>DES_SHA_EXPORT&lt;/td>&lt;td>DES-CBC-SHA&lt;/td>&lt;td>OpenSSL-default+Disable-SSLv2+Disable-TLSv1+Disable-TLSv1d1+Disable-TLSv1d2&lt;/td>&lt;/tr>&lt;tr>&lt;td>RC4_56_SHA_EXPORT1024&lt;/td>&lt;td>EXP1024-RC4-SHA&lt;/td>&lt;td>OpenSSL-default+Disable-SSLv2+Disable-TLSv1+Disable-TLSv1d1+Disable-TLSv1d2&lt;/td>&lt;/tr>&lt;tr>&lt;td>DES_SHA_EXPORT1024&lt;/td>&lt;td>EXP1024-DES-CBC-SHA&lt;/td>&lt;td>OpenSSL-default+Disable-SSLv2+Disable-TLSv1+Disable-TLSv1d1+Disable-TLSv1d2&lt;/td>&lt;/tr>&lt;tr>&lt;td>TRIPLE_DES_SHA_US&lt;/td>&lt;td>DES-CBC3-SHA&lt;/td>&lt;td>OpenSSL-default+Disable-SSLv2+Disable-TLSv1+Disable-TLSv1d1+Disable-TLSv1d2&lt;/td>&lt;/tr>&lt;tr>&lt;td>TLS_RSA_WITH_AES_128_CBC_SHA&lt;/td>&lt;td>AES128-SHA&lt;/td>&lt;td>OpenSSL-default+Disable-SSLv2+Disable-SSLv3+Disable-TLSv1d1+Disable-TLSv1d2&lt;/td>&lt;/tr>&lt;tr>&lt;td>TLS_RSA_WITH_AES_256_CBC_SHA&lt;/td>&lt;td>AES256-SHA&lt;/td>&lt;td>OpenSSL-default+Disable-SSLv2+Disable-SSLv3+Disable-TLSv1d1+Disable-TLSv1d2&lt;/td>&lt;/tr>&lt;tr>&lt;td>AES_SHA_US&lt;/td>&lt;td>AES128-SHA&lt;/td>&lt;td>OpenSSL-default+Disable-SSLv2+Disable-SSLv3+Disable-TLSv1d1+Disable-TLSv1d2&lt;/td>&lt;/tr>&lt;tr>&lt;td>TLS_RSA_WITH_NULL_SHA256&lt;/td>&lt;td>NULL-SHA256&lt;/td>&lt;td>OpenSSL-default+Disable-SSLv2+Disable-SSLv3+Disable-TLSv1+Disable-TLSv1d1&lt;/td>&lt;/tr>&lt;tr>&lt;td>TLS_RSA_WITH_AES_128_CBC_SHA256&lt;/td>&lt;td>AES128-SHA256&lt;/td>&lt;td>OpenSSL-default+Disable-SSLv2+Disable-SSLv3+Disable-TLSv1+Disable-TLSv1d1&lt;/td>&lt;/tr>&lt;tr>&lt;td>TLS_RSA_WITH_AES_256_CBC_SHA256&lt;/td>&lt;td>AES256-SHA256&lt;/td>&lt;td>OpenSSL-default+Disable-SSLv2+Disable-SSLv3+Disable-TLSv1+Disable-TLSv1d1&lt;/td>&lt;/tr>&lt;/table>"
+                        },
+                        {
+                            "name": "ConvertInput",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Enable conversion of the incoming message to the default CCSI",
+                            "cli-alias": "convert",
+                            "display": "Convert Input",
+                            "description": "&lt;p>Indicates whether the queue manager can convert input messages to a different CCSI (Coded Character Set Identifier) than the one in the incoming message. This conversion is done by the remote queue manager, not the DataPower device.&lt;/p>&lt;p>Click &lt;b>off&lt;/b> to disable automatic conversion of incoming messages to the CCSI established for this IBM MQ Queue Manager.&lt;/p>"
+                        },
+                        {
+                            "name": "AutoRetry",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Advanced recovery after critical error",
+                            "cli-alias": "auto-retry",
+                            "display": "Automatic Retry",
+                            "description": "&lt;p>Define whether to attempt to reconnect to remote server after a connection failure. When enabled, the DataPower Gateway automatically attempt to reconnect to the remote host. This is on by default.&lt;/p>&lt;p>This setting does not affect attempts to put or get messages over an established connection.&lt;/p>"
+                        },
+                        {
+                            "name": "RetryInterval",
+                            "default": 10,
+                            "cli-alias": "retry-interval",
+                            "summary": "Specify the time interval in seconds between attempts to retry the failed connections to a remote host.",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "AutoRetry",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "on"
+                                }
+                            },
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Retry Interval",
+                            "description": "&lt;p>Specify the time interval in seconds between attempts to retry the failed connections to a remote host. The default value is 10.&lt;/p>&lt;p>This setting does not affect attempts to PUT or GET messages over an established connection.&lt;/p>"
+                        },
+                        {
+                            "name": "RetryAttempts",
+                            "default": 6,
+                            "cli-alias": "retry-attempts",
+                            "summary": "The number of attempts to retry the failed connections",
+                            "minimum": 0,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "AutoRetry",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "on"
+                                }
+                            },
+                            "units": "attempts",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Retry Attempts",
+                            "description": "&lt;p>Specify the number of attempts to retry the failed connections. After the number of attempts is reached, the long interval is used. The default value is 6.&lt;/p>&lt;p>When 0, the long retry interval is not used. The retry interval is used forever.&lt;/p>"
+                        },
+                        {
+                            "name": "LongRetryInterval",
+                            "default": 600,
+                            "cli-alias": "long-retry-interval",
+                            "summary": "Long retry interval before retrying the failed connections",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "AutoRetry",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "on"
+                                }
+                            },
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Long Retry Interval",
+                            "description": "&lt;p>Specify the retry interval to use after the number of retry attempts is reached. The default value is 600.&lt;/p>&lt;p>The long retry interval must be greater than the retry interval, or it will take no effect.&lt;/p>"
+                        },
+                        {
+                            "name": "ReportingInterval",
+                            "default": 10,
+                            "cli-alias": "reporting-interval",
+                            "summary": "Log a connection failure as an error at this interval",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "AutoRetry",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "on"
+                                }
+                            },
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Reporting Interval",
+                            "description": "Specify the number of seconds between the creations of log messages at the error level when failed connections are retried. This setting filters the generation of identical error messages to IBM MQ logging targets. The default value is 10."
+                        },
+                        {
+                            "name": "AlternateUser",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Enables ALTERNATE_USER_AUTHORITY flag",
+                            "cli-alias": "alternate-user",
+                            "display": "Alternate User",
+                            "description": "&lt;p>Determines whether to use the &lt;tt>MQOD.AlternateUserId&lt;/tt> as the value of the &lt;b>User Name&lt;/b> property.&lt;/p>&lt;p>When enabled (on), uses &lt;tt>MQOD.AlternateUserId&lt;/tt> . When disabled, uses &lt;tt>MQMD.UserIdentifier&lt;/tt> .&lt;/p>"
+                        },
+                        {
+                            "name": "LocalAddress",
+                            "valid-regexp": "^[^ ]+([(][1-9][0-9]*(,[0-9]+)?[)])?$",
+                            "summary": "Local address for channel",
+                            "cli-alias": "local-address",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Local Address",
+                            "description": "&lt;p>Specify the local address for outbound connections to a specific local interface and port. Supported formats are 1.1.1.1 or 1.1.1.1(1) or just (1) to tell TCP to bind to port 1 and for a range of ports use (1,10) or 1.1.1.1(1,10).&lt;/p>&lt;p>&lt;b>Note:&lt;/b> If the port is set, the range must be greater than the total number of allowed connections.&lt;/p>"
+                        },
+                        {
+                            "name": "XMLManager",
+                            "default": "default",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/XMLManager"
+                                }
+                            },
+                            "required": "true",
+                            "summary": "XML Manager",
+                            "cli-alias": "xml-manager",
+                            "display": "XML Manager",
+                            "description": "Select an XML Manager."
+                        },
+                        {
+                            "name": "SSLClientConfigType",
+                            "default": "proxy",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSLClientConfigType"
+                            },
+                            "summary": "Set the TLS profile type to secure connections between the DataPower Gateway and its targets",
+                            "cli-alias": "ssl-client-type",
+                            "display": "TLS client type",
+                            "description": "The TLS profile type to secure connections between the DataPower Gateway and its targets."
+                        },
+                        {
+                            "name": "SSLClient",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                                }
+                            },
+                            "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and its targets",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "SSLClientConfigType",
+                                    "evaluation": "property-equals",
+                                    "value": "proxy"
+                                }
+                            },
+                            "cli-alias": "ssl-client",
+                            "display": "TLS client profile",
+                            "description": "The TLS client profile to secure connections between the DataPower Gateway and its targets."
+                        }
+                    ]
+                },
+                "description": "In IBM MQ, distributed send and receive queues are managed by a component called a queue manager. The queue manager provides messaging services for communicating applications by periodically monitoring/polling queues, by ensuring that sent messages are directed to the correct receive queue, or that messages are routed to another queue manager. This Queue Manager object on the device corresponds to a Queue Manager running on another host on the network. The properties set here enable communication between the device and the Queue Manager."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/MQQM"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/MQQM"
+                }
+            }
+        }
+    }
+}

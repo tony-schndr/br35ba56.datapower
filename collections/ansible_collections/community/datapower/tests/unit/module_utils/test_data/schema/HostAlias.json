@@ -1,0 +1,132 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPHostAddress"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPHostAddress"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip",
+                    "name": "dmIPHostAddress",
+                    "format": "(a.b.c.d)"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "name": "HostAlias",
+                "display": "Host Alias",
+                "property-group": {
+                    "member": [
+                        {
+                            "name": "mAdminState"
+                        },
+                        {
+                            "name": "IPAddress"
+                        },
+                        {
+                            "name": "UserSummary"
+                        }
+                    ],
+                    "name": "summary"
+                },
+                "uri": "network/host-alias",
+                "summary": "Host aliases allow services that bind to a particular local IP address to use the alias for the binding.",
+                "cmd-group": "network",
+                "cli-alias": "host-alias",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "A descriptive summary for the configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter a descriptive summary for the configuration.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "IPAddress",
+                            "type": {
+                                "href": "/mgmt/types/default/dmIPHostAddress"
+                            },
+                            "required": "true",
+                            "summary": "Enter the local IP address that corresponds to the alias.",
+                            "cli-alias": "ip-address",
+                            "display": "IP address",
+                            "description": "The local IP address that corresponds to the alias."
+                        }
+                    ]
+                },
+                "description": "A host alias is a map between a local IP address to a local alias. The host alias is resolved like a static host entry. Host aliases provide a level of abstraction between concrete network addresses and configuration. You can use host aliases where you can define local IP addresses. Host aliases ease the export and migration of service among DataPower appliances. The alias is exported, but the alias map is not. If the alias is defined on the destination system, the alias resolves to the IP address that is defined on the destination system."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/HostAlias"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/HostAlias"
+                }
+            }
+        }
+    }
+}

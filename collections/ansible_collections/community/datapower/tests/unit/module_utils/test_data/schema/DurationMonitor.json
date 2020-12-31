@@ -1,0 +1,279 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmDurationMonitorType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmDurationMonitorType"
+                    }
+                },
+                "type": {
+                    "name": "dmDurationMonitorType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Messages",
+                                "description": "The time interval between the receipt of a client request to the transmission of the associated server response. This interval is the full transaction cycle.",
+                                "name": "messages"
+                            },
+                            {
+                                "display": "Requests",
+                                "description": "The time interval between the receipt of a client request to its transmission to the target server. This interval is the time spent by the DataPower device in processing a client request.",
+                                "name": "requests"
+                            },
+                            {
+                                "display": "Server",
+                                "description": "The interval between the transmission of a client request to the server and the receipt of its associated server response. This interval is the server processing time.",
+                                "name": "server"
+                            },
+                            {
+                                "display": "Responses",
+                                "description": "The interval between the receipt of a server response and its transmission to the target client. This interval is the time spent by the DataPower device in processing a server response.",
+                                "name": "responses"
+                            }
+                        ]
+                    },
+                    "summary": "Duration Monitor Type"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmDurationMonitorFilter"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmDurationMonitorFilter"
+                    }
+                },
+                "type": {
+                    "name": "dmDurationMonitorFilter",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Enter the name of the threshold. This name appears in the logs when the threshold action is taken.",
+                                "required": "true",
+                                "summary": "The threshold name",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Name",
+                                "name": "Name"
+                            },
+                            {
+                                "name": "Type",
+                                "default": "average",
+                                "required": "true",
+                                "summary": "Threshold type",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmDurationFilterType"
+                                },
+                                "display": "Type",
+                                "description": "Retain the default value."
+                            },
+                            {
+                                "name": "Value",
+                                "required": "true",
+                                "summary": "The threshold value",
+                                "units": "ms",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmTimeInterval"
+                                },
+                                "display": "Value",
+                                "description": "Enter the threshold value in milliseconds."
+                            },
+                            {
+                                "description": "Select the monitor policy (Message Filter Action) implemented by the monitor when the target message type exceeds the threshold value. Click the + button to create a new action.",
+                                "required": "true",
+                                "summary": "Monitor policy",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference",
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/FilterAction"
+                                    }
+                                },
+                                "display": "Action",
+                                "name": "Action"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmDurationFilterType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmDurationFilterType"
+                    }
+                },
+                "type": {
+                    "name": "dmDurationFilterType",
+                    "value-list": {
+                        "value": {
+                            "display": "Average",
+                            "name": "average",
+                            "summary": "Required Keyword"
+                        }
+                    },
+                    "summary": "Duration Filter Type"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                },
+                "type": {
+                    "cli-arg": "seconds",
+                    "minimum": 0,
+                    "name": "dmTimeInterval",
+                    "maximum": "0xFFFFFFFF"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "DurationMonitor",
+                "uri": "monitor/monitor-duration",
+                "display": "Message Duration Monitor",
+                "cmd-group": "monitors",
+                "cli-alias": "monitor-duration",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "A Message Monitor observes traffic that is incuded by the Message Type definition (which in turn is a collection of Message Matching objects). The Monitor measures only that traffic selected by the Measure field. On the Filters page, traffic which meets the filter criteria causes the Monitor to take the corresponding action (which is defined by a Message Filter Type object).",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Brief summary for user annotation.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "MessageType",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/MessageType"
+                                }
+                            },
+                            "required": "true",
+                            "summary": "Message type",
+                            "cli-alias": "message-type",
+                            "display": "Message Type",
+                            "description": "Select the message type monitored by this message-count monitor."
+                        },
+                        {
+                            "name": "Measure",
+                            "default": "messages",
+                            "type": {
+                                "href": "/mgmt/types/default/dmDurationMonitorType"
+                            },
+                            "required": "true",
+                            "summary": "Transaction cycle",
+                            "cli-alias": "measure",
+                            "display": "Measure",
+                            "description": "Select which portion of the transaction cycle to monitor. The default is Messages."
+                        },
+                        {
+                            "description": "Click this tab to define a message-duration monitor threshold and assign an action taken when the threshold is reached.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmDurationMonitorFilter"
+                            },
+                            "array": "true",
+                            "cli-alias": "filter",
+                            "display": "Thresholds/Filters",
+                            "name": "Filter"
+                        }
+                    ]
+                },
+                "description": "On-Line Help for Message-Duration Monitors. Duration Monitors observe the duration, or amount of time, taken to process submissions."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/DurationMonitor"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/DurationMonitor"
+                }
+            }
+        }
+    }
+}

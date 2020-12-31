@@ -1,0 +1,2575 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                },
+                "type": {
+                    "cli-arg": "file",
+                    "name": "dmFSFile"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmOAuthRole"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmOAuthRole"
+                    }
+                },
+                "type": {
+                    "name": "dmOAuthRole",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Authorization and Token Endpoints",
+                                "description": "For requests, the DataPower Gateway is the authorization server endpoints: authorization endpoint and token endpoint.",
+                                "name": "azsvr",
+                                "summary": "Role is authorization server endpoints: authorization endpoint and token endpoint"
+                            },
+                            {
+                                "display": "Enforcement Point for Resource Server",
+                                "description": "For requests, the DataPower Gateway is the enforcement point for a resource server.",
+                                "name": "rssvr",
+                                "summary": "Role is the enforcement point for the resource server"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmOAuthAZGrantType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmOAuthAZGrantType"
+                    }
+                },
+                "type": {
+                    "name": "dmOAuthAZGrantType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Authorization Code Grant",
+                                "description": "Use the authorization code grant type to obtain authorization.",
+                                "name": "code",
+                                "summary": "Authorization code to obtain authorization"
+                            },
+                            {
+                                "display": "Implicit Grant",
+                                "description": "Uses the implicit grant type to obtain authorization.",
+                                "name": "implicit",
+                                "summary": "Implicit grant to obtain authorization"
+                            },
+                            {
+                                "display": "Resource Owner Password Credential Grant",
+                                "description": "Uses the resource owner password credential grant type to obtain authorization.",
+                                "name": "password",
+                                "summary": "Resource owner password credential to obtain authorization"
+                            },
+                            {
+                                "display": "Client Credentials Grant",
+                                "description": "Uses the client credentials grant type to obtain authorization.",
+                                "name": "client",
+                                "summary": "Client Credentials to obtain authorization"
+                            },
+                            {
+                                "display": "JWT Grant",
+                                "description": "Uses the JWT grant type to obtain authorization.",
+                                "name": "jwt",
+                                "summary": "JSON Web Token Grant"
+                            },
+                            {
+                                "display": "Disable Validation Grant",
+                                "description": "Disables the use of validation grant type to verify an access token.",
+                                "name": "novalidate",
+                                "summary": "Disable validation grant type"
+                            },
+                            {
+                                "display": "OpenID Connect",
+                                "description": "Supports OpenID Connect.",
+                                "name": "oidc",
+                                "summary": "ID token for OpenID Connect support"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmOAuthClientType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmOAuthClientType"
+                    }
+                },
+                "type": {
+                    "name": "dmOAuthClientType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Confidential",
+                                "description": "Clients can maintain the confidentiality of their credentials or can secure client authentication through other means.",
+                                "name": "confidential",
+                                "summary": "Confidential"
+                            },
+                            {
+                                "display": "Public",
+                                "description": "Clients cannot maintain the confidentiality of their credentials or cannot secure client authentication through other means.",
+                                "name": "public",
+                                "summary": "Public"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmOAuthClientAuthenMethod"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmOAuthClientAuthenMethod"
+                    }
+                },
+                "type": {
+                    "name": "dmOAuthClientAuthenMethod",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Client Secret",
+                                "description": "Uses the client secret for authentication.",
+                                "name": "secret",
+                                "summary": "Client secret"
+                            },
+                            {
+                                "display": "Client certificate from TLS",
+                                "description": "Uses the client certificate from a mutual TLS communication for authentication.",
+                                "name": "ssl",
+                                "summary": "Client certificate from a mutual TLS communication"
+                            },
+                            {
+                                "display": "JWT",
+                                "description": "Validates the JWT that the client sends for authentication.",
+                                "name": "jwt",
+                                "summary": "JWT that the client sends"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmOAuthCache"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmOAuthCache"
+                    }
+                },
+                "type": {
+                    "name": "dmOAuthCache",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Replay Only",
+                                "description": "Uses replay cache to prevent replay attacks.",
+                                "name": "replay",
+                                "summary": "Uses replay cache"
+                            },
+                            {
+                                "display": "Token Cache",
+                                "description": "Uses system memory to support revocation.",
+                                "name": "system",
+                                "summary": "Uses system cache"
+                            },
+                            {
+                                "display": "Custom",
+                                "description": "Uses a custom stylesheet or GatewayScript file that defines how to handle revocation.",
+                                "name": "custom",
+                                "summary": "Uses custom processing"
+                            },
+                            {
+                                "display": "Distributed Cache",
+                                "description": "Uses storage associated with the Quota Enforcement server.",
+                                "name": "diststore",
+                                "summary": "Distributed Cache"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmValidationFeatures"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmValidationFeatures"
+                    }
+                },
+                "type": {
+                    "name": "dmValidationFeatures",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Unprotected",
+                                "description": "Credential validation is not needed when honoring a validation grant type. You must provide an alternative mean to protect this endpoint.",
+                                "name": "noauthen",
+                                "summary": ""
+                            },
+                            {
+                                "display": "Introspection Format",
+                                "description": "The format is defined in OAuth introspection endpoint. &lt;tt>token_type_hint&lt;/tt> is a MUST. This feature can be enabled with the setting of var://context/oauth/validation to \"introspect\".",
+                                "name": "introspect",
+                                "summary": ""
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt16",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmOAuthRSSetHeader"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmOAuthRSSetHeader"
+                    }
+                },
+                "type": {
+                    "name": "dmOAuthRSSetHeader",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Resource Owner",
+                                "description": "Creates the DP-OWNER HTTP header. This header contains the information about the resource owner.",
+                                "name": "owner",
+                                "summary": "DP-OWNER header with resource owner information"
+                            },
+                            {
+                                "display": "Client ID",
+                                "description": "Creates the DP-CLIENTID HTTP header. This header contains the information about the client_id.",
+                                "name": "clientid",
+                                "summary": "DP-CLIENTID header with client_id information"
+                            },
+                            {
+                                "display": "Scope",
+                                "description": "Creates the DP-SCOPE HTTP header. This header contains the information about the scope.",
+                                "name": "scope",
+                                "summary": "DP-SCOPE header with scope information"
+                            },
+                            {
+                                "display": "Customized Info",
+                                "description": "Creates the DP-MISCINFO HTTP header. This header contains the information provided by customer.",
+                                "name": "miscinfo",
+                                "summary": "DP-MISCINFO header with customized information"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSLClientConfigType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSLClientConfigType"
+                    }
+                },
+                "type": {
+                    "name": "dmSSLClientConfigType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "proxy",
+                                "display": "Proxy Profile"
+                            },
+                            {
+                                "name": "client",
+                                "display": "Client Profile"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmOAuthFeatures"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmOAuthFeatures"
+                    }
+                },
+                "type": {
+                    "name": "dmOAuthFeatures",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Verbose",
+                                "description": "Returns verbose details and the error description if an error occurs. This feature can be enabled by setting the var://context/oauth/features variable to \"verboseerror\".",
+                                "name": "verboseerror",
+                                "summary": "Return verbose details"
+                            },
+                            {
+                                "display": "One-time use access token",
+                                "description": "Indicates that the access token is a one-time use token, which requires the support of token cache, distributed cache, or external caching support.",
+                                "name": "onetimeuse",
+                                "summary": "Access token is a one-time use token"
+                            },
+                            {
+                                "display": "Require PKCE for Authorization Code",
+                                "description": "Indicates application must use Proof Key for Code Exchange for Authorization Code Grant Type.",
+                                "name": "pkce",
+                                "summary": "Proof Key for Code Exchange must be used for Authorization Code Grant Type"
+                            },
+                            {
+                                "display": "Allow reuse of refresh token",
+                                "description": "Indicates whether the refresh token can be reused until it expires or is revoked.",
+                                "name": "multipleusesrefreshtoken",
+                                "summary": "Refresh token can be reused until it expires or is revoked"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "OAuthSupportedClient",
+                "display": "OAuth Client Profile",
+                "property-group": [
+                    {
+                        "property-group": [
+                            {
+                                "member": [
+                                    {
+                                        "name": "mAdminState"
+                                    },
+                                    {
+                                        "name": "UserSummary"
+                                    },
+                                    {
+                                        "name": "Customized"
+                                    },
+                                    {
+                                        "name": "CustomizedProcessUrl"
+                                    },
+                                    {
+                                        "name": "OAuthRole"
+                                    },
+                                    {
+                                        "name": "AZGrant"
+                                    },
+                                    {
+                                        "name": "JWTGrantValidator"
+                                    },
+                                    {
+                                        "name": "ClientType"
+                                    },
+                                    {
+                                        "name": "ClientAuthenMethod"
+                                    },
+                                    {
+                                        "name": "ClientValCred"
+                                    },
+                                    {
+                                        "name": "ClientJWTValidator"
+                                    },
+                                    {
+                                        "name": "ClientSecret"
+                                    },
+                                    {
+                                        "name": "CustomScopeCheck"
+                                    },
+                                    {
+                                        "name": "Scope"
+                                    },
+                                    {
+                                        "name": "ScopeUrl"
+                                    },
+                                    {
+                                        "name": "TokenSecret"
+                                    }
+                                ],
+                                "name": "general",
+                                "display": "General"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "GenerateClientSecret"
+                                    },
+                                    {
+                                        "name": "RedirectURI"
+                                    },
+                                    {
+                                        "name": "OIDCIDTokenGenerator"
+                                    },
+                                    {
+                                        "name": "LocalAZPageUrl"
+                                    }
+                                ],
+                                "name": "az",
+                                "display": "Authorization and Token Endpoints"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "CheckClientCredential"
+                                    },
+                                    {
+                                        "name": "UseValidationUrl"
+                                    },
+                                    {
+                                        "name": "ValidationURL"
+                                    },
+                                    {
+                                        "name": "ValidationURLSSLClientType"
+                                    },
+                                    {
+                                        "name": "ValidationURLSSLProfile"
+                                    },
+                                    {
+                                        "name": "ValidationURLSSLClient"
+                                    }
+                                ],
+                                "name": "rs",
+                                "display": "Enforcement Point for Resource Server"
+                            }
+                        ],
+                        "name": "main",
+                        "display": "Main"
+                    },
+                    {
+                        "property-group": [
+                            {
+                                "member": [
+                                    {
+                                        "name": "Caching"
+                                    },
+                                    {
+                                        "name": "AdditionalOAuthProcessUrl"
+                                    },
+                                    {
+                                        "name": "OAuthFeatures"
+                                    }
+                                ],
+                                "name": "add",
+                                "display": "General"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "DefaultScope"
+                                    },
+                                    {
+                                        "name": "DPStateLifeTime"
+                                    },
+                                    {
+                                        "name": "AUCodeLifeTime"
+                                    },
+                                    {
+                                        "name": "AccessTokenLifeTime"
+                                    },
+                                    {
+                                        "name": "RefreshTokenAllowed"
+                                    },
+                                    {
+                                        "name": "RefreshTokenLifeTime"
+                                    },
+                                    {
+                                        "name": "MaxConsentLifeTime"
+                                    },
+                                    {
+                                        "name": "CustomResourceOwner"
+                                    },
+                                    {
+                                        "name": "ResourceOwnerUrl"
+                                    },
+                                    {
+                                        "name": "ValidationFeatures"
+                                    }
+                                ],
+                                "name": "az-misc",
+                                "display": "Authorization and Token Endpoints"
+                            },
+                            {
+                                "member": {
+                                    "name": "RSSetHeader"
+                                },
+                                "name": "rs-misc",
+                                "display": "Enforcement Point for Resource Server"
+                            }
+                        ],
+                        "name": "misc",
+                        "display": "Advanced"
+                    }
+                ],
+                "uri": "crypto/oauth-supported-client",
+                "summary": "Supported OAuth client profile",
+                "cmd-group": "crypto",
+                "cli-alias": "oauth-supported-client",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "Specifies a brief comment that describes the configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Brief, descriptive summary of the configuration",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "Customized",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether the configuration is for a customized OAuth client",
+                            "cli-alias": "customized",
+                            "display": "Customized OAuth",
+                            "description": "Indicates whether the configuration is for a customized OAuth client. The configuration of the customized OAuth client is defined in a stylesheet or GatewayScript file in the local: or store: directory."
+                        },
+                        {
+                            "name": "CustomizedProcessUrl",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Customized",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "locations": {
+                                "location": [
+                                    "local",
+                                    "store"
+                                ]
+                            },
+                            "summary": "Location of the stylesheet or GatewayScript file that defines the customized OAuth client",
+                            "cli-alias": "customized-process-url",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmFSFile"
+                            },
+                            "display": "Customized OAuth Process",
+                            "description": "&lt;p>Specifies the location of the stylesheet or GatewayScript file that defines the customized OAuth client. The stylesheet or GatewayScript file must be in the local: or store: directory&lt;/p>&lt;p>When creating a customized OAuth client, the stylesheets or GatewayScript files must define all implementation details based on the role of the client. For information about these stylesheets or GatewayScript files, see the topic in IBM Knowledge Center.&lt;/p>&lt;p>You should provide support for the following operations: &lt;ul>&lt;li>verify-az-request: determine whether the initial OAuth request is supported or not.&lt;/li>&lt;li>issue-az-code: issue a temporary authorization code (for the authorization code grant).&lt;/li>&lt;li>verify-az-code: verify a temporary authorization.&lt;/li>&lt;li>issue-access-token: issue an access_token.&lt;/li>&lt;li>verify-access-token: verify an access_token.&lt;/li>&lt;li>verify-refresh-token: verify a refresh_token.&lt;/li>&lt;li>client-revoke-request: handle client revocation request.&lt;/li>&lt;li>owner-revoke-request: handle owner revocation request.&lt;/li>&lt;/ul>&lt;/p>"
+                        },
+                        {
+                            "name": "OAuthRole",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Customized",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "summary": "Role of the OAuth client",
+                            "cli-alias": "oauth-role",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmOAuthRole"
+                            },
+                            "display": "OAuth Role",
+                            "description": "Identifies the role of the client when interacting with a request to access a protected resource."
+                        },
+                        {
+                            "name": "AZGrant",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "OAuthRole",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "azsvr"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "How to obtain an authorization grant",
+                            "cli-alias": "az-grant",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmOAuthAZGrantType"
+                            },
+                            "display": "Supported Type",
+                            "description": "Identifies the method to obtain the access token for authorization based on the grant type."
+                        },
+                        {
+                            "name": "ClientType",
+                            "default": "confidential",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "Customized",
+                                                    "evaluation": "property-equals",
+                                                    "value": "off"
+                                                },
+                                                {
+                                                    "property-name": "OAuthRole",
+                                                    "evaluation": "property-value-in-list",
+                                                    "value": "azsvr"
+                                                },
+                                                {
+                                                    "property-name": "AZGrant",
+                                                    "evaluation": "property-value-in-list",
+                                                    "value": [
+                                                        "code",
+                                                        "implicit",
+                                                        "password",
+                                                        "jwt"
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "Customized",
+                                                    "evaluation": "property-equals",
+                                                    "value": "off"
+                                                },
+                                                {
+                                                    "property-name": "OAuthRole",
+                                                    "evaluation": "property-value-in-list",
+                                                    "value": "rssvr"
+                                                },
+                                                {
+                                                    "evaluation": "logical-or",
+                                                    "condition": [
+                                                        {
+                                                            "property-name": "UseValidationUrl",
+                                                            "evaluation": "property-equals",
+                                                            "value": "on"
+                                                        },
+                                                        {
+                                                            "property-name": "CheckClientCredential",
+                                                            "evaluation": "property-equals",
+                                                            "value": "on"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Type of client based on how it authenticates with authorization server endpoints",
+                            "cli-alias": "client-type",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmOAuthClientType"
+                            },
+                            "display": "Client Type",
+                            "description": "Sets the type of client based on its ability to authenticate securely with authorization server endpoints. The client type is based on the definitions that the authorization server endpoints use for secure authentication and acceptable exposure of client credentials. If the client can securely authenticate, its classification is &lt;tt>confidential&lt;/tt> ."
+                        },
+                        {
+                            "name": "CheckClientCredential",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to verify the client credentials",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "OAuthRole",
+                                            "evaluation": "property-value-not-in-list",
+                                            "value": "rssvr"
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "check-client-credential",
+                            "display": "Verify Client Credential",
+                            "description": "Identifies whether to verify the client credentials when the DataPower Gateway protects the resource server by using access tokens."
+                        },
+                        {
+                            "name": "UseValidationUrl",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Use Validation URL",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "OAuthRole",
+                                            "evaluation": "property-value-not-in-list",
+                                            "value": "rssvr"
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "use-validation-url",
+                            "display": "Use Validation URL",
+                            "description": "Uses a remote URL to validate the access token."
+                        },
+                        {
+                            "name": "ClientAuthenMethod",
+                            "default": "secret",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "evaluation": "logical-or",
+                                            "condition": [
+                                                {
+                                                    "property-name": "ClientType",
+                                                    "evaluation": "property-equals",
+                                                    "value": "confidential"
+                                                },
+                                                {
+                                                    "evaluation": "logical-and",
+                                                    "condition": [
+                                                        {
+                                                            "property-name": "OAuthRole",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": "azsvr"
+                                                        },
+                                                        {
+                                                            "property-name": "AZGrant",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": "client"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "evaluation": "logical-or",
+                                            "condition": [
+                                                {
+                                                    "evaluation": "logical-and",
+                                                    "condition": [
+                                                        {
+                                                            "property-name": "OAuthRole",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": "azsvr"
+                                                        },
+                                                        {
+                                                            "property-name": "AZGrant",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": [
+                                                                "code",
+                                                                "implicit",
+                                                                "password",
+                                                                "client",
+                                                                "jwt"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "evaluation": "logical-and",
+                                                    "condition": [
+                                                        {
+                                                            "property-name": "OAuthRole",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": "rssvr"
+                                                        },
+                                                        {
+                                                            "evaluation": "logical-or",
+                                                            "condition": [
+                                                                {
+                                                                    "property-name": "UseValidationUrl",
+                                                                    "evaluation": "property-equals",
+                                                                    "value": "on"
+                                                                },
+                                                                {
+                                                                    "property-name": "CheckClientCredential",
+                                                                    "evaluation": "property-equals",
+                                                                    "value": "on"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "How to authenticate this OAuth client",
+                            "cli-alias": "client-authen-method",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmOAuthClientAuthenMethod"
+                            },
+                            "display": "Authentication Method",
+                            "description": "Identifies the method to authenticate this client."
+                        },
+                        {
+                            "name": "ClientValCred",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "evaluation": "logical-or",
+                                            "condition": [
+                                                {
+                                                    "property-name": "ClientType",
+                                                    "evaluation": "property-equals",
+                                                    "value": "confidential"
+                                                },
+                                                {
+                                                    "evaluation": "logical-and",
+                                                    "condition": [
+                                                        {
+                                                            "property-name": "OAuthRole",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": "azsvr"
+                                                        },
+                                                        {
+                                                            "property-name": "AZGrant",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": "client"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "ClientAuthenMethod",
+                                            "evaluation": "property-equals",
+                                            "value": "ssl"
+                                        },
+                                        {
+                                            "evaluation": "logical-or",
+                                            "condition": [
+                                                {
+                                                    "evaluation": "logical-and",
+                                                    "condition": [
+                                                        {
+                                                            "property-name": "OAuthRole",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": "azsvr"
+                                                        },
+                                                        {
+                                                            "property-name": "AZGrant",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": [
+                                                                "code",
+                                                                "implicit",
+                                                                "password",
+                                                                "client",
+                                                                "jwt"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "evaluation": "logical-and",
+                                                    "condition": [
+                                                        {
+                                                            "property-name": "OAuthRole",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": "rssvr"
+                                                        },
+                                                        {
+                                                            "property-name": "OAuthRole",
+                                                            "evaluation": "property-value-not-in-list",
+                                                            "value": "azsvr"
+                                                        },
+                                                        {
+                                                            "property-name": "CheckClientCredential",
+                                                            "evaluation": "property-equals",
+                                                            "value": "on"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "OAuth Client TLS Credentials",
+                            "cli-alias": "client-valcred",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoValCred"
+                                }
+                            },
+                            "display": "Client TLS Credentials",
+                            "description": "An TLS credential used to authenticate the OAuth client sent by remote TLS peer during the TLS handshake."
+                        },
+                        {
+                            "name": "GenerateClientSecret",
+                            "default": "on",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "OAuthRole",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "azsvr"
+                                        },
+                                        {
+                                            "evaluation": "logical-or",
+                                            "condition": [
+                                                {
+                                                    "property-name": "ClientType",
+                                                    "evaluation": "property-equals",
+                                                    "value": "confidential"
+                                                },
+                                                {
+                                                    "evaluation": "logical-and",
+                                                    "condition": [
+                                                        {
+                                                            "property-name": "OAuthRole",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": "azsvr"
+                                                        },
+                                                        {
+                                                            "property-name": "AZGrant",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": "client"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "ClientSecret",
+                                            "evaluation": "property-equals",
+                                            "value": ""
+                                        },
+                                        {
+                                            "property-name": "AZGrant",
+                                            "evaluation": "property-value-in-list",
+                                            "value": [
+                                                "code",
+                                                "implicit",
+                                                "password",
+                                                "client",
+                                                "jwt"
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "ClientAuthenMethod",
+                                            "evaluation": "property-equals",
+                                            "value": "secret"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Whether to generate the client secret for the OAuth client",
+                            "cli-alias": "generate-client-secret",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "display": "Generate Client Secret",
+                            "description": "&lt;p>Indicates whether to generate the client secret for the OAuth client. The specification refers to the client secret as &lt;tt>client_secret&lt;/tt> .&lt;/p>&lt;ul>&lt;li>If you generate the passphrase, the passphrase becomes the client secret.&lt;/li>&lt;li>If you do not generate the passphrase, you must explicitly define the client secret.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "Specifies the client secret for the OAuth client. The specification references the client secret as &lt;tt>client_secret&lt;/tt> .",
+                            "name": "ClientSecret",
+                            "minimum-length": 4,
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "evaluation": "logical-or",
+                                            "condition": [
+                                                {
+                                                    "property-name": "ClientType",
+                                                    "evaluation": "property-equals",
+                                                    "value": "confidential"
+                                                },
+                                                {
+                                                    "evaluation": "logical-and",
+                                                    "condition": [
+                                                        {
+                                                            "property-name": "OAuthRole",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": "azsvr"
+                                                        },
+                                                        {
+                                                            "property-name": "AZGrant",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": "client"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "ClientAuthenMethod",
+                                            "evaluation": "property-equals",
+                                            "value": "secret"
+                                        },
+                                        {
+                                            "evaluation": "logical-or",
+                                            "condition": [
+                                                {
+                                                    "evaluation": "logical-and",
+                                                    "condition": [
+                                                        {
+                                                            "property-name": "OAuthRole",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": "azsvr"
+                                                        },
+                                                        {
+                                                            "property-name": "GenerateClientSecret",
+                                                            "evaluation": "property-equals",
+                                                            "value": "off"
+                                                        },
+                                                        {
+                                                            "property-name": "AZGrant",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": [
+                                                                "code",
+                                                                "implicit",
+                                                                "password",
+                                                                "client",
+                                                                "jwt",
+                                                                "saml20bearer"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "evaluation": "logical-and",
+                                                    "condition": [
+                                                        {
+                                                            "property-name": "OAuthRole",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": "rssvr"
+                                                        },
+                                                        {
+                                                            "property-name": "OAuthRole",
+                                                            "evaluation": "property-value-not-in-list",
+                                                            "value": "azsvr"
+                                                        },
+                                                        {
+                                                            "evaluation": "logical-or",
+                                                            "condition": [
+                                                                {
+                                                                    "property-name": "CheckClientCredential",
+                                                                    "evaluation": "property-equals",
+                                                                    "value": "on"
+                                                                },
+                                                                {
+                                                                    "property-name": "UseValidationUrl",
+                                                                    "evaluation": "property-equals",
+                                                                    "value": "on"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Client secret for the OAuth client",
+                            "cli-alias": "client-secret",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Client Secret",
+                            "maximum-length": 127
+                        },
+                        {
+                            "name": "Caching",
+                            "default": "replay",
+                            "type": {
+                                "href": "/mgmt/types/default/dmOAuthCache"
+                            },
+                            "summary": "Caching Mechanism",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "OAuthRole",
+                                                    "evaluation": "property-value-not-in-list",
+                                                    "value": "azsvr"
+                                                },
+                                                {
+                                                    "property-name": "OAuthRole",
+                                                    "evaluation": "property-value-in-list",
+                                                    "value": "rssvr"
+                                                },
+                                                {
+                                                    "property-name": "UseValidationUrl",
+                                                    "evaluation": "property-equals",
+                                                    "value": "on"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "caching",
+                            "display": "Caching",
+                            "description": "Specifies the caching mechanism to be used."
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "description": "Specifies the validation url.",
+                            "name": "ValidationURL",
+                            "minimum-length": 7,
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "OAuthRole",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "rssvr"
+                                        },
+                                        {
+                                            "property-name": "UseValidationUrl",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Validation URL",
+                            "cli-alias": "validation-url",
+                            "example": "https://example.com/validate-token",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "valid-regexp": "https://\\[?[-_a-z0-9A-Z.:]+\\]?(:[0-9]+)?/[ -~]+$",
+                            "display": "Validation URL",
+                            "maximum-length": 255
+                        },
+                        {
+                            "name": "ValidationURLSSLProfile",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "OAuthRole",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "rssvr"
+                                        },
+                                        {
+                                            "property-name": "UseValidationUrl",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "ValidationURLSSLClientType",
+                                            "evaluation": "property-equals",
+                                            "value": "proxy"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "The validation TLS proxy profile is deprecated. Use a validation TLS client profile.",
+                            "cli-alias": "validation-url-ssl-profile",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                                }
+                            },
+                            "display": "Validation TLS Proxy Profile (deprecated)",
+                            "description": "Specifies the TLS proxy profile for the validation URL."
+                        },
+                        {
+                            "name": "ValidationFeatures",
+                            "type": {
+                                "href": "/mgmt/types/default/dmValidationFeatures"
+                            },
+                            "summary": "Indicate how to customize the validation grant type",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "OAuthRole",
+                                            "evaluation": "property-value-not-in-list",
+                                            "value": "azsvr"
+                                        },
+                                        {
+                                            "property-name": "AZGrant",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "novalidate"
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "validation-features",
+                            "display": "Validation Grant Features",
+                            "description": "Customize how to handle the validation grant type."
+                        },
+                        {
+                            "description": "&lt;p>Defines redirection URIs that the OAuth client supports to exchange tokens. Specify each redirection URI as a PCRE.&lt;/p>&lt;p>Redirection URIs help to detect malicious clients and prevent phishing attacks. The authorization endpoint must have the registered redirection URIs before the authorization endpoint can validate the authorization request from the client. For mobile applications, the redirection URI can be an application URL; for example, &lt;tt>mobiletrafficapp://&lt;/tt> that is defined with the &lt;tt>^mobiletrafficapp:\\/\\/?&lt;/tt> PCRE.&lt;/p>",
+                            "name": "RedirectURI",
+                            "minimum-length": 1,
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "OAuthRole",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "azsvr"
+                                        },
+                                        {
+                                            "property-name": "AZGrant",
+                                            "evaluation": "property-value-in-list",
+                                            "value": [
+                                                "implicit",
+                                                "code"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Set of redirection URIs for the OAuth client",
+                            "cli-alias": "redirect-uri",
+                            "example": "^https://example.com/redirect$",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "OAuthRole",
+                                            "evaluation": "property-value-not-in-list",
+                                            "value": "azsvr"
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "Customized",
+                                                    "evaluation": "property-equals",
+                                                    "value": "off"
+                                                },
+                                                {
+                                                    "property-name": "AZGrant",
+                                                    "evaluation": "property-value-not-in-list",
+                                                    "value": [
+                                                        "code",
+                                                        "implicit"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "array": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Redirect URI",
+                            "maximum-length": 255
+                        },
+                        {
+                            "name": "CustomScopeCheck",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to use a stylesheet or GatewayScript file to check the scope",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "OAuthRole",
+                                                    "evaluation": "property-value-not-in-list",
+                                                    "value": "azsvr"
+                                                },
+                                                {
+                                                    "property-name": "UseValidationUrl",
+                                                    "evaluation": "property-equals",
+                                                    "value": "on"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "custom-scope-check",
+                            "display": "Customized Scope Check",
+                            "description": "&lt;p>Indicates how to check the scope for authorization grants and access tokens.&lt;/p>&lt;ul>&lt;li>When checking the scope with custom processing, specify the location of the stylesheet or GatewayScript file with the &lt;b>Scope Customized Process&lt;/b> property. The stylesheet or GatewayScript file must be in the local: or store: directory.&lt;/li>&lt;li>When checking the scope with a PCRE, specify the expression with the &lt;b>Scope&lt;/b> property.&lt;/li>&lt;/ul>&lt;p>You should use a custom scope check in the following situations. &lt;ul>&lt;li>An authorization request where the OAuth client requests an authorization code.&lt;/li>&lt;li>An access request where the OAuth client requests an access token.&lt;/li>&lt;li>A resource request where the OAuth client requests a resource.&lt;/li>&lt;/ul>&lt;/p>"
+                        },
+                        {
+                            "description": "Specifies the PCRE to check the scope. The minimum length of the expression is 1 character. The maximum length of the expression is 1023 characters.",
+                            "name": "Scope",
+                            "minimum-length": 1,
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "CustomScopeCheck",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "evaluation": "logical-or",
+                                            "condition": [
+                                                {
+                                                    "property-name": "OAuthRole",
+                                                    "evaluation": "property-value-in-list",
+                                                    "value": "azsvr"
+                                                },
+                                                {
+                                                    "property-name": "UseValidationUrl",
+                                                    "evaluation": "property-equals",
+                                                    "value": "off"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "PCRE that checks the scope",
+                            "cli-alias": "scope",
+                            "example": "^MyPicture$|^MyVideo$",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Scope",
+                            "maximum-length": 1023
+                        },
+                        {
+                            "name": "ScopeUrl",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "CustomScopeCheck",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "evaluation": "logical-or",
+                                            "condition": [
+                                                {
+                                                    "property-name": "OAuthRole",
+                                                    "evaluation": "property-value-in-list",
+                                                    "value": "azsvr"
+                                                },
+                                                {
+                                                    "property-name": "UseValidationUrl",
+                                                    "evaluation": "property-equals",
+                                                    "value": "off"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "locations": {
+                                "location": [
+                                    "local",
+                                    "store"
+                                ]
+                            },
+                            "summary": "Location of the stylesheet or GatewayScript file that checks the scope",
+                            "cli-alias": "scope-url",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmFSFile"
+                            },
+                            "display": "Scope Customized Process",
+                            "description": "Specifies the location of the stylesheet or GatewayScript file for a custom scope check. The stylesheet or GatewayScript file must be in the local: or store: directory. The stylesheet or GatewayScript file validates and sets the scope to check."
+                        },
+                        {
+                            "name": "DefaultScope",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Default scope if none is specified in the request",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "OAuthRole",
+                                            "evaluation": "property-value-not-in-list",
+                                            "value": "azsvr"
+                                        }
+                                    ]
+                                }
+                            },
+                            "maximum-length": 255,
+                            "cli-alias": "default-scope",
+                            "display": "Default Scope",
+                            "description": "Specifies the default value of the scope if the client does not define any scope value in the request."
+                        },
+                        {
+                            "name": "TokenSecret",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "Customized",
+                                                    "evaluation": "property-equals",
+                                                    "value": "off"
+                                                },
+                                                {
+                                                    "evaluation": "logical-or",
+                                                    "condition": [
+                                                        {
+                                                            "property-name": "OAuthRole",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": "azsvr"
+                                                        },
+                                                        {
+                                                            "evaluation": "logical-and",
+                                                            "condition": [
+                                                                {
+                                                                    "property-name": "OAuthRole",
+                                                                    "evaluation": "property-value-not-in-list",
+                                                                    "value": "azsrv"
+                                                                },
+                                                                {
+                                                                    "property-name": "UseValidationUrl",
+                                                                    "evaluation": "property-equals",
+                                                                    "value": "off"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "evaluation": "logical-and",
+                                            "condition": [
+                                                {
+                                                    "property-name": "Customized",
+                                                    "evaluation": "property-equals",
+                                                    "value": "on"
+                                                },
+                                                {
+                                                    "property-name": "AZGrant",
+                                                    "evaluation": "property-value-in-list",
+                                                    "value": [
+                                                        "code",
+                                                        "implicit"
+                                                    ]
+                                                },
+                                                {
+                                                    "evaluation": "logical-or",
+                                                    "condition": [
+                                                        {
+                                                            "property-name": "OAuthRole",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": "azsvr"
+                                                        },
+                                                        {
+                                                            "evaluation": "logical-and",
+                                                            "condition": [
+                                                                {
+                                                                    "property-name": "OAuthRole",
+                                                                    "evaluation": "property-value-not-in-list",
+                                                                    "value": "azsvr"
+                                                                },
+                                                                {
+                                                                    "property-name": "UseValidationUrl",
+                                                                    "evaluation": "property-equals",
+                                                                    "value": "off"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Shared secret key to protect tokens",
+                            "cli-alias": "token-secret",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoSSKey"
+                                }
+                            },
+                            "display": "Shared Secret",
+                            "description": "Assigns the shared secret key to protect tokens that use the OAuth protocol. The shared secret must be at least 32 bytes in length."
+                        },
+                        {
+                            "name": "LocalAZPageUrl",
+                            "default": "store:///OAuth-Generate-HTML.xsl",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "evaluation": "logical-or",
+                                            "condition": [
+                                                {
+                                                    "property-name": "Customized",
+                                                    "evaluation": "property-equals",
+                                                    "value": "on"
+                                                },
+                                                {
+                                                    "property-name": "OAuthRole",
+                                                    "evaluation": "property-value-in-list",
+                                                    "value": "azsvr"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "AZGrant",
+                                            "evaluation": "property-value-in-list",
+                                            "value": [
+                                                "code",
+                                                "implicit"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "locations": {
+                                "location": [
+                                    "local",
+                                    "store"
+                                ]
+                            },
+                            "summary": "Location of the stylesheet or GatewayScript file that generates the authorization form and the error page",
+                            "cli-alias": "local-az-page-url",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmFSFile"
+                            },
+                            "display": "Authorization Form",
+                            "description": "&lt;p>Specifies the location of the stylesheet or GatewayScript file that generates the authorization form for the resource owner and handles errors. The file must be in the local: or store: directory. You can use the &lt;tt>OAuth-Generate-HTML.xsl&lt;/tt> stylesheet in the store: directory or copy this file to the local: directory and modify as needed.&lt;/p>&lt;p>The stylesheet or GatewayScript file must be on the DataPower Gateway in the local: or store: directory. The HTML authorization form remains operational for the duration defined with the &lt;b>DataPower State Lifetime&lt;/b> property. If the user does not submit the request before the duration elapses, the authorization from the OAuth client is rejected.&lt;/p>"
+                        },
+                        {
+                            "name": "DPStateLifeTime",
+                            "default": 300,
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "evaluation": "logical-or",
+                                            "condition": [
+                                                {
+                                                    "property-name": "Customized",
+                                                    "evaluation": "property-equals",
+                                                    "value": "on"
+                                                },
+                                                {
+                                                    "property-name": "OAuthRole",
+                                                    "evaluation": "property-value-in-list",
+                                                    "value": "azsvr"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "AZGrant",
+                                            "evaluation": "property-value-in-list",
+                                            "value": [
+                                                "code",
+                                                "implicit"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "maximum": 600,
+                            "summary": "Duration for the authorization page for the resource owner",
+                            "cli-alias": "dp-state-lifetime",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "DataPower State Lifetime",
+                            "description": "&lt;p>Sets the operational duration in seconds for the local authorization page. Enter a value in the range 1 - 600. The default value is 300.&lt;/p>&lt;p>If the user does not submit the request before the duration elapses, the authorization request from the OAuth client is rejected. The location of the stylesheet or GatewayScript file that defines the local authorization page and the error handling is set with the &lt;b>Authorization Form&lt;/b> property.&lt;/p>"
+                        },
+                        {
+                            "name": "AUCodeLifeTime",
+                            "default": 300,
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "OAuthRole",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "azsvr"
+                                        },
+                                        {
+                                            "property-name": "AZGrant",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "code"
+                                        }
+                                    ]
+                                }
+                            },
+                            "maximum": 600,
+                            "summary": "Lifetime for an authorization code",
+                            "cli-alias": "au-code-lifetime",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Authorization Grant Lifetime",
+                            "description": "&lt;p>Sets the lifetime for an authorization code in seconds. Enter a value in the range 1 - 600. The default value is 300.&lt;/p>&lt;p>An authorization code is the intermediary result of a successful authorization. The client uses authorization codes to obtain the access token. Instead of sending tokens to a client, clients receives authorization codes on their redirection URI. Each supported redirection URI for the client is defined with the &lt;b>Redirect URI&lt;/b> property.&lt;/p>"
+                        },
+                        {
+                            "name": "AccessTokenLifeTime",
+                            "default": 3600,
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "OAuthRole",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "azsvr"
+                                        }
+                                    ]
+                                }
+                            },
+                            "maximum": 63244800,
+                            "summary": "Lifetime for the access token",
+                            "cli-alias": "access-token-lifetime",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Access Token Lifetime",
+                            "description": "Sets the lifetime for the access token in seconds. Enter a value in the range 1 - 63244800. The default value is 3600."
+                        },
+                        {
+                            "name": "RefreshTokenAllowed",
+                            "default": 0,
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "OAuthRole",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "azsvr"
+                                        },
+                                        {
+                                            "property-name": "AZGrant",
+                                            "evaluation": "property-value-in-list",
+                                            "value": [
+                                                "code",
+                                                "password",
+                                                "jwt"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "maximum": 4096,
+                            "summary": "Maximum number of refresh tokens that can be generated for a specific permission set",
+                            "cli-alias": "refresh-token-allowed",
+                            "minimum": 0,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Number of Refresh Token Allowed",
+                            "description": "&lt;p>Sets the maximum number of refresh tokens that can be generated for a specific permission set. A permission set is defined as a combination of the resource owner, application, and protected resources. For example, &lt;tt>jack,mobileapp1,scope1&lt;/tt> and &lt;tt>john,mobileapp1,scope1&lt;/tt> are different permission sets. When an application asks the resource owner for access to protected resources again, the application receives a new permission set with its own counter for refresh tokens.&lt;/p>&lt;p>Enter a value in the range 0 - 4096. The default value is 0. Remember that refresh tokens and access tokens are distributed in pairs.&lt;/p>"
+                        },
+                        {
+                            "name": "RefreshTokenLifeTime",
+                            "default": 5400,
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "OAuthRole",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "azsvr"
+                                        },
+                                        {
+                                            "property-name": "AZGrant",
+                                            "evaluation": "property-value-in-list",
+                                            "value": [
+                                                "code",
+                                                "password",
+                                                "jwt"
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "RefreshTokenAllowed",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": 0
+                                        }
+                                    ]
+                                }
+                            },
+                            "maximum": 252979200,
+                            "summary": "Lifetime for the refresh token",
+                            "cli-alias": "refresh-token-lifetime",
+                            "minimum": 2,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Refresh Token Lifetime",
+                            "description": "Sets the lifetime for the refresh token in seconds. Enter a value in the range 2 - 252979200. The default value is 5400. The lifetime for a refresh token must be longer than that for the corresponding access token."
+                        },
+                        {
+                            "name": "MaxConsentLifeTime",
+                            "default": 0,
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "OAuthRole",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "azsvr"
+                                        },
+                                        {
+                                            "property-name": "AZGrant",
+                                            "evaluation": "property-value-in-list",
+                                            "value": [
+                                                "code",
+                                                "password",
+                                                "jwt"
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "RefreshTokenAllowed",
+                                            "evaluation": "property-does-not-equal",
+                                            "value": 0
+                                        }
+                                    ]
+                                }
+                            },
+                            "maximum": 2529792000,
+                            "summary": "Maximum lifetime before an application must gather consent again",
+                            "cli-alias": "max-consent-lifetime",
+                            "minimum": 0,
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "units": "seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Maximum Consent Lifetime",
+                            "description": "&lt;p>Maximum lifetime that the permission is valid before the application must gather consent again. Enter a value in the range 0 - 2529792000. The default value is 0, which disables this feature.&lt;/p>"
+                        },
+                        {
+                            "name": "CustomResourceOwner",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to use a stylesheet or GatewayScript file to extract information about the resource owner",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "OAuthRole",
+                                            "evaluation": "property-value-not-in-list",
+                                            "value": "azsvr"
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "custom-resource-owner",
+                            "display": "Custom Resource Owner Handling",
+                            "description": "&lt;p>Indicates whether to use a stylesheet or GatewayScript file to extract information about the resource owner. When extracting using custom processing, use the &lt;b>Resource Owner Process&lt;/b> property to specify the location of the file. The stylesheet or GatewayScript file must be in the local: or store: directory.&lt;/p>&lt;p>By default, the resource owner is the user name from the extracted identity. For custom handling, you must provide a stylesheet or GatewayScript file that overrides information about the resource owner.&lt;/p>&lt;ul>&lt;li>For AAA identity extraction, the extraction method can be basic authentication or forms-based login.&lt;/li>&lt;li>For custom handling, the stylesheet or GatewayScript file overrides data about the resource owner with information from authentication.&lt;/li>&lt;/ul>&lt;p>You should use custom handling in the following situations: &lt;ul>&lt;li>When presenting the authorization form to the resource owner&lt;/li>&lt;li>When issuing a code for an authorization code grant type&lt;/li>&lt;li>When issuing an access token&lt;/li>&lt;/ul>&lt;/p>"
+                        },
+                        {
+                            "name": "ResourceOwnerUrl",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "OAuthRole",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "azsvr"
+                                        },
+                                        {
+                                            "property-name": "CustomResourceOwner",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        }
+                                    ]
+                                }
+                            },
+                            "locations": {
+                                "location": [
+                                    "local",
+                                    "store"
+                                ]
+                            },
+                            "summary": "Location of the stylesheet or GatewayScript file to extract information about the resource owner",
+                            "cli-alias": "resource-owner-url",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmFSFile"
+                            },
+                            "display": "Resource Owner Process",
+                            "description": "Specifies the location of the stylesheet or GatewayScript file to extract information about the resource owner. The file must be in the local: or store: directory."
+                        },
+                        {
+                            "name": "AdditionalOAuthProcessUrl",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "Caching",
+                                            "evaluation": "property-equals",
+                                            "value": "custom"
+                                        }
+                                    ]
+                                }
+                            },
+                            "locations": {
+                                "location": [
+                                    "local",
+                                    "store"
+                                ]
+                            },
+                            "summary": "Location of the stylesheet or GatewayScript file to process after successfully processing an OAuth request",
+                            "cli-alias": "additional-oauth-process-url",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Customized",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmFSFile"
+                            },
+                            "display": "Additional OAuth Process",
+                            "description": "&lt;p>Specifies the location of the stylesheet or GatewayScript file to process after generating a code, after generating an access token, or after generating an access token but before sending it to the resource server. The stylesheet or GatewayScript file must be in the local: or store: directory.&lt;/p>&lt;p>You can use custom additional OAuth processing in the following situations.&lt;/p>&lt;ul>&lt;li>An authorization form request allows custom processing to handle the consent form with the &lt;tt>authorization_form&lt;/tt> operation. This operations allows custom handling of the consent form.&lt;/li>&lt;li>An authorization request after successfully generating a code for an authorization code grant with the &lt;tt>authorization_request&lt;/tt> operation. Processing returns a node set. This information becomes part of the query string and is returned to the OAuth client during authorization code grant type.&lt;/li>&lt;li>An access request after successfully generating an access token with the &lt;tt>access_request&lt;/tt> operation. Processing returns a node set. This information becomes part of the JSON object that contains the access token.&lt;/li>&lt;li>A resource request after successfully verifying an access token but before sending the request to the resource server with the &lt;tt>resource_request&lt;/tt> operation.&lt;/li>&lt;li>A revoke request allows custom handling of a revocation request with the &lt;tt>revoke_request&lt;/tt> operation. For example, this operation provides a way to persist the revocation information in a persistent store off the DataPower Gateway.&lt;/li>&lt;li>A check revocation request verifies whether an access request was revoked previously with the &lt;tt>check_revocation_request&lt;/tt> operation. For example, this operation can be used to check against the persistent store off the DataPower Gateway to determine whether an access permission was revoked previously.&lt;/li>&lt;li>A pre-approval request allows the consent form to be by-passed in either an authorization code or implicit grant type with the &lt;tt>preapproved_check&lt;/tt> operation. Depending on the result of this operation, the client's request is approved, denied, or the consent form to be presented.&lt;/li>&lt;li>A validation request allows custom handling of a validation request grant type with the &lt;tt>validate_request&lt;/tt> operation. The response must be in a node set that can be converted into a JSON response, in responding to a validation request.&lt;/li>&lt;li>A miscinfo request allows the OAuth client to add miscellaneous information to the token with the &lt;tt>miscinfo_request&lt;/tt> operation. The authorization server adds the response to the token and returns it to the OAuth client. The maximum number of characters in this information is 512.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "RSSetHeader",
+                            "type": {
+                                "href": "/mgmt/types/default/dmOAuthRSSetHeader"
+                            },
+                            "summary": "HTTP headers to set for the resource server",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "OAuthRole",
+                                            "evaluation": "property-value-not-in-list",
+                                            "value": "rssvr"
+                                        }
+                                    ]
+                                }
+                            },
+                            "cli-alias": "rs-set-header",
+                            "display": "Create HTTP Headers for",
+                            "description": "Identifies which HTTP headers to create and send to the remote resource server."
+                        },
+                        {
+                            "name": "ValidationURLSSLClientType",
+                            "default": "proxy",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "OAuthRole",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "rssvr"
+                                        },
+                                        {
+                                            "property-name": "UseValidationUrl",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Validation TLS client type",
+                            "cli-alias": "validation-url-ssl-client-type",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSLClientConfigType"
+                            },
+                            "display": "Validation TLS client type",
+                            "description": "The TLS profile type to secure connections between the DataPower Gateway and its targets."
+                        },
+                        {
+                            "name": "ValidationURLSSLClient",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "OAuthRole",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "rssvr"
+                                        },
+                                        {
+                                            "property-name": "UseValidationUrl",
+                                            "evaluation": "property-equals",
+                                            "value": "on"
+                                        },
+                                        {
+                                            "property-name": "ValidationURLSSLClientType",
+                                            "evaluation": "property-equals",
+                                            "value": "client"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Validation TLS Client Profile",
+                            "cli-alias": "validation-url-ssl-client",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                                }
+                            },
+                            "display": "Validation TLS Client Profile",
+                            "description": "Specifies the TLS Client Profile for the validation URL."
+                        },
+                        {
+                            "name": "JWTGrantValidator",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "OAuthRole",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "azsvr"
+                                        },
+                                        {
+                                            "property-name": "AZGrant",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "jwt"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Specify how to verify a JWT authorization grant",
+                            "cli-alias": "jwt-grant-validator",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/AAAJWTValidator"
+                                }
+                            },
+                            "display": "Authorization grant JWT validator",
+                            "description": "&lt;p>Specify the JWT validator configuration to verify a JWT for JWT authorization grant. The JWT validator configuration must meet the following requirements.&lt;/p>&lt;ul>&lt;li>Must treat the \"sub\" claim as the resource owner.&lt;/li>&lt;li>Must check the \"iss\" claim.&lt;/li>&lt;li>Must check the \"aud\" claim. The \"aud\" claim can be a client ID or the redirect URI.&lt;/li>&lt;li>Must be configured to verify a signed JWT.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "ClientJWTValidator",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "evaluation": "logical-or",
+                                            "condition": [
+                                                {
+                                                    "property-name": "ClientType",
+                                                    "evaluation": "property-equals",
+                                                    "value": "confidential"
+                                                },
+                                                {
+                                                    "evaluation": "logical-and",
+                                                    "condition": [
+                                                        {
+                                                            "property-name": "OAuthRole",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": "azsvr"
+                                                        },
+                                                        {
+                                                            "property-name": "AZGrant",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": "client"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "ClientAuthenMethod",
+                                            "evaluation": "property-equals",
+                                            "value": "jwt"
+                                        },
+                                        {
+                                            "evaluation": "logical-or",
+                                            "condition": [
+                                                {
+                                                    "evaluation": "logical-and",
+                                                    "condition": [
+                                                        {
+                                                            "property-name": "OAuthRole",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": "azsvr"
+                                                        },
+                                                        {
+                                                            "property-name": "AZGrant",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": [
+                                                                "code",
+                                                                "implicit",
+                                                                "password",
+                                                                "client",
+                                                                "jwt"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "evaluation": "logical-and",
+                                                    "condition": [
+                                                        {
+                                                            "property-name": "OAuthRole",
+                                                            "evaluation": "property-value-in-list",
+                                                            "value": "rssvr"
+                                                        },
+                                                        {
+                                                            "property-name": "OAuthRole",
+                                                            "evaluation": "property-value-not-in-list",
+                                                            "value": "azsvr"
+                                                        },
+                                                        {
+                                                            "property-name": "CheckClientCredential",
+                                                            "evaluation": "property-equals",
+                                                            "value": "on"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Specify how to verify the client credentials",
+                            "cli-alias": "client-jwt-validator",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/AAAJWTValidator"
+                                }
+                            },
+                            "display": "Client authentication JWT validator",
+                            "description": "&lt;p>Specify the JWT validator configuration to verify the client credentials. The JWT validator configuration must meet the following requirements.&lt;/p>&lt;ul>&lt;li>The \"sub\" claim must be the same as client ID.&lt;/li>&lt;li>Must check the \"iss\" claim.&lt;/li>&lt;li>Must check the \"aud\" claim.&lt;/li>&lt;li>Must be configured to verify a signed JWT.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "OIDCIDTokenGenerator",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "Customized",
+                                            "evaluation": "property-equals",
+                                            "value": "off"
+                                        },
+                                        {
+                                            "property-name": "OAuthRole",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "azsvr"
+                                        },
+                                        {
+                                            "property-name": "AZGrant",
+                                            "evaluation": "property-value-in-list",
+                                            "value": "oidc"
+                                        },
+                                        {
+                                            "property-name": "AZGrant",
+                                            "evaluation": "property-value-in-list",
+                                            "value": [
+                                                "code",
+                                                "implicit",
+                                                "password",
+                                                "client",
+                                                "jwt"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Specify the JWT generator configuration that generates an ID token.",
+                            "cli-alias": "idtoken-generator",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/AAAJWTGenerator"
+                                }
+                            },
+                            "display": "ID token JWT generator",
+                            "description": "&lt;p>Specify the JWT generator configuration that generates an ID token. The JWT generator configuration must meet the following requirements.&lt;/p>&lt;ul>&lt;li>Must configure \"Issuer\" for the \"iss\" claim.&lt;/li>&lt;li>Must support \"Issued at\" for the \"iat\" claim.&lt;/li>&lt;li>Must support signing of the JWT.&lt;/li>&lt;/ul>&lt;p>The following items are added to the JWT.&lt;/p>&lt;ul>&lt;li>Authenticated resource owner is added as the value of the \"sub\" claim.&lt;/li>&lt;li>Client ID is added as part of the \"aud\" claim.&lt;/li>&lt;li>\"Validity period\" is used to generate the value of the \"exp\" claim.&lt;/li>&lt;li>Requested \"nonce\" is used for the \"nonce\" claim.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "Specify which features to enable.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmOAuthFeatures"
+                            },
+                            "summary": "Specify which features to enable",
+                            "cli-alias": "oauth-features",
+                            "display": "Features",
+                            "name": "OAuthFeatures"
+                        }
+                    ]
+                },
+                "description": "&lt;p>An OAuth client profile is the basic building block for an OAuth client group. When you create an OAuth client profile, you define its role. As you select the role, the WebGUI refreshes to display the appropriate properties.&lt;/p>&lt;p>You can create the following types of OAuth client profiles. &lt;ul>&lt;li>A client profile for authorization server endpoints: authorization endpoint and token endpoint.&lt;/li>&lt;li>A client profile for the enforcement point for the resource server.&lt;/li>&lt;li>A client profile for both authorization server endpoints and the enforcement point.&lt;/li>&lt;/ul>&lt;/p>&lt;p>When creating an OAuth client profile, you can use stylesheets or GatewayScript files for customization.&lt;/p>&lt;p>You can create a customized OAuth client profile that defines any combination of roles. Customization uses stylesheets or GatewayScript files that must be in the local: or store: directory. For information about the operations that these stylesheets or GatewayScript files must define, see the topic in IBM Knowledge Center.&lt;/p>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/OAuthSupportedClient"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/OAuthSupportedClient"
+                }
+            }
+        }
+    }
+}

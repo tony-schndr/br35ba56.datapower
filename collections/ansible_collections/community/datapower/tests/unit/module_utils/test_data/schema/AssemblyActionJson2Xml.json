@@ -1,0 +1,236 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmJson2XmlConversionType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmJson2XmlConversionType"
+                    }
+                },
+                "type": {
+                    "display": "JSON to XML Conversion Type",
+                    "name": "dmJson2XmlConversionType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "badgerfish",
+                                "description": "Converts the input to XML with the &lt;tt>BadgerFish&lt;/tt> convention.",
+                                "name": "badgerfish"
+                            },
+                            {
+                                "display": "relaxed badgerfish",
+                                "description": "Converts the input to XML with the &lt;tt>BadgerFish&lt;/tt> convention and special conversion rules for broader compatibility with non-BadgerFish input. These rules include the conversion of plain JSON to XML.",
+                                "name": "relaxed-badgerfish"
+                            }
+                        ]
+                    },
+                    "summary": "The conversion type for converting JSON input to XML output"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "AssemblyActionJson2Xml",
+                "display": "Assembly JSON to XML Action",
+                "uri": "assembly/json2xml",
+                "summary": "Configure and manage the JSON to XML action for the assembly",
+                "cmd-group": "assembly",
+                "cli-alias": "assembly-json-to-xml",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for Assembly action."
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Title",
+                            "cli-alias": "title",
+                            "name": "Title",
+                            "summary": "The title for Assembly action."
+                        },
+                        {
+                            "description": "The correlation path specifies the part of the API definition that correlates with the assembly action. This path is exposed in the debug data by the API Gateway for use by debugging tools. For example, for an API configuration that is retrieved from API Connect and specified in an OpenAPI (Swagger 2.0) document with IBM extensions, this path is the JSON path to the assembly policy in the IBM extensions section of the document. The path can be expressed in any form that the debugging tool can correlate to the API definition.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The path which correlates the assembly action to a specific part of the API specification.",
+                            "cli-alias": "correlation-path",
+                            "display": "Correlation path",
+                            "name": "CorrelationPath"
+                        },
+                        {
+                            "name": "ActionDebug",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to enable GatewayScript debugger in assembly actions",
+                            "cli-alias": "debug",
+                            "display": "Enable debugging",
+                            "description": "&lt;p>Controls whether to enable the GatewayScript debugger to troubleshoot the following GatewayScript file or script. &lt;ul>&lt;li>Troubleshoot the GatewayScript file that is called from the assembly GatewayScript action.&lt;/li>&lt;li>Troubleshoot the GatewayScript file that is invoked by the GatewayScript associated XSLT extension functions or elements, such as the &lt;tt>gatewayscript()&lt;/tt> extension function, from the assembly XSLT action.&lt;/li>&lt;li>Troubleshoot the GatewayScript script that is invoked through the &lt;tt>value&lt;/tt> or the &lt;tt>default&lt;/tt> property in the JSON file from the assembly map action.&lt;/li>&lt;/ul>&lt;/p>&lt;p>To debug a file or script, the following conditions must be met:&lt;/p>&lt;ul>&lt;li>The file contains one or more &lt;tt>debugger;&lt;/tt> statements at the points in your script where you want to start debugging.&lt;/li>&lt;li>The GatewayScript debugger is enabled.&lt;/li>&lt;/ul>&lt;p>Then you can run the &lt;tt>debug-action&lt;/tt> command to debug.&lt;/p>"
+                        },
+                        {
+                            "default": "badgerfish",
+                            "type": {
+                                "href": "/mgmt/types/default/dmJson2XmlConversionType"
+                            },
+                            "cli-alias": "conversion-format",
+                            "name": "ConversionFormat"
+                        },
+                        {
+                            "name": "Input",
+                            "default": "message",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The name of a variable where the JSON input is stored.",
+                            "cli-alias": "input",
+                            "display": "Input message",
+                            "description": "Specifies the name of a variable in the API context that contains the input message to convert. The content of the &lt;tt>body&lt;/tt> field is the input. The default variable is &lt;tt>message&lt;/tt> , so the input to convert is &lt;tt>message.body&lt;/tt> ."
+                        },
+                        {
+                            "description": "Specifies the name of a variable in the API context to store the conversion results. The conversion results are written to the &lt;tt>body&lt;/tt> field of the specified variable. The output variable cannot be a read-only variable. &lt;ul>&lt;li>When you want the converted output to be returned to the client, you must use &lt;tt>message&lt;/tt> as the output variable.&lt;/li>&lt;li>When you do not specify an output variable, the variable name matches the input variable name. For example, if the input variable is &lt;tt>message&lt;/tt> , the output variable is also &lt;tt>message&lt;/tt> . Therefore, if the input variable is &lt;tt>foo&lt;/tt> , the output variable is also &lt;tt>foo&lt;/tt> .&lt;/li>&lt;li>When you use an output variable other than &lt;tt>message&lt;/tt> , the content is converted but not returned to the client.&lt;/li>&lt;/ul>",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The name of a variable where the result of the conversion is stored.",
+                            "cli-alias": "output",
+                            "display": "Output message",
+                            "name": "Output"
+                        },
+                        {
+                            "default": "json",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "cli-alias": "root-element",
+                            "name": "RootElementName"
+                        },
+                        {
+                            "name": "AlwaysOutputRootElement",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether always to output the root element in the resulting XML document",
+                            "cli-alias": "output-root",
+                            "display": "Always output root element",
+                            "description": "Controls whether the action allows always to output the root element in the resulting XML. When this property is enabled, the conversion action always outputs the root element in the resulting XML."
+                        },
+                        {
+                            "name": "UnnamedElementName",
+                            "default": "element",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "The name of an XML element",
+                            "cli-alias": "unnamed-element",
+                            "display": "Unnamed element name",
+                            "description": "Specifies the name of the XML element that is the result of converting JSON array values to an XML format. The default value is &lt;tt>element&lt;/tt> ."
+                        }
+                    ]
+                },
+                "description": "You use the JSON to XML action to convert the payload of an API message from JSON format to equivalent XML format."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/AssemblyActionJson2Xml"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/AssemblyActionJson2Xml"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,122 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "CryptoFWCred",
+                "display": "Crypto Firewall Credentials",
+                "uri": "crypto/fwcred",
+                "summary": "Crypto credentials usable with security extension functions",
+                "cmd-group": "firewallcred",
+                "cli-alias": "fwcred",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "A private key which may be used for asymmetric key operations with the xmlfirewall.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoKey"
+                                }
+                            },
+                            "array": "true",
+                            "cli-alias": "key",
+                            "display": "Private Key",
+                            "name": "PrivateKey"
+                        },
+                        {
+                            "description": "A shared secret key which may be used for symmetric key operations with the xmlfirewall.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoSSKey"
+                                }
+                            },
+                            "array": "true",
+                            "cli-alias": "sskey",
+                            "display": "Shared Secret Key",
+                            "name": "SharedSecretKey"
+                        },
+                        {
+                            "description": "A certificate which may be used for public key operations with the xmlfirewall.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoCertificate"
+                                }
+                            },
+                            "array": "true",
+                            "cli-alias": "certificate",
+                            "display": "Certificate",
+                            "name": "Certificate"
+                        }
+                    ]
+                },
+                "description": "The set of crypto credentials (private keys, shared secret keys, and certificates) usable by an xmlfirewall when calling security extension functions to perform actions such as encryption/decryption and digital signing and verification. If a firewall is using a Firewall Credentials object and a particular certificate or key is not included in this list, the cryptographic operation trying to use the key or certificate will fail."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/CryptoFWCred"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/CryptoFWCred"
+                }
+            }
+        }
+    }
+}

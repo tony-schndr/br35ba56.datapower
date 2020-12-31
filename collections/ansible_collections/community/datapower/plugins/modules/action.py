@@ -9,7 +9,7 @@ DOCUMENTATION = r'''
 ---
 module: community.datapower.action
 
-short_description: Use for creating various objects on IBM DataPower
+short_description: Use for executing actions on IBM DataPower
 
 
 version_added: "1.0.0"
@@ -17,13 +17,17 @@ version_added: "1.0.0"
 description: Use for performing actions such as quiesce, save config, reboot, etc...  Get a list of actions from URI /mgmt/actionqueue/{domain}/operations
 
 options:
-    domains:
-        description: List of domains to execute on.
+    domain:
+        description: Domain to execute action on.
         required: true
-        type: list
-    body:
+        type: str
+    action:
         description: The action to be performed
         required: true
+        type: str
+    parameters:
+        description: parameters, if any, that the action requires
+        required: false
         type: dict
 
 
@@ -35,8 +39,7 @@ EXAMPLES = r'''
 - name: Save a domains configuration.
 community.datapower.action:
     domain: "{{ domain }}
-    body:
-    SaveConfig: {}
+    action: SaveConfig
 '''
 
 RETURN = r'''
@@ -68,33 +71,36 @@ response:
 '''
 
 from ansible.module_utils._text import to_text
-from ansible.module_utils.connection import ConnectionError
+from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower import DPAction
+from ansible_collections.community.datapower.plugins.module_utils.datapower.actionqueue import DPActionQueue
 
+from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
+    DPActionQueueRequest
+)
+from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
+    DPActionQueueRequestHandler
+)
 
 def run_module():
     module_args = dict(
         domain = dict(type='str', required=True),
-        body = dict(type='dict', required=True)
+        action = dict(type='str', required=True),
+        parameters = dict(type='dict', required=False, alias=['config'])
     )
     
     module = AnsibleModule(
         argument_spec=module_args,
         supports_check_mode=False
     )
+    connection = Connection(module._socket_path)
     
-    dp_act = DPAction(module)
-
-    try:
-        result = dp_act.send_request()
-    except ConnectionError as ce:
-        result = dict()
-        result['changed'] = False
-        module.fail_json(msg=to_text(ce), **result)
-
-    result['changed'] = False 
-
+    dp_act = DPActionQueue(**module.params)
+    dp_act_req = DPActionQueueRequest(dp_act)
+    req_handler =  DPActionQueueRequestHandler(connection)
+    resp = req_handler.process_request(dp_act_req.path, dp_act_req.method, dp_act_req.body)
+    result = {}
+    result['resp'] = resp
     module.exit_json(**result)
 
 

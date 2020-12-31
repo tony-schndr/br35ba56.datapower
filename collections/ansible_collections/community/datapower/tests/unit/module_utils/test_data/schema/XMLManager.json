@@ -1,0 +1,1335 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmExtensionFunction"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmExtensionFunction"
+                    }
+                },
+                "type": {
+                    "name": "dmExtensionFunction",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Enter namespace of the extension functions used in the custom stylesheets. For example, \"http://www.fredspace/extensions\".",
+                                "required": "true",
+                                "summary": "Extension function namespace",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Extension Namespace",
+                                "name": "ExtensionFunctionNamespace"
+                            },
+                            {
+                                "description": "Enter the extension function within the namespace to map. For example, \"nodeset()\".",
+                                "required": "true",
+                                "summary": "Extension Function",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Extension Function",
+                                "name": "ExtensionFunction"
+                            },
+                            {
+                                "description": "Enter the local namespace if it is other than the DataPower default (shown in the box).",
+                                "default": "http://www.datapower.com/extensions",
+                                "summary": "Local function namespace",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Local Namespace",
+                                "name": "LocalFunctionNamespace"
+                            },
+                            {
+                                "description": "Enter the local function to use in place of the extension function identified above. For example, \"node-set()\".",
+                                "required": "true",
+                                "summary": "Local Function",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Local Function",
+                                "name": "LocalFunction"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt64"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt64"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt64",
+                    "maximum": "0xFFFFFFFFFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt16",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmExternalRefHandling"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmExternalRefHandling"
+                    }
+                },
+                "type": {
+                    "name": "dmExternalRefHandling",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Forbid",
+                                "description": "The parser forbids external references. An external reference causes the XML parser to stop when the document contains external references. This setting is the default value.",
+                                "name": "forbid"
+                            },
+                            {
+                                "display": "Ignore",
+                                "description": "The parser accesses and resolves external references, but replaces each for further processing with an empty string. This setting can be a security risk.",
+                                "name": "ignore"
+                            },
+                            {
+                                "display": "Allow",
+                                "description": "The parser allows and resolves external references. This setting is a security risk.",
+                                "name": "allow"
+                            }
+                        ]
+                    },
+                    "display": "XML External Reference Handling"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmDocCachePolicy"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmDocCachePolicy"
+                    }
+                },
+                "type": {
+                    "name": "dmDocCachePolicy",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Provide a literal or wildcard expression to define a URL set included in the cache policy. The following wildcard characters are available. &lt;table>&lt;tr>&lt;td valign=\"top\">asterisk (*)&lt;/td>&lt;td valign=\"top\">Matches 0 or more occurrences of any character.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">question mark (?)&lt;/td>&lt;td valign=\"top\">Matches one occurrence of any single character.&lt;/td>&lt;/tr>&lt;tr>&lt;td valign=\"top\">brackets ( [ ] )&lt;/td>&lt;td valign=\"top\">Defines a character or numeric range. For example, &lt;tt>[1-5]&lt;/tt> matches 1, 2, 3, 4, or 5, while &lt;tt>xs[dl]&lt;/tt> matches xsd or xsl.&lt;/td>&lt;/tr>&lt;/table>",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "summary": "URL match regular expression",
+                                "cli-alias": "match",
+                                "display": "URL Match Expression",
+                                "name": "Match"
+                            },
+                            {
+                                "name": "Type",
+                                "default": "protocol",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmDocCachePolicyType"
+                                },
+                                "required": "true",
+                                "summary": "Document cache policy type",
+                                "cli-alias": "type",
+                                "display": "Policy Type",
+                                "description": "Select the cache type. The cache type determines whether to cache documents and the mechanism to use to remove cached entries. The default value is Protocol-Based."
+                            },
+                            {
+                                "name": "TTL",
+                                "default": 900,
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "Type",
+                                        "evaluation": "property-equals",
+                                        "value": "fixed"
+                                    }
+                                },
+                                "maximum": 31708800,
+                                "summary": "Document lifetime",
+                                "cli-alias": "ttl",
+                                "minimum": 5,
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Type",
+                                        "evaluation": "property-value-in-list",
+                                        "value": [
+                                            "protocol",
+                                            "no-cache"
+                                        ]
+                                    }
+                                },
+                                "units": "seconds",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmUInt32"
+                                },
+                                "display": "TTL",
+                                "description": "Sets the validity period in seconds for documents in the cache. TTL applies to only the &lt;tt>Fixed&lt;/tt> policy type. Enter a value in the range 5 - 31708800. The default value is 900."
+                            },
+                            {
+                                "name": "Priority",
+                                "default": 128,
+                                "cli-alias": "priority",
+                                "required": "true",
+                                "maximum": 255,
+                                "summary": "Document priority",
+                                "minimum": 1,
+                                "type": {
+                                    "href": "/mgmt/types/default/dmUInt32"
+                                },
+                                "display": "Priority",
+                                "description": "&lt;p>Specifies the priority of a document to add to or remove from the cache. The greater the value, the higher its priority. Enter a value in the range 1 - 255. The default value is 128.&lt;/p>&lt;ul>&lt;li>When adding documents, the cache uses the policy with the highest priority. If the document matches multiple policies with the same priority, the cache uses the first matching policy in the alphabetized list.&lt;/li>&lt;li>When removing documents, the cache removes documents that were added by policies with the lowest priority. If multiple documents have the same priority, the cache removes the document that was least recently accessed.&lt;/li>&lt;/ul>&lt;p>When you define multiple policies, the DataPower Gateway retains the policies in an alphabetized list. The DataPower Gateway evaluates candidate documents against each policy. Consequently, the priority of policies is important to ensure that the DataPower Gateway caches candidate documents for the appropriate validity period.&lt;/p>&lt;ul>&lt;li>Use a high priority for policies that you want to cache.&lt;/li>&lt;li>Use a low priority for generic policies. For example, set the priority to 1 when &lt;tt>*&lt;/tt> or &lt;tt>*.xml&lt;/tt> is the match pattern.&lt;/li>&lt;/ul>"
+                            },
+                            {
+                                "name": "XC10Grid",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference",
+                                    "reference-to": {
+                                        "base-class": "CacheGrid"
+                                    }
+                                },
+                                "summary": "The name of the Cache Grid",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Type",
+                                        "evaluation": "property-equals",
+                                        "value": "no-cache"
+                                    }
+                                },
+                                "cli-alias": "xc10-grid",
+                                "display": "Cache Grid",
+                                "description": "The eXtreme Scale grid configuration to use for caching documents."
+                            },
+                            {
+                                "name": "CacheBackendResponses",
+                                "default": "off",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "summary": "Specifies whether to cache back-end responses",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Type",
+                                        "evaluation": "property-value-in-list",
+                                        "value": "no-cache"
+                                    }
+                                },
+                                "cli-alias": "cache-backend-response",
+                                "display": "Cache Back-end Responses",
+                                "description": "Caches responses to requests from back-end servers."
+                            },
+                            {
+                                "name": "HTTPCacheValidation",
+                                "default": "off",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "summary": "Allow HTTP cache validation with the origin server.",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Type",
+                                        "evaluation": "property-value-in-list",
+                                        "value": "no-cache"
+                                    }
+                                },
+                                "cli-alias": "http-cache-validation",
+                                "display": "HTTP Cache Validation",
+                                "description": "When a requested HTTP document results in a cache hit, HTTP cache validation with the origin server is performed."
+                            },
+                            {
+                                "name": "ReturnExpired",
+                                "default": "off",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "summary": "Whether to return expired documents",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "Type",
+                                        "evaluation": "property-value-in-list",
+                                        "value": "no-cache"
+                                    }
+                                },
+                                "cli-alias": "return-expired",
+                                "display": "Return Expired Document",
+                                "description": "&lt;p>In the following situations, whether to return expired content when a client requests it. &lt;ul>&lt;li>The DataPower Gateway cannot establish a connection with the origin server.&lt;/li>&lt;li>The document cache is getting the newest version from the origin server.&lt;/li>&lt;/ul>&lt;/p>&lt;p>A document might persist in the cache after the document is expired. When enabled, the cached document is returned even though it is potentially stale. A warning header indicates that the document is stale.&lt;/p>"
+                            },
+                            {
+                                "name": "RESTInvalidation",
+                                "default": "off",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "summary": "RESTful invalidation",
+                                "ignored-when": {
+                                    "condition": {
+                                        "evaluation": "logical-or",
+                                        "condition": [
+                                            {
+                                                "property-name": "Type",
+                                                "evaluation": "property-value-in-list",
+                                                "value": "no-cache"
+                                            },
+                                            {
+                                                "property-name": "CacheUnsafeResponse",
+                                                "evaluation": "property-equals",
+                                                "value": "on"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "cli-alias": "rest-invalidation",
+                                "display": "RESTful Invalidation",
+                                "description": "Invalidate document cache on unsafe requests. For example, HTTP GET requests are safe requests that do not change the internal state of the server. When an HTTP POST to the same URL occurs, the cache needs to be invalidated because the internal state of the server might have changed. The next GET request must contact the origin service to update the cache with any changes."
+                            },
+                            {
+                                "name": "CacheUnsafeResponse",
+                                "default": "off",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmToggle"
+                                },
+                                "summary": "Cache Response to POST and PUT Requests",
+                                "ignored-when": {
+                                    "condition": {
+                                        "evaluation": "logical-or",
+                                        "condition": [
+                                            {
+                                                "property-name": "Type",
+                                                "evaluation": "property-does-not-equal",
+                                                "value": "fixed"
+                                            },
+                                            {
+                                                "property-name": "RESTInvalidation",
+                                                "evaluation": "property-equals",
+                                                "value": "on"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "cli-alias": "cache-unsafe-response",
+                                "display": "Cache Response to POST and PUT Requests",
+                                "description": "Caches responses to POST and PUT requests when the cache policy type is set to fixed. The response to these requests is the result of an action on the server that might change its resource state. You might want to cache responses to these requests when you know that the action (for example: HTTP POST) will not change the server state."
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSchemaValidation"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSchemaValidation"
+                    }
+                },
+                "type": {
+                    "name": "dmSchemaValidation",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Select the matching rule that is applied to candidate XML documents. Documents whose URL conforms to an expression contained in the matching rule are subject to XML schema validation.",
+                                "required": "true",
+                                "summary": "Matching rule",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference",
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/Matching"
+                                    }
+                                },
+                                "display": "URL Match",
+                                "name": "Matching"
+                            },
+                            {
+                                "description": "Select the procedure to use to validate a schema.",
+                                "required": "true",
+                                "summary": "Validation procedure",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmValidationMode"
+                                },
+                                "display": "Validation Mode",
+                                "name": "ValidationMode"
+                            },
+                            {
+                                "name": "SchemaURL",
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "ValidationMode",
+                                        "evaluation": "property-value-in-list",
+                                        "value": [
+                                            "schema",
+                                            "schema-rewrite"
+                                        ]
+                                    }
+                                },
+                                "summary": "The URL of an XML schema",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "ValidationMode",
+                                        "evaluation": "property-value-in-list",
+                                        "value": [
+                                            "attribute-rewrite",
+                                            "dynamic-schema",
+                                            "default"
+                                        ]
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmURL"
+                                },
+                                "display": "Schema URL",
+                                "description": "Enter the URL of the schema to use for validation. Used only when the Validation Mode is schema or schema-rewrite."
+                            },
+                            {
+                                "name": "URLRewritePolicy",
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "ValidationMode",
+                                        "evaluation": "property-value-in-list",
+                                        "value": [
+                                            "attribute-rewrite",
+                                            "schema-rewrite"
+                                        ]
+                                    }
+                                },
+                                "summary": "URL rewrite policy",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "ValidationMode",
+                                        "evaluation": "property-value-in-list",
+                                        "value": [
+                                            "schema",
+                                            "dynamic-schema",
+                                            "default"
+                                        ]
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference",
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/URLRewritePolicy"
+                                    }
+                                },
+                                "display": "URL Rewrite Policy",
+                                "description": "Select a URL Rewrite Policy from the list. Used only the Validation Mode is attribute-rewrite or schema-rewrite."
+                            },
+                            {
+                                "name": "DynamicSchema",
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "ValidationMode",
+                                        "evaluation": "property-equals",
+                                        "value": "dynamic-schema"
+                                    }
+                                },
+                                "summary": "Dynamic schema",
+                                "ignored-when": {
+                                    "condition": {
+                                        "property-name": "ValidationMode",
+                                        "evaluation": "property-value-in-list",
+                                        "value": [
+                                            "schema-rewrite",
+                                            "schema",
+                                            "attribute-rewrite",
+                                            "default"
+                                        ]
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference",
+                                    "reference-to": {
+                                        "base-class": "DynamicSchema"
+                                    }
+                                },
+                                "display": "Dynamic Schema",
+                                "description": "Select a dynamic schema used to perform document validation regardless of any validation processing instructions contained within the document. Dynamic schemas used Schema Exception Maps or Document Crypto Maps."
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmScheduledRule"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmScheduledRule"
+                    }
+                },
+                "type": {
+                    "name": "dmScheduledRule",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Select the rule to run.",
+                                "required": "true",
+                                "summary": "A processing rule",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmReference",
+                                    "reference-to": {
+                                        "href": "/mgmt/metadata/default/StylePolicyRule"
+                                    }
+                                },
+                                "display": "Rule",
+                                "name": "Rule"
+                            },
+                            {
+                                "description": "Specify the interval between invocations in seconds. A value of 0 indicates a single invocation.",
+                                "summary": "Seconds between invocations",
+                                "units": "seconds",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmTimeInterval"
+                                },
+                                "display": "Interval",
+                                "name": "Interval"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                },
+                "type": {
+                    "cli-arg": "seconds",
+                    "minimum": 0,
+                    "name": "dmTimeInterval",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmValidationMode"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmValidationMode"
+                    }
+                },
+                "type": {
+                    "display": "XML Schema Validation Mode",
+                    "name": "dmValidationMode",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Default",
+                                "description": "XML documents are validated in accordance with validation processing instructions, if any, that are contained in the XML document.",
+                                "name": "default"
+                            },
+                            {
+                                "display": "Schema",
+                                "description": "XML documents are validated against the XML schema that is defined by the Schema URL property.",
+                                "name": "schema"
+                            },
+                            {
+                                "display": "Schema Rewrite",
+                                "description": "XML documents are validated against a rewritten schema reference. That is, a schema reference that is defined by the Schema URL property is rewritten in accordance with a URL Rewrite Policy that is defined by the URL Rewrite Policy property.",
+                                "name": "schema-rewrite"
+                            },
+                            {
+                                "display": "Attribute Rewrite",
+                                "description": "XML documents are validated against a rewritten schema reference. That is, a schema reference that is contained in the XML document is rewritten in accordance with the URL Rewrite Policy that is defined by the URL Rewrite Policy property.",
+                                "name": "attribute-rewrite"
+                            },
+                            {
+                                "display": "Dynamic Schema",
+                                "description": "XML documents are validated using a Schema Exception Map or Document Crypto Map. One of these maps identifies a schema and excepted elements.",
+                                "name": "dynamic-schema"
+                            }
+                        ]
+                    },
+                    "summary": "XML schema validation mode"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                },
+                "type": {
+                    "cli-arg": "url",
+                    "name": "dmURL"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmDocCachePolicyType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmDocCachePolicyType"
+                    }
+                },
+                "type": {
+                    "display": "Document Cache Policy Type",
+                    "name": "dmDocCachePolicyType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Protocol-Based",
+                                "description": "&lt;p>Caches documents that match the URL expression. HTTP caching rules, as defined in Section 13 of RFC 2616 \"Hypertext Transfer Protocol -- HTTP 1.1\", specify the cache-lifetime. Policy is set using the following criteria. &lt;ul>&lt;li>If the document does not contain a &lt;tt>Date&lt;/tt> or &lt;tt>Last-Modified&lt;/tt> header, do not cache.&lt;/li>&lt;li>If the document contains a &lt;tt>Vary&lt;/tt> header, do not cache.&lt;/li>&lt;li>If the document contains an HTTP 1.1 &lt;tt>Cache-Control&lt;/tt> header, cache and use the contents of that field to determine its cache-lifetime.&lt;/li>&lt;li>If the document contains an HTTP 1.0 &lt;tt>Expires&lt;/tt> header, cache and use the contents of that field to determine its cache-lifetime.&lt;/li>&lt;li>If the document contains a &lt;tt>Last-Modified&lt;/tt> header, cache and use the contents of that field in conjunction with the &lt;tt>Date&lt;/tt> header to determine its cache-lifetime. The cache-lifetime cannot exceed 8 hours.&lt;/li>&lt;/ul>&lt;/p>",
+                                "name": "protocol"
+                            },
+                            {
+                                "display": "No Cache",
+                                "description": "Does not cache documents that match the URL expression.",
+                                "name": "no-cache"
+                            },
+                            {
+                                "display": "Fixed",
+                                "description": "Caches documents that match the URL expression. The TTL specifies the validity period for the document in seconds.",
+                                "name": "fixed"
+                            }
+                        ]
+                    },
+                    "summary": "Document cache policy type"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "XMLManager",
+                "status-bindings": {
+                    "status": [
+                        {
+                            "binding": {
+                                "property": {
+                                    "name": "XMLManager",
+                                    "select": "dmObjectName"
+                                }
+                            },
+                            "name": "StylesheetCachingSummary",
+                            "display": {
+                                "property": {
+                                    "name": "CacheCount",
+                                    "display": "Cached XSL"
+                                }
+                            }
+                        },
+                        {
+                            "binding": {
+                                "property": {
+                                    "name": "XMLManager",
+                                    "select": "dmObjectName"
+                                }
+                            },
+                            "name": "DocumentCachingSummary",
+                            "display": {
+                                "property": {
+                                    "name": "DocCount",
+                                    "display": "Cached Documents"
+                                }
+                            }
+                        }
+                    ]
+                },
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "CacheSize"
+                            },
+                            {
+                                "name": "DocCacheSize"
+                            }
+                        ],
+                        "name": "summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "ParserLimitsBytesScanned"
+                            },
+                            {
+                                "name": "ParserLimitsElementDepth"
+                            },
+                            {
+                                "name": "ParserLimitsAttributeCount"
+                            },
+                            {
+                                "name": "ParserLimitsMaxNodeSize"
+                            },
+                            {
+                                "name": "ParserLimitsMaxPrefixes"
+                            },
+                            {
+                                "name": "ParserLimitsMaxNamespaces"
+                            },
+                            {
+                                "name": "ParserLimitsMaxLocalNames"
+                            },
+                            {
+                                "name": "ParserLimitsExternalReferences"
+                            }
+                        ],
+                        "on-glass": "These settings do not impact resource allocation. These settings are used only as part of threat protection.",
+                        "name": "xmlparser",
+                        "display": "XML Parser"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "DocCacheMaxDocs"
+                            },
+                            {
+                                "name": "DocCacheSize"
+                            },
+                            {
+                                "name": "DocMaxWrites"
+                            }
+                        ],
+                        "name": "doccache",
+                        "display": "Document Cache"
+                    }
+                ],
+                "uri": "xml/xmlmgr",
+                "actions": {
+                    "action": [
+                        {
+                            "name": "FlushStylesheetCache",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "XMLManager",
+                                    "select": "dmObjectName"
+                                }
+                            },
+                            "display": "Flush Stylesheet Cache"
+                        },
+                        {
+                            "name": "FlushDocumentCache",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "XMLManager",
+                                        "select": "dmObjectName"
+                                    },
+                                    {
+                                        "name": "MatchPattern",
+                                        "select": "dmString"
+                                    },
+                                    {
+                                        "name": "ExpireEntries",
+                                        "select": "dmToggle"
+                                    }
+                                ]
+                            },
+                            "display": "Flush Document Cache"
+                        },
+                        {
+                            "name": "InvalidateDocumentCache",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "XMLManager",
+                                        "select": "dmObjectName"
+                                    },
+                                    {
+                                        "name": "MatchPattern",
+                                        "select": "dmString"
+                                    }
+                                ]
+                            },
+                            "display": "Invalidate Document Cache"
+                        },
+                        {
+                            "name": "FlushExpiredDocuments",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "XMLManager",
+                                        "select": "dmObjectName"
+                                    },
+                                    {
+                                        "name": "MatchPattern",
+                                        "select": "dmString"
+                                    }
+                                ]
+                            },
+                            "display": "Flush Expired Documents"
+                        },
+                        {
+                            "name": "ExportDocumentCache",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "XMLManager",
+                                        "select": "dmObjectName"
+                                    },
+                                    {
+                                        "name": "FileName",
+                                        "select": "dmString"
+                                    },
+                                    {
+                                        "name": "MatchPattern",
+                                        "select": "dmString"
+                                    }
+                                ]
+                            },
+                            "display": "Export Document Cache"
+                        },
+                        {
+                            "name": "ImportDocumentCache",
+                            "parameters": {
+                                "parameter": [
+                                    {
+                                        "name": "XMLManager",
+                                        "select": "dmObjectName"
+                                    },
+                                    {
+                                        "name": "FileName",
+                                        "select": "dmString"
+                                    }
+                                ]
+                            },
+                            "display": "Import Document Cache"
+                        },
+                        {
+                            "name": "FlushLDAPPoolCache",
+                            "parameters": {
+                                "parameter": {
+                                    "name": "XMLManager",
+                                    "select": "dmObjectName"
+                                }
+                            },
+                            "display": "Flush LDAP Cache"
+                        }
+                    ]
+                },
+                "display": "XML Manager",
+                "cmd-group": "xmlmgr",
+                "cli-alias": "xmlmgr",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "description": "Optionally assigns a TLS proxy to the XML manager. The proxy is used as a TLS helper by the manager, and might also be used as a default TLS proxy when fetching documents over TLS and there is no explicit matching TLS policy in the User Agent configuration. This parameter cannot be modified after the XML Manager is created.",
+                            "summary": "A TLS proxy",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                                }
+                            },
+                            "display": "TLS Proxy",
+                            "name": "SSLProxy"
+                        },
+                        {
+                            "description": "Optionally, assigns a Stylesheet Refresh Policy to the XML manager. Stylesheets cached by this manager are refreshed in accordance with policy rules.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/URLRefreshPolicy"
+                                }
+                            },
+                            "summary": "A Stylesheet refresh policy",
+                            "cli-alias": "xslrefresh",
+                            "display": "URL Refresh Policy",
+                            "name": "URLRefreshPolicy"
+                        },
+                        {
+                            "description": "&lt;p>Optionally, assigns a Compilation Options Policy to the XML Manager. Stylesheets cached by this manager are compiled in accordance with policy rules. Compile Options allow the administrator to manage profiling and debug modes, which are helpful during development and troubleshooting sessions. Profiling and debug modes should not be left on for production purposes.&lt;/p>&lt;p>Compile Options Policy also enables streaming mode, which might be a valid choice for production environments that regularly encounter very large documents.&lt;/p>",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CompileOptionsPolicy"
+                                }
+                            },
+                            "summary": "The Compile Options Policy assigned to this XML Manager",
+                            "cli-alias": "xslconfig",
+                            "display": "Compile Options Policy",
+                            "name": "CompileOptionsPolicy"
+                        },
+                        {
+                            "name": "CacheSize",
+                            "default": 256,
+                            "cli-alias": "xsl cache size",
+                            "maximum": 250000,
+                            "summary": "Maximum number of stylesheets in XSL Cache",
+                            "minimum": 5,
+                            "units": "stylesheets",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "XSL Cache Size",
+                            "description": "Enter the maximum number of stylesheets in the XSL cache. Enter a value in the range 5 - 250000. The default value is 256."
+                        },
+                        {
+                            "name": "SHA1Caching",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Enable/disable SHA1-assisted caching",
+                            "cli-alias": "xsl checksummed cache",
+                            "display": "SHA1 Caching",
+                            "description": "Enables/disables SHA1-assisted stylesheet caching. With SHA1 caching enabled, stylesheets are cached by both URL and SHA1 message digest value. With SHA1 caching disabled, stylesheets are cached only by URL."
+                        },
+                        {
+                            "name": "StaticDocumentCalls",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Manage static document calls",
+                            "cli-alias": "static-document-calls",
+                            "display": "Static Document Call",
+                            "description": "The latest XSLT specifications require that multiple document calls in the same transformation return the same result. Disable to allow all document calls to operate independently."
+                        },
+                        {
+                            "name": "SearchResults",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "XSLT expression optimization",
+                            "cli-alias": "search results",
+                            "display": "XSLT Expression Optimization",
+                            "description": "Configures optimization of '//' in XPath expressions"
+                        },
+                        {
+                            "name": "SupportTxWarn",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Enables the support of Transformation Extender warning conditions",
+                            "cli-alias": "tx-warn",
+                            "display": "Support ITX Warnings",
+                            "description": "Enables the XML manager to support IBM Transformation Extender warning conditions. The DataPower Gateway sets the warning message to the &lt;tt>var:///service/multistep/tx-warn&lt;/tt> variable and continues the map-processing when it encounters a warning condition."
+                        },
+                        {
+                            "name": "VirtualServers",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/LoadBalancerGroup"
+                                }
+                            },
+                            "summary": "Load Balancer Groups",
+                            "array": "true",
+                            "cli-alias": "loadbalancer-group",
+                            "display": "Load Balancer Groups",
+                            "description": "Select a Load Balancer Group and assign that group to this XML manager. A Load Balancer Group, or server pool, provides redundancy among backside resources."
+                        },
+                        {
+                            "description": "Defines a mapping for XSLT extension functions used in custom stylesheets to DataPower-defined extension functions. The most common example is the node-set extension function, offered by several vendors. A namespace-function pair is mapped to the DataPower-supported namespaces, including exslt, and function.",
+                            "summary": "Defines XSLT extension functions",
+                            "array": "true",
+                            "type": {
+                                "href": "/mgmt/types/default/dmExtensionFunction"
+                            },
+                            "display": "Extension Functions",
+                            "name": "ExtensionFunctions"
+                        },
+                        {
+                            "name": "ParserLimitsBytesScanned",
+                            "default": 4194304,
+                            "cli-alias": "bytes-scanned",
+                            "summary": "XML parser maximum bytes scanned",
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt64"
+                            },
+                            "display": "XML Bytes Scanned",
+                            "description": "Enter the maximum number of bytes scanned in one message. This property applies to any XML document that is parsed. If the value is 0, no limit is enforced. The default value is 4194304."
+                        },
+                        {
+                            "name": "ParserLimitsElementDepth",
+                            "default": 512,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "summary": "XML parser maximum element depth",
+                            "cli-alias": "element-depth",
+                            "display": "XML Element Depth",
+                            "description": "Enter the maximum depth of element nesting in XML parser. The default value is 512."
+                        },
+                        {
+                            "name": "ParserLimitsAttributeCount",
+                            "default": 128,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "summary": "XML parser maximum attribute count",
+                            "cli-alias": "attribute-count",
+                            "display": "XML Attribute Count",
+                            "description": "Enter the maximum number of attributes of a given element. The default value is 128."
+                        },
+                        {
+                            "name": "ParserLimitsMaxNodeSize",
+                            "default": 33554432,
+                            "cli-alias": "max-node-size",
+                            "maximum": 4294967295,
+                            "summary": "XML parser maximum node size",
+                            "minimum": 1024,
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt64"
+                            },
+                            "display": "XML Maximum Node Size",
+                            "description": "Enter the maximum size that any one node can consume. Enter a value in the range 1024 - 4294967295. The default value is 33554432. Sizes which are powers of two result in the best performance. Although you define a value, the DataPower Gateway uses a value that is the rounded-down to the largest power of two that is smaller than the defined value."
+                        },
+                        {
+                            "name": "ParserLimitsForbidExternalReferences",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "XML parser forbid external references toggle",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "cli-alias": "forbid-external-references",
+                            "display": "XML Forbid External References",
+                            "description": "Defines whether the XML parser stops when an input document specifies to resolve an external reference such as an external entity or external DTD definition."
+                        },
+                        {
+                            "name": "ParserLimitsExternalReferences",
+                            "default": "forbid",
+                            "type": {
+                                "href": "/mgmt/types/default/dmExternalRefHandling"
+                            },
+                            "summary": "Special handling for external references in XML",
+                            "cli-alias": "external-references",
+                            "display": "XML External Reference Handling",
+                            "description": "Select the special handling for input documents that contain external references, such as an external entity or external DTD definition."
+                        },
+                        {
+                            "name": "ParserLimitsMaxPrefixes",
+                            "default": 1024,
+                            "cli-alias": "max-prefixes",
+                            "maximum": 262143,
+                            "summary": "XML parser maximum distinct prefixes",
+                            "minimum": 0,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "XML Maximum Distinct Prefixes",
+                            "description": "Enter the maximum number of distinct XML namespace prefixes in a document. This limit counts multiple prefixes defined for the same namespace, but does not count multiple namespaces defined in different parts of the input document under a single prefix. Enter a value in the range 0 - 262143. The default value is 1024. A value of 0 indicates that the limit is 1024."
+                        },
+                        {
+                            "name": "ParserLimitsMaxNamespaces",
+                            "default": 1024,
+                            "cli-alias": "max-namespaces",
+                            "maximum": 65535,
+                            "summary": "XML parser maximum distinct namespaces",
+                            "minimum": 0,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "XML Maximum Distinct Namespaces",
+                            "description": "Enter the maximum number of distinct XML namespace URIs in a document. This limit counts all XML namespaces, regardless of how many prefixes are used to declare them. Enter a value in the range 0 - 65535. The default value is 1024. A value of 0 indicates that the limit is 1024."
+                        },
+                        {
+                            "name": "ParserLimitsMaxLocalNames",
+                            "default": 60000,
+                            "cli-alias": "max-local-names",
+                            "maximum": 1048575,
+                            "summary": "XML parser maximum distinct local names",
+                            "minimum": 0,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "XML Maximum Distinct Local Names",
+                            "description": "Enter the maximum number of distinct XML local names in a document. This limit counts all local names, independent of the namespaces they are associated with. Enter a value in the range 0 - 1048575. The default value is 60000. A value of 0 indicates that the limit is 60000."
+                        },
+                        {
+                            "name": "DocCacheMaxDocs",
+                            "default": 5000,
+                            "cli-alias": "maxdocs",
+                            "maximum": 250000,
+                            "summary": "Maximum number of documents cached",
+                            "minimum": 1,
+                            "units": "documents",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Document Cache Count",
+                            "description": "Enter the maximum number of documents to cache. Enter a value in the range 1 - 250000. The default value is 5000."
+                        },
+                        {
+                            "name": "DocCacheSize",
+                            "default": 0,
+                            "cli-alias": "size",
+                            "summary": "Maximum size of document cache",
+                            "units": "bytes",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt64"
+                            },
+                            "display": "Document Cache Size",
+                            "description": "Enter the maximum size of the document cache. Regardless of the specified size, no document that is greater than 1073741824 bytes is cached. This restriction applies even if the cache has available space."
+                        },
+                        {
+                            "name": "DocMaxWrites",
+                            "default": 32768,
+                            "cli-alias": "max-writes",
+                            "maximum": 32768,
+                            "summary": "Maximum number of concurrent writes to create documents in the cache",
+                            "minimum": 1,
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Maximum concurrent writes",
+                            "description": "Enter the maximum number of concurrent write requests to create documents or refresh expired documents in the document cache. Enter a value in the range 1 - 32768. The default value is 32768. After the maximum number is reached, requests are forwarded to the target server and the response is not written to the cache."
+                        },
+                        {
+                            "name": "DocCachePolicy",
+                            "type": {
+                                "href": "/mgmt/types/default/dmDocCachePolicy"
+                            },
+                            "summary": "Document Cache Policy",
+                            "array": "true",
+                            "cli-alias": "policy",
+                            "display": "Document Cache Policy",
+                            "description": "A document cache policy allows the administrator to determine how documents are cached by the XML manager. The policy offers time-to-live, priority, and type configuration values. This document cache is distinct from the stylesheet cache for the XML manager. Documents and stylesheets that the XML manager retrieves can be cached."
+                        },
+                        {
+                            "name": "SchemaValidation",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSchemaValidation"
+                            },
+                            "summary": "Schema validation rules to apply to all input documents for this manager",
+                            "array": "true",
+                            "cli-alias": "validate",
+                            "display": "Schema Validation Rules",
+                            "description": ""
+                        },
+                        {
+                            "name": "ScheduledRule",
+                            "type": {
+                                "href": "/mgmt/types/default/dmScheduledRule"
+                            },
+                            "summary": "Run a processing policy rule periodically.",
+                            "array": "true",
+                            "cli-alias": "schedule-rule",
+                            "display": "Scheduled Processing Policy Rule",
+                            "description": "Certain applications might require the running of a scheduled processing rule. Integration with a CA Unicenter Manager is facilitated by a regularly scheduled processing rule that obtains relationship data from the Unicenter Manager."
+                        },
+                        {
+                            "name": "UserAgent",
+                            "default": "default",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/HTTPUserAgent"
+                                }
+                            },
+                            "required": "true",
+                            "summary": "Specify the user agent configuration to use.",
+                            "cli-alias": "user-agent",
+                            "display": "User Agent Configuration",
+                            "description": "Identifies the User Agent configuration the XML manager uses to connect to external servers to retrieve resources."
+                        },
+                        {
+                            "description": "Identifies the JSON Settings used by the XML manager when processing a JSON body. If no JSON Settings are specified, the default limits are enforced.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/JSONSettings"
+                                }
+                            },
+                            "summary": "Specify the JSON Settings to use when processing JSON content",
+                            "cli-alias": "json-parser-settings",
+                            "display": "JSON Settings",
+                            "name": "JSONParserSettings"
+                        },
+                        {
+                            "description": "Identifies the DFDL Settings used by the XML manager when processing data as understood by a DFDL schema. The reference to a DFDL Settings object on the Style Policy Action can override this setting. If no DFDL Settings are specified on both objects, the default values are applied.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/DFDLSettings"
+                                }
+                            },
+                            "summary": "Specify the DFDL Settings to use when processing binary content with DFDL schemas.",
+                            "cli-alias": "dfdl-settings-reference",
+                            "display": "DFDL Settings",
+                            "name": "DFDLSettingsReference"
+                        },
+                        {
+                            "description": "Identifies the LDAP connection pool to be used by the XML Manager when contacting LDAP",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/LDAPConnectionPool"
+                                }
+                            },
+                            "summary": "Specify the LDAP Connection Pool to use",
+                            "cli-alias": "ldap-pool",
+                            "display": "LDAP Connection Pool",
+                            "name": "LDAPConnPool"
+                        }
+                    ]
+                },
+                "description": "An XML Manager manages the compilation and caching of stylesheets, the caching of documents, and provides configuration constraints on the size and parsing depth of documents. You can enable streaming operation by configuring an XML Manager to use a Streaming Compile Option Policy. More than one firewall can use the same XML Manager."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/XMLManager"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/XMLManager"
+                }
+            }
+        }
+    }
+}

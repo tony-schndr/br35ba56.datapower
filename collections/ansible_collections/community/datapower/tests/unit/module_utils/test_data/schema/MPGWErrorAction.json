@@ -1,0 +1,388 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmWebGWErrorRespType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmWebGWErrorRespType"
+                    }
+                },
+                "type": {
+                    "name": "dmWebGWErrorRespType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Error Rule",
+                                "description": "The appliance runs the processing rule and returns the rule's output to the client.",
+                                "name": "error-rule",
+                                "summary": "Call the custom error rule"
+                            },
+                            {
+                                "display": "Proxy (Remote)",
+                                "description": "The appliance fetches the remote error page and returns its contents to the client.",
+                                "name": "proxy",
+                                "summary": "Fetch the remote URL"
+                            },
+                            {
+                                "display": "Redirect",
+                                "description": "The appliance redirects the client to the remote URL.",
+                                "name": "redirect",
+                                "summary": "Redirect to the remote URL"
+                            },
+                            {
+                                "display": "Static (Local)",
+                                "description": "The appliance fetches the local error page and returns its contents to the client.",
+                                "name": "static",
+                                "summary": "Fetch the local page"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                },
+                "type": {
+                    "cli-arg": "url",
+                    "name": "dmURL"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmFSFile"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmFSFile"
+                    }
+                },
+                "type": {
+                    "cli-arg": "file",
+                    "name": "dmFSFile"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt16"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt16"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt16",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmWebGWErrorRespHeaderInjection"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmWebGWErrorRespHeaderInjection"
+                    }
+                },
+                "type": {
+                    "name": "dmWebGWErrorRespHeaderInjection",
+                    "properties": {
+                        "property": [
+                            {
+                                "display": "Header Name",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "description": "Enter the name of the header to inject. The headers are not defined in the original response. The appliance sends the headers to the client.",
+                                "name": "HeaderTag",
+                                "summary": "Name of the injected header"
+                            },
+                            {
+                                "description": "Enter the value for the header name.",
+                                "required": "true",
+                                "summary": "Value for the injected header",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Header Value",
+                                "name": "HeaderTagValue"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "MPGWErrorAction",
+                "display": "Multi-Protocol Gateway Error Action",
+                "uri": "config/mpgw-erroraction",
+                "summary": "Multi-Protocol Gateway Error Action",
+                "cmd-group": "mpgw",
+                "cli-alias": "mpgw-error-action",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "Type",
+                            "default": "static",
+                            "type": {
+                                "href": "/mgmt/types/default/dmWebGWErrorRespType"
+                            },
+                            "summary": "Error handling mode",
+                            "cli-alias": "type",
+                            "display": "Mode",
+                            "description": "Select which mode to handle the errors and generate the responses. The default mode is \"Static (Local)\"."
+                        },
+                        {
+                            "name": "RemoteURL",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-in-list",
+                                    "value": [
+                                        "redirect",
+                                        "proxy"
+                                    ]
+                                }
+                            },
+                            "locations": {
+                                "location": "\"NONE\""
+                            },
+                            "summary": "Remote error page URL",
+                            "cli-alias": "remote-url",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmURL"
+                            },
+                            "display": "Remote URL",
+                            "protocols": {
+                                "protocol": [
+                                    "http",
+                                    "https"
+                                ]
+                            },
+                            "description": "Specify the URL of the remote error page."
+                        },
+                        {
+                            "name": "LocalURL",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-in-list",
+                                    "value": "static"
+                                }
+                            },
+                            "locations": {
+                                "location": [
+                                    "local",
+                                    "store"
+                                ]
+                            },
+                            "summary": "Local error page URL",
+                            "cli-alias": "local-url",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmFSFile"
+                            },
+                            "display": "Local page location",
+                            "description": "Specify the URL of the local error page."
+                        },
+                        {
+                            "name": "ErrorRule",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-equals",
+                                    "value": "error-rule"
+                                }
+                            },
+                            "summary": "Processing rule for errors",
+                            "cli-alias": "rule",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/StylePolicyRule"
+                                }
+                            },
+                            "display": "Error Rule",
+                            "description": "Specify the custom error rule that the appliance runs to handle errors."
+                        },
+                        {
+                            "name": "StatusCode",
+                            "cli-alias": "status-code",
+                            "maximum": 999,
+                            "summary": "HTTP status code",
+                            "minimum": 100,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-not-in-list",
+                                    "value": [
+                                        "proxy",
+                                        "static"
+                                    ]
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt16"
+                            },
+                            "display": "Response Code",
+                            "description": "Specify the HTTP status code that the appliance returns to the client. Enter a value in the range 0 - 999."
+                        },
+                        {
+                            "name": "ReasonPhrase",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "HTTP reason phrase",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-not-in-list",
+                                    "value": [
+                                        "proxy",
+                                        "static"
+                                    ]
+                                }
+                            },
+                            "cli-alias": "reason-phrase",
+                            "display": "Reason Phrase",
+                            "description": "Specify the HTTP reason phrase that the appliance returns to the client. For a proxy mode, the specified reason phrase overrides the fetched value."
+                        },
+                        {
+                            "name": "HeaderInjection",
+                            "type": {
+                                "href": "/mgmt/types/default/dmWebGWErrorRespHeaderInjection"
+                            },
+                            "summary": "HTTP header to be injected",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Type",
+                                    "evaluation": "property-value-not-in-list",
+                                    "value": [
+                                        "proxy",
+                                        "static"
+                                    ]
+                                }
+                            },
+                            "array": "true",
+                            "cli-alias": "header-inject",
+                            "display": "HTTP Header Injection",
+                            "description": "Specify the name and the value for the HTTP header that the appliance injects."
+                        }
+                    ]
+                },
+                "description": "Define how the Multi-Protocol gateway handles errors and generates error responses to the client."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/MPGWErrorAction"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/MPGWErrorAction"
+                }
+            }
+        }
+    }
+}

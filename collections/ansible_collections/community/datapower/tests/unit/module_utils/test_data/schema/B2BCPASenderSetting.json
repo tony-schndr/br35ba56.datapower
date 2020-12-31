@@ -1,0 +1,1079 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmB2BEnabledDocType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmB2BEnabledDocType"
+                    }
+                },
+                "type": {
+                    "name": "dmB2BEnabledDocType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "XML",
+                                "description": "Enables support for XML message bodies.",
+                                "name": "EnableXML",
+                                "summary": "XML"
+                            },
+                            {
+                                "display": "X12",
+                                "description": "Enables support for EDI (Electronic Data Interchange) ANSI X12 message bodies.",
+                                "name": "EnableX12",
+                                "summary": "X12"
+                            },
+                            {
+                                "display": "EDIFACT",
+                                "description": "Enables support for EDIFACT (Electronic Data Interchange for Administration, Commerce, and Transport) message bodies.",
+                                "name": "EnableEDIFACT",
+                                "summary": "EDIFACT"
+                            },
+                            {
+                                "display": "Binary",
+                                "description": "Enables support for Binary message bodies.",
+                                "name": "EnableBinary",
+                                "summary": "Binary"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                },
+                "type": {
+                    "cli-arg": "url",
+                    "name": "dmURL"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmTimeInterval"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmTimeInterval"
+                    }
+                },
+                "type": {
+                    "cli-arg": "seconds",
+                    "minimum": 0,
+                    "name": "dmTimeInterval",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmEBMSSyncReplyMode"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmEBMSSyncReplyMode"
+                    }
+                },
+                "type": {
+                    "name": "dmEBMSSyncReplyMode",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "mshSignalsOnly",
+                                "description": "Request for acknowledgment/error documents to be sent back over a synchronous connection.",
+                                "name": "mshSignalsOnly",
+                                "summary": "Request for synchronous reply of Acknowledgment/Error message"
+                            },
+                            {
+                                "display": "none",
+                                "description": "Do not request receiver to send acknowledgment/error documents back in a synchronous connection.",
+                                "name": "none",
+                                "summary": "Not request for synchronous reply of Acknowledgment/Error message"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmCPASenderRequested"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmCPASenderRequested"
+                    }
+                },
+                "type": {
+                    "name": "dmCPASenderRequested",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "never",
+                                "name": "never",
+                                "summary": "Do not make the particular request"
+                            },
+                            {
+                                "display": "always",
+                                "name": "always",
+                                "summary": "Make the particular request"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmToggle"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmToggle"
+                    }
+                },
+                "type": {
+                    "cli-arg": "on | off",
+                    "name": "dmToggle",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "on",
+                                "display": "on"
+                            },
+                            {
+                                "name": "off",
+                                "display": "off"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmUInt32"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmUInt32"
+                    }
+                },
+                "type": {
+                    "cli-arg": "number",
+                    "minimum": 0,
+                    "name": "dmUInt32",
+                    "maximum": "0xFFFFFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmCryptoEncryptionAlgorithm"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmCryptoEncryptionAlgorithm"
+                    }
+                },
+                "type": {
+                    "display": "Encryption Algorithm",
+                    "description": "The encryption algorithm to use.",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "3DES-CBC",
+                                "name": "http://www.w3.org/2001/04/xmlenc#tripledes-cbc",
+                                "summary": "http://www.w3.org/2001/04/xmlenc#tripledes-cbc"
+                            },
+                            {
+                                "display": "AES128-CBC",
+                                "name": "http://www.w3.org/2001/04/xmlenc#aes128-cbc",
+                                "summary": "http://www.w3.org/2001/04/xmlenc#aes128-cbc"
+                            },
+                            {
+                                "display": "AES192-CBC",
+                                "name": "http://www.w3.org/2001/04/xmlenc#aes192-cbc",
+                                "summary": "http://www.w3.org/2001/04/xmlenc#aes192-cbc"
+                            },
+                            {
+                                "display": "AES256-CBC",
+                                "name": "http://www.w3.org/2001/04/xmlenc#aes256-cbc",
+                                "summary": "http://www.w3.org/2001/04/xmlenc#aes256-cbc"
+                            },
+                            {
+                                "display": "AES128-GCM",
+                                "name": "http://www.w3.org/2009/xmlenc11#aes128-gcm",
+                                "summary": "http://www.w3.org/2009/xmlenc11#aes128-gcm"
+                            },
+                            {
+                                "display": "AES192-GCM",
+                                "name": "http://www.w3.org/2009/xmlenc11#aes192-gcm",
+                                "summary": "http://www.w3.org/2009/xmlenc11#aes192-gcm"
+                            },
+                            {
+                                "display": "AES256-GCM",
+                                "name": "http://www.w3.org/2009/xmlenc11#aes256-gcm",
+                                "summary": "http://www.w3.org/2009/xmlenc11#aes256-gcm"
+                            }
+                        ]
+                    },
+                    "name": "dmCryptoEncryptionAlgorithm"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmEBMSSignatureAlgorithm"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmEBMSSignatureAlgorithm"
+                    }
+                },
+                "type": {
+                    "name": "dmEBMSSignatureAlgorithm",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "dsa-sha1",
+                                "description": "http://www.w3.org/2000/09/xmldsig#dsa-sha1",
+                                "name": "dsa-sha1"
+                            },
+                            {
+                                "display": "rsa-sha1",
+                                "description": "http://www.w3.org/2000/09/xmldsig#rsa-sha1",
+                                "name": "rsa-sha1"
+                            },
+                            {
+                                "display": "rsa-sha256",
+                                "description": "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256",
+                                "name": "rsa-sha256"
+                            },
+                            {
+                                "display": "rsa-sha384",
+                                "description": "http://www.w3.org/2001/04/xmldsig-more#rsa-sha384",
+                                "name": "rsa-sha384"
+                            },
+                            {
+                                "display": "rsa-sha512",
+                                "description": "http://www.w3.org/2001/04/xmldsig-more#rsa-sha512",
+                                "name": "rsa-sha512"
+                            },
+                            {
+                                "display": "rsa-ripemd160",
+                                "description": "http://www.w3.org/2001/04/xmldsig-more/rsa-ripemd160",
+                                "name": "rsa-ripemd160"
+                            },
+                            {
+                                "display": "rsa-ripemd160-2010",
+                                "description": "http://www.w3.org/2001/04/xmldsig-more#rsa-ripemd160",
+                                "name": "rsa-ripemd160-2010"
+                            },
+                            {
+                                "display": "rsa-md5",
+                                "description": "http://www.w3.org/2001/04/xmldsig-more#rsa-md5",
+                                "name": "rsa-md5"
+                            }
+                        ]
+                    },
+                    "display": "Signing Algorithm"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmCryptoHashAlgorithm"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmCryptoHashAlgorithm"
+                    }
+                },
+                "type": {
+                    "display": "Message Digest Algorithm",
+                    "description": "The hash algorithm for the generated message digest.",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "sha1",
+                                "description": "http://www.w3.org/2000/09/xmldsig#sha1",
+                                "name": "sha1"
+                            },
+                            {
+                                "display": "sha256",
+                                "description": "http://www.w3.org/2001/04/xmlenc#sha256",
+                                "name": "sha256"
+                            },
+                            {
+                                "display": "sha512",
+                                "description": "http://www.w3.org/2001/04/xmlenc#sha512",
+                                "name": "sha512"
+                            },
+                            {
+                                "display": "ripemd160",
+                                "description": "http://www.w3.org/2001/04/xmlenc#ripemd160",
+                                "name": "ripemd160"
+                            },
+                            {
+                                "display": "sha224",
+                                "description": "http://www.w3.org/2001/04/xmldsig-more#sha224",
+                                "name": "sha224"
+                            },
+                            {
+                                "display": "sha384",
+                                "description": "http://www.w3.org/2001/04/xmldsig-more#sha384",
+                                "name": "sha384"
+                            },
+                            {
+                                "display": "md5",
+                                "description": "http://www.w3.org/2001/04/xmldsig-more#md5",
+                                "name": "md5"
+                            }
+                        ]
+                    },
+                    "name": "dmCryptoHashAlgorithm"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmCryptoCanonicalizationAlgorithm"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmCryptoCanonicalizationAlgorithm"
+                    }
+                },
+                "type": {
+                    "display": "Canonicalization Algorithm",
+                    "description": "The XML canonicalization algorithm and version used for signing.",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "XML Canonicalization, version 1.0",
+                                "name": "c14n",
+                                "summary": "Inclusive XML Canonicalization, version 1.0 (c14n)"
+                            },
+                            {
+                                "display": "Exclusive XML Canonicalization",
+                                "name": "exc-c14n",
+                                "summary": "Exclusive XML Canonicalization (exc-c14n)"
+                            },
+                            {
+                                "display": "XML Canonicalization with Comments, version 1.0",
+                                "name": "c14n-comments",
+                                "summary": "Inclusive XML Canonicalization, version 1.0, with comments (c14n-comments)"
+                            },
+                            {
+                                "display": "Exclusive XML Canonicalization with Comments",
+                                "name": "exc-c14n-comments",
+                                "summary": "Exclusive XML Canonicalization with comments (exc-c14n-comments)"
+                            },
+                            {
+                                "display": "XML Canonicalization, version 1.1",
+                                "name": "c14n11",
+                                "summary": "Inclusive XML Canonicalization, version 1.1 (c14n11)"
+                            },
+                            {
+                                "display": "XML Canonicalization with Comments, version 1.1",
+                                "name": "c14n11-comments",
+                                "summary": "Inclusive XML Canonicalization, version 1.1, with comments (c14n11-comments)"
+                            }
+                        ]
+                    },
+                    "name": "dmCryptoCanonicalizationAlgorithm"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSSLClientConfigType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSSLClientConfigType"
+                    }
+                },
+                "type": {
+                    "name": "dmSSLClientConfigType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "proxy",
+                                "display": "Proxy Profile"
+                            },
+                            {
+                                "name": "client",
+                                "display": "Client Profile"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "B2B",
+                "name": "B2BCPASenderSetting",
+                "display": "CPA Sender Setting",
+                "property-group": [
+                    {
+                        "member": {
+                            "name": "UserSummary"
+                        },
+                        "name": "summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "DestEndpointURL"
+                            },
+                            {
+                                "name": "SSLClientConfigType"
+                            },
+                            {
+                                "name": "SSLClient"
+                            },
+                            {
+                                "name": "SSLProxy"
+                            },
+                            {
+                                "name": "UserName"
+                            },
+                            {
+                                "name": "Password"
+                            },
+                            {
+                                "name": "PasswordAlias"
+                            },
+                            {
+                                "name": "ConnectionTimeout"
+                            }
+                        ],
+                        "name": "Transport",
+                        "display": "Transport Settings"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "SyncReplyMode"
+                            },
+                            {
+                                "name": "AckRequested"
+                            },
+                            {
+                                "name": "AckSignatureRequested"
+                            },
+                            {
+                                "name": "DuplicateElimination"
+                            }
+                        ],
+                        "name": "MessageCharacteristics",
+                        "display": "Message Characteristics"
+                    },
+                    {
+                        "property-group": [
+                            {
+                                "member": [
+                                    {
+                                        "name": "Retry"
+                                    },
+                                    {
+                                        "name": "MaxRetries"
+                                    },
+                                    {
+                                        "name": "RetryInterval"
+                                    },
+                                    {
+                                        "name": "PersistDuration"
+                                    },
+                                    {
+                                        "name": "IncludeTimeToLive"
+                                    }
+                                ],
+                                "name": "ReliableMessaging",
+                                "display": "Reliable Messaging"
+                            },
+                            {
+                                "member": [
+                                    {
+                                        "name": "EncryptionRequired"
+                                    },
+                                    {
+                                        "name": "EncryptCert"
+                                    },
+                                    {
+                                        "name": "EncryptAlgorithm"
+                                    },
+                                    {
+                                        "name": "SignatureRequired"
+                                    },
+                                    {
+                                        "name": "SignIdCred"
+                                    },
+                                    {
+                                        "name": "SignatureAlgorithm"
+                                    },
+                                    {
+                                        "name": "SignatureC14NAlgorithm"
+                                    },
+                                    {
+                                        "name": "SignDigestAlgorithm"
+                                    }
+                                ],
+                                "name": "Security",
+                                "display": "Security"
+                            }
+                        ],
+                        "name": "DocExchange",
+                        "display": "DocExchange Settings"
+                    }
+                ],
+                "uri": "b2b/cpa-sender-setting",
+                "summary": "CPA Sender Setting",
+                "cmd-group": "b2b",
+                "cli-alias": "cpa-sender-setting",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "EnabledDocType",
+                            "default": "EnableXML+EnableX12+EnableEDIFACT+EnableBinary",
+                            "type": {
+                                "href": "/mgmt/types/default/dmB2BEnabledDocType"
+                            },
+                            "summary": "Enabled Document Type",
+                            "cli-alias": "enabled-doc-type",
+                            "display": "Enabled Document Type",
+                            "description": "Indicates which document types to support."
+                        },
+                        {
+                            "name": "DestEndpointURL",
+                            "type": {
+                                "href": "/mgmt/types/default/dmURL"
+                            },
+                            "locations": {
+                                "location": "\"NONE\""
+                            },
+                            "summary": "Destination URL",
+                            "cli-alias": "dest-url",
+                            "display": "Destination URL",
+                            "protocols": {
+                                "protocol": [
+                                    "ebms2",
+                                    "ebms2s"
+                                ]
+                            },
+                            "description": "&lt;p>Specify the destination URL for sending the message to the external party's endpoint. The URL is parsed to determine the protocol to use. If the URL starts with &lt;tt>http://&lt;/tt> , the service uses the HTTP protocol. If the URL starts with &lt;tt>https://&lt;/tt> , the service uses the HTTPS protocol.&lt;/p>&lt;p>Imported from CPA the Endpoint element for the external party's TransportReceiver element.&lt;/p>&lt;p>To use a load balancer, specify the name of an existing Load Balancer Group instead of the address-port pair in the URL.&lt;/p>"
+                        },
+                        {
+                            "name": "SSLProxy",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "DestEndpointURL",
+                                            "evaluation": "property-url-protocol-in-list",
+                                            "value": "ebms2s"
+                                        },
+                                        {
+                                            "property-name": "SSLClientConfigType",
+                                            "evaluation": "property-equals",
+                                            "value": "proxy"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "The TLS proxy profile is deprecated. Use an TLS client profile.",
+                            "cli-alias": "ssl",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLProxyProfile"
+                                }
+                            },
+                            "display": "TLS Proxy Profile (deprecated)",
+                            "description": "&lt;p>Sets the TLS proxy profile to establish an TLS-enabled, secured connection.&lt;/p>&lt;p>Imported from CPA, the TransportServerSecurity element provides details about establishing the secure connection between the sender and receiver.&lt;/p>"
+                        },
+                        {
+                            "name": "UserName",
+                            "valid-regexp": "^[_a-zA-Z0-9-.]+$",
+                            "summary": "User name",
+                            "cli-alias": "username",
+                            "maximum-length": 128,
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "User name",
+                            "description": "&lt;p>Overrides the user name in the basic authentication policy for the user agent that the B2B gateway uses.&lt;/p>&lt;p>The setting for HTTP Basic Authorization is not imported from CPA.&lt;/p>"
+                        },
+                        {
+                            "name": "Password",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Password",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Password",
+                                    "evaluation": "property-equals",
+                                    "value": ""
+                                }
+                            },
+                            "maximum-length": 128,
+                            "cli-alias": "password",
+                            "display": "Password (deprecated)",
+                            "description": "&lt;p>Overrides the password for the user in the basic authentication policy for the user agent that the B2B gateway uses.&lt;/p>&lt;p>The setting for HTTP Basic Authorization is not imported from CPA.&lt;/p>"
+                        },
+                        {
+                            "name": "PasswordAlias",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/PasswordAlias"
+                                }
+                            },
+                            "summary": "Password Alias",
+                            "maximum-length": 128,
+                            "cli-alias": "password-alias",
+                            "display": "Password Alias",
+                            "description": "&lt;p>Overrides the password for the user in the basic authentication policy for the user agent that the B2B gateway uses.&lt;/p>&lt;p>The setting for HTTP Basic Authorization is not imported from CPA.&lt;/p>"
+                        },
+                        {
+                            "name": "ConnectionTimeout",
+                            "default": 300,
+                            "cli-alias": "timeout",
+                            "maximum": 7200,
+                            "summary": "Override timeout",
+                            "minimum": 3,
+                            "units": "Seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmTimeInterval"
+                            },
+                            "display": "Connection Timeout",
+                            "description": "&lt;p>Specifies the maximum number of seconds to maintain an idle connection. Use any value of 3 - 7200. The default is 300.&lt;/p>&lt;p>This setting is not imported from CPA.&lt;/p>"
+                        },
+                        {
+                            "name": "SyncReplyMode",
+                            "default": "none",
+                            "type": {
+                                "href": "/mgmt/types/default/dmEBMSSyncReplyMode"
+                            },
+                            "summary": "Type of synchronous response",
+                            "cli-alias": "syncreply-mode",
+                            "display": "Sync Reply Mode",
+                            "description": "&lt;p>Specifies the type of synchronous response requested by the message which is being sent. The value of \"none\", which is the default value, indicates that all MSH level and Business level messages will be returned as separate asynchronous messages. For the value of \"mshSignalsOnly\", the ebMS's SyncReply element will be included in the SOAP Header of the outbound message.&lt;/p>&lt;p>Imported from CPA the internal party's DeliveryChannel's syncReplyMode attribute within the MessagingCharacteristics element.&lt;/p>"
+                        },
+                        {
+                            "name": "DuplicateElimination",
+                            "default": "always",
+                            "type": {
+                                "href": "/mgmt/types/default/dmCPASenderRequested"
+                            },
+                            "summary": "Whether to request duplicate elimination",
+                            "cli-alias": "duplicate-elimination",
+                            "display": "Duplicate Elimination",
+                            "description": "&lt;p>When sending an outbound ebMS message, this option controls whether the internal sending party requests the external receiving party to check duplicate elimination. If set to \"always\", the default value, the request for duplicate elimination will be made by presenting the DuplicateElimination element within the MessageHeader element in the ebMS SOAP Header.&lt;/p>&lt;p>Imported from CPA the internal party's DeliveryChannel's duplicateElimination attribute within the MessagingCharacteristics element.&lt;/p>"
+                        },
+                        {
+                            "name": "AckRequested",
+                            "default": "never",
+                            "type": {
+                                "href": "/mgmt/types/default/dmCPASenderRequested"
+                            },
+                            "summary": "Whether to request an Acknowledgment",
+                            "cli-alias": "ack-requested",
+                            "display": "Request Acknowledgment",
+                            "description": "&lt;p>Used by the sending party to control whether to request the receiving MSH to return the Acknowledgment signal. If set to \"always\", then the AckRequested element within the MessageHeader element in the SOAP Header is to be present.&lt;/p>&lt;p>Imported from CPA the internal party's DeliveryChannel's ackRequested attribute within the MessagingCharacteristics element. As a sender the possible value is \"always\" (enabled) or \"never\" (disabled).&lt;/p>"
+                        },
+                        {
+                            "name": "AckSignatureRequested",
+                            "default": "never",
+                            "type": {
+                                "href": "/mgmt/types/default/dmCPASenderRequested"
+                            },
+                            "summary": "Whether to request signed Acknowledgment",
+                            "cli-alias": "ack-signature-requested",
+                            "display": "Request Signed Acknowledgment",
+                            "description": "&lt;p>Used by the sending party to control whether the receiving MSH should return a signed Acknowledgment signal - containing a Signature element. If set to \"always\", then the message being sent outbound will have the signed attribute of the AckRequested element set to \"true\".&lt;/p>&lt;p>Imported from CPA the internal party's DeliveryChannel's ackSignatureRequested attribute within the MessagingCharacteristics element. As a sender the possible value is \"always\" (enabled) or \"never\" (disabled).&lt;/p>"
+                        },
+                        {
+                            "name": "Retry",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to retransmit an unacknowledged message",
+                            "cli-alias": "retry",
+                            "display": "Attempt Message Retry",
+                            "description": "&lt;p>Controls whether to enable the logic for the retransmission of unacknowledged outbound messages. The default is off.&lt;/p>&lt;p>Imported from CPA, described by the ebXMLSenderBinding element's ReliableMessaging element.&lt;/p>"
+                        },
+                        {
+                            "name": "MaxRetries",
+                            "default": 3,
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Retry",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "maximum": 30,
+                            "summary": "Maximum number of retries",
+                            "cli-alias": "max-retries",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Retry",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Maximum Retries",
+                            "description": "&lt;p>Specifies the permitted number of retransmission of a message. Use an integer between 1 through 30. The default is 3, which means an outbound message can potentially be sent four times (the initiative one and successive 3 retries).&lt;/p>&lt;p>Imported from CPA, described by the ebXMLSenderBinding element's ReliableMessaging element.&lt;/p>"
+                        },
+                        {
+                            "name": "RetryInterval",
+                            "default": 1800,
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "Retry",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "maximum": 86400,
+                            "summary": "Time interval of each retry attempt",
+                            "cli-alias": "retry-interval",
+                            "minimum": 1,
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Retry",
+                                    "evaluation": "property-equals",
+                                    "value": "off"
+                                }
+                            },
+                            "units": "Seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Retry Interval",
+                            "description": "&lt;p>Specifies the interval in seconds between retry attempts. Use any value of 1 - 86400. This default is 1800.&lt;/p>&lt;p>Imported from CPA, described by the ebXMLSenderBinding element's ReliableMessaging element.&lt;/p>"
+                        },
+                        {
+                            "name": "PersistDuration",
+                            "default": 0,
+                            "cli-alias": "persist-duration",
+                            "maximum": 6000000,
+                            "summary": "Duration of message to be persisted",
+                            "minimum": 0,
+                            "units": "Seconds",
+                            "type": {
+                                "href": "/mgmt/types/default/dmUInt32"
+                            },
+                            "display": "Persist Duration",
+                            "description": "&lt;p>Indicates to the sending gateway the minimum length of time the message should be kept in persistent storage and is used to compute the TimeToLive value to be packaged in the outbound message. When sending outbound message, the TimeToLive is computed using the formula: with Retry, Current Time + ((Maximum Retries + 2) * Retry Interval); without Retry, Persist Duration + Current Time. When a message is not expired, it is not eligible to be archived; once a message's TimeToLive has elapsed, the message will be archivable when performing archive operation.&lt;/p>&lt;p>Default to 0 to expire the sent document at the time it is being sent.&lt;/p>&lt;p>Imported from CPA, the PersistDuration element within ReliableMessaging element under DocExchange/ebXMLSenderBinding element.&lt;/p>"
+                        },
+                        {
+                            "name": "IncludeTimeToLive",
+                            "default": "on",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Lifetime of the message",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "Retry",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "on"
+                                }
+                            },
+                            "cli-alias": "include-time-to-live",
+                            "display": "Include TimeToLive element",
+                            "description": "Controls whether the sending partner includes the &amp;lt;TimeToLive> element in the outbound ebMS message header. The &amp;lt;TimeToLive> element indicates when the message expires. &lt;ul>&lt;li>If the receiving partner receives the message before it expires, the receiving partner accepts the message.&lt;/li>&lt;li>If the receiving partner receives the message after it expires, the receiving partner rejects the message.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "name": "EncryptionRequired",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to encrypt messages",
+                            "cli-alias": "encrypt-required",
+                            "display": "Require Encryption",
+                            "description": "&lt;p>Controls whether to encrypt the body of outgoing ebMS messages. The default is off. This encryption is not applied for the MSH level signals.&lt;/p>&lt;p>Implied by the CPA element SenderDigitalEnvelope under DocExchange element's ebXMLSenderBinding.&lt;/p>"
+                        },
+                        {
+                            "name": "EncryptCert",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "EncryptionRequired",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "Certificate used to encrypt outbound messages",
+                            "cli-alias": "encrypt-cert",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoCertificate"
+                                }
+                            },
+                            "display": "Outbound Encryption Certificate",
+                            "description": "&lt;p>Sets the certificate that encrypts outbound messages. Use the name of a certificate.&lt;/p>&lt;p>Imported from CPA, the EncryptionCertificateRef which is within the DocExchange/ebXMLReceiverBinding/ReceiverDigitalEnvelope of the other party to point to what the other (external receiving) Party's encryption certificate to be applied.&lt;/p>"
+                        },
+                        {
+                            "name": "EncryptAlgorithm",
+                            "default": "http://www.w3.org/2001/04/xmlenc#tripledes-cbc",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "EncryptionRequired",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "",
+                            "cli-alias": "encrypt-algorithm",
+                            "type": {
+                                "href": "/mgmt/types/default/dmCryptoEncryptionAlgorithm"
+                            },
+                            "display": "Encryption Algorithm",
+                            "description": "&lt;p>Sets the encryption algorithm that encrypts outbound ebMS messages.&lt;/p>&lt;p>Imported from CPA the EncryptionAlgorithm element under DocExchange/ebXMLSenderBinding identifies the encryption algorithm to be used.&lt;/p>"
+                        },
+                        {
+                            "name": "SignatureRequired",
+                            "default": "off",
+                            "type": {
+                                "href": "/mgmt/types/default/dmToggle"
+                            },
+                            "summary": "Whether to sign message being sent",
+                            "cli-alias": "sign-required",
+                            "display": "Require Signature",
+                            "description": "&lt;p>Controls whether to digitally sign the messages being sent from this internal partner. The default is off.&lt;/p>&lt;p>Implied by CPA the isNonRepudiationRequired attribute within this party action binding's BusinessTransactionCharacteristics element.&lt;/p>"
+                        },
+                        {
+                            "name": "SignIdCred",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "SignatureRequired",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "Credentials used to sign outbound messages and the MSH signal response.",
+                            "cli-alias": "sign-idcred",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/CryptoIdentCred"
+                                }
+                            },
+                            "display": "Outbound Signature Identification Credentials",
+                            "description": "&lt;p>Sets the identification credentials used by this internal party to digitally sign an outbound message being sent and the MSH level signals being responded from this internal partner when requiring a signature.&lt;/p>&lt;p>Created when importing a CPA. Set the correct identification credentials after import.&lt;/p>"
+                        },
+                        {
+                            "name": "SignatureAlgorithm",
+                            "default": "rsa-sha1",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "SignatureRequired",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "Signature algorithm",
+                            "cli-alias": "sign-algorithm",
+                            "type": {
+                                "href": "/mgmt/types/default/dmEBMSSignatureAlgorithm"
+                            },
+                            "display": "Signature Algorithm",
+                            "description": "&lt;p>Sets the algorithm used to sign messages from this internal partner. The default is dsa-sha1 recommended by the ebMS specification.&lt;/p>&lt;p>Imported from CPA. The SenderNonRepudiation element under DocExchange/ebXMLSenderBinding and the ReceiverNonRepudiation element under DocExchange/ebXMLReceiverBinding describe the parameters related to the implementation of non-repudiation of origin - which includes the signing certificate, signature algorithm, the hashing algorithm, etc.&lt;/p>"
+                        },
+                        {
+                            "name": "SignDigestAlgorithm",
+                            "default": "sha1",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "SignatureRequired",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "Digest algorithm used in the XML Signature when hashing the payloads during signing",
+                            "cli-alias": "sign-digest-algorithm",
+                            "type": {
+                                "href": "/mgmt/types/default/dmCryptoHashAlgorithm"
+                            },
+                            "display": "Signing Digest Algorithm",
+                            "description": "&lt;p>Sets the algorithm used to hashing the payloads during signing. The default is sha1. Refer to http://www.w3.org/TR/xmldsig-core/.&lt;/p>&lt;p>Imported from CPA. If the isNonRepudiationReceiptRequired is set true, the SenderNonRepudiation element under DocExchange/ebXMLSenderBinding and the ReceiverNonRepudiation element under DocExchange/ebXMLReceiverBinding describe the parameters related to the implementation of non-repudiation of origin - which includes the signing certificate, signature algorithm, the hashing algorithm, etc.&lt;/p>"
+                        },
+                        {
+                            "name": "SignatureC14NAlgorithm",
+                            "default": "exc-c14n",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "SignatureRequired",
+                                    "evaluation": "property-equals",
+                                    "value": "on"
+                                }
+                            },
+                            "summary": "Signature canonicalization algorithm used before signing process",
+                            "cli-alias": "sign-c14n-algorithm",
+                            "type": {
+                                "href": "/mgmt/types/default/dmCryptoCanonicalizationAlgorithm"
+                            },
+                            "display": "Signature Canonicalization Method",
+                            "description": "&lt;p>Sets the algorithm used to canonicalize the SOAP Envelope XML and exclude comments before signing messages. The default is Canonical XML 1.0with Comments, which is recommended by the ebMS specification.&lt;/p>&lt;p>Not imported from CPA but is required when Require Signature is set to true.&lt;/p>"
+                        },
+                        {
+                            "name": "SSLClientConfigType",
+                            "default": "proxy",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSSLClientConfigType"
+                            },
+                            "summary": "Set the TLS profile type to secure connections between the DataPower Gateway and its targets",
+                            "ignored-when": {
+                                "condition": {
+                                    "property-name": "DestEndpointURL",
+                                    "evaluation": "property-url-protocol-not-in-list",
+                                    "value": "ebms2s"
+                                }
+                            },
+                            "cli-alias": "ssl-client-type",
+                            "display": "TLS client type",
+                            "description": "The TLS profile type to secure connections between the DataPower Gateway and its targets."
+                        },
+                        {
+                            "name": "SSLClient",
+                            "required-when": {
+                                "condition": {
+                                    "evaluation": "logical-and",
+                                    "condition": [
+                                        {
+                                            "property-name": "SSLClientConfigType",
+                                            "evaluation": "property-equals",
+                                            "value": "client"
+                                        },
+                                        {
+                                            "property-name": "DestEndpointURL",
+                                            "evaluation": "property-url-protocol-in-list",
+                                            "value": "ebms2s"
+                                        }
+                                    ]
+                                }
+                            },
+                            "summary": "Set the TLS client profile to secure connections between the DataPower Gateway and its targets",
+                            "cli-alias": "ssl-client",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/SSLClientProfile"
+                                }
+                            },
+                            "display": "TLS client profile",
+                            "description": "The TLS client profile to secure connections between the DataPower Gateway and its targets."
+                        }
+                    ]
+                }
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/B2BCPASenderSetting"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/B2BCPASenderSetting"
+                }
+            }
+        }
+    }
+}

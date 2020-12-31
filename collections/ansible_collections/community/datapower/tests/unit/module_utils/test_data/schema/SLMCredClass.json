@@ -1,0 +1,306 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSLMCredType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSLMCredType"
+                    }
+                },
+                "type": {
+                    "display": "Credential Type",
+                    "name": "dmSLMCredType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Mapped Credential",
+                                "description": "The result of the credential mapping phase of an AAA policy. The results might be a user name, a client DN, or another value. This credential type requires that the processing policy contains an AAA action before the SLM action.",
+                                "name": "aaa-mapped-credential"
+                            },
+                            {
+                                "display": "Extracted Identity",
+                                "description": "The result of the identity extraction phase of an AAA policy. This credential type requires that the processing policy contains an AAA action before the SLM action.",
+                                "name": "aaa-username"
+                            },
+                            {
+                                "display": "IBM MQ Application",
+                                "description": "The name of the IBM MQ application from the IBM MQ message. This credential type is valid for only IBM MQ transport protocol messages.",
+                                "name": "mq-application"
+                            },
+                            {
+                                "display": "Client IP",
+                                "description": "The IP address of the client that submitted the message.",
+                                "name": "client-ip"
+                            },
+                            {
+                                "display": "Request Header",
+                                "description": "The value of the HTTP header field that contains the credential. When specified, provide the name of this header field.",
+                                "name": "request-header"
+                            },
+                            {
+                                "display": "IP from Header",
+                                "description": "The value of the HTTP header field that contains the client IP address. When specified, provide the name of this header field (for example, X-Client-IP).",
+                                "name": "ip-from-header"
+                            },
+                            {
+                                "display": "Custom Style Sheet",
+                                "description": "The credential in the message that a style sheet extracts. When specified, provide the location for this style sheet.",
+                                "name": "custom-stylesheet"
+                            }
+                        ]
+                    },
+                    "summary": "Credential Type"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSLMMatchType"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSLMMatchType"
+                    }
+                },
+                "type": {
+                    "display": "Match Type",
+                    "name": "dmSLMMatchType",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "Per Extracted Value",
+                                "description": "Extract and keep a list of all unique values of the specified type. All configured SLM policies apply to each extracted value.",
+                                "name": "per-extracted-value"
+                            },
+                            {
+                                "display": "Exact",
+                                "description": "Match exact values. An SLM policy applies to only values that match.",
+                                "name": "exact-match"
+                            },
+                            {
+                                "display": "Regular Expression",
+                                "description": "Match against a PCRE-style expression. An SLM policy applies to only values that match.",
+                                "name": "regexp-match"
+                            }
+                        ]
+                    },
+                    "summary": "Match Type"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmURL"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmURL"
+                    }
+                },
+                "type": {
+                    "cli-arg": "url",
+                    "name": "dmURL"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "SLMCredClass",
+                "display": "SLM Credential Class",
+                "uri": "monitor/slm-cred",
+                "summary": "SLM Credential Class",
+                "cmd-group": "webservice",
+                "cli-alias": "slm-cred",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "CredType",
+                            "default": "aaa-mapped-credential",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSLMCredType"
+                            },
+                            "required": "true",
+                            "summary": "Manner to obtain credentials",
+                            "cli-alias": "type",
+                            "display": "Credential Type",
+                            "description": "The manner to obtain the credential value (user identity) for each transaction. The default is a mapped credential from an AAA action."
+                        },
+                        {
+                            "name": "CredMatchType",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "CredType",
+                                    "evaluation": "property-does-not-equal",
+                                    "value": "custom-stylesheet"
+                                }
+                            },
+                            "summary": "Matching algorithm to apply",
+                            "cli-alias": "match-type",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmSLMMatchType"
+                            },
+                            "display": "Match Type",
+                            "description": "The matching algorithm to determine which credentials to apply an SLM policy."
+                        },
+                        {
+                            "name": "CredValue",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Credential values to match",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-or",
+                                    "condition": [
+                                        {
+                                            "property-name": "CredMatchType",
+                                            "evaluation": "property-value-not-in-list",
+                                            "value": [
+                                                "exact-match",
+                                                "regexp-match"
+                                            ]
+                                        },
+                                        {
+                                            "property-name": "CredType",
+                                            "evaluation": "property-equals",
+                                            "value": "custom-stylesheet"
+                                        }
+                                    ]
+                                }
+                            },
+                            "array": "true",
+                            "cli-alias": "value",
+                            "display": "Credential Value",
+                            "description": "One or more credential values to match when the matching algorithm is for an exact match or regular expression."
+                        },
+                        {
+                            "name": "Stylesheet",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "CredType",
+                                    "evaluation": "property-equals",
+                                    "value": "custom-stylesheet"
+                                }
+                            },
+                            "summary": "Location of style sheet",
+                            "cli-alias": "stylesheet",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmURL"
+                            },
+                            "display": "Custom Style Sheet",
+                            "description": "The location of the style sheet when the credential type is for a custom style sheet."
+                        },
+                        {
+                            "name": "Header",
+                            "required-when": {
+                                "condition": {
+                                    "property-name": "CredType",
+                                    "evaluation": "property-value-in-list",
+                                    "value": [
+                                        "ip-from-header",
+                                        "request-header"
+                                    ]
+                                }
+                            },
+                            "summary": "Name of request header",
+                            "cli-alias": "header",
+                            "ignored-when": {
+                                "condition": {
+                                    "evaluation": "logical-true"
+                                }
+                            },
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Request Header",
+                            "description": "The name of the header when the credential type is for a request header."
+                        }
+                    ]
+                },
+                "description": "&lt;p>An SLM credentials class identifies a set of users (credentials) to be subject to an SLM policy. An SLM credentials class consists of the following types and properties:&lt;/p>&lt;ul>&lt;li>A credential type that specifies the manner to obtain user credentials&lt;/li>&lt;li>A match type that determines to which credentials to apply the SLM policy&lt;/li>&lt;li>Depending on the credential and match type, properties that identify specific instances of credentials&lt;/li>&lt;/ul>"
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/SLMCredClass"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/SLMCredClass"
+                }
+            }
+        }
+    }
+}

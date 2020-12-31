@@ -1,0 +1,286 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmMetaItem"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmMetaItem"
+                    }
+                },
+                "type": {
+                    "name": "dmMetaItem",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Select the category for the Metadata Item. The Metadata Item selections change according to the selected category. To create a custom Metadata Item, select either Custom Header or Custom Variable. For a custom Metadata Item, specify the name of the metadata item and its data source.",
+                                "required": "true",
+                                "summary": "Category for the Metadata Item",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmMetadataCategory"
+                                },
+                                "display": "Metadata Category",
+                                "name": "MetaCategory"
+                            },
+                            {
+                                "description": "&lt;p>For all except custom items, select a Metadata Item. The list provides an alias for the actual name of a protocol header or system variable. The elements contained in the XML nodeset that is returned by the Processing Metadata object have names that correspond to the actual data source&lt;/p>&lt;p>For custom items, enter an alphanumeric string for this custom alias. The string cannot contain white space.&lt;/p>",
+                                "required": "true",
+                                "summary": "Alias for the Metadata Item",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmXMLLocalName"
+                                },
+                                "display": "Metadata Item",
+                                "name": "MetaName"
+                            },
+                            {
+                                "name": "DataSource",
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "MetaCategory",
+                                        "evaluation": "property-value-in-list",
+                                        "value": [
+                                            "header",
+                                            "variable"
+                                        ]
+                                    }
+                                },
+                                "summary": "Data source for a custom item",
+                                "ignored-when": {
+                                    "condition": {
+                                        "evaluation": "logical-true"
+                                    }
+                                },
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Custom Data Source",
+                                "description": "For custom items only, enter the name of the protocol header or the name of the variable (service, context, or system) that contains the data to be returned in the metadata XML nodeset. The provided value is the name of the element in the returned nodeset that contains the data."
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmMetadataCategory"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmMetadataCategory"
+                    }
+                },
+                "type": {
+                    "name": "dmMetadataCategory",
+                    "value-list": {
+                        "value": [
+                            {
+                                "value-component": {
+                                    "name": "dpmq",
+                                    "display": "IBM MQ"
+                                },
+                                "display": "IBM MQ",
+                                "description": "The Metadata category to support IBM MQ services.",
+                                "name": "mq",
+                                "summary": "Metadata supported by IBM MQ"
+                            },
+                            {
+                                "value-component": {
+                                    "name": "dptibems",
+                                    "display": "TIBCO EMS"
+                                },
+                                "display": "TIBCO EMS",
+                                "description": "The Metadata category to support TIBCO EMS services.",
+                                "name": "tibco",
+                                "summary": "Metadata supported by TIBCO EMS"
+                            },
+                            {
+                                "value-component": {
+                                    "name": "dpwasjms",
+                                    "display": "WebSphere JMS"
+                                },
+                                "display": "WebSphere JMS",
+                                "description": "The Metadata category to support WebSphere JMS services.",
+                                "name": "wasjms",
+                                "summary": "Metadata supported by WebSphere JMS"
+                            },
+                            {
+                                "value-component": [
+                                    {
+                                        "name": "http",
+                                        "display": "HTTP"
+                                    },
+                                    {
+                                        "name": "https",
+                                        "display": "HTTPS"
+                                    }
+                                ],
+                                "display": "HTTP, HTTPS",
+                                "description": "The Metadata category to support HTTP and HTTPS protocols.",
+                                "name": "http",
+                                "summary": "Metadata supported by HTTP and HTTPS protocol services"
+                            },
+                            {
+                                "display": "Custom Header",
+                                "description": "The Metadata category to support user-defined metadata items from any physical or virtual protocol header.",
+                                "name": "header",
+                                "summary": "User-defined metadata based on names of protocol headers"
+                            },
+                            {
+                                "display": "Custom Variable",
+                                "description": "The Metadata category to support user-defined metadata items from any service, context, or system variable.",
+                                "name": "variable",
+                                "summary": "User-defined metadata based on variable names"
+                            }
+                        ]
+                    },
+                    "display": "Processing Metadata Categories"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmXMLLocalName"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmXMLLocalName"
+                    }
+                },
+                "type": {
+                    "cli-arg": "localname",
+                    "display": "XML Local Name",
+                    "description": "Set the local name for an XML element or attribute.",
+                    "name": "dmXMLLocalName",
+                    "summary": "The local name for an XML element or attribute."
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "ProcessingMetadata",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            }
+                        ],
+                        "name": "summary",
+                        "display": "Summary"
+                    },
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "UserSummary"
+                            },
+                            {
+                                "label-mode": "none",
+                                "name": "MetaItem"
+                            }
+                        ],
+                        "name": "main",
+                        "display": "Main"
+                    }
+                ],
+                "uri": "xml/metadata",
+                "display": "Processing Metadata",
+                "cmd-group": "aaapolicy",
+                "cli-alias": "metadata",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "MetaItem",
+                            "type": {
+                                "href": "/mgmt/types/default/dmMetaItem"
+                            },
+                            "summary": "Define a metadata item for this Processing Metadata.",
+                            "array": "true",
+                            "cli-alias": "meta-item",
+                            "display": "Metadata Item",
+                            "description": "Define a metadata item by selecting one from the predefined items for a Processing Metadata Category, or configure a custom metadata item for a \"customizable\" category to retrieve value from any arbitrary headers or variables."
+                        }
+                    ]
+                },
+                "description": "A Processing Metadata object contains a list of metadata items extracted from a message, such as protocol header values, or from the device processing scope, such as system variables. This list, or manifest, of item values is then returned by the metadata object in an XML nodeset. Currently used by an AAA Policy for Identity and Resource extraction."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/ProcessingMetadata"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/ProcessingMetadata"
+                }
+            }
+        }
+    }
+}

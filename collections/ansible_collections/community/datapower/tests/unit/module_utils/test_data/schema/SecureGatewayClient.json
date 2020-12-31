@@ -1,0 +1,301 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSecureGatewayACL"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSecureGatewayACL"
+                    }
+                },
+                "type": {
+                    "name": "dmSecureGatewayACL",
+                    "properties": {
+                        "property": [
+                            {
+                                "description": "Specify the host name or IP address of the application server. When blank, the rule applies to only the specified port on all hosts.",
+                                "required-when": {
+                                    "condition": {
+                                        "property-name": "RemotePort",
+                                        "evaluation": "property-equals",
+                                        "value": 0
+                                    }
+                                },
+                                "summary": "Host name or IP address of the application server",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmHostname"
+                                },
+                                "display": "Destination host",
+                                "name": "RemoteAddress"
+                            },
+                            {
+                                "name": "RemotePort",
+                                "default": 0,
+                                "maximum": "0xFFFF",
+                                "summary": "Listening port on the application server",
+                                "minimum": 0,
+                                "type": {
+                                    "href": "/mgmt/types/default/dmIPPort"
+                                },
+                                "display": "Destination port",
+                                "description": "Specify the listening port of the application server. The special value of 0 indicates that the rule applies to all ports on the specified host."
+                            },
+                            {
+                                "name": "Access",
+                                "default": "deny",
+                                "required": "true",
+                                "summary": "Indicate whether access to this application server and port should be allowed or denied.",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmSecureGatewayAccess"
+                                },
+                                "display": "Access",
+                                "description": "Indicate whether to allow or deny access to this application server and port. When you specify allow for any one member, all other destinations are denied except for the ones explicitly allowed."
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmHostname"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmHostname"
+                    }
+                },
+                "type": {
+                    "cli-arg": "dotted-ip or hostname",
+                    "name": "dmHostname",
+                    "format": "(a.b.c.d or hostname)"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmIPPort"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmIPPort"
+                    }
+                },
+                "type": {
+                    "cli-arg": "ip-port",
+                    "minimum": 0,
+                    "name": "dmIPPort",
+                    "maximum": "0xFFFF"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmSecureGatewayAccess"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmSecureGatewayAccess"
+                    }
+                },
+                "type": {
+                    "name": "dmSecureGatewayAccess",
+                    "value-list": {
+                        "value": [
+                            {
+                                "display": "allow",
+                                "description": "Allow access to this host and port.",
+                                "name": "allow"
+                            },
+                            {
+                                "display": "deny",
+                                "description": "Deny access to this host and port.",
+                                "name": "deny"
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "SecureGatewayClient",
+                "status-bindings": {
+                    "status": {
+                        "binding": {
+                            "property": {
+                                "name": "SecureGatewayClient",
+                                "select": "dmObjectName"
+                            }
+                        },
+                        "name": "SecureGatewayClientStatus"
+                    }
+                },
+                "display": "Secure Gateway Client (deprecated)",
+                "property-group": [
+                    {
+                        "member": [
+                            {
+                                "name": "mAdminState"
+                            },
+                            {
+                                "name": "GatewayID"
+                            },
+                            {
+                                "name": "UserSummary"
+                            }
+                        ],
+                        "name": "summary"
+                    },
+                    {
+                        "property-group": [
+                            {
+                                "member": [
+                                    {
+                                        "name": "mAdminState"
+                                    },
+                                    {
+                                        "name": "UserSummary"
+                                    },
+                                    {
+                                        "name": "GatewayID"
+                                    },
+                                    {
+                                        "name": "SecurityToken"
+                                    }
+                                ],
+                                "name": "general",
+                                "display": "General"
+                            },
+                            {
+                                "member": {
+                                    "name": "AccessControlList"
+                                },
+                                "name": "accesscontrol",
+                                "display": "Access Control List"
+                            }
+                        ],
+                        "name": "main",
+                        "display": "Main"
+                    }
+                ],
+                "uri": "cloud/sgclient",
+                "summary": "Secure Gateway client",
+                "platforms": {
+                    "platform": "software"
+                },
+                "cmd-group": "configuration",
+                "cli-alias": "sgclient",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Comments",
+                            "cli-alias": "summary",
+                            "name": "UserSummary",
+                            "summary": "Brief summary for user annotation."
+                        },
+                        {
+                            "name": "GatewayID",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "required": "true",
+                            "summary": "Gateway ID",
+                            "cli-alias": "gateway-id",
+                            "valid-regexp": "^[_a-zA-Z0-9-.@:]*$",
+                            "display": "Gateway ID",
+                            "description": "The Gateway ID generated by IBM Cloud for this Secure Gateway."
+                        },
+                        {
+                            "name": "SecurityToken",
+                            "valid-regexp": "^[_a-zA-Z0-9-.]*$",
+                            "summary": "Security token",
+                            "cli-alias": "security-token",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "display": "Security token",
+                            "description": "The Security Token assigned by Cloud for this Secure Gateway"
+                        },
+                        {
+                            "name": "AccessControlList",
+                            "type": {
+                                "href": "/mgmt/types/default/dmSecureGatewayACL"
+                            },
+                            "summary": "Access control list",
+                            "array": "true",
+                            "cli-alias": "acl",
+                            "display": "Access control list",
+                            "description": "The list of destination hosts and ports that are either allowed or denied access through this client."
+                        }
+                    ]
+                },
+                "description": "The Secure Gateway client is deprecated. The Secure Gateway client creates a secure tunnel to IBM Cloud for establishing TCP/IP communication with backend systems."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/SecureGatewayClient"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/SecureGatewayClient"
+                }
+            }
+        }
+    }
+}

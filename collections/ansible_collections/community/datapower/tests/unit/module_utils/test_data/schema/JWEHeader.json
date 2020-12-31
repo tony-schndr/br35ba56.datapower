@@ -1,0 +1,200 @@
+{
+    "schema": {
+        "types": [
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmAdminState"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmAdminState"
+                    }
+                },
+                "type": {
+                    "cli-arg": "enabled | disabled",
+                    "name": "dmAdminState",
+                    "value-list": {
+                        "value": [
+                            {
+                                "name": "enabled",
+                                "display": "enabled"
+                            },
+                            {
+                                "name": "disabled",
+                                "display": "disabled"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmString"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmString"
+                    }
+                },
+                "type": {
+                    "cli-arg": "string",
+                    "name": "dmString"
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmJOSEHeader"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmJOSEHeader"
+                    }
+                },
+                "type": {
+                    "name": "dmJOSEHeader",
+                    "properties": {
+                        "property": [
+                            {
+                                "display": "Name",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "description": "Name of a JOSE header.",
+                                "name": "HeaderName",
+                                "summary": "Name"
+                            },
+                            {
+                                "description": "Value of a JOSE header. If Name is 'crit', the value can be a comma separated list to have more than one value set to 'crit'. Other headers' values only accept string.",
+                                "required": "true",
+                                "summary": "Value",
+                                "type": {
+                                    "href": "/mgmt/types/default/dmString"
+                                },
+                                "display": "Value",
+                                "name": "HeaderValue"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "_links": {
+                    "doc": {
+                        "href": "/mgmt/docs/types/dmReference"
+                    },
+                    "self": {
+                        "href": "/mgmt/types/default/dmReference"
+                    }
+                },
+                "type": {
+                    "cli-arg": "object",
+                    "name": "dmReference"
+                }
+            }
+        ],
+        "metadata": {
+            "object": {
+                "licensed-feature": "IDG",
+                "name": "JWEHeader",
+                "display": "JWE Header",
+                "property-group": {
+                    "member": [
+                        {
+                            "name": "mAdminState"
+                        },
+                        {
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "JWEProtectedHeader"
+                        },
+                        {
+                            "name": "JWESharedUnprotectedHeader"
+                        },
+                        {
+                            "name": "Recipient"
+                        }
+                    ],
+                    "name": "main",
+                    "display": "Main"
+                },
+                "uri": "crypto/jwe-header",
+                "summary": "JWE Header object.",
+                "cmd-group": "crypto",
+                "cli-alias": "jwe-header",
+                "properties": {
+                    "property": [
+                        {
+                            "name": "mAdminState",
+                            "default": "enabled",
+                            "type": {
+                                "href": "/mgmt/types/default/dmAdminState"
+                            },
+                            "label": "Enable administrative state",
+                            "summary": "Set the administrative state of this configuration.",
+                            "cli-alias": "admin-state",
+                            "display": "Administrative state",
+                            "hoverhelp": "&lt;p>Set the administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set the check box.&lt;/li>&lt;li>To make inactive, clear the check box.&lt;/li>&lt;/ul>",
+                            "description": "&lt;p>The administrative state of the configuration.&lt;/p>&lt;ul>&lt;li>To make active, set to enabled.&lt;/li>&lt;li>To make inactive, set to disabled.&lt;/li>&lt;/ul>"
+                        },
+                        {
+                            "description": "A descriptive summary for the configuration.",
+                            "type": {
+                                "href": "/mgmt/types/default/dmString"
+                            },
+                            "summary": "Enter a descriptive summary for the configuration.",
+                            "cli-alias": "summary",
+                            "display": "Comments",
+                            "name": "UserSummary"
+                        },
+                        {
+                            "name": "JWEProtectedHeader",
+                            "type": {
+                                "href": "/mgmt/types/default/dmJOSEHeader"
+                            },
+                            "summary": "Add a JWE protected header to a JWE encrypt action.",
+                            "array": "true",
+                            "cli-alias": "protected-header",
+                            "display": "Protected Header",
+                            "description": "Add a JWE protected header to a JWE encrypt action."
+                        },
+                        {
+                            "name": "JWESharedUnprotectedHeader",
+                            "type": {
+                                "href": "/mgmt/types/default/dmJOSEHeader"
+                            },
+                            "summary": "Add a JWE shared unprotected header to a JWE encrypt action.",
+                            "array": "true",
+                            "cli-alias": "shared-unprotected-header",
+                            "display": "Shared Unprotected Header",
+                            "description": "Add a JWE shared unprotected header to a JWE encrypt action."
+                        },
+                        {
+                            "name": "Recipient",
+                            "type": {
+                                "href": "/mgmt/types/default/dmReference",
+                                "reference-to": {
+                                    "href": "/mgmt/metadata/default/JWERecipient"
+                                }
+                            },
+                            "required": "true",
+                            "summary": "Add a JWE recipient object to a JWE encrypt action.",
+                            "cli-alias": "recipient",
+                            "display": "Recipient",
+                            "description": "Add a JWE recipient object to a JWE encrypt action."
+                        }
+                    ]
+                },
+                "description": "JWE header object."
+            },
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/metadata/JWEHeader"
+                },
+                "self": {
+                    "href": "/mgmt/metadata/default/JWEHeader"
+                }
+            }
+        }
+    }
+}

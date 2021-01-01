@@ -37,7 +37,7 @@ class DPFileStore:
             if isBase64(content):
                 self.content = content
             else:
-                self.content = base64.b64encode(content)
+                self.content = base64.b64encode(str.encode(content)).decode('ascii')
         else:
             with open(params['src'], 'rb') as f:
                 file_content = f.read()

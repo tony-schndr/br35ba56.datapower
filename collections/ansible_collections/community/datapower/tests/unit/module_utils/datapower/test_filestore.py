@@ -13,7 +13,7 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.file
 
 class TestDPFileStore():
 
-    def test_build_params_validate_file_content(self):
+    def test_build_params_validate_file_passed_as_rel_path(self):
         params = {
             'domain': 'default',
             'content': None,
@@ -21,9 +21,9 @@ class TestDPFileStore():
             'dest' : '/local/',
             'overwrite' : True
         }
-        filestore_req =  DPFileStore(params)
-        assert filestore_req.content == 'SGVsbG8gd29ybGQgZnJvbSBBbnNpYmxlIERhdGFQb3dlciE='
-        assert filestore_req.file_name == 'test.txt'
+        filestore =  DPFileStore(params)
+        assert filestore.content == 'SGVsbG8gd29ybGQgZnJvbSBBbnNpYmxlIERhdGFQb3dlciE='
+        assert filestore.file_name == 'test.txt'
 
     def test_isBase64(self):
         assert isBase64('SGVsbG8gd29ybGQgZnJvbSBBbnNpYmxlIERhdGFQb3dlciE=')
@@ -36,8 +36,18 @@ class TestDPFileStore():
             'dest' : '/local/test.txt',
             'overwrite' : True
         }
-        filestore_req =  DPFileStore(params)
-        assert filestore_req.content == 'SGVsbG8gd29ybGQgZnJvbSBBbnNpYmxlIERhdGFQb3dlciE='
-        assert filestore_req.file_name == 'test.txt'
+        filestore =  DPFileStore(params)
+        assert filestore.content == 'SGVsbG8gd29ybGQgZnJvbSBBbnNpYmxlIERhdGFQb3dlciE='
+        assert filestore.file_name == 'test.txt'
 
 
+    def test_build_params_validate_content_passed_as_str(self):
+        params = {
+            'domain': 'default',
+            'content': 'Hello world from Ansible DataPower!',
+            'src' : None,
+            'dest' : '/local/test.txt',
+            'overwrite' : True
+        }
+        filestore =  DPFileStore(params)
+        assert filestore.content == 'SGVsbG8gd29ybGQgZnJvbSBBbnNpYmxlIERhdGFQb3dlciE='

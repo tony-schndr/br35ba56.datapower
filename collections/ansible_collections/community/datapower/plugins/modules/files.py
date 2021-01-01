@@ -83,8 +83,9 @@ from ansible.module_utils.connection import (
 from ansible.module_utils.basic import AnsibleModule
 
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-    DPFileStoreRequest
+    DPRequest
 )
+
 from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
     DPRequestHandler
 )
@@ -93,10 +94,12 @@ def run_module():
     module_args = dict(
         domain = dict(type='str', required=True),
         content = dict(type='str', required=False),
-        src = dict(type='str', required=False),
+        src = dict(type='str', required=False, aliases=['path']),
         dest = dict(type='str', required=True),
         backup = dict(type='bool', required=False),
-        overwrite = dict(type='bool', required=False, default=False)
+        overwrite = dict(type='bool', required=False, default=False),
+        recurse = dict(type='bool', recuired=False, default=False),
+        state = dict(type='str', required=True, choices=['absent', 'directory', 'file'])
     )
 
     module = AnsibleModule(

@@ -12,15 +12,21 @@ def isBase64(s):
 
 class DPFileStore:
     def __init__(self, params):
-        self.set_content(params)
-        self.set_filename(params)
-        self.set_dest(params)
-        self.src = params['src']
-        self.root_dir = self.dest.split('/')[0]
-        
+        if params['state'] == 'file':
+            self.set_content(params)
+            self.set_filename(params)
+            self.set_dest(params)
+            self.src = params['src']
+            self.root_dir = self.dest.split('/')[0]
+        else: # params['state'] == 'dir
+            self.set_file_gen(params)
         if self.root_dir not in ['local', 'sharedcert', 'cert']:
             raise AttributeError('dest path must specify one of (local | sharecert | cert) as the root of the path')
-        
+
+
+    def set_file_gen(self, params):
+        pass
+
 
     def set_dest(self, params):
         self.dest = params['dest'].lstrip('/').rstrip('/')

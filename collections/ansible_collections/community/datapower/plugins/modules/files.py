@@ -110,7 +110,7 @@ def run_module():
 
     connection = Connection(module._socket_path)
     dp_handler = DPRequestHandler(connection)
-    dp_req = DPFileStoreRequest(module.params)
+    dp_req = DPRequest()
     result = {}
     
 

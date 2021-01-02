@@ -6,6 +6,7 @@ import re
 
 import pytest
 
+
 from ansible_collections.community.datapower.plugins.module_utils.datapower.filestore import (
     DPFileStore,
     isBase64
@@ -98,12 +99,35 @@ class TestDPFileStore():
         
         assert filestore_abspath.content == filestore_base64.content and filestore_base64.content == filestore_str.content
 
+    def test_DPFileStore_set_dest_dir(self):
+        params = {
+            'domain': 'default',
+            'content': None,
+            'src' : './tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat',
+            'dest' : '/local/GetStat',
+            'overwrite' : True,
+            'state' : 'directory'
+        }
+        filestore = DPFileStore(params)
+        assert filestore.dest == '/local/GetStat'
+
+
+
     def test_build_params_validate_directory_file_upload_generator(self):
         params = {
             'domain': 'default',
             'content': None,
-            'src' : './tests/unit/module_utils/test_data/copy/test.txt',
-            'dest' : '/local/',
+            'src' : './tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat',
+            'dest' : '/local/GetStat',
             'overwrite' : True,
             'state' : 'directory'
         }
+        filestore = DPFileStore(params)
+        assert sorted(list(filestore.dirs())) == sorted(
+            [
+                '/local/GetStat/Route',
+                '/local/GetStat/Processing',
+                '/local/GetStat/Processing/Route'
+            ]
+        )
+

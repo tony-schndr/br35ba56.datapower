@@ -4,6 +4,8 @@ __metaclass__ = type
 
 import base64
 import os
+from glob import glob
+
 
 def isBase64(s):
     try:
@@ -19,25 +21,27 @@ class DPFileStore:
         if params['state'] == 'file':
             self.set_content(params)
             self.set_filename(params)
-        
-    
 
     def set_src(self, src):
         if src:
             self.src = src.rstrip('/')
 
-
     def dirs(self):
         for r, d, f in os.walk(self.src):
             dir = r[len(self.src):].lstrip('/').rstrip('/')
             if len(dir) != 0:
-                yield self.dest + '/' + dir 
+                yield self.dest + '/' + dir
 
+    def files(self):
+        for g in glob(self.src + '/**/*', recursive=True):
+            if os.path.isfile(g):
+                yield g
 
     def set_dest(self, dest):
         root_dir = dest.lstrip('/').rstrip('/').split('/')[0]
         if root_dir not in ['local', 'sharedcert', 'cert']:
-            raise AttributeError('dest path must specify one of (local | sharecert | cert) as the root of the path')
+            raise AttributeError(
+                'dest path must specify one of (local | sharecert | cert) as the root of the path')
 
         self.dest = '/' + dest.lstrip('/').rstrip('/')
 

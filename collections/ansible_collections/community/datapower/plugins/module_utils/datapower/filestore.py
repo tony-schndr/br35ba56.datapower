@@ -22,21 +22,6 @@ class DPFileStore:
             self.set_content(params)
             self.set_filename(params)
 
-    def set_src(self, src):
-        if src:
-            self.src = src.rstrip('/')
-
-    def dirs(self):
-        for r, d, f in os.walk(self.src):
-            dir = r[len(self.src):].lstrip('/').rstrip('/')
-            if len(dir) != 0:
-                yield self.dest + '/' + dir
-
-    def files(self):
-        for g in glob(self.src + '/**/*', recursive=True):
-            if os.path.isfile(g):
-                yield g
-
     def set_dest(self, dest):
         root_dir = dest.lstrip('/').rstrip('/').split('/')[0]
         if root_dir not in ['local', 'sharedcert', 'cert']:
@@ -59,6 +44,25 @@ class DPFileStore:
             else:
                 self.content = base64.b64encode(str.encode(content)).decode()
         else:
-            with open(params['src'], 'rb') as f:
-                file_content = f.read()
-                self.content = base64.b64encode(file_content).decode()
+            self.content = self.get_local_content(params['src'])
+
+    def set_src(self, src):
+            if src:
+                self.src = src.rstrip('/')
+
+    def dirs(self):
+        for r, d, f in os.walk(self.src):
+            dir = r[len(self.src):].lstrip('/').rstrip('/')
+            if len(dir) != 0:
+                yield self.dest + '/' + dir
+
+    def files(self):
+        for g in glob(self.src + '/**/*', recursive=True):
+            if os.path.isfile(g):
+                yield g, self.dest + '/' + g[len(self.src):].strip('/').rstrip('/')
+
+    def get_local_content(self, f):
+         with open(f, 'rb') as fb:
+            data = fb.read()
+            return base64.b64encode(data).decode()
+            

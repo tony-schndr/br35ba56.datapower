@@ -131,8 +131,6 @@ class TestDPFileStore():
         )
 
     def test_DPFileStore_files(self):
-
-
         params = {
             'domain': 'default',
             'content': None,
@@ -142,7 +140,35 @@ class TestDPFileStore():
             'state': 'directory'
         }
         filestore = DPFileStore(params)
-        assert sorted(filestore.files()) == sorted(['/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/getDomainMemStatus.js', '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/setDeviceName.xsl', '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/getMem.js', '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/getServicesMemStatus.js', '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/getCPU.js', '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/callGetStat.xsl', '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Route/getDomainMemStatus.js', '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Route/setDeviceName.xsl', '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Route/getMem.js', '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Route/getServicesMemStatus.js', '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Route/getCPU.js', '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Route/callGetStat.xsl', '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/getDomainMemStatus.js', '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/setDeviceName.xsl', '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/getMem.js', '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/getServicesMemStatus.js', '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/getCPU.js', '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/callGetStat.xsl', '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/Route/getDomainMemStatus.js', '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/Route/setDeviceName.xsl', '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/Route/getMem.js', '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/Route/getServicesMemStatus.js', '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/Route/getCPU.js', '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/Route/callGetStat.xsl'])
+        assert sorted(filestore.files()) == sorted(
+            [
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/getDomainMemStatus.js', '/local/GetStat/getDomainMemStatus.js'),
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/setDeviceName.xsl', '/local/GetStat/setDeviceName.xsl'),
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/getMem.js', '/local/GetStat/getMem.js'),
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/getServicesMemStatus.js', '/local/GetStat/getServicesMemStatus.js'),
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/getCPU.js', '/local/GetStat/getCPU.js'),
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/callGetStat.xsl', '/local/GetStat/callGetStat.xsl'),
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Route/getDomainMemStatus.js', '/local/GetStat/Route/getDomainMemStatus.js'),
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Route/setDeviceName.xsl', '/local/GetStat/Route/setDeviceName.xsl'),
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Route/getMem.js', '/local/GetStat/Route/getMem.js'),
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Route/getServicesMemStatus.js', '/local/GetStat/Route/getServicesMemStatus.js'),
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Route/getCPU.js', '/local/GetStat/Route/getCPU.js'),
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Route/callGetStat.xsl', '/local/GetStat/Route/callGetStat.xsl'),
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/getDomainMemStatus.js', '/local/GetStat/Processing/getDomainMemStatus.js'),
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/setDeviceName.xsl', '/local/GetStat/Processing/setDeviceName.xsl'),
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/getMem.js', '/local/GetStat/Processing/getMem.js'),
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/getServicesMemStatus.js', '/local/GetStat/Processing/getServicesMemStatus.js'),
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/getCPU.js', '/local/GetStat/Processing/getCPU.js'),
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/callGetStat.xsl', '/local/GetStat/Processing/callGetStat.xsl'),
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/Route/getDomainMemStatus.js', '/local/GetStat/Processing/Route/getDomainMemStatus.js'),
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/Route/setDeviceName.xsl', '/local/GetStat/Processing/Route/setDeviceName.xsl'),
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/Route/getMem.js', '/local/GetStat/Processing/Route/getMem.js'),
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/Route/getServicesMemStatus.js', '/local/GetStat/Processing/Route/getServicesMemStatus.js'),
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/Route/getCPU.js', '/local/GetStat/Processing/Route/getCPU.js'),
+                ('./tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/Processing/Route/callGetStat.xsl', '/local/GetStat/Processing/Route/callGetStat.xsl')
+            ]
+        )
+
 '''
 import filestore
 from filestore import DPFileStore

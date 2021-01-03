@@ -6,10 +6,7 @@ __metaclass__ = type
 import time
 import base64
 from copy import copy
-from ansible.module_utils._text import to_text
 from ansible.module_utils.six.moves.urllib.parse import urlencode
-from ansible.module_utils.connection import Connection, ConnectionError
-from ansible.module_utils._text import to_text
 
 MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI = '/mgmt/config/{0}/{1}' 
 MGMT_CONFIG_WITH_NAME_URI = '/mgmt/config/{0}/{1}/{2}'
@@ -41,6 +38,23 @@ class DPRequest:
         self.body = None
         self.path = None
         self.method = None
+
+class DPFileStoreRequest(DPRequest):
+    def __init__(self, fs):
+        self.fs = fs
+
+    @staticmethod
+    def get_body(dir):
+        return {
+            "directory": {
+                "name": dir
+            }
+        }
+
+    def dir_reqs(self, method):
+        for dir in self.fs.dirs():
+            yield self.get_body(dir)
+
 
         
         
@@ -118,46 +132,7 @@ class DPManageConfigRequest(DPRequest):
         else:
             raise AttributeError('no valid URI could be derived')
 
-    def check_for_array(self, config, class_name):
-        if class_name in config:
-            if len(config[class_name]) == 2 and 'name' in config[class_name]:
-                for k in list(config[class_name].keys()):
-                    if k != 'name':
-                        prop = self.schema.get_prop(k)
-                        if hasattr(prop, 'array'):
-                            return prop.array
-                return False
-            elif len(config[class_name]) == 1:
-                k = list(config[class_name].keys())[0] 
-                if k != 'name':
-                    prop = self.schema.get_prop(k)
-                    if hasattr(prop, 'array'):
-                        return prop.array
-                    else:
-                        return False
-                else:
-                    return False
-        if len(config.keys()) == 1:
-            k = list(config.keys())[0] 
-            prop = self.schema.get_prop(k)
-            if hasattr(prop, 'array'):
-                return prop.array
-            else:
-                return False
-        
-        return False
 
-    def set_body_for_array_field(self, config, class_name):
-        body = {}
-        if class_name in config:
-            body = copy(config.get(class_name))
-        else:
-            body = copy(config)
-        if 'name' in body:
-            del body['name']
-        if len(list(body.keys())) != 1:
-            raise AttributeError('If this error is thrown there may be a bug, at this point the body/config should only have 1 key in it.')
-        self.body = body
    
 class DPGetConfigRequest(DPManageConfigRequest):
     def __init__(self, dp_mgmt_conf):

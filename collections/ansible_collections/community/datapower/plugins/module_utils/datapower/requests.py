@@ -51,15 +51,16 @@ class DPFileStoreRequest(DPRequest):
             }
         }
 
-    def dir_reqs(self, method):
+    def dir_reqs(self, method='GET'):
         for dir in self.fs.dirs():
-            yield self.get_body(dir)
+            yield  method, self.get_body(dir)
+
+    @staticmethod
+    def get_path(domain, path):
+        return FILESTORE_URI_POST.format(domain, path)
 
 
-        
-        
 class DPActionQueueRequest(DPRequest):
-    
     def __init__(self, dp_action):
         super(DPActionQueueRequest, self).__init__()
         self.path = ACTION_QUEUE_URI.format(dp_action.domain)

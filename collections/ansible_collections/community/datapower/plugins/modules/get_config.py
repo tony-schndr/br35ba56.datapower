@@ -142,7 +142,7 @@ def run_module():
     
     module = AnsibleModule(
         argument_spec=module_args,
-        supports_check_mode=False,
+        supports_check_mode=True,
         mutually_exclusive=mutually_exclusive
     )
     
@@ -155,7 +155,7 @@ def run_module():
     except ConnectionError as e:
         dp_resp = to_text(e)
     result = {}
-    result['dp_resp'] = dp_resp
+    result['response'] = dp_resp
 
     module.exit_json(**result)
 

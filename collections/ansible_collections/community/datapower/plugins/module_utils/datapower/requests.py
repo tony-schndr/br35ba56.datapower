@@ -16,8 +16,8 @@ MGMT_CONFIG_URI = '/mgmt/config/'
 ACTION_QUEUE_URI = '/mgmt/actionqueue/{0}'
 ACTION_QUEUE_SCHEMA_URI = '/mgmt/actionqueue/{0}/operations/{1}?schema-format=datapower'
 ACTION_QUEUE_OPERATIONS_URI = '/mgmt/actionqueue/{0}/operations'
-FILESTORE_URI_PUT = '/mgmt/filestore/{0}/{1}/{2}'
-FILESTORE_URI_POST = '/mgmt/filestore/{0}/{1}'
+FILESTORE_URI_PATH = '/mgmt/filestore/{0}/{1}/{2}'
+FILESTORE_URI_DIR = '/mgmt/filestore/{0}/{1}'
 
 VALID_METHODS = ['GET', 'POST', 'PUT', 'DELETE']
 
@@ -39,6 +39,7 @@ class DPRequest:
         self.path = None
         self.method = None
 
+
 class DPFileStoreRequest(DPRequest):
     def __init__(self, fs):
         self.fs = fs
@@ -53,12 +54,10 @@ class DPFileStoreRequest(DPRequest):
 
     def dir_reqs(self, method='GET'):
         for dir in self.fs.dirs():
-            yield  method, self.get_body(dir)
+            yield self.get_path(self.fs.domain, 'dir'), method, self.get_body(dir)
 
-    @staticmethod
-    def get_path(domain, path):
-        return FILESTORE_URI_POST.format(domain, path)
-
+    def get_dir_path(self, domain, root_dir):
+        return FILESTORE_URI_DIR.format(domain, root_dir)
 
 class DPActionQueueRequest(DPRequest):
     def __init__(self, dp_action):
@@ -76,6 +75,7 @@ class DPActionQueueRequest(DPRequest):
             self.info_path = ACTION_QUEUE_SCHEMA_URI.format(dp_action.domain, dp_action.action)
         else:
             self.info_path = ACTION_QUEUE_OPERATIONS_URI.format(dp_action.domain)
+
 
 class DPManageConfigRequest(DPRequest):
      
@@ -134,7 +134,6 @@ class DPManageConfigRequest(DPRequest):
             raise AttributeError('no valid URI could be derived')
 
 
-   
 class DPGetConfigRequest(DPManageConfigRequest):
     def __init__(self, dp_mgmt_conf):
         #super(DPGetConfigRequest, self).__init__()
@@ -155,102 +154,3 @@ class DPGetConfigRequest(DPManageConfigRequest):
         if hasattr(dp_mgmt_conf, 'depth') and dp_mgmt_conf.depth:
             self.options['depth'] = dp_mgmt_conf.depth
         self.path = self.path + '?' + urlencode(self.options, doseq=0)
-
-
-'''
-class DPAction(DPRequest):
-    def __init__(self, module):
-        super(DPAction, self).__init__(module)
-        self.path = ACTION_QUEUE_URI.format(self.domain)
-        self.method = 'POST'
-
-
-
-class DPUploadFile(DPRequest):
-    def __init__(self, module):
-        super(DPUploadFile, self).__init__(module)  
-        # Always strip /
-        self.dir = self.dir.rstrip('/').lstrip('/')
-        if self.overwrite:
-            self.method = 'PUT'
-            self.path = FILESTORE_URI_PUT.format(self.domain, self.dir, self.filename)
-        else:
-            self.method = 'POST'
-            self.path = FILESTORE_URI_POST.format(self.domain, self.dir)
-       
-        self.body = {
-            'file': {
-                'name': self.filename,
-                'content': self.content
-            }
-        }
-
-
-class DPExportList:
-    def __init__(self, objects):
-        for obj in objects:
-            for k, v in obj.items():
-                if k == 'name' or k == 'class':
-                    continue
-                # Need a couple strips here to accommodate for - and _ in python code.
-                # Keys need to match DP REST interface.
-                obj[k.replace('_', '-')] = v
-                del obj[k]
-        self.objects = objects
-    def _get_export_list(self):
-        return self.objects
-
-
-class DPConfigActions(DPRequest):
-
-    def __init__(self, module):
-        super(DPConfigActions, self).__init__(module)
-
-    def _process_request(self, method, path, body):
-        result = super(DPConfigActions, self)._process_request(method, path, body)
-        export_path = None
-        if result.get(RESPONSE_KEY).get('_links', None):
-            export_path = result.get(RESPONSE_KEY)['_links']['location']['href']
-        else:
-            return result
-        if export_path:
-            while True:
-                exp_res = super(DPConfigActions, self)._process_request('GET', export_path, body=None)
-                if exp_res.get(RESPONSE_KEY)['status'] == 'completed':
-                    return exp_res
-                time.sleep(2)
-        return result
-
-
-class DPExport(DPConfigActions):
-
-    def __init__(self, module):
-        super(DPExport, self).__init__(module)
-        if self.body.get('Export').get('Domain') and self.body.get('Export').get('Object'):
-            raise AttributeError('Domain and Object are mutually exclusive')
-        if self.body.get('Export').get('Domain', None):
-            list_type = 'Domain'
-        elif self.body.get('Export').get('Object', None):
-            list_type = 'Object'
-        else: 
-            list_type = 'All'
-        self.path = self.get_path()
-        self.method = 'POST'
-        if list_type != 'All':
-            dp_exports = DPExportList(
-                self.body.get('Export').get(list_type)
-            )._get_export_list()
-            self.body['Export'][list_type] = dp_exports
-
-
-    def get_path(self):
-        return ACTION_QUEUE_URI.format(self.domain)
-
-
-class DPLoadConfig(DPConfigActions):
-
-    def __init__(self, module):
-        super(DPLoadConfig, self).__init__(module)
-        self.path = ACTION_QUEUE_URI.format(self.domain)
-        self.method = 'POST'
-'''

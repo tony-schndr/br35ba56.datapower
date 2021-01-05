@@ -10,9 +10,13 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
     DPManageConfigRequest,
     DPGetConfigRequest,
     DPActionQueueRequest,
+    DPFileStoreRequest,
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     DPManageConfigObject
+)
+from ansible_collections.community.datapower.plugins.module_utils.datapower.filestore import (
+    DPFileStore
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.actionqueue import (
     DPActionQueue
@@ -23,6 +27,27 @@ from ansible_collections.community.datapower.tests.unit.module_utils.test_data i
 )
 # Tests building requests objects from the DPManageConfigObject.
 
+
+def test_DPFileStoreRequest_get_body():
+    dir = '/local/test1/'
+    assert DPFileStoreRequest.get_body(dir) == { 
+        'directory': {
+            'name' : dir
+        }
+    }
+
+def test_DPFileStoreRequest_get_path_type_dir():
+    params = {
+        'domain': 'default',
+        'content': None,
+        'src': './tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat',
+        'dest': '/local/GetStat',
+        'overwrite': True,
+        'state': 'directory'
+    }
+    fs = DPFileStore(params)
+    fs_req = DPFileStoreRequest(fs)
+    assert fs_req.get_dir_path('default', 'local') == '/mgmt/filestore/default/local'
 
 def test_DPActionQueueRequest_1():
     task_args = {
@@ -40,7 +65,6 @@ def test_DPActionQueueRequest_1():
         }
     assert dp_action_req.info_path == '/mgmt/actionqueue/default/operations/SaveConfig?schema-format=datapower'
     
-
 def test_DPActionQueueRequest_2():
     task_args = {
         'domain':'default',
@@ -49,7 +73,6 @@ def test_DPActionQueueRequest_2():
             'RemoteHost': 'www.google.com'
         }
     }
-    valid_actions = action_test_data.valid_actions
 
     dp_action = DPActionQueue(**task_args)
     dp_action_req = DPActionQueueRequest(dp_action)

@@ -2,7 +2,7 @@
   hosts: dp1
   connection: local
   tasks:
-    - name: Create 
+    - name: Try to apply some config to a domain
       community.datapower.apply_config:
         state: present
         domain: default
@@ -11,8 +11,8 @@
             name: valcred
             mAdminState: enabled
             Certificate:
-            - value: Test1
             - value: Test2
+            - value: Test1
             CertValidationMode: legacy
             UseCRL: 'off'
             RequireCRL: 'on'
@@ -20,7 +20,3 @@
             ExplicitPolicy: 'off'
             CheckDates: 'on'
     
-    - name: Unquiesce DP after the change
-      community.datapower.action:
-        domain: default
-        action: SaveConfig

@@ -169,7 +169,32 @@ class TestDPFileStore():
             ]
         )
 
-'''
+    def test_DPFileStore_root_dir(self):
+        params = {
+            'domain': 'default',
+            'content': None,
+            'src': './tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat',
+            'dest': '/local/GetStat',
+            'overwrite': True,
+            'state': 'directory'
+        }
+        filestore = DPFileStore(params)
+        assert filestore.root_dir == 'local'
+        params = {
+            'domain': 'default',
+            'content': None,
+            'src': './tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat',
+            'dest': '/ll/GetStat', # malformed root dir
+            'overwrite': True,
+            'state': 'directory'
+        }
+        try:
+            filestore = DPFileStore(params)
+        except:
+            assert True
+
+
+'''#Used for testing this in python idle
 import filestore
 from filestore import DPFileStore
 from glob import glob

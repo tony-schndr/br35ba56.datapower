@@ -16,21 +16,25 @@ def isBase64(s):
 
 class DPFileStore:
     def __init__(self, params):
+        self.domain = params['domain']
         self.set_dirs(params['dest'])
         self.set_src(params['src'])
         if params['state'] == 'file':
             self.set_content(params)
             self.set_filename(params)
+            self.set_filepath_dest(params)
 
+    def set_filepath_dest(self, params):
+        self.dest = self.dest + '/' + self.file_name
+        self.dest = self.dest.lstrip('/')
+    
     def set_dirs(self, dest):
         root_dir = dest.lstrip('/').rstrip('/').split('/')[0]
         if root_dir in ['local', 'sharedcert', 'cert']:
             self.root_dir = root_dir
         else:
-            raise AttributeError('dest path must specify one of (local | sharecert | cert) as the root of the path')
-        
-            
-        self.dest = '/' + dest.lstrip('/').rstrip('/')
+            raise AttributeError('dest path must specify one of (local | sharecert | cert) as the root of the path')            
+        self.dest = '/'.join(dest.lstrip('/').rstrip('/').split('/')[1:])
 
     def set_filename(self, params):
         if params['src']:
@@ -53,18 +57,26 @@ class DPFileStore:
                 self.src = src.rstrip('/')
 
     def dirs(self):
+        #yield self.dest
         for r, d, f in os.walk(self.src):
-            dir = r[len(self.src):].lstrip('/').rstrip('/')
+            dir = self.dest + '/' + r[len(self.src):].strip('/')
             if len(dir) != 0:
-                yield self.dest + '/' + dir
+                yield dir
 
     def files(self):
         for g in glob(self.src + '/**/*', recursive=True):
             if os.path.isfile(g):
-                yield g, self.dest + '/' + g[len(self.src):].strip('/').rstrip('/')
+                path = self.dest + '/' + g[len(self.src):].strip('/').rstrip('/')
+                file_name = g.split('/')[-1]
+                content = self.get_local_content(g)
+                yield path, file_name, content,
+
 
     def get_local_content(self, f):
-         with open(f, 'rb') as fb:
-            data = fb.read()
+        if os.path.isfile(f):
+            with open(f, 'rb') as fb:
+                data = fb.read()
             return base64.b64encode(data).decode()
+        else:
+            raise FileNotFoundError
             

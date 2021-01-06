@@ -23,7 +23,8 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.acti
 )
 from ansible_collections.community.datapower.tests.unit.module_utils.test_data import (
     dp_mgmt_test_data as test_data,
-    dp_actionq_test_data as action_test_data
+    dp_actionq_test_data as action_test_data,
+    files_data
 )
 # Tests building requests objects from the DPManageConfigObject.
 
@@ -48,6 +49,74 @@ def test_DPFileStoreRequest_get_path_type_dir():
     fs = DPFileStore(params)
     fs_req = DPFileStoreRequest(fs)
     assert fs_req.get_dir_path('default', 'local') == '/mgmt/filestore/default/local'
+
+def test_DPFileStoreRequest_get_dir_reqs():
+    params = {
+        'domain': 'default',
+        'content': None,
+        'src': './tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat',
+        'dest': '/local/GetStat',
+        'overwrite': True,
+        'state': 'directory'
+    }
+    fs = DPFileStore(params)
+    fs_req = DPFileStoreRequest(fs)
+    requests = [
+        ('/mgmt/filestore/default/local', 'GET', {'directory': {'name': 'GetStat/'}}),
+        ('/mgmt/filestore/default/local', 'GET', {'directory': {'name': 'GetStat/Route'}}),
+        ('/mgmt/filestore/default/local', 'GET', {'directory': {'name': 'GetStat/Processing'}}),
+        ('/mgmt/filestore/default/local', 'GET', {'directory': {'name': 'GetStat/Processing/Route'}})
+    ]
+
+    assert list(fs_req.dir_reqs()) == requests
+
+def test_DPFileStoreRequest_get_file_reqs():
+    params = {
+        'domain': 'default',
+        'content': None,
+        'src': './tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat',
+        'dest': '/local/GetStat',
+        'overwrite': True,
+        'state': 'directory'
+    }
+    fs = DPFileStore(params)
+    fs_req = DPFileStoreRequest(fs)
+    assert sorted(list(fs_req.file_reqs())) == sorted(files_data.file_reqs)
+
+def test_DPFileStoreRequest_get_file_req_root_dest():
+    params = {
+        'domain': 'default',
+        'content': None,
+        'src': './tests/unit/module_utils/test_data/copy/test.txt',
+        'dest': '/local/',
+        'overwrite': True,
+        'state': 'file'
+    }
+    fs = DPFileStore(params)
+    fs_req = DPFileStoreRequest(fs)
+    
+    file_req = fs_req.file_req()
+    assert file_req[0] == '/mgmt/filestore/default/local/test.txt'
+    assert file_req[1] == 'GET'
+    assert file_req[2]['file']['name'] == 'test.txt'
+
+def test_DPFileStoreRequest_get_file_req():
+
+    params = {
+            'domain': 'default',
+            'content': None,
+            'src': './tests/unit/module_utils/test_data/copy/test.txt',
+            'dest': '/local/GetStats',
+            'overwrite': True,
+            'state': 'file'
+        }
+    fs = DPFileStore(params)
+    fs_req = DPFileStoreRequest(fs)
+    
+    file_req = fs_req.file_req()
+    assert file_req[0] == '/mgmt/filestore/default/local/GetStats/test.txt'
+    assert file_req[1] == 'GET'
+    assert file_req[2]['file']['name'] == 'test.txt'
 
 def test_DPActionQueueRequest_1():
     task_args = {

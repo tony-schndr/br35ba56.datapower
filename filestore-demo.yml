@@ -17,3 +17,15 @@
         src: "{{ dir_path }}"
         dest: /local/Services/GetStat
         state: directory
+
+    - name: Delete GetStat
+      community.datapower.files:
+        domain: default
+        dest: /local/Services/GetStat
+        state: absent
+    
+    - name: Delete demo.txt
+      community.datapower.files:
+        domain: default
+        dest: /local/demo.txt
+        state: absent

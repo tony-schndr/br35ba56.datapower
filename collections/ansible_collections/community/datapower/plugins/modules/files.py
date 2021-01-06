@@ -178,14 +178,25 @@ def run_module():
             except ConnectionError as ce:
                 responses['files'].append(to_text(ce))
                 result['responses'] = responses
-                module.fail_json(result)
+                module.fail_json(msg=to_text(ce), result=result)
 
         result['requests'] = requests
         result['responses'] = responses
         module.exit_json(**result)
 
     else: #module.params['state'] == 'absent'
-        pass   
+        try:
+            fs_req = req.del_req()
+            result['request'] = {'path': fs_req[0],'method': fs_req[1],'body': fs_req[2]}
+            response = dp_handler.process_request(fs_req[0], fs_req[1], fs_req[2])
+            result['response'] = response
+            result['changed'] = True
+            module.exit_json(**result)
+        except ConnectionError as ce:
+            response = to_text(ce)
+            result['response'] = response
+            result['changed'] = False
+            module.fail_json(msg=response, **result)
 
 
 def main():

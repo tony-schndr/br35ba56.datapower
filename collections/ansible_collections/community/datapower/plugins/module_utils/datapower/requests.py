@@ -79,7 +79,8 @@ class DPFileStoreRequest(DPRequest):
         }
         return path, method, body
 
-    def del_req(self)
+    def del_req(self):
+        return (FILESTORE_URI_PATH.format(self.fs.domain, self.fs.root_dir, self.fs.dest), 'DELETE', None)
 
 
     def check_for_dir_req(self, dir):

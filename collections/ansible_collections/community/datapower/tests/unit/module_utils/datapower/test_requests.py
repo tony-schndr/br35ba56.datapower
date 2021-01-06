@@ -37,19 +37,6 @@ def test_DPFileStoreRequest_get_body():
         }
     }
 
-def test_DPFileStoreRequest_get_path_type_dir():
-    params = {
-        'domain': 'default',
-        'content': None,
-        'src': './tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat',
-        'dest': '/local/GetStat',
-        'overwrite': True,
-        'state': 'directory'
-    }
-    fs = DPFileStore(params)
-    fs_req = DPFileStoreRequest(fs)
-    assert fs_req.get_dir_path('default', 'local') == '/mgmt/filestore/default/local'
-
 def test_DPFileStoreRequest_get_dir_reqs():
     params = {
         'domain': 'default',
@@ -61,14 +48,37 @@ def test_DPFileStoreRequest_get_dir_reqs():
     }
     fs = DPFileStore(params)
     fs_req = DPFileStoreRequest(fs)
+
     requests = [
-        ('/mgmt/filestore/default/local', 'GET', {'directory': {'name': 'GetStat/'}}),
-        ('/mgmt/filestore/default/local', 'GET', {'directory': {'name': 'GetStat/Route'}}),
-        ('/mgmt/filestore/default/local', 'GET', {'directory': {'name': 'GetStat/Processing'}}),
-        ('/mgmt/filestore/default/local', 'GET', {'directory': {'name': 'GetStat/Processing/Route'}})
+        ('/mgmt/filestore/default/local', 'POST', {'directory': {'name': 'GetStat'}}),
+        ('/mgmt/filestore/default/local', 'POST', {'directory': {'name': 'GetStat/Route'}}),
+        ('/mgmt/filestore/default/local', 'POST', {'directory': {'name': 'GetStat/Processing'}}),
+        ('/mgmt/filestore/default/local', 'POST', {'directory': {'name': 'GetStat/Processing/Route'}})
+    ]
+    posts = [r[1] for r in fs_req.dir_reqs()]
+    assert posts == requests
+
+    requests = [
+        ('/mgmt/filestore/default/local/GetStat', 'GET', None),
+        ('/mgmt/filestore/default/local/GetStat/Route', 'GET', None),
+        ('/mgmt/filestore/default/local/GetStat/Processing', 'GET', None),
+        ('/mgmt/filestore/default/local/GetStat/Processing/Route', 'GET', None)
     ]
 
-    assert list(fs_req.dir_reqs()) == requests
+    gets = [r[0] for r in fs_req.dir_reqs()]
+    assert gets == requests
+
+def test_DPFileStoreRequest_check_for_dir_req():
+    params = {
+        'domain': 'default',
+        'content': None,
+        'src': './tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat',
+        'dest': '/local/GetStat',
+        'overwrite': True,
+        'state': 'directory'
+    }
+    fs = DPFileStore(params)
+    fs_req = DPFileStoreRequest(fs)
 
 def test_DPFileStoreRequest_get_file_reqs():
     params = {

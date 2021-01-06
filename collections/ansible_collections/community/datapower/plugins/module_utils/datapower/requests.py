@@ -52,10 +52,12 @@ class DPFileStoreRequest(DPRequest):
             }
         }
 
-    def dir_reqs(self, method='GET'):
+    def dir_reqs(self):
         for dir in self.fs.dirs():
-            yield self.get_dir_path(self.fs.domain, self.fs.root_dir), method, self.get_body(dir)
-
+            if self.get_body(dir)['directory']['name'] == 'local':
+                continue
+            yield (FILESTORE_URI_PATH.format(self.fs.domain, self.fs.root_dir, dir), 'GET', None), (FILESTORE_URI_DIR.format(self.fs.domain, self.fs.root_dir), 'POST', self.get_body(dir))
+               
     def file_reqs(self, method='GET'):
         for file in self.fs.files():
             path = FILESTORE_URI_PATH.format(self.fs.domain, self.fs.root_dir, file[0])
@@ -76,9 +78,12 @@ class DPFileStoreRequest(DPRequest):
             }
         }
         return path, method, body
-        
-    def get_dir_path(self, domain, root_dir):
-        return FILESTORE_URI_DIR.format(domain, root_dir)
+
+    def del_req(self)
+
+
+    def check_for_dir_req(self, dir):
+        return FILESTORE_URI_PATH.format(self.fs.domain, self.fs.root_dir, dir), 'GET', None
 
 class DPActionQueueRequest(DPRequest):
     def __init__(self, dp_action):

@@ -148,7 +148,7 @@ class TestDPFileStore():
         filestore = DPFileStore(params)
         assert sorted(list(filestore.dirs())) == sorted(
             [
-                'GetStat/',
+                'GetStat',
                 'GetStat/Route',
                 'GetStat/Processing',
                 'GetStat/Processing/Route'

@@ -61,7 +61,7 @@ class DPFileStore:
         for r, d, f in os.walk(self.src):
             dir = self.dest + '/' + r[len(self.src):].strip('/')
             if len(dir) != 0:
-                yield dir
+                yield dir.lstrip('/').rstrip('/')
 
     def files(self):
         for g in glob(self.src + '/**/*', recursive=True):

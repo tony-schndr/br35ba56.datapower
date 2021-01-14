@@ -128,6 +128,24 @@ def test_DPFileStoreRequest_get_file_req():
     assert file_req[1] == 'GET'
     assert file_req[2]['file']['name'] == 'test.txt'
 
+def test_DPFileStoreRequest_get_file_req_dest_is_file():
+
+    params = {
+            'domain': 'default',
+            'content': None,
+            'src': './tests/unit/module_utils/test_data/copy/test.txt',
+            'dest': '/local/test.txt',
+            'overwrite': True,
+            'state': 'file'
+        }
+    fs = DPFileStore(params)
+    fs_req = DPFileStoreRequest(fs)
+    
+    file_req = fs_req.file_req()
+    assert file_req[0] == '/mgmt/filestore/default/local/test.txt'
+    assert file_req[1] == 'GET'
+    assert file_req[2]['file']['name'] == 'test.txt'
+
 def test_DPActionQueueRequest_1():
     task_args = {
         'domain':'default',

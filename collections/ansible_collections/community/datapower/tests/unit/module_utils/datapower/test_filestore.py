@@ -124,7 +124,7 @@ class TestDPFileStore():
 
         assert filestore_abspath.content == filestore_base64.content and filestore_base64.content == filestore_str.content
 
-    def test_DPFileStore_dest(self):
+    def test_DPFileStore_state_is_dir_dest(self):
         params = {
             'domain': 'default',
             'content': None,
@@ -135,6 +135,20 @@ class TestDPFileStore():
         }
         filestore = DPFileStore(params)
         assert filestore.dest == 'GetStat'
+
+    
+    def test_DPFileStore_state_is_file_dest(self):
+        params = {
+            'domain': 'default',
+            'content': None,
+            'src': './tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/callGetStat.xsl',
+            'dest': '/local/',
+            'overwrite': True,
+            'state': 'file'
+        }
+        filestore = DPFileStore(params)
+        assert filestore.dest == 'callGetStat.xsl'
+        assert filestore.root_dir == 'local'
 
     def test_DPFileStore_dirs(self):
         params = {

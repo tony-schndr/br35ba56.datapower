@@ -2,3 +2,35 @@
 - name: 'Create Demo Service with Ansible!'
   hosts: dp1
   connection: local
+
+  tasks:
+    - name: get supported objects for reference
+      community.datapower.config_info:
+        domain: default
+    
+    - name: get HostAlias
+      community.datapower.get_config:
+        domain: default
+        class_name: HostAlias
+        name: eth0_ipv4_1
+      register: device_alias
+    
+    - name: Set MGMT Host Alias
+      community.datapower.apply_config:
+        state: present
+        domain: default
+        config: 
+          HostAlias:
+            name: MGMT
+            mAdminState: enabled
+            IPAddress: "{{ device_alias['response']['HostAlias']['IPAddress'] }}"
+            
+    - name: Update the REST Management Interface to refer to the host Alias
+      community.datapower.apply_config:
+        state: present
+        domain: default
+        class_name: RestMgmtInterface
+        name: RestMgmt-Settings
+        config:
+          LocalAddress: MGMT
+

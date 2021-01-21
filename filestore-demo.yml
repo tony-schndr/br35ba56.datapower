@@ -11,6 +11,13 @@
         dest: /local/
         state: file
 
+    - name: Upload a file to the local directory but rename it at the destination
+      community.datapower.files:
+        domain: default
+        src: ./demo.txt
+        dest: /local/wow.txt
+        state: file
+
     - name: Upload a directory to the local directory
       community.datapower.files:
         domain: default
@@ -18,7 +25,7 @@
         dest: /local/Services/GetStat
         state: directory
 
-    - name: Delete GetStat
+    - name: Delete a the GetStat directory
       community.datapower.files:
         domain: default
         dest: /local/Services/GetStat

@@ -4,6 +4,7 @@ __metaclass__ = type
 
 import base64
 import os
+import re
 from glob import glob
 
 
@@ -15,32 +16,53 @@ def isBase64(s):
 
 
 class DPFileStore:
-    def __init__(self, params):
-        self.domain = params['domain']
-        self.set_dirs(params['dest'])
-        self.set_src(params['src'])
-        if params['state'] == 'file':
-            self.set_content(params)
-            self.set_filename(params)
-            self.set_filepath_dest(params)
+    def __init__(self, params=None):
+        if params:
+            self.domain = params['domain']
 
-    def set_filepath_dest(self, params):
-        self.dest = self.dest + '/' + self.file_name
-        self.dest = self.dest.lstrip('/')
+            if params['state'] == 'directory':
+                self.set_dirs(params['dest'])
+                self.set_src(params['src'])
+            elif params['state'] == 'file':
+                self.set_content(params)
+                if self.is_dest_valid_file_path(params['dest']):
+                    self.set_file_name(params['dest'])
+                    self.dest = params['dest'].lstrip('/')
+                else:
+                    self.set_file_name(params['src'])
+                    self.dest = params['dest'].lstrip('/').rstrip('/') + '/' + self.file_name
+            elif params['state'] == 'absent':
+                self.dest = params['dest'].lstrip('/').rstrip('/')
+
+
+    def set_file_name(self, file_name):
+        self.file_name = file_name.split('/')[-1]
+        
+
+    # Need to determine if the destination is a valid file path.
+    # This is not valid /local/GetStat
+    # This is valid /local/GetStat/CPU.xsl
+    @staticmethod  
+    def is_dest_valid_file_path(dest):
+        return re.match(r'[\w,\s-]+\.[A-Za-z]{1,4}', dest.split('/')[-1])
     
+    def set_src(self, src):
+        self.src = src.rstrip('/')
+
+    @staticmethod
+    def has_valid_root_dir(root_dir):
+        if root_dir not in ['local', 'sharedcert', 'cert']:
+             raise AttributeError('dest path must specify one of (local | sharecert | cert) as the root of the path')
+        else:
+            return True
+           
+        
     def set_dirs(self, dest):
         root_dir = dest.lstrip('/').rstrip('/').split('/')[0]
-        if root_dir in ['local', 'sharedcert', 'cert']:
+        if self.has_valid_root_dir(root_dir):
             self.root_dir = root_dir
-        else:
-            raise AttributeError('dest path must specify one of (local | sharecert | cert) as the root of the path')            
-        self.dest = '/'.join(dest.lstrip('/').rstrip('/').split('/')[1:])
+            self.dest = '/'.join(dest.lstrip('/').rstrip('/').split('/')[1:])
 
-    def set_filename(self, params):
-        if params['src']:
-            self.file_name = params['src'].split('/')[-1]
-        else:
-            self.file_name = params['dest'].split('/')[-1]
 
     def set_content(self, params):
         content = params['content']
@@ -52,12 +74,9 @@ class DPFileStore:
         else:
             self.content = self.get_local_content(params['src'])
 
-    def set_src(self, src):
-            if src:
-                self.src = src.rstrip('/')
+
 
     def dirs(self):
-        #yield self.dest
         for r, d, f in os.walk(self.src):
             dir = self.dest + '/' + r[len(self.src):].strip('/')
             if len(dir) != 0:

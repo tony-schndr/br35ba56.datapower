@@ -29,6 +29,17 @@ from ansible_collections.community.datapower.tests.unit.module_utils.test_data i
 # Tests building requests objects from the DPManageConfigObject.
 
 
+def test_DPFileStoreRequest_del_req():
+    params = {
+        'domain': 'default',
+        'dest': '/local/demo.txt',
+        'state': 'absent'
+    }
+
+    fs = DPFileStore(params)
+    fs_req = DPFileStoreRequest(fs)
+   
+
 def test_DPFileStoreRequest_get_body():
     dir = '/local/test1/'
     assert DPFileStoreRequest.get_body(dir) == { 
@@ -93,6 +104,7 @@ def test_DPFileStoreRequest_get_file_reqs():
     fs_req = DPFileStoreRequest(fs)
     assert sorted(list(fs_req.file_reqs())) == sorted(files_data.file_reqs)
 
+
 def test_DPFileStoreRequest_get_file_req_root_dest():
     params = {
         'domain': 'default',
@@ -109,6 +121,7 @@ def test_DPFileStoreRequest_get_file_req_root_dest():
     assert file_req[0] == '/mgmt/filestore/default/local/test.txt'
     assert file_req[1] == 'GET'
     assert file_req[2]['file']['name'] == 'test.txt'
+
 
 def test_DPFileStoreRequest_get_file_req():
 
@@ -128,6 +141,8 @@ def test_DPFileStoreRequest_get_file_req():
     assert file_req[1] == 'GET'
     assert file_req[2]['file']['name'] == 'test.txt'
 
+
+
 def test_DPFileStoreRequest_get_file_req_dest_is_file():
 
     params = {
@@ -145,6 +160,7 @@ def test_DPFileStoreRequest_get_file_req_dest_is_file():
     assert file_req[0] == '/mgmt/filestore/default/local/test.txt'
     assert file_req[1] == 'GET'
     assert file_req[2]['file']['name'] == 'test.txt'
+
 
 def test_DPActionQueueRequest_1():
     task_args = {

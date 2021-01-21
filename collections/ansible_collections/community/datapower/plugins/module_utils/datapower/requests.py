@@ -70,7 +70,7 @@ class DPFileStoreRequest(DPRequest):
             yield path, method, body
 
     def file_req(self, method='GET'):
-        path = FILESTORE_URI_PATH.format(self.fs.domain, self.fs.root_dir, self.fs.dest)
+        path = FILESTORE_URI_DIR.format(self.fs.domain, self.fs.dest)
         body = {
             'file' : {
                 'name' : self.fs.file_name,
@@ -80,7 +80,7 @@ class DPFileStoreRequest(DPRequest):
         return path, method, body
 
     def del_req(self):
-        return (FILESTORE_URI_PATH.format(self.fs.domain, self.fs.root_dir, self.fs.dest), 'DELETE', None)
+        return (FILESTORE_URI_DIR.format(self.fs.domain, self.fs.dest), 'DELETE', None)
 
 
     def check_for_dir_req(self, dir):

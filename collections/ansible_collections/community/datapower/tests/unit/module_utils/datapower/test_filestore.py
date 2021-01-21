@@ -15,29 +15,15 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.file
 
 class TestDPFileStore():
 
-    def test_build_params_validate_file_dest_root(self):
+    def test_DPFileStore_state_is_absent(self):
         params = {
             'domain': 'default',
-            'content': None,
-            'src': './tests/unit/module_utils/test_data/copy/test.txt',
-            'dest': '/local/',
-            'overwrite': True,
-            'state': 'file'
+            'dest': '/local/demo.txt',
+            'state': 'absent'
         }
-        filestore = DPFileStore(params)
-        assert filestore.dest == 'test.txt'
 
-    def test_build_params_validate_file_dest(self):
-        params = {
-            'domain': 'default',
-            'content': None,
-            'src': './tests/unit/module_utils/test_data/copy/test.txt',
-            'dest': '/local/GetStats',
-            'overwrite': True,
-            'state': 'file'
-        }
-        filestore = DPFileStore(params)
-        assert filestore.dest == 'GetStats/test.txt'
+        fs = DPFileStore(params)
+        assert fs.dest == 'local/demo.txt'
 
     def test_build_params_validate_file_content_from_rel_path(self):
         params = {
@@ -50,18 +36,6 @@ class TestDPFileStore():
         }
         filestore = DPFileStore(params)
         assert filestore.content == 'SGVsbG8gd29ybGQgZnJvbSBBbnNpYmxlIERhdGFQb3dlciE='
-
-    def test_build_params_validate_file_name_from_rel_path(self):
-        params = {
-            'domain': 'default',
-            'content': None,
-            'src': './tests/unit/module_utils/test_data/copy/test.txt',
-            'dest': '/local/',
-            'overwrite': True,
-            'state': 'file'
-        }
-        filestore = DPFileStore(params)
-        assert filestore.file_name == 'test.txt'
 
     def test_isBase64(self):
         assert isBase64('SGVsbG8gd29ybGQgZnJvbSBBbnNpYmxlIERhdGFQb3dlciE=')
@@ -123,6 +97,44 @@ class TestDPFileStore():
         filestore_abspath = DPFileStore(params)
 
         assert filestore_abspath.content == filestore_base64.content and filestore_base64.content == filestore_str.content
+    
+    def test_DPFileStore_set_file_init_dest_root(self):
+        params = {
+            'domain': 'default',
+            'content': None,
+            'src': './tests/unit/module_utils/test_data/copy/test.txt',
+            'dest': '/local/',
+            'overwrite': True,
+            'state': 'file'
+        }
+        fs = DPFileStore(params)
+        assert fs.file_name == 'test.txt'
+        assert fs.dest == 'local/test.txt'
+
+    def test_DPFileStore_set_filepath_dest_is_dir(self):
+        params = {
+            'domain': 'default',
+            'content': None,
+            'src': './tests/unit/module_utils/test_data/copy/test.txt',
+            'dest': 'local/GetStat',
+            'overwrite': True,
+            'state': 'file'
+        }
+        fs = DPFileStore(params)
+        assert fs.dest == 'local/GetStat/test.txt'
+    
+    def test_DPFileStore_set_filepath_dest_is_file(self):
+        params = {
+            'domain': 'default',
+            'content': None,
+            'src': './tests/unit/module_utils/test_data/copy/test.txt',
+            'dest': 'local/GetStat/test_5.txt',
+            'overwrite': True,
+            'state': 'file'
+        }
+        fs = DPFileStore(params)
+        assert fs.file_name == 'test_5.txt'
+        #assert fs.dest == 'local/GetStat/test_5.txt'
 
     def test_DPFileStore_state_is_dir_dest(self):
         params = {
@@ -136,19 +148,6 @@ class TestDPFileStore():
         filestore = DPFileStore(params)
         assert filestore.dest == 'GetStat'
 
-    
-    def test_DPFileStore_state_is_file_dest(self):
-        params = {
-            'domain': 'default',
-            'content': None,
-            'src': './tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat/callGetStat.xsl',
-            'dest': '/local/',
-            'overwrite': True,
-            'state': 'file'
-        }
-        filestore = DPFileStore(params)
-        assert filestore.dest == 'callGetStat.xsl'
-        assert filestore.root_dir == 'local'
 
     def test_DPFileStore_dirs(self):
         params = {

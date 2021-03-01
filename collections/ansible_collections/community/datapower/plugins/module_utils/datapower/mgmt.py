@@ -9,7 +9,7 @@ __metaclass__ = type
 # from GET /mgmt/config/ and store it as a fact.
 def is_valid_class(class_name):
     return val_obj_dict['_links'].get(class_name) or False
-#PUT actionqueue help code here
+
 
 class DPActionQueue():
     def __init__(self, **kwargs):

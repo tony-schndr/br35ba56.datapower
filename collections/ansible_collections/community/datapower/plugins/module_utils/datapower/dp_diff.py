@@ -1,4 +1,3 @@
-
 from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
@@ -35,11 +34,14 @@ def get_changes(from_dict, to_dict):
                     continue
                 else:
                     yield get_yeild_dict(diff_) 
+            elif is_str_to_int_compare(diff_):
+                if is_str_int_equal(diff_):
+                    continue
+                else:
+                    yield get_yeild_dict(diff_)
             else:
                 yield get_yeild_dict(diff_)
-        #else: # diff_[0] == 'add'
-
-
+        
 def get_yeild_dict(diff_):
     return {
         'path' : diff_[1],
@@ -49,11 +51,16 @@ def get_yeild_dict(diff_):
         }
     }
 
-def is_dict_list_equal(diff_):
-    if len(diff_[2][1]) == 1:
-        return diff_[2][0] == diff_[2][1][0]
-    else:
-        raise TypeError('cannot compare single element to a list other than len(<list>) == 1')
+'''
+Ansible Jinja2 template expressions "{{ jinja stuff }}" always return strings to the ansible modules. 
+This causes false positive changes when comparing strings (from ansible) to integers (from datapower).
+
+'''
+def is_str_to_int_compare(diff_):
+    return isinstance(diff_[2][0], int) and isinstance(diff_[2][1], str)
+
+def is_str_int_equal(diff_):
+    return str(diff_[2][0]) == str(diff_[2][1])
 
 '''
 There are one off cases where a user could pass an array type with 1 
@@ -77,5 +84,8 @@ is equivalent to:
 def is_dict_to_list_compare(diff_):
     return isinstance(diff_[2][0], dict) and isinstance(diff_[2][1], list) and len(diff_[2][1]) == 1
 
-
-
+def is_dict_list_equal(diff_):
+    if len(diff_[2][1]) == 1:
+        return diff_[2][0] == diff_[2][1][0]
+    else:
+        raise TypeError('cannot compare single element to a list other than len(<list>) == 1')

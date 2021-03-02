@@ -18,13 +18,14 @@ from ansible_collections.community.datapower.tests.unit.module_utils.test_data i
 
 
 
-def test_DPManageConfigObject():
+def test_DPManageConfigObject_int():
     task_args =  {
         "class_name": None,
         "config": {
             "CryptoValCred": {
                 "mAdminState": "enabled",
-                "name": "valcred"
+                "name": "valcred",
+                "port": 9090
             }
         },
         "domain": "default",
@@ -33,11 +34,9 @@ def test_DPManageConfigObject():
     }
     
     dp_mgmt_conf = DPManageConfigObject(**task_args)
-    assert dp_mgmt_conf.class_name == 'CryptoValCred'
-    assert dp_mgmt_conf.name == 'valcred'
-    assert dp_mgmt_conf.config == task_args['config']
-    assert dp_mgmt_conf.domain == task_args['domain']
-    assert dp_mgmt_conf.overwrite == task_args['overwrite']
+    assert isinstance(dp_mgmt_conf.config['port'], int)
+
+
 
 
 

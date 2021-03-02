@@ -70,6 +70,61 @@ def test_get_changes_valcred_1():
 
     assert list(dp_diff.get_changes(from_dict, to_dict)) == changes
 
+def test_get_changes_integer():
+    from_dict =  {
+        "CryptoValCred": {
+            "CRLDPHandling": "ignore",
+            "CertValidationMode": "legacy",
+            "CheckDates": "on",
+            "ExplicitPolicy": "off",
+            "InitialPolicySet": "2.5.29.32.0",
+            "RequireCRL": "off",
+            "UseCRL": "on",
+            "mAdminState": "enabled",
+            "name": "valcred",
+            "Certificate": [
+                {
+                    "value": "Test1"
+                },
+                {
+                    "value": "Test1"
+                }
+            ]
+        }
+    }
+
+    to_dict = {
+        "CryptoValCred": {
+            "name": "valcred",
+            "mAdminState": "enabled",
+            "CheckDates": "on",
+            "ExplicitPolicy": "on",
+            "InitialPolicySet": "2.5.29.32.0",
+            "RequireCRL": "on",
+            "UseCRL": "on",
+        }
+    }
+    changes = [
+        {
+            "path": "CryptoValCred.ExplicitPolicy",
+            "diff": {
+                "from": "off",
+                "to": "on"
+            }
+        },
+        {
+            "path": "CryptoValCred.RequireCRL",
+            "diff": {
+                "from": "off",
+                "to": "on"
+            }
+        }
+    ]
+
+    assert list(dp_diff.get_changes(from_dict, to_dict)) == changes
+
+
+
 
 def test_get_changes_valcred_array_to_array_with_diff_order_but_same_elements():
     from_dict =  {

@@ -29,15 +29,17 @@ from ansible_collections.community.datapower.tests.unit.module_utils.test_data i
 # Tests building requests objects from the DPManageConfigObject.
 
 
-def test_DPFileStoreRequest_del_req():
+def test_DPFileStoreRequest_dir_to_root():
     params = {
         'domain': 'default',
-        'dest': '/local/demo.txt',
-        'state': 'absent'
+        'src' : '/Users/anthonyschneider/DEV/ansible-datapower/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/recurse_test/local/GetStat',
+        'dest': '/local/',
+        'state': 'directory'
     }
 
     fs = DPFileStore(params)
     fs_req = DPFileStoreRequest(fs)
+    fs_req.dir_reqs()
    
 
 def test_DPFileStoreRequest_get_body():

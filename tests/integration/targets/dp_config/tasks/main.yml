@@ -9,15 +9,6 @@
     domain: default
     class_name: WebGUI
 
-- name: Update WebGUI port
-  community.datapower.apply_config:
-    domain: default
-    class_name: WebGUI
-    name: WebGUI-Settings
-    state: present
-    config:
-      LocalPort: "{{ item }}"
-  loop:
-    - 9090
+    
 
     

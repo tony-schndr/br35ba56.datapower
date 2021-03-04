@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 
 # Copyright: (c) 2020, Anthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
@@ -7,10 +7,9 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: community.datapower.apply_config
+module: config
 
-short_description: Use for Creating/Modifying/Deleting various objects on IBM DataPower
-
+short_description: Use for managing configuration objects on IBM DataPower
 
 version_added: "1.0.0"
 
@@ -20,16 +19,16 @@ description: Use for modifying configuration.  This request will overwrite the o
 options:
     domain:
         description: Target domain
-        required: True
+        required: true
         type: str
     class_name:
-        description: DataPower config object class name.  Valid class name can be determined via GET at URI /mgmt/config/ or the 
-        config_info module.
-        required: Only when not included in the object config dictionary
+        description: 
+            - DataPower config object class name.  Valid class name can be determined via GET at URI /mgmt/config/ or the config_info module.
+        required: false
         type: str
     name:
         description: DataPower config object name.  
-        required: Only when not included in the object config dictionary
+        required: false
         type: str
     config:
         description: The REST payload of the configuration object being targeted.  One way to determine a valid payload is to create
@@ -39,40 +38,46 @@ options:
     state:
         description: Wether to create/modify or delete.
         required: True
-        type: string
-        choices: present | absent
-author:
-    - Anthony Schneider
+        type: str
+        choices:
+          - present
+          - absent
+
+author: 
+- Anthony Schneider (@br35ba56)
 '''
 
-EXAMPLES = r'''
 # Create a valcred in {{ domain }}.  With this example the class_name CryptoValCred and
 # name "valcred" are in the body of the request.
+EXAMPLES = r'''
+---
 - name: Modify the valcred Certificate list
-    community.datapower.apply_config:
-    domain: "{{ domain }}"
+  community.datapower.config:
+    domain: default
+    state: present
     config:
-        CryptoValCred:
-            CRLDPHandling: ignore
-            CertValidationMode: legacy
-            Certificate:
-            - value: Test1
-            - value: Test2
-            CheckDates: 'on'
-            ExplicitPolicy: 'off'
-            RequireCRL: 'off'
-            UseCRL: 'off'
-            mAdminState: enabled
-            name: valcred
+      CryptoValCred:
+          CRLDPHandling: ignore
+          CertValidationMode: legacy
+          Certificate:
+          - value: Test1
+          - value: Test2
+          CheckDates: 'on'
+          ExplicitPolicy: 'off'
+          RequireCRL: 'off'
+          UseCRL: 'off'
+          mAdminState: enabled
+          name: valcred
 
 # You can also just pass the paramters to the object by defining class_name and name.
 - name: Disable the valcred
-    community.datapower.mod_conf:
-    domain: "{{ domain }}"
+  community.datapower.config:
+    state: present
+    domain: default
     class_name: CryptoValCred
     name: valcred
     object:
-        mAdminState: disabled
+      mAdminState: disabled
 '''
 
 RETURN = r'''

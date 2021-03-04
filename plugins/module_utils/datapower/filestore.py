@@ -34,11 +34,9 @@ class DPFileStore:
             elif params['state'] == 'absent':
                 self.dest = params['dest'].lstrip('/').rstrip('/')
 
-
     def set_file_name(self, file_name):
         self.file_name = file_name.split('/')[-1]
         
-
     # Need to determine if the destination is a valid file path.
     # This is not valid /local/GetStat
     # This is valid /local/GetStat/CPU.xsl
@@ -56,13 +54,11 @@ class DPFileStore:
         else:
             return True
            
-        
     def set_dirs(self, dest):
         root_dir = dest.lstrip('/').rstrip('/').split('/')[0]
         if self.has_valid_root_dir(root_dir):
             self.root_dir = root_dir
             self.dest = '/'.join(dest.lstrip('/').rstrip('/').split('/')[1:])
-
 
     def set_content(self, params):
         content = params['content']
@@ -73,8 +69,6 @@ class DPFileStore:
                 self.content = base64.b64encode(str.encode(content)).decode()
         else:
             self.content = self.get_local_content(params['src'])
-
-
 
     def dirs(self):
         for r, d, f in os.walk(self.src):
@@ -89,7 +83,6 @@ class DPFileStore:
                 file_name = g.split('/')[-1]
                 content = self.get_local_content(g)
                 yield path, file_name, content,
-
 
     def get_local_content(self, f):
         if os.path.isfile(f):

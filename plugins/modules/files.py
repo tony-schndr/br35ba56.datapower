@@ -55,7 +55,7 @@ EXAMPLES = r'''
 # Modify a datapower object.  This example simply disables test_domain1.  
   
   - name: Create a datapower domain(s)
-    community.datapower.upload_file:
+    community.datapower.files:
       domains:
       - default
       definitions:

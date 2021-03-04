@@ -33,16 +33,16 @@ def get_changes(from_dict, to_dict):
                 if is_dict_list_equal(diff_):
                     continue
                 else:
-                    yield get_yeild_dict(diff_) 
+                    yield _change_dict(diff_) 
             elif is_str_to_int_compare(diff_):
                 if is_str_int_equal(diff_):
                     continue
                 else:
-                    yield get_yeild_dict(diff_)
+                    yield _change_dict(diff_)
             else:
-                yield get_yeild_dict(diff_)
+                yield _change_dict(diff_)
         
-def get_yeild_dict(diff_):
+def _change_dict(diff_):
     return {
         'path' : diff_[1],
         'diff': {

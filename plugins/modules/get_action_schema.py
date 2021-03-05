@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 
 # Copyright: (c) 2020, Anthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
@@ -7,11 +7,10 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: community.datapower.get_action_schema
+module: get_action_schema
 
 short_description: Get the schema on a particular action.  Then use that to help build
                    the parameters required by the DataPower REST Management Interface
-
 
 version_added: "1.0.0"
 
@@ -29,15 +28,15 @@ options:
         type: str
 
 
-author:
-    - Anthony Schneider
+author: 
+- Anthony Schneider (@br35ba56)
 '''
 
 EXAMPLES = r'''
 - name: Get an actions schema
-    community.datapower.get_action_schema:
-        domain: default
-        action: QuiesceDP
+  community.datapower.get_action_schema:
+    domain: default
+    action: QuiesceDP
 '''
 
 RETURN = r'''
@@ -136,7 +135,7 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
 def run_module():
     module_args = dict(
         domain = dict(type='str', required=True),
-        action = dict(type='str', required=False)
+        action = dict(type='str', required=True)
     )
     
     module = AnsibleModule(

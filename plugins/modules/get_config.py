@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 
 # Copyright: (c) 2020, Anthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
@@ -7,7 +7,7 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: community.datapower.get_conf
+module: get_config
 
 short_description: Use for geting objects on IBM DataPower
 
@@ -21,34 +21,34 @@ options:
         description: Target domain
         required: True
         type: str
-    object_class:
-        description: DataPower objects object_class.  Valid Object class can be determined with a GET on URI /mgmt/config/
+    class_name:
+        description: DataPower object class name.  Valid class names can be determined with the config_info module
         required: true
         type: str
     name:
-        description: Name of object as seen in DataPower
-    options:
-        description: Options for retrieving objects.
+        description: Name that identifies the object in DataPower
+        required: false
+        type: str
+    object_field:
+        description: Target a specific field of an object in DataPower
+        required: false
+        type: str
+    recursive:
+        description: Get target objects referenced objects.
         required: False
-        type: dict
-        recursive:
-            description: Get target objects referenced objects.
-            required: False
-            type: bool
-        depth:
-            description: Set the depth of the recursion.
-            required: False
-            type: int
-            default: 7
-        state:
-            description: If true return state information on all returned objects.
-            required: False
-            type: bool
-            default: False
+        type: bool
+    depth:
+        description: Set the depth of the recursion.
+        required: False
+        type: int
+    status:
+        description: If true return status information on all returned objects.
+        required: False
+        type: bool
+        default: False
 
-
-author:
-    - Anthony Schneider
+author: 
+- Anthony Schneider (@br35ba56)
 '''
 
 EXAMPLES = r'''
@@ -58,14 +58,16 @@ EXAMPLES = r'''
     domain: "{{ domain }}"
     class_name: CryptoCertificate
     name: Test2
+
 - name: Get the valcred and referenced objects recursively, return state of all objects as well.
   community.datapower.get_conf:
     domain: "{{ domain }}"
     class_name: CryptoValCred
     name: valcred
     recursive: True
-    state: True
+    status: True
     depth: 3
+
 - name: Get all valcreds
   community.datapower.get_conf:
     domain: "{{ domain }}"
@@ -125,7 +127,6 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
 
 def run_module():
     
-
     module_args = dict(
         domain=dict(type='str', required=True),
         class_name=dict(type='str', required=True),
@@ -137,7 +138,7 @@ def run_module():
     )
 
     mutually_exclusive = [
-        ['obj_field', 'recursive'],
+        ['object_field', 'recursive'],
     ]
     
     module = AnsibleModule(

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 
 # Copyright: (c) 2020, Anthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
@@ -7,10 +7,9 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: community.datapower.action
+module: action
 
 short_description: Use for executing actions on IBM DataPower
-
 
 version_added: "1.0.0"
 
@@ -25,32 +24,34 @@ options:
         description: The action to be performed
         required: true
         type: str
+        aliases: 
+          - name
     parameters:
         description: parameters, if any, that the action requires
         required: false
         type: dict
 
-
-author:
-    - Anthony Schneider
+author: 
+- Anthony Schneider (@br35ba56)
 '''
 
 EXAMPLES = r'''
-- name: Save a domains configuration.
-    community.datapower.action:
-        domain: "{{ domain }}
-        action: SaveConfig
+- name: Save a domains configuration
+  community.datapower.action:
+    domain: default
+    action: SaveConfig
 
 - name: Quiesce DP prior to change
-    community.datapower.action:
-        domain: default
-        action: QuiesceDP
-        parameters:
-            timeout: 60
+  community.datapower.action:
+    domain: default
+    action: QuiesceDP
+    parameters:
+      timeout: 60
+
 - name: UnQuiesce DP prior to change
-    community.datapower.action:
-        domain: default
-        action: UnquiesceDP
+  community.datapower.action:
+    domain: default
+    action: UnquiesceDP
 '''
 
 RETURN = r'''

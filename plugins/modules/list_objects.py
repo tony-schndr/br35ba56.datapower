@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 
 # Copyright: (c) 2020, Anthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
@@ -7,7 +7,7 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: community.datapower.config_info
+module: list_objects
 
 short_description: Get information on available configuration objects.
 
@@ -19,30 +19,27 @@ description: Use for retrieving information on various objects.  Target the
 options:
     domain:
         description: Target domain
-        required: True
+        default: default
         type: str
-    object_class:
-        description: DataPower objects object_class.  Valid object_cass can be determined via GET at URI /mgmt/config/
-        required: Only when targeting a list property
+    class_name:
+        description: 
+            - DataPower config object class name.  Valid class name can be determined via GET at URI /mgmt/config/ or the config_info module.
+        required: false
         type: str
-    object:
-        description: The configuration of the object as determined from a GET request.  
-            Typically you will create the object in the GUI first.  Then you can retrieve the configuration via JSON with a GET.
-            For list properties the object should represent that particiluar portion of the GET reponse, not the entire object.
-        required: True
-        type: dict
-author:
-    - Anthony Schneider
+  
+
+author: 
+- Anthony Schneider (@br35ba56)
 '''
 
 EXAMPLES = r'''
 # List all available objects
 - name: Get object config info
-    community.datapower.config_info:
+  community.datapower.config_info:
 # Get data on the object including its schema
 - name: Get details on a specific object
-    community.datapower.config_info:
-        class_name: CryptoValCred
+  community.datapower.config_info:
+    class_name: CryptoValCred
 '''
 
 RETURN = r'''

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python"
 
 # Copyright: (c) 2020, Anthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
@@ -7,7 +7,7 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: community.datapower.files
+module: files
 
 short_description: Manipulate DataPower's file system.
 
@@ -21,7 +21,7 @@ options:
     domain:
         description: Domain to upload the file too
         required: true
-        type: list
+        type: str
     content:
         description: String or Base64 representation of a file.
         required: false
@@ -39,16 +39,18 @@ options:
             will be copied to DataPower
         required: false
         default: false
+        type: bool
     state:
         description: State of the file or directory on DataPower
         required: true
+        type: str
         choices:
           - absent
           - directory
           - file
 
-author:
-    - Anthony Schneider
+author: 
+- Anthony Schneider (@br35ba56)
 '''
 
 EXAMPLES = r'''
@@ -107,17 +109,17 @@ def run_module():
     module_args = dict(
         domain = dict(type='str', required=True),
         content = dict(type='str', required=False),
-        src = dict(type='str', required=False, aliases=['path']),
+        src = dict(type='str', required=False),
         dest = dict(type='str', required=True),
         #backup = dict(type='bool', required=False),
-        recurse = dict(type='bool', recuired=False, default=False),
+        recurse = dict(type='bool', required=False, default=False),
         state = dict(type='str', required=True, choices=['absent', 'directory', 'file'])
     )
 
     module = AnsibleModule(
         argument_spec=module_args,
         supports_check_mode=False,
-        mutually_exclusive=['content', 'src']
+        mutually_exclusive=[['content', 'src']]
     )
     fs = DPFileStore(module.params)
     req = DPFileStoreRequest(fs)

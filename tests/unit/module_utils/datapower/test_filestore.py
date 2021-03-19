@@ -233,7 +233,8 @@ class TestDPFileStore():
             assert True
 
 
-'''#Used for testing this in python idle
+'''
+#Used for testing this in python idle
 from requests import DPFileStoreRequest
 from filestore import DPFileStore
 from glob import glob

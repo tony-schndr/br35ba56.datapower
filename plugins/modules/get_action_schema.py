@@ -126,7 +126,7 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.acti
     DPActionQueue
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-    DPActionQueueRequest
+    DPActionQueueSchemaRequest
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
     DPRequestHandler
@@ -145,18 +145,18 @@ def run_module():
     connection = Connection(module._socket_path)
     
     dp_act = DPActionQueue(**module.params)
-    dp_req = DPActionQueueRequest(dp_act)
-    #Override the default of POST
-    dp_req.method = 'GET'
+    dp_req = DPActionQueueSchemaRequest(dp_act)
+
     req_handler =  DPRequestHandler(connection)
     result = {}
     try:
-        response = req_handler.process_request(dp_req.info_path, dp_req.method)
+        response = req_handler.process_request(dp_req.path, dp_req.method)
     except ConnectionError as e:
         response = to_text(e)
+        result = {'uri': dp_req.path, 'method': dp_req.method}
         module.fail_json(msg=response, **result)
 
-    result['request'] = {'path': dp_req.info_path, 'method': dp_req.method, 'body': dp_req.body}
+    result['request'] = {'path': dp_req.path, 'method': dp_req.method, 'body': dp_req.body}
     result['response'] = response
     module.exit_json(**result)
 

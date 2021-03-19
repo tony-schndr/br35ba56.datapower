@@ -1,4 +1,4 @@
-#!/usr/bin/python"
+#!/usr/bin/python
 
 # Copyright: (c) 2020, Anthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
@@ -105,7 +105,7 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
     DPRequestHandler
 )
 def run_module():
-    # define available arguments/parameters a user can pass to the module
+    
     module_args = dict(
         domain = dict(type='str', required=True),
         content = dict(type='str', required=False),
@@ -121,6 +121,7 @@ def run_module():
         supports_check_mode=False,
         mutually_exclusive=[['content', 'src']]
     )
+
     fs = DPFileStore(module.params)
     req = DPFileStoreRequest(fs)
     connection = Connection(module._socket_path)
@@ -142,8 +143,6 @@ def run_module():
             result['response'] = response
             module.fail_json(msg=response, **result)
         
- 
-    
     elif module.params['state'] == 'directory':
         responses = {}
         responses['directories'] = []
@@ -151,6 +150,8 @@ def run_module():
         requests = {}
         requests['directories'] = []
         requests['files'] = []
+
+        # Create Directories
         for dir_req in req.dir_reqs():
             requests['directories'].append(dir_req)
             try:
@@ -170,7 +171,7 @@ def run_module():
                         module.fail_json(msg=to_text(ce), result=result)
                 else:
                     module.fail_json(msg=to_text(ce), result=result)
-
+        # Create Files
         for file_req in req.file_reqs('PUT'):
             requests['files'].append(file_req)
             try:

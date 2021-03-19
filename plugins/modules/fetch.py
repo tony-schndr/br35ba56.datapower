@@ -6,65 +6,15 @@ from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 DOCUMENTATION = r'''
----
-module: community.datapower.download_file
 
-short_description: Use for modifying various objects on IBM DataPower
-
-
-version_added: "1.0.0"
-
-description: Use for modifying configuration.
-
-options:
-    domains:
-        description: List of domains to execute on.
-        required: true
-        type: list
-    defintions:
-        description: DataPower object config defined in yaml.  Determine fromat using a GET and then convert to YAML.
-        required: true
-        type: list of YAML dictionaries.
-
-
-author:
-    - Anthony Schneider
 '''
 
 EXAMPLES = r'''
-# Modify a datapower object.  This example simply disables test_domain1.  
-  
-  - name: Create a datapower domain(s)
-    community.datapower.fetch:
-      domains:
-      - default
-      definitions:
-      - Domain:
-          name: test_domain1
-          mAdminState: disabled
-      
+    
 '''
 
 RETURN = r'''
-# These are examples of possible return values, and in general should use other names for return values.
-original_message:
-    description: The original name param that was passed in.
-    type: str
-    returned: always
-    sample: 'hello world'
-message:
-    description: The output message that the test module generates.
-    type: str
-    returned: always
-    sample: 'goodbye'
-my_useful_info:
-    description: The dictionary containing information about your system.
-    type: dict
-    returned: always
-    sample: {
-        'foo': 'bar',
-        'answer': 42,
-    }
+
 '''
 
 from ansible.module_utils._text import to_text
@@ -84,6 +34,7 @@ def run_module():
     )
     
     if module.check_mode:
+        # Check if the file exists
         module.exit_json(**result)
 
     result = dict(

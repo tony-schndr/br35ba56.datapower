@@ -6,78 +6,15 @@ from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 DOCUMENTATION = r'''
----
-module: community.datapower.export
 
-short_description: Use for exporting configuration
-
-
-version_added: "1.0.0"
-
-description:  
-
-options:
-    domain:
-        description: Domain to execute export on.
-        required: true
-        type: str
-    export:
-        description: The export to be performed
-        required: true
-        type: str
-    parameters:
-        description: parameters, if any, that the export requires
-        required: false
-        type: dict
-
-
-author:
-    - Anthony Schneider
 '''
 
 EXAMPLES = r'''
-- name: Save a domains configuration.
-    community.datapower.export:
-        domain: "{{ domain }}
-        export: SaveConfig
 
-- name: Quiesce DP prior to change
-    community.datapower.export:
-        domain: default
-        export: QuiesceDP
-        parameters:
-            timeout: 60
-- name: UnQuiesce DP prior to change
-    community.datapower.export:
-        domain: default
-        export: UnquiesceDP
 '''
 
 RETURN = r'''
-request:
-    description: The request that was sent to DataPower
-    type: dict
-    returned: always
-    sample: {
-        "body": {
-            "UnquiesceDP": {}
-        },
-        "method": "POST",
-        "path": "/mgmt/actionqueue/default"
-    }
 
-response:
-    description: The response from DataPower
-    type: dict
-    returned: on success
-    sample: {
-        "_links": {
-            "self": {
-                "href": "/mgmt/actionqueue/default/pending/UnquiesceDP-20201231T105919Z-12"
-            }
-        },
-        "status": "completed"
-    }
 '''
 
 from ansible.module_utils._text import to_text
@@ -103,22 +40,7 @@ def run_module():
         argument_spec=module_args,
         supports_check_mode=False
     )
-    connection = Connection(module._socket_path)
     result = {}
-    dp_act = DPActionQueue(**module.params)
-    dp_req = DPActionQueueRequest(dp_act)
-    req_handler =  DPActionQueueRequestHandler(connection)
-    try:
-        response = req_handler.process_request(dp_req.path, dp_req.method, dp_req.body)
-    except ConnectionError as e:
-        response = to_text(e)
-        result['changed'] = False
-        module.fail_json(msg=response, **result)
-
-    
-    result['response'] = response
-    result['request'] = {'path':dp_req.path, 'method': dp_req.method, 'body': dp_req.body}
-    result['changed'] = True
     module.exit_json(**result)
 
 

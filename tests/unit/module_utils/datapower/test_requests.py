@@ -10,6 +10,7 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
     DPManageConfigRequest,
     DPGetConfigRequest,
     DPActionQueueRequest,
+    DPActionQueueSchemaRequest,
     DPFileStoreRequest,
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
@@ -178,8 +179,18 @@ def test_DPActionQueueRequest_1():
     assert dp_action_req.body == {
             'SaveConfig' : {}
         }
-    assert dp_action_req.info_path == '/mgmt/actionqueue/default/operations/SaveConfig?schema-format=datapower'
+ 
+def test_DPActionQueueSchemaRequest():
+    task_args = {
+        'domain':'default',
+        'action': 'SaveConfig'
+    }
+
+    dp_action = DPActionQueue(**task_args)
+    dp_action_req = DPActionQueueSchemaRequest(dp_action)
+    assert dp_action_req.path == '/mgmt/actionqueue/default/operations/SaveConfig?schema-format=datapower'
     
+
 def test_DPActionQueueRequest_2():
     task_args = {
         'domain':'default',
@@ -195,8 +206,7 @@ def test_DPActionQueueRequest_2():
     assert dp_action_req.body == {
             'TraceRoute' : {'RemoteHost': 'www.google.com'}
         }
-    assert dp_action_req.info_path == '/mgmt/actionqueue/default/operations/TraceRoute?schema-format=datapower'
-    
+
     #ACTION_QUEUE_SCHEMA_URI = '/mgmt/actionqueue/{0}/{1}?schema-format=datapower'
     #ACTION_QUEUE_OPERATIONS_URI = '/mgmt/actionqueue/{0}/operations'
 

@@ -20,13 +20,14 @@ class DPRequestHandler:
         self.connection = connection
 
     def _make_request(self, path, method, body):
+        # Remove any links that are not valid datapower config
         if body is not None:
             _scrub(body, '_links')
             _scrub(body, 'href')
             _scrub(body, 'state')
         return self.connection.send_request(body,path,method)
 
-    def process_request(self, path, method='GET', body=None):
+    def process_request(self, path, method, body=None):
         try:
             resp = self._make_request(quote(path), method, body)
         except ConnectionError:

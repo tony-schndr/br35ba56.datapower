@@ -54,6 +54,7 @@ class DPFileStoreRequest(DPRequest):
 
     def dir_reqs(self):
         for dir in self.fs.dirs():
+            # sharecert / cert do not allow directories.
             if self.get_body(dir)['directory']['name'] == 'local':
                 continue
             yield (FILESTORE_URI_PATH.format(self.fs.domain, self.fs.root_dir, dir), 'GET', None), (FILESTORE_URI_DIR.format(self.fs.domain, self.fs.root_dir), 'POST', self.get_body(dir))
@@ -82,7 +83,6 @@ class DPFileStoreRequest(DPRequest):
     def del_req(self):
         return (FILESTORE_URI_DIR.format(self.fs.domain, self.fs.dest), 'DELETE', None)
 
-
     def check_for_dir_req(self, dir):
         return FILESTORE_URI_PATH.format(self.fs.domain, self.fs.root_dir, dir), 'GET', None
 
@@ -97,12 +97,19 @@ class DPActionQueueRequest(DPRequest):
                  self.body = { dp_action.action : dp_action.parameters }
         else:
             self.body = None
-        self.method = 'POST'
-        if hasattr(dp_action, 'action') and dp_action.action is not None:
-            self.info_path = ACTION_QUEUE_SCHEMA_URI.format(dp_action.domain, dp_action.action)
-        else:
-            self.info_path = ACTION_QUEUE_OPERATIONS_URI.format(dp_action.domain)
+        self.method = 'POST'  
 
+class DPListActionsRequest(DPRequest):
+    def __init__(self, dp_action):
+        super(DPListActionsRequest, self).__init__()
+        self.method = 'GET'
+        self.path = ACTION_QUEUE_OPERATIONS_URI.format(dp_action.domain)
+
+class DPActionQueueSchemaRequest(DPRequest):
+    def __init__(self, dp_action):
+        super(DPActionQueueSchemaRequest, self).__init__()
+        self.method = 'GET'
+        self.path = ACTION_QUEUE_SCHEMA_URI.format(dp_action.domain, dp_action.action)
 
 class DPManageConfigRequest(DPRequest):
      

@@ -25,13 +25,13 @@ class DPRequestHandler:
             _scrub(body, '_links')
             _scrub(body, 'href')
             _scrub(body, 'state')
-        return self.connection.send_request(body,path,method)
+        return self.connection.send_request(path, method, body)
 
     def process_request(self, path, method, body=None):
         try:
             resp = self._make_request(quote(path), method, body)
         except ConnectionError:
-            raise
+            return {'path': path, 'method': method, 'body': body}
         resp_str = json.dumps(resp)
         data = json.loads(unescape(resp_str))
         return data

@@ -1,14 +1,104 @@
 ---
-
-- name: get supported objects for reference
-  community.datapower.list_objects:
+- name: Ensure WebGUI is enabled prior to test
+  community.datapower.config:
     domain: default
+    class_name: WebGUI
+    name: WebGUI-Settings
+    state: present
+    config:
+      mAdminState: enabled
 
 - name: Get WebGUI
   community.datapower.get_config:
     domain: default
     class_name: WebGUI
+  register: before
 
-    
+- name: Assert WebGui configuration was retrieved.
+  assert:
+    that:
+      - "{{ before['response']['WebGUI']['mAdminState'] == 'enabled' }}"
 
-    
+- name: Make a change to the WebGui
+  community.datapower.config:
+    domain: default
+    class_name: WebGUI
+    name: WebGUI-Settings
+    state: present
+    config:
+      mAdminState: disabled
+
+- name: Get WebGUI
+  community.datapower.get_config:
+    domain: default
+    class_name: WebGUI
+  register: changed
+
+- name: Assert WebGui configuration was retrieved.
+  assert:
+    that:
+      - "{{ changed['response']['WebGUI']['mAdminState'] == 'disabled' }}"
+      - "{{ changed != before  }}"
+
+- name: Make the same change to check idempotency.
+  community.datapower.config:
+    domain: default
+    class_name: WebGUI
+    name: WebGUI-Settings
+    state: present
+    config:
+      mAdminState: disabled
+
+- name: Get WebGUI
+  community.datapower.get_config:
+    domain: default
+    class_name: WebGUI
+  register: unchanged
+
+- name: Assert idempotency
+  assert:
+    that:
+      - "{{ changed == unchanged  }}"
+
+- name: Update a CrytpoValCred Certificate list property to 1 item.
+  community.datapower.config:
+    domain: default
+    state: present
+    config:
+      CryptoValCred:
+        Certificate:
+        #- value: Test2
+        - value: Test1
+        name: valcred
+  register: valcred_result
+
+- name: Get valcred to check its state was update.
+  community.datapower.get_config:
+    domain: default 
+    class_name: CryptoValCred
+  register: valcred
+
+- name: Assert the CrytpoValCred Certificate list was updated to 1 item.
+  assert:
+    that:
+      - "{{ valcred['response']['CryptoValCred']['Certificate']['value'] is defined }}"
+      - "{{ valcred_result['response']['valcred'] == 'Configuration was updated.'  }}"
+  ignore_errors: no
+      
+- name: Update a CrytpoValCred Certificate list property to 2 items.
+  community.datapower.config:
+    domain: default
+    state: present
+    config:
+      CryptoValCred:
+        Certificate:
+        - value: Test2
+        - value: Test1
+        name: valcred
+  register: valcred_result
+
+- name: Assert the CrytpoValCred Certificate list was updated to 2 items.
+  assert:
+    that:
+      - "{{ valcred['response']['CryptoValCred']['Certificate'] | length == 2 }}"
+      - "{{valcred_result['response']['valcred'] == 'Configuration was updated.' }}"

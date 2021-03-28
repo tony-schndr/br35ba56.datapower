@@ -9,7 +9,7 @@ DOCUMENTATION = r'''
 ---
 module: get_config
 
-short_description: Use for geting objects on IBM DataPower
+short_description: Use for getting object configuration on IBM DataPower
 
 
 version_added: "1.0.0"
@@ -22,7 +22,7 @@ options:
         required: True
         type: str
     class_name:
-        description: DataPower object class name.  Valid class names can be determined with the config_info module
+        description: DataPower object class name.
         required: true
         type: str
     name:
@@ -53,80 +53,134 @@ author:
 
 EXAMPLES = r'''
 # Get a datapower object.  Determine object_class by ...
-- name: Get the cert Test2
-  community.datapower.get_conf:
-    domain: "{{ domain }}"
-    class_name: CryptoCertificate
-    name: Test2
-
-- name: Get the valcred and referenced objects recursively, return state of all objects as well.
-  community.datapower.get_conf:
-    domain: "{{ domain }}"
-    class_name: CryptoValCred
-    name: valcred
-    recursive: True
+- name: Get a tls profile
+  community.datapower.get_config:
+    domain: default
+    class_name: SSLClientProfile
+    
+- name: Get a tls profile
+  community.datapower.get_config:
+    domain: default
+    class_name: SSLClientProfile
     status: True
-    depth: 3
-
-- name: Get all valcreds
-  community.datapower.get_conf:
-    domain: "{{ domain }}"
-    class_name: CryptoValCred
 '''
 
 RETURN = r'''
-# These are examples of possible return values, and in general should use other names for return values.
-request:
-    description: The request that was sent to DataPower
-    type: dict
-    returned: always
-    sample: {
-        "body": null,
-        "method": "GET",
-        "path": "/mgmt/config/default/CryptoValCred?"
-    }
-
 response:
     description: A Dictionary representing the response returned from DataPowers Rest MGMT Interface
     type: dict
-    returned: on success
-    sample:  {
-        "CryptoCertificate": {
-            "Filename": "cert:///webgui-sscert.pem",
-            "IgnoreExpiration": "off",
-            "PasswordAlias": "off",
-            "mAdminState": "disabled",
-            "name": "Test2"
+    returned: always
+    sample: {
+    "SSLClientProfile": {
+        "CacheSize": 100,
+        "CacheTimeout": 300,
+        "Caching": "on",
+        "Ciphers": [
+            "AES_256_GCM_SHA384",
+            "CHACHA20_POLY1305_SHA256",
+            "AES_128_GCM_SHA256",
+            "ECDHE_ECDSA_WITH_AES_256_GCM_SHA384", 
+            "ECDHE_RSA_WITH_AES_256_GCM_SHA384",
+            "ECDHE_ECDSA_WITH_AES_256_CBC_SHA384",
+            "ECDHE_RSA_WITH_AES_256_CBC_SHA384",
+            "ECDHE_ECDSA_WITH_AES_256_CBC_SHA",
+            "ECDHE_RSA_WITH_AES_256_CBC_SHA",
+            "DHE_DSS_WITH_AES_256_GCM_SHA384",
+            "DHE_RSA_WITH_AES_256_GCM_SHA384",
+            "DHE_RSA_WITH_AES_256_CBC_SHA256",
+            "DHE_DSS_WITH_AES_256_CBC_SHA256",
+            "DHE_RSA_WITH_AES_256_CBC_SHA",
+            "DHE_DSS_WITH_AES_256_CBC_SHA",
+            "RSA_WITH_AES_256_GCM_SHA384",
+            "RSA_WITH_AES_256_CBC_SHA256",
+            "RSA_WITH_AES_256_CBC_SHA",
+            "ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",
+            "ECDHE_RSA_WITH_AES_128_GCM_SHA256",
+            "ECDHE_ECDSA_WITH_AES_128_CBC_SHA256",
+            "ECDHE_RSA_WITH_AES_128_CBC_SHA256",
+            "ECDHE_ECDSA_WITH_AES_128_CBC_SHA",
+            "ECDHE_RSA_WITH_AES_128_CBC_SHA",
+            "DHE_DSS_WITH_AES_128_GCM_SHA256",
+            "DHE_RSA_WITH_AES_128_GCM_SHA256",
+            "DHE_RSA_WITH_AES_128_CBC_SHA256",
+            "DHE_DSS_WITH_AES_128_CBC_SHA256",
+            "DHE_RSA_WITH_AES_128_CBC_SHA",
+            "DHE_DSS_WITH_AES_128_CBC_SHA",
+            "RSA_WITH_AES_128_GCM_SHA256",
+            "RSA_WITH_AES_128_CBC_SHA256",
+            "RSA_WITH_AES_128_CBC_SHA"
+        ],
+        "EllipticCurves": [
+            "secp521r1",
+            "secp384r1",
+            "secp256k1",
+            "secp256r1"
+        ],
+        "EnableTLS13Compat": "on",
+        "HostnameValidationFailOnError": "off",
+        "HostnameValidationFlags": {
+            "X509_CHECK_FLAG_ALWAYS_CHECK_SUBJECT": "off",
+            "X509_CHECK_FLAG_MULTI_LABEL_WILDCARDS": "off",
+            "X509_CHECK_FLAG_NO_PARTIAL_WILDCARDS": "off",
+            "X509_CHECK_FLAG_NO_WILDCARDS": "off",
+            "X509_CHECK_FLAG_SINGLE_LABEL_SUBDOMAINS": "off"
         },
+        "Protocols": {
+            "SSLv3": "off",
+            "TLSv1d0": "off",
+            "TLSv1d1": "on",
+            "TLSv1d2": "on",
+            "TLSv1d3": "on"
+        },
+        "SSLClientFeatures": {
+            "compression": "off",
+            "permit-insecure-servers": "off",
+            "use-sni": "on"
+        },
+        "UseCustomSNIHostname": "no",
+        "ValidateHostname": "off",
+        "ValidateServerCert": "off",
         "_links": {
             "doc": {
-                "href": "/mgmt/docs/config/CryptoCertificate"
+                "href": "/mgmt/docs/config/SSLClientProfile"
             },
             "self": {
-                "href": "/mgmt/config/default/CryptoCertificate/Test2"
+                "href": "/mgmt/config/default/SSLClientProfile/client-profile"
             }
+        },
+        "mAdminState": "enabled",
+        "name": "client-profile"
+    },
+    "_links": {
+        "doc": {
+            "href": "/mgmt/docs/config/SSLClientProfile"
+        },
+        "self": {
+            "href": "/mgmt/config/default/SSLClientProfile"
         }
     }
+}
+
 '''
 
-from ansible.module_utils._text import to_text
-from ansible.module_utils.connection import (
-    ConnectionError, 
-    Connection
-)
-from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
-    DPGetConfigObject
+from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
+    DPGetConfigRequestHandler
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     DPGetConfigRequest
 )
-from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
-    DPGetConfigRequestHandler
+from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
+    DPGetConfigObject
 )
+from ansible.module_utils.basic import AnsibleModule
+from ansible.module_utils.connection import (
+    ConnectionError,
+    Connection
+)
+from ansible.module_utils._text import to_text
 
 def run_module():
-    
+
     module_args = dict(
         domain=dict(type='str', required=True),
         class_name=dict(type='str', required=True),
@@ -140,13 +194,13 @@ def run_module():
     mutually_exclusive = [
         ['object_field', 'recursive'],
     ]
-    
+
     module = AnsibleModule(
         argument_spec=module_args,
         supports_check_mode=True,
         mutually_exclusive=mutually_exclusive
     )
-    
+
     connection = Connection(module._socket_path)
     dp_obj = DPGetConfigObject(**module.params)
     dp_req = DPGetConfigRequest(dp_obj)

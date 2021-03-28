@@ -17,8 +17,9 @@ description: Get a list of supported actions for a domain.
 
 options:
     domain:
-        description: target domain
-        required: true
+        description: Domain to retrieve action list from.
+        required: false
+        default: default
         type: str
 
 author: 
@@ -32,18 +33,8 @@ EXAMPLES = r'''
 '''
 
 RETURN = r'''
-request:
-    description: The request that was sent to DataPower
-    type: dict
-    returned: always
-    sample: {
-        "body": null,
-        "method": "GET",
-        "path": "/mgmt/actionqueue/default/operations"
-    }
-
-response:
-    description: The response from DataPower in list format.
+actions:
+    description: List of actions avaiable for a particular domain.  
     type: list
     returned: on success
     sample: [
@@ -79,7 +70,7 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
 
 def run_module():
     module_args = dict(
-        domain = dict(type='str', required=True)
+        domain = dict(type='str', required=False, default='default')
     )
     
     module = AnsibleModule(
@@ -103,7 +94,7 @@ def run_module():
     result['request'] = {'path': dp_req.path, 'method': dp_req.method, 'body': dp_req.body}
     values = list(response['_links'].keys())
     values.remove('self')
-    result['response'] = values
+    result['actions'] = values
     module.exit_json(**result)
 
 

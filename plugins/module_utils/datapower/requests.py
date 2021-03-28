@@ -7,6 +7,7 @@ import time
 import base64
 from copy import copy
 from ansible.module_utils.six.moves.urllib.parse import urlencode
+from ansible.module_utils.six.moves.urllib.parse import quote
 
 MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI = '/mgmt/config/{0}/{1}' 
 MGMT_CONFIG_WITH_NAME_URI = '/mgmt/config/{0}/{1}/{2}'
@@ -161,24 +162,26 @@ class DPManageConfigRequest(DPRequest):
         if class_name and not name and not field:
             self.path = MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI.format(domain, class_name)
         elif class_name and name and not field:
-            self.path = MGMT_CONFIG_WITH_NAME_URI.format(domain, class_name, name)
+            #Ran into a case where there was a space in a datapower object name so we qoute 
+            #the name param.  ex "DNS Settings"
+            self.path = MGMT_CONFIG_WITH_NAME_URI.format(domain, class_name, quote(name))
         elif class_name and name and field:
-            self.path = MGMT_CONFIG_WITH_FIELD_URI.format(domain, class_name, name, field)
+            self.path = MGMT_CONFIG_WITH_FIELD_URI.format(domain, class_name, quote(name), field)
         else:
             raise AttributeError('no valid URI could be derived')
 
 
 class DPGetConfigRequest(DPManageConfigRequest):
     def __init__(self, dp_mgmt_conf):
-        #super(DPGetConfigRequest, self).__init__()
+       # super(DPGetConfigRequest, self).__init__()
         self.body = None
         self.method = 'GET'
         self.options = {}
         self.set_path(
-                dp_mgmt_conf.domain,
-                dp_mgmt_conf.class_name,
-                dp_mgmt_conf.name
-            )
+            dp_mgmt_conf.domain,
+            dp_mgmt_conf.class_name,
+            dp_mgmt_conf.name
+        )
         
         if hasattr(dp_mgmt_conf, 'recursive') and dp_mgmt_conf.recursive:
             self.options.update(URI_OPTIONS['recursive'])

@@ -5,7 +5,7 @@ __metaclass__ = type
 import time
 import json
 from xml.sax.saxutils import unescape
-from ansible.module_utils.six.moves.urllib.parse import quote
+
 from ansible.module_utils.connection import Connection, ConnectionError
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     DPManageConfigRequest,
@@ -29,9 +29,9 @@ class DPRequestHandler:
 
     def process_request(self, path, method, body=None):
         try:
-            resp = self._make_request(quote(path), method, body)
+            resp = self._make_request(path, method, body)
         except ConnectionError:
-            return {'path': path, 'method': method, 'body': body}
+            raise
         resp_str = json.dumps(resp)
         data = json.loads(unescape(resp_str))
         return data

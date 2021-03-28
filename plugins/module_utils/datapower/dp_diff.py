@@ -29,13 +29,13 @@ def get_changes(from_dict, to_dict):
         if diff_[0] == 'remove':
             continue
         elif diff_[0] == 'change':
-            if is_dict_to_list_compare(diff_):
-                if is_dict_list_equal(diff_):
+            if check_if_dict_to_list_compare(diff_):
+                if check_if_dict_and_list_are_equal(diff_):
                     continue
                 else:
                     yield _change_dict(diff_) 
-            elif is_str_to_int_compare(diff_):
-                if is_str_int_equal(diff_):
+            elif check_if_str_to_int_compare(diff_):
+                if check_if_str_and_int_equal(diff_):
                     continue
                 else:
                     yield _change_dict(diff_)
@@ -52,21 +52,23 @@ def _change_dict(diff_):
     }
 
 '''
-Ansible Jinja2 template expressions "{{ jinja stuff }}" always return strings to the ansible modules. 
+Ansible Jinja2 template expressions "{{ int_type_var }}" always return strings to the ansible modules. 
 This causes false positive changes when comparing strings (from ansible) to integers (from datapower).
-
 '''
-def is_str_to_int_compare(diff_):
+def check_if_str_to_int_compare(diff_):
     return isinstance(diff_[2][0], int) and isinstance(diff_[2][1], str)
 
-def is_str_int_equal(diff_):
+def check_if_str_and_int_equal(diff_):
     return str(diff_[2][0]) == str(diff_[2][1])
 
 '''
-There are one off cases where a user could pass an array type with 1 
-element in it.  When DataPower receives this request it the subsequent
-GET will return a dictionary.  If the single item and the dictionary 
-key/value are equal they are considered equivalent.
+If a DataPower field is of type list and only contains 1 item DataPower 
+returns that item in a dictionary.  The DataPower Mgmt REST interface will
+allow the user to pass the values in as a list with 1 item or a dictionary.
+To prevent false positive changes because the dict / list are not equal 
+(BUT contain the same values) we first check if we have met the condition,
+then compare the values.
+
 For example:
 
 "Certificate": [
@@ -81,10 +83,10 @@ is equivalent to:
     "value": "Test1"
 }
 '''
-def is_dict_to_list_compare(diff_):
+def check_if_dict_to_list_compare(diff_):
     return isinstance(diff_[2][0], dict) and isinstance(diff_[2][1], list) and len(diff_[2][1]) == 1
 
-def is_dict_list_equal(diff_):
+def check_if_dict_and_list_are_equal(diff_):
     if len(diff_[2][1]) == 1:
         return diff_[2][0] == diff_[2][1][0]
     else:

@@ -33,7 +33,9 @@ class DPRequestHandler:
         except ConnectionError:
             raise
         resp_str = json.dumps(resp)
-        data = json.loads(unescape(resp_str))
+        # DataPower will sometimes return xml encoded strings, unescape
+        # ie. &amp is found in strings in AccessProfile and ConfigDeploymentPolicy objects.
+        data = json.loads(unescape(resp_str)) 
         return data
 
 
@@ -59,56 +61,16 @@ class DPManageConfigRequestHandler(DPRequestHandler):
 
         return {'metadata': metadata, 'types': types}
 
-    def get_types(self, props):
-        types = []
-        for prop in props:
-            href = prop['type']['href']
-            if not self.has_type(types, href):
-                type_ = self._make_request(prop['type']['href'], 'GET', None)
-                types.append(type_)
-        
-        hrefs = []
-        type_stack = list(types)
-        # Need to continue looping until all types are processed off this stack and added types list
-        # this is account for types that return nested properties, if we find a type that returned 
-        # properties add the hrefs to be processed later  
-        while len(type_stack) > 0:
-            type_ = type_stack.pop()
-            
-            if type_ not in types:
-                types.append(type_)
-
-            if 'properties' in type_['type']:
-                # property is returned from DataPower as a list or dict. A dict is returned if there 
-                # is only 1 property
-                if isinstance(type_['type']['properties']['property'], list):
-                    for prop_ in type_['type']['properties']['property']:
-                        hrefs.append(prop_['type']['href'])
-                elif isinstance(prop, dict):
-                    hrefs.append(type_['type']['properties']['property']['type']['href'])
-
-            while len(hrefs) > 0:
-                href = hrefs.pop()
-                if not self.has_type(types, href):
-                    type_ = self._make_request(href, 'GET', None)
-                    type_stack.append(type_)
-        return types
-
-    @staticmethod
-    def has_type(types, href):
-        for type_ in types:
-            if href == type_['_links']['self']['href']:
-                return True
-        else:
-            return False
 
 class DPGetConfigRequestHandler(DPRequestHandler):
     
     def __init__(self, connection):
         super(DPGetConfigRequestHandler, self).__init__(connection)
 
+
 class ActionQueueTimeoutError(Exception):
     pass
+
 
 class DPActionQueueRequestHandler(DPRequestHandler):
     def __init__(self, connection):
@@ -134,6 +96,7 @@ class DPActionQueueRequestHandler(DPRequestHandler):
                 return True
         else:
             return False
+
 
 class DPFileStoreRequestHandler(DPRequestHandler):
     def __init__(self, connection):

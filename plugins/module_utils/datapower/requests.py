@@ -5,7 +5,6 @@ __metaclass__ = type
 #from urllib.parse import quote
 import time
 import base64
-from copy import copy
 from ansible.module_utils.six.moves.urllib.parse import urlencode
 from ansible.module_utils.six.moves.urllib.parse import quote
 
@@ -100,11 +99,13 @@ class DPActionQueueRequest(DPRequest):
             self.body = None
         self.method = 'POST'  
 
+
 class DPListActionsRequest(DPRequest):
     def __init__(self, dp_action):
         super(DPListActionsRequest, self).__init__()
         self.method = 'GET'
         self.path = ACTION_QUEUE_OPERATIONS_URI.format(dp_action.domain)
+
 
 class DPActionQueueSchemaRequest(DPRequest):
     def __init__(self, dp_action):
@@ -112,18 +113,11 @@ class DPActionQueueSchemaRequest(DPRequest):
         self.method = 'GET'
         self.path = ACTION_QUEUE_SCHEMA_URI.format(dp_action.domain, dp_action.action)
 
+
 class DPManageConfigRequest(DPRequest):
-     
-    # Need to check against the objects schema to determine the correct method.
-    # Only POST can be used against field Array Property to append a list item.
-    # Appending to a list should also require overwrite being set to false as a 
-    # put against a list results in the list being overwritten.
+
     def __init__(self, dp_mgmt_conf):
         super(DPManageConfigRequest, self).__init__()
-        # At this time schema is only used to check if a DataPower object
-        # field is an array.  This could be utilized further to validate
-        # other or all portions of a object passed to ansible prior to the 
-        # request to DataPower.
         if dp_mgmt_conf.state == 'present':
             self.method = 'PUT'
             self.set_path(

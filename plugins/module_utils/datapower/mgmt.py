@@ -3,13 +3,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-# This is hardcoded, the response is from DataPower v 10.0.1.0.
-# This could be greatly improved by having it check at the beginning
-# of module execution
-def is_valid_class(class_name):
-    return class_name in valid_objects
-
-
 class DPActionQueue():
     def __init__(self, **kwargs):
         for k,v in kwargs.items():
@@ -49,8 +42,11 @@ class DPManageConfigObject:
             else:
                 raise AttributeError('name attribute is required.')
 
-
-
+# This is hardcoded, the response is from DataPower v 10.0.1.0.
+# This should greatly improved by having it check at the beginning
+# of module execution
+def is_valid_class(class_name):
+    return class_name in valid_objects
 
 valid_objects = [ 
     'AAAPolicy',

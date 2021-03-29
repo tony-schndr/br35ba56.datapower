@@ -41,7 +41,6 @@ class HttpApi(HttpApiBase):
     def send_request(self, path, method, data):
         if data:
             data = json.dumps(data)
-
         headers = {
             "Content-Type": "application/json",
             "Accept": "application/json"
@@ -50,8 +49,6 @@ class HttpApi(HttpApiBase):
             path, data, headers=headers, method=method
         )
         return handle_response(response, response_data)
-
-
 
 def handle_response(response, response_data):
     try:

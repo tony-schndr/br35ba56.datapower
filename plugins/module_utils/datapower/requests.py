@@ -86,6 +86,7 @@ class DPFileStoreRequest(DPRequest):
     def check_for_dir_req(self, dir):
         return FILESTORE_URI_PATH.format(self.fs.domain, self.fs.root_dir, dir), 'GET', None
 
+
 class DPActionQueueRequest(DPRequest):
     def __init__(self, dp_action):
         super(DPActionQueueRequest, self).__init__()
@@ -156,11 +157,9 @@ class DPManageConfigRequest(DPRequest):
         if class_name and not name and not field:
             self.path = MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI.format(domain, class_name)
         elif class_name and name and not field:
-            #Ran into a case where there was a space in a datapower object name so we qoute 
-            #the name param.  ex "DNS Settings"
-            self.path = MGMT_CONFIG_WITH_NAME_URI.format(domain, class_name, quote(name))
+            self.path = MGMT_CONFIG_WITH_NAME_URI.format(domain, class_name, name)
         elif class_name and name and field:
-            self.path = MGMT_CONFIG_WITH_FIELD_URI.format(domain, class_name, quote(name), field)
+            self.path = MGMT_CONFIG_WITH_FIELD_URI.format(domain, class_name, name, field)
         else:
             raise AttributeError('no valid URI could be derived')
 

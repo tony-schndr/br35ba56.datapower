@@ -11,15 +11,13 @@ module: files
 
 short_description: Manipulate DataPower's file system.
 
-
 version_added: "1.0.0"
 
-description: Use for uploading singular files or an entire directory recursively.  Behavior of this module is similar 
-    to the ansible builtin file/copy modules.
+description: Use for uploading a single file or an entire directory recursively.
 
 options:
     domain:
-        description: Domain to upload the file too
+        description: Domain to upload the file to
         required: true
         type: str
     content:
@@ -27,7 +25,7 @@ options:
         required: false
         type: str
     src:
-        description: The location of the file on the machine executing this module.
+        description: The location of the file on the local ansible host.
         required: false
         type: str
     dest:

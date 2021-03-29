@@ -70,7 +70,8 @@ def test_DPFileStoreRequest_get_dir_reqs():
         ('/mgmt/filestore/default/local', 'POST', {'directory': {'name': 'GetStat/Processing/Route'}})
     ]
     posts = [r[1] for r in fs_req.dir_reqs()]
-    assert posts == requests
+    req = [r[1] for r in requests]
+    assert posts == req
 
     requests = [
         ('/mgmt/filestore/default/local/GetStat', 'GET', None),

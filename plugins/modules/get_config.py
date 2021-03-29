@@ -11,7 +11,6 @@ module: get_config
 
 short_description: Use for getting object configuration on IBM DataPower
 
-
 version_added: "1.0.0"
 
 description: Use for getting object configuration

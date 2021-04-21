@@ -16,7 +16,7 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     DPManageConfigObject
 )
-from ansible_collections.community.datapower.plugins.module_utils.datapower.filestore import (
+from ansible_collections.community.datapower.plugins.module_utils.datapower.files import (
     DPFileStore
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.actionqueue import (

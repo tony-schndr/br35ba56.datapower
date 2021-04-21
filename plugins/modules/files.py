@@ -96,7 +96,7 @@ from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     DPFileStoreRequest
 )
-from ansible_collections.community.datapower.plugins.module_utils.datapower.filestore import (
+from ansible_collections.community.datapower.plugins.module_utils.datapower.files import (
     DPFileStore
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (

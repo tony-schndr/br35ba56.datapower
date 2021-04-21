@@ -31,7 +31,7 @@ def file_mtime(path):
 
 
 class LocalFile:
-    def __init__(self, path):
+    def __init__(self, path:str):
         if os.path.isfile(path):
             self.path = path
         else:
@@ -71,7 +71,7 @@ class LocalDirectory:
 
 
 class DirectoryComparitor:
-    def __init__(self, ld_from, ld_to):
+    def __init__(self, ld_from:LocalDirectory, ld_to:LocalDirectory):
         self.ld_from = ld_from
         self.ld_to = ld_to
         self.dircmp = dircmp(self.ld_from.path, self.ld_to.path)
@@ -91,7 +91,7 @@ class DirectoryComparitor:
 
 class FileDiff:
 
-    def __init__(self, from_local_file, to_local_file):
+    def __init__(self, from_local_file:LocalFile, to_local_file:LocalFile):
         self.from_local_file = from_local_file
         self.to_local_file = to_local_file
 
@@ -124,12 +124,9 @@ class DPDirectory:
 
 class DPFile:
     # attributes needed for creating a file on DataPower
-    def __init__(self):
+    def __init__(self, lf:LocalFile):
         pass
 
-    @staticmethod
-    def is_dest_valid_file_path(dest):
-        return re.match(r'[\w,\s-]+\.[A-Za-z]{1,4}', dest.split('/')[-1])
 
 
 class DPFileStore:

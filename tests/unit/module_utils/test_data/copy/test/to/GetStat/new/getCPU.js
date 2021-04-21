@@ -3,7 +3,8 @@
      Purpose: Get Statistics that cannot be produced by the log target on DataPower.
      Revisions:	Version		Date		Author		Description
 				1.0.0     	2019		Will Liao	Initial Revision
- */
+
+*/
 
 var sm = require('service-metadata');
 var hm = require('header-metadata');

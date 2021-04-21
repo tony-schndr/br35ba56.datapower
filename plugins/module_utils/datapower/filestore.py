@@ -1,11 +1,20 @@
+#!/Library/Frameworks/Python.framework/Versions/3.7/bin/python3
+
 from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
 import base64
 import os
+import sys
 import re
+import shutil
 from glob import glob
+from difflib import context_diff
+from filecmp import dircmp
+from datetime import datetime, timezone
+
+WORK_DIR = '/var/tmp/.ansible_community_datapower_workdir'
 
 
 def isBase64(s):
@@ -15,80 +24,149 @@ def isBase64(s):
         return False
 
 
-class DPFileStore:
-    def __init__(self, params=None):
-        if params:
-            self.domain = params['domain']
+def file_mtime(path):
+    t = datetime.fromtimestamp(os.stat(path).st_mtime,
+                               timezone.utc)
+    return t.astimezone().isoformat()
 
-            if params['state'] == 'directory':
-                self.set_dirs(params['dest'])
-                self.set_src(params['src'])
-            elif params['state'] == 'file':
-                self.set_content(params)
-                if self.is_dest_valid_file_path(params['dest']):
-                    self.set_file_name(params['dest'])
-                    self.dest = params['dest'].lstrip('/')
-                else:
-                    self.set_file_name(params['src'])
-                    self.dest = params['dest'].lstrip('/').rstrip('/') + '/' + self.file_name
-            elif params['state'] == 'absent':
-                self.dest = params['dest'].lstrip('/').rstrip('/')
 
-    def set_file_name(self, file_name):
-        self.file_name = file_name.split('/')[-1]
-        
-    # Need to determine if the destination is a valid file path.
-    # This is not valid /local/GetStat
-    # This is valid /local/GetStat/CPU.xsl
-    @staticmethod  
-    def is_dest_valid_file_path(dest):
-        return re.match(r'[\w,\s-]+\.[A-Za-z]{1,4}', dest.split('/')[-1])
-    
-    def set_src(self, src):
-        self.src = src.rstrip('/')
+class LocalFile:
+    def __init__(self, path):
+        if os.path.isfile(path):
+            self.path = path
+        else:
+            raise FileNotFoundError
+        self.mod_time = file_mtime(self.path)
+
+    def get_base64(self):
+        with open(self.path, 'rb') as fb:
+            data = fb.read()
+        return base64.b64encode(data).decode()
+
+    def get_lines(self):
+        with open(self.path, 'r') as fb:
+            lines = fb.readlines()
+        return lines
+
+    def __str__(self):
+        return self.path
+
+
+class LocalDirectory:
+    def __init__(self, path):
+        if os.path.isdir(path):
+            self.path = path
+            self.root = path.rstrip('/').split('/')[-1]
+        else:
+            raise NotADirectoryError
+
+    def list_sub_dirs(self):
+        for r, d, f in os.walk(self.path):
+            yield r,
+
+    def get_local_files(self):
+        for r, d, files in os.walk(self.path):
+            for file_ in files:
+                yield LocalFile(os.path.join(r, file_))
+
+
+class DirectoryComparitor:
+    def __init__(self, ld_from, ld_to):
+        self.ld_from = ld_from
+        self.ld_to = ld_to
+        self.dircmp = dircmp(self.ld_from.path, self.ld_to.path)
+
+    def get_diff_files(self):
+        def gen_diff_files(files, dcmp):
+            for name in dcmp.diff_files:
+                from_local_file = LocalFile(os.path.join(dcmp.left, name))
+                to_local_file = LocalFile(os.path.join(dcmp.right, name))
+                files.append(FileDiff(from_local_file, to_local_file))
+            for sub_dcmp in dcmp.subdirs.values():
+                gen_diff_files(files, sub_dcmp)
+        files = []
+        gen_diff_files(files, self.dircmp)
+        return files
+
+
+class FileDiff:
+
+    def __init__(self, from_local_file, to_local_file):
+        self.from_local_file = from_local_file
+        self.to_local_file = to_local_file
+
+    def get_context_diff(self):
+        return context_diff(
+            a=self.from_local_file.get_lines(),
+            b=self.to_local_file.get_lines(),
+            fromfile=self.from_local_file.path,
+            tofile=self.to_local_file.path,
+            n=3
+        )
+
+    def __str__(self):
+        return "".join(self.get_context_diff())
+
+
+class DPDirectory:
+    # attributes needed for creating a directory on DataPower.
+    def __init__(self):
+        pass
 
     @staticmethod
     def has_valid_root_dir(root_dir):
         if root_dir not in ['local', 'sharedcert', 'cert']:
-             raise AttributeError('dest path must specify one of (local | sharecert | cert) as the root of the path')
+            raise AttributeError(
+                'dest path must specify one of (local | sharecert | cert) as the root of the path')
         else:
             return True
-           
-    def set_dirs(self, dest):
-        root_dir = dest.lstrip('/').rstrip('/').split('/')[0]
-        if self.has_valid_root_dir(root_dir):
-            self.root_dir = root_dir
-            self.dest = '/'.join(dest.lstrip('/').rstrip('/').split('/')[1:])
 
-    def set_content(self, params):
-        content = params['content']
-        if content is not None:
-            if isBase64(content):
-                self.content = content
-            else:
-                self.content = base64.b64encode(str.encode(content)).decode()
-        else:
-            self.content = self.get_local_content(params['src'])
 
-    def dirs(self):
-        for r, d, f in os.walk(self.src):
-            dir = self.dest + '/' + r[len(self.src):].strip('/')
-            if len(dir) != 0:
-                yield dir.lstrip('/').rstrip('/')
+class DPFile:
+    # attributes needed for creating a file on DataPower
+    def __init__(self):
+        pass
 
-    def files(self):
-        for g in glob(self.src + '/**/*', recursive=True):
-            if os.path.isfile(g):
-                path = self.dest + '/' + g[len(self.src):].strip('/').rstrip('/')
-                file_name = g.split('/')[-1]
-                content = self.get_local_content(g)
-                yield path, file_name, content,
+    @staticmethod
+    def is_dest_valid_file_path(dest):
+        return re.match(r'[\w,\s-]+\.[A-Za-z]{1,4}', dest.split('/')[-1])
 
-    def get_local_content(self, f):
-        if os.path.isfile(f):
-            with open(f, 'rb') as fb:
-                data = fb.read()
-            return base64.b64encode(data).decode()
-        else:
-            raise FileNotFoundError
-            
+
+class DPFileStore:
+    # Maybe the interfacing object to the request generator/handler, who knows...
+    pass
+
+
+if __name__ == '__main__':
+
+    dir_path_from = '/Users/anthonyschneider/DEV/ansible-datapower-playbooks/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/test/from/'
+    dir_path_to = '/Users/anthonyschneider/DEV/ansible-datapower-playbooks/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/test/to/'
+
+    ld_from = LocalDirectory(dir_path_from)
+    ld_to = LocalDirectory(dir_path_to)
+
+    dcmp = DirectoryComparitor(ld_from, ld_to)
+    fc = list(dcmp.get_diff_files())[0]
+
+    assert isinstance(fc, FileDiff)
+
+    print(fc)
+
+    '''
+    file_diffs = []
+    print(list(dcmp.get_diff_files()))
+    for lf in dcmp.get_diff_files():
+        print(type(lf))
+    for files in dcmp.get_diff_files():
+        #print('comparing: ', files[0],files[1])
+        local_file_from = files[0]
+        local_file_to = files[1]
+        file_cmp = FileComparitor(
+            local_file_from,
+            local_file_to
+        )
+        
+        file_diff = file_cmp.get_diff()
+       # print(file_diff)
+        sys.stdout.writelines(file_diff)
+        '''

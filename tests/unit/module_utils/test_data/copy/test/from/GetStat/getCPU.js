@@ -4,7 +4,7 @@
      Revisions:	Version		Date		Author		Description
 				1.0.0     	2019		Will Liao	Initial Revision
  */
-
+var change;
 var sm = require('service-metadata');
 var hm = require('header-metadata');
 var urlopen = require('urlopen');

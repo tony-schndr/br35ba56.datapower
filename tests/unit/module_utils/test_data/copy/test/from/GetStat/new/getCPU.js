@@ -1,11 +1,10 @@
 /*
-     Script Name: getDomainMemStatus.js
+     Script Name: getCPU.js
      Purpose: Get Statistics that cannot be produced by the log target on DataPower.
      Revisions:	Version		Date		Author		Description
-				1.0.0     	2018.09		Will Liao	Initial Revision
+				1.0.0     	2019		Will Liao	Initial Revision
  */
 
-var sm = require('service-metadata');
 var hm = require('header-metadata');
 var urlopen = require('urlopen');
 var ct = hm.current.get('Content-Type');
@@ -13,7 +12,7 @@ var ctx = session.name('getstat') || session.createContext('getstat');
 var vAppliance = ctx.getVar('devicename').replace('<?xml version="1.0" encoding="UTF-8"?>','') || 0;
 var vDomainName = sm.getVar("var://service/domain-name");
 var vLogCategory = {'category':'GetStatCategory'};
-var vHost = "https://MGMT:5554/mgmt/status/default/DomainsMemoryStatus2";
+var vHost = "https://MGMT:5554/mgmt/status/default/CPUUsage";
 var vXMLContentType = "application/json";
 	// define the urlopen options
 	var options = {
@@ -40,17 +39,7 @@ urlopen.open(options, function (error, response) {
 				} else {
 					session.output.write(" Success ");
 					
-					var vDomainMemoryStatus = readAsJSONResponse.DomainsMemoryStatus2;
-					
-					for (var i = 0; i < vDomainMemoryStatus.length; i++) {
-						console.options(vLogCategory).log("Appliance: " + vAppliance 
-						+ ", Domain Memory Status: " 
-						+ "[{Domain: " 
-						+ vDomainMemoryStatus[i].Domain 
-						+ ", ServicesCurrent: " 
-						+ vDomainMemoryStatus[i].ServicesCurrent 
-						+ "}]");
-					}
+					console.options(vLogCategory).log("Appliance: " + vAppliance + ", CPUUsage: " + JSON.stringify(readAsJSONResponse.CPUUsage.tenSeconds));
 				}
 			});
 			};

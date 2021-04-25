@@ -166,7 +166,8 @@ def run_module():
 
     #Gets rid of keys we don't want compared (_links, href, state)
     clean_dp_dict(dp_state_resp)
-    
+    #result['state'] = dp_state_resp
+    #module.exit_json(**result)
     if not dp_diff.is_changed(dp_state_resp, dp_req.body):
         result['changed'] = False
         module.exit_json(**result)

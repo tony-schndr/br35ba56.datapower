@@ -1,12 +1,15 @@
 from __future__ import absolute_import, division, print_function
-from ansible_collections.community.datapower.plugins.module_utils.datapower.files import (
-    LocalFile,
-    LocalDirectory,
-    DirectoryComparitor,
-    FileDiff
-)
-from ansible_collections.community.datapower.plugins.module_utils.datapower.classes import valid_objects
-
+try:
+    from ansible_collections.community.datapower.plugins.module_utils.datapower.files import (
+        LocalFile,
+        LocalDirectory
+    )
+except:
+    from files import *
+try:
+    from ansible_collections.community.datapower.plugins.module_utils.datapower.classes import valid_objects
+except:
+    from classes import *
 __metaclass__ = type
 
 
@@ -65,7 +68,7 @@ def is_valid_class(class_name):
 
 
 class DPObject():
-    
+
     def __init__(self, domain: str):
         self.domain = domain
 
@@ -75,25 +78,32 @@ class DPObject():
 
 class DPFile(DPObject):
 
-    def __init__(self, domain: str, content: str, path: str ):
+    def __init__(self, domain: str, content: str, path: str):
         super().__init__(domain)
         self.content = content
         self.path = path
-
-
-    def as_dict(self):
-        pass
+        if path.endswith('/'):
+            raise Exception('Invalid file path, ends in /')
+        self.name = path.split('/')[-1]
 
     def __str__(self):
-        return "\n".join([super().__str__(), self.path, self.content])
+        return "\n".join([super().__str__(), self.path, self.name, self.content])
+
 
 class DPDirectory():
-    pass
+
+    @staticmethod
+    def has_valid_root_dir(root_dir):
+        if root_dir not in ['local', 'sharedcert', 'cert']:
+            raise AttributeError(
+                'dest path must specify one of (local | sharecert | cert) as the root of the path')
+        else:
+            return True
 
 
 if __name__ == '__main__':
     domain = 'default'
     file_path = '/Users/anthonyschneider/DEV/ansible-datapower-playbooks/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/test/to/GetStat/getCPU.js'
     lf = LocalFile(file_path)
-    obj = DPFile(domain, content=lf.get_base64(), path='local/GetStat/' )
+    obj = DPFile(domain, content=lf.get_base64(), path='local/GetStat/getCPU.js')
     print(obj.__str__())

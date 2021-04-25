@@ -31,7 +31,10 @@ def file_mtime(path):
 
 
 class LocalFile:
-    def __init__(self, path:str):
+    def __init__(self, path:str, content:str=None):
+        # set content if you are creating the file via base64 encoding.
+        if content:
+            self.content = content
         if os.path.isfile(path):
             self.path = path
         else:
@@ -113,25 +116,6 @@ class DPDirectory:
     def __init__(self):
         pass
 
-    @staticmethod
-    def has_valid_root_dir(root_dir):
-        if root_dir not in ['local', 'sharedcert', 'cert']:
-            raise AttributeError(
-                'dest path must specify one of (local | sharecert | cert) as the root of the path')
-        else:
-            return True
-
-
-class DPFile:
-    # attributes needed for creating a file on DataPower
-    def __init__(self, lf:LocalFile):
-        pass
-
-
-
-class DPFileStore:
-    # Maybe the interfacing object to the request generator/handler, who knows...
-    pass
 
 
 if __name__ == '__main__':

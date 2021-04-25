@@ -1,4 +1,104 @@
 ---
+
+- name: Delete log target if it exists.
+  community.datapower.config:
+    domain: default
+    state: absent
+    class_name: LogTarget
+    name: syslog_LogTarget
+    config:
+
+- name: Create the log target
+  community.datapower.config:
+    domain: default
+    state: present
+    config:
+      LogTarget:
+        IdleTimeout: 15
+        LocalAddress: 0.0.0.0
+        LocalIdentifier: tocdo30150-t1
+        LogEvents:
+          Class:
+            value: all
+          Priority: notice
+        LogPrecision: second
+        LongRetryInterval: 20
+        Priority: normal
+        RateLimit: 100
+        RemoteAddress: 192.168.168.88
+        RemotePort: 514
+        RetryAttempts: 1
+        RetryInterval: 1
+        Rotate: 3
+        SSLClientConfigType: proxy
+        Size: 500
+        SoapVersion: soap11
+        SyslogFacility: user
+        TimestampFormat: zulu
+        Type: syslog-tcp
+        UploadMethod: ftp
+        UseANSIColor: 'off'
+        mAdminState: enabled
+        name: syslog_LogTarget
+
+- name: Get before syslog_LogTarget
+  community.datapower.get_config:
+    domain: default
+    class_name: LogTarget
+    name: syslog_LogTarget
+  register: before_syslog_LogTarget
+
+- name: Add event filters to log target
+  community.datapower.config:
+    domain: default
+    state: present
+    config:
+      LogTarget:
+        IdleTimeout: 15
+        LocalAddress: 0.0.0.0
+        LocalIdentifier: tocdo30150-t1
+        LogEventFilter:
+        - '0x080c00010'
+        - '0x08580005c'
+        - '0x85a0000a'
+        LogEvents:
+          Class:
+            value: all
+          Priority: notice
+        LogPrecision: second
+        LongRetryInterval: 20
+        Priority: normal
+        RateLimit: 100
+        RemoteAddress: 192.168.168.88
+        RemotePort: 514
+        RetryAttempts: 1
+        RetryInterval: 1
+        Rotate: 3
+        SSLClientConfigType: proxy
+        Size: 500
+        SoapVersion: soap11
+        SyslogFacility: user
+        TimestampFormat: zulu
+        Type: syslog-tcp
+        UploadMethod: ftp
+        UseANSIColor: 'off'
+        mAdminState: enabled
+        name: syslog_LogTarget
+  
+- name: Get after syslog_LogTarget
+  community.datapower.get_config:
+    domain: default
+    class_name: LogTarget
+    name: syslog_LogTarget
+  register: after_syslog_LogTarget
+
+- name: Assert the param LogEventFilter did not exist and was added.
+  assert:
+    that:
+      - "{{ 'LogEventFilter' not in before_syslog_LogTarget['response']['LogTarget'] }}"
+      - "{{ 'LogEventFilter' in after_syslog_LogTarget['response']['LogTarget'] }}"
+  ignore_errors: no
+
 - name: Ensure WebGUI is enabled prior to test
   community.datapower.config:
     domain: default

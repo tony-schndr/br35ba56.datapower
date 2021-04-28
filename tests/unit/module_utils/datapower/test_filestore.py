@@ -19,7 +19,6 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.file
 class TestLocalFile():
 
     def test_LocalFile_with_good_file_path(self):
-        #file_path = '/Users/anthonyschneider/DEV/ansible-datapower-playbooks/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/test/from/GetStat/new/getCPU.js'
         file_path = './tests/unit/module_utils/test_data/copy/test/from/GetStat/new/getCPU.js'
         try:
             LocalFile(file_path)
@@ -29,17 +28,30 @@ class TestLocalFile():
         assert created == True
 
     def test_LocalFile_with_bad_file_path(self):
-        #file_path = '/Users/anthonyschneider/DEV/ansible-datapower-playbooks/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/test/from/GetStat/new/getCPU.js'
         bad_file_path = './tests/unit/module_utils/test_data/copy/test/from/GetStat/new/not-a-file.txt'
         try:
             LocalFile(bad_file_path)
-            created = True
+            assert False
         except:
-            created = False
-        assert created == False
+            assert True
 
-    def test_LocalFile_get_base64(self):
-        pass
+    def test_LocalFile_equal(self):
+        file_path_1 = './tests/unit/module_utils/test_data/files/test.js'
+        file_path_2 = './tests/unit/module_utils/test_data/files/same_file_as_test.js'
+
+        lf1 = LocalFile(file_path_1)
+        lf2 = LocalFile(file_path_2)
+
+        assert lf1 == lf2
+
+    def test_LocalFile_not_equal(self):
+        file_path_1 = './tests/unit/module_utils/test_data/files/test.js'
+        file_path_2 = './tests/unit/module_utils/test_data/files/diff_from_test.js'
+
+        lf1 = LocalFile(file_path_1)
+        lf2 = LocalFile(file_path_2)
+
+        assert lf1 != lf2
 
     def test_LocalFile_get_lines_returns_list_len_gr_zero(self):
         file_path = './tests/unit/module_utils/test_data/copy/test/from/GetStat/new/getCPU.js'

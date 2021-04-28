@@ -13,8 +13,7 @@ from glob import glob
 from difflib import context_diff
 from filecmp import dircmp
 from datetime import datetime, timezone
-
-WORK_DIR = '/var/tmp/.ansible_community_datapower_workdir'
+import hashlib
 
 
 def isBase64(s):
@@ -24,22 +23,36 @@ def isBase64(s):
         return False
 
 
-def file_mtime(path):
-    t = datetime.fromtimestamp(os.stat(path).st_mtime,
-                               timezone.utc)
-    return t.astimezone().isoformat()
+def get_file_md5(path, block_size=2**20):
+    md5 = hashlib.md5()
+    with open (path,'rb') as f:
+        while True:
+            data = f.read(block_size)
+            if not data:
+                break
+            md5.update(data)
+    return md5
 
 
 class LocalFile:
     def __init__(self, path:str, content:str=None):
-        # set content if you are creating the file via base64 encoding.
-        if content:
-            self.content = content
-        if os.path.isfile(path):
-            self.path = path
-        else:
-            raise FileNotFoundError
-        self.mod_time = file_mtime(self.path)
+        # set content if you are creating the file using a base64 encoded string from DataPower REST Mgmt Interface.
+        if os.path.isfile(path) and content == None:
+            self.md5 = get_file_md5(path)
+        elif content:
+            if os.path.isfile(path):
+                raise FileExistsError('{} already exists, not overwriting.'.format(path))
+            self.md5 = self.create_file_from_base64(path, content)
+
+        self.path = path
+
+    def create_file_from_base64(self, path, content):
+        md5 = hashlib.md5()
+        with open(path, 'wb') as f:
+            data = base64.b64decode(content)
+            f.write(data)
+            md5.update(data)
+        return md5
 
     def get_base64(self):
         with open(self.path, 'rb') as fb:
@@ -50,6 +63,11 @@ class LocalFile:
         with open(self.path, 'r') as fb:
             lines = fb.readlines()
         return lines
+
+    def __eq__(self, o):
+        if isinstance(o, LocalFile):
+            return self.md5.hexdigest() == o.md5.hexdigest()
+        return False
 
     def __str__(self):
         return self.path
@@ -131,8 +149,13 @@ if __name__ == '__main__':
 
     assert isinstance(fc, FileDiff)
 
-    print(fc)
+    #print(fc)
+    content = 'LyoKICAgICBTY3JpcHQgTmFtZTogZ2V0Q1BVLmpzCiAgICAgUHVycG9zZTogR2V0IFN0YXRpc3RpY3MgdGhhdCBjYW5ub3QgYmUgcHJvZHVjZWQgYnkgdGhlIGxvZyB0YXJnZXQgb24gRGF0YVBvd2VyLgogICAgIFJldmlzaW9uczoJVmVyc2lvbgkJRGF0ZQkJQXV0aG9yCQlEZXNjcmlwdGlvbgoJCQkJMS4wLjAgICAgIAkyMDE5CQlXaWxsIExpYW8JSW5pdGlhbCBSZXZpc2lvbgogKi8KCnZhciBzbSA9IHJlcXVpcmUoJ3NlcnZpY2UtbWV0YWRhdGEnKTsKdmFyIGhtID0gcmVxdWlyZSgnaGVhZGVyLW1ldGFkYXRhJyk7CnZhciB1cmxvcGVuID0gcmVxdWlyZSgndXJsb3BlbicpOwp2YXIgY3QgPSBobS5jdXJyZW50LmdldCgnQ29udGVudC1UeXBlJyk7CnZhciBjdHggPSBzZXNzaW9uLm5hbWUoJ2dldHN0YXQnKSB8fCBzZXNzaW9uLmNyZWF0ZUNvbnRleHQoJ2dldHN0YXQnKTsKdmFyIHZBcHBsaWFuY2UgPSBjdHguZ2V0VmFyKCdkZXZpY2VuYW1lJykucmVwbGFjZSgnPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4nLCcnKSB8fCAwOwp2YXIgdkRvbWFpbk5hbWUgPSBzbS5nZXRWYXIoInZhcjovL3NlcnZpY2UvZG9tYWluLW5hbWUiKTsKdmFyIHZMb2dDYXRlZ29yeSA9IHsnY2F0ZWdvcnknOidHZXRTdGF0Q2F0ZWdvcnknfTsKdmFyIHZIb3N0ID0gImh0dHBzOi8vTUdNVDo1NTU0L21nbXQvc3RhdHVzL2RlZmF1bHQvQ1BVVXNhZ2UiOwp2YXIgdlhNTENvbnRlbnRUeXBlID0gImFwcGxpY2F0aW9uL2pzb24iOwoJLy8gZGVmaW5lIHRoZSB1cmxvcGVuIG9wdGlvbnMKCXZhciBvcHRpb25zID0gewoJdGFyZ2V0IDogdkhvc3QsCgltZXRob2QgOiAnR0VUJywKCWNvbnRlbnRUeXBlIDogdlhNTENvbnRlbnRUeXBlLAoJdGltZW91dCA6IDIKfTsKCi8vIG9wZW4gY29ubmVjdGlvbiB0byB0YXJnZXQgYW5kIHNlbmQgZGF0YSBvdmVyCnVybG9wZW4ub3BlbihvcHRpb25zLCBmdW5jdGlvbiAoZXJyb3IsIHJlc3BvbnNlKSB7CglpZiAoZXJyb3IpIHsKCQkvLyBhbiBlcnJvciBvY2N1cnJlZCBkdXJpbmcgcmVxdWVzdCBzZW5kaW5nIG9yIHJlc3BvbnNlIGhlYWRlciBwYXJzaW5nCgkJY29uc29sZS5sb2coJ3VybG9wZW4gZXJyb3I6ICcgKyBlcnJvcik7CgkJc2Vzc2lvbi5vdXRwdXQud3JpdGUoInVybG9wZW4gY29ubmVjdCBlcnJvcjogIiArIGVycm9yKTsKCX0gZWxzZSB7CgkJLy8gcmVhZCByZXNwb25zZSBkYXRhCgkJLy8gZ2V0IHRoZSByZXNwb25zZSBzdGF0dXMgY29kZQoJCXZhciByZXNwb25zZVN0YXR1c0NvZGUgPSByZXNwb25zZS5zdGF0dXNDb2RlOwoJCWlmIChyZXNwb25zZVN0YXR1c0NvZGUgPT0gMjAwKSB7CgkJCXJlc3BvbnNlLnJlYWRBc0pTT04oZnVuY3Rpb24oZXJyLCByZWFkQXNKU09OUmVzcG9uc2UpIHsKCQkJCWlmIChlcnIpIHsKCQkJCQlzZXNzaW9uLnJlamVjdCgicmVhZEFzSlNPTiBlcnJvcjogIiArIEpTT04uc3RyaW5naWZ5KGVycikpOwoJCQkJfSBlbHNlIHsKCQkJCQlzZXNzaW9uLm91dHB1dC53cml0ZSgiIFN1Y2Nlc3MgIik7CgkJCQkJCgkJCQkJY29uc29sZS5vcHRpb25zKHZMb2dDYXRlZ29yeSkubG9nKCJBcHBsaWFuY2U6ICIgKyB2QXBwbGlhbmNlICsgIiwgQ1BVVXNhZ2U6ICIgKyBKU09OLnN0cmluZ2lmeShyZWFkQXNKU09OUmVzcG9uc2UuQ1BVVXNhZ2UudGVuU2Vjb25kcykpOwoJCQkJfQoJCQl9KTsKCQkJfTsKCQl9Cgl9KTsK'
+    lf = LocalFile(path='/Users/anthonyschneider/DEV/ansible-datapower-playbooks/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/files/test.js')#, content=content)
+    print(lf.md5.hexdigest(), lf.md5.hexdigest())
+    lf1 = LocalFile(path='/Users/anthonyschneider/DEV/ansible-datapower-playbooks/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/files/same_file_as_test.js')
 
+    print(lf == lf1)
     '''
     file_diffs = []
     print(list(dcmp.get_diff_files()))

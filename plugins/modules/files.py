@@ -3,6 +3,22 @@
 # Copyright: (c) 2020, Anthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 from __future__ import (absolute_import, division, print_function)
+import os
+from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
+    DPFileStoreRequests
+)
+from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
+    DPRequestHandler
+)
+from ansible_collections.community.datapower.plugins.module_utils.datapower.files import (
+    LocalFile
+)
+from ansible.module_utils.basic import AnsibleModule
+from ansible.module_utils.connection import (
+    ConnectionError,
+    Connection
+)
+from ansible.module_utils._text import to_text
 __metaclass__ = type
 
 DOCUMENTATION = r'''
@@ -87,27 +103,12 @@ my_useful_info:
         'answer': 42,
     }
 '''
-from ansible.module_utils._text import to_text
-from ansible.module_utils.connection import (
-    ConnectionError, 
-    Connection
-) 
-from ansible.module_utils.basic import AnsibleModule
 
-#from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-   # DPFileStoreRequest
-#)
-from ansible_collections.community.datapower.plugins.module_utils.datapower.files import (
-    LocalFile
-)
-from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
-    DPRequestHandler
-)
-from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-    DPFileStoreRequests
-)
+# from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
+# DPFileStoreRequest
+# )
 
-TOP_DIRS = ['local', 'cert', 'sharedcert' ]
+TOP_DIRS = ['local', 'cert', 'sharedcert']
 
 
 def get_top_dir(dest):
@@ -115,25 +116,25 @@ def get_top_dir(dest):
     if top_dir in TOP_DIRS:
         return top_dir
     else:
-        raise Exception('Invalid top directory, must be one of ', ' '.join(TOP_DIRS))
+        raise Exception(
+            'Invalid top directory, must be one of ', ' '.join(TOP_DIRS))
+
 
 def get_file_path(dest):
     if get_top_dir(dest):
-        #if dest.endswith('/')
-            
         file_path = '/'.join(dest.split('/')[1:-1])
         return file_path
     raise Exception('Invalid path, top directory incorrect.')
 
+
 def run_module():
     module_args = dict(
-        domain = dict(type='str', required=True),
-        content = dict(type='str', required=False),
-        src = dict(type='str', required=False),
-        dest = dict(type='path', required=True),
+        domain=dict(type='str', required=True),
+        content=dict(type='str', required=False),
+        src=dict(type='str', required=False),
+        dest=dict(type='path', required=True),
         #backup = dict(type='bool', required=False),
-        recurse = dict(type='bool', required=False, default=False),
-        state = dict(type='str', required=True, choices=['absent', 'directory', 'file'])
+        state=dict(type='str', required=True, choices=['absent', 'present'])
     )
 
     module = AnsibleModule(
@@ -141,27 +142,48 @@ def run_module():
         supports_check_mode=False,
         mutually_exclusive=[['content', 'src']]
     )
-    
-    #module.params['']
-'''
-if src is a directory, dest must also be directory
 
-'''
+    # module.params['']
+    # Setup the working directory
+    WORK_DIR = '/tmp/community.datapower.workdir/'
+    if not os.path.exists(WORK_DIR):
+        os.mkdir(WORK_DIR)
+    '''
+    if src is a directory, dest must also be directory
+    if src and dest are files the parent directory of dest is not created 
+    and the task fails if it does not already exist.
+    '''
+
     connection = Connection(module._socket_path)
-    dp_handler = DPRequestHandler(connection)
+    req_handler = DPRequestHandler(connection)
     result = {}
-    if module.params['state'] == 'file':
+    domain = module.params['domain']
+    if module.params['state'] == 'present':
         src_lf = LocalFile(module.params['src'])
         top_directory = get_top_dir(module.params['dest'])
         # Try to GET the destination file and save
         # Check if the files are equal
         # Change if src_lf not equal to dest_lf or dest_lf not present
         get_file_request = DPFileStoreRequests.get_file_request(
-            domain = 'default',
-            top_directory=top_directory, 
-            file_path = 'get.js')
+            domain='default',
+            top_directory=top_directory,
+            file_path='get.js'
+        )
+
+        req_result = req_handler.process_request(*get_file_request)
+        content = req_result['file']
+        dp_path = req_result['_links']['self']['href'].split(domain, 1)[1]
+        
+        local_path = WORK_DIR.rstrip('/') + os.sep + dp_path.lstrip('/')
+        LocalFile(local_path, content)
+        result['dp_path'] = dp_path
+        result['workdir'] = WORK_DIR
+
         result['local_file'] = str(src_lf)
         result['get_file_request'] = get_file_request
+        result['request_result'] = req_result
+        result['content'] = content
+        result['local_path'] = local_path
         module.exit_json(**result)
 
 

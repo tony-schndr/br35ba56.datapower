@@ -29,7 +29,8 @@ options:
         required: false
         type: str
     dest:
-        description: The destination of the file or directory upload.
+        description: The destination of the file or directory upload.  You must specify the top_directory within the path, ie local, sharedcert, cert
+            
         required: true
         type: str
     recurse:
@@ -93,22 +94,43 @@ from ansible.module_utils.connection import (
 ) 
 from ansible.module_utils.basic import AnsibleModule
 
-from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-    DPFileStoreRequest
-)
+#from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
+   # DPFileStoreRequest
+#)
 from ansible_collections.community.datapower.plugins.module_utils.datapower.files import (
-    DPFileStore
+    LocalFile
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
     DPRequestHandler
 )
+from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
+    DPFileStoreRequests
+)
+
+TOP_DIRS = ['local', 'cert', 'sharedcert' ]
+
+
+def get_top_dir(dest):
+    top_dir = dest.split('/')[0]
+    if top_dir in TOP_DIRS:
+        return top_dir
+    else:
+        raise Exception('Invalid top directory, must be one of ', ' '.join(TOP_DIRS))
+
+def get_file_path(dest):
+    if get_top_dir(dest):
+        #if dest.endswith('/')
+            
+        file_path = '/'.join(dest.split('/')[1:-1])
+        return file_path
+    raise Exception('Invalid path, top directory incorrect.')
+
 def run_module():
-    
     module_args = dict(
         domain = dict(type='str', required=True),
         content = dict(type='str', required=False),
         src = dict(type='str', required=False),
-        dest = dict(type='str', required=True),
+        dest = dict(type='path', required=True),
         #backup = dict(type='bool', required=False),
         recurse = dict(type='bool', required=False, default=False),
         state = dict(type='str', required=True, choices=['absent', 'directory', 'file'])
@@ -119,85 +141,28 @@ def run_module():
         supports_check_mode=False,
         mutually_exclusive=[['content', 'src']]
     )
+    
+    #module.params['']
+'''
+if src is a directory, dest must also be directory
 
-    fs = DPFileStore(module.params)
-    req = DPFileStoreRequest(fs)
+'''
     connection = Connection(module._socket_path)
     dp_handler = DPRequestHandler(connection)
     result = {}
-    
     if module.params['state'] == 'file':
-        fs_req = req.file_req('PUT')
-        try:
-            result['request'] = {'path': fs_req[0],'method': fs_req[1],'body': fs_req[2]}
-            response = dp_handler.process_request(fs_req[0], fs_req[1], fs_req[2])
-            result['response'] = response
-            result['changed'] = True
-            module.exit_json(**result)
-        except ConnectionError as ce:
-            response = to_text(ce)
-            result['request'] = {'path': fs_req[0],'method': fs_req[1],'body': fs_req[2]}
-            result['changed'] = False
-            result['response'] = response
-            module.fail_json(msg=response, **result)
-        
-    elif module.params['state'] == 'directory':
-        responses = {}
-        responses['directories'] = []
-        responses['files'] = []
-        requests = {}
-        requests['directories'] = []
-        requests['files'] = []
-
-        # Create Directories
-        for dir_req in req.dir_reqs():
-            requests['directories'].append(dir_req)
-            try:
-                #Check if the directroy exists
-                response = dp_handler.process_request(dir_req[0][0], dir_req[0][1], dir_req[0][2])
-                responses['directories'].append(response)
-            except ConnectionError as ce:
-                if 'Resource not found.' in to_text(ce):
-                    try:
-                        response = dp_handler.process_request(dir_req[1][0], dir_req[1][1], dir_req[1][2])
-                        responses['directories'].append(response)
-                        result['changed'] = True
-                    except ConnectionError as ce:
-                        responses['directories'].append(to_text(ce))
-                        result['requests'] = requests
-                        result['responses'] = responses
-                        module.fail_json(msg=to_text(ce), result=result)
-                else:
-                    module.fail_json(msg=to_text(ce), result=result)
-        # Create Files
-        for file_req in req.file_reqs('PUT'):
-            requests['files'].append(file_req)
-            try:
-                response = dp_handler.process_request(file_req[0], file_req[1], file_req[2])
-                responses['files'].append(response)
-                result['changed'] = True
-            except ConnectionError as ce:
-                responses['files'].append(to_text(ce))
-                result['responses'] = responses
-                module.fail_json(msg=to_text(ce), result=result)
-
-        result['requests'] = requests
-        result['responses'] = responses
+        src_lf = LocalFile(module.params['src'])
+        top_directory = get_top_dir(module.params['dest'])
+        # Try to GET the destination file and save
+        # Check if the files are equal
+        # Change if src_lf not equal to dest_lf or dest_lf not present
+        get_file_request = DPFileStoreRequests.get_file_request(
+            domain = 'default',
+            top_directory=top_directory, 
+            file_path = 'get.js')
+        result['local_file'] = str(src_lf)
+        result['get_file_request'] = get_file_request
         module.exit_json(**result)
-
-    else: #module.params['state'] == 'absent'
-        try:
-            fs_req = req.del_req()
-            result['request'] = {'path': fs_req[0],'method': fs_req[1],'body': fs_req[2]}
-            response = dp_handler.process_request(fs_req[0], fs_req[1], fs_req[2])
-            result['response'] = response
-            result['changed'] = True
-            module.exit_json(**result)
-        except ConnectionError as ce:
-            response = to_text(ce)
-            result['response'] = response
-            result['changed'] = False
-            module.fail_json(msg=response, **result)
 
 
 def main():

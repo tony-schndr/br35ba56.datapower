@@ -11,7 +11,7 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
     DPGetConfigRequest,
     DPActionQueueRequest,
     DPActionQueueSchemaRequest,
-    DPFileStoreRequest,
+    DPFileStoreRequests,
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     DPManageConfigObject
@@ -25,7 +25,58 @@ from ansible_collections.community.datapower.tests.unit.module_utils.test_data i
     dp_actionq_test_data as action_test_data,
     files_data
 )
-# Tests building requests objects from the DPManageConfigObject.
+
+def test_DPFileStoreRequests_create_dir_request():
+    domain = 'default'
+    top_directory = 'local'
+    dir_path = 'dir/subdir'
+    req = DPFileStoreRequests.create_dir_request(domain, top_directory, dir_path)
+    assert req == ('/mgmt/filestore/default/local', 'POST', {"directory": { "name": 'dir/subdir' }})
+
+def test_DPFileStoreRequests_get_dir_request():
+    domain = 'default'
+    top_directory = 'local'
+    dir_path = 'dir/subdir'
+    
+    req = DPFileStoreRequests.get_dir_request(domain, top_directory, dir_path)
+    assert req == ('/mgmt/filestore/default/local/dir/subdir', 'GET', None)
+
+
+def test_DPFileStoreRequests_create_file_request():
+    
+    domain = 'default'
+    top_directory = 'local'
+    file_path = 'dir/subdir/get.js'
+    content = 'aGVsbG8gd29ybGQK'
+    req = DPFileStoreRequests.create_file_request(domain, top_directory, file_path, content)
+    assert req == ('/mgmt/filestore/default/local/dir/subdir', 'POST', {'file':{'name':'get.js', 'content': content}})
+
+
+def test_DPFileStoreRequests_update_file_request():
+    domain = 'default'
+    top_directory = 'local'
+    file_path = 'dir/subdir/get.js'
+    content = 'aGVsbG8gd29ybGQK'
+    req = DPFileStoreRequests.update_file_request(domain, top_directory, file_path, content)
+    assert req == ('/mgmt/filestore/default/local/dir/subdir/get.js', 'PUT', {'file':{'name':'get.js', 'content': content}})
+
+
+def test_DPFileStoreRequests_delete_file_request():
+    domain = 'default'
+    top_directory = 'local'
+    file_path = 'dir/subdir/get.js'
+    req = DPFileStoreRequests.delete_file_request(domain, top_directory, file_path)
+    assert req == ('/mgmt/filestore/default/local/dir/subdir/get.js', 'DELETE', None)
+
+
+def test_DPFileStoreRequests_get_file_request():
+    domain = 'default'
+    top_directory = 'local'
+    file_path = 'dir/subdir/get.js'
+    req = DPFileStoreRequests.get_file_request(domain, top_directory, file_path)
+    assert req == ('/mgmt/filestore/default/local/dir/subdir/get.js', 'GET', None)
+
+
 
 def test_DPActionQueueRequest_1():
     task_args = {

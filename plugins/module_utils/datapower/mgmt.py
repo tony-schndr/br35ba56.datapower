@@ -92,14 +92,22 @@ class DPFile(DPObject):
 
 class DPDirectory():
 
+    def __init__(self, dest):
+        dir_path = dest.split('/')[1:-1]
+        if dest.split('/')[0] != 'local':
+            raise InvalidDPDirectoryException('Subdirectories are only valid in local/')
+        else:
+            root = dest.split('/')[0]
+
     @staticmethod
-    def has_valid_root_dir(root_dir):
-        if root_dir not in ['local', 'sharedcert', 'cert']:
-            raise AttributeError(
-                'dest path must specify one of (local | sharecert | cert) as the root of the path')
+    def get_root_dir(path):
+        if 'local' not in path:
+            raise AttributeError('can only create local direct')
         else:
             return True
 
+class InvalidDPDirectoryException(Exception):
+    pass
 
 if __name__ == '__main__':
     domain = 'default'

@@ -7,6 +7,8 @@ import time
 import base64
 from ansible.module_utils.six.moves.urllib.parse import urlencode
 from ansible.module_utils.six.moves.urllib.parse import quote
+import os
+import posixpath
 
 MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI = '/mgmt/config/{0}/{1}' 
 MGMT_CONFIG_WITH_NAME_URI = '/mgmt/config/{0}/{1}/{2}'
@@ -16,9 +18,8 @@ MGMT_CONFIG_URI = '/mgmt/config/'
 ACTION_QUEUE_URI = '/mgmt/actionqueue/{0}'
 ACTION_QUEUE_SCHEMA_URI = '/mgmt/actionqueue/{0}/operations/{1}?schema-format=datapower'
 ACTION_QUEUE_OPERATIONS_URI = '/mgmt/actionqueue/{0}/operations'
-FILESTORE_URI_PATH = '/mgmt/filestore/{0}/{1}/{2}'
-FILESTORE_URI_DIR = '/mgmt/filestore/{0}/{1}'
-
+FILESTORE_DOMAIN_TOPDIR_PATH = '/mgmt/filestore/{domain}/{top_directory}/{path}'
+FILESTORE_URI_CREATE_DIR_WITH_POST = '/mgmt/filestore/{domain}/local'
 VALID_METHODS = ['GET', 'POST', 'PUT', 'DELETE']
 
 URI_OPTIONS = {
@@ -40,51 +41,66 @@ class DPRequest:
         self.method = None
 
 
-class DPFileStoreRequest(DPRequest):
-    def __init__(self, fs):
-        self.fs = fs
+class DPFileStoreRequests():
 
-    @staticmethod
-    def get_body(dir):
-        return {
-            "directory": {
-                "name": dir
-            }
-        }
-
-    def dir_reqs(self):
-        for dir in self.fs.dirs():
-            # sharecert / cert do not allow directories.
-            if self.get_body(dir)['directory']['name'] == 'local':
-                continue
-            yield (FILESTORE_URI_PATH.format(self.fs.domain, self.fs.root_dir, dir), 'GET', None), (FILESTORE_URI_DIR.format(self.fs.domain, self.fs.root_dir), 'POST', self.get_body(dir))
-               
-    def file_reqs(self, method='GET'):
-        for file in self.fs.files():
-            path = FILESTORE_URI_PATH.format(self.fs.domain, self.fs.root_dir, file[0])
-            body = {
-                'file' : {
-                    'name' : file[1],
-                    'content' : file[2]
-                }
-            }
-            yield path, method, body
-
-    def file_req(self, method='GET'):
-        path = FILESTORE_URI_DIR.format(self.fs.domain, self.fs.dest)
+    @staticmethod    
+    def create_dir_request(domain, top_directory, dir_path):
+        path = FILESTORE_URI_CREATE_DIR_WITH_POST.format(domain=domain)
+        method = 'POST'#Confirm
         body = {
-            'file' : {
-                'name' : self.fs.file_name,
-                'content' : self.fs.content
+            "directory": {
+                "name": dir_path
             }
         }
         return path, method, body
 
-    def del_req(self):
-        return (FILESTORE_URI_DIR.format(self.fs.domain, self.fs.dest), 'DELETE', None)
+    @staticmethod
+    def get_dir_request(domain, top_directory, path):
+        method = 'GET'
+        path = FILESTORE_DOMAIN_TOPDIR_PATH.format(domain=domain, top_directory=top_directory, path=path)
+        body = None
+        return path, method, body
 
-    def check_for_dir_req(self, dir):
-        return FILESTORE_URI_PATH.format(self.fs.domain, self.fs.root_dir, dir), 'GET', None
+    @staticmethod
+    def create_file_request(domain, top_directory, file_path, content):
+        method = 'POST'
+        file_name = file_path.split('/')[-1]
+        file_base_path = '/'.join(file_path.split('/')[0:-1])
+        path = FILESTORE_DOMAIN_TOPDIR_PATH.format(domain=domain, top_directory=top_directory, path=file_base_path)
+        body = {
+            'file' : {
+                'name' : file_name,
+                'content' : content
+            }
+        }
+        return path, method, body
+
+    @staticmethod
+    def update_file_request(domain, top_directory, file_path, content):
+        method = 'PUT'
+        file_name = file_path.split('/')[-1]
+        path = FILESTORE_DOMAIN_TOPDIR_PATH.format(domain=domain, top_directory=top_directory, path=file_path)
+        body = {
+            'file' : {
+                'name' : file_name,
+                'content' : content
+            }
+        }
+        return path, method, body
+
+    @staticmethod
+    def delete_file_request(domain, top_directory, file_path):
+        method = 'DELETE'
+        path = FILESTORE_DOMAIN_TOPDIR_PATH.format(domain=domain, top_directory=top_directory, path=file_path)
+        body = None
+        return path, method, body
+
+    @staticmethod
+    def get_file_request(domain, top_directory, file_path):
+        method = 'GET'
+        path = FILESTORE_DOMAIN_TOPDIR_PATH.format(domain=domain, top_directory=top_directory, path=file_path)
+        body = None
+        return path, method, body
 
 
 class DPActionQueueRequest(DPRequest):
@@ -184,3 +200,12 @@ class DPGetConfigRequest(DPManageConfigRequest):
         if hasattr(dp_mgmt_conf, 'depth') and dp_mgmt_conf.depth:
             self.options['depth'] = dp_mgmt_conf.depth
         self.path = self.path + '?' + urlencode(self.options, doseq=0)
+
+
+if __name__ == '__main__':
+    domain = 'default'
+    top_directory = 'local'
+    file_path = 'dir/subdir/get.js'
+    content = 'aGVsbG8gd29ybGQK'
+    req = DPFileStoreRequests.update_file_request(domain, top_directory, file_path, content)
+    print(req == ('/mgmt/filestore/default/local/dir/subdir/get.js', 'PUT', {'file':{'name':'get.js', 'content': content}}))

@@ -18,8 +18,7 @@ MGMT_CONFIG_URI = '/mgmt/config/'
 ACTION_QUEUE_URI = '/mgmt/actionqueue/{0}'
 ACTION_QUEUE_SCHEMA_URI = '/mgmt/actionqueue/{0}/operations/{1}?schema-format=datapower'
 ACTION_QUEUE_OPERATIONS_URI = '/mgmt/actionqueue/{0}/operations'
-FILESTORE_DOMAIN_TOPDIR_PATH = '/mgmt/filestore/{domain}/{top_directory}/{path}'
-FILESTORE_URI_CREATE_DIR_WITH_POST = '/mgmt/filestore/{domain}/local'
+
 VALID_METHODS = ['GET', 'POST', 'PUT', 'DELETE']
 
 URI_OPTIONS = {
@@ -49,7 +48,7 @@ class DPFileStoreRequests():
 
     @staticmethod    
     def create_dir_request(domain, top_directory, dir_path):
-        path = FILESTORE_URI_CREATE_DIR_WITH_POST.format(domain=domain)
+        path = join_filestore_path(domain, top_directory)
         method = 'POST'#Confirm
         body = {
             "directory": {
@@ -59,9 +58,9 @@ class DPFileStoreRequests():
         return path, method, body
 
     @staticmethod
-    def get_dir_request(domain, top_directory, path):
+    def get_dir_request(domain, top_directory, file_path):
         method = 'GET'
-        path = FILESTORE_DOMAIN_TOPDIR_PATH.format(domain=domain, top_directory=top_directory, path=path)
+        path = join_filestore_path(domain, top_directory, file_path)
         body = None
         return path, method, body
 
@@ -84,7 +83,7 @@ class DPFileStoreRequests():
     def update_file_request(domain, top_directory, file_path, content):
         method = 'PUT'
         file_name = file_path.split('/')[-1]
-        path = FILESTORE_DOMAIN_TOPDIR_PATH.format(domain=domain, top_directory=top_directory, path=file_path)
+        path = join_filestore_path(domain, top_directory, file_path)
         body = {
             'file' : {
                 'name' : file_name,
@@ -96,14 +95,14 @@ class DPFileStoreRequests():
     @staticmethod
     def delete_file_request(domain, top_directory, file_path):
         method = 'DELETE'
-        path = FILESTORE_DOMAIN_TOPDIR_PATH.format(domain=domain, top_directory=top_directory, path=file_path)
+        path = join_filestore_path(domain, top_directory, file_path)
         body = None
         return path, method, body
 
     @staticmethod
     def get_file_request(domain, top_directory, file_path):
         method = 'GET'
-        path = FILESTORE_DOMAIN_TOPDIR_PATH.format(domain=domain, top_directory=top_directory, path=file_path)
+        path = join_filestore_path(domain, top_directory, file_path)
         body = None
         return path, method, body
 

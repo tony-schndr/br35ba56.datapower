@@ -203,9 +203,9 @@ def run_module():
     connection = Connection(module._socket_path)
     dp_obj = DPGetConfigObject(**module.params)
     dp_req = DPGetConfigRequest(dp_obj)
-    dp_handler = DPGetConfigRequestHandler(connection)
+    req_handler = DPGetConfigRequestHandler(connection)
     try:
-        dp_resp = dp_handler.process_request(dp_req.path, dp_req.method)
+        dp_resp = req_handler.process_request(dp_req.path, dp_req.method)
     except ConnectionError as e:
         dp_resp = to_text(e)
     result = {}

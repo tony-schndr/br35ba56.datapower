@@ -149,11 +149,11 @@ def run_module():
 
     connection = Connection(module._socket_path)
     dp_obj = DPManageConfigObject(**module.params)
-    dp_handler = DPManageConfigRequestHandler(connection)
+    req_handler = DPManageConfigRequestHandler(connection)
     dp_req = DPManageConfigRequest(dp_obj)
     result = dict()
     try:
-        dp_state_resp = dp_handler.process_request(dp_req.path, 'GET')
+        dp_state_resp = req_handler.process_request(dp_req.path, 'GET')
     except ConnectionError as e:
         dp_state_resp = to_text(e)
         if 'Resource not found' not in dp_state_resp:        
@@ -182,7 +182,7 @@ def run_module():
         module.exit_json(**result)
 
     try:
-        dp_mk_chg_resp = dp_handler.process_request(dp_req.path, dp_req.method, dp_req.body)
+        dp_mk_chg_resp = req_handler.process_request(dp_req.path, dp_req.method, dp_req.body)
     except ConnectionError as e:
         dp_mk_chg_resp = to_text(e)
         result['datapower_response'] = dp_mk_chg_resp

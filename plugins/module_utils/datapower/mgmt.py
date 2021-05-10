@@ -10,6 +10,7 @@ try:
     from ansible_collections.community.datapower.plugins.module_utils.datapower.classes import valid_objects
 except:
     from classes import *
+    
 __metaclass__ = type
 
 
@@ -57,7 +58,6 @@ class DPManageConfigObject:
 # This should greatly improved by having it check at the beginning
 # of module execution
 
-
 def is_valid_class(class_name):
     return class_name in valid_objects
 
@@ -66,9 +66,7 @@ def is_valid_class(class_name):
 # DPFile and DPDirectory are direct representations of all the attributes/parameters
 # required to create a file / directory on DataPower's filesystem.
 
-
 class DPObject():
-
     def __init__(self, domain: str):
         self.domain = domain
 
@@ -78,16 +76,36 @@ class DPObject():
 
 class DPFile(DPObject):
 
-    def __init__(self, domain: str, content: str, path: str):
+    def __init__(self, domain: str, local_path: str, remote_path: str, content=None):
         super().__init__(domain)
-        self.content = content
-        self.path = path
-        if path.endswith('/'):
-            raise Exception('Invalid file path, ends in /')
-        self.name = path.split('/')[-1]
+        self.local_file = LocalFile(local_path, content)
+        self.top_directory = get_top_dir(remote_path)
+        self.remote_path = get_dest_file_path(remote_path)
 
-    def __str__(self):
-        return "\n".join([super().__str__(), self.path, self.name, self.content])
+
+def clean_dp_path(path):
+    return path.rstrip('/').lstrip('/')
+
+TOP_DIRS = ['local', 'cert', 'sharedcert']
+def get_dest_file_path(dest):
+    if len(dest.split('/')) == 2: #Accounts for creating a file at the root of a top_directory
+        dest_file_path = dest.split('/')[-1] 
+    elif len(dest.split('/')) > 2:
+        dest_file_path = '/'.join(dest.split('/')[1:])
+    else: # len < 2
+        raise Exception('Must specify full file path in destination, ie local/full/path/to/file.txt')
+    return dest_file_path
+
+
+def get_top_dir(dest):
+    top_dir = clean_dp_path(dest).split('/')[0]
+    for dir_ in TOP_DIRS:
+        if dir_ in top_dir:
+            return dir_
+    else:
+        raise Exception(
+            top_dir +' is an invalid top directory, must be one of ', ' '.join(TOP_DIRS)
+        )
 
 
 class DPDirectory():
@@ -106,8 +124,10 @@ class DPDirectory():
         else:
             return True
 
+
 class InvalidDPDirectoryException(Exception):
     pass
+
 
 if __name__ == '__main__':
     domain = 'default'

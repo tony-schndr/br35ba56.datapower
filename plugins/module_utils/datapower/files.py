@@ -39,15 +39,21 @@ class LocalFile:
         # set content if you are creating the file using a base64 encoded string from DataPower REST Mgmt Interface.
         if os.path.isfile(path) and content == None:
             self.md5 = get_file_md5(path)
-        elif content:
-            if os.path.isfile(path):
-                raise FileExistsError('{} already exists, not overwriting.'.format(path))
+        elif not os.path.isfile(path) and content:
             self.md5 = self.create_file_from_base64(path, content)
-
+        elif os.path.isfile(path) and content:
+            raise FileNotFoundError('content was provided and {path} already exists.'.format(path=path))
+        elif not os.path.isfile(path) and content == None:
+            raise Exception('no content provided and {path} does not exist'.format(path=path))
+        else:
+            raise NotImplementedError
         self.path = path
 
     def create_file_from_base64(self, path, content):
         md5 = hashlib.md5()
+        if not os.path.exists(os.path.dirname(path)):
+            os.mkdir(os.path.dirname(path))
+        
         with open(path, 'wb') as f:
             data = base64.b64decode(content)
             f.write(data)

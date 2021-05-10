@@ -91,9 +91,9 @@ def run_module():
     
     connection = Connection(module._socket_path)
     
-    dp_handler = DPManageConfigRequestHandler(connection)
+    req_handler = DPManageConfigRequestHandler(connection)
 
-    resp = dp_handler.config_info(module.params['domain'], module.params['class_name'])
+    resp = req_handler.config_info(module.params['domain'], module.params['class_name'])
 
     result = {}
     result['objects'] = resp

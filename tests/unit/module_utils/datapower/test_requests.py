@@ -12,6 +12,8 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
     DPActionQueueRequest,
     DPActionQueueSchemaRequest,
     DPFileStoreRequests,
+    join_filestore_path
+    
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     DPManageConfigObject
@@ -50,6 +52,24 @@ def test_DPFileStoreRequests_create_file_request():
     content = 'aGVsbG8gd29ybGQK'
     req = DPFileStoreRequests.create_file_request(domain, top_directory, file_path, content)
     assert req == ('/mgmt/filestore/default/local/dir/subdir', 'POST', {'file':{'name':'get.js', 'content': content}})
+
+def join_filestore_path():
+    
+    domain = 'default'
+    top_directory = 'local'
+    file_path = 'dir/subdir/get.js'
+    join_filestore_path(domain,top_directory,file_path)
+
+
+
+def test_DPFileStoreRequests_create_file_request_local():
+    
+    domain = 'default'
+    top_directory = 'local'
+    file_path = 'get.js'
+    content = 'aGVsbG8gd29ybGQK'
+    req = DPFileStoreRequests.create_file_request(domain, top_directory, file_path, content)
+    assert req == ('/mgmt/filestore/default/local', 'POST', {'file':{'name':'get.js', 'content': content}})
 
 
 def test_DPFileStoreRequests_update_file_request():

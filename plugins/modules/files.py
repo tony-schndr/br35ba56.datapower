@@ -3,23 +3,7 @@
 # Copyright: (c) 2020, Anthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 from __future__ import (absolute_import, division, print_function)
-import os
-from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-    DPFileStoreRequests
-)
-from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
-    DPRequestHandler
-)
-from ansible_collections.community.datapower.plugins.module_utils.datapower.files import (
-    LocalFile
-)
-from ansible.module_utils.basic import AnsibleModule
-from ansible.module_utils.connection import (
-    ConnectionError,
-    Connection
-)
-from ansible.module_utils._text import to_text
-__metaclass__ = type
+
 
 DOCUMENTATION = r'''
 ---
@@ -104,27 +88,32 @@ my_useful_info:
     }
 '''
 
-# from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-# DPFileStoreRequest
-# )
+import os, shutil
+from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
+    DPFileStoreRequests
+)
+from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
+    DPRequestHandler
+)
+from ansible_collections.community.datapower.plugins.module_utils.datapower.files import (
+    LocalFile
+)
+from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
+    DPFile,
+    DPDirectory
+)
+from ansible.module_utils.basic import AnsibleModule
+from ansible.module_utils.connection import (
+    ConnectionError,
+    Connection
+)
+from ansible.module_utils._text import to_text
 
-TOP_DIRS = ['local', 'cert', 'sharedcert']
+__metaclass__ = type
 
 
-def get_top_dir(dest):
-    top_dir = dest.split('/')[0]
-    if top_dir in TOP_DIRS:
-        return top_dir
-    else:
-        raise Exception(
-            'Invalid top directory, must be one of ', ' '.join(TOP_DIRS))
 
-
-def get_file_path(dest):
-    if get_top_dir(dest):
-        file_path = '/'.join(dest.split('/')[1:-1])
-        return file_path
-    raise Exception('Invalid path, top directory incorrect.')
+WORK_DIR = '/tmp/community.datapower.workdir/'
 
 
 def run_module():
@@ -145,7 +134,6 @@ def run_module():
 
     # module.params['']
     # Setup the working directory
-    WORK_DIR = '/tmp/community.datapower.workdir/'
     if not os.path.exists(WORK_DIR):
         os.mkdir(WORK_DIR)
     '''
@@ -158,34 +146,79 @@ def run_module():
     req_handler = DPRequestHandler(connection)
     result = {}
     domain = module.params['domain']
-    if module.params['state'] == 'present':
-        src_lf = LocalFile(module.params['src'])
-        top_directory = get_top_dir(module.params['dest'])
-        # Try to GET the destination file and save
-        # Check if the files are equal
-        # Change if src_lf not equal to dest_lf or dest_lf not present
-        get_file_request = DPFileStoreRequests.get_file_request(
-            domain='default',
-            top_directory=top_directory,
-            file_path='get.js'
-        )
+    src = module.params['src']
+    dest = module.params['dest']
+    state = module.params['state']
 
-        req_result = req_handler.process_request(*get_file_request)
-        content = req_result['file']
-        dp_path = req_result['_links']['self']['href'].split(domain, 1)[1]
-        
-        local_path = WORK_DIR.rstrip('/') + os.sep + dp_path.lstrip('/')
-        LocalFile(local_path, content)
-        result['dp_path'] = dp_path
-        result['workdir'] = WORK_DIR
+    if state == 'present':
+        if os.path.isfile(src):
+            dp_file_to = DPFile(domain, src, dest)
+            get_file_request = DPFileStoreRequests.get_file_request(
+                domain=dp_file_to.domain,
+                top_directory=dp_file_to.top_directory,
+                file_path=dp_file_to.remote_path
+            )
+            try:
+                get_req_result = req_handler.process_request(*get_file_request)
+            except ConnectionError as gfce:
+                gfce_text = to_text(gfce)
+                if 'Resource not found' in gfce_text:
+                    #Create file, nothing to compare
+                    create_file_request = DPFileStoreRequests.create_file_request(
+                        domain=dp_file_to.domain,
+                        top_directory=dp_file_to.top_directory,
+                        file_path=dp_file_to.remote_path,
+                        content=dp_file_to.local_file.get_base64()
+                    )
+                    try:
+                        create_file_result = req_handler.process_request(*create_file_request)
+                    except ConnectionError as cfce:
+                        result['changed'] = False
+                        result['create_file_request'] = create_file_request
+                        exit_module(module, result, fail=True, msg=to_text(cfce))
+                    result['changed'] = True
+                    result['create_file_result'] = create_file_result
+                    exit_module(module, result, fail=False)
+                else:
+                    result['changed'] = False
+                    result['get_file_request'] = get_file_request
+                    exit_module(module, result, fail=True, msg=gfce_text)
+            
+            dp_file_content = get_req_result['file']
+            dp_file_path = get_req_result['_links']['self']['href'].split(domain, 1)[1]
+            dp_file_local_path = WORK_DIR.rstrip('/') + os.sep + dp_file_path.lstrip('/')
 
-        result['local_file'] = str(src_lf)
-        result['get_file_request'] = get_file_request
-        result['request_result'] = req_result
-        result['content'] = content
-        result['local_path'] = local_path
+            dp_file_from = DPFile(domain, local_path=dp_file_local_path, remote_path=dp_file_path, content=get_req_result['file'])
+
+            if dp_file_from.local_file == dp_file_to.local_file:
+                result['changed'] = False
+                exit_module(module, result, fail=False)
+            else:
+                update_file_request = DPFileStoreRequests.update_file_request(
+                    domain=dp_file_to.domain,
+                    top_directory=dp_file_to.top_directory,
+                    file_path=dp_file_to.remote_path,
+                    content=dp_file_to.local_file.get_base64()
+                )
+                try:
+                    update_file_result = req_handler.process_request(*update_file_request)
+                except ConnectionError as ufece:
+                    result['changed'] = False
+                    shutil.rmtree(WORK_DIR)
+                    module.exit_json(**result)
+                result['changed'] = True
+                result['result'] = update_file_result
+                exit_module(module, result, fail=False)
+            
+            
+
+            
+def exit_module(module, result, fail, msg=''):
+    shutil.rmtree(WORK_DIR)
+    if fail:
+        module.fail_json(msg=msg, **result)
+    else:
         module.exit_json(**result)
-
 
 def main():
     run_module()
@@ -193,3 +226,13 @@ def main():
 
 if __name__ == '__main__':
     main()
+    
+
+
+'''
+        elif os.path.isdir(src):
+            if src.endswith('/'):
+                pass #If dest is a non-existent path and if either dest ends with "/" or src is a directory, dest is created.
+            else:
+                pass # 
+'''

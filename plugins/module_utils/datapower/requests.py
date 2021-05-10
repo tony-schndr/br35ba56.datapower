@@ -34,6 +34,10 @@ URI_OPTIONS = {
     }
 }
 
+def join_filestore_path(*args):
+    file_path = '/'.join(args).rstrip('/')
+    return posixpath.join('/mgmt/filestore/', file_path)
+
 class DPRequest:
     def __init__(self):
         self.body = None
@@ -64,9 +68,10 @@ class DPFileStoreRequests():
     @staticmethod
     def create_file_request(domain, top_directory, file_path, content):
         method = 'POST'
-        file_name = file_path.split('/')[-1]
-        file_base_path = '/'.join(file_path.split('/')[0:-1])
-        path = FILESTORE_DOMAIN_TOPDIR_PATH.format(domain=domain, top_directory=top_directory, path=file_base_path)
+        file_name = os.path.split(file_path)[1]
+        file_base_path = os.path.split(file_path)[0]
+        #path = FILESTORE_DOMAIN_TOPDIR_PATH.format(domain=domain, top_directory=top_directory, path=file_base_path)
+        path = join_filestore_path(domain, top_directory, file_base_path)
         body = {
             'file' : {
                 'name' : file_name,

@@ -36,11 +36,13 @@ URI_OPTIONS = {
     }
 }
 
-def join_filestore_path(*args):
-    file_path = '/'.join(args).rstrip('/')
-    return posixpath.join('/mgmt/filestore/', file_path)
+
+NO_BASE_PATH_ERROR = 'Base path was not provided. ie /mgmt/config/'
+
 
 class DPRequest:
+
+    
     def __init__(self, connection):
         self.connection = connection
         self.body = None
@@ -48,7 +50,7 @@ class DPRequest:
         self.method = None
 
 
-    def process_request(self, path, method, body=None):
+    def _process_request(self, path, method, body=None):
         if body is not None:
             _scrub(body, '_links')
             _scrub(body, 'href')
@@ -63,29 +65,74 @@ class DPRequest:
         data = json.loads(unescape(resp_str)) 
         return data
 
+    def set_body(self, body):
+        self.body = body
+
+    def set_path(self, path):
+        self.path = path
+
+    @staticmethod
+    def join_path(*args, base_path):
+        ''' Join the path to form the full URI
+        args -- list to join with base path, composes the right half of the URI
+        base_path -- string representing the base uri of the rest mgmt interface call, ie /mgmt/config/
+        '''
+        if not base_path:
+            raise ValueError(NO_BASE_PATH_ERROR)
+        path = '/'.join(args).rstrip('/')
+        return posixpath.join(base_path, path)
 
     def update(self):
-        pass
-
-    def create(self):
-        pass
-
+        method = 'PUT'
+        return self._process_request(self.path, method, self.body)
+    
     def get(self):
-        pass
+        method = 'GET'
+        return self._process_request(self.path, method, None)
 
     def delete(self):
-        pass
+        method = 'DELETE'
+        return self._process_request(self.path, method, None)
+
+    def create(self):
+        method = 'POST'
+        return self._process_request(self.path, method, self.body)
 
 
 class DPFileStoreRequest(DPRequest):
     
+    def __init__(self, connection, domain, top_directory, file_path, content):
+        super(DPFileStoreRequest, self).__init__(connection)
+        self.domain = domain
+        self.top_directory = top_directory
+        self.file_path = file_path
+        self.content = content
+        file_name = posixpath.split(file_path)[1]
+        self.set_body(file_name, content)
+        self.path = self.join_path(domain, top_directory, file_path, base_path='/mgmt/filestore/')
+
+    def set_body(self, file_name, content):
+        body = {
+            'file' : {
+                'name' : file_name,
+                'content' : content
+            }
+        }
+        super().set_body(body)
+
+    def create(self):
+        method = 'POST'
+        path = posixpath.split(self.path)[0]
+        return self._process_request(path, method, self.body)
+
+ 
 
 class DPFileStoreRequests():
 
     @staticmethod    
     def create_dir_request(domain, top_directory, dir_path):
         path = join_filestore_path(domain, top_directory)
-        method = 'POST'#Confirm
+        method = 'POST'
         body = {
             "directory": {
                 "name": dir_path

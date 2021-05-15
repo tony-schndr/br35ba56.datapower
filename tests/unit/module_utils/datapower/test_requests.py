@@ -11,8 +11,8 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
     DPGetConfigRequest,
     DPActionQueueRequest,
     DPActionQueueSchemaRequest,
-    DPFileStoreRequests,
-    join_filestore_path
+    DPRequest,
+    DPFileStoreRequest,
     
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
@@ -28,6 +28,81 @@ from ansible_collections.community.datapower.tests.unit.module_utils.test_data i
     files_data
 )
 
+class MockConnection():
+    @staticmethod
+    def send_request(path,method,body):
+        return path, method, body
+
+
+class TestDPRequest:
+
+    def test_DPRequest_join_path(self):
+        domain = 'default'
+        top_directory = 'local'
+        file_path = 'dir/subdir/get.js'
+        assert DPRequest.join_path(domain, top_directory,file_path, base_path='/mgmt/filestore/') == '/mgmt/filestore/default/local/dir/subdir/get.js'
+        
+
+class TestDPFileStoreRequest:
+    connection = MockConnection()
+
+    def test_DPFileStoreRequest__init__(self):
+        domain = 'default'
+        top_directory = 'local'
+        file_path = 'dir/subdir/get.js'
+        content = 'aGVsbG8gd29ybGQK'
+        req = DPFileStoreRequest(self.connection, domain, top_directory, file_path, content)
+        assert req
+        assert req.path == '/mgmt/filestore/default/local/dir/subdir/get.js'
+        assert req.body == {'file':{'name':'get.js', 'content': content}}
+
+    def test_DPFileStoreRequest_create(self):
+        domain = 'default'
+        top_directory = 'local'
+        file_path = 'dir/subdir/get.js'
+        content = 'aGVsbG8gd29ybGQK'
+        req = DPFileStoreRequest(self.connection, domain, top_directory, file_path, content)
+        
+        assert req.create()[0] == '/mgmt/filestore/default/local/dir/subdir'
+        assert req.create()[1] == 'POST'
+        assert req.create()[2] == {'file':{'name':'get.js', 'content': content}}
+    
+    def test_DPFileStoreRequest_put(self):
+        domain = 'default'
+        top_directory = 'local'
+        file_path = 'dir/subdir/get.js'
+        content = 'aGVsbG8gd29ybGQK'
+        req = DPFileStoreRequest(self.connection, domain, top_directory, file_path, content)
+        
+        assert req.update()[0] == '/mgmt/filestore/default/local/dir/subdir/get.js'
+        assert req.update()[1] == 'PUT'
+        assert req.update()[2] == {'file':{'name':'get.js', 'content': content}}
+
+    def test_DPFileStoreRequest_get(self):
+        domain = 'default'
+        top_directory = 'local'
+        file_path = 'dir/subdir/get.js'
+        content = 'aGVsbG8gd29ybGQK'
+        req = DPFileStoreRequest(self.connection, domain, top_directory, file_path, content)
+        
+        assert req.get()[0] == '/mgmt/filestore/default/local/dir/subdir/get.js'
+        assert req.get()[1] == 'GET'
+        assert req.get()[2] == None
+
+    def test_DPFileStoreRequest_delete(self):
+        domain = 'default'
+        top_directory = 'local'
+        file_path = 'dir/subdir/get.js'
+        content = 'aGVsbG8gd29ybGQK'
+        req = DPFileStoreRequest(self.connection, domain, top_directory, file_path, content)
+        
+        assert req.delete()[0] == '/mgmt/filestore/default/local/dir/subdir/get.js'
+        assert req.delete()[1] == 'DELETE'
+        assert req.delete()[2] == None
+
+
+
+'''
 def test_DPFileStoreRequests_create_dir_request():
     domain = 'default'
     top_directory = 'local'
@@ -254,3 +329,4 @@ def test_DPGetConfigRequest_1():
     }
     assert 'state=1' in dp_req.path
 
+'''

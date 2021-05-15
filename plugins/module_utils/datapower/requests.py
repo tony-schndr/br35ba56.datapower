@@ -98,11 +98,32 @@ class DPRequest:
         method = 'POST'
         return self._process_request(self.path, method, self.body)
 
+class DPDirectoryRequest(DPRequest):
+    def __init__(self, connection, domain, top_directory, dir_path):
+        super(DPDirectoryRequest, self).__init__(connection)
+        self.domain = domain
+        self.top_directory = top_directory
+        self.dir_path = dir_path
+        self.path = super().join_path(domain, top_directory, dir_path, base_path='/mgmt/filestore/')
+        self.body = {
+            "directory": {
+                "name": dir_path
+            }
+        }
 
-class DPFileStoreRequest(DPRequest):
+    def create(self):
+        method = 'POST'
+        path = super().join_path(self.domain, self.top_directory, base_path='/mgmt/filestore/')
+        return self._process_request(path, method, self.body)
+
+    def update(self):
+        raise NotImplementedError('Updates to directories are not allowed.')
+ 
+
+class DPFileRequest(DPRequest):
     
     def __init__(self, connection, domain, top_directory, file_path, content):
-        super(DPFileStoreRequest, self).__init__(connection)
+        super(DPFileRequest, self).__init__(connection)
         self.domain = domain
         self.top_directory = top_directory
         self.file_path = file_path
@@ -146,49 +167,6 @@ class DPFileStoreRequests():
         path = join_filestore_path(domain, top_directory, file_path)
         body = None
         return path, method, body
-
-    @staticmethod
-    def create_file_request(domain, top_directory, file_path, content):
-        method = 'POST'
-        file_name = os.path.split(file_path)[1]
-        file_base_path = os.path.split(file_path)[0]
-        #path = FILESTORE_DOMAIN_TOPDIR_PATH.format(domain=domain, top_directory=top_directory, path=file_base_path)
-        path = join_filestore_path(domain, top_directory, file_base_path)
-        body = {
-            'file' : {
-                'name' : file_name,
-                'content' : content
-            }
-        }
-        return path, method, body
-
-    @staticmethod
-    def update_file_request(domain, top_directory, file_path, content):
-        method = 'PUT'
-        file_name = file_path.split('/')[-1]
-        path = join_filestore_path(domain, top_directory, file_path)
-        body = {
-            'file' : {
-                'name' : file_name,
-                'content' : content
-            }
-        }
-        return path, method, body
-
-    @staticmethod
-    def delete_file_request(domain, top_directory, file_path):
-        method = 'DELETE'
-        path = join_filestore_path(domain, top_directory, file_path)
-        body = None
-        return path, method, body
-
-    @staticmethod
-    def get_file_request(domain, top_directory, file_path):
-        method = 'GET'
-        path = join_filestore_path(domain, top_directory, file_path)
-        body = None
-        return path, method, body
-
 
 class DPActionQueueRequest(DPRequest):
     def __init__(self, dp_action):

@@ -11,6 +11,12 @@ try:
 except:
     from classes import *
     
+try:
+    from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import DPFileStoreRequests
+except:
+    from DPFileStoreRequests import *
+    
+
 __metaclass__ = type
 
 
@@ -40,8 +46,7 @@ class DPManageConfigObject:
         if not hasattr(self, 'class_name') or self.class_name is None:
             self.class_name = list(self.config.keys())[0]
             if not is_valid_class(self.class_name):
-                raise ValueError(
-                    'Invalid class_name or no class_name provided.')
+                raise ValueError('Invalid class_name or no class_name provided.')
 
         # Try to set name, the module allows for some flexibility
         # it can be set by specifying it as name
@@ -76,12 +81,38 @@ class DPObject():
 
 class DPFile(DPObject):
 
-    def __init__(self, domain: str, local_path: str, remote_path: str, content=None):
+    def __init__(self, domain: str, local_path: str, remote_path: str, content=None, request_handler=None):
         super().__init__(domain)
         self.local_file = LocalFile(local_path, content)
         self.top_directory = get_top_dir(remote_path)
         self.remote_path = get_dest_file_path(remote_path)
+        self.request_handler = request_handler
+    
+    def get_remote_state(self):
+        get_file_request = DPFileStoreRequests.get_file_request(
+            domain=self.domain,
+            top_directory=self.top_directory,
+            file_path=self.remote_path
+        )
+        try:
+            get_req_result = self.req_handler.process_request(*get_file_request)
+        except ConnectionError as gfce:
+            gfce_text = to_text(gfce)
+            if 'Resource not found' in gfce_text:
+                raise DPResourceNotFoundError(get_file_request.path)
+            else:
+                raise
 
+        content = get_req_result['file']
+        dp_file_path = get_req_result['_links']['self']['href'].split(domain, 1)[1]
+        dp_file_local_path = WORK_DIR.rstrip('/') + os.sep + dp_file_path.lstrip('/')
+        self.remote_state = DPFile(domain, local_path=dp_file_local_path, remote_path=dp_file_path, content=content)
+
+        return get_req_result
+
+
+class DPResourceNotFoundError(Exception):
+    pass
 
 def clean_dp_path(path):
     return path.rstrip('/').lstrip('/')

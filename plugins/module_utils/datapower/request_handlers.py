@@ -19,17 +19,13 @@ class DPRequestHandler:
     def __init__(self, connection):
         self.connection = connection
 
-    def _make_request(self, path, method, body):
-        # Remove any links that are not valid datapower config
+    def process_request(self, path, method, body=None):
         if body is not None:
             _scrub(body, '_links')
             _scrub(body, 'href')
             _scrub(body, 'state')
-        return self.connection.send_request(path, method, body)
-
-    def process_request(self, path, method, body=None):
         try:
-            resp = self._make_request(path, method, body)
+            resp = self.connection.send_request(path, method, body)
         except ConnectionError:
             raise
         resp_str = json.dumps(resp)
@@ -49,7 +45,7 @@ class DPManageConfigRequestHandler(DPRequestHandler):
             path = MGMT_CONFIG_URI
         else:
             path = MGMT_CONFIG_METADATA_URI.format(domain, class_name)
-        metadata = self._make_request(path, 'GET', body=None)
+        metadata = self.process_request(path, 'GET', body=None)
         if metadata['_links']['self']['href'] == MGMT_CONFIG_URI:
             metadata = list(metadata['_links'].keys())
             metadata.sort()
@@ -77,7 +73,7 @@ class DPActionQueueRequestHandler(DPRequestHandler):
         super(DPActionQueueRequestHandler, self).__init__(connection)
 
     def process_request(self, path, method, body=None):
-        resp = self._make_request(path, method, body)
+        resp = super(DPActionQueueRequestHandler, self).process_request(path, method, body)
         if self.is_completed(resp):
             return resp
         else:
@@ -87,7 +83,7 @@ class DPActionQueueRequestHandler(DPRequestHandler):
                 if (time.time() - start_time) > ACTION_QUEUE_TIMEOUT:
                     raise ActionQueueTimeoutError('Could not retrieve status within defined time out' + path)
                 time.sleep(2)
-                resp = self._make_request(path, 'GET', None)     
+                resp = super(DPActionQueueRequestHandler, self).process_request(path, 'GET', None)     
         return resp
 
     def is_completed(self, resp):

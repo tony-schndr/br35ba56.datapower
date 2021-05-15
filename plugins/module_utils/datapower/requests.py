@@ -5,10 +5,13 @@ __metaclass__ = type
 #from urllib.parse import quote
 import time
 import base64
-from ansible.module_utils.six.moves.urllib.parse import urlencode
-from ansible.module_utils.six.moves.urllib.parse import quote
+import json
 import os
 import posixpath
+from xml.sax.saxutils import unescape
+from ansible.module_utils.six.moves.urllib.parse import urlencode
+
+
 
 MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI = '/mgmt/config/{0}/{1}' 
 MGMT_CONFIG_WITH_NAME_URI = '/mgmt/config/{0}/{1}/{2}'
@@ -38,11 +41,44 @@ def join_filestore_path(*args):
     return posixpath.join('/mgmt/filestore/', file_path)
 
 class DPRequest:
-    def __init__(self):
+    def __init__(self, connection):
+        self.connection = connection
         self.body = None
         self.path = None
         self.method = None
 
+
+    def process_request(self, path, method, body=None):
+        if body is not None:
+            _scrub(body, '_links')
+            _scrub(body, 'href')
+            _scrub(body, 'state')
+        try:
+            resp = self.connection.send_request(path, method, body)
+        except ConnectionError:
+            raise
+        resp_str = json.dumps(resp)
+        # DataPower will sometimes return xml encoded strings, unescape
+        # ie. &amp is found in strings in AccessProfile and ConfigDeploymentPolicy objects.
+        data = json.loads(unescape(resp_str)) 
+        return data
+
+
+    def update(self):
+        pass
+
+    def create(self):
+        pass
+
+    def get(self):
+        pass
+
+    def delete(self):
+        pass
+
+
+class DPFileStoreRequest(DPRequest):
+    
 
 class DPFileStoreRequests():
 
@@ -195,7 +231,6 @@ class DPGetConfigRequest(DPManageConfigRequest):
             dp_mgmt_conf.class_name,
             dp_mgmt_conf.name
         )
-        
         if hasattr(dp_mgmt_conf, 'recursive') and dp_mgmt_conf.recursive:
             self.options.update(URI_OPTIONS['recursive'])
             self.options.update(URI_OPTIONS['depth'])
@@ -206,6 +241,34 @@ class DPGetConfigRequest(DPManageConfigRequest):
         self.path = self.path + '?' + urlencode(self.options, doseq=0)
 
 
+def _scrub(obj, bad_key):
+    """
+    Removes specified key from the dictionary in place.
+    :param obj: dict, dictionary from DataPowers get object config rest call
+    :param bad_key: str, key to remove from the dictionary
+    """
+    if isinstance(obj, dict):
+        for key in list(obj.keys()):
+            if key == bad_key:
+                del obj[key]
+            else:
+                _scrub(obj[key], bad_key)
+    elif isinstance(obj, list):
+        for i in reversed(range(len(obj))):
+            if obj[i] == bad_key:
+                del obj[i]
+            else:
+                _scrub(obj[i], bad_key)
+    else:
+        # neither a dict nor a list, do nothing
+        pass
+
+def clean_dp_dict(dict_):
+    _scrub(dict_, '_links')
+    _scrub(dict_, 'href')
+    _scrub(dict_, 'state')
+
+
 if __name__ == '__main__':
     domain = 'default'
     top_directory = 'local'
@@ -213,3 +276,5 @@ if __name__ == '__main__':
     content = 'aGVsbG8gd29ybGQK'
     req = DPFileStoreRequests.update_file_request(domain, top_directory, file_path, content)
     print(req == ('/mgmt/filestore/default/local/dir/subdir/get.js', 'PUT', {'file':{'name':'get.js', 'content': content}}))
+
+

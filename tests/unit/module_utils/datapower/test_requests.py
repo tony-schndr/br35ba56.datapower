@@ -109,6 +109,7 @@ class TestDPFileRequest:
         assert req.delete()[1] == 'DELETE'
         assert req.delete()[2] == None
 
+
 class TestDPDirectoryRequest:
     #Need a few more tests with potentially invalid input if handled incorrectly
     connection = MockConnection()
@@ -163,6 +164,7 @@ class TestDPDirectoryRequest:
         assert req.delete()[1] == 'DELETE'
         assert req.delete()[2] == None
 
+
 class TestDPActionQueueSchemaRequest:
     connection = MockConnection()
 
@@ -175,6 +177,7 @@ class TestDPActionQueueSchemaRequest:
         dp_action = DPActionQueue(**task_args)
         dp_action_req = DPActionQueueSchemaRequest(self.connection, dp_action)
         assert dp_action_req.path == '/mgmt/actionqueue/default/operations/SaveConfig?schema-format=datapower'
+
 
 class TestDPActionQueueRequest:
     connection = MockConnection()
@@ -191,8 +194,6 @@ class TestDPActionQueueRequest:
                 'SaveConfig' : {}
             }
     
-
-
     def test_DPActionQueueRequest_2(self):
         task_args = {
             'domain':'default',
@@ -209,7 +210,70 @@ class TestDPActionQueueRequest:
                 'TraceRoute' : {'RemoteHost': 'www.google.com'}
             }
 
+    def test_action_process_request_transition(self):
+        task_args = {
+            'domain':'default',
+            'action': 'TraceRoute',
+            'parameters': {
+                'RemoteHost': 'www.google.com'
+            }
+        }
 
+        dp_action = DPActionQueue(**task_args)
+        resp = {
+            "_links": {
+                "self": {
+                    "href": "/mgmt/actionqueue/snafu"
+                },
+                "doc": {
+                    "href": "/mgmt/docs/actionqueue"
+                },
+                "location": {
+                    "href": "/mgmt/actionqueue/snafu/pending/ResetThisDomain-20201215T210541Z-10"
+                }
+            },
+            "ResetThisDomain": {
+                "status": "Action request accepted."
+            }
+        }
+        req_handler = DPActionQueueRequest(self.connection, dp_action)
+        assert req_handler.is_completed(resp) == False
+        resp = {
+            "_links": {
+                "self": {
+                    "href": "/mgmt/actionqueue/snafu"
+                },
+                "doc": {
+                    "href": "/mgmt/docs/actionqueue"
+                }
+            },
+            "SaveConfig": "Operation completed.",
+            "script-log": ""
+        }
+        assert req_handler.is_completed(resp) == True
+        resp = {
+            "_links": {
+                "self": {
+                    "href": "/mgmt/actionqueue/snafu/pending/ResetThisDomain-20201215T212048Z-11"
+                }
+            },
+            "status": "completed"
+        }
+        assert req_handler.is_completed(resp) == True
+        resp = {
+            "SaveConfig": "Operation completed.",
+            "_links": {
+                "doc": {
+                    "href": "/mgmt/docs/actionqueue"
+                },
+                "self": {
+                    "href": "/mgmt/actionqueue/snafu"
+                }
+            },
+            "script-log": ""
+        }
+        assert req_handler.is_completed(resp) == True
+    
 
 class TestDPConfigRequest:
     connection = MockConnection()
@@ -267,6 +331,7 @@ class TestDPConfigRequest:
         dp_req = DPConfigRequest(self.connection, dp_mgmt_conf)
         assert dp_req.path ==  '/mgmt/config/snafu/CryptoValCred/valcred'
 
+
     def test_DPConfigRequest_invalid_class(self):
         kwargs = {
             'domain':'snafu',
@@ -281,8 +346,10 @@ class TestDPConfigRequest:
             DPConfigObject(**kwargs)
         except ValueError:
             assert True
-'''
-    def test_DPGetConfigRequest_1():
+
+
+
+    def test_DPGetConfigRequest_1(self):
         kwargs = {
             'domain':'snafu',
             'name': 'valcred',
@@ -297,8 +364,8 @@ class TestDPConfigRequest:
             'depth': 3
         }
 
-        dp_mgmt_conf = DPManageConfigObject(**kwargs)
-        dp_req = DPGetConfigRequest(dp_mgmt_conf)
+        dp_mgmt_conf = DPConfigObject(**kwargs)
+        dp_req = DPGetConfigRequest(self.connection, dp_mgmt_conf)
         assert dp_req.options == {
             'view': 'recursive',
             'state': 1,
@@ -307,7 +374,7 @@ class TestDPConfigRequest:
         assert 'state=1' in dp_req.path and 'depth=3' in dp_req.path and 'view=recursive' in dp_req.path
         
         dp_mgmt_conf.depth = None
-        dp_req = DPGetConfigRequest(dp_mgmt_conf)
+        dp_req = DPGetConfigRequest(self.connection, dp_mgmt_conf)
         assert dp_req.options == {
             'view': 'recursive',
             'state': 1,
@@ -317,9 +384,8 @@ class TestDPConfigRequest:
         assert 'state=1' in dp_req.path and 'depth=2' in dp_req.path and 'view=recursive' in dp_req.path
         dp_mgmt_conf.recursive = False
 
-        dp_req = DPGetConfigRequest(dp_mgmt_conf)
+        dp_req = DPGetConfigRequest(self.connection, dp_mgmt_conf)
         assert dp_req.options == {
             'state': 1
         }
         assert 'state=1' in dp_req.path
-'''

@@ -143,16 +143,11 @@ class DPConfigRequest(DPRequest):
 
 
 class DPGetConfigRequest(DPConfigRequest):
-    def __init__(self, dp_mgmt_conf):
-       # super(DPGetConfigRequest, self).__init__()
+    def __init__(self, connection, dp_mgmt_conf):
+        super(DPGetConfigRequest, self).__init__(connection, dp_mgmt_conf)
         self.body = None
         self.method = 'GET'
         self.options = {}
-        self.set_path(
-            dp_mgmt_conf.domain,
-            dp_mgmt_conf.class_name,
-            dp_mgmt_conf.name
-        )
         if hasattr(dp_mgmt_conf, 'recursive') and dp_mgmt_conf.recursive:
             self.options.update(URI_OPTIONS['recursive'])
             self.options.update(URI_OPTIONS['depth'])
@@ -161,7 +156,6 @@ class DPGetConfigRequest(DPConfigRequest):
         if hasattr(dp_mgmt_conf, 'depth') and dp_mgmt_conf.depth:
             self.options['depth'] = dp_mgmt_conf.depth
         self.path = self.path + '?' + urlencode(self.options, doseq=0)
-
 
 
 class DPDirectoryRequest(DPRequest):
@@ -220,8 +214,10 @@ class DPFileRequest(DPRequest):
         path = posixpath.split(self.path)[0]
         return self._process_request(path, method, self.body)
 
+
 class ActionQueueTimeoutError(Exception):
     pass
+
 
 class DPActionQueueRequest(DPRequest):
 

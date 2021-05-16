@@ -83,12 +83,13 @@ class DPObject():
 class DPFile(DPObject):
 
     def __init__(self, domain: str, local_path: str, remote_path: str, content=None, request_handler=None):
-        super().__init__(domain)
+        super(DPFile, self).__init__(domain)
         self.local_file = LocalFile(local_path, content)
         self.top_directory = get_top_dir(remote_path)
         self.remote_path = get_dest_file_path(remote_path)
         self.request_handler = request_handler
     
+ 
     def get_remote_state(self):
         get_file_request = DPFileRequest.get_file_request(
             domain=self.domain,
@@ -111,9 +112,11 @@ class DPFile(DPObject):
 
         return get_req_result
 
-class DPDirectory():
 
-    def __init__(self, dest):
+class DPDirectory(DPObject):
+
+    def __init__(self, domain, dest):
+        super(DPFile, self).__init__(domain)
         dir_path = dest.split('/')[1:-1]
         if dest.split('/')[0] != 'local':
             raise InvalidDPDirectoryException('Subdirectories are only valid in local/')
@@ -126,8 +129,6 @@ class DPDirectory():
             raise AttributeError('can only create local direct')
         else:
             return True
-
-
 
 
 class DPResourceNotFoundError(Exception):
@@ -158,7 +159,6 @@ def get_top_dir(dest):
         raise Exception(
             top_dir +' is an invalid top directory, must be one of ', ' '.join(TOP_DIRS)
         )
-
 
 
 class InvalidDPDirectoryException(Exception):

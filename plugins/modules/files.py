@@ -90,7 +90,7 @@ my_useful_info:
 
 import os, shutil
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-    DPFileStoreRequests
+    DPFileRequest
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
     DPRequestHandler
@@ -153,7 +153,7 @@ def run_module():
     if state == 'present':
         if os.path.isfile(src):
             dp_file_to = DPFile(domain, src, dest, request_handler=req_handler)
-            get_file_request = DPFileStoreRequests.get_file_request(
+            get_file_request = DPFileRequest.get_file_request(
                 domain=dp_file_to.domain,
                 top_directory=dp_file_to.top_directory,
                 file_path=dp_file_to.remote_path
@@ -164,7 +164,7 @@ def run_module():
                 gfce_text = to_text(gfce)
                 if 'Resource not found' in gfce_text:
                     #Create file, nothing to compare
-                    create_file_request = DPFileStoreRequests.create_file_request(
+                    create_file_request = DPFileRequest.create_file_request(
                         domain=dp_file_to.domain,
                         top_directory=dp_file_to.top_directory,
                         file_path=dp_file_to.remote_path,
@@ -194,7 +194,7 @@ def run_module():
                 result['changed'] = False
                 exit_module(module, result, fail=False)
             else:
-                update_file_request = DPFileStoreRequests.update_file_request(
+                update_file_request = DPFileRequest.update_file_request(
                     domain=dp_file_to.domain,
                     top_directory=dp_file_to.top_directory,
                     file_path=dp_file_to.remote_path,

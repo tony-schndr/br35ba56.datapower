@@ -41,14 +41,13 @@ NO_BASE_PATH_ERROR = 'Base path was not provided. ie /mgmt/config/'
 
 
 class DPRequest:
-
-    
+   
     def __init__(self, connection):
         self.connection = connection
         self.body = None
         self.path = None
         self.method = None
-
+        self.base_path = '/mgmt/'
 
     def _process_request(self, path, method, body=None):
         if body is not None:
@@ -98,7 +97,48 @@ class DPRequest:
         method = 'POST'
         return self._process_request(self.path, method, self.body)
 
+class DPConfigRequest(DPRequest):
+
+    def __init__(self, connection, dp_mgmt_conf):
+        super(DPConfigRequest, self).__init__(connection)
+
+        self.set_path(
+            dp_mgmt_conf.domain,
+            dp_mgmt_conf.class_name,
+            dp_mgmt_conf.name
+        )
+        self.set_body(dp_mgmt_conf)
+
+    def set_body(self, dp_mgmt_conf):
+        # For all requests except for array updates, use this to build a valid body that will work for 
+        # POST and PUT methods.
+        if dp_mgmt_conf.class_name in dp_mgmt_conf.config:
+            if dp_mgmt_conf.name in dp_mgmt_conf.config[dp_mgmt_conf.class_name]:
+                self.body = dp_mgmt_conf.config
+            else:
+                dp_mgmt_conf.config[dp_mgmt_conf.class_name]['name'] = dp_mgmt_conf.name
+                self.body = dp_mgmt_conf.config
+        else:
+            if dp_mgmt_conf.name not in dp_mgmt_conf.config:
+                dp_mgmt_conf.config['name'] = dp_mgmt_conf.name
+            self.body = {
+                dp_mgmt_conf.class_name: dp_mgmt_conf.config
+            }
+
+    def set_path(self, domain, class_name=None, name=None, field=None):
+        if class_name and not name and not field:
+            self.path = MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI.format(domain, class_name)
+        elif class_name and name and not field:
+            self.path = MGMT_CONFIG_WITH_NAME_URI.format(domain, class_name, name)
+        elif class_name and name and field:
+            self.path = MGMT_CONFIG_WITH_FIELD_URI.format(domain, class_name, name, field)
+        else:
+            raise AttributeError('no valid URI could be derived')
+
+
+
 class DPDirectoryRequest(DPRequest):
+    base_path = '/mgmt/filestore'
     def __init__(self, connection, domain, top_directory, dir_path):
         super(DPDirectoryRequest, self).__init__(connection)
         self.domain = domain
@@ -116,8 +156,11 @@ class DPDirectoryRequest(DPRequest):
         path = super().join_path(self.domain, self.top_directory, base_path='/mgmt/filestore/')
         return self._process_request(path, method, self.body)
 
+    # PUT/POST have equivalent outcomes however have different implementions.
+    # create/ update accomplish the same outcome, therefore use create()
     def update(self):
-        raise NotImplementedError('Updates to directories are not allowed.')
+        
+        raise NotImplementedError('Updates to directories are not implemented')
  
 
 class DPFileRequest(DPRequest):
@@ -147,30 +190,9 @@ class DPFileRequest(DPRequest):
         return self._process_request(path, method, self.body)
 
  
-
-class DPFileStoreRequests():
-
-    @staticmethod    
-    def create_dir_request(domain, top_directory, dir_path):
-        path = join_filestore_path(domain, top_directory)
-        method = 'POST'
-        body = {
-            "directory": {
-                "name": dir_path
-            }
-        }
-        return path, method, body
-
-    @staticmethod
-    def get_dir_request(domain, top_directory, file_path):
-        method = 'GET'
-        path = join_filestore_path(domain, top_directory, file_path)
-        body = None
-        return path, method, body
-
 class DPActionQueueRequest(DPRequest):
-    def __init__(self, dp_action):
-        super(DPActionQueueRequest, self).__init__()
+    def __init__(self, connection, dp_action):
+        super(DPActionQueueRequest, self).__init__(connection)
         self.path = ACTION_QUEUE_URI.format(dp_action.domain)
         if hasattr(dp_action, 'parameters'):
             if dp_action.parameters is None:
@@ -190,62 +212,14 @@ class DPListActionsRequest(DPRequest):
 
 
 class DPActionQueueSchemaRequest(DPRequest):
-    def __init__(self, dp_action):
-        super(DPActionQueueSchemaRequest, self).__init__()
+    def __init__(self, connection, dp_action):
+        super(DPActionQueueSchemaRequest, self).__init__(connection)
         self.method = 'GET'
         self.path = ACTION_QUEUE_SCHEMA_URI.format(dp_action.domain, dp_action.action)
 
 
-class DPManageConfigRequest(DPRequest):
 
-    def __init__(self, dp_mgmt_conf):
-        super(DPManageConfigRequest, self).__init__()
-        if dp_mgmt_conf.state == 'present':
-            self.method = 'PUT'
-            self.set_path(
-                dp_mgmt_conf.domain,
-                dp_mgmt_conf.class_name,
-                dp_mgmt_conf.name
-            )
-            self.set_body(dp_mgmt_conf)
-        elif dp_mgmt_conf.state == 'absent':
-            self.method = 'DELETE'
-            self.set_path(
-                dp_mgmt_conf.domain,
-                dp_mgmt_conf.class_name,
-                dp_mgmt_conf.name
-            )
-        else:
-            raise AttributeError('Could not build request object from parsed module parameters.')
-
-    def set_body(self, dp_mgmt_conf):
-        # For all requests except for array updates, use this to build a valid body that will work for 
-        # POST and PUT methods.
-        if dp_mgmt_conf.class_name in dp_mgmt_conf.config:
-            if dp_mgmt_conf.name in dp_mgmt_conf.config[dp_mgmt_conf.class_name]:
-                self.body = dp_mgmt_conf.config
-            else:
-                dp_mgmt_conf.config[dp_mgmt_conf.class_name]['name'] = dp_mgmt_conf.name
-                self.body = dp_mgmt_conf.config
-        else:
-            if dp_mgmt_conf.name not in dp_mgmt_conf.config:
-                dp_mgmt_conf.config['name'] = dp_mgmt_conf.name
-            self.body = {
-                dp_mgmt_conf.class_name: dp_mgmt_conf.config
-            }
-
-    def set_path(self, domain, class_name=None, name=None, field=None):
-        if class_name and not name and not field:
-            self.path = MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI.format(domain, class_name)
-        elif class_name and name and not field:
-            self.path = MGMT_CONFIG_WITH_NAME_URI.format(domain, class_name, name)
-        elif class_name and name and field:
-            self.path = MGMT_CONFIG_WITH_FIELD_URI.format(domain, class_name, name, field)
-        else:
-            raise AttributeError('no valid URI could be derived')
-
-
-class DPGetConfigRequest(DPManageConfigRequest):
+class DPGetConfigRequest(DPConfigRequest):
     def __init__(self, dp_mgmt_conf):
        # super(DPGetConfigRequest, self).__init__()
         self.body = None
@@ -299,7 +273,7 @@ if __name__ == '__main__':
     top_directory = 'local'
     file_path = 'dir/subdir/get.js'
     content = 'aGVsbG8gd29ybGQK'
-    req = DPFileStoreRequests.update_file_request(domain, top_directory, file_path, content)
+    req = DPFileRequest.update_file_request(domain, top_directory, file_path, content)
     print(req == ('/mgmt/filestore/default/local/dir/subdir/get.js', 'PUT', {'file':{'name':'get.js', 'content': content}}))
 
 

@@ -12,13 +12,14 @@ except:
     from classes import *
     
 try:
-    from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import DPFileStoreRequests
+    from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import DPFileRequest
 except:
-    from DPFileStoreRequests import *
-    
+    from DPFileRequest import *
+
 
 __metaclass__ = type
 
+TOP_DIRS = ['local', 'cert', 'sharedcert']
 
 class DPActionQueue():
     def __init__(self, **kwargs):
@@ -32,7 +33,7 @@ class DPGetConfigObject:
             setattr(self, k, v)
 
 
-class DPManageConfigObject:
+class DPConfigObject:
     # domain and class_name are the bare minimum required to get a valid
     # response from DataPower
     # kwargs consisting of the arguments defined in the Ansible Modules
@@ -89,7 +90,7 @@ class DPFile(DPObject):
         self.request_handler = request_handler
     
     def get_remote_state(self):
-        get_file_request = DPFileStoreRequests.get_file_request(
+        get_file_request = DPFileRequest.get_file_request(
             domain=self.domain,
             top_directory=self.top_directory,
             file_path=self.remote_path
@@ -110,15 +111,35 @@ class DPFile(DPObject):
 
         return get_req_result
 
+class DPDirectory():
+
+    def __init__(self, dest):
+        dir_path = dest.split('/')[1:-1]
+        if dest.split('/')[0] != 'local':
+            raise InvalidDPDirectoryException('Subdirectories are only valid in local/')
+        else:
+            root = dest.split('/')[0]
+
+    @staticmethod
+    def get_root_dir(path):
+        if 'local' not in path:
+            raise AttributeError('can only create local direct')
+        else:
+            return True
+
+
+
 
 class DPResourceNotFoundError(Exception):
     pass
 
+
 def clean_dp_path(path):
     return path.rstrip('/').lstrip('/')
 
-TOP_DIRS = ['local', 'cert', 'sharedcert']
+
 def get_dest_file_path(dest):
+
     if len(dest.split('/')) == 2: #Accounts for creating a file at the root of a top_directory
         dest_file_path = dest.split('/')[-1] 
     elif len(dest.split('/')) > 2:
@@ -138,22 +159,6 @@ def get_top_dir(dest):
             top_dir +' is an invalid top directory, must be one of ', ' '.join(TOP_DIRS)
         )
 
-
-class DPDirectory():
-
-    def __init__(self, dest):
-        dir_path = dest.split('/')[1:-1]
-        if dest.split('/')[0] != 'local':
-            raise InvalidDPDirectoryException('Subdirectories are only valid in local/')
-        else:
-            root = dest.split('/')[0]
-
-    @staticmethod
-    def get_root_dir(path):
-        if 'local' not in path:
-            raise AttributeError('can only create local direct')
-        else:
-            return True
 
 
 class InvalidDPDirectoryException(Exception):

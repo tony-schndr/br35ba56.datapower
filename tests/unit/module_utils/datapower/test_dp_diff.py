@@ -10,7 +10,7 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower impo
     dp_diff
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
-    DPManageConfigObject
+    DPConfigObject
 )
 from ansible_collections.community.datapower.tests.unit.module_utils.test_data import (
     dp_mgmt_test_data as test_data,

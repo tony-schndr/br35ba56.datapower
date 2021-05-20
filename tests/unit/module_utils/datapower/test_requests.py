@@ -57,8 +57,9 @@ class TestDPFileRequest:
         top_directory = 'local'
         file_path = 'dir/subdir/get.js'
         content = 'aGVsbG8gd29ybGQK'
-        req = DPFileRequest(self.connection, domain, top_directory, file_path, content)
-        assert req
+        req = DPFileRequest(self.connection)
+        req.set_path(domain, top_directory, file_path)
+        req.set_body(file_path, content)
         assert req.path == '/mgmt/filestore/default/local/dir/subdir/get.js'
         assert req.body == {'file':{'name':'get.js', 'content': content}}
 
@@ -67,8 +68,9 @@ class TestDPFileRequest:
         top_directory = 'local'
         file_path = 'dir/subdir/get.js'
         content = 'aGVsbG8gd29ybGQK'
-        req = DPFileRequest(self.connection, domain, top_directory, file_path, content)
-        
+        req = DPFileRequest(self.connection)
+        req.set_path(domain, top_directory, file_path)
+        req.set_body(file_path, content)
         assert req.create()['path'] == '/mgmt/filestore/default/local/dir/subdir'
         assert req.create()['method'] == 'POST'
         assert req.create()['body'] == {'file':{'name':'get.js', 'content': content}}
@@ -78,8 +80,9 @@ class TestDPFileRequest:
         top_directory = 'local'
         file_path = 'dir/subdir/get.js'
         content = 'aGVsbG8gd29ybGQK'
-        req = DPFileRequest(self.connection, domain, top_directory, file_path, content)
-        
+        req = DPFileRequest(self.connection)
+        req.set_path(domain, top_directory, file_path)
+        req.set_body(file_path, content)
         assert req.update()['path'] == '/mgmt/filestore/default/local/dir/subdir/get.js'
         assert req.update()['method'] == 'PUT'
         assert req.update()['body'] == {'file':{'name':'get.js', 'content': content}}
@@ -89,8 +92,9 @@ class TestDPFileRequest:
         top_directory = 'local'
         file_path = 'dir/subdir/get.js'
         content = 'aGVsbG8gd29ybGQK'
-        req = DPFileRequest(self.connection, domain, top_directory, file_path, content)
-        
+        req = DPFileRequest(self.connection)
+        req.set_path(domain, top_directory, file_path)
+        req.set_body(file_path, content)
         assert req.get()['path'] == '/mgmt/filestore/default/local/dir/subdir/get.js'
         assert req.get()['method'] == 'GET'
         assert req.get()['body'] == None
@@ -100,8 +104,9 @@ class TestDPFileRequest:
         top_directory = 'local'
         file_path = 'dir/subdir/get.js'
         content = 'aGVsbG8gd29ybGQK'
-        req = DPFileRequest(self.connection, domain, top_directory, file_path, content)
-        
+        req = DPFileRequest(self.connection)
+        req.set_path(domain, top_directory, file_path)
+        req.set_body(file_path, content)
         assert req.delete()['path'] == '/mgmt/filestore/default/local/dir/subdir/get.js'
         assert req.delete()['method'] == 'DELETE'
         assert req.delete()['body'] == None
@@ -115,27 +120,33 @@ class TestDPDirectoryRequest:
         domain = 'default'
         top_directory = 'local'
         dir_path = 'dir/subdir/'
-        req = DPDirectoryRequest(self.connection, domain, top_directory, dir_path)
+        
+        req = DPDirectoryRequest(self.connection)
+        req.set_body(dir_path)
+        req.set_path(domain, top_directory, dir_path)
+
         assert req
         assert req.path == '/mgmt/filestore/default/local/dir/subdir'
         assert req.body == {'directory':{'name': dir_path}}
-
 
     def test_DPDirectoryRequest_create(self):
         domain = 'default'
         top_directory = 'local'
         dir_path = 'dir/subdir/'
-        req = DPDirectoryRequest(self.connection, domain, top_directory, dir_path)
+        req = DPDirectoryRequest(self.connection)
+        req.set_body(dir_path)
+        req.set_path(domain, top_directory, dir_path)
         assert req.create()['path'] == '/mgmt/filestore/default/local'
         assert req.create()['method'] == 'POST'
         assert req.create()['body'] == {'directory':{'name': dir_path}}
-
 
     def test_DPDirectoryRequest_update(self):
         domain = 'default'
         top_directory = 'local'
         dir_path = 'dir/subdir/' 
-        req = DPDirectoryRequest(self.connection, domain, top_directory, dir_path)
+        req = DPDirectoryRequest(self.connection)
+        req.set_body(dir_path)
+        req.set_path(domain, top_directory, dir_path)
         try:
             req.update()
             assert False
@@ -146,8 +157,9 @@ class TestDPDirectoryRequest:
         domain = 'default'
         top_directory = 'local'
         dir_path = 'dir/subdir/'
-        req = DPDirectoryRequest(self.connection, domain, top_directory, dir_path)
-        
+        req = DPDirectoryRequest(self.connection)
+        req.set_body(dir_path)
+        req.set_path(domain, top_directory, dir_path)
         assert req.get()['path'] == '/mgmt/filestore/default/local/dir/subdir'
         assert req.get()['method'] == 'GET'
         assert req.get()['body'] == None
@@ -156,7 +168,9 @@ class TestDPDirectoryRequest:
         domain = 'default'
         top_directory = 'local'
         dir_path = 'dir/subdir/'
-        req = DPDirectoryRequest(self.connection, domain, top_directory, dir_path)
+        req = DPDirectoryRequest(self.connection)
+        req.set_body(dir_path)
+        req.set_path(domain, top_directory, dir_path)
         assert req.delete()['path'] == '/mgmt/filestore/default/local/dir/subdir'
         assert req.delete()['method'] == 'DELETE'
         assert req.delete()['body'] == None
@@ -287,7 +301,13 @@ class TestDPConfigRequest:
     }
 
     def test_DPConfigRequest__init__(self):
-        dp_req = DPConfigRequest(self.connection, **self.kwargs)
+        dp_req = DPConfigRequest(self.connection)
+        dp_req.set_path(
+            self.kwargs['domain'],
+            self.kwargs['class_name'],
+            self.kwargs['name'],
+            )
+        dp_req.set_body(self.kwargs['config'])
         assert dp_req.path ==  '/mgmt/config/default/CryptoValCred/valcred'
         assert dp_req.body == {
                 "CryptoValCred": {
@@ -302,7 +322,7 @@ class TestDPConfigRequest:
             'state': True,
             'depth': 3
         }
-        dp_req = DPConfigRequest(self.connection, **self.kwargs)
+        dp_req = DPConfigRequest(self.connection)
         dp_req.set_options(**options)
         assert 'state=1' in dp_req.options and 'depth=3' in dp_req.options and 'view=recursive' in dp_req.options
         
@@ -310,7 +330,12 @@ class TestDPConfigRequest:
         options = {
             'recursive':True
         }
-        dp_req = DPConfigRequest(self.connection, **self.kwargs)
+        dp_req = DPConfigRequest(self.connection)
+        dp_req.set_path(
+            self.kwargs['domain'],
+            self.kwargs['class_name'],
+            self.kwargs['name'],
+            )
         dp_req.set_options(**options)
         assert  'view=recursive' in dp_req.options
         assert  'depth=3' in dp_req.options

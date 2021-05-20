@@ -47,7 +47,6 @@ class DPRequest:
         self.body = None
         self.path = None
         self.method = None
-        self.base_path = '/mgmt/'
 
     def _process_request(self, path, method, body=None):
         if body is not None:
@@ -100,13 +99,12 @@ class DPRequest:
 
 class DPConfigRequest(DPRequest):
 
-    def __init__(self, connection, domain, class_name, name=None, field=None, config=None):
+    def __init__(self, connection):
         super(DPConfigRequest, self).__init__(connection)
-        self.domain = domain
-        self.class_name = class_name
-        self.name = name
+
+
+    def set_path(self, domain=None, class_name=None,  name=None, field=None):
         self.path = self.join_path(domain, class_name, name, field, base_path='/mgmt/config/')
-        self.set_body(config)
 
     def set_options(self, recursive=False, depth=3, state=False):
         options = {}
@@ -147,13 +145,15 @@ class DPDirectoryRequest(DPRequest):
 
     base_path = '/mgmt/filestore'
 
-    def __init__(self, connection, domain, top_directory, dir_path):
+    def __init__(self, connection):
         super(DPDirectoryRequest, self).__init__(connection)
-        self.domain = domain
-        self.top_directory = top_directory
-        self.dir_path = dir_path
-        self.path = super().join_path(domain, top_directory,
-                                      dir_path, base_path='/mgmt/filestore/')
+        
+        
+    def set_path(self, domain, top_directory, dir_path):
+        self.path = self.join_path(domain, top_directory, dir_path, base_path='/mgmt/filestore/')
+        self.create_path = self.join_path(domain, top_directory, base_path='/mgmt/filestore/')
+
+    def set_body(self, dir_path):
         self.body = {
             "directory": {
                 "name": dir_path
@@ -162,8 +162,7 @@ class DPDirectoryRequest(DPRequest):
 
     def create(self):
         method = 'POST'
-        path = super().join_path(self.domain, self.top_directory, base_path='/mgmt/filestore/')
-        return{ 'path': path, 'method': method, 'body': self.body } 
+        return { 'path': self.create_path, 'method': method, 'body': self.body } 
 
     # PUT/POST have equivalent outcomes however have different implementions.
     # create/ update accomplish the same outcome, therefore use create()
@@ -173,26 +172,23 @@ class DPDirectoryRequest(DPRequest):
 
 class DPFileRequest(DPRequest):
     base_path = '/mgmt/filestore/'
-    def __init__(self, connection, domain, top_directory, file_path, content):
+    def __init__(self, connection):
         super(DPFileRequest, self).__init__(connection)
-        self.domain = domain
-        self.top_directory = top_directory
-        self.file_path = file_path
-        self.content = content
-        file_name = posixpath.split(file_path)[1]
-        self.set_body(file_name, content)
-        self.path = self.join_path(
-            domain, top_directory, file_path, base_path='/mgmt/filestore/')
 
-    def set_body(self, file_name, content):
-        body = {
+ 
+    def set_path(self, domain, top_directory, file_path):
+        self.path = self.join_path(domain, top_directory, file_path, base_path='/mgmt/filestore/')
+
+    def set_body(self, file_path, content):
+        file_name = posixpath.split(file_path)[1]
+        self.body = {
             'file': {
                 'name': file_name,
                 'content': content
             }
         }
-        super().set_body(body)
 
+    #path for creating files is always targeted at the parent directory
     def create(self):
         method = 'POST'
         path = posixpath.split(self.path)[0]

@@ -37,11 +37,8 @@ class DPObject():
 
 class DPConfig(DPObject):
 
-
-
     # domain and class_name are the bare minimum required to get a valid
     # response from DataPower
-    # kwargs consisting of the arguments defined in the Ansible Modules
     def __init__(self, domain, config=None, class_name=None, name=None):
         super(DPConfig, self).__init__(domain)
         self.set_class_name(class_name, config)
@@ -93,6 +90,10 @@ class DPConfig(DPObject):
                 raise AttributeError('name attribute is required.')
         else:
             self.name = name
+
+
+    def update_remote(self, connection):
+        return connection.send_request()
 
 class DPActionQueue(DPObject):
     def __init__(self, domain, action, parameters=None):

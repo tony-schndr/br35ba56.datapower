@@ -38,7 +38,7 @@ from ansible.plugins.httpapi import HttpApiBase
 
 
 class HttpApi(HttpApiBase):
-    def send_request(self, path, method, data):
+    def send_request(self, path, method, body):
         if data:
             data = json.dumps(data)
         headers = {

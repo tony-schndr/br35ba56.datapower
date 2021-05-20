@@ -78,84 +78,69 @@ class DPRequest:
         '''
         if not base_path:
             raise ValueError(NO_BASE_PATH_ERROR)
-        path = '/'.join(args).rstrip('/')
+        path = '/'.join([arg for arg in args if arg is not None]).rstrip('/')
         return posixpath.join(base_path, path)
 
     def update(self):
         method = 'PUT'
-        return self._process_request(self.path, method, self.body)
+        return { 'path': self.path, 'method': method, 'body': self.body } 
 
     def get(self):
         method = 'GET'
-        return self._process_request(self.path, method, None)
+        return { 'path': self.path, 'method': method, 'body': None } 
 
     def delete(self):
         method = 'DELETE'
-        return self._process_request(self.path, method, None)
+        return { 'path': self.path, 'method': method, 'body': None } 
 
     def create(self):
         method = 'POST'
-        return self._process_request(self.path, method, self.body)
+        return { 'path': self.path, 'method': method, 'body': self.body } 
 
 
 class DPConfigRequest(DPRequest):
 
-    base_path = '/mgmt/config/'
-
-    def __init__(self, connection, dp_mgmt_conf):
+    def __init__(self, connection, domain, class_name, name=None, field=None, config=None):
         super(DPConfigRequest, self).__init__(connection)
+        self.domain = domain
+        self.class_name = class_name
+        self.name = name
+        self.path = self.join_path(domain, class_name, name, field, base_path='/mgmt/config/')
+        self.set_body(config)
 
-        self.set_path(
-            dp_mgmt_conf.domain,
-            dp_mgmt_conf.class_name,
-            dp_mgmt_conf.name
-        )
-        self.set_body(dp_mgmt_conf)
+    def set_options(self, recursive=False, depth=3, state=False):
+        options = {}
 
-    def set_body(self, dp_mgmt_conf):
-        # For all requests except for array updates, use this to build a valid body that will work for
-        # POST and PUT methods.
-        if dp_mgmt_conf.class_name in dp_mgmt_conf.config:
-            if dp_mgmt_conf.name in dp_mgmt_conf.config[dp_mgmt_conf.class_name]:
-                self.body = dp_mgmt_conf.config
-            else:
-                dp_mgmt_conf.config[dp_mgmt_conf.class_name]['name'] = dp_mgmt_conf.name
-                self.body = dp_mgmt_conf.config
+        if recursive:
+            options['view'] = 'recursive'
+            options['depth'] = depth
+        if state:
+            options['state'] = 1
+
+        self.options = urlencode(options, doseq=0)
+
+
+class DPConfigInfoRequest(DPRequest):
+    
+    def __init__(self, connection):
+        super(DPConfigInfoRequest, self).__init__(connection)
+
+    def config_info(self, domain='default', class_name=None):
+        if class_name is None:
+            path = MGMT_CONFIG_URI
         else:
-            if dp_mgmt_conf.name not in dp_mgmt_conf.config:
-                dp_mgmt_conf.config['name'] = dp_mgmt_conf.name
-            self.body = {
-                dp_mgmt_conf.class_name: dp_mgmt_conf.config
-            }
+            path = MGMT_CONFIG_METADATA_URI.format(domain, class_name)
+        metadata = self.process_request(path, 'GET', body=None)
+        if metadata['_links']['self']['href'] == MGMT_CONFIG_URI:
+            metadata = list(metadata['_links'].keys())
+            metadata.sort()
+            metadata.remove('self')
+            return metadata
 
-    def set_path(self, domain, class_name=None, name=None, field=None):
-        if class_name and not name and not field:
-            self.path = MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI.format(
-                domain, class_name)
-        elif class_name and name and not field:
-            self.path = MGMT_CONFIG_WITH_NAME_URI.format(
-                domain, class_name, name)
-        elif class_name and name and field:
-            self.path = MGMT_CONFIG_WITH_FIELD_URI.format(
-                domain, class_name, name, field)
-        else:
-            raise AttributeError('no valid URI could be derived')
+        props = metadata['object']['properties']['property']
+        types = self.get_types(props)
 
-
-class DPGetConfigRequest(DPConfigRequest):
-    def __init__(self, connection, dp_mgmt_conf):
-        super(DPGetConfigRequest, self).__init__(connection, dp_mgmt_conf)
-        self.body = None
-        self.method = 'GET'
-        self.options = {}
-        if hasattr(dp_mgmt_conf, 'recursive') and dp_mgmt_conf.recursive:
-            self.options.update(URI_OPTIONS['recursive'])
-            self.options.update(URI_OPTIONS['depth'])
-        if hasattr(dp_mgmt_conf, 'status') and dp_mgmt_conf.status:
-            self.options.update(URI_OPTIONS['state'])
-        if hasattr(dp_mgmt_conf, 'depth') and dp_mgmt_conf.depth:
-            self.options['depth'] = dp_mgmt_conf.depth
-        self.path = self.path + '?' + urlencode(self.options, doseq=0)
+        return {'metadata': metadata, 'types': types}
 
 
 class DPDirectoryRequest(DPRequest):
@@ -178,12 +163,11 @@ class DPDirectoryRequest(DPRequest):
     def create(self):
         method = 'POST'
         path = super().join_path(self.domain, self.top_directory, base_path='/mgmt/filestore/')
-        return self._process_request(path, method, self.body)
+        return{ 'path': path, 'method': method, 'body': self.body } 
 
     # PUT/POST have equivalent outcomes however have different implementions.
     # create/ update accomplish the same outcome, therefore use create()
     def update(self):
-
         raise NotImplementedError('Updates to directories are not implemented')
 
 
@@ -212,7 +196,7 @@ class DPFileRequest(DPRequest):
     def create(self):
         method = 'POST'
         path = posixpath.split(self.path)[0]
-        return self._process_request(path, method, self.body)
+        return { 'path': path, 'method': method, 'body': self.body } 
 
 
 class ActionQueueTimeoutError(Exception):

@@ -9,9 +9,6 @@ import pytest
 from ansible_collections.community.datapower.plugins.module_utils.datapower import (
     dp_diff
 )
-from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
-    DPConfigObject
-)
 from ansible_collections.community.datapower.tests.unit.module_utils.test_data import (
     dp_mgmt_test_data as test_data,
     dp_actionq_test_data as action_test_data

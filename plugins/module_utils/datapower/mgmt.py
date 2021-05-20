@@ -21,56 +21,11 @@ __metaclass__ = type
 
 TOP_DIRS = ['local', 'cert', 'sharedcert']
 
-class DPActionQueue():
-    def __init__(self, **kwargs):
-        for k, v in kwargs.items():
-            setattr(self, k, v)
 
-
-class DPGetConfigObject:
-    def __init__(self, **kwargs):
-        for k, v in kwargs.items():
-            setattr(self, k, v)
-
-
-class DPConfigObject:
-    # domain and class_name are the bare minimum required to get a valid
-    # response from DataPower
-    # kwargs consisting of the arguments defined in the Ansible Modules
-    def __init__(self, **kwargs):
-        for k, v in kwargs.items():
-            setattr(self, k, v)
-
-        # Try to set class_name, the module allows for some flexibility
-        # it can be set by specifying it as class_name
-        # or within the config dictionary
-        if not hasattr(self, 'class_name') or self.class_name is None:
-            self.class_name = list(self.config.keys())[0]
-            if not is_valid_class(self.class_name):
-                raise ValueError('Invalid class_name or no class_name provided.')
-
-        # Try to set name, the module allows for some flexibility
-        # it can be set by specifying it as name
-        # or within the config dictionary
-        if not hasattr(self, 'name') or self.name is None:
-            if self.class_name in self.config:
-                self.name = self.config.get(self.class_name).get('name')
-            elif 'name' in self.config:
-                self.name = self.config.get('name')
-            else:
-                raise AttributeError('name attribute is required.')
-
-# This is hardcoded, the response is from DataPower v 10.0.1.0.
-# This should greatly improved by having it check at the beginning
-# of module execution
 
 def is_valid_class(class_name):
     return class_name in valid_objects
 
-# This is first attempt at creating these objects with inheritence, DPFile and DPDirectory.
-# Dependent on success / value in doing this the above objects will follow suite.
-# DPFile and DPDirectory are direct representations of all the attributes/parameters
-# required to create a file / directory on DataPower's filesystem.
 
 class DPObject():
     def __init__(self, domain: str):
@@ -80,16 +35,81 @@ class DPObject():
         return "domain: " + self.domain
 
 
+class DPConfig(DPObject):
+
+
+
+    # domain and class_name are the bare minimum required to get a valid
+    # response from DataPower
+    # kwargs consisting of the arguments defined in the Ansible Modules
+    def __init__(self, domain, config=None, class_name=None, name=None):
+        super(DPConfig, self).__init__(domain)
+        self.set_class_name(class_name, config)
+        self.set_name(name, config)
+        self.set_config(config)
+
+    def set_config(self, config=None):
+        if not config:
+            self.config = None
+            return
+        # This will build a valid body that will work for POST and PUT methods.
+        if self.class_name in config:
+            if self.name in config[self.class_name]:
+                self.config = config
+            else:
+                config[self.class_name]['name'] = self.name
+                self.config = config
+        else:
+            if self.name not in config:
+                config['name'] = self.name
+            self.config = {
+                self.class_name: config
+            }
+    
+    def set_options(self, options):
+        self.options = options
+
+    # Try to set class_name allowing for some flexibility
+    # it can be set by specifying it as class_name
+    # or within the config dictionary
+    def set_class_name(self, class_name=None, config=None):
+        if class_name and is_valid_class(class_name):
+            self.class_name = class_name
+        elif config and is_valid_class(list(config.keys())[0]):
+            self.class_name = list(config.keys())[0]
+        else:
+            raise ValueError('Invalid class_name or no class_name provided.')
+
+    # Try to set name, the module allows for some flexibility
+    # it can be set by specifying it as name
+    # or within the config dictionary
+    def set_name(self, name=None, config=None):
+        if not name:
+            if self.class_name in config:
+                self.name = config.get(self.class_name).get('name')
+            elif 'name' in self.config:
+                self.name = config.get('name')
+            else:
+                raise AttributeError('name attribute is required.')
+        else:
+            self.name = name
+
+class DPActionQueue(DPObject):
+    def __init__(self, domain, action, parameters=None):
+        super(DPActionQueue, self).__init__(domain)
+        self.action = action
+        self.parameters = parameters
+
+
 class DPFile(DPObject):
 
-    def __init__(self, domain: str, local_path: str, remote_path: str, content=None, request_handler=None):
+    def __init__(self, domain: str, local_path: str, remote_path: str, content=None, connection=None):
         super(DPFile, self).__init__(domain)
         self.local_file = LocalFile(local_path, content)
         self.top_directory = get_top_dir(remote_path)
         self.remote_path = get_dest_file_path(remote_path)
-        self.request_handler = request_handler
+        self.connection = connection
     
- 
     def get_remote_state(self):
         get_file_request = DPFileRequest.get_file_request(
             domain=self.domain,
@@ -97,7 +117,7 @@ class DPFile(DPObject):
             file_path=self.remote_path
         )
         try:
-            get_req_result = self.req_handler.process_request(*get_file_request)
+            get_req_result = self.connection(*get_file_request)
         except ConnectionError as gfce:
             gfce_text = to_text(gfce)
             if 'Resource not found' in gfce_text:

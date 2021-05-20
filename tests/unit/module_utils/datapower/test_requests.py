@@ -8,15 +8,12 @@ import pytest
 
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     DPConfigRequest,
-    DPGetConfigRequest,
+    #DPGetConfigRequest,
     DPRequest,
     DPFileRequest,
     DPDirectoryRequest,
     DPActionQueueRequest,
     DPActionQueueSchemaRequest
-)
-from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
-    DPConfigObject
 )
 
 from ansible_collections.community.datapower.plugins.module_utils.datapower.actionqueue import (
@@ -72,9 +69,9 @@ class TestDPFileRequest:
         content = 'aGVsbG8gd29ybGQK'
         req = DPFileRequest(self.connection, domain, top_directory, file_path, content)
         
-        assert req.create()[0] == '/mgmt/filestore/default/local/dir/subdir'
-        assert req.create()[1] == 'POST'
-        assert req.create()[2] == {'file':{'name':'get.js', 'content': content}}
+        assert req.create()['path'] == '/mgmt/filestore/default/local/dir/subdir'
+        assert req.create()['method'] == 'POST'
+        assert req.create()['body'] == {'file':{'name':'get.js', 'content': content}}
     
     def test_DPFileRequest_update(self):
         domain = 'default'
@@ -83,9 +80,9 @@ class TestDPFileRequest:
         content = 'aGVsbG8gd29ybGQK'
         req = DPFileRequest(self.connection, domain, top_directory, file_path, content)
         
-        assert req.update()[0] == '/mgmt/filestore/default/local/dir/subdir/get.js'
-        assert req.update()[1] == 'PUT'
-        assert req.update()[2] == {'file':{'name':'get.js', 'content': content}}
+        assert req.update()['path'] == '/mgmt/filestore/default/local/dir/subdir/get.js'
+        assert req.update()['method'] == 'PUT'
+        assert req.update()['body'] == {'file':{'name':'get.js', 'content': content}}
 
     def test_DPFileRequest_get(self):
         domain = 'default'
@@ -94,9 +91,9 @@ class TestDPFileRequest:
         content = 'aGVsbG8gd29ybGQK'
         req = DPFileRequest(self.connection, domain, top_directory, file_path, content)
         
-        assert req.get()[0] == '/mgmt/filestore/default/local/dir/subdir/get.js'
-        assert req.get()[1] == 'GET'
-        assert req.get()[2] == None
+        assert req.get()['path'] == '/mgmt/filestore/default/local/dir/subdir/get.js'
+        assert req.get()['method'] == 'GET'
+        assert req.get()['body'] == None
 
     def test_DPFileRequest_delete(self):
         domain = 'default'
@@ -105,9 +102,9 @@ class TestDPFileRequest:
         content = 'aGVsbG8gd29ybGQK'
         req = DPFileRequest(self.connection, domain, top_directory, file_path, content)
         
-        assert req.delete()[0] == '/mgmt/filestore/default/local/dir/subdir/get.js'
-        assert req.delete()[1] == 'DELETE'
-        assert req.delete()[2] == None
+        assert req.delete()['path'] == '/mgmt/filestore/default/local/dir/subdir/get.js'
+        assert req.delete()['method'] == 'DELETE'
+        assert req.delete()['body'] == None
 
 
 class TestDPDirectoryRequest:
@@ -129,9 +126,9 @@ class TestDPDirectoryRequest:
         top_directory = 'local'
         dir_path = 'dir/subdir/'
         req = DPDirectoryRequest(self.connection, domain, top_directory, dir_path)
-        assert req.create()[0] == '/mgmt/filestore/default/local'
-        assert req.create()[1] == 'POST'
-        assert req.create()[2] == {'directory':{'name': dir_path}}
+        assert req.create()['path'] == '/mgmt/filestore/default/local'
+        assert req.create()['method'] == 'POST'
+        assert req.create()['body'] == {'directory':{'name': dir_path}}
 
 
     def test_DPDirectoryRequest_update(self):
@@ -151,18 +148,18 @@ class TestDPDirectoryRequest:
         dir_path = 'dir/subdir/'
         req = DPDirectoryRequest(self.connection, domain, top_directory, dir_path)
         
-        assert req.get()[0] == '/mgmt/filestore/default/local/dir/subdir'
-        assert req.get()[1] == 'GET'
-        assert req.get()[2] == None
+        assert req.get()['path'] == '/mgmt/filestore/default/local/dir/subdir'
+        assert req.get()['method'] == 'GET'
+        assert req.get()['body'] == None
 
     def test_DPDirectoryRequest_delete(self):
         domain = 'default'
         top_directory = 'local'
         dir_path = 'dir/subdir/'
         req = DPDirectoryRequest(self.connection, domain, top_directory, dir_path)
-        assert req.delete()[0] == '/mgmt/filestore/default/local/dir/subdir'
-        assert req.delete()[1] == 'DELETE'
-        assert req.delete()[2] == None
+        assert req.delete()['path'] == '/mgmt/filestore/default/local/dir/subdir'
+        assert req.delete()['method'] == 'DELETE'
+        assert req.delete()['body'] == None
 
 
 class TestDPActionQueueSchemaRequest:
@@ -277,23 +274,21 @@ class TestDPActionQueueRequest:
 
 class TestDPConfigRequest:
     connection = MockConnection()
-    def test_DPConfigRequest_mod_args(self):
-        kwargs = {
-            "class_name": None,
-            "config": {
-                "CryptoValCred": {
-                    "mAdminState": "enabled",
-                    "name": "valcred"
-                }
-            },
-            "domain": "default",
-            "name": None,
+    kwargs = {
+        "domain": "default",
+        "name": 'valcred',
+        "class_name": 'CryptoValCred',
+        "config": {
+            "CryptoValCred": {
+                "mAdminState": "enabled",
+                "name": "valcred"
+            }
         }
-        dp_mgmt_conf = DPConfigObject(**kwargs)
-        dp_req = DPConfigRequest(self.connection, dp_mgmt_conf)
+    }
+
+    def test_DPConfigRequest__init__(self):
+        dp_req = DPConfigRequest(self.connection, **self.kwargs)
         assert dp_req.path ==  '/mgmt/config/default/CryptoValCred/valcred'
-       
-       
         assert dp_req.body == {
                 "CryptoValCred": {
                     "mAdminState": "enabled",
@@ -301,91 +296,22 @@ class TestDPConfigRequest:
                 }
             }
 
-    def test_DPConfigRequest_min(self):
-        kwargs = {
-            'domain':'snafu',
-            'config': {
-                'CryptoValCred' : {
-                    'name':'valcred',
-                    'mAdminState':'disabled'
-                }
-            },
-            'state': 'present'
-        }
-
-        dp_mgmt_conf = DPConfigObject(**kwargs)
-        dp_req = DPConfigRequest(self.connection, dp_mgmt_conf)
-        assert dp_req.path ==  '/mgmt/config/snafu/CryptoValCred/valcred'
-        
-    def test_DPConfigRequest_w_name(self):
-        kwargs = {
-            'domain':'snafu',
-            'config': {
-                'CryptoValCred' : {
-                    'name':'valcred'
-                }
-            },
-            'state': 'present'
-        }
-        dp_mgmt_conf = DPConfigObject(**kwargs)
-        dp_req = DPConfigRequest(self.connection, dp_mgmt_conf)
-        assert dp_req.path ==  '/mgmt/config/snafu/CryptoValCred/valcred'
-
-
-    def test_DPConfigRequest_invalid_class(self):
-        kwargs = {
-            'domain':'snafu',
-            'config': {
-                'ValidationCredential' : {
-                    'name':'valcred'
-                }
-            },
-            'state': 'present'
-        }
-        try:
-            DPConfigObject(**kwargs)
-        except ValueError:
-            assert True
-
-
-
-    def test_DPGetConfigRequest_1(self):
-        kwargs = {
-            'domain':'snafu',
-            'name': 'valcred',
-            'config': {
-                'CryptoValCred' : {
-                    'name':'valcred'
-                }
-            },
-            'overwrite': True,
+    def test_DPConfigRequest_set_options_all_options(self):
+        options = {
             'recursive':True,
-            'status': True,
+            'state': True,
             'depth': 3
         }
-
-        dp_mgmt_conf = DPConfigObject(**kwargs)
-        dp_req = DPGetConfigRequest(self.connection, dp_mgmt_conf)
-        assert dp_req.options == {
-            'view': 'recursive',
-            'state': 1,
-            'depth' : 3
-        }
-        assert 'state=1' in dp_req.path and 'depth=3' in dp_req.path and 'view=recursive' in dp_req.path
+        dp_req = DPConfigRequest(self.connection, **self.kwargs)
+        dp_req.set_options(**options)
+        assert 'state=1' in dp_req.options and 'depth=3' in dp_req.options and 'view=recursive' in dp_req.options
         
-        dp_mgmt_conf.depth = None
-        dp_req = DPGetConfigRequest(self.connection, dp_mgmt_conf)
-        assert dp_req.options == {
-            'view': 'recursive',
-            'state': 1,
-            'depth': 2
+    def test_DPConfigRequest_set_options_only_recursive(self):
+        options = {
+            'recursive':True
         }
+        dp_req = DPConfigRequest(self.connection, **self.kwargs)
+        dp_req.set_options(**options)
+        assert  'view=recursive' in dp_req.options
+        assert  'depth=3' in dp_req.options
 
-        assert 'state=1' in dp_req.path and 'depth=2' in dp_req.path and 'view=recursive' in dp_req.path
-        dp_mgmt_conf.recursive = False
-
-        dp_req = DPGetConfigRequest(self.connection, dp_mgmt_conf)
-        assert dp_req.options == {
-            'state': 1
-        }
-        assert 'state=1' in dp_req.path

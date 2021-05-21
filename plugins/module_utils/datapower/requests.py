@@ -82,19 +82,20 @@ class DPRequest:
 
     def update(self):
         method = 'PUT'
-        return { 'path': self.path, 'method': method, 'body': self.body } 
+        return self._process_request(self.path, method, self.body)
 
     def get(self):
         method = 'GET'
-        return { 'path': self.path, 'method': method, 'body': None } 
+        return self._process_request(self.path, method, None)
 
     def delete(self):
         method = 'DELETE'
-        return { 'path': self.path, 'method': method, 'body': None } 
+        return self._process_request(self.path, method, None)
 
     def create(self):
         method = 'POST'
-        return { 'path': self.path, 'method': method, 'body': self.body } 
+        return self._process_request(self.path, method, self.body)
+
 
 
 class DPConfigRequest(DPRequest):
@@ -162,7 +163,8 @@ class DPDirectoryRequest(DPRequest):
 
     def create(self):
         method = 'POST'
-        return { 'path': self.create_path, 'method': method, 'body': self.body } 
+        path = '/'.join(self.path.split('/')[0:5]) #Equates to /mgmt/filestore/<domain>/<top_directory>
+        return self._process_request(path, method, self.body)
 
     # PUT/POST have equivalent outcomes however have different implementions.
     # create/ update accomplish the same outcome, therefore use create()
@@ -192,7 +194,7 @@ class DPFileRequest(DPRequest):
     def create(self):
         method = 'POST'
         path = posixpath.split(self.path)[0]
-        return { 'path': path, 'method': method, 'body': self.body } 
+        return self._process_request(path, method, self.body)
 
 
 class ActionQueueTimeoutError(Exception):

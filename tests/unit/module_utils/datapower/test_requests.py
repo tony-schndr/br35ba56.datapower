@@ -71,9 +71,9 @@ class TestDPFileRequest:
         req = DPFileRequest(self.connection)
         req.set_path(domain, top_directory, file_path)
         req.set_body(file_path, content)
-        assert req.create()['path'] == '/mgmt/filestore/default/local/dir/subdir'
-        assert req.create()['method'] == 'POST'
-        assert req.create()['body'] == {'file':{'name':'get.js', 'content': content}}
+        assert req.create()[0] == '/mgmt/filestore/default/local/dir/subdir'
+        assert req.create()[1] == 'POST'
+        assert req.create()[2] == {'file':{'name':'get.js', 'content': content}}
     
     def test_DPFileRequest_update(self):
         domain = 'default'
@@ -83,9 +83,9 @@ class TestDPFileRequest:
         req = DPFileRequest(self.connection)
         req.set_path(domain, top_directory, file_path)
         req.set_body(file_path, content)
-        assert req.update()['path'] == '/mgmt/filestore/default/local/dir/subdir/get.js'
-        assert req.update()['method'] == 'PUT'
-        assert req.update()['body'] == {'file':{'name':'get.js', 'content': content}}
+        assert req.update()[0] == '/mgmt/filestore/default/local/dir/subdir/get.js'
+        assert req.update()[1] == 'PUT'
+        assert req.update()[2] == {'file':{'name':'get.js', 'content': content}}
 
     def test_DPFileRequest_get(self):
         domain = 'default'
@@ -95,9 +95,9 @@ class TestDPFileRequest:
         req = DPFileRequest(self.connection)
         req.set_path(domain, top_directory, file_path)
         req.set_body(file_path, content)
-        assert req.get()['path'] == '/mgmt/filestore/default/local/dir/subdir/get.js'
-        assert req.get()['method'] == 'GET'
-        assert req.get()['body'] == None
+        assert req.get()[0] == '/mgmt/filestore/default/local/dir/subdir/get.js'
+        assert req.get()[1] == 'GET'
+        assert req.get()[2] == None
 
     def test_DPFileRequest_delete(self):
         domain = 'default'
@@ -107,9 +107,9 @@ class TestDPFileRequest:
         req = DPFileRequest(self.connection)
         req.set_path(domain, top_directory, file_path)
         req.set_body(file_path, content)
-        assert req.delete()['path'] == '/mgmt/filestore/default/local/dir/subdir/get.js'
-        assert req.delete()['method'] == 'DELETE'
-        assert req.delete()['body'] == None
+        assert req.delete()[0] == '/mgmt/filestore/default/local/dir/subdir/get.js'
+        assert req.delete()[1] == 'DELETE'
+        assert req.delete()[2] == None
 
 
 class TestDPDirectoryRequest:
@@ -136,9 +136,9 @@ class TestDPDirectoryRequest:
         req = DPDirectoryRequest(self.connection)
         req.set_body(dir_path)
         req.set_path(domain, top_directory, dir_path)
-        assert req.create()['path'] == '/mgmt/filestore/default/local'
-        assert req.create()['method'] == 'POST'
-        assert req.create()['body'] == {'directory':{'name': dir_path}}
+        assert req.create()[0] == '/mgmt/filestore/default/local'
+        assert req.create()[1] == 'POST'
+        assert req.create()[2] == {'directory':{'name': dir_path}}
 
     def test_DPDirectoryRequest_update(self):
         domain = 'default'
@@ -160,9 +160,9 @@ class TestDPDirectoryRequest:
         req = DPDirectoryRequest(self.connection)
         req.set_body(dir_path)
         req.set_path(domain, top_directory, dir_path)
-        assert req.get()['path'] == '/mgmt/filestore/default/local/dir/subdir'
-        assert req.get()['method'] == 'GET'
-        assert req.get()['body'] == None
+        assert req.get()[0] == '/mgmt/filestore/default/local/dir/subdir'
+        assert req.get()[1] == 'GET'
+        assert req.get()[2] == None
 
     def test_DPDirectoryRequest_delete(self):
         domain = 'default'
@@ -171,9 +171,9 @@ class TestDPDirectoryRequest:
         req = DPDirectoryRequest(self.connection)
         req.set_body(dir_path)
         req.set_path(domain, top_directory, dir_path)
-        assert req.delete()['path'] == '/mgmt/filestore/default/local/dir/subdir'
-        assert req.delete()['method'] == 'DELETE'
-        assert req.delete()['body'] == None
+        assert req.delete()[0] == '/mgmt/filestore/default/local/dir/subdir'
+        assert req.delete()[1] == 'DELETE'
+        assert req.delete()[2] == None
 
 
 class TestDPActionQueueSchemaRequest:

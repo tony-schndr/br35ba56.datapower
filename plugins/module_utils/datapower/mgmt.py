@@ -92,8 +92,6 @@ class DPConfig(DPObject):
             self.name = name
 
 
-    def update_remote(self, connection):
-        return connection.send_request()
 
 class DPActionQueue(DPObject):
     def __init__(self, domain, action, parameters=None):

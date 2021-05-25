@@ -90,7 +90,9 @@ my_useful_info:
 
 import os, shutil
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-    DPFileStoreRequests
+    DPFileStoreRequests,
+    FileRequest,
+    DirectoryRequest
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
     DPRequestHandler
@@ -153,6 +155,7 @@ def run_module():
     if state == 'present':
         if os.path.isfile(src):
             dp_file_to = DPFile(domain, src, dest)
+
             get_file_request = DPFileStoreRequests.get_file_request(
                 domain=dp_file_to.domain,
                 top_directory=dp_file_to.top_directory,

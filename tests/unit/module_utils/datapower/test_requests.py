@@ -12,6 +12,9 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
     DPActionQueueRequest,
     DPActionQueueSchemaRequest,
     DPFileStoreRequests,
+    FileRequest,
+    DirectoryRequest,
+    Request,
     join_filestore_path
     
 )
@@ -23,10 +26,162 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.acti
     DPActionQueue
 )
 from ansible_collections.community.datapower.tests.unit.module_utils.test_data import (
-    dp_mgmt_test_data as test_data,
     dp_actionq_test_data as action_test_data,
-    files_data
+    
 )
+
+class MockConnection():
+    @staticmethod
+    def send_request(path,method,body):
+        return path, method, body
+
+
+class TestRequest:
+
+    def test_Request_join_path(self):
+        domain = 'default'
+        top_directory = 'local'
+        file_path = 'dir/subdir/get.js'
+        assert Request.join_path(domain, top_directory,file_path, base_path='/mgmt/filestore/') == '/mgmt/filestore/default/local/dir/subdir/get.js'
+        
+    def test_Request_join_path_no_base_path(self):
+        domain = 'default'
+        top_directory = 'local'
+        file_path = 'dir/subdir/get.js'
+        try:
+            Request.join_path(domain, top_directory,file_path)
+            assert False
+        except:
+            assert True
+
+
+class TestFileRequest:
+    #Need a few more tests with potentially invalid input if handled incorrectly
+    connection = MockConnection()
+
+    def test_FileRequest__init__(self):
+        domain = 'default'
+        top_directory = 'local'
+        file_path = 'dir/subdir/get.js'
+        content = 'aGVsbG8gd29ybGQK'
+        req = FileRequest(self.connection)
+        req.set_path(domain, top_directory, file_path)
+        req.set_body(file_path, content)
+        assert req.path == '/mgmt/filestore/default/local/dir/subdir/get.js'
+        assert req.body == {'file':{'name':'get.js', 'content': content}}
+
+    def test_FileRequest_create(self):
+        domain = 'default'
+        top_directory = 'local'
+        file_path = 'dir/subdir/get.js'
+        content = 'aGVsbG8gd29ybGQK'
+        req = FileRequest(self.connection)
+        req.set_path(domain, top_directory, file_path)
+        req.set_body(file_path, content)
+        assert req.create()[0] == '/mgmt/filestore/default/local/dir/subdir'
+        assert req.create()[1] == 'POST'
+        assert req.create()[2] == {'file':{'name':'get.js', 'content': content}}
+    
+    def test_FileRequest_update(self):
+        domain = 'default'
+        top_directory = 'local'
+        file_path = 'dir/subdir/get.js'
+        content = 'aGVsbG8gd29ybGQK'
+        req = FileRequest(self.connection)
+        req.set_path(domain, top_directory, file_path)
+        req.set_body(file_path, content)
+        assert req.update()[0] == '/mgmt/filestore/default/local/dir/subdir/get.js'
+        assert req.update()[1] == 'PUT'
+        assert req.update()[2] == {'file':{'name':'get.js', 'content': content}}
+
+    def test_FileRequest_get(self):
+        domain = 'default'
+        top_directory = 'local'
+        file_path = 'dir/subdir/get.js'
+        content = 'aGVsbG8gd29ybGQK'
+        req = FileRequest(self.connection)
+        req.set_path(domain, top_directory, file_path)
+        req.set_body(file_path, content)
+        assert req.get()[0] == '/mgmt/filestore/default/local/dir/subdir/get.js'
+        assert req.get()[1] == 'GET'
+        assert req.get()[2] == None
+
+    def test_FileRequest_delete(self):
+        domain = 'default'
+        top_directory = 'local'
+        file_path = 'dir/subdir/get.js'
+        content = 'aGVsbG8gd29ybGQK'
+        req = FileRequest(self.connection)
+        req.set_path(domain, top_directory, file_path)
+        req.set_body(file_path, content)
+        assert req.delete()[0] == '/mgmt/filestore/default/local/dir/subdir/get.js'
+        assert req.delete()[1] == 'DELETE'
+        assert req.delete()[2] == None
+
+
+class TestDirectoryRequest:
+    #Need a few more tests with potentially invalid input if handled incorrectly
+    connection = MockConnection()
+
+    def test_DirectoryRequest__init__(self):
+        domain = 'default'
+        top_directory = 'local'
+        dir_path = 'dir/subdir/'
+        
+        req = DirectoryRequest(self.connection)
+        req.set_body(dir_path)
+        req.set_path(domain, top_directory, dir_path)
+
+        assert req
+        assert req.path == '/mgmt/filestore/default/local/dir/subdir'
+        assert req.body == {'directory':{'name': dir_path}}
+
+    def test_DirectoryRequest_create(self):
+        domain = 'default'
+        top_directory = 'local'
+        dir_path = 'dir/subdir/'
+        req = DirectoryRequest(self.connection)
+        req.set_body(dir_path)
+        req.set_path(domain, top_directory, dir_path)
+        assert req.create()[0] == '/mgmt/filestore/default/local'
+        assert req.create()[1] == 'POST'
+        assert req.create()[2] == {'directory':{'name': dir_path}}
+
+    def test_DirectoryRequest_update(self):
+        domain = 'default'
+        top_directory = 'local'
+        dir_path = 'dir/subdir/' 
+        req = DirectoryRequest(self.connection)
+        req.set_body(dir_path)
+        req.set_path(domain, top_directory, dir_path)
+        try:
+            req.update()
+            assert False
+        except: #No update request for a directory, see class.
+            assert True
+
+    def test_DirectoryRequest_get(self):
+        domain = 'default'
+        top_directory = 'local'
+        dir_path = 'dir/subdir/'
+        req = DirectoryRequest(self.connection)
+        req.set_body(dir_path)
+        req.set_path(domain, top_directory, dir_path)
+        assert req.get()[0] == '/mgmt/filestore/default/local/dir/subdir'
+        assert req.get()[1] == 'GET'
+        assert req.get()[2] == None
+
+    def test_DirectoryRequest_delete(self):
+        domain = 'default'
+        top_directory = 'local'
+        dir_path = 'dir/subdir/'
+        req = DirectoryRequest(self.connection)
+        req.set_body(dir_path)
+        req.set_path(domain, top_directory, dir_path)
+        assert req.delete()[0] == '/mgmt/filestore/default/local/dir/subdir'
+        assert req.delete()[1] == 'DELETE'
+        assert req.delete()[2] == None
+
 
 def test_DPFileStoreRequests_create_dir_request():
     domain = 'default'

@@ -3,12 +3,11 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 #from urllib.parse import quote
-import time
-import base64
-from ansible.module_utils.six.moves.urllib.parse import urlencode
-from ansible.module_utils.six.moves.urllib.parse import quote
+import json
 import os
 import posixpath
+from xml.sax.saxutils import unescape
+from ansible.module_utils.six.moves.urllib.parse import urlencode
 
 MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI = '/mgmt/config/{0}/{1}' 
 MGMT_CONFIG_WITH_NAME_URI = '/mgmt/config/{0}/{1}/{2}'
@@ -37,11 +36,156 @@ def join_filestore_path(*args):
     file_path = '/'.join(args).rstrip('/')
     return posixpath.join('/mgmt/filestore/', file_path)
 
+NO_BASE_PATH_ERROR = 'Base path was not provided. ie /mgmt/config/'
+
+
+def _scrub(obj, bad_key):
+    """
+    Removes specified key from the dictionary in place.
+    :param obj: dict, dictionary from DataPowers get object config rest call
+    :param bad_key: str, key to remove from the dictionary
+    """
+    if isinstance(obj, dict):
+        for key in list(obj.keys()):
+            if key == bad_key:
+                del obj[key]
+            else:
+                _scrub(obj[key], bad_key)
+    elif isinstance(obj, list):
+        for i in reversed(range(len(obj))):
+            if obj[i] == bad_key:
+                del obj[i]
+            else:
+                _scrub(obj[i], bad_key)
+    else:
+        # neither a dict nor a list, do nothing
+        pass
+
+
+
+class Request:
+
+    def __init__(self, connection):
+        self.connection = connection
+        self.body = None
+        self.path = None
+        self.method = None
+
+    def _process_request(self, path, method, body=None):
+        if body is not None:
+            _scrub(body, '_links')
+            _scrub(body, 'href')
+            _scrub(body, 'state')
+        try:
+            resp = self.connection.send_request(path, method, body)
+        except ConnectionError:
+            raise
+        resp_str = json.dumps(resp)
+        # DataPower will sometimes return xml encoded strings, unescape
+        # ie. &amp is found in strings in AccessProfile and ConfigDeploymentPolicy objects.
+        data = json.loads(unescape(resp_str))
+        return data
+
+    def set_body(self, body):
+        self.body = body
+
+    def set_path(self, path):
+        self.path = path
+
+    @staticmethod
+    def join_path(*args, base_path=None):
+        ''' Join the path to form the full URI
+        args -- list to join with base path, composes the right half of the URI
+        base_path -- string representing the base uri of the rest mgmt interface call, ie /mgmt/config/
+        '''
+        if not base_path:
+            raise ValueError(NO_BASE_PATH_ERROR)
+        path = '/'.join([arg for arg in args if arg is not None]).rstrip('/')
+        return posixpath.join(base_path, path)
+
+    def update(self):
+        method = 'PUT'
+        return self._process_request(self.path, method, self.body)
+
+    def get(self):
+        method = 'GET'
+        return self._process_request(self.path, method, None)
+
+    def delete(self):
+        method = 'DELETE'
+        return self._process_request(self.path, method, None)
+
+    def create(self):
+        method = 'POST'
+        return self._process_request(self.path, method, self.body)
+
+
+
+class DirectoryRequest(Request):
+
+    base_path = '/mgmt/filestore'
+
+    def __init__(self, connection):
+        super(DirectoryRequest, self).__init__(connection)
+
+    def set_path(self, domain, top_directory, dir_path):
+        self.path = self.join_path(
+            domain, top_directory, dir_path, base_path='/mgmt/filestore/')
+        self.create_path = self.join_path(
+            domain, top_directory, base_path='/mgmt/filestore/')
+
+    def set_body(self, dir_path):
+        self.body = {
+            "directory": {
+                "name": dir_path
+            }
+        }
+
+    def create(self):
+        method = 'POST'
+        # Equates to /mgmt/filestore/<domain>/<top_directory>
+        path = '/'.join(self.path.split('/')[0:5])
+        return self._process_request(path, method, self.body)
+
+    # PUT/POST have equivalent outcomes however have different implementions.
+    # create/ update accomplish the same outcome, therefore use create()
+    def update(self):
+        raise NotImplementedError('Updates to directories are not implemented')
+
+
+class FileRequest(Request):
+    base_path = '/mgmt/filestore/'
+
+    def __init__(self, connection):
+        super(FileRequest, self).__init__(connection)
+
+    def set_path(self, domain, top_directory, file_path):
+        self.path = self.join_path(
+            domain, top_directory, file_path, base_path='/mgmt/filestore/')
+
+    def set_body(self, file_path, content):
+        file_name = posixpath.split(file_path)[1]
+        self.body = {
+            'file': {
+                'name': file_name,
+                'content': content
+            }
+        }
+
+    # path for creating files is always targeted at the parent directory
+    def create(self):
+        method = 'POST'
+        path = posixpath.split(self.path)[0]
+        return self._process_request(path, method, self.body)
+
+
 class DPRequest:
     def __init__(self):
         self.body = None
         self.path = None
         self.method = None
+
+
 
 
 class DPFileStoreRequests():

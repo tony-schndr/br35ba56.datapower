@@ -135,11 +135,6 @@ class FileDiff:
         return "".join(self.get_context_diff())
 
 
-class DPDirectory:
-    # attributes needed for creating a directory on DataPower.
-    def __init__(self):
-        pass
-
 
 
 if __name__ == '__main__':

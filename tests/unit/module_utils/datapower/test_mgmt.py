@@ -67,7 +67,7 @@ class TestDPConfig:
             'config': {
                 'Certificate' : [
                     {'name':'valcred'}
-                ]
+                ]   
             }
         }
 

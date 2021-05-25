@@ -162,14 +162,12 @@ response:
 
 '''
 
-from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
-    DPGetConfigRequestHandler
-)
+
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     DPGetConfigRequest
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
-    DPGetConfigObject
+    DPObject
 )
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.connection import (
@@ -201,7 +199,7 @@ def run_module():
     )
 
     connection = Connection(module._socket_path)
-    dp_obj = DPGetConfigObject(**module.params)
+    dp_obj = DPObject(**module.params)
     dp_req = DPGetConfigRequest(dp_obj)
     req_handler = DPGetConfigRequestHandler(connection)
     try:

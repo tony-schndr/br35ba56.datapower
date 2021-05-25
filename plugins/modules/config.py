@@ -121,18 +121,20 @@ from ansible.module_utils.connection import (
 ) 
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
-    DPManageConfigObject
+    DPConfig
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-    DPManageConfigRequest
-)
-from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
-    DPManageConfigRequestHandler,
-    clean_dp_dict
+    DPConfigRequest
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower import (
     dp_diff
 )
+from ansible_collections.community.datapower.plugins.module_utils.datapower.mod import (
+    update_remote_state,
+    get_state
+)
+
+
 
 def run_module():
     module_args = dict(
@@ -148,39 +150,42 @@ def run_module():
     )
 
     connection = Connection(module._socket_path)
-    dp_obj = DPManageConfigObject(**module.params)
-    req_handler = DPManageConfigRequestHandler(connection)
-    dp_req = DPManageConfigRequest(dp_obj)
+    #Remove the key state
+    obj_params = {key:value for (key,value) in module.params.items() if key != 'state'}
+    
+    obj = DPConfig(**obj_params)
+    req = DPConfigRequest(connection, obj.domain, obj.class_name, obj.name)
+    
     result = dict()
-    try:
-        dp_state_resp = req_handler.process_request(dp_req.path, 'GET')
-    except ConnectionError as e:
-        dp_state_resp = to_text(e)
-        if 'Resource not found' not in dp_state_resp:        
-            result['changed'] = False
-            module.fail_json(msg=dp_state_resp, **result)
-        elif dp_obj.state == 'absent' and 'Resource not found' in dp_state_resp:
-            result['dp_resp'] = 'Resource not found'
-            result['changed'] = False
-            module.exit_json(**result)
 
-    #Gets rid of keys we don't want compared (_links, href, state)
-    clean_dp_dict(dp_state_resp)
-    #result['state'] = dp_state_resp
-    #module.exit_json(**result)
-    if not dp_diff.is_changed(dp_state_resp, dp_req.body):
+    remote_state = get_state(req)
+
+    needs_update = dp_diff.is_changed(remote_state, obj.config)
+    if module.check_mode:
+        changes = dp_diff.get_change_list(remote_state, obj.config)   
+        result['changed'] = needs_update   
+        result['changes'] = changes
+        module.exit_json(**result)
+
+    if needs_update:
+        try:
+            resp = update_remote_state(obj, req, remote_state)
+            result['changed'] = True
+            result['Response'] = resp
+            module.exit_json(**result)
+        except ConnectionError as e:
+            module.fail_json(msg=to_text(e))
+    else:
         result['changed'] = False
         module.exit_json(**result)
+
+
+
+'''
     # If check mode grab the change list and return it.
     if module.check_mode:
-        if dp_diff.is_changed(dp_state_resp, dp_req.body):
-            changes = dp_diff.get_change_list(dp_state_resp, dp_req.body)
-            result['changed'] = True
-            result['changes'] = changes
-        else:
-            result['changed'] = False
-        module.exit_json(**result)
-
+        if dp_diff.is_changed(remote_state, req.body):
+        
     try:
         dp_mk_chg_resp = req_handler.process_request(dp_req.path, dp_req.method, dp_req.body)
     except ConnectionError as e:
@@ -193,7 +198,7 @@ def run_module():
     result['request'] = {'path':dp_req.path, 'method': dp_req.method, 'body': dp_req.body}
     result['changed'] = True
     module.exit_json(**result)
-
+'''
 def main():
     run_module()
 

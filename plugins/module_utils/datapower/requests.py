@@ -97,11 +97,11 @@ class DPRequest:
         return self._process_request(self.path, method, self.body)
 
 
-
 class DPConfigRequest(DPRequest):
 
-    def __init__(self, connection):
+    def __init__(self, connection, domain=None, class_name=None, name=None, field=None, config=None):
         super(DPConfigRequest, self).__init__(connection)
+        self.set_path(domain, class_name, name, field)
 
 
     def set_path(self, domain=None, class_name=None,  name=None, field=None):
@@ -118,9 +118,15 @@ class DPConfigRequest(DPRequest):
 
         self.options = urlencode(options, doseq=0)
 
+    def create(self):
+        method = 'POST'
+        # Equates to /mgmt/filestore/<domain>/<class_name>
+        path = '/'.join(self.path.split('/')[0:5])
+        return self._process_request(path, method, self.body)
+
 
 class DPConfigInfoRequest(DPRequest):
-    
+
     def __init__(self, connection):
         super(DPConfigInfoRequest, self).__init__(connection)
 
@@ -148,11 +154,12 @@ class DPDirectoryRequest(DPRequest):
 
     def __init__(self, connection):
         super(DPDirectoryRequest, self).__init__(connection)
-        
-        
+
     def set_path(self, domain, top_directory, dir_path):
-        self.path = self.join_path(domain, top_directory, dir_path, base_path='/mgmt/filestore/')
-        self.create_path = self.join_path(domain, top_directory, base_path='/mgmt/filestore/')
+        self.path = self.join_path(
+            domain, top_directory, dir_path, base_path='/mgmt/filestore/')
+        self.create_path = self.join_path(
+            domain, top_directory, base_path='/mgmt/filestore/')
 
     def set_body(self, dir_path):
         self.body = {
@@ -163,7 +170,8 @@ class DPDirectoryRequest(DPRequest):
 
     def create(self):
         method = 'POST'
-        path = '/'.join(self.path.split('/')[0:5]) #Equates to /mgmt/filestore/<domain>/<top_directory>
+        # Equates to /mgmt/filestore/<domain>/<top_directory>
+        path = '/'.join(self.path.split('/')[0:5])
         return self._process_request(path, method, self.body)
 
     # PUT/POST have equivalent outcomes however have different implementions.
@@ -174,12 +182,13 @@ class DPDirectoryRequest(DPRequest):
 
 class DPFileRequest(DPRequest):
     base_path = '/mgmt/filestore/'
+
     def __init__(self, connection):
         super(DPFileRequest, self).__init__(connection)
 
- 
     def set_path(self, domain, top_directory, file_path):
-        self.path = self.join_path(domain, top_directory, file_path, base_path='/mgmt/filestore/')
+        self.path = self.join_path(
+            domain, top_directory, file_path, base_path='/mgmt/filestore/')
 
     def set_body(self, file_path, content):
         file_name = posixpath.split(file_path)[1]
@@ -190,7 +199,7 @@ class DPFileRequest(DPRequest):
             }
         }
 
-    #path for creating files is always targeted at the parent directory
+    # path for creating files is always targeted at the parent directory
     def create(self):
         method = 'POST'
         path = posixpath.split(self.path)[0]
@@ -216,7 +225,8 @@ class DPActionQueueRequest(DPRequest):
         self.method = 'POST'
 
     def _process_request(self, path, method, body=None):
-        resp = super(DPActionQueueRequest, self).process_request(path, method, body)
+        resp = super(DPActionQueueRequest, self).process_request(
+            path, method, body)
         if self.is_completed(resp):
             return resp
         else:
@@ -224,9 +234,11 @@ class DPActionQueueRequest(DPRequest):
             start_time = time.time()
             while not self.is_completed(resp):
                 if (time.time() - start_time) > ACTION_QUEUE_TIMEOUT:
-                    raise ActionQueueTimeoutError('Could not retrieve status within defined time out' + path)
+                    raise ActionQueueTimeoutError(
+                        'Could not retrieve status within defined time out' + path)
                 time.sleep(2)
-                resp = super(DPActionQueueRequest, self).process_request(path, 'GET', None)     
+                resp = super(DPActionQueueRequest, self).process_request(
+                    path, 'GET', None)
         return resp
 
     def is_completed(self, resp):

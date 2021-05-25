@@ -11,10 +11,6 @@ try:
 except:
     from classes import *
     
-try:
-    from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import DPFileRequest
-except:
-    from DPFileRequest import *
 
 
 __metaclass__ = type

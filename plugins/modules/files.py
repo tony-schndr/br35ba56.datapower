@@ -5,6 +5,9 @@
 from __future__ import (absolute_import, division, print_function)
 import shutil
 import os
+import random
+import string
+
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import (
     ConnectionError,
@@ -21,8 +24,7 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
     FileRequest,
     DirectoryRequest
 )
-from difflib import diff_bytes
-from posix import times_result
+
 
 
 DOCUMENTATION = r'''
@@ -112,7 +114,20 @@ my_useful_info:
 __metaclass__ = type
 
 
-WORK_DIR = '/tmp/community.datapower.workdir/'
+def get_remote_directory(req, to_file):
+    req.set_path(to_file.domain, to_file.top_directory, to_file.parent_dir)
+    try:
+        res = req.get()
+    except ConnectionError as ce:
+        err = to_text(ce)
+        if 'Resource not found' in err:
+            return None
+        else:
+            raise ce
+    if 'filestore' in res:
+        return res
+    else:
+        raise Exception('Not a directory error')
 
 
 def get_remote_file(domain, req):
@@ -170,6 +185,16 @@ def get_file_diff(from_file, to_file, state):
             return {'before': None, 'after': None}
 
 
+def execute_request(module, req_func, result):
+    try:
+        response = req_func()
+    except ConnectionError as ce:
+        result['changed'] = False
+        module.fail_json(msg=to_text(ce), **result)
+    return response
+
+WORK_DIR = '/tmp/community.datapower.workdir/' #+ ''.join(random.choice(string.ascii_letters) for x in range(5))
+
 def run_module():
     module_args = dict(
         domain=dict(type='str', required=True),
@@ -183,14 +208,14 @@ def run_module():
     module = AnsibleModule(
         argument_spec=module_args,
         supports_check_mode=True,
-        # supports_diff=True,
         mutually_exclusive=[['content', 'src']]
     )
-
+    
+    
     # module.params['']
     # Setup the working directory
     if not os.path.exists(WORK_DIR):
-        os.mkdir(WORK_DIR)
+        os.makedirs(WORK_DIR)
     '''
     if src is a directory, dest must also be directory
     if src and dest are files the parent directory of dest is not created 
@@ -200,65 +225,84 @@ def run_module():
     connection = Connection(module._socket_path)
     result = {}
     domain = module.params['domain']
-    src = module.params['src']
+    
+    src = module.params.get('src', None)
+    content = module.params.get('content', None)
     dest = module.params['dest']
     state = module.params['state']
 
-    if os.path.isfile(src):
-        file = DPFile(domain, src, dest)
+
+    if content or os.path.isfile(src):
+        #copy the src file to tmp
+        #if content was supplied, create the file using dest
+        random_chars = ''.join(random.choice(string.ascii_letters) for x in range(5))
+        if src:
+            safe_src = os.path.join(WORK_DIR, random_chars, src.lstrip('./'))
+            os.makedirs(os.path.split(safe_src)[0])
+            module.preserved_copy(src, safe_src)
+        else:
+            # Create the source from the destination
+            # Source will be created from content
+            safe_src = os.path.join(WORK_DIR, random_chars, dest)
+
+        file = DPFile(domain, safe_src, dest, content)
         req = FileRequest(connection)
         req.set_path(domain, file.top_directory, file.remote_path)
         req.set_body(file.remote_path, file.local_file.get_base64())
-
+        dir_req = DirectoryRequest(connection)
+        dir_req.set_body(file.parent_dir)
+        
         try:
             remote_file = get_remote_file(domain, req)
         except ConnectionError as ce:
             result['changed'] = False
-            exit_module(module, result, fail=True, msg=to_text(ce))
+            module.fail_json(msg=to_text(ce), **result)
+        
+        try:
+            parent_dir = get_remote_directory(dir_req, file)
+        except ConnectionError as ce:
+            result['changed'] = False
+            module.fail_json(msg=to_text(ce), **result)
+
+        if parent_dir is None:
+            execute_request(module, dir_req.create, result)
 
         diff = get_file_diff(remote_file, file, state)
         request = get_request_func(req, remote_file, file, state)
 
         if module._diff:
             result['diff'] = diff
+
         if module.check_mode:
             if request is not None:
                 result['changed'] = True
-                exit_module(module, result, fail=False)
+            else:
+                result['changed'] = False
+            module.exit_json(**result)
 
         if request:
             try:
                 result['response'] = request()
             except ConnectionError as ce:
                 result['changed'] = False
-                exit_module(module, result, fail=True, msg=to_text(ce))
-
+                module.fail_json(msg=to_text(ce), **result)
             result['changed'] = True
         else:
             result['changed'] = False
-        exit_module(module, result, fail=False)
-
-
-def exit_module(module, result, fail, msg=''):
-    shutil.rmtree(WORK_DIR)
-    if fail:
-        module.fail_json(msg=msg, **result)
-    else:
         module.exit_json(**result)
 
-
+    elif os.path.isdir(src):
+        
+        module.fail_json(msg='directory uploads are not supported at this time.')
 def main():
-    run_module()
-
+    try:
+        run_module()
+    except Exception as e:
+        raise e
+    finally:
+        shutil.rmtree(WORK_DIR)
+    
 
 if __name__ == '__main__':
     main()
 
-
-'''
-        elif os.path.isdir(src):
-            if src.endswith('/'):
-                pass #If dest is a non-existent path and if either dest ends with "/" or src is a directory, dest is created.
-            else:
-                pass # 
-'''

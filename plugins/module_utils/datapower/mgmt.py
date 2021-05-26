@@ -11,8 +11,10 @@ try:
 except:
     from classes import *
     
+import posixpath 
+
 __metaclass__ = type
-0
+
 
 
 class DPActionQueue():
@@ -82,6 +84,7 @@ class DPFile(DPObject):
         self.local_file = LocalFile(local_path, content)
         self.top_directory = get_top_dir(remote_path)
         self.remote_path = get_dest_file_path(remote_path)
+        self.parent_dir = posixpath.split(self.remote_path)[0]
         #self.full_remote_path = posixpath.join(self.top_directory, self.remote_path)
 
 

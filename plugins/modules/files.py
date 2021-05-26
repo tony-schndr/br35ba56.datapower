@@ -3,6 +3,26 @@
 # Copyright: (c) 2020, Anthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 from __future__ import (absolute_import, division, print_function)
+import shutil
+import os
+from ansible.module_utils._text import to_text
+from ansible.module_utils.connection import (
+    ConnectionError,
+    Connection
+)
+from ansible.module_utils.basic import AnsibleModule
+from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
+    DPFile,
+)
+from ansible_collections.community.datapower.plugins.module_utils.datapower.files import (
+    FileDiff
+)
+from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
+    FileRequest,
+    DirectoryRequest
+)
+from difflib import diff_bytes
+from posix import times_result
 
 
 DOCUMENTATION = r'''
@@ -88,34 +108,66 @@ my_useful_info:
     }
 '''
 
-import os, shutil
-from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-    DPFileStoreRequests,
-    FileRequest,
-    DirectoryRequest
-)
-from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
-    DPRequestHandler
-)
-from ansible_collections.community.datapower.plugins.module_utils.datapower.files import (
-    LocalFile
-)
-from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
-    DPFile,
-    DPDirectory
-)
-from ansible.module_utils.basic import AnsibleModule
-from ansible.module_utils.connection import (
-    ConnectionError,
-    Connection
-)
-from ansible.module_utils._text import to_text
 
 __metaclass__ = type
 
 
-
 WORK_DIR = '/tmp/community.datapower.workdir/'
+
+
+def get_remote_file(domain, req):
+    try:
+        resp = req.get()
+    except ConnectionError as ce:
+        err = to_text(ce)
+        if 'Resource not found' in err:
+            return None
+        else:
+            raise ce
+
+    if 'file' in resp:
+        content = resp['file']
+        path = resp['_links']['self']['href'].split(domain, 1)[1]
+        local_path = WORK_DIR.rstrip('/') + os.sep + path.lstrip('/')
+        return DPFile(domain, local_path=local_path, remote_path=path, content=content)
+    else:
+        raise Exception('Not a file error')  # TODO: Raise a better exception
+
+
+def get_request_func(req, remote_file, local_file, state):
+    resp = None
+    if state == 'present':
+        if remote_file is None:
+            return req.create
+        else:
+            if remote_file.local_file != local_file.local_file:
+                return req.update
+            else:
+                return None
+    else:
+        if remote_file is None:
+            return None
+        else:
+            return req.delete
+
+
+def get_file_diff(from_file, to_file, state):
+    if state == 'present':
+        if from_file and to_file:
+            return list(FileDiff(from_file.local_file, to_file.local_file).get_context_diff())
+        elif to_file and from_file is None:
+            return {
+                'before': None,
+                'after': to_file.remote_path
+            }
+    else:
+        if from_file:
+            return {
+                'before': from_file.remote_path,
+                'after': None
+            }
+        else:
+            return {'before': None, 'after': None}
 
 
 def run_module():
@@ -130,7 +182,8 @@ def run_module():
 
     module = AnsibleModule(
         argument_spec=module_args,
-        supports_check_mode=False,
+        supports_check_mode=True,
+        # supports_diff=True,
         mutually_exclusive=[['content', 'src']]
     )
 
@@ -145,77 +198,47 @@ def run_module():
     '''
 
     connection = Connection(module._socket_path)
-    req_handler = DPRequestHandler(connection)
     result = {}
     domain = module.params['domain']
     src = module.params['src']
     dest = module.params['dest']
     state = module.params['state']
 
-    if state == 'present':
-        if os.path.isfile(src):
-            dp_file_to = DPFile(domain, src, dest)
+    if os.path.isfile(src):
+        file = DPFile(domain, src, dest)
+        req = FileRequest(connection)
+        req.set_path(domain, file.top_directory, file.remote_path)
+        req.set_body(file.remote_path, file.local_file.get_base64())
 
-            get_file_request = DPFileStoreRequests.get_file_request(
-                domain=dp_file_to.domain,
-                top_directory=dp_file_to.top_directory,
-                file_path=dp_file_to.remote_path
-            )
-            try:
-                get_req_result = req_handler.process_request(*get_file_request)
-            except ConnectionError as gfce:
-                gfce_text = to_text(gfce)
-                if 'Resource not found' in gfce_text:
-                    #Create file, nothing to compare
-                    create_file_request = DPFileStoreRequests.create_file_request(
-                        domain=dp_file_to.domain,
-                        top_directory=dp_file_to.top_directory,
-                        file_path=dp_file_to.remote_path,
-                        content=dp_file_to.local_file.get_base64()
-                    )
-                    try:
-                        create_file_result = req_handler.process_request(*create_file_request)
-                    except ConnectionError as cfce:
-                        result['changed'] = False
-                        result['create_file_request'] = create_file_request
-                        exit_module(module, result, fail=True, msg=to_text(cfce))
-                    result['changed'] = True
-                    result['create_file_result'] = create_file_result
-                    exit_module(module, result, fail=False)
-                else:
-                    result['changed'] = False
-                    result['get_file_request'] = get_file_request
-                    exit_module(module, result, fail=True, msg=gfce_text)
-            
-            dp_file_content = get_req_result['file']
-            dp_file_path = get_req_result['_links']['self']['href'].split(domain, 1)[1]
-            dp_file_local_path = WORK_DIR.rstrip('/') + os.sep + dp_file_path.lstrip('/')
+        try:
+            remote_file = get_remote_file(domain, req)
+        except ConnectionError as ce:
+            result['changed'] = False
+            exit_module(module, result, fail=True, msg=to_text(ce))
 
-            dp_file_from = DPFile(domain, local_path=dp_file_local_path, remote_path=dp_file_path, content=get_req_result['file'])
+        diff = get_file_diff(remote_file, file, state)
+        request = get_request_func(req, remote_file, file, state)
 
-            if dp_file_from.local_file == dp_file_to.local_file:
-                result['changed'] = False
-                exit_module(module, result, fail=False)
-            else:
-                update_file_request = DPFileStoreRequests.update_file_request(
-                    domain=dp_file_to.domain,
-                    top_directory=dp_file_to.top_directory,
-                    file_path=dp_file_to.remote_path,
-                    content=dp_file_to.local_file.get_base64()
-                )
-                try:
-                    update_file_result = req_handler.process_request(*update_file_request)
-                except ConnectionError as ufece:
-                    result['changed'] = False
-                    shutil.rmtree(WORK_DIR)
-                    module.exit_json(**result)
+        if module._diff:
+            result['diff'] = diff
+        if module.check_mode:
+            if request is not None:
                 result['changed'] = True
-                result['result'] = update_file_result
                 exit_module(module, result, fail=False)
-            
-            
 
-            
+        if request:
+            try:
+                result['response'] = request()
+            except ConnectionError as ce:
+                result['changed'] = False
+                exit_module(module, result, fail=True, msg=to_text(ce))
+
+            result['changed'] = True
+        else:
+            result['changed'] = False
+        exit_module(module, result, fail=False)
+
+
 def exit_module(module, result, fail, msg=''):
     shutil.rmtree(WORK_DIR)
     if fail:
@@ -223,13 +246,13 @@ def exit_module(module, result, fail, msg=''):
     else:
         module.exit_json(**result)
 
+
 def main():
     run_module()
 
 
 if __name__ == '__main__':
     main()
-    
 
 
 '''

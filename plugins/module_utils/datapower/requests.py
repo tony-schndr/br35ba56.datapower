@@ -120,7 +120,6 @@ class Request:
         return self._process_request(self.path, method, self.body)
 
 
-
 class DirectoryRequest(Request):
 
     base_path = '/mgmt/filestore'
@@ -185,70 +184,6 @@ class DPRequest:
         self.path = None
         self.method = None
 
-
-
-
-class DPFileStoreRequests():
-
-    @staticmethod    
-    def create_dir_request(domain, top_directory, dir_path):
-        path = join_filestore_path(domain, top_directory)
-        method = 'POST'#Confirm
-        body = {
-            "directory": {
-                "name": dir_path
-            }
-        }
-        return path, method, body
-
-    @staticmethod
-    def get_dir_request(domain, top_directory, file_path):
-        method = 'GET'
-        path = join_filestore_path(domain, top_directory, file_path)
-        body = None
-        return path, method, body
-
-    @staticmethod
-    def create_file_request(domain, top_directory, file_path, content):
-        method = 'POST'
-        file_name = os.path.split(file_path)[1]
-        file_base_path = os.path.split(file_path)[0]
-        #path = FILESTORE_DOMAIN_TOPDIR_PATH.format(domain=domain, top_directory=top_directory, path=file_base_path)
-        path = join_filestore_path(domain, top_directory, file_base_path)
-        body = {
-            'file' : {
-                'name' : file_name,
-                'content' : content
-            }
-        }
-        return path, method, body
-
-    @staticmethod
-    def update_file_request(domain, top_directory, file_path, content):
-        method = 'PUT'
-        file_name = file_path.split('/')[-1]
-        path = join_filestore_path(domain, top_directory, file_path)
-        body = {
-            'file' : {
-                'name' : file_name,
-                'content' : content
-            }
-        }
-        return path, method, body
-
-    @staticmethod
-    def delete_file_request(domain, top_directory, file_path):
-        method = 'DELETE'
-        path = join_filestore_path(domain, top_directory, file_path)
-        body = None
-        return path, method, body
-
-    @staticmethod
-    def get_file_request(domain, top_directory, file_path):
-        method = 'GET'
-        path = join_filestore_path(domain, top_directory, file_path)
-        body = None
-        return path, method, body
 
 
 class DPActionQueueRequest(DPRequest):
@@ -350,10 +285,3 @@ class DPGetConfigRequest(DPManageConfigRequest):
         self.path = self.path + '?' + urlencode(self.options, doseq=0)
 
 
-if __name__ == '__main__':
-    domain = 'default'
-    top_directory = 'local'
-    file_path = 'dir/subdir/get.js'
-    content = 'aGVsbG8gd29ybGQK'
-    req = DPFileStoreRequests.update_file_request(domain, top_directory, file_path, content)
-    print(req == ('/mgmt/filestore/default/local/dir/subdir/get.js', 'PUT', {'file':{'name':'get.js', 'content': content}}))

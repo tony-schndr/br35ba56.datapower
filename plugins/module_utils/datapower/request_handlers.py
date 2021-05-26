@@ -28,6 +28,7 @@ class DPRequestHandler:
         return self.connection.send_request(path, method, body)
 
     def process_request(self, path, method, body=None):
+
         try:
             resp = self._make_request(path, method, body)
         except ConnectionError:

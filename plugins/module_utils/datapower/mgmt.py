@@ -12,6 +12,7 @@ except:
     from classes import *
     
 __metaclass__ = type
+0
 
 
 class DPActionQueue():
@@ -81,6 +82,7 @@ class DPFile(DPObject):
         self.local_file = LocalFile(local_path, content)
         self.top_directory = get_top_dir(remote_path)
         self.remote_path = get_dest_file_path(remote_path)
+        #self.full_remote_path = posixpath.join(self.top_directory, self.remote_path)
 
 
 def clean_dp_path(path):

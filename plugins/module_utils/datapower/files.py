@@ -6,13 +6,8 @@ __metaclass__ = type
 
 import base64
 import os
-import sys
-import re
-import shutil
-from glob import glob
 from difflib import context_diff
 from filecmp import dircmp
-from datetime import datetime, timezone
 import hashlib
 
 

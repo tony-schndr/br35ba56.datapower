@@ -87,11 +87,16 @@ class DPFile(DPObject):
         self.parent_dir = posixpath.split(self.remote_path)[0]
         #self.full_remote_path = posixpath.join(self.top_directory, self.remote_path)
 
+TOP_DIRS = ['local', 'cert', 'sharedcert']
+
+
+def get_parent_dir(path):
+    return posixpath.split(path)[0]
 
 def clean_dp_path(path):
     return path.rstrip('/').lstrip('/')
 
-TOP_DIRS = ['local', 'cert', 'sharedcert']
+
 def get_dest_file_path(dest):
     if len(dest.split('/')) == 2: #Accounts for creating a file at the root of a top_directory
         dest_file_path = dest.split('/')[-1] 

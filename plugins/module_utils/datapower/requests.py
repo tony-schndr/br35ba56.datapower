@@ -127,11 +127,8 @@ class DirectoryRequest(Request):
     def __init__(self, connection):
         super(DirectoryRequest, self).__init__(connection)
 
-    def set_path(self, domain, top_directory, dir_path):
-        self.path = self.join_path(
-            domain, top_directory, dir_path, base_path='/mgmt/filestore/')
-        self.create_path = self.join_path(
-            domain, top_directory, base_path='/mgmt/filestore/')
+    def set_path(self, domain, dir_path):
+        self.path = self.join_path(domain, dir_path, base_path='/mgmt/filestore/')
 
     def set_body(self, dir_path):
         self.body = {
@@ -158,9 +155,9 @@ class FileRequest(Request):
     def __init__(self, connection):
         super(FileRequest, self).__init__(connection)
 
-    def set_path(self, domain, top_directory, file_path):
+    def set_path(self, domain, file_path):
         self.path = self.join_path(
-            domain, top_directory, file_path, base_path='/mgmt/filestore/')
+            domain, file_path, base_path='/mgmt/filestore/')
 
     def set_body(self, file_path, content):
         file_name = posixpath.split(file_path)[1]

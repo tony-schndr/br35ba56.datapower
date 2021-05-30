@@ -175,6 +175,70 @@ class FileRequest(Request):
         return self._process_request(path, method, self.body)
 
 
+class ConfigRequest(Request):
+
+    def __init__(self, connection):
+        super(ConfigRequest, self).__init__(connection)
+        
+
+
+    def set_path(self, domain=None, class_name=None,  name=None, field=None):
+        self.path = self.join_path(domain, class_name, name, field, base_path='/mgmt/config/')
+
+    def set_options(self, recursive=False, depth=3, status=False):
+        options = {}
+
+        if recursive:
+            options['view'] = 'recursive'
+            if depth:
+                options['depth'] = depth
+            else: 
+                depth = 3
+        if status:
+            options['state'] = 1
+
+        self.options = urlencode(options, doseq=0)
+
+    def get(self):
+        method = 'GET'
+        if self.options:
+            path = self.path + '?' + self.options
+        else: 
+            path = self.path
+        return self._process_request(path, method, None)
+
+
+    def create(self):
+        method = 'POST'
+        # Equates to /mgmt/filestore/<domain>/<class_name>
+        path = '/'.join(self.path.split('/')[0:5])
+        return self._process_request(path, method, self.body)
+
+
+class ConfigInfoRequest(Request):
+
+    def __init__(self, connection):
+        super(ConfigInfoRequest, self).__init__(connection)
+
+    def config_info(self, domain='default', class_name=None):
+        if class_name is None:
+            path = MGMT_CONFIG_URI
+        else:
+            path = MGMT_CONFIG_METADATA_URI.format(domain, class_name)
+        metadata = self.process_request(path, 'GET', body=None)
+        if metadata['_links']['self']['href'] == MGMT_CONFIG_URI:
+            metadata = list(metadata['_links'].keys())
+            metadata.sort()
+            metadata.remove('self')
+            return metadata
+
+        props = metadata['object']['properties']['property']
+        types = self.get_types(props)
+
+        return {'metadata': metadata, 'types': types}
+
+
+
 class DPRequest:
     def __init__(self):
         self.body = None

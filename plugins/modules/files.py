@@ -14,23 +14,30 @@ short_description: Upload files to a DataPower domains filestore
 
 version_added: "1.0.0"
 
-description: Use for uploading a single file.
+description: Use for uploading a file to datapowers filestore.
 
 options:
     domain:
-        description: Target domain
+        description: The Application Domain to upload the file to.
         required: true
         type: str
     content:
-        description: String or Base64 representation of a file.
+        description: >
+                Base64 encoded file string. 
         required: false
         type: str
     src:
-        description: The location of the file on the local ansible host.
+        description: > 
+            The path to the file on the ansible controller.
+            Currently only files can be uploaded.
         required: false
         type: path
     dest:
-        description: The destination of the file or directory upload.  You must specify the top directory within the path, ie local, sharedcert, cert
+        description: >
+            The filestore destination of the file or directory upload.
+            You must specify the top directory within the path. ie local, cert, sharedcert, etc...
+            For example: local/subdir/example.txt or cert/privkey.pem
+            If the destination subdirectory does not exist it is created prior to uploading the file.
         required: true
         type: path
     state:
@@ -46,7 +53,6 @@ author:
 '''
 
 EXAMPLES = r'''
-# Modify a datapower object.  This example simply disables test_domain1.  
 ---
 - name: Upload a local file called example.txt to local/subdir
   community.datapower.files:
@@ -182,6 +188,7 @@ def run_module():
         if module._diff:
             result['diff'] = diff
 
+
         request = get_request_func(file_req, local_before_file, local_after_file, state)
         
         if module.check_mode:
@@ -193,7 +200,6 @@ def run_module():
 
         if request:
             try:
-                response = dict()
                 if remote_parent_dir is None:
                     result['create_dir_response'] = dir_req.create()
                 result['response'] = request()
@@ -279,13 +285,6 @@ def get_request_func(req, before_file, after_file, state):
         else:
             return req.delete
 
-def execute_request(module, req_func, result):
-    try:
-        response = req_func()
-    except ConnectionError as ce:
-        result['changed'] = False
-        module.fail_json(msg=to_text(ce), **result)
-    return response
 
 def main():
     run_module()

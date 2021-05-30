@@ -13,6 +13,7 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
     DPActionQueueSchemaRequest,
     FileRequest,
     DirectoryRequest,
+    ConfigRequest,
     Request,
     
 )
@@ -169,6 +170,62 @@ class TestDirectoryRequest:
         assert req.delete()[0] == '/mgmt/filestore/default/local/dir/subdir'
         assert req.delete()[1] == 'DELETE'
         assert req.delete()[2] == None
+
+
+class TestConfigRequest:
+    connection = MockConnection()
+    kwargs = {
+        "domain": "default",
+        "name": 'valcred',
+        "class_name": 'CryptoValCred',
+        "config": {
+            "CryptoValCred": {
+                "mAdminState": "enabled",
+                "name": "valcred"
+            }
+        }
+    }
+
+    def test_DPConfigRequest__init__(self):
+        dp_req = ConfigRequest(self.connection)
+        dp_req.set_path(
+            self.kwargs['domain'],
+            self.kwargs['class_name'],
+            self.kwargs['name'],
+            )
+        dp_req.set_body(self.kwargs['config'])
+        assert dp_req.path ==  '/mgmt/config/default/CryptoValCred/valcred'
+        assert dp_req.body == {
+                "CryptoValCred": {
+                    "mAdminState": "enabled",
+                    "name": "valcred"
+                }
+            }
+
+    def test_DPConfigRequest_set_options_all_options(self):
+        options = {
+            'recursive':True,
+            'status': True,
+            'depth': 3
+        }
+        dp_req = ConfigRequest(self.connection)
+        dp_req.set_options(**options)
+        assert 'state=1' in dp_req.options and 'depth=3' in dp_req.options and 'view=recursive' in dp_req.options
+        
+    def test_DPConfigRequest_set_options_only_recursive(self):
+        options = {
+            'recursive':True
+        }
+        dp_req = ConfigRequest(self.connection)
+        dp_req.set_path(
+            self.kwargs['domain'],
+            self.kwargs['class_name'],
+            self.kwargs['name'],
+            )
+        dp_req.set_options(**options)
+        assert  'view=recursive' in dp_req.options
+        assert  'depth=3' in dp_req.options
+
 
 
 def test_DPActionQueueRequest_1():

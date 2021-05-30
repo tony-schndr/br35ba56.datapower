@@ -9,56 +9,80 @@ import pytest
 
 
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
-    DPDirectory,
-    DPFile,
+    Config,
     InvalidDPDirectoryException
-)
-from ansible_collections.community.datapower.plugins.module_utils.datapower.files import (
-    LocalFile
 )
 
 def test_get_top_dir():
     pass
 
 
+class TestConfig:
 
-class TestDPDirectory():
+    def test_DPConfig__init__min_args_required(self):
+        kwargs = {
+            'domain' : 'default',
+            'class_name' : 'CryptoValCred',
+            'name' : 'test',
+            'config' : None
+        }
 
-    def test_DPDirectory_init_file_at_root_of_top_dir(self):
-        domain = 'default'
-        src = './tests/unit/module_utils/test_data/copy/test/from/GetStat/new/getCPU.js'
-        dest = 'local/getCPU.js'
-        dp_file = DPFile(domain, src, dest)
 
-        assert dp_file.remote_path == 'getCPU.js'
-        assert dp_file.top_directory == 'local'
+        dp_config = Config(**kwargs)
+        assert dp_config
 
-    def test_DPDirectory_init_local_file_in_subdir(self):
-        domain = 'default'
-        src = './tests/unit/module_utils/test_data/copy/test/from/GetStat/new/getCPU.js'
-        dest = 'local/GetStat/getCPU.js'
-        dp_file = DPFile(domain, src, dest)
+    def test_DPConfig__init__class_name_and_name_in_config(self):
+        kwargs = {
+            'domain':'snafu',
+            'config': {
+                'CryptoValCred' : {
+                    'name':'valcred'
+                }
+            }
+        }
 
-        assert dp_file.remote_path == 'GetStat/getCPU.js'
-        assert dp_file.top_directory == 'local'
-        
-    def test_DPDirectory_init_file_not_at_root_of_top_dir(self):
-        domain = 'default'
-        src = './tests/unit/module_utils/test_data/copy/test/from/GetStat/new/getCPU.js'
-        dest = 'local/subdir/getCPU.js'
+        dp_config = Config(**kwargs)
+        assert dp_config.name == 'valcred'
+        assert dp_config.class_name == 'CryptoValCred'
 
-        dp_file = DPFile(domain, src, dest)
+    def test_DPConfig__init__set_config(self):
+        kwargs = {
+            'domain':'snafu',
+            'class_name':'CryptoValCred',
+            'name':'valcred',
+            'config': {
+                'Certificate' : [
+                    {'name':'valcred'}
+                ]   
+            }
+        }
 
-        assert dp_file.remote_path == 'subdir/getCPU.js'
-        assert dp_file.top_directory == 'local'
+        dp_config = Config(**kwargs)
+        assert dp_config.name == 'valcred'
+        assert dp_config.class_name == 'CryptoValCred'
+        assert dp_config.config == {
+                'CryptoValCred' : {
+                    'name':'valcred',
+                    'Certificate' : [
+                        {
+                            'name':'valcred'
+                        }
+                    ]
+                }
+            }
 
-    def test_DPDirectory_init_LocalFile(self):
-        domain = 'default'
-        src = './tests/unit/module_utils/test_data/copy/test/from/GetStat/new/getCPU.js'
-        dest = 'local/subdir/getCPU.js'
-
-        dp_file = DPFile(domain, src, dest)
-
-        assert dp_file.local_file == LocalFile(src)
-
+    def test_DPConfig_invalid_class(self):
+        kwargs = {
+            'domain':'snafu',
+            'config': {
+                'ValidationCredential' : {
+                    'name':'valcred'
+                }
+            }
+        }
+        try:
+            Config(**kwargs)
+        except ValueError:
+            assert True
+            
 

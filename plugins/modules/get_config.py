@@ -44,7 +44,6 @@ options:
         description: If true return status information on all returned objects.
         required: False
         type: bool
-        default: False
 
 author: 
 - Anthony Schneider (@br35ba56)
@@ -162,14 +161,12 @@ response:
 
 '''
 
-from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
-    DPGetConfigRequestHandler
-)
+
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-    DPGetConfigRequest
+    ConfigRequest
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
-    DPGetConfigObject
+    Config
 )
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.connection import (
@@ -200,15 +197,28 @@ def run_module():
         mutually_exclusive=mutually_exclusive
     )
 
+    domain = module.params.get('domain')
+    class_name = module.params.get('class_name')
+    name = module.params.get('name', None)
+    field = module.params.get('field', None)
+
+    recursive = module.params.get('recursive')
+    depth = module.params.get('depth')
+    status = module.params.get('status')
+    
     connection = Connection(module._socket_path)
-    dp_obj = DPGetConfigObject(**module.params)
-    dp_req = DPGetConfigRequest(dp_obj)
-    req_handler = DPGetConfigRequestHandler(connection)
+    dp_req = ConfigRequest(connection)
+    dp_req.set_path(domain, class_name, name, field)
+    dp_req.set_options(recursive=recursive, depth=depth, status=status)
+    result = {}
+    result['options'] = dp_req.options
+    
     try:
-        dp_resp = req_handler.process_request(dp_req.path, dp_req.method)
+        dp_resp = dp_req.get()
     except ConnectionError as e:
         dp_resp = to_text(e)
     result = {}
+    result['request_path'] = dp_req.path
     result['response'] = dp_resp
 
     module.exit_json(**result)

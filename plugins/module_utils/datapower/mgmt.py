@@ -15,7 +15,62 @@ import posixpath
 
 __metaclass__ = type
 
+class Config():
 
+    # domain and class_name are the bare minimum required to get a valid
+    # response from DataPower
+    def __init__(self, domain, config=None, class_name=None, name=None, field=None):
+        self.domain = domain
+        self.set_class_name(class_name, config)
+        self.set_name(name, config)
+        self.set_config(config)
+        self.field = field
+
+    def set_config(self, config=None):
+        if not config:
+            self.config = None
+            return
+        # This will build a valid body that will work for POST and PUT methods.
+        if self.class_name in config:
+            if self.name in config[self.class_name]:
+                self.config = config
+            else:
+                config[self.class_name]['name'] = self.name
+                self.config = config
+        else:
+            if self.name not in config:
+                config['name'] = self.name
+            self.config = {
+                self.class_name: config
+            }
+    
+    def set_options(self, options):
+        self.options = options
+
+    # Try to set class_name allowing for some flexibility
+    # it can be set by specifying it as class_name
+    # or within the config dictionary
+    def set_class_name(self, class_name=None, config=None):
+        if class_name and is_valid_class(class_name):
+            self.class_name = class_name
+        elif config and is_valid_class(list(config.keys())[0]):
+            self.class_name = list(config.keys())[0]
+        else:
+            raise ValueError('Invalid class_name or no class_name provided.')
+
+    # Try to set name, the module allows for some flexibility
+    # it can be set by specifying it as name
+    # or within the config dictionary
+    def set_name(self, name=None, config=None):
+        if not name:
+            if self.class_name in config:
+                self.name = config.get(self.class_name).get('name')
+            elif 'name' in self.config:
+                self.name = config.get('name')
+            else:
+                raise AttributeError('name attribute is required.')
+        else:
+            self.name = name
 
 class DPActionQueue():
     def __init__(self, **kwargs):
@@ -77,21 +132,9 @@ class DPObject():
         return "domain: " + self.domain
 
 
-class DPFile(DPObject):
-
-    def __init__(self, domain: str, local_path: str, remote_path: str, content=None):
-        super().__init__(domain)
-        self.local_file = LocalFile(local_path, content)
-        self.top_directory = get_top_dir(remote_path)
-        self.remote_path = get_dest_file_path(remote_path)
-        self.parent_dir = posixpath.split(self.remote_path)[0]
-        #self.full_remote_path = posixpath.join(self.top_directory, self.remote_path)
-
-TOP_DIRS = ['local', 'cert', 'sharedcert']
-
-
 def get_parent_dir(path):
     return posixpath.split(path)[0]
+
 
 def clean_dp_path(path):
     return path.rstrip('/').lstrip('/')

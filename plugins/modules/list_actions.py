@@ -62,10 +62,7 @@ from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils.datapower.actionqueue import DPActionQueue
 
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-    DPListActionsRequest
-)
-from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
-    DPRequestHandler
+    ListActionsRequest
 )
 
 def run_module():
@@ -80,13 +77,11 @@ def run_module():
     connection = Connection(module._socket_path)
     
     dp_act = DPActionQueue(**module.params)
-    dp_req = DPListActionsRequest(dp_act)
-    req_handler =  DPRequestHandler(connection)
+    dp_req = ListActionsRequest(connection, module.params['domain'])
     result = {}
-    #Override the default of POST
-    dp_req.method = 'GET'
+    
     try:
-        response = req_handler.process_request(dp_req.path, dp_req.method)
+        response = dp_req.get()
     except ConnectionError as e:
         response = to_text(e)
         module.fail_json(msg=response, **result)

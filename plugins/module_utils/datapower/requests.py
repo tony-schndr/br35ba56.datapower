@@ -185,6 +185,17 @@ class ListConfigObjectsRequest(Request):
     def get(self):
         return self._process_request(self.path, 'GET', None)
 
+class ListActionsRequest(Request):
+    def __init__(self, connection, domain='default'):
+        super(ListActionsRequest, self).__init__(connection)
+        self.set_path(domain)
+
+    def set_path(self, domain='default'):
+        self.path = self.join_path(domain, base_path='/mgmt/actionqueue/')
+    
+    def get(self):
+        return self._process_request(self.path, 'GET', None)
+
 class ConfigRequest(Request):
 
     def __init__(self, connection):

@@ -174,14 +174,22 @@ class FileRequest(Request):
         path = posixpath.split(self.path)[0]
         return self._process_request(path, method, self.body)
 
+class ListConfigObjectsRequest(Request):
+    def __init__(self, connection, domain='default'):
+        super(ListConfigObjectsRequest, self).__init__(connection)
+        self.set_path(domain)
+
+    def set_path(self, domain='default'):
+        self.path = self.join_path(domain, base_path='/mgmt/filestore/')
+    
+    def get(self):
+        return self._process_request(self.path, 'GET', None)
 
 class ConfigRequest(Request):
 
     def __init__(self, connection):
         super(ConfigRequest, self).__init__(connection)
-        
-
-
+        self.options = None
     def set_path(self, domain=None, class_name=None,  name=None, field=None):
         self.path = self.join_path(domain, class_name, name, field, base_path='/mgmt/config/')
 

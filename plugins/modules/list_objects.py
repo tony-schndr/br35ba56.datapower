@@ -71,12 +71,9 @@ from ansible.module_utils.connection import (
 ) 
 from ansible.module_utils.basic import AnsibleModule
 
+
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-    MGMT_CONFIG_URI,
-    MGMT_CONFIG_METADATA_URI
-)
-from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
-    DPManageConfigRequestHandler
+    ListConfigObjectsRequest
 )
 
 def run_module():
@@ -91,10 +88,9 @@ def run_module():
     
     connection = Connection(module._socket_path)
     
-    req_handler = DPManageConfigRequestHandler(connection)
+    req = ListConfigObjectsRequest(connection, module.params['domain'])
 
-    resp = req_handler.config_info(module.params['domain'], module.params['class_name'])
-
+    resp = req.get()
     result = {}
     result['objects'] = resp
 

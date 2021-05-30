@@ -200,6 +200,7 @@ def run_module():
 
         if request:
             try:
+
                 if remote_parent_dir is None:
                     result['create_dir_response'] = dir_req.create()
                 result['response'] = request()
@@ -213,6 +214,8 @@ def run_module():
 
     else:
         module.fail_json(msg='Directories are not yet supported.')
+
+
 def copy_file_to_tmp_directory(module, tmpdir, src, dest, content):
     random_string = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(16))
     safe_src = os.path.join(tmpdir, random_string, dest.lstrip('/'))
@@ -225,7 +228,7 @@ def copy_file_to_tmp_directory(module, tmpdir, src, dest, content):
         # Source will be created from content
         return LocalFile(path=safe_src, content=content)
 
-
+#TODO: This looks a lot like get_remote_config_resources in the config module....
 def get_remote_filestore_resources(req):
     try:
         res = req.get()

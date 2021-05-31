@@ -2,42 +2,22 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-#from urllib.parse import quote
 import json
-import os
 import time
 import posixpath
 from xml.sax.saxutils import unescape
 from ansible.module_utils.six.moves.urllib.parse import urlencode
 
-MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI = '/mgmt/config/{0}/{1}' 
-MGMT_CONFIG_WITH_NAME_URI = '/mgmt/config/{0}/{1}/{2}'
-MGMT_CONFIG_WITH_FIELD_URI = '/mgmt/config/{0}/{1}/{2}/{3}'
+
 MGMT_CONFIG_METADATA_URI = '/mgmt/metadata/{0}/{1}'
 MGMT_CONFIG_URI = '/mgmt/config/'
 ACTION_QUEUE_URI = '/mgmt/actionqueue/{0}'
 ACTION_QUEUE_SCHEMA_URI = '/mgmt/actionqueue/{0}/operations/{1}?schema-format=datapower'
 ACTION_QUEUE_OPERATIONS_URI = '/mgmt/actionqueue/{0}/operations'
-
-VALID_METHODS = ['GET', 'POST', 'PUT', 'DELETE']
-
-URI_OPTIONS = {
-    'recursive' : {
-        'view': 'recursive'
-    },
-    'state' : {
-        'state': 1
-    },
-    'depth': {
-        'depth' : 2
-    }
-}
-
-def join_filestore_path(*args):
-    file_path = '/'.join(args).rstrip('/')
-    return posixpath.join('/mgmt/filestore/', file_path)
+ACTION_QUEUE_TIMEOUT = 300
 
 NO_BASE_PATH_ERROR = 'Base path was not provided. ie /mgmt/config/'
+
 
 
 def _scrub(obj, bad_key):
@@ -63,6 +43,11 @@ def _scrub(obj, bad_key):
         pass
 
 
+def clean_dp_dict(dict_):
+    _scrub(dict_, '_links')
+    _scrub(dict_, 'href')
+    _scrub(dict_, 'state')
+
 
 class Request:
 
@@ -73,7 +58,7 @@ class Request:
         self.method = None
 
     def _process_request(self, path, method, body=None):
-        if body is not None:
+        if body:
             _scrub(body, '_links')
             _scrub(body, 'href')
             _scrub(body, 'state')
@@ -151,7 +136,6 @@ class DirectoryRequest(Request):
 
 
 class FileRequest(Request):
-    base_path = '/mgmt/filestore/'
 
     def __init__(self, connection):
         super(FileRequest, self).__init__(connection)
@@ -205,6 +189,7 @@ class ConfigRequest(Request):
     def __init__(self, connection):
         super(ConfigRequest, self).__init__(connection)
         self.options = None
+    
     def set_path(self, domain=None, class_name=None,  name=None, field=None):
         self.path = self.join_path(domain, class_name, name, field, base_path='/mgmt/config/')
 
@@ -215,8 +200,9 @@ class ConfigRequest(Request):
             options['view'] = 'recursive'
             if depth:
                 options['depth'] = depth
-            else: 
-                depth = 3
+            else:
+                options['depth'] = 3
+        
         if status:
             options['state'] = 1
 
@@ -230,14 +216,13 @@ class ConfigRequest(Request):
             path = self.path
         return self._process_request(path, method, None)
 
-
     def create(self):
         method = 'POST'
         # Equates to /mgmt/filestore/<domain>/<class_name>
         path = '/'.join(self.path.split('/')[0:5])
         return self._process_request(path, method, self.body)
 
-
+# 
 class ConfigInfoRequest(Request):
 
     def __init__(self, connection):
@@ -264,11 +249,14 @@ class ConfigInfoRequest(Request):
 class ActionQueueSchemaRequest(Request):
     def __init__(self, connection, domain, action_name):
         super(ActionQueueSchemaRequest, self).__init__(connection)
-        
         self.path = ACTION_QUEUE_SCHEMA_URI.format(domain, action_name)
 
     def get(self):
         return self._process_request(self.path, 'GET', None)
+
+
+class ActionQueueTimeoutError(Exception):
+    pass
 
 
 class ActionQueueRequest(Request):
@@ -280,7 +268,6 @@ class ActionQueueRequest(Request):
             self.body = { action_name : parameters }
         else:
             self.body = { action_name : {} }
-
 
     def create(self):
         path = self.path
@@ -305,66 +292,3 @@ class ActionQueueRequest(Request):
                 return True
         else:
             return False
-
-class DPRequest:
-    def __init__(self):
-        self.body = None
-        self.path = None
-        self.method = None
-
-ACTION_QUEUE_TIMEOUT = 300
-
-
-
-class ActionQueueTimeoutError(Exception):
-    pass
-
-class DPManageConfigRequest(DPRequest):
-
-    def __init__(self, dp_mgmt_conf):
-        super(DPManageConfigRequest, self).__init__()
-        if dp_mgmt_conf.state == 'present':
-            self.method = 'PUT'
-            self.set_path(
-                dp_mgmt_conf.domain,
-                dp_mgmt_conf.class_name,
-                dp_mgmt_conf.name
-            )
-            self.set_body(dp_mgmt_conf)
-        elif dp_mgmt_conf.state == 'absent':
-            self.method = 'DELETE'
-            self.set_path(
-                dp_mgmt_conf.domain,
-                dp_mgmt_conf.class_name,
-                dp_mgmt_conf.name
-            )
-        else:
-            raise AttributeError('Could not build request object from parsed module parameters.')
-
-    def set_body(self, dp_mgmt_conf):
-        # For all requests except for array updates, use this to build a valid body that will work for 
-        # POST and PUT methods.
-        if dp_mgmt_conf.class_name in dp_mgmt_conf.config:
-            if dp_mgmt_conf.name in dp_mgmt_conf.config[dp_mgmt_conf.class_name]:
-                self.body = dp_mgmt_conf.config
-            else:
-                dp_mgmt_conf.config[dp_mgmt_conf.class_name]['name'] = dp_mgmt_conf.name
-                self.body = dp_mgmt_conf.config
-        else:
-            if dp_mgmt_conf.name not in dp_mgmt_conf.config:
-                dp_mgmt_conf.config['name'] = dp_mgmt_conf.name
-            self.body = {
-                dp_mgmt_conf.class_name: dp_mgmt_conf.config
-            }
-
-    def set_path(self, domain, class_name=None, name=None, field=None):
-        if class_name and not name and not field:
-            self.path = MGMT_CONFIG_BASE_WITH_OBJECT_CLASS_URI.format(domain, class_name)
-        elif class_name and name and not field:
-            self.path = MGMT_CONFIG_WITH_NAME_URI.format(domain, class_name, name)
-        elif class_name and name and field:
-            self.path = MGMT_CONFIG_WITH_FIELD_URI.format(domain, class_name, name, field)
-        else:
-            raise AttributeError('no valid URI could be derived')
-
-

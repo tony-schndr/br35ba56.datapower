@@ -1,19 +1,11 @@
 from __future__ import absolute_import, division, print_function
-try:
-    from ansible_collections.community.datapower.plugins.module_utils.datapower.files import (
-        LocalFile,
-        LocalDirectory
-    )
-except:
-    from files import *
-try:
-    from ansible_collections.community.datapower.plugins.module_utils.datapower.classes import valid_objects
-except:
-    from classes import *
-    
-import posixpath 
-
 __metaclass__ = type
+
+import posixpath 
+from ansible.module_utils._text import to_text
+from ansible.module_utils.connection import ConnectionError
+from ansible_collections.community.datapower.plugins.module_utils.datapower.classes import valid_objects
+
 
 class Config():
 
@@ -59,7 +51,7 @@ class Config():
             raise ValueError('Invalid class_name or no class_name provided.')
 
     # Try to set name, the module allows for some flexibility
-    # it can be set by specifying it as name
+    # it can be set by specifying it as name 
     # or within the config dictionary
     def set_name(self, name=None, config=None):
         if not name:
@@ -79,11 +71,6 @@ class Config():
 
 def is_valid_class(class_name):
     return class_name in valid_objects
-
-# This is first attempt at creating these objects with inheritence, DPFile and DPDirectory.
-# Dependent on success / value in doing this the above objects will follow suite.
-# DPFile and DPDirectory are direct representations of all the attributes/parameters
-# required to create a file / directory on DataPower's filesystem.
 
 
 def get_parent_dir(path):
@@ -113,3 +100,15 @@ def get_top_dir(dest):
         raise Exception(
             top_dir +' is an invalid top directory, must be one of ', ' '.join(TOP_DIRS)
         )
+
+
+def get_remote_data(req):
+    try:
+        res = req.get()
+    except ConnectionError as ce:
+        err = to_text(ce)
+        if 'Resource not found' in err:
+            return None
+        else:
+            raise ce
+    return res

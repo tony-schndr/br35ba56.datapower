@@ -101,11 +101,10 @@ from ansible.module_utils.connection import (
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     get_parent_dir,
-    get_top_dir
+    get_remote_data
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.files import (
-    LocalFile,
-    LocalDirectory
+    LocalFile
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     FileRequest,
@@ -163,14 +162,14 @@ def run_module():
 
 
         try:
-            remote_parent_dir = get_remote_filestore_resources(dir_req)
+            remote_parent_dir = get_remote_data(dir_req)
             result['remote_parent_dir'] = remote_parent_dir
         except ConnectionError as ce:
             result['changed'] = False
             module.fail_json(msg=to_text(ce), **result)
         
         try:
-            remote_before_file = get_remote_filestore_resources(file_req)
+            remote_before_file = get_remote_data(file_req)
             result['remote_before_file'] = remote_before_file
         except ConnectionError as ce:
             result['changed'] = False
@@ -228,22 +227,8 @@ def copy_file_to_tmp_directory(module, tmpdir, src, dest, content):
         # Source will be created from content
         return LocalFile(path=safe_src, content=content)
 
-#TODO: This looks a lot like get_remote_config_resources in the config module....
-def get_remote_filestore_resources(req):
-    try:
-        res = req.get()
-    except ConnectionError as ce:
-        err = to_text(ce)
-        if 'Resource not found' in err:
-            return None
-        else:
-            raise ce
-    if 'filestore' in res or 'file' in res:
-        return res
-    else:
-        raise Exception('Not a filestore resources error')
 
-
+    
 def get_dest_path_from_href(domain, href):
     return href.split(domain, 1)[1]      
 

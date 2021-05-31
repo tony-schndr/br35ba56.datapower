@@ -116,19 +116,20 @@ response:
 
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import (
-    ConnectionError, 
+    ConnectionError,
     Connection
 ) 
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
-    Config
+    Config,
+    get_remote_data
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-    ConfigRequest
-)
-from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
+    ConfigRequest,
+    
     clean_dp_dict
 )
+
 from ansible_collections.community.datapower.plugins.module_utils.datapower import (
     dp_diff
 )
@@ -162,7 +163,7 @@ def run_module():
     dp_req.set_body(dp_obj.config)
     result = dict()
     try:
-        dp_state_resp = get_remote_config(dp_req)
+        dp_state_resp = get_remote_data(dp_req)
         result['remote_state'] = clean_dp_dict(dp_state_resp)
     except ConnectionError as ce:
         result['changed'] = False
@@ -208,19 +209,7 @@ def get_request_func(req, before, after, state):
         else:
             return req.delete
 
-#TODO: This looks a lot like get_remote_filestore_resources in the files module....
-def get_remote_config(req):
-    try:
-        res = req.get()
-    except ConnectionError as ce:
-        err = to_text(ce)
-        if 'Resource not found' in err:
-            return None
-        else:
-            raise ce
-    return res
     
-
 def main():
     run_module()
 

@@ -122,14 +122,9 @@ response:
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower.actionqueue import (
-    DPActionQueue
-)
+
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-    DPActionQueueSchemaRequest
-)
-from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
-    DPRequestHandler
+    ActionQueueSchemaRequest
 )
 
 def run_module():
@@ -144,19 +139,15 @@ def run_module():
     )
     connection = Connection(module._socket_path)
     
-    dp_act = DPActionQueue(**module.params)
-    dp_req = DPActionQueueSchemaRequest(dp_act)
+    dp_req = ActionQueueSchemaRequest(connection, module.params.get('domain'), module.params.get('action'))
 
-    req_handler =  DPRequestHandler(connection)
     result = {}
     try:
-        response = req_handler.process_request(dp_req.path, dp_req.method)
+        response = dp_req.get()
     except ConnectionError as e:
         response = to_text(e)
-        result = {'uri': dp_req.path, 'method': dp_req.method}
         module.fail_json(msg=response, **result)
 
-    result['request'] = {'path': dp_req.path, 'method': dp_req.method, 'body': dp_req.body}
     result['response'] = response
     module.exit_json(**result)
 

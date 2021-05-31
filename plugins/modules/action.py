@@ -84,15 +84,11 @@ response:
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower.actionqueue import (
-    DPActionQueue
-)
+
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-    DPActionQueueRequest
+    ActionQueueRequest
 )
-from ansible_collections.community.datapower.plugins.module_utils.datapower.request_handlers import (
-    DPActionQueueRequestHandler
-)
+
 
 def run_module():
     module_args = dict(
@@ -107,11 +103,13 @@ def run_module():
     )
     connection = Connection(module._socket_path)
     result = {}
-    dp_act = DPActionQueue(**module.params)
-    dp_req = DPActionQueueRequest(dp_act)
-    req_handler =  DPActionQueueRequestHandler(connection)
+    domain = module.params.get('domain')
+    action = module.params.get('action')
+    parameters = module.params.get('parameters')
+    dp_req = ActionQueueRequest(connection, domain, action, parameters)
+
     try:
-        response = req_handler.process_request(dp_req.path, dp_req.method, dp_req.body)
+        response = dp_req.create()
     except ConnectionError as e:
         response = to_text(e)
         result['changed'] = False

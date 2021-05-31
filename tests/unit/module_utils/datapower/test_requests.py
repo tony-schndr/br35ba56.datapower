@@ -7,27 +7,17 @@ import re
 import pytest
 
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-    DPManageConfigRequest,
-    DPGetConfigRequest,
-    DPActionQueueRequest,
-    DPActionQueueSchemaRequest,
+    Request,
+    ConfigRequest,
     FileRequest,
     DirectoryRequest,
-    ConfigRequest,
-    Request,
-    
+    ActionQueueRequest,
+    ActionQueueSchemaRequest,
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
-    DPManageConfigObject
+    Config
 )
 
-from ansible_collections.community.datapower.plugins.module_utils.datapower.actionqueue import (
-    DPActionQueue
-)
-from ansible_collections.community.datapower.tests.unit.module_utils.test_data import (
-    dp_actionq_test_data as action_test_data,
-    
-)
 
 class MockConnection():
     @staticmethod
@@ -186,13 +176,13 @@ class TestConfigRequest:
         }
     }
 
-    def test_DPConfigRequest__init__(self):
+    def test_ConfigRequest__init__(self):
         dp_req = ConfigRequest(self.connection)
         dp_req.set_path(
             self.kwargs['domain'],
             self.kwargs['class_name'],
             self.kwargs['name'],
-            )
+        )
         dp_req.set_body(self.kwargs['config'])
         assert dp_req.path ==  '/mgmt/config/default/CryptoValCred/valcred'
         assert dp_req.body == {
@@ -202,7 +192,7 @@ class TestConfigRequest:
                 }
             }
 
-    def test_DPConfigRequest_set_options_all_options(self):
+    def test_ConfigRequest_set_options_all_options(self):
         options = {
             'recursive':True,
             'status': True,
@@ -212,7 +202,7 @@ class TestConfigRequest:
         dp_req.set_options(**options)
         assert 'state=1' in dp_req.options and 'depth=3' in dp_req.options and 'view=recursive' in dp_req.options
         
-    def test_DPConfigRequest_set_options_only_recursive(self):
+    def test_ConfigRequest_set_options_only_recursive(self):
         options = {
             'recursive':True
         }
@@ -227,160 +217,228 @@ class TestConfigRequest:
         assert  'depth=3' in dp_req.options
 
 
-
-def test_DPActionQueueRequest_1():
-    task_args = {
-        'domain':'default',
-        'action': 'SaveConfig',
-        'parameters': None
-    }
-    valid_actions = action_test_data.valid_actions
-
-    dp_action = DPActionQueue(**task_args)
-    dp_action_req = DPActionQueueRequest(dp_action)
-    assert dp_action_req.path == '/mgmt/actionqueue/default'
-    assert dp_action_req.body == {
-            'SaveConfig' : {}
+    def test_ConfigRequest_mod_args(self):
+        task_args = {
+            "class_name": None,
+            "config": {
+                "CryptoValCred": {
+                    "mAdminState": "enabled",
+                    "name": "valcred"
+                }
+            },
+            "domain": "default",
+            "name": None,
         }
- 
-def test_DPActionQueueSchemaRequest():
-    task_args = {
-        'domain':'default',
-        'action': 'SaveConfig'
-    }
+        dp = Config(**task_args)
+        dp_req = ConfigRequest(self.connection)
+        dp_req.set_path(dp.domain, dp.class_name, dp.name)
+        dp_req.set_body(dp.config)
+        assert dp_req.path ==  '/mgmt/config/default/CryptoValCred/valcred'
+        assert dp_req.body == {
+                "CryptoValCred": {
+                    "mAdminState": "enabled",
+                    "name": "valcred"
+                }
+            }
 
-    dp_action = DPActionQueue(**task_args)
-    dp_action_req = DPActionQueueSchemaRequest(dp_action)
-    assert dp_action_req.path == '/mgmt/actionqueue/default/operations/SaveConfig?schema-format=datapower'
+
+
+    def test_ConfigRequest_min(self):
+        task_args = {
+            'domain':'snafu',
+            'config': {
+                'CryptoValCred' : {
+                    'name':'valcred',
+                    'mAdminState':'disabled'
+                }
+            }
+        }
+
+        dp = Config(**task_args)
+        dp_req = ConfigRequest(self.connection)
+        dp_req.set_path(dp.domain, dp.class_name, dp.name)
+        dp_req.set_body(dp.config)
+        assert dp_req.path ==  '/mgmt/config/snafu/CryptoValCred/valcred'
+        assert dp_req.body == {
+                'CryptoValCred' : {
+                    'name':'valcred',
+                    'mAdminState':'disabled'
+                }
+            }
+
+    def test_ManageConfigRequest_w_name(self):
+        task_args = {
+            'domain':'snafu',
+            'config': {
+                'CryptoValCred' : {
+                    'name':'valcred'
+                }
+            }
+        }        
+        dp = Config(**task_args)
+        dp_req = ConfigRequest(self.connection)
+        dp_req.set_path(dp.domain, dp.class_name, dp.name)
+        dp_req.set_body(dp.config)
+        assert dp_req.path ==  '/mgmt/config/snafu/CryptoValCred/valcred'
+
+    def test_ManageConfigRequest_invalid_class(self):
+        task_args_w_invalid_class = {
+            'domain':'snafu',
+            'config': {
+                'ValidationCredential' : {
+                    'name':'valcred'
+                }
+            }
+        }
+        try:
+            Config(**task_args_w_invalid_class)
+        except ValueError:
+            assert True
+
+
+'''
+    def test_DPGetConfigRequest_1(self):
+        task_args = {
+            'domain':'snafu',
+            'name': 'valcred',
+            'config': {
+                'CryptoValCred' : {
+                    'name':'valcred'
+                }
+            },
+            'overwrite': True,
+            'recursive':True,
+            'status': True,
+            'depth': 3
+        }
+
+        dp = Config(**task_args)
+        dp_req = ConfigRequest(self.connection, dp.domain, dp.class_name, dp.name)
+        assert dp_req.options == {
+            'view': 'recursive',
+            'state': 1,
+            'depth' : 3
+        }
+        assert 'state=1' in dp_req.path and 'depth=3' in dp_req.path and 'view=recursive' in dp_req.path
+        
+        dp_req.options.depth = None
+        dp_req = GetConfigRequest(dp_mgmt_conf)
+        assert dp_req.options == {
+            'view': 'recursive',
+            'state': 1,
+            'depth': 2
+        }
+
+        assert 'state=1' in dp_req.path and 'depth=2' in dp_req.path and 'view=recursive' in dp_req.path
+        dp_mgmt_conf.recursive = False
+
+        dp_req = DPGetConfigRequest(dp_mgmt_conf)
+        assert dp_req.options == {
+            'state': 1
+        }
+        assert 'state=1' in dp_req.path
+'''
+
+
+class TestActionRequest:
+
+    connection = MockConnection()
+
+
+    def test_DPActionQueueRequest_1(self):
+        task_args = {
+            'domain':'default',
+            'action_name': 'SaveConfig',
+            'parameters': None
+        }
+
+        req = ActionQueueRequest(self.connection, **task_args)
+        assert req.path == '/mgmt/actionqueue/default'
+        assert req.body == {'SaveConfig' : {}}
     
 
-def test_DPActionQueueRequest_2():
-    task_args = {
-        'domain':'default',
-        'action': 'TraceRoute',
-        'parameters': {
-            'RemoteHost': 'www.google.com'
-        }
-    }
+    def test_ActionQueueRequest_2(self):
+        task_args = {
+            'domain':'default',
+            'action_name': 'TraceRoute',
+            'parameters' : { 
+                'RemoteHost': 'www.google.com'
+            }
 
-    dp_action = DPActionQueue(**task_args)
-    dp_action_req = DPActionQueueRequest(dp_action)
-    assert dp_action_req.path == '/mgmt/actionqueue/default'
-    assert dp_action_req.body == {
-            'TraceRoute' : {'RemoteHost': 'www.google.com'}
         }
 
-    #ACTION_QUEUE_SCHEMA_URI = '/mgmt/actionqueue/{0}/{1}?schema-format=datapower'
-    #ACTION_QUEUE_OPERATIONS_URI = '/mgmt/actionqueue/{0}/operations'
+        req = ActionQueueRequest(self.connection, **task_args)
+        assert req.path == '/mgmt/actionqueue/default'
+        assert req.body == {
+                'TraceRoute' : {
+                    'RemoteHost': 'www.google.com'
+                }
+            }
 
-def test_DPManageConfigRequest_mod_args():
-    task_args = {
-        "class_name": None,
-        "config": {
-            "CryptoValCred": {
-                "mAdminState": "enabled",
-                "name": "valcred"
-            }
-        },
-        "domain": "default",
-        "name": None,
-        "state": 'present'
-    }
-    dp_mgmt_conf = DPManageConfigObject(**task_args)
-    dp_req = DPManageConfigRequest(dp_mgmt_conf)
-    assert dp_req.path ==  '/mgmt/config/default/CryptoValCred/valcred'
-    assert dp_req.method == 'PUT'
-    assert dp_req.body == {
-            "CryptoValCred": {
-                "mAdminState": "enabled",
-                "name": "valcred"
-            }
+
+    def test_ActionQueueSchemaRequest(self):
+        task_args = {
+            'domain':'default',
+            'action_name': 'SaveConfig'
         }
 
-def test_DPManageConfigRequest_min():
-    task_args = {
-        'domain':'snafu',
-        'config': {
-            'CryptoValCred' : {
-                'name':'valcred',
-                'mAdminState':'disabled'
+        req = ActionQueueSchemaRequest(self.connection, task_args['domain'], task_args['action_name'])
+        assert req.path == '/mgmt/actionqueue/default/operations/SaveConfig?schema-format=datapower'
+        
+
+def test_action_transitions():
+    resp = {
+        "_links": {
+            "self": {
+                "href": "/mgmt/actionqueue/snafu"
+            },
+            "doc": {
+                "href": "/mgmt/docs/actionqueue"
+            },
+            "location": {
+                "href": "/mgmt/actionqueue/snafu/pending/ResetThisDomain-20201215T210541Z-10"
             }
         },
-        'state': 'present'
+        "ResetThisDomain": {
+            "status": "Action request accepted."
+        }
     }
-
-    dp_mgmt_conf = DPManageConfigObject(**task_args)
-    dp_req = DPManageConfigRequest(dp_mgmt_conf)
-    assert dp_req.path ==  '/mgmt/config/snafu/CryptoValCred/valcred'
-    assert dp_req.method == 'PUT'
-
-def test_DPManageConfigRequest_w_name():
-    task_args = {
-        'domain':'snafu',
-        'config': {
-            'CryptoValCred' : {
-                'name':'valcred'
+    connection = MockConnection
+    req = ActionQueueRequest(connection, 'default', 'SaveConfig')
+    assert req.is_completed(resp) == False
+    resp = {
+        "_links": {
+            "self": {
+                "href": "/mgmt/actionqueue/snafu"
+            },
+            "doc": {
+                "href": "/mgmt/docs/actionqueue"
             }
         },
-        'state': 'present'
+        "SaveConfig": "Operation completed.",
+        "script-log": ""
     }
-    dp_mgmt_conf = DPManageConfigObject(**task_args)
-    dp_req = DPManageConfigRequest(dp_mgmt_conf)
-    assert dp_req.path ==  '/mgmt/config/snafu/CryptoValCred/valcred'
-
-def test_DPManageConfigRequest_invalid_class():
-    task_args_w_invalid_class = {
-        'domain':'snafu',
-        'config': {
-            'ValidationCredential' : {
-                'name':'valcred'
+    assert req.is_completed(resp) == True
+    resp = {
+        "_links": {
+            "self": {
+                "href": "/mgmt/actionqueue/snafu/pending/ResetThisDomain-20201215T212048Z-11"
             }
         },
-        'state': 'present'
+        "status": "completed"
     }
-    try:
-        DPManageConfigObject(**task_args_w_invalid_class)
-    except ValueError:
-        assert True
-
-def test_DPGetConfigRequest_1():
-    get_task_args = {
-        'domain':'snafu',
-        'name': 'valcred',
-        'config': {
-            'CryptoValCred' : {
-                'name':'valcred'
+    assert req.is_completed(resp) == True
+    resp = {
+        "SaveConfig": "Operation completed.",
+        "_links": {
+            "doc": {
+                "href": "/mgmt/docs/actionqueue"
+            },
+            "self": {
+                "href": "/mgmt/actionqueue/snafu"
             }
         },
-        'overwrite': True,
-        'recursive':True,
-        'status': True,
-        'depth': 3
+        "script-log": ""
     }
-
-    dp_mgmt_conf = DPManageConfigObject(**get_task_args)
-    dp_req = DPGetConfigRequest(dp_mgmt_conf)
-    assert dp_req.options == {
-        'view': 'recursive',
-        'state': 1,
-        'depth' : 3
-    }
-    assert 'state=1' in dp_req.path and 'depth=3' in dp_req.path and 'view=recursive' in dp_req.path
+    assert req.is_completed(resp) == True
     
-    dp_mgmt_conf.depth = None
-    dp_req = DPGetConfigRequest(dp_mgmt_conf)
-    assert dp_req.options == {
-        'view': 'recursive',
-        'state': 1,
-        'depth': 2
-    }
-
-    assert 'state=1' in dp_req.path and 'depth=2' in dp_req.path and 'view=recursive' in dp_req.path
-    dp_mgmt_conf.recursive = False
-
-    dp_req = DPGetConfigRequest(dp_mgmt_conf)
-    assert dp_req.options == {
-        'state': 1
-    }
-    assert 'state=1' in dp_req.path
-

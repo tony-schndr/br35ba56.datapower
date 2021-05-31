@@ -76,7 +76,6 @@ def run_module():
     )
     connection = Connection(module._socket_path)
     
-    dp_act = DPActionQueue(**module.params)
     dp_req = ListActionsRequest(connection, module.params['domain'])
     result = {}
     
@@ -86,7 +85,6 @@ def run_module():
         response = to_text(e)
         module.fail_json(msg=response, **result)
 
-    result['request'] = {'path': dp_req.path, 'method': dp_req.method, 'body': dp_req.body}
     values = list(response['_links'].keys())
     values.remove('self')
     result['actions'] = values

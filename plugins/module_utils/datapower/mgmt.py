@@ -72,45 +72,6 @@ class Config():
         else:
             self.name = name
 
-class DPActionQueue():
-    def __init__(self, **kwargs):
-        for k, v in kwargs.items():
-            setattr(self, k, v)
-
-
-class DPGetConfigObject:
-    def __init__(self, **kwargs):
-        for k, v in kwargs.items():
-            setattr(self, k, v)
-
-
-class DPManageConfigObject:
-    # domain and class_name are the bare minimum required to get a valid
-    # response from DataPower
-    # kwargs consisting of the arguments defined in the Ansible Modules
-    def __init__(self, **kwargs):
-        for k, v in kwargs.items():
-            setattr(self, k, v)
-
-        # Try to set class_name, the module allows for some flexibility
-        # it can be set by specifying it as class_name
-        # or within the config dictionary
-        if not hasattr(self, 'class_name') or self.class_name is None:
-            self.class_name = list(self.config.keys())[0]
-            if not is_valid_class(self.class_name):
-                raise ValueError(
-                    'Invalid class_name or no class_name provided.')
-
-        # Try to set name, the module allows for some flexibility
-        # it can be set by specifying it as name
-        # or within the config dictionary
-        if not hasattr(self, 'name') or self.name is None:
-            if self.class_name in self.config:
-                self.name = self.config.get(self.class_name).get('name')
-            elif 'name' in self.config:
-                self.name = self.config.get('name')
-            else:
-                raise AttributeError('name attribute is required.')
 
 # This is hardcoded, the response is from DataPower v 10.0.1.0.
 # This should greatly improved by having it check at the beginning
@@ -123,13 +84,6 @@ def is_valid_class(class_name):
 # Dependent on success / value in doing this the above objects will follow suite.
 # DPFile and DPDirectory are direct representations of all the attributes/parameters
 # required to create a file / directory on DataPower's filesystem.
-
-class DPObject():
-    def __init__(self, domain: str):
-        self.domain = domain
-
-    def __str__(self):
-        return "domain: " + self.domain
 
 
 def get_parent_dir(path):
@@ -159,32 +113,3 @@ def get_top_dir(dest):
         raise Exception(
             top_dir +' is an invalid top directory, must be one of ', ' '.join(TOP_DIRS)
         )
-
-
-class DPDirectory():
-
-    def __init__(self, dest):
-        dir_path = dest.split('/')[1:-1]
-        if dest.split('/')[0] != 'local':
-            raise InvalidDPDirectoryException('Subdirectories are only valid in local/')
-        else:
-            root = dest.split('/')[0]
-
-    @staticmethod
-    def get_root_dir(path):
-        if 'local' not in path:
-            raise AttributeError('can only create local direct')
-        else:
-            return True
-
-
-class InvalidDPDirectoryException(Exception):
-    pass
-
-
-if __name__ == '__main__':
-    domain = 'default'
-    file_path = '/Users/anthonyschneider/DEV/ansible-datapower-playbooks/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/test/to/GetStat/getCPU.js'
-    lf = LocalFile(file_path)
-    obj = DPFile(domain, content=lf.get_base64(), path='local/GetStat/getCPU.js')
-    print(obj.__str__())

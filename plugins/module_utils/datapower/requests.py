@@ -5,6 +5,7 @@ __metaclass__ = type
 #from urllib.parse import quote
 import json
 import os
+import time
 import posixpath
 from xml.sax.saxutils import unescape
 from ansible.module_utils.six.moves.urllib.parse import urlencode
@@ -174,6 +175,7 @@ class FileRequest(Request):
         path = posixpath.split(self.path)[0]
         return self._process_request(path, method, self.body)
 
+
 class ListConfigObjectsRequest(Request):
     def __init__(self, connection, domain='default'):
         super(ListConfigObjectsRequest, self).__init__(connection)
@@ -185,6 +187,7 @@ class ListConfigObjectsRequest(Request):
     def get(self):
         return self._process_request(self.path, 'GET', None)
 
+
 class ListActionsRequest(Request):
     def __init__(self, connection, domain='default'):
         super(ListActionsRequest, self).__init__(connection)
@@ -195,6 +198,7 @@ class ListActionsRequest(Request):
     
     def get(self):
         return self._process_request(self.path, 'GET', None)
+
 
 class ConfigRequest(Request):
 
@@ -257,6 +261,50 @@ class ConfigInfoRequest(Request):
         return {'metadata': metadata, 'types': types}
 
 
+class ActionQueueSchemaRequest(Request):
+    def __init__(self, connection, domain, action_name):
+        super(ActionQueueSchemaRequest, self).__init__(connection)
+        
+        self.path = ACTION_QUEUE_SCHEMA_URI.format(domain, action_name)
+
+    def get(self):
+        return self._process_request(self.path, 'GET', None)
+
+
+class ActionQueueRequest(Request):
+    def __init__(self, connection, domain, action_name, parameters=None):
+        super(ActionQueueRequest, self).__init__(connection)
+        self.path = ACTION_QUEUE_URI.format(domain)
+        
+        if parameters:
+            self.body = { action_name : parameters }
+        else:
+            self.body = { action_name : {} }
+
+
+    def create(self):
+        path = self.path
+        body = self.body
+        method = 'POST'
+        resp = self._process_request(path, method, body)
+        if self.is_completed(resp):
+            return resp
+        else:
+            path = resp['_links']['location']['href']
+            start_time = time.time()
+            while not self.is_completed(resp):
+                if (time.time() - start_time) > ACTION_QUEUE_TIMEOUT:
+                    raise ActionQueueTimeoutError('Could not retrieve status within defined time out' + path)
+                time.sleep(2)
+                resp = self._process_request(path, 'GET', None)     
+        return resp
+
+    def is_completed(self, resp):
+        for k, v in resp.items():
+            if v == 'Operation completed.' or v == 'completed':
+                return True
+        else:
+            return False
 
 class DPRequest:
     def __init__(self):
@@ -264,35 +312,12 @@ class DPRequest:
         self.path = None
         self.method = None
 
+ACTION_QUEUE_TIMEOUT = 300
 
 
-class DPActionQueueRequest(DPRequest):
-    def __init__(self, dp_action):
-        super(DPActionQueueRequest, self).__init__()
-        self.path = ACTION_QUEUE_URI.format(dp_action.domain)
-        if hasattr(dp_action, 'parameters'):
-            if dp_action.parameters is None:
-                self.body = { dp_action.action : {} }
-            else:
-                 self.body = { dp_action.action : dp_action.parameters }
-        else:
-            self.body = None
-        self.method = 'POST'  
 
-
-class DPListActionsRequest(DPRequest):
-    def __init__(self, dp_action):
-        super(DPListActionsRequest, self).__init__()
-        self.method = 'GET'
-        self.path = ACTION_QUEUE_OPERATIONS_URI.format(dp_action.domain)
-
-
-class DPActionQueueSchemaRequest(DPRequest):
-    def __init__(self, dp_action):
-        super(DPActionQueueSchemaRequest, self).__init__()
-        self.method = 'GET'
-        self.path = ACTION_QUEUE_SCHEMA_URI.format(dp_action.domain, dp_action.action)
-
+class ActionQueueTimeoutError(Exception):
+    pass
 
 class DPManageConfigRequest(DPRequest):
 
@@ -341,27 +366,5 @@ class DPManageConfigRequest(DPRequest):
             self.path = MGMT_CONFIG_WITH_FIELD_URI.format(domain, class_name, name, field)
         else:
             raise AttributeError('no valid URI could be derived')
-
-
-class DPGetConfigRequest(DPManageConfigRequest):
-    def __init__(self, dp_mgmt_conf):
-       # super(DPGetConfigRequest, self).__init__()
-        self.body = None
-        self.method = 'GET'
-        self.options = {}
-        self.set_path(
-            dp_mgmt_conf.domain,
-            dp_mgmt_conf.class_name,
-            dp_mgmt_conf.name
-        )
-        
-        if hasattr(dp_mgmt_conf, 'recursive') and dp_mgmt_conf.recursive:
-            self.options.update(URI_OPTIONS['recursive'])
-            self.options.update(URI_OPTIONS['depth'])
-        if hasattr(dp_mgmt_conf, 'status') and dp_mgmt_conf.status:
-            self.options.update(URI_OPTIONS['state'])
-        if hasattr(dp_mgmt_conf, 'depth') and dp_mgmt_conf.depth:
-            self.options['depth'] = dp_mgmt_conf.depth
-        self.path = self.path + '?' + urlencode(self.options, doseq=0)
 
 

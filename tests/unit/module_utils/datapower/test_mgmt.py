@@ -9,8 +9,7 @@ import pytest
 
 
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
-    Config,
-    InvalidDPDirectoryException
+    Config
 )
 
 def test_get_top_dir():
@@ -85,4 +84,3 @@ class TestConfig:
         except ValueError:
             assert True
             
-

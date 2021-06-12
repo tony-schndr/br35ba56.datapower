@@ -8,77 +8,97 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: action
+module: export_objects
 
-short_description: Use for executing actions on IBM DataPower
+short_description: Use for exporting configuration objects from IBM DataPower
 
 version_added: "1.0.0"
 
-description: Use for performing actions such as quiesce, save config, reboot, export, import etc...  
+description: Export configuration objects from an application domain on DataPower.
 
 options:
     domain:
-        description: Domain to execute action on.
+        description: Domain to export objects from.
         required: true
         type: str
-    action:
-        description: The action to be performed
+    objects:
+        description: |
+            A JSON-formatted array of objects to export. 
+            Each object must have a name and object class,
+            but you can control the inclusion of referenced
+            objects and files. If the object is a DataPower
+            service, you can include probe data.
         required: true
-        type: str
-        aliases: 
-          - name
-    parameters:
-        description: parameters, if any, that the action requires
+        type: list
+        elements: dict
+    ref_objects:
+        description: Determines whether to export referenced objects.
         required: false
-        type: dict
+        type: bool
+        default: false
+    ref_files:
+        description: Determines whether to export referenced files.
+        required: false
+        type: bool
+        default: false    
+    all_files:
+        description: |
+            Determines whether to include all files
+            in the local: directory for the domain.
+        required: false
+        type: bool
+        default: false
+    persisted:
+        description: |
+            Determines whether to export from
+            persisted or running configuration. 
+        required: false
+        type: bool
+        default: true      
+    include_internal_files:
+        description: |
+            Determines whether to include internal files.
+            The inclusion of the internal files can reduce 
+            import errors when the export package is from 
+            an earlier firmware version. Therefore, when 
+            you export and import at the same firmware version, 
+            these files are unnecessary.
+        required: false
+        type: bool
+        default: false 
 
 author: 
 - Anthony Schneider (@br35ba56)
 '''
 
 EXAMPLES = r'''
-- name: Save a domains configuration
-  community.datapower.action:
-    domain: default
-    action: SaveConfig
-
-- name: Quiesce DP prior to change
-  community.datapower.action:
-    domain: default
-    action: QuiesceDP
-    parameters:
-      timeout: 60
-
-- name: UnQuiesce DP prior to change
-  community.datapower.action:
-    domain: default
-    action: UnquiesceDP
+- name: Export objects
+  community.datapower.export_objects:
+    domain: default 
+    ref_objects: yes
+    objects:
+      - name: valcred
+        class: CryptoValCred
 '''
 
 RETURN = r'''
-request:
-    description: The request that was sent to DataPower
-    type: dict
-    returned: always
-    sample: {
-        "body": {
-            "UnquiesceDP": {}
-        },
-        "method": "POST",
-        "path": "/mgmt/actionqueue/default"
-    }
 
-response:
-    description: The response from DataPower
+objects:
+    description: Exported Objects.
     type: dict
     returned: on success
-    sample: {
-        "_links": {
-            "self": {
-                "href": "/mgmt/actionqueue/default/pending/UnquiesceDP-20201231T105919Z-12"
-            }
-        },
-        "status": "completed"
+    sample:  {
+        "CryptoValCred": {
+            "CRLDPHandling": "ignore",
+            "CertValidationMode": "legacy",
+            "CheckDates": "on",
+            "ExplicitPolicy": "off",
+            "InitialPolicySet": "2.5.29.32.0",
+            "RequireCRL": "off",
+            "UseCRL": "on",
+            "mAdminState": "enabled",
+            "name": "valcred"
+        }
     }
 '''
 from copy import deepcopy
@@ -99,13 +119,13 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt
 def run_module():
     #https://www.ibm.com/docs/en/datapower-gateways/10.0.x?topic=actions-export-action 
     module_args = dict(
-        domain = dict(type='str', required=False),
-        objects = dict(type='list', required=True),
+        domain = dict(type='str', required=True),
+        objects = dict(type='list', required=True, elements='dict'),
         ref_objects = dict(type='bool', required=False, default=False),
-        ref_files = dict(type='bool', required=False, default=True),
+        ref_files = dict(type='bool', required=False, default=False),
         all_files = dict(type='bool', required=False, default=False),
         persisted = dict(type='bool', required=False, default=True),
-        include_internal_files = dict(type='bool', required=False, default=True)
+        include_internal_files = dict(type='bool', required=False, default=False)
     )
       
     module = AnsibleModule(
@@ -117,9 +137,6 @@ def run_module():
     params = deepcopy(module.params)
     action = "Export"
 
-
-
-  
     for obj in params['objects']:
         obj['ref-objects'] = "on" if module.params['ref_objects'] else "off"
         obj['ref-files'] = "on" if module.params['ref_files'] else "off"
@@ -136,7 +153,6 @@ def run_module():
         response = action_req.create()
     except ConnectionError as e:
         response = to_text(e)
-        result['parameters'] = parameters
         result['changed'] = False
         module.fail_json(msg=response, **result)
     

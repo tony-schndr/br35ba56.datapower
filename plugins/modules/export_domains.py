@@ -8,78 +8,97 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: action
+module: export_domains
 
-short_description: Use for executing actions on IBM DataPower
+short_description: Use for exporting domains from IBM DataPower
 
 version_added: "1.0.0"
 
-description: Use for performing actions such as quiesce, save config, reboot, export, import etc...  
-
+description: Export configuration objects from an application domain on DataPower.
+        
 options:
-    domain:
-        description: Domain to execute action on.
-        required: true
-        type: str
-    action:
-        description: The action to be performed
-        required: true
-        type: str
-        aliases: 
-          - name
-    parameters:
-        description: parameters, if any, that the action requires
+    domains:
+        description: List of domains to export, if not specified only default domain is exported.
         required: false
-        type: dict
+        type: list
+        elements: str
+    export_path:
+        description: Directory path to save the export in.
+        type: path
+        required: true
+    ref_objects:
+        description: Determines whether to export referenced objects.
+        required: false
+        type: bool
+        default: false
+    ref_files:
+        description: Determines whether to export referenced files.
+        required: false
+        type: bool
+        default: true
+    user_comment:
+        description: Comment to include in export.
+        required: false
+        type: str
+    all_files:
+        description: |
+            Determines whether to include all files
+            in the local: directory for the domain.
+        required: false
+        type: bool
+        default: false
+    persisted:
+        description: |
+            Determines whether to export from
+            persisted or running configuration. 
+        required: false
+        type: bool
+        default: true     
+    include_debug:
+        description: Determines whether to export probe data for a DataPower service.
+        type: bool
+        required: false 
+    deployment_policy:
+        description: |
+            Specifies the optional but valid deployment 
+            policy that exists in the application domain.
+            The deployment policy is included in the export
+            package and processed during the import operation. 
+        type: str
+        required: false 
+    include_internal_files:
+        description: |
+            Determines whether to include internal files.
+            The inclusion of the internal files can reduce 
+            import errors when the export package is from 
+            an earlier firmware version. Therefore, when 
+            you export and import at the same firmware version, 
+            these files are unnecessary.
+        required: false
+        type: bool
+        default: true
 
 author: 
 - Anthony Schneider (@br35ba56)
 '''
 
 EXAMPLES = r'''
-- name: Save a domains configuration
-  community.datapower.action:
-    domain: default
-    action: SaveConfig
-
-- name: Quiesce DP prior to change
-  community.datapower.action:
-    domain: default
-    action: QuiesceDP
-    parameters:
-      timeout: 60
-
-- name: UnQuiesce DP prior to change
-  community.datapower.action:
-    domain: default
-    action: UnquiesceDP
+- name: Export foo domain from datapower config
+  community.datapower.export_domains:
+    export_path: /tmp/
+    all_files: yes
+    domains: 
+        - foo
+    register: full_export
 '''
 
 RETURN = r'''
-request:
-    description: The request that was sent to DataPower
-    type: dict
-    returned: always
-    sample: {
-        "body": {
-            "UnquiesceDP": {}
-        },
-        "method": "POST",
-        "path": "/mgmt/actionqueue/default"
-    }
 
-response:
-    description: The response from DataPower
-    type: dict
+export:
+    description: Path to export zip file
+    type: str
     returned: on success
-    sample: {
-        "_links": {
-            "self": {
-                "href": "/mgmt/actionqueue/default/pending/UnquiesceDP-20201231T105919Z-12"
-            }
-        },
-        "status": "completed"
-    }
+    sample:  /tmp/aaf2cf18d49b_6-11-21T2222.45.zip
 '''
 import os
 from ansible.module_utils._text import to_text
@@ -87,8 +106,7 @@ from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
 
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-    ActionQueueRequest,
-    ConfigRequest
+    ActionQueueRequest
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.files import (
     isBase64,
@@ -105,10 +123,10 @@ def run_module():
     #https://www.ibm.com/docs/en/datapower-gateways/10.0.x?topic=actions-export-action 
     module_args = dict(
         export_path = dict(type='path', required=True),
-        domains = dict(type='list', required=False),
+        domains = dict(type='list', required=False, elements='str'),
         ref_objects = dict(type='bool', required=False, default=False),
         ref_files = dict(type='bool', required=False, default=True),
-        include_debug = dict(type='bool', required=False, default=False),
+        include_debug = dict(type='bool', required=False),
         user_comment = dict(type='str', required=False),
         all_files = dict(type='bool', required=False, default=False),
         persisted = dict(type='bool', required=False, default=True),
@@ -149,7 +167,6 @@ def run_module():
         response = action_req.create()
     except ConnectionError as e:
         response = to_text(e)
-        result['parameters'] = parameters
         result['changed'] = False
         module.fail_json(msg=response, **result)
     
@@ -159,7 +176,6 @@ def run_module():
         LocalFile(full_file_path, response['result']['file'])
     
     result['export'] = full_file_path
-    result['args'] = module.params
     result['changed'] = True
     module.exit_json(**result)
 

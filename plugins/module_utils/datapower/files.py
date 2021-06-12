@@ -46,7 +46,7 @@ class LocalFile:
 
     def create_file_from_base64(self, path, content):
         md5 = hashlib.md5()
-        if not os.path.exists(os.path.dirname(path)):
+        if not os.path.exists(os.path.dirname(path)) and os.path.dirname(path) != '':
             os.makedirs(os.path.dirname(path))
         
         with open(path, 'wb') as f:

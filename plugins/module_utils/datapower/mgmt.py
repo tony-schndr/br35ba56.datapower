@@ -2,10 +2,15 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 import posixpath 
+import random
+import string
+import datetime
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError
 from ansible_collections.community.datapower.plugins.module_utils.datapower.classes import valid_objects
-
+from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
+    ConfigRequest
+)
 
 class Config():
 
@@ -112,3 +117,52 @@ def get_remote_data(req):
         else:
             raise ce
     return res
+
+def convert_bool_to_on_or_off(parameters):
+    for k,v in parameters.items():
+        if isinstance(v, bool):
+            if v:
+                parameters[k] = 'on'
+            else:
+                parameters[k] = 'off'
+    return parameters
+
+param_map = {
+    #Export mapping
+    'domains': 'Domain',
+    'objects': 'Object',
+    'format': 'Format',
+    'ref_objects': 'ref-obj',
+    'ref_files': 'ref-files',
+    'include_debug':'include-debug',
+    'user_comment': 'UserComment',
+    'all_files': 'AllFiles',
+    'persisted': 'Persisted',
+    'include_internal_files': 'IncludeInternalFiles',
+    'deployment_policy': 'DeploymentPolicy',
+    
+    'overwrite_objects': 'OverwriteObjects',
+    'overwrite_files': 'OverwriteFiles',
+    'rewrite_local_ip': 'RewriteLocalIP'
+
+    #import mapping
+
+}
+
+excluded_keys = ['domain',  'export_path']
+  
+def map_module_args_to_datapower_keys(parameters):
+    return {param_map[key]: value for key, value in parameters.items() if value and key not in excluded_keys}
+
+def get_file_name(connection):
+    config_req = ConfigRequest(connection)
+    config_req.set_path(domain='default', class_name='SystemSettings')
+    timestamp = datetime.datetime.now().strftime('%-m-%-d-%-yT%H%M.%S')
+    try:
+        config =  config_req.get()
+        filename = '-'.join(config['SystemSettings']['SystemName'].split(' ')).lower() + '_' + timestamp + '.zip'
+    except Exception:
+        letters = string.ascii_lowercase
+        timestamp = datetime.datetime.now().strftime('%-m-%-d-%-yT%H%M.%S')
+        filename =  ''.join(random.choice(letters) for i in range(10)) + '_' + timestamp + '.zip'
+    return filename

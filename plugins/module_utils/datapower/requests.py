@@ -166,7 +166,7 @@ class ListConfigObjectsRequest(Request):
         self.set_path(domain)
 
     def set_path(self, domain='default'):
-        self.path = self.join_path(domain, base_path='/mgmt/filestore/')
+        self.path = self.join_path(base_path='/mgmt/config/')
     
     def get(self):
         return self._process_request(self.path, 'GET', None)
@@ -288,7 +288,7 @@ class ActionQueueRequest(Request):
 
     def is_completed(self, resp):
         for k, v in resp.items():
-            if v == 'Operation completed.' or v == 'completed':
+            if v == 'Operation completed.' or v == 'completed' or v == 'processed' or v == 'processed-with-errors':
                 return True
         else:
             return False

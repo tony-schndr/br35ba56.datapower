@@ -133,6 +133,9 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
 from ansible_collections.community.datapower.plugins.module_utils.datapower import (
     dp_diff
 )
+from ansible.utils.display import Display
+
+display = Display()
 
 def run_module():
     module_args = dict(
@@ -148,7 +151,6 @@ def run_module():
     )
 
     connection = Connection(module._socket_path)
-
     domain = module.params.get('domain')
     class_name = module.params.get('class_name')
     name = module.params.get('name')

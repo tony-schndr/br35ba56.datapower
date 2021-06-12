@@ -8,7 +8,7 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: action
+module: import_domains
 
 short_description: Use for executing actions on IBM DataPower
 
@@ -16,45 +16,74 @@ version_added: "1.0.0"
 
 description: Use for performing actions such as quiesce, save config, reboot, export, import etc...  
 
+        export_path = dict(type='path', required=True),
+        overwrite_objects = dict(type='bool', required=False, default=False),
+        overwrite_files = dict(type='bool', required=False, default=False),
+        rewrite_local_ip = dict(type='bool', required=False, default=False),
+        domains = dict(type='list', required=False),
+        files = dict(type='list', required=False)
 options:
-    domain:
-        description: Domain to execute action on.
+    export_path:
+        description: Path to the domain export zip file.
         required: true
-        type: str
-    action:
-        description: The action to be performed
-        required: true
-        type: str
-        aliases: 
-          - name
-    parameters:
-        description: parameters, if any, that the action requires
+        type: path
+    overwrite_objects:
+        description: |
+            Determines whether to overwrite objects that
+            exist in the current configuration during the
+            import operation. 
         required: false
-        type: dict
+        type: bool
+        default: false
+    overwrite_files:
+        description: |
+            Determines whether to overwrite files that exist
+            in the current configuration during the import operation.
+        required: false
+        type: bool
+        default: false
+    rewrite_local_ip:
+        description: |
+            Determines whether the local address bindings of services
+            in the import package are rewritten on import to their
+            equivalent interfaces. 
+        required: false
+        type: bool
+        default: false
+    domains:
+        description: |
+            Indicates specific domains in the import package to import. 
+            The dictionary can be composed of the following keys, name is minimum requirement.
+            name: Specifies the name of the domain in the import package.
+            import-domain: Determines whether to import the domain. Valid values are on or off. The default value is on.
+            reset-domain: Determines whether to reset the domain before the import operation. Valid values are on or off. The default value is off. 
+        required: false
+        type: list
+        elements: dict  
+    files:
+        description: |
+            Indicates specific files in the import package to import.
+            The dictionary can be composed of the following keys, name is minimum requirement.
+            name: The name of the file in the import package.
+            overwrite: Overrides the setting of the OverwriteFiles parameter. 
+        required: false
+        type: list
+        elements: dict
+
 
 author: 
 - Anthony Schneider (@br35ba56)
 '''
 
 EXAMPLES = r'''
-- name: Save a domains configuration
-  community.datapower.action:
-    domain: default
-    action: SaveConfig
+- name: Import the full_export
+  community.datapower.import_domain:
+    overwrite_objects: yes
+    overwrite_files: yes
+    export_path: "{{full_export.export}}"
 
-- name: Quiesce DP prior to change
-  community.datapower.action:
-    domain: default
-    action: QuiesceDP
-    parameters:
-      timeout: 60
-
-- name: UnQuiesce DP prior to change
-  community.datapower.action:
-    domain: default
-    action: UnquiesceDP
 '''
-
+#TODO: what is returned for import_domains....
 RETURN = r'''
 request:
     description: The request that was sent to DataPower
@@ -87,17 +116,14 @@ from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
 
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-    ActionQueueRequest,
-    ConfigRequest
+    ActionQueueRequest
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.files import (
-    isBase64,
     LocalFile
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     convert_bool_to_on_or_off,
-    map_module_args_to_datapower_keys,
-    get_file_name
+    map_module_args_to_datapower_keys
 )
 
 
@@ -108,8 +134,8 @@ def run_module():
         overwrite_objects = dict(type='bool', required=False, default=False),
         overwrite_files = dict(type='bool', required=False, default=False),
         rewrite_local_ip = dict(type='bool', required=False, default=False),
-        domains = dict(type='list', required=False),
-        files = dict(type='list', required=False)
+        domains = dict(type='list', required=False, elements='dict'),
+        files = dict(type='list', required=False, elements='dict')
     )
       
     module = AnsibleModule(

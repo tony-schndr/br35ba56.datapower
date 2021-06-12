@@ -9,3 +9,5 @@ ansible-test sanity --test validate-modules list_actions
 ansible-test sanity --test validate-modules get_action_schema
 ansible-test sanity --test validate-modules export_objects
 ansible-test sanity --test validate-modules export_domains
+ansible-test sanity --test validate-modules import_domains
+ansible-test sanity --test validate-modules load_objects

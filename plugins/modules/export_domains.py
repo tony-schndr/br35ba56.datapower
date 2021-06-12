@@ -93,7 +93,6 @@ EXAMPLES = r'''
 '''
 
 RETURN = r'''
-
 export:
     description: Path to export zip file
     type: str

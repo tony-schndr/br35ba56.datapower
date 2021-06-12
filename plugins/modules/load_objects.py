@@ -8,28 +8,26 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: action
+module: load_objects
 
-short_description: Use for executing actions on IBM DataPower
+short_description: Use for importing multiple objects/files in json format with one request.
 
 version_added: "1.0.0"
 
-description: Use for performing actions such as quiesce, save config, reboot, export, import etc...  
+description: Use for importing multiple objects/files in json format with one request.
 
 options:
     domain:
-        description: Domain to execute action on.
+        description: Domain to load objects into
         required: true
         type: str
-    action:
-        description: The action to be performed
+    objects:
+        description: |
+            Dictionary of Objects to import.
+            This dictionary can be built manually or
+            from export_objects module with the returned 
+            objects variable.
         required: true
-        type: str
-        aliases: 
-          - name
-    parameters:
-        description: parameters, if any, that the action requires
-        required: false
         type: dict
 
 author: 
@@ -37,37 +35,174 @@ author:
 '''
 
 EXAMPLES = r'''
-- name: Save a domains configuration
-  community.datapower.action:
-    domain: default
-    action: SaveConfig
-
-- name: Quiesce DP prior to change
-  community.datapower.action:
-    domain: default
-    action: QuiesceDP
-    parameters:
-      timeout: 60
-
-- name: UnQuiesce DP prior to change
-  community.datapower.action:
-    domain: default
-    action: UnquiesceDP
+    - name: load objects
+      community.datapower.load_objects:
+        domain: snafu
+        objects: {
+                "CryptoValCred": {
+                    "CRLDPHandling": "ignore",
+                    "CertValidationMode": "legacy",
+                    "CheckDates": "on",
+                    "ExplicitPolicy": "off",
+                    "InitialPolicySet": "2.5.29.32.0",
+                    "RequireCRL": "off",
+                    "UseCRL": "on",
+                    "mAdminState": "enabled",
+                    "name": "valcred"
+                },
+                "SSLClientProfile": [
+                    {
+                        "CacheSize": 100,
+                        "CacheTimeout": 300,
+                        "Caching": "on",
+                        "Ciphers": [
+                            "AES_256_GCM_SHA384",
+                            "CHACHA20_POLY1305_SHA256",
+                            "AES_128_GCM_SHA256",
+                            "ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",
+                            "ECDHE_RSA_WITH_AES_256_GCM_SHA384",
+                            "ECDHE_ECDSA_WITH_AES_256_CBC_SHA384",
+                            "ECDHE_RSA_WITH_AES_256_CBC_SHA384",
+                            "ECDHE_ECDSA_WITH_AES_256_CBC_SHA",
+                            "ECDHE_RSA_WITH_AES_256_CBC_SHA",
+                            "DHE_DSS_WITH_AES_256_GCM_SHA384",
+                            "DHE_RSA_WITH_AES_256_GCM_SHA384",
+                            "DHE_RSA_WITH_AES_256_CBC_SHA256",
+                            "DHE_DSS_WITH_AES_256_CBC_SHA256",
+                            "DHE_RSA_WITH_AES_256_CBC_SHA",
+                            "DHE_DSS_WITH_AES_256_CBC_SHA",
+                            "RSA_WITH_AES_256_GCM_SHA384",
+                            "RSA_WITH_AES_256_CBC_SHA256",
+                            "RSA_WITH_AES_256_CBC_SHA",
+                            "ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",
+                            "ECDHE_RSA_WITH_AES_128_GCM_SHA256",
+                            "ECDHE_ECDSA_WITH_AES_128_CBC_SHA256",
+                            "ECDHE_RSA_WITH_AES_128_CBC_SHA256",
+                            "ECDHE_ECDSA_WITH_AES_128_CBC_SHA",
+                            "ECDHE_RSA_WITH_AES_128_CBC_SHA",
+                            "DHE_DSS_WITH_AES_128_GCM_SHA256",
+                            "DHE_RSA_WITH_AES_128_GCM_SHA256",
+                            "DHE_RSA_WITH_AES_128_CBC_SHA256",
+                            "DHE_DSS_WITH_AES_128_CBC_SHA256",
+                            "DHE_RSA_WITH_AES_128_CBC_SHA",
+                            "DHE_DSS_WITH_AES_128_CBC_SHA",
+                            "RSA_WITH_AES_128_GCM_SHA256",
+                            "RSA_WITH_AES_128_CBC_SHA256",
+                            "RSA_WITH_AES_128_CBC_SHA"
+                        ],
+                        "EllipticCurves": [
+                            "secp521r1",
+                            "secp384r1",
+                            "secp256k1",
+                            "secp256r1"
+                        ],
+                        "EnableTLS13Compat": "on",
+                        "HostnameValidationFailOnError": "off",
+                        "HostnameValidationFlags": {
+                            "X509_CHECK_FLAG_ALWAYS_CHECK_SUBJECT": "off",
+                            "X509_CHECK_FLAG_MULTI_LABEL_WILDCARDS": "off",
+                            "X509_CHECK_FLAG_NO_PARTIAL_WILDCARDS": "off",
+                            "X509_CHECK_FLAG_NO_WILDCARDS": "off",
+                            "X509_CHECK_FLAG_SINGLE_LABEL_SUBDOMAINS": "off"
+                        },
+                        "Protocols": {
+                            "SSLv3": "off",
+                            "TLSv1d0": "off",
+                            "TLSv1d1": "on",
+                            "TLSv1d2": "on",
+                            "TLSv1d3": "on"
+                        },
+                        "SSLClientFeatures": {
+                            "compression": "off",
+                            "permit-insecure-servers": "off",
+                            "use-sni": "on"
+                        },
+                        "UseCustomSNIHostname": "no",
+                        "Valcred": "valcred",
+                        "ValidateHostname": "off",
+                        "ValidateServerCert": "on",
+                        "mAdminState": "enabled",
+                        "name": "clientprofile"
+                    },
+                    {
+                        "CacheSize": 100,
+                        "CacheTimeout": 300,
+                        "Caching": "on",
+                        "Ciphers": [
+                            "AES_256_GCM_SHA384",
+                            "CHACHA20_POLY1305_SHA256",
+                            "AES_128_GCM_SHA256",
+                            "ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",
+                            "ECDHE_RSA_WITH_AES_256_GCM_SHA384",
+                            "ECDHE_ECDSA_WITH_AES_256_CBC_SHA384",
+                            "ECDHE_RSA_WITH_AES_256_CBC_SHA384",
+                            "ECDHE_ECDSA_WITH_AES_256_CBC_SHA",
+                            "ECDHE_RSA_WITH_AES_256_CBC_SHA",
+                            "DHE_DSS_WITH_AES_256_GCM_SHA384",
+                            "DHE_RSA_WITH_AES_256_GCM_SHA384",
+                            "DHE_RSA_WITH_AES_256_CBC_SHA256",
+                            "DHE_DSS_WITH_AES_256_CBC_SHA256",
+                            "DHE_RSA_WITH_AES_256_CBC_SHA",
+                            "DHE_DSS_WITH_AES_256_CBC_SHA",
+                            "RSA_WITH_AES_256_GCM_SHA384",
+                            "RSA_WITH_AES_256_CBC_SHA256",
+                            "RSA_WITH_AES_256_CBC_SHA",
+                            "ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",
+                            "ECDHE_RSA_WITH_AES_128_GCM_SHA256",
+                            "ECDHE_ECDSA_WITH_AES_128_CBC_SHA256",
+                            "ECDHE_RSA_WITH_AES_128_CBC_SHA256",
+                            "ECDHE_ECDSA_WITH_AES_128_CBC_SHA",
+                            "ECDHE_RSA_WITH_AES_128_CBC_SHA",
+                            "DHE_DSS_WITH_AES_128_GCM_SHA256",
+                            "DHE_RSA_WITH_AES_128_GCM_SHA256",
+                            "DHE_RSA_WITH_AES_128_CBC_SHA256",
+                            "DHE_DSS_WITH_AES_128_CBC_SHA256",
+                            "DHE_RSA_WITH_AES_128_CBC_SHA",
+                            "DHE_DSS_WITH_AES_128_CBC_SHA",
+                            "RSA_WITH_AES_128_GCM_SHA256",
+                            "RSA_WITH_AES_128_CBC_SHA256",
+                            "RSA_WITH_AES_128_CBC_SHA"
+                        ],
+                        "EllipticCurves": [
+                            "secp521r1",
+                            "secp384r1",
+                            "secp256k1",
+                            "secp256r1"
+                        ],
+                        "EnableTLS13Compat": "on",
+                        "HostnameValidationFailOnError": "off",
+                        "HostnameValidationFlags": {
+                            "X509_CHECK_FLAG_ALWAYS_CHECK_SUBJECT": "off",
+                            "X509_CHECK_FLAG_MULTI_LABEL_WILDCARDS": "off",
+                            "X509_CHECK_FLAG_NO_PARTIAL_WILDCARDS": "off",
+                            "X509_CHECK_FLAG_NO_WILDCARDS": "off",
+                            "X509_CHECK_FLAG_SINGLE_LABEL_SUBDOMAINS": "off"
+                        },
+                        "Protocols": {
+                            "SSLv3": "off",
+                            "TLSv1d0": "off",
+                            "TLSv1d1": "on",
+                            "TLSv1d2": "on",
+                            "TLSv1d3": "on"
+                        },
+                        "SSLClientFeatures": {
+                            "compression": "off",
+                            "permit-insecure-servers": "off",
+                            "use-sni": "on"
+                        },
+                        "UseCustomSNIHostname": "no",
+                        "Valcred": "valcred",
+                        "ValidateHostname": "off",
+                        "ValidateServerCert": "on",
+                        "mAdminState": "enabled",
+                        "name": "client_profile"
+                    }
+                ]
+            }
+   
 '''
 
 RETURN = r'''
-request:
-    description: The request that was sent to DataPower
-    type: dict
-    returned: always
-    sample: {
-        "body": {
-            "UnquiesceDP": {}
-        },
-        "method": "POST",
-        "path": "/mgmt/actionqueue/default"
-    }
-
 response:
     description: The response from DataPower
     type: dict
@@ -75,8 +210,30 @@ response:
     sample: {
         "_links": {
             "self": {
-                "href": "/mgmt/actionqueue/default/pending/UnquiesceDP-20201231T105919Z-12"
+                "href": "/mgmt/actionqueue/default/pending/LoadConfiguration-20210611T232241Z-13"
             }
+        },
+        "result": {
+            "config-item": [
+                {
+                    "id": "valcred",
+                    "status": "ok",
+                    "text": "Configuration was updated.",
+                    "type": "CryptoValCred"
+                },
+                {
+                    "id": "clientprofile",
+                    "status": "ok",
+                    "text": "Configuration was updated.",
+                    "type": "SSLClientProfile"
+                },
+                {
+                    "id": "client_profile",
+                    "status": "ok",
+                    "text": "Configuration was updated.",
+                    "type": "SSLClientProfile"
+                }
+            ]
         },
         "status": "completed"
     }
@@ -87,18 +244,9 @@ from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
 
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-    ActionQueueRequest,
-    ConfigRequest
+    ActionQueueRequest
 )
-from ansible_collections.community.datapower.plugins.module_utils.datapower.files import (
-    isBase64,
-    LocalFile
-)
-from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
-    convert_bool_to_on_or_off,
-    map_module_args_to_datapower_keys,
-    get_file_name
-)
+
 
 
 def run_module():

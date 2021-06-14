@@ -147,7 +147,7 @@ def run_module():
     parameters = map_module_args_to_datapower_keys(params)
     parameters = convert_bool_to_on_or_off(parameters)
     parameters['Format'] = 'JSON'
-    action_req = ActionQueueRequest(connection, 'default', action, parameters)
+    action_req = ActionQueueRequest(connection, module.params['domain'], action, parameters)
     
     try:
         response = action_req.create()

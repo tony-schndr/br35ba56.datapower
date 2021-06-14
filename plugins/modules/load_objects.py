@@ -266,7 +266,7 @@ def run_module():
     action = "LoadConfiguration"
     objects = deepcopy(module.params.get('objects'))
     # Convert booleans in the domain dictionaries
-    action_req = ActionQueueRequest(connection, 'default', action, objects)
+    action_req = ActionQueueRequest(connection, module.params.get('domain'), action, objects)
 
     try:
         response = action_req.create()

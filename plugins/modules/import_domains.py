@@ -171,7 +171,7 @@ def run_module():
     
     
     del params['InputFile']
-    result['parameters'] = params
+    result['response'] = response
     result['changed'] = True
     module.exit_json(**result)
 

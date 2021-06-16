@@ -1,0 +1,12 @@
+- name: Deploying package to "{{ dp_group }}" DataPowers 
+  community.datapower.load_objects:
+    domain: "{{ domain }}"
+    objects: "{{ package_json }}"
+  when:  dp_group  in group_names
+
+
+- name: Save domain configuration
+  community.datapower.action:
+    domain: "{{ domain }}"
+    action: SaveConfig 
+  when:  dp_group  in group_names

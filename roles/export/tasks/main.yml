@@ -1,0 +1,26 @@
+- name: Export Service
+  community.datapower.export_objects:
+    domain: "{{ domain }}"
+    ref_objects: yes
+    ref_files: yes
+    objects:
+      - class: "{{ service_type }}"
+        name: "{{ service_name }}"
+  register: json_export
+  when: export_type == 'service'
+
+  #- debug: var=service_package_filtered_objects
+
+  #- name: Filter out SystemObjects from Service Package
+  #set_fact:
+  # export_package_json: "{{ {} | combine( {item.key : {item.value} }, recursive=True )}}"
+  #when: item.key not in service_package_filtered_objects
+  #with_dict: "{{ json_export.objects }}"
+
+- name: Write object export to file
+  copy:
+    dest: "{{export_directory}}/export.json"
+    content: "{{ json_export.objects }}"
+
+  
+

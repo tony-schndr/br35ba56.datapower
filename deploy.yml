@@ -1,0 +1,80 @@
+---
+- name: 'Ansible Sync Process'
+  hosts: internal_demo
+  connection: local
+  vars_prompt:
+    - name: ansible_user
+      prompt: Enter a UserName
+      private: no
+
+    - name: ansible_httpapi_password
+      prompt: Enter the Password
+
+  vars:
+    package: "{{ lookup('file', 'packages/object_package.json') | from_json }}"
+  
+  tasks:
+    - name: Quiesce the DataPower we are deploying too
+      include_role:
+        name: quiesce
+      vars:
+        dp_group: primary
+        timeout: 60
+
+    - name: Import the package to the primary DataPower
+      include_role:
+        name: import
+      vars:
+        package_json: "{{ package }}"
+        domain: SNAFU 
+        dp_group: primary 
+
+    - name: Pause to allow time to visually validate the deployment
+      pause:
+
+    - name: Unquiesce the primary DataPower prior to quiescing secondary DataPowers
+      include_role:
+        name: unquiesce
+      vars:
+        dp_group: primary
+
+    - name: Quiesce the Secondary DataPowers to force all traffic to the primary DataPowers
+      include_role:
+        name: quiesce
+      vars:
+        dp_group: secondary
+        timeout: 60
+    
+    - name: Pause for smoketesting
+      pause:
+
+    - name: Import the package to secondary DataPowers
+      include_role:
+        name: import
+      vars:
+        package_json: "{{ package }}"
+        domain: SNAFU 
+        dp_group: secondary
+
+    - name: Unquiesce the secondary DataPowers prior to quiescing the primary
+      include_role:
+        name: unquiesce
+      vars:
+        dp_group: secondary
+
+    - name: Quiesce the Primary DataPower to force traffic to secondaries 
+      include_role:
+        name: quiesce
+      vars:
+        dp_group: primary
+        timeout: 60
+
+    - name: Pause for smoketesting Secondary DataPowers
+      pause:
+
+
+    - name: Unquiesce the Primary DataPower, all DataPowers are taking traffic 
+      include_role:
+        name: unquiesce
+      vars:
+        dp_group: primary

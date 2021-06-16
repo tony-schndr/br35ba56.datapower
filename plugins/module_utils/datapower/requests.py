@@ -178,7 +178,7 @@ class ListActionsRequest(Request):
         self.set_path(domain)
 
     def set_path(self, domain='default'):
-        self.path = self.join_path(domain, base_path='/mgmt/actionqueue/')
+        self.path = self.join_path(domain, 'operations', base_path='/mgmt/actionqueue/')
     
     def get(self):
         return self._process_request(self.path, 'GET', None)

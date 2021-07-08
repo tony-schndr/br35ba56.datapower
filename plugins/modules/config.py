@@ -201,10 +201,10 @@ def run_module():
 def get_request_func(req, before, after, state):
     if state == 'present':
         if before is None:
-            return req.create
+            return req.post
         else:
             if dp_diff.is_changed(before, after):
-                return req.update
+                return req.put
     else:
         if before is None:
             return None

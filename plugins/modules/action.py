@@ -109,7 +109,7 @@ def run_module():
     dp_req = ActionQueueRequest(connection, domain, action, parameters)
 
     try:
-        response = dp_req.create()
+        response = dp_req.post()
     except ConnectionError as e:
         response = to_text(e)
         result['changed'] = False

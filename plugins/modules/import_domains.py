@@ -162,7 +162,7 @@ def run_module():
 
     
     try:
-        response = action_req.create()
+        response = action_req.post()
     except ConnectionError as e:
         response = to_text(e)
         result['parameters'] = params

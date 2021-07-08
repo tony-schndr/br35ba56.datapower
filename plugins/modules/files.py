@@ -201,7 +201,7 @@ def run_module():
             try:
 
                 if remote_parent_dir is None:
-                    result['create_dir_response'] = dir_req.create()
+                    result['create_dir_response'] = dir_req.post()
                 result['response'] = request()
             except ConnectionError as ce:
                 result['changed'] = False
@@ -261,7 +261,7 @@ def get_file_diff(from_local_file, to_local_file,dest,  state):
 def get_request_func(req, before_file, after_file, state):
     if state == 'present':
         if before_file is None:
-            return req.create
+            return req.post
         else:
             if before_file != after_file:
                 return req.update

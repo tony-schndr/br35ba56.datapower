@@ -89,7 +89,7 @@ class Request:
         path = '/'.join([arg for arg in args if arg is not None]).rstrip('/')
         return posixpath.join(base_path, path)
 
-    def update(self):
+    def put(self):
         method = 'PUT'
         return self._process_request(self.path, method, self.body)
 
@@ -101,7 +101,7 @@ class Request:
         method = 'DELETE'
         return self._process_request(self.path, method, None)
 
-    def create(self):
+    def post(self):
         method = 'POST'
         return self._process_request(self.path, method, self.body)
 
@@ -123,16 +123,15 @@ class DirectoryRequest(Request):
             }
         }
 
-    def create(self):
+    def post(self):
         method = 'POST'
         # Equates to /mgmt/filestore/<domain>/<top_directory>
         path = '/'.join(self.path.split('/')[0:5])
         return self._process_request(path, method, self.body)
 
     # PUT/POST have equivalent outcomes however have different implementions.
-    # create/ update accomplish the same outcome, therefore use create()
-    def update(self):
-        raise NotImplementedError('Updates to directories are not implemented')
+    def put(self):
+        raise NotImplementedError('PUT for directories is not implemented')
 
 
 class FileRequest(Request):
@@ -154,7 +153,7 @@ class FileRequest(Request):
         }
 
     # path for creating files is always targeted at the parent directory
-    def create(self):
+    def post(self):
         method = 'POST'
         path = posixpath.split(self.path)[0]
         return self._process_request(path, method, self.body)
@@ -216,7 +215,7 @@ class ConfigRequest(Request):
             path = self.path
         return self._process_request(path, method, None)
 
-    def create(self):
+    def post(self):
         method = 'POST'
         # Equates to /mgmt/filestore/<domain>/<class_name>
         path = '/'.join(self.path.split('/')[0:5])
@@ -263,13 +262,13 @@ class ActionQueueRequest(Request):
     def __init__(self, connection, domain, action_name, parameters=None):
         super(ActionQueueRequest, self).__init__(connection)
         self.path = ACTION_QUEUE_URI.format(domain)
-        
+                
         if parameters:
             self.body = { action_name : parameters }
         else:
             self.body = { action_name : {} }
-
-    def create(self):
+            
+    def post(self):
         path = self.path
         body = self.body
         method = 'POST'

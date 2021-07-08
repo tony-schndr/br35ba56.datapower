@@ -159,6 +159,40 @@
     that:
       - "{{ changed == unchanged  }}"
 
+- name: Delete Crypto ValCred
+  community.datapower.config:
+    domain: default
+    state: absent
+    config:
+      CryptoValCred:        
+        name: valcred
+
+- name: Create Test1 Crypto Certficiate
+  community.datapower.config:
+    domain: default
+    state: present
+    config:
+      CryptoCertificate:        
+        name: Test1
+        Filename: cert:///webgui-sscert.pem
+
+- name: Create Test2 Crypto Certficiate
+  community.datapower.config:
+    domain: default
+    state: present
+    config:
+      CryptoCertificate:        
+        name: Test2
+        Filename: cert:///webgui-sscert.pem
+
+- name: Create Crypto ValCred
+  community.datapower.config:
+    domain: default
+    state: present
+    config:
+      CryptoValCred:        
+        name: valcred
+
 - name: Update a CrytpoValCred Certificate list property to 1 item.
   community.datapower.config:
     domain: default
@@ -166,7 +200,6 @@
     config:
       CryptoValCred:
         Certificate:
-        #- value: Test2
         - value: Test1
         name: valcred
   register: valcred_result
@@ -175,6 +208,7 @@
   community.datapower.get_config:
     domain: default 
     class_name: CryptoValCred
+    name: valcred
   register: valcred
 
 - name: Assert the CrytpoValCred Certificate list was updated to 1 item.

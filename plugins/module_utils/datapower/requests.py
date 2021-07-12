@@ -108,8 +108,6 @@ class Request:
 
 class DirectoryRequest(Request):
 
-    base_path = '/mgmt/filestore'
-
     def __init__(self, connection):
         super(DirectoryRequest, self).__init__(connection)
 
@@ -117,6 +115,9 @@ class DirectoryRequest(Request):
         self.path = self.join_path(domain, dir_path, base_path='/mgmt/filestore/')
 
     def set_body(self, dir_path):
+        # drop root directory
+        if dir_path.split('/')[0] == 'local':
+            dir_path = '/'.join(dir_path.split('/')[1:])
         self.body = {
             "directory": {
                 "name": dir_path
@@ -127,6 +128,7 @@ class DirectoryRequest(Request):
         method = 'POST'
         # Equates to /mgmt/filestore/<domain>/<top_directory>
         path = '/'.join(self.path.split('/')[0:5])
+        
         return self._process_request(path, method, self.body)
 
     # PUT/POST have equivalent outcomes however have different implementions.
@@ -221,7 +223,7 @@ class ConfigRequest(Request):
         path = '/'.join(self.path.split('/')[0:5])
         return self._process_request(path, method, self.body)
 
-# 
+
 class ConfigInfoRequest(Request):
 
     def __init__(self, connection):
@@ -291,3 +293,20 @@ class ActionQueueRequest(Request):
                 return True
         else:
             return False
+
+
+class StatusRequest(Request):
+    def __init__(self, connection, domain, status_name):
+        super(StatusRequest, self).__init__(connection)
+        self.path = self.join_path(domain, status_name, base_path='/mgmt/status/')
+
+    def get(self):
+        return self._process_request(self.path, 'GET', None)
+
+class ListStatusObjectsRequest(Request):
+    def __init__(self, connection):
+        super(ListStatusObjectsRequest, self).__init__(connection)
+        self.path = self.join_path(base_path='/mgmt/status/')
+
+    def get(self):
+        return self._process_request(self.path, 'GET', None)

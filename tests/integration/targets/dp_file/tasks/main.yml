@@ -1,0 +1,115 @@
+---
+- name: Delete if needed
+  community.datapower.files:
+    domain: default
+    src: "{{ role_path }}/files/demo.txt"
+    dest: local/demo.txt
+    state: absent
+
+- name: create demo.txt at local
+  community.datapower.files:
+    domain: default
+    src: "{{ role_path }}/files/demo.txt"
+    dest: local/demo.txt
+    state: present
+  register: create_result
+
+- name: Validate create demo.txt at local
+  assert:
+    that:
+      - "{{ create_result['changed'] == True }}"
+      - "{{ create_result['response']['result'] == 'File was created.' }}"
+
+- name: Update demo.txt at local
+  community.datapower.files:
+    domain: default
+    src: "{{ role_path }}/files/demo2.txt"
+    #content: "aGVsbG8gd29ybGQK"
+    dest: local/demo.txt
+    state: present
+  register: update_result
+
+- name: Validate demo.txt at local
+  assert:
+    that:
+      - "{{ update_result['changed'] == True }}"
+      - "{{ update_result['response']['result'] == 'File was updated.' }}"
+
+#Same Test just with subdirectory
+- name: Delete local/subdir/demo.txt if needed
+  community.datapower.files:
+    domain: default
+    src: "{{ role_path }}/files/demo.txt"
+    #content: "aGVsbG8gd29ybGQK"
+    dest: local/subdir/demo.txt
+    state: absent
+
+- name: create demo.txt at local/subdir/demo.txt
+  community.datapower.files:
+    domain: default
+    src: "{{ role_path }}/files/demo.txt"
+    #content: "aGVsbG8gd29ybGQK"
+    dest: local/subdir/demo.txt
+    state: present
+  register: create_result
+
+- name: Validate Create File
+  assert:
+    that:
+      - "{{ create_result['changed'] == True }}"
+      - "{{ create_result['response']['result'] == 'File was created.' }}"
+
+- name: Update demo.txt at local/subdir/demo.txt
+  community.datapower.files:
+    domain: default
+    src: "{{ role_path }}/files/demo2.txt"
+    ##content: "aGVsbG8gd29ybGQK"
+    dest: local/subdir/demo.txt
+    state: present
+  register: update_result
+
+- name: Validate Update File
+  assert:
+    that:
+      - "{{ update_result['changed'] == True }}"
+      - "{{ update_result['response']['result'] == 'File was updated.' }}"
+
+
+- name: Delete local/local/demo.txt #Tests ability to create subdirectory named as the top_directory
+  community.datapower.files:
+    domain: default
+    #src: demo.txt
+    content: "aGVsbG8gd29ybGQK"
+    dest: local/local/demo.txt
+    state: absent
+  register: create_result
+
+- name: create local/local/demo.txt #Tests ability to create subdirectory named as the top_directory
+  community.datapower.files:
+    domain: default
+    src: "{{ role_path }}/files/demo.txt"
+    #content: "aGVsbG8gd29ybGQK"
+    dest: local/local/demo.txt
+    state: present
+  register: create_result
+
+- name: Validate Create File
+  assert:
+    that:
+      - "{{ create_result['changed'] == True }}"
+      - "{{ create_result['response']['result'] == 'File was created.' }}"
+
+
+- name: update local/local/demo.txt #Tests ability to create subdirectory named as the top_directory
+  community.datapower.files:
+    domain: default
+    content: "aGVsbG8gd29ybGQK"
+    dest: local/local/demo.txt
+    state: present
+  register: update_result
+
+- name: Validate update local/local/demo.txt
+  assert:
+    that:
+      - "{{ update_result['changed'] == True }}"
+      - "{{ update_result['response']['result'] == 'File was updated.' }}"

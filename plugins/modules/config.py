@@ -9,11 +9,11 @@ DOCUMENTATION = r'''
 ---
 module: config
 
-short_description: Use for managing configuration objects on IBM DataPower
+short_description: Manage Configuration objects in DataPower Application Domains.
 
 version_added: "1.0.0"
 
-description: Use for modifying configuration.  This request will overwrite the object if it exists, or create a new one if it doesn't.
+description: Manage Configuration objects in DataPower Application Domains.  This request will overwrite the object if it exists, or create a new one if it doesn't.
     You can also use this request to target list properties of various objects.
 
 options:

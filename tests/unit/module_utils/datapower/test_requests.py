@@ -119,7 +119,7 @@ class TestDirectoryRequest:
 
         assert req
         assert req.path == '/mgmt/filestore/default/local/dir/subdir'
-        assert req.body == {'directory':{'name': dir_path}}
+        assert req.body == {'directory':{'name': 'dir/subdir/'}}
 
 
     def test_DirectoryRequest_create(self):
@@ -130,7 +130,7 @@ class TestDirectoryRequest:
         req.set_path(domain, dir_path)
         assert req.post()[0] == '/mgmt/filestore/default/local'
         assert req.post()[1] == 'POST'
-        assert req.post()[2] == {'directory':{'name': dir_path}}
+        assert req.post()[2] == {'directory':{'name': 'dir/subdir/'}}
 
 
     def test_DirectoryRequest_update(self):

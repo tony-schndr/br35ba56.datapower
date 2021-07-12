@@ -9,11 +9,15 @@ DOCUMENTATION = r'''
 ---
 module: action
 
-short_description: Use for executing actions on IBM DataPower
+short_description: Execute actions on a DataPower Application Domain.
 
 version_added: "1.0.0"
 
-description: Use for performing actions such as quiesce, save config, reboot, export, import etc...  
+description: Execute actions on a DataPower Application Domain.
+    Actions are dependent on platform, domain, and or firmware version.
+    Actions available include but are not limited to quiesce, save config, reboot.
+    Please use export_domains, import_domains, export_objects, load_config modules for 
+    Export / Import / LoadConfiguration actions.
 
 options:
     domain:
@@ -89,6 +93,24 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
     ActionQueueRequest
 )
 
+from ansible.utils.display import Display
+
+display = Display()
+
+# Exlude actions here that have a module to perform them.
+excluded_actions = {
+    'Export' : [ 
+        'export_domains',
+        'export_objects'
+    ], 
+    'Import' : [
+        'import_domains',
+        'load_objects'
+    ], 
+    'LoadConfiguration' : [
+        'load_objects'
+    ]
+}
 
 def run_module():
     module_args = dict(
@@ -105,6 +127,13 @@ def run_module():
     result = {}
     domain = module.params.get('domain')
     action = module.params.get('action')
+
+    if action in excluded_actions:
+        mods = ', '.join(excluded_actions[action])
+        warning_message = 'The action \'' + action + '\' has a module(s) that specifically target these actions, please see modules ' + mods
+        module.warn(warning_message)
+        module.fail_json(msg=warning_message, **result)
+
     parameters = module.params.get('parameters')
     dp_req = ActionQueueRequest(connection, domain, action, parameters)
 

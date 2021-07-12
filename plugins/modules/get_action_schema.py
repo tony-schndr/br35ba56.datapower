@@ -9,13 +9,13 @@ DOCUMENTATION = r'''
 ---
 module: get_action_schema
 
-short_description: Get the schema on a particular action.  Then use that to help build
-                   the parameters required by the DataPower REST Management Interface
+short_description: Get the schema of an action.  Use the schema to help
+    determine the parameters required for the action module parameter field.
 
 version_added: "1.0.0"
 
-description: Get the schema on a particular action you retrieved from get_actions module.
-             You can then use the schema to help build valid parameters.
+description: Get the schema of an action.  Use the schema to help
+    determine the parameters required for the action module parameter field.
 
 options:
     domain:

@@ -9,11 +9,11 @@ DOCUMENTATION = r'''
 ---
 module: list_actions
 
-short_description: Get a list of supported actions for a domain.
+short_description: List supported actions to execute on DataPower Application Domains.
 
 version_added: "1.0.0"
 
-description: Get a list of supported actions for a domain.
+description: List supported actions to execute on DataPower Application Domains.
 
 options:
     domain:

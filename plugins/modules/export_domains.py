@@ -10,11 +10,11 @@ DOCUMENTATION = r'''
 ---
 module: export_domains
 
-short_description: Use for exporting domains from IBM DataPower
+short_description: Export DataPower Application Domain(s)
 
 version_added: "1.0.0"
 
-description: Export configuration objects from an application domain on DataPower.
+description: Export DataPower Application Domain(s)
         
 options:
     domains:

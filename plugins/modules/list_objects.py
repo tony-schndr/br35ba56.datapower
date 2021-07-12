@@ -9,11 +9,11 @@ DOCUMENTATION = r'''
 ---
 module: list_objects
 
-short_description: Get information on available configuration objects.
+short_description: List available config objects in DataPower Application Domain.
 
 version_added: "1.0.0"
 
-description: Use for retrieving information on various objects.  Target the 
+description: List available config objects in DataPower Application Domain.
 
 options:
     domain:

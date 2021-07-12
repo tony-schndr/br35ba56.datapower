@@ -11,3 +11,5 @@ ansible-test sanity --test validate-modules export_objects
 ansible-test sanity --test validate-modules export_domains
 ansible-test sanity --test validate-modules import_domains
 ansible-test sanity --test validate-modules load_objects
+ansible-test sanity --test validate-modules status
+ansible-test sanity --test validate-modules list_status

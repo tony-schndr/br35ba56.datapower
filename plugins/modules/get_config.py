@@ -9,11 +9,11 @@ DOCUMENTATION = r'''
 ---
 module: get_config
 
-short_description: Use for getting object configuration on IBM DataPower
+short_description: Get object configuration from DataPower Application Domains.
 
 version_added: "1.0.0"
 
-description: Use for getting object configuration
+description: Get object configuration from DataPower Application Domains.
 
 options:
     domain:

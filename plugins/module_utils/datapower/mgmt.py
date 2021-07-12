@@ -78,35 +78,6 @@ def is_valid_class(class_name):
     return class_name in valid_objects
 
 
-def get_parent_dir(path):
-    return posixpath.split(path)[0]
-
-
-def clean_dp_path(path):
-    return path.rstrip('/').lstrip('/')
-
-
-def get_dest_file_path(dest):
-    if len(dest.split('/')) == 2: #Accounts for creating a file at the root of a top_directory
-        dest_file_path = dest.split('/')[-1] 
-    elif len(dest.split('/')) > 2:
-        dest_file_path = '/'.join(dest.split('/')[1:])
-    else: # len < 2
-        raise Exception('Must specify full file path in destination, ie local/full/path/to/file.txt')
-    return dest_file_path
-
-
-def get_top_dir(dest):
-    top_dir = clean_dp_path(dest).split('/')[0]
-    for dir_ in TOP_DIRS:
-        if dir_ in top_dir:
-            return dir_
-    else:
-        raise Exception(
-            top_dir +' is an invalid top directory, must be one of ', ' '.join(TOP_DIRS)
-        )
-
-
 def get_remote_data(req):
     try:
         res = req.get()

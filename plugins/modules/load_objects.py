@@ -10,11 +10,11 @@ DOCUMENTATION = r'''
 ---
 module: load_objects
 
-short_description: Use for importing multiple objects/files in json format with one request.
+short_description: Import objects/files into a DataPower Application Domain.
 
 version_added: "1.0.0"
 
-description: Use for importing multiple objects/files in json format with one request.
+description: Import objects/files into a DataPower Application Domain.
 
 options:
     domain:

@@ -20,7 +20,7 @@ def isBase64(s):
 
 def get_file_md5(path, block_size=2**20):
     md5 = hashlib.md5()
-    with open (path,'rb') as f:
+    with open(path, 'rb') as f:
         while True:
             data = f.read(block_size)
             if not data:
@@ -30,16 +30,18 @@ def get_file_md5(path, block_size=2**20):
 
 
 class LocalFile:
-    def __init__(self, path:str, content:str=None):
+    def __init__(self, path: str, content: str = None):
         # set content if you are creating the file using a base64 encoded string from DataPower REST Mgmt Interface.
         if os.path.isfile(path) and content == None:
             self.md5 = get_file_md5(path)
         elif not os.path.isfile(path) and content:
             self.md5 = self.create_file_from_base64(path, content)
         elif os.path.isfile(path) and content:
-            raise FileNotFoundError('content was provided and {path} already exists.'.format(path=path))
+            raise FileNotFoundError(
+                'content was provided and {path} already exists.'.format(path=path))
         elif not os.path.isfile(path) and content == None:
-            raise Exception('no content provided and {path} does not exist'.format(path=path))
+            raise Exception(
+                'no content provided and {path} does not exist'.format(path=path))
         else:
             raise NotImplementedError
         self.path = path
@@ -48,7 +50,7 @@ class LocalFile:
         md5 = hashlib.md5()
         if not os.path.exists(os.path.dirname(path)) and os.path.dirname(path) != '':
             os.makedirs(os.path.dirname(path))
-        
+
         with open(path, 'wb') as f:
             data = base64.b64decode(content)
             f.write(data)
@@ -93,7 +95,7 @@ class LocalDirectory:
 
 
 class DirectoryComparitor:
-    def __init__(self, ld_from:LocalDirectory, ld_to:LocalDirectory):
+    def __init__(self, ld_from: LocalDirectory, ld_to: LocalDirectory):
         self.ld_from = ld_from
         self.ld_to = ld_to
         self.dircmp = dircmp(self.ld_from.path, self.ld_to.path)
@@ -113,7 +115,7 @@ class DirectoryComparitor:
 
 class FileDiff:
 
-    def __init__(self, from_local_file:LocalFile, to_local_file:LocalFile):
+    def __init__(self, from_local_file: LocalFile, to_local_file: LocalFile):
         self.from_local_file = from_local_file
         self.to_local_file = to_local_file
 
@@ -130,8 +132,6 @@ class FileDiff:
         return "".join(self.get_context_diff())
 
 
-
-
 if __name__ == '__main__':
 
     dir_path_from = '/Users/anthonyschneider/DEV/ansible-datapower-playbooks/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/copy/test/from/'
@@ -145,9 +145,10 @@ if __name__ == '__main__':
 
     assert isinstance(fc, FileDiff)
 
-    #print(fc)
+    # print(fc)
     content = 'LyoKICAgICBTY3JpcHQgTmFtZTogZ2V0Q1BVLmpzCiAgICAgUHVycG9zZTogR2V0IFN0YXRpc3RpY3MgdGhhdCBjYW5ub3QgYmUgcHJvZHVjZWQgYnkgdGhlIGxvZyB0YXJnZXQgb24gRGF0YVBvd2VyLgogICAgIFJldmlzaW9uczoJVmVyc2lvbgkJRGF0ZQkJQXV0aG9yCQlEZXNjcmlwdGlvbgoJCQkJMS4wLjAgICAgIAkyMDE5CQlXaWxsIExpYW8JSW5pdGlhbCBSZXZpc2lvbgogKi8KCnZhciBzbSA9IHJlcXVpcmUoJ3NlcnZpY2UtbWV0YWRhdGEnKTsKdmFyIGhtID0gcmVxdWlyZSgnaGVhZGVyLW1ldGFkYXRhJyk7CnZhciB1cmxvcGVuID0gcmVxdWlyZSgndXJsb3BlbicpOwp2YXIgY3QgPSBobS5jdXJyZW50LmdldCgnQ29udGVudC1UeXBlJyk7CnZhciBjdHggPSBzZXNzaW9uLm5hbWUoJ2dldHN0YXQnKSB8fCBzZXNzaW9uLmNyZWF0ZUNvbnRleHQoJ2dldHN0YXQnKTsKdmFyIHZBcHBsaWFuY2UgPSBjdHguZ2V0VmFyKCdkZXZpY2VuYW1lJykucmVwbGFjZSgnPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4nLCcnKSB8fCAwOwp2YXIgdkRvbWFpbk5hbWUgPSBzbS5nZXRWYXIoInZhcjovL3NlcnZpY2UvZG9tYWluLW5hbWUiKTsKdmFyIHZMb2dDYXRlZ29yeSA9IHsnY2F0ZWdvcnknOidHZXRTdGF0Q2F0ZWdvcnknfTsKdmFyIHZIb3N0ID0gImh0dHBzOi8vTUdNVDo1NTU0L21nbXQvc3RhdHVzL2RlZmF1bHQvQ1BVVXNhZ2UiOwp2YXIgdlhNTENvbnRlbnRUeXBlID0gImFwcGxpY2F0aW9uL2pzb24iOwoJLy8gZGVmaW5lIHRoZSB1cmxvcGVuIG9wdGlvbnMKCXZhciBvcHRpb25zID0gewoJdGFyZ2V0IDogdkhvc3QsCgltZXRob2QgOiAnR0VUJywKCWNvbnRlbnRUeXBlIDogdlhNTENvbnRlbnRUeXBlLAoJdGltZW91dCA6IDIKfTsKCi8vIG9wZW4gY29ubmVjdGlvbiB0byB0YXJnZXQgYW5kIHNlbmQgZGF0YSBvdmVyCnVybG9wZW4ub3BlbihvcHRpb25zLCBmdW5jdGlvbiAoZXJyb3IsIHJlc3BvbnNlKSB7CglpZiAoZXJyb3IpIHsKCQkvLyBhbiBlcnJvciBvY2N1cnJlZCBkdXJpbmcgcmVxdWVzdCBzZW5kaW5nIG9yIHJlc3BvbnNlIGhlYWRlciBwYXJzaW5nCgkJY29uc29sZS5sb2coJ3VybG9wZW4gZXJyb3I6ICcgKyBlcnJvcik7CgkJc2Vzc2lvbi5vdXRwdXQud3JpdGUoInVybG9wZW4gY29ubmVjdCBlcnJvcjogIiArIGVycm9yKTsKCX0gZWxzZSB7CgkJLy8gcmVhZCByZXNwb25zZSBkYXRhCgkJLy8gZ2V0IHRoZSByZXNwb25zZSBzdGF0dXMgY29kZQoJCXZhciByZXNwb25zZVN0YXR1c0NvZGUgPSByZXNwb25zZS5zdGF0dXNDb2RlOwoJCWlmIChyZXNwb25zZVN0YXR1c0NvZGUgPT0gMjAwKSB7CgkJCXJlc3BvbnNlLnJlYWRBc0pTT04oZnVuY3Rpb24oZXJyLCByZWFkQXNKU09OUmVzcG9uc2UpIHsKCQkJCWlmIChlcnIpIHsKCQkJCQlzZXNzaW9uLnJlamVjdCgicmVhZEFzSlNPTiBlcnJvcjogIiArIEpTT04uc3RyaW5naWZ5KGVycikpOwoJCQkJfSBlbHNlIHsKCQkJCQlzZXNzaW9uLm91dHB1dC53cml0ZSgiIFN1Y2Nlc3MgIik7CgkJCQkJCgkJCQkJY29uc29sZS5vcHRpb25zKHZMb2dDYXRlZ29yeSkubG9nKCJBcHBsaWFuY2U6ICIgKyB2QXBwbGlhbmNlICsgIiwgQ1BVVXNhZ2U6ICIgKyBKU09OLnN0cmluZ2lmeShyZWFkQXNKU09OUmVzcG9uc2UuQ1BVVXNhZ2UudGVuU2Vjb25kcykpOwoJCQkJfQoJCQl9KTsKCQkJfTsKCQl9Cgl9KTsK'
-    lf = LocalFile(path='/Users/anthonyschneider/DEV/ansible-datapower-playbooks/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/files/test.js')#, content=content)
+    # , content=content)
+    lf = LocalFile(path='/Users/anthonyschneider/DEV/ansible-datapower-playbooks/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/files/test.js')
     print(lf.md5.hexdigest(), lf.md5.hexdigest())
     lf1 = LocalFile(path='/Users/anthonyschneider/DEV/ansible-datapower-playbooks/collections/ansible_collections/community/datapower/tests/unit/module_utils/test_data/files/same_file_as_test.js')
 

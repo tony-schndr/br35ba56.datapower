@@ -10,18 +10,12 @@ DOCUMENTATION = r'''
 ---
 module: import_domains
 
-short_description: Use for executing actions on IBM DataPower
+short_description: Import Application Domain(s) into DataPower.
 
 version_added: "1.0.0"
 
-description: Use for performing actions such as quiesce, save config, reboot, export, import etc...  
+description: Import Application Domain(s) into DataPower.
 
-        export_path = dict(type='path', required=True),
-        overwrite_objects = dict(type='bool', required=False, default=False),
-        overwrite_files = dict(type='bool', required=False, default=False),
-        rewrite_local_ip = dict(type='bool', required=False, default=False),
-        domains = dict(type='list', required=False),
-        files = dict(type='list', required=False)
 options:
     export_path:
         description: Path to the domain export zip file.

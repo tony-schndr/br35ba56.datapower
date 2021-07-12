@@ -10,11 +10,11 @@ DOCUMENTATION = r'''
 ---
 module: export_objects
 
-short_description: Use for exporting configuration objects from IBM DataPower
+short_description: Export configuration objects from a DataPower Application Domain.
 
 version_added: "1.0.0"
 
-description: Export configuration objects from an application domain on DataPower.
+description: Export configuration objects from a DataPower Application Domain.
 
 options:
     domain:

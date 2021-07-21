@@ -102,7 +102,6 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.filestore import (
     copy_file_to_tmp_directory,
-    get_dest_path_from_href,
     get_file_diff,
     get_request_func,
     get_parent_dir
@@ -147,12 +146,11 @@ def run_module():
     tmpdir = module.tmpdir
 
     if (src and os.path.isfile(src)) or content:
-        local_after_file = copy_file_to_tmp_directory(module, tmpdir, src, dest, content)
-        remote_after_file_path = dest
-        remote_after_file_parent_dir = get_parent_dir(remote_after_file_path)
+        after_local_file = copy_file_to_tmp_directory(module, tmpdir, src, dest, content)
+        remote_after_file_parent_dir = get_parent_dir(dest)
         file_req = FileRequest(connection)
-        file_req.set_path(domain, remote_after_file_path)
-        file_req.set_body(remote_after_file_path, local_after_file.get_base64())
+        file_req.set_path(domain, dest)
+        file_req.set_body(dest, after_local_file.get_base64())
         dir_req = DirectoryRequest(connection)
         dir_req.set_body(remote_after_file_parent_dir)
         dir_req.set_path(domain, remote_after_file_parent_dir)
@@ -171,19 +169,16 @@ def run_module():
             module.fail_json(msg=to_text(ce), **result)
 
         if remote_before_file:
-            remote_before_file_dest = get_dest_path_from_href(domain, href=remote_before_file['_links']['self']['href'])
-            local_before_file = copy_file_to_tmp_directory(module, tmpdir, src=None, dest=remote_before_file_dest, content=remote_before_file['file'])
-            result['local_before_file'] = str(local_before_file)
+            before_local_file = copy_file_to_tmp_directory(module, tmpdir, src=None, dest=remote_before_file['_links']['self']['href'], content=remote_before_file['file'])
+            result['before_local_file'] = str(before_local_file)
         else:
-            local_before_file = None
-        diff = get_file_diff(local_before_file, local_after_file, dest, state)
-        
-       
+            before_local_file = None
+        diff = get_file_diff(before_local_file, after_local_file, dest, state)
+               
         if module._diff:
             result['diff'] = diff
 
-
-        request = get_request_func(file_req, local_before_file, local_after_file, state)
+        request = get_request_func(file_req, before_local_file, after_local_file, state)
         
         if module.check_mode:
             if request is not None:

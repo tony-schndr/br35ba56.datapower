@@ -13,8 +13,9 @@ short_description: Manage Configuration objects in DataPower Application Domains
 
 version_added: "1.0.0"
 
-description: Manage Configuration objects in DataPower Application Domains.  This request will overwrite the object if it exists, or create a new one if it doesn't.
-    You can also use this request to target list properties of various objects.
+description: Manage Configuration objects in DataPower Application Domains.  
+    This will overwrite the object if it exists, or create a new one if it doesn't.
+
 
 options:
     domain:
@@ -57,17 +58,17 @@ EXAMPLES = r'''
     state: present
     config:
       CryptoValCred:
-          CRLDPHandling: ignore
-          CertValidationMode: legacy
-          Certificate:
-          - value: Test1
-          - value: Test2
-          CheckDates: 'on'
-          ExplicitPolicy: 'off'
-          RequireCRL: 'off'
-          UseCRL: 'off'
-          mAdminState: enabled
-          name: valcred
+        CRLDPHandling: ignore
+        CertValidationMode: legacy
+        Certificate:
+        - value: Test1
+        - value: Test2
+        CheckDates: 'on'
+        ExplicitPolicy: 'off'
+        RequireCRL: 'off'
+        UseCRL: 'off'
+        mAdminState: enabled
+        name: valcred
 
 # You can also just pass the paramters to the object by defining class_name and name.
 - name: Disable the valcred

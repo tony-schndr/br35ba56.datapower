@@ -125,15 +125,7 @@ excluded_keys = ['domain',  'export_path']
 def map_module_args_to_datapower_keys(parameters):
     return {param_map[key]: value for key, value in parameters.items() if value and key not in excluded_keys}
 
-def get_file_name(connection):
-    config_req = ConfigRequest(connection)
-    config_req.set_path(domain='default', class_name='SystemSettings')
-    timestamp = datetime.datetime.now().strftime('%-m-%-d-%-yT%H%M.%S')
-    try:
-        config =  config_req.get()
-        filename = '-'.join(config['SystemSettings']['SystemName'].split(' ')).lower() + '_' + timestamp + '.zip'
-    except Exception:
-        letters = string.ascii_lowercase
-        timestamp = datetime.datetime.now().strftime('%-m-%-d-%-yT%H%M.%S')
-        filename =  ''.join(random.choice(letters) for i in range(10)) + '_' + timestamp + '.zip'
+def get_random_file_name(extension=''):
+    letters = string.ascii_lowercase
+    filename =  ''.join(random.choice(letters) for i in range(16)) + '.' + extension
     return filename

@@ -114,7 +114,7 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.file
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     convert_bool_to_on_or_off,
     map_module_args_to_datapower_keys,
-    get_file_name
+    get_random_file_name
 )
 
 
@@ -122,7 +122,7 @@ def run_module():
     #https://www.ibm.com/docs/en/datapower-gateways/10.0.x?topic=actions-export-action 
     module_args = dict(
         export_path = dict(type='path', required=True),
-        domains = dict(type='list', required=False, elements='str'),
+        domains = dict(type='list', required=False, elements='str', default='all-domains'),
         ref_objects = dict(type='bool', required=False, default=False),
         ref_files = dict(type='bool', required=False, default=True),
         include_debug = dict(type='bool', required=False),
@@ -160,8 +160,7 @@ def run_module():
         parameters['Domain'] = domains
     action_req = ActionQueueRequest(connection, 'default', action, parameters)
     
-
-    filename = get_file_name(connection)
+    filename = get_random_file_name('zip')
     try:
         response = action_req.post()
     except ConnectionError as e:
@@ -169,7 +168,7 @@ def run_module():
         result['changed'] = False
         module.fail_json(msg=response, **result)
     
-    export_path = module.params['export_path'] or module._tmpdir
+    export_path = module.params['export_path']
     full_file_path = os.path.join(export_path, filename)
     if isBase64(response['result']['file']):
         LocalFile(full_file_path, response['result']['file'])

@@ -15,13 +15,14 @@ short_description: Export DataPower Application Domain(s)
 version_added: "1.0.0"
 
 description: Export DataPower Application Domain(s)
-        
+
 options:
     domains:
-        description: List of domains to export, if not specified only default domain is exported.
+        description: List of domains to export, if not specified all domains are exported.
         required: false
         type: list
         elements: str
+        default: all-domains
     export_path:
         description: Directory path to save the export in.
         type: path

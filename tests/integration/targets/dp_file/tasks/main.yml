@@ -99,8 +99,8 @@
       - "{{ create_result['changed'] == True }}"
       - "{{ create_result['response']['result'] == 'File was created.' }}"
 
-
-- name: update local/local/demo.txt #Tests ability to create subdirectory named as the top_directory
+ #Tests ability to update subdirectory named as the top_directory
+- name: update local/local/demo.txt
   community.datapower.files:
     domain: default
     content: "aGVsbG8gd29ybGQK"

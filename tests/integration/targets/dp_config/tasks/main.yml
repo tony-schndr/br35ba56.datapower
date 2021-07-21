@@ -15,7 +15,7 @@
       LogTarget:
         IdleTimeout: 15
         LocalAddress: 0.0.0.0
-        LocalIdentifier: tocdo30150-t1
+        LocalIdentifier: dp-1
         LogEvents:
           Class:
             value: all
@@ -55,7 +55,7 @@
       LogTarget:
         IdleTimeout: 15
         LocalAddress: 0.0.0.0
-        LocalIdentifier: tocdo30150-t1
+        LocalIdentifier: dp-1
         LogEventFilter:
         - '0x080c00010'
         - '0x08580005c'
@@ -158,6 +158,14 @@
   assert:
     that:
       - "{{ changed == unchanged  }}"
+
+- name: Delete SSL Profile
+  community.datapower.config:
+    domain: default
+    state: absent
+    config:
+      SSLClientProfile:        
+        name: tls-client-profile
 
 - name: Delete Crypto ValCred
   community.datapower.config:

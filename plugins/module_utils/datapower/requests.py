@@ -8,16 +8,13 @@ import posixpath
 from xml.sax.saxutils import unescape
 from ansible.module_utils.six.moves.urllib.parse import urlencode
 
-
 MGMT_CONFIG_METADATA_URI = '/mgmt/metadata/{0}/{1}'
 MGMT_CONFIG_URI = '/mgmt/config/'
 ACTION_QUEUE_URI = '/mgmt/actionqueue/{0}'
 ACTION_QUEUE_SCHEMA_URI = '/mgmt/actionqueue/{0}/operations/{1}?schema-format=datapower'
 ACTION_QUEUE_OPERATIONS_URI = '/mgmt/actionqueue/{0}/operations'
 ACTION_QUEUE_TIMEOUT = 300
-
 NO_BASE_PATH_ERROR = 'Base path was not provided. ie /mgmt/config/'
-
 
 
 def _scrub(obj, bad_key):
@@ -50,7 +47,6 @@ def clean_dp_dict(dict_):
 
 
 class Request:
-
     def __init__(self, connection):
         self.connection = connection
         self.body = None
@@ -107,7 +103,6 @@ class Request:
 
 
 class DirectoryRequest(Request):
-
     def __init__(self, connection):
         super(DirectoryRequest, self).__init__(connection)
 
@@ -137,7 +132,6 @@ class DirectoryRequest(Request):
 
 
 class FileRequest(Request):
-
     def __init__(self, connection):
         super(FileRequest, self).__init__(connection)
 
@@ -186,7 +180,6 @@ class ListActionsRequest(Request):
 
 
 class ConfigRequest(Request):
-
     def __init__(self, connection):
         super(ConfigRequest, self).__init__(connection)
         self.options = None
@@ -225,7 +218,6 @@ class ConfigRequest(Request):
 
 
 class ConfigInfoRequest(Request):
-
     def __init__(self, connection):
         super(ConfigInfoRequest, self).__init__(connection)
 
@@ -289,7 +281,10 @@ class ActionQueueRequest(Request):
 
     def is_completed(self, resp):
         for k, v in resp.items():
-            if v == 'Operation completed.' or v == 'completed' or v == 'processed' or v == 'processed-with-errors':
+            if v == 'Operation completed.' \
+                    or v == 'completed' \
+                    or v == 'processed' \
+                    or v == 'processed-with-errors':
                 return True
         else:
             return False
@@ -302,6 +297,7 @@ class StatusRequest(Request):
 
     def get(self):
         return self._process_request(self.path, 'GET', None)
+
 
 class ListStatusObjectsRequest(Request):
     def __init__(self, connection):

@@ -202,7 +202,7 @@ def run_module():
         module.exit_json(**result)
 
     else:
-        module.fail_json(msg='Directories are not yet supported.')
+        module.fail_json(msg='Directories are not supported.')
 
 
 

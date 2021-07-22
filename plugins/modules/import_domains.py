@@ -64,7 +64,6 @@ options:
         type: list
         elements: dict
 
-
 author: 
 - Anthony Schneider (@br35ba56)
 '''
@@ -104,11 +103,11 @@ response:
         "status": "completed"
     }
 '''
+
 from copy import deepcopy
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
-
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     ActionQueueRequest
 )
@@ -153,7 +152,6 @@ def run_module():
     export_path = module.params['export_path'] 
     params['InputFile'] = LocalFile(export_path).get_base64()
     action_req = ActionQueueRequest(connection, 'default', action, params)
-
     
     try:
         response = action_req.post()
@@ -162,8 +160,7 @@ def run_module():
         result['parameters'] = params
         result['changed'] = False
         module.fail_json(msg=response, **result)
-    
-    
+        
     del params['InputFile']
     result['response'] = response
     result['changed'] = True

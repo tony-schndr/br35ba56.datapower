@@ -23,7 +23,7 @@ options:
         type: list
         elements: str
         default: all-domains
-    export_path:
+    dest:
         description: Directory path to save the export in.
         type: path
         required: true
@@ -86,7 +86,7 @@ author:
 EXAMPLES = r'''
 - name: Export foo domain from datapower config
   community.datapower.export_domains:
-    export_path: /tmp/
+    dest: /tmp/
     all_files: yes
     domains: 
         - foo
@@ -94,17 +94,17 @@ EXAMPLES = r'''
 '''
 
 RETURN = r'''
-export:
+path:
     description: Path to export zip file
     type: str
     returned: on success
-    sample:  /tmp/aaf2cf18d49b_6-11-21T2222.45.zip
+    sample:  /tmp/aaf2cf18d49b.zip
 '''
+
 import os
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
-
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     ActionQueueRequest
 )
@@ -122,7 +122,7 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt
 def run_module():
     #https://www.ibm.com/docs/en/datapower-gateways/10.0.x?topic=actions-export-action 
     module_args = dict(
-        export_path = dict(type='path', required=True),
+        dest = dict(type='path', required=True),
         domains = dict(type='list', required=False, elements='str', default='all-domains'),
         ref_objects = dict(type='bool', required=False, default=False),
         ref_files = dict(type='bool', required=False, default=True),
@@ -159,9 +159,10 @@ def run_module():
             }
             domains.append(domain_dict)
         parameters['Domain'] = domains
-    action_req = ActionQueueRequest(connection, 'default', action, parameters)
     
+    action_req = ActionQueueRequest(connection, 'default', action, parameters)
     filename = get_random_file_name('zip')
+    
     try:
         response = action_req.post()
     except ConnectionError as e:
@@ -169,12 +170,13 @@ def run_module():
         result['changed'] = False
         module.fail_json(msg=response, **result)
     
-    export_path = module.params['export_path']
-    full_file_path = os.path.join(export_path, filename)
-    if isBase64(response['result']['file']):
-        LocalFile(full_file_path, response['result']['file'])
+    dest = module.params['dest']
+    path = os.path.join(dest, filename)
     
-    result['export'] = full_file_path
+    if isBase64(response['result']['file']):
+        LocalFile(path, response['result']['file'])
+    
+    result['path'] = path
     result['changed'] = True
     module.exit_json(**result)
 

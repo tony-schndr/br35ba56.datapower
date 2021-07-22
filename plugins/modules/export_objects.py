@@ -10,7 +10,8 @@ DOCUMENTATION = r'''
 ---
 module: export_objects
 
-short_description: Export configuration objects from a DataPower Application Domain.
+short_description: |
+    Export configuration objects and files from a DataPower Application Domain.
 
 version_added: "1.0.0"
 
@@ -101,15 +102,14 @@ objects:
         }
     }
 '''
+
 from copy import deepcopy
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
-
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     ActionQueueRequest,
 )
-
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     convert_bool_to_on_or_off,
     map_module_args_to_datapower_keys

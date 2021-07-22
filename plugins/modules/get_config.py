@@ -5,6 +5,7 @@
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
+
 DOCUMENTATION = r'''
 ---
 module: get_config
@@ -161,12 +162,8 @@ response:
 
 '''
 
-
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     ConfigRequest
-)
-from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
-    Config
 )
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.connection import (
@@ -175,8 +172,8 @@ from ansible.module_utils.connection import (
 )
 from ansible.module_utils._text import to_text
 
-def run_module():
 
+def run_module():
     module_args = dict(
         domain=dict(type='str', required=True),
         class_name=dict(type='str', required=True),
@@ -218,7 +215,6 @@ def run_module():
     except ConnectionError as e:
         dp_resp = to_text(e)
     result = {}
-    result['request_path'] = dp_req.path
     result['response'] = dp_resp
 
     module.exit_json(**result)

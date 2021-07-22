@@ -15,7 +15,8 @@ version_added: "1.0.0"
 
 description: Manage Configuration objects in DataPower Application Domains.  
     This will overwrite the object if it exists, or create a new one if it doesn't.
-
+    This module does not create child objects. If a parent object references a 
+    child object, that object must exist for the parent to be created successfully.
 
 options:
     domain:
@@ -82,22 +83,6 @@ EXAMPLES = r'''
 '''
 
 RETURN = r'''
-request:
-    description: The request that was sent to DataPower, can be useful to audit exactly what was sent to DataPower
-                to make the change
-    type: dict
-    returned: always
-    sample: {
-        "body":{
-            "CryptoValCred":{
-                "mAdminState":"enabled",
-                "name":"valcred"
-            }
-        },
-        "method":"PUT",
-        "path":"/mgmt/config/default/CryptoValCred/valcred"
-    }
-
 response:
     description: The response returned from DataPowers Rest MGMT Interface.
     type: dict
@@ -116,10 +101,7 @@ response:
 '''
 
 from ansible.module_utils._text import to_text
-from ansible.module_utils.connection import (
-    ConnectionError,
-    Connection
-) 
+from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     Config,
@@ -127,16 +109,12 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     ConfigRequest,
-    
     clean_dp_dict
 )
-
 from ansible_collections.community.datapower.plugins.module_utils.datapower import (
     dp_diff
 )
-from ansible.utils.display import Display
 
-display = Display()
 
 def run_module():
     module_args = dict(
@@ -159,12 +137,11 @@ def run_module():
     state = module.params.get('state')
 
     dp_obj = Config(domain=domain,class_name=class_name, name=name, config=config )
-    #req_handler = DPManageConfigRequestHandler(connection)
-    #dp_req = DPManageConfigRequest(dp_obj)
     dp_req = ConfigRequest(connection)
     dp_req.set_path(domain, dp_obj.class_name, dp_obj.name) 
     dp_req.set_body(dp_obj.config)
     result = dict()
+
     try:
         dp_state_resp = get_remote_data(dp_req)
         result['remote_state'] = clean_dp_dict(dp_state_resp)
@@ -203,9 +180,8 @@ def get_request_func(req, before, after, state):
     if state == 'present':
         if before is None:
             return req.post
-        else:
-            if dp_diff.is_changed(before, after):
-                return req.put
+        elif dp_diff.is_changed(before, after):
+            return req.put
     else:
         if before is None:
             return None
@@ -215,6 +191,7 @@ def get_request_func(req, before, after, state):
     
 def main():
     run_module()
+
 
 if __name__ == '__main__':
     main()

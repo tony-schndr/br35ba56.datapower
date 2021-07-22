@@ -34,7 +34,7 @@ EXAMPLES = r'''
 
 RETURN = r'''
 actions:
-    description: List of actions avaiable for a particular domain.  
+    description: List of actions available for a particular domain.  
     type: list
     returned: on success
     sample: [
@@ -59,10 +59,10 @@ actions:
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
-
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     ListActionsRequest
 )
+
 
 def run_module():
     module_args = dict(

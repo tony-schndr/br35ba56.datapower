@@ -27,8 +27,7 @@ EXAMPLES = r'''
 '''
 
 RETURN = r'''
-
-status_objects:
+statuses:
     description: A list of all valid status objects in datapower.  
         Use the values for determine what is a valid status to fetch in the status module.
     type: list
@@ -196,10 +195,10 @@ status_objects:
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
-
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     ListStatusObjectsRequest
 )
+
 
 def run_module():
     module_args = dict(
@@ -221,8 +220,8 @@ def run_module():
         response = to_text(e)
         module.fail_json(msg=response, **result)
 
-    status_objects = [key for key in response['_links'].keys() if key != 'self']
-    result['status_objects'] = status_objects
+    statuses = [key for key in response['_links'].keys() if key != 'self']
+    result['statuses'] = statuses
     module.exit_json(**result)
 
 

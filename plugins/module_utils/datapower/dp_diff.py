@@ -3,31 +3,33 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 from dictdiffer import diff, patch
-#from data import log_targets
-# Helper functions for comparing dictionairies.
+# Helper functions for comparing dictionaries.
 
 # When using this to determine what will be changed on a DataPower the 
 # from_dict should always be DataPower config, to_dict should always be ansible.
+
 
 def get_patched_dict(from_dict, to_dict):
     result = diff(from_dict, to_dict)
     return patch(result, from_dict)
 
+
 def is_changed(from_dict, to_dict):
     return len(
         get_change_list(from_dict, to_dict)
     ) > 0
-    
+
+
 def get_change_list(from_dict, to_dict):
     return list(get_changes(from_dict, to_dict))
 
-# Returns an iterater of dictionaries based off dictdiffer.diff
+
+# Returns an iterator of dictionaries based off dictdiffer.diff
 def get_changes(from_dict, to_dict):
     for diff_ in diff(from_dict, to_dict):
-        print(diff_)
         # DataPower REST MGMT interface does not care if a parameter is present
         # if a parameter is not present it will remain unchanged on DataPower
-        # therefore we do not consider it when yeidling diffs
+        # therefore we do not consider it when yielding diffs
         if diff_[0] == 'remove':
             continue
         elif diff_[0] == 'change':
@@ -48,16 +50,17 @@ def get_changes(from_dict, to_dict):
         else:
             raise NotImplementedError('Only remove, change, and add are supported diff checks.')
         
+        
 def _change_dict(diff_):
 
     if diff_[0] == 'add':
         return {
-        'path' : diff_[1],
-        'diff': {
-            'from' : 'not defined',
-            'to' : diff_[2][0]
+            'path' : diff_[1],
+            'diff': {
+                'from' : 'not defined',
+                'to' : diff_[2][0]
+            }
         }
-    }
 
     return {
         'path' : diff_[1],
@@ -74,8 +77,10 @@ This causes false positive changes when comparing strings (from ansible) to inte
 def check_if_str_to_int_compare(diff_):
     return isinstance(diff_[2][0], int) and isinstance(diff_[2][1], str)
 
+
 def check_if_str_and_int_equal(diff_):
     return str(diff_[2][0]) == str(diff_[2][1])
+
 
 '''
 If a DataPower field is of type list and only contains 1 item DataPower 
@@ -102,13 +107,9 @@ is equivalent to:
 def check_if_dict_to_list_compare(diff_):
     return isinstance(diff_[2][0], dict) and isinstance(diff_[2][1], list) and len(diff_[2][1]) == 1
 
+
 def check_if_dict_and_list_are_equal(diff_):
     if len(diff_[2][1]) == 1:
         return diff_[2][0] == diff_[2][1][0]
     else:
         raise TypeError('cannot compare single element to a list other than len(<list>) == 1')
-
-if __name__ == '__main__':
-    objects = log_targets
-    for change in get_changes(objects[0], objects[1]):
-        print(change)

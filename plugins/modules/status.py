@@ -35,7 +35,6 @@ EXAMPLES = r'''
   community.datapower.status:
     domain: default
     name: ObjectStatus
-
 '''
 
 RETURN = r'''
@@ -70,10 +69,10 @@ response:
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
-
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     StatusRequest
 )
+
 
 def run_module():
     module_args = dict(
@@ -85,11 +84,11 @@ def run_module():
         argument_spec=module_args,
         supports_check_mode=True
     )
-    connection = Connection(module._socket_path)
-    
-    dp_req = StatusRequest(connection, module.params.get('domain'), module.params.get('name'))
 
+    connection = Connection(module._socket_path)
+    dp_req = StatusRequest(connection, module.params.get('domain'), module.params.get('name'))
     result = {}
+
     try:
         response = dp_req.get()
     except ConnectionError as e:

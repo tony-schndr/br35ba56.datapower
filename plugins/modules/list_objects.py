@@ -70,11 +70,10 @@ from ansible.module_utils.connection import (
     Connection
 ) 
 from ansible.module_utils.basic import AnsibleModule
-
-
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     ListConfigObjectsRequest
 )
+
 
 def run_module():
     module_args = dict(
@@ -96,8 +95,10 @@ def run_module():
 
     module.exit_json(**result)
 
+
 def main():
     run_module()
+
 
 if __name__ == '__main__':
     main()

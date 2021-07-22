@@ -45,32 +45,20 @@ EXAMPLES = r'''
     domain: default
     action: SaveConfig
 
-- name: Quiesce DP prior to change
+- name: Quiesce DataPower 
   community.datapower.action:
     domain: default
     action: QuiesceDP
     parameters:
       timeout: 60
 
-- name: UnQuiesce DP prior to change
+- name: UnQuiesce DataPower
   community.datapower.action:
     domain: default
     action: UnquiesceDP
 '''
 
 RETURN = r'''
-request:
-    description: The request that was sent to DataPower
-    type: dict
-    returned: always
-    sample: {
-        "body": {
-            "UnquiesceDP": {}
-        },
-        "method": "POST",
-        "path": "/mgmt/actionqueue/default"
-    }
-
 response:
     description: The response from DataPower
     type: dict
@@ -88,16 +76,14 @@ response:
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
-
+from ansible.utils.display import Display
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     ActionQueueRequest
 )
 
-from ansible.utils.display import Display
-
 display = Display()
 
-# Exlude actions here that have a module to perform them.
+# Exclude actions here that have a module.
 excluded_actions = {
     'Export' : [ 
         'export_domains',
@@ -111,6 +97,7 @@ excluded_actions = {
         'load_objects'
     ]
 }
+
 
 def run_module():
     module_args = dict(
@@ -143,10 +130,8 @@ def run_module():
         response = to_text(e)
         result['changed'] = False
         module.fail_json(msg=response, **result)
-
     
     result['response'] = response
-    result['request'] = {'path':dp_req.path, 'method': dp_req.method, 'body': dp_req.body}
     result['changed'] = True
     module.exit_json(**result)
 

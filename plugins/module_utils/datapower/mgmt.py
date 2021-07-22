@@ -12,8 +12,27 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
     ConfigRequest
 )
 
-class Config():
+PARAM_MAP = {
+    #Export mapping
+    'domains': 'Domain',
+    'objects': 'Object',
+    'format': 'Format',
+    'ref_objects': 'ref-obj',
+    'ref_files': 'ref-files',
+    'include_debug':'include-debug',
+    'user_comment': 'UserComment',
+    'all_files': 'AllFiles',
+    'persisted': 'Persisted',
+    'include_internal_files': 'IncludeInternalFiles',
+    'deployment_policy': 'DeploymentPolicy',
+    'overwrite_objects': 'OverwriteObjects',
+    'overwrite_files': 'OverwriteFiles',
+    'rewrite_local_ip': 'RewriteLocalIP'
+}
 
+EXCLUDED_KEYS = ['domain',  'dest', 'export_path']
+
+class Config():
     # domain and class_name are the bare minimum required to get a valid
     # response from DataPower
     def __init__(self, domain, config=None, class_name=None, name=None, field=None):
@@ -73,7 +92,6 @@ class Config():
 # This is hardcoded, the response is from DataPower v 10.0.1.0.
 # This should greatly improved by having it check at the beginning
 # of module execution
-
 def is_valid_class(class_name):
     return class_name in valid_objects
 
@@ -89,6 +107,7 @@ def get_remote_data(req):
             raise ce
     return res
 
+
 def convert_bool_to_on_or_off(parameters):
     for k,v in parameters.items():
         if isinstance(v, bool):
@@ -98,32 +117,10 @@ def convert_bool_to_on_or_off(parameters):
                 parameters[k] = 'off'
     return parameters
 
-param_map = {
-    #Export mapping
-    'domains': 'Domain',
-    'objects': 'Object',
-    'format': 'Format',
-    'ref_objects': 'ref-obj',
-    'ref_files': 'ref-files',
-    'include_debug':'include-debug',
-    'user_comment': 'UserComment',
-    'all_files': 'AllFiles',
-    'persisted': 'Persisted',
-    'include_internal_files': 'IncludeInternalFiles',
-    'deployment_policy': 'DeploymentPolicy',
-    
-    'overwrite_objects': 'OverwriteObjects',
-    'overwrite_files': 'OverwriteFiles',
-    'rewrite_local_ip': 'RewriteLocalIP'
 
-    #import mapping
-
-}
-
-excluded_keys = ['domain',  'export_path']
-  
 def map_module_args_to_datapower_keys(parameters):
-    return {param_map[key]: value for key, value in parameters.items() if value and key not in excluded_keys}
+    return {PARAM_MAP[key]: value for key, value in parameters.items() if value and key not in EXCLUDED_KEYS}
+
 
 def get_random_file_name(extension=''):
     letters = string.ascii_lowercase

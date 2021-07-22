@@ -10,7 +10,7 @@
     - snafu
     - foo
 
-- name: Create the snafu/foo applciation domain
+- name: Create the snafu/foo application domain
   community.datapower.load_objects:
     domain: default 
     objects: 
@@ -76,12 +76,12 @@
 
 - name: Export all domains
   community.datapower.export_domains:
-    export_path: ./work/   
+    dest: ./work/   
   register: all_domains_export
 
 - name: Export foo domain from datapower config
   community.datapower.export_domains:
-    export_path: ./work/
+    dest: ./work/
     all_files: yes
     domains: 
       - foo
@@ -108,7 +108,7 @@
   community.datapower.import_domains:
     overwrite_objects: yes
     overwrite_files: yes
-    export_path: "{{all_domains_export.export}}"
+    export_path: "{{all_domains_export.path}}"
 
 - name: Save all domains
   community.datapower.action:
@@ -161,7 +161,7 @@
   community.datapower.import_domains:
     overwrite_objects: yes
     overwrite_files: yes
-    export_path: "{{foo_domain_export.export}}"
+    export_path: "{{foo_domain_export.path}}"
 
 - name: Save default/foo domain after importing foo domain.
   community.datapower.action:

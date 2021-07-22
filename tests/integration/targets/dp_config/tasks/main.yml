@@ -1,15 +1,25 @@
 ---
-- name: Delete log target if it exists.
+- name: Delete the foo domain
   community.datapower.config:
-    domain: default
+    domain: default 
     state: absent
-    class_name: LogTarget
-    name: syslog_LogTarget
-    config:
+    config: 
+      Domain:
+        mAdminState: enabled
+        name: foo
+
+- name: Create the foo domain
+  community.datapower.config:
+    domain: default 
+    state: present
+    config: 
+      Domain:
+        mAdminState: enabled
+        name: foo
 
 - name: Create the log target
   community.datapower.config:
-    domain: default
+    domain: foo
     state: present
     config:
       LogTarget:
@@ -42,14 +52,14 @@
 
 - name: Get before syslog_LogTarget
   community.datapower.get_config:
-    domain: default
+    domain: foo
     class_name: LogTarget
     name: syslog_LogTarget
   register: before_syslog_LogTarget
 
 - name: Add event filters to log target
   community.datapower.config:
-    domain: default
+    domain: foo
     state: present
     config:
       LogTarget:
@@ -86,7 +96,7 @@
   
 - name: Get after syslog_LogTarget
   community.datapower.get_config:
-    domain: default
+    domain: foo
     class_name: LogTarget
     name: syslog_LogTarget
   register: after_syslog_LogTarget
@@ -139,7 +149,7 @@
       - "{{ changed['response']['WebGUI']['mAdminState'] == 'disabled' }}"
       - "{{ changed != before  }}"
 
-- name: Make the same change to check idempotency.
+- name: Make the same change to ensure task is idempotent.
   community.datapower.config:
     domain: default
     class_name: WebGUI
@@ -154,7 +164,7 @@
     class_name: WebGUI
   register: unchanged
 
-- name: Assert idempotency
+- name: Assert state is unchanged
   assert:
     that:
       - "{{ changed == unchanged  }}"
@@ -201,7 +211,7 @@
       CryptoValCred:        
         name: valcred
 
-- name: Update a CrytpoValCred Certificate list property to 1 item.
+- name: Update a CryptoValCred Certificate list property to 1 item.
   community.datapower.config:
     domain: default
     state: present
@@ -219,14 +229,14 @@
     name: valcred
   register: valcred
 
-- name: Assert the CrytpoValCred Certificate list was updated to 1 item.
+- name: Assert the CryptoValCred Certificate list was updated to 1 item.
   assert:
     that:
       - "{{ valcred['response']['CryptoValCred']['Certificate']['value'] is defined }}"
       - "{{ valcred_result['response']['valcred'] == 'Configuration was updated.'  }}"
   ignore_errors: no
       
-- name: Update a CrytpoValCred Certificate list property to 2 items.
+- name: Update a CryptoValCred Certificate list property to 2 items.
   community.datapower.config:
     domain: default
     state: present
@@ -238,7 +248,7 @@
         name: valcred
   register: valcred_result
 
-- name: Assert the CrytpoValCred Certificate list was updated to 2 items.
+- name: Assert the CryptoValCred Certificate list was updated to 2 items.
   assert:
     that:
       - "{{ valcred['response']['CryptoValCred']['Certificate'] | length == 2 }}"

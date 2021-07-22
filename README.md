@@ -29,7 +29,7 @@ ansible-galaxy collection install community-datapower-1.0.0.tar.gz
 ```
 
 ## Using this collection
-This collection uses an httpapi plugin that utilizes the DataPower REST Management Interface, ensure it is configured, ref IBM DataPower Documentation
+This collection uses an httpapi plugin that utilizes the DataPower REST Management Interface, ensure the interface is configured, ref IBM DataPower Documentation
 
 Log into the datapower CLI and run:
 ```

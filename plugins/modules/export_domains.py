@@ -54,7 +54,7 @@ options:
             persisted or running configuration. 
         required: false
         type: bool
-        default: true     
+        default: false     
     include_debug:
         description: Determines whether to export probe data for a DataPower service.
         type: bool
@@ -129,7 +129,7 @@ def run_module():
         include_debug = dict(type='bool', required=False),
         user_comment = dict(type='str', required=False),
         all_files = dict(type='bool', required=False, default=False),
-        persisted = dict(type='bool', required=False, default=True),
+        persisted = dict(type='bool', required=False, default=False),
         include_internal_files = dict(type='bool', required=False, default=True),
         deployment_policy = dict(type='str', required=False),
     )

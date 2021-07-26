@@ -1,16 +1,11 @@
 from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
-import posixpath 
 import random
 import string
-import datetime
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError
 from ansible_collections.community.datapower.plugins.module_utils.datapower.classes import valid_objects
-from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-    ConfigRequest
-)
 
 PARAM_MAP = {
     #Export mapping

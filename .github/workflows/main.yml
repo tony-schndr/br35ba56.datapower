@@ -24,7 +24,9 @@ jobs:
           pip install ansible-bender==0.8.1
           pip install ansible-lint==5.0.11
           pip install voluptuous
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          if [ -f ansible_collections/community/datapower/requirements.txt ]; 
+          then pip install -r ansible_collections/community/datapower/requirements.txt; 
+          fi
       - name: Run unit tests
         working-directory: ansible_collections/community/datapower
         run: |

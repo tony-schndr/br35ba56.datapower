@@ -25,5 +25,25 @@ jobs:
           pip install ansible-lint==5.0.11
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Run unit tests
+        working-directory: ansible_collections/community/datapower
         run: |
-          cd ansible_collections/community/datapower && ansible-test units --python 3.7  --venv -v tests/unit/module_utils/datapower/
+          ansible-test units \
+           --python 3.7 \
+           --venv -v tests/unit/module_utils/datapower/
+
+      - name: Run sanity tests 
+        working-directory: ansible_collections/community/datapower
+        run: |
+          ansible-test sanity --test validate-modules config 
+          ansible-test sanity --test validate-modules files
+          ansible-test sanity --test validate-modules get_config
+          ansible-test sanity --test validate-modules list_objects
+          ansible-test sanity --test validate-modules action
+          ansible-test sanity --test validate-modules list_actions
+          ansible-test sanity --test validate-modules get_action_schema
+          ansible-test sanity --test validate-modules export_objects
+          ansible-test sanity --test validate-modules export_domains
+          ansible-test sanity --test validate-modules import_domains
+          ansible-test sanity --test validate-modules load_objects
+          ansible-test sanity --test validate-modules status
+          ansible-test sanity --test validate-modules list_status

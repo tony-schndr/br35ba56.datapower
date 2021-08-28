@@ -24,3 +24,6 @@ jobs:
           pip install ansible-bender==0.8.1
           pip install ansible-lint==5.0.11
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Run unit tests
+        run: |
+          ansible-test units --python 3.7  --venv -v tests/unit/module_utils/datapower/

@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.7]
+        python-version: [3.6, 3.7, 3.8, 3.9]
 
     steps:
       - uses: actions/checkout@v2
@@ -38,5 +38,5 @@ jobs:
         working-directory: ansible_collections/community/datapower
         run: |
           ansible-test units \
-           --python 3.7 \
+           --python ${{ matrix.python-version }} \
            --venv -v tests/unit/module_utils/datapower/

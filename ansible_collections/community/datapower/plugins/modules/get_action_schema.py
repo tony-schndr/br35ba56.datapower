@@ -28,7 +28,7 @@ options:
         type: str
 
 
-author: 
+author:
 - Anthony Schneider (@br35ba56)
 '''
 
@@ -115,8 +115,8 @@ response:
             "self": {
                 "href": "/mgmt/actionqueue/default/operations/QuiesceDP"
             }
-        }   
-    }  
+        }
+    }
 '''
 
 from ansible.module_utils._text import to_text
@@ -127,19 +127,21 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
     ActionQueueSchemaRequest
 )
 
+
 def run_module():
     module_args = dict(
-        domain = dict(type='str', required=True),
-        action = dict(type='str', required=True)
+        domain=dict(type='str', required=True),
+        action=dict(type='str', required=True)
     )
-    
+
     module = AnsibleModule(
         argument_spec=module_args,
         supports_check_mode=True
     )
     connection = Connection(module._socket_path)
-    
-    dp_req = ActionQueueSchemaRequest(connection, module.params.get('domain'), module.params.get('action'))
+
+    dp_req = ActionQueueSchemaRequest(
+        connection, module.params.get('domain'), module.params.get('action'))
 
     result = {}
     try:

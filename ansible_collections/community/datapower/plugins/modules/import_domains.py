@@ -3,7 +3,6 @@
 # Copyright: (c) 2020, Anthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 from __future__ import (absolute_import, division, print_function)
-
 __metaclass__ = type
 
 DOCUMENTATION = r'''
@@ -25,7 +24,7 @@ options:
         description: |
             Determines whether to overwrite objects that
             exist in the current configuration during the
-            import operation. 
+            import operation.
         required: false
         type: bool
         default: false
@@ -40,31 +39,31 @@ options:
         description: |
             Determines whether the local address bindings of services
             in the import package are rewritten on import to their
-            equivalent interfaces. 
+            equivalent interfaces.
         required: false
         type: bool
         default: false
     domains:
         description: |
-            Indicates specific domains in the import package to import. 
+            Indicates specific domains in the import package to import.
             The dictionary can be composed of the following keys, name is minimum requirement.
             name: Specifies the name of the domain in the import package.
             import-domain: Determines whether to import the domain. Valid values are on or off. The default value is on.
-            reset-domain: Determines whether to reset the domain before the import operation. Valid values are on or off. The default value is off. 
+            reset-domain: Determines whether to reset the domain before the import operation. Valid values are on or off. The default value is off.
         required: false
         type: list
-        elements: dict  
+        elements: dict
     files:
         description: |
             Indicates specific files in the import package to import.
             The dictionary can be composed of the following keys, name is minimum requirement.
             name: The name of the file in the import package.
-            overwrite: Overrides the setting of the OverwriteFiles parameter. 
+            overwrite: Overrides the setting of the OverwriteFiles parameter.
         required: false
         type: list
         elements: dict
 
-author: 
+author:
 - Anthony Schneider (@br35ba56)
 '''
 
@@ -76,7 +75,7 @@ EXAMPLES = r'''
     export_path: "{{full_export.export}}"
 
 '''
-#TODO: what is returned for import_domains....
+
 RETURN = r'''
 request:
     description: The request that was sent to DataPower
@@ -121,27 +120,26 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt
 
 
 def run_module():
-    #https://www.ibm.com/docs/en/datapower-gateways/10.0.x?topic=actions-export-action 
     module_args = dict(
-        export_path = dict(type='path', required=True),
-        overwrite_objects = dict(type='bool', required=False, default=False),
-        overwrite_files = dict(type='bool', required=False, default=False),
-        rewrite_local_ip = dict(type='bool', required=False, default=False),
-        domains = dict(type='list', required=False, elements='dict'),
-        files = dict(type='list', required=False, elements='dict')
+        export_path=dict(type='path', required=True),
+        overwrite_objects=dict(type='bool', required=False, default=False),
+        overwrite_files=dict(type='bool', required=False, default=False),
+        rewrite_local_ip=dict(type='bool', required=False, default=False),
+        domains=dict(type='list', required=False, elements='dict'),
+        files=dict(type='list', required=False, elements='dict')
     )
-      
+
     module = AnsibleModule(
         argument_spec=module_args,
         supports_check_mode=False
     )
     connection = Connection(module._socket_path)
     result = {}
-    
+
     action = "Import"
     params = deepcopy(module.params)
     # Convert booleans in the domain dictionaries
-    if  params['domains']:
+    if params['domains']:
         for domain in params['domains']:
             convert_bool_to_on_or_off(domain)
     params = map_module_args_to_datapower_keys(params)
@@ -149,10 +147,10 @@ def run_module():
 
     params['Format'] = 'ZIP'
 
-    export_path = module.params['export_path'] 
+    export_path = module.params['export_path']
     params['InputFile'] = LocalFile(export_path).get_base64()
     action_req = ActionQueueRequest(connection, 'default', action, params)
-    
+
     try:
         response = action_req.post()
     except ConnectionError as e:
@@ -160,7 +158,7 @@ def run_module():
         result['parameters'] = params
         result['changed'] = False
         module.fail_json(msg=response, **result)
-        
+
     del params['InputFile']
     result['response'] = response
     result['changed'] = True

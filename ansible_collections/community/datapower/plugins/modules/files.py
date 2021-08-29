@@ -23,11 +23,11 @@ options:
         type: str
     content:
         description: >
-                Base64 encoded file string. 
+                Base64 encoded file string.
         required: false
         type: str
     src:
-        description: > 
+        description: >
             The path to the file on the ansible controller.
             Currently only files can be uploaded.
         required: false
@@ -48,7 +48,7 @@ options:
           - absent
           - present
 
-author: 
+author:
 - Anthony Schneider (@br35ba56)
 '''
 
@@ -60,13 +60,13 @@ EXAMPLES = r'''
     src: example.txt
     dest: local/subdir/example.txt
     state: present
-      
-- name: Create a local/subdir/example.txt from base64 content. 
+
+- name: Create a local/subdir/example.txt from base64 content.
   community.datapower.files:
     domain: default
     content: "aGVsbG8gd29ybGQK"
     dest: local/subdir/example.txt
-    state: present      
+    state: present
 '''
 
 RETURN = r'''
@@ -113,13 +113,13 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
 
 TOP_DIRS = ['local', 'cert', 'sharedcert']
 
+
 def run_module():
     module_args = dict(
         domain=dict(type='str', required=True),
         content=dict(type='str', required=False),
         src=dict(type='path', required=False),
         dest=dict(type='path', required=True),
-        #backup = dict(type='bool', required=False),
         state=dict(type='str', required=True, choices=['absent', 'present'])
     )
 
@@ -128,10 +128,10 @@ def run_module():
         supports_check_mode=True,
         mutually_exclusive=[['content', 'src']]
     )
-    
+
     '''
     if src is a directory, dest must also be directory
-    if src and dest are files the parent directory of dest is not created 
+    if src and dest are files the parent directory of dest is not created
     and the task fails if it does not already exist.
     '''
 
@@ -146,7 +146,8 @@ def run_module():
     tmpdir = module.tmpdir
 
     if (src and os.path.isfile(src)) or content:
-        after_local_file = copy_file_to_tmp_directory(module, tmpdir, src, dest, content)
+        after_local_file = copy_file_to_tmp_directory(
+            module, tmpdir, src, dest, content)
         remote_after_file_parent_dir = get_parent_dir(dest)
         file_req = FileRequest(connection)
         file_req.set_path(domain, dest)
@@ -160,7 +161,7 @@ def run_module():
         except ConnectionError as ce:
             result['changed'] = False
             module.fail_json(msg=to_text(ce), **result)
-        
+
         try:
             remote_before_file = get_remote_data(file_req)
             result['remote_before_file'] = remote_before_file
@@ -169,17 +170,19 @@ def run_module():
             module.fail_json(msg=to_text(ce), **result)
 
         if remote_before_file:
-            before_local_file = copy_file_to_tmp_directory(module, tmpdir, src=None, dest=remote_before_file['_links']['self']['href'], content=remote_before_file['file'])
+            before_local_file = copy_file_to_tmp_directory(
+                module, tmpdir, src=None, dest=remote_before_file['_links']['self']['href'], content=remote_before_file['file'])
             result['before_local_file'] = str(before_local_file)
         else:
             before_local_file = None
         diff = get_file_diff(before_local_file, after_local_file, dest, state)
-               
+
         if module._diff:
             result['diff'] = diff
 
-        request = get_request_func(file_req, before_local_file, after_local_file, state)
-        
+        request = get_request_func(
+            file_req, before_local_file, after_local_file, state)
+
         if module.check_mode:
             if request is not None:
                 result['changed'] = True
@@ -205,10 +208,9 @@ def run_module():
         module.fail_json(msg='Directories are not supported.')
 
 
-
 def main():
     run_module()
-    
+
 
 if __name__ == '__main__':
     main()

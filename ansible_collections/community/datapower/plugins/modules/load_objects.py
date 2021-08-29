@@ -3,7 +3,6 @@
 # Copyright: (c) 2020, Anthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 from __future__ import (absolute_import, division, print_function)
-
 __metaclass__ = type
 
 DOCUMENTATION = r'''
@@ -25,12 +24,12 @@ options:
         description: |
             Dictionary of Objects to import.
             This dictionary can be built manually or
-            from export_objects module with the returned 
+            from export_objects module with the returned
             objects variable.
         required: true
         type: dict
 
-author: 
+author:
 - Anthony Schneider (@br35ba56)
 '''
 
@@ -248,23 +247,23 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
 
 
 def run_module():
-    #https://www.ibm.com/docs/en/datapower-gateways/10.0.x?topic=actions-export-action 
     module_args = dict(
-        domain = dict(type='str', required=True),
-        objects = dict(type='dict', required=True)
+        domain=dict(type='str', required=True),
+        objects=dict(type='dict', required=True)
     )
-      
+
     module = AnsibleModule(
         argument_spec=module_args,
         supports_check_mode=False
     )
     connection = Connection(module._socket_path)
     result = {}
-    
+
     action = "LoadConfiguration"
     objects = deepcopy(module.params.get('objects'))
     # Convert booleans in the domain dictionaries
-    action_req = ActionQueueRequest(connection, module.params.get('domain'), action, objects)
+    action_req = ActionQueueRequest(
+        connection, module.params.get('domain'), action, objects)
 
     try:
         response = action_req.post()
@@ -272,7 +271,7 @@ def run_module():
         response = to_text(e)
         result['changed'] = False
         module.fail_json(msg=response, **result)
-    
+
     result['response'] = response
     result['changed'] = True
     module.exit_json(**result)

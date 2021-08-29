@@ -16,8 +16,8 @@ version_added: "1.0.0"
 description: Execute actions on a DataPower Application Domain.
     Actions are dependent on platform, domain, and or firmware version.
     Actions available include but are not limited to quiesce, save config, reboot.
-    Please use export_domains, import_domains, export_objects, load_config modules for 
-    Export / Import / LoadConfiguration actions.
+    Please use export_domains, import_domains, export_objects, load_config
+    modules for Export / Import / LoadConfiguration actions.
 
 options:
     domain:
@@ -28,14 +28,14 @@ options:
         description: The action to be performed
         required: true
         type: str
-        aliases: 
+        aliases:
           - name
     parameters:
         description: parameters, if any, that the action requires
         required: false
         type: dict
 
-author: 
+author:
 - Anthony Schneider (@br35ba56)
 '''
 
@@ -45,7 +45,7 @@ EXAMPLES = r'''
     domain: default
     action: SaveConfig
 
-- name: Quiesce DataPower 
+- name: Quiesce DataPower
   community.datapower.action:
     domain: default
     action: QuiesceDP
@@ -85,15 +85,15 @@ display = Display()
 
 # Exclude actions here that have a module.
 excluded_actions = {
-    'Export' : [ 
+    'Export': [
         'export_domains',
         'export_objects'
-    ], 
-    'Import' : [
+    ],
+    'Import': [
         'import_domains',
         'load_objects'
-    ], 
-    'LoadConfiguration' : [
+    ],
+    'LoadConfiguration': [
         'load_objects'
     ]
 }
@@ -101,11 +101,11 @@ excluded_actions = {
 
 def run_module():
     module_args = dict(
-        domain = dict(type='str', required=True),
-        action = dict(type='str', required=True, aliases=['name']),
-        parameters = dict(type='dict', required=False)
+        domain=dict(type='str', required=True),
+        action=dict(type='str', required=True, aliases=['name']),
+        parameters=dict(type='dict', required=False)
     )
-    
+
     module = AnsibleModule(
         argument_spec=module_args,
         supports_check_mode=False
@@ -117,7 +117,8 @@ def run_module():
 
     if action in excluded_actions:
         mods = ', '.join(excluded_actions[action])
-        warning_message = 'The action \'' + action + '\' has a module(s) that specifically target these actions, please see modules ' + mods
+        warning_message = 'The action \'' + action + \
+            '\' has a module(s) that specifically target these actions, please see modules ' + mods
         module.warn(warning_message)
         module.fail_json(msg=warning_message, **result)
 
@@ -130,7 +131,7 @@ def run_module():
         response = to_text(e)
         result['changed'] = False
         module.fail_json(msg=response, **result)
-    
+
     result['response'] = response
     result['changed'] = True
     module.exit_json(**result)

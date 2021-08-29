@@ -46,7 +46,7 @@ options:
         required: False
         type: bool
 
-author: 
+author:
 - Anthony Schneider (@br35ba56)
 '''
 
@@ -56,7 +56,7 @@ EXAMPLES = r'''
   community.datapower.get_config:
     domain: default
     class_name: SSLClientProfile
-    
+
 - name: Get a tls profile
   community.datapower.get_config:
     domain: default
@@ -78,7 +78,7 @@ response:
             "AES_256_GCM_SHA384",
             "CHACHA20_POLY1305_SHA256",
             "AES_128_GCM_SHA256",
-            "ECDHE_ECDSA_WITH_AES_256_GCM_SHA384", 
+            "ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",
             "ECDHE_RSA_WITH_AES_256_GCM_SHA384",
             "ECDHE_ECDSA_WITH_AES_256_CBC_SHA384",
             "ECDHE_RSA_WITH_AES_256_CBC_SHA384",
@@ -202,14 +202,14 @@ def run_module():
     recursive = module.params.get('recursive')
     depth = module.params.get('depth')
     status = module.params.get('status')
-    
+
     connection = Connection(module._socket_path)
     dp_req = ConfigRequest(connection)
     dp_req.set_path(domain, class_name, name, field)
     dp_req.set_options(recursive=recursive, depth=depth, status=status)
     result = {}
     result['options'] = dp_req.options
-    
+
     try:
         dp_resp = dp_req.get()
     except ConnectionError as e:

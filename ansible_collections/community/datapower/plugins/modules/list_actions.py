@@ -22,7 +22,7 @@ options:
         default: default
         type: str
 
-author: 
+author:
 - Anthony Schneider (@br35ba56)
 '''
 
@@ -34,7 +34,7 @@ EXAMPLES = r'''
 
 RETURN = r'''
 actions:
-    description: List of actions available for a particular domain.  
+    description: List of actions available for a particular domain.
     type: list
     returned: on success
     sample: [
@@ -66,18 +66,18 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
 
 def run_module():
     module_args = dict(
-        domain = dict(type='str', required=False, default='default')
+        domain=dict(type='str', required=False, default='default')
     )
-    
+
     module = AnsibleModule(
         argument_spec=module_args,
         supports_check_mode=True
     )
     connection = Connection(module._socket_path)
-    
+
     dp_req = ListActionsRequest(connection, module.params['domain'])
     result = {}
-    
+
     try:
         response = dp_req.get()
     except ConnectionError as e:

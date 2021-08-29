@@ -3,7 +3,6 @@
 # Copyright: (c) 2020, Anthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 from __future__ import (absolute_import, division, print_function)
-
 __metaclass__ = type
 
 DOCUMENTATION = r'''
@@ -17,7 +16,7 @@ version_added: "1.0.0"
 description:  List status types that can be retrieved from DataPower.
     This module would be used to determine a valid status object for the "status" module.
 
-author: 
+author:
 - Anthony Schneider (@br35ba56)
 '''
 
@@ -28,7 +27,7 @@ EXAMPLES = r'''
 
 RETURN = r'''
 statuses:
-    description: A list of all valid status objects in datapower.  
+    description: A list of all valid status objects in datapower.
         Use the values for determine what is a valid status to fetch in the status module.
     type: list
     returned: on success
@@ -81,13 +80,13 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
 def run_module():
     module_args = dict(
     )
-    
+
     module = AnsibleModule(
         argument_spec=module_args,
         supports_check_mode=True
     )
     connection = Connection(module._socket_path)
-    
+
     dp_req = ListStatusObjectsRequest(connection)
 
     result = {}

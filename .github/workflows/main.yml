@@ -25,26 +25,16 @@ jobs:
           pip install ansible-lint==5.0.11
           pip install voluptuous
           pip install -r ansible_collections/community/datapower/requirements.txt;
-      - name: Run unit tests
+
+      - name: Sanity tests
+        working-directory: ansible_collections/community/datapower
+        run: |
+          ansible-test sanity --test validate-modules
+          ansible-test sanity --test pep8 plugins/modules/
+
+      - name: Unit tests
         working-directory: ansible_collections/community/datapower
         run: |
           ansible-test units \
            --python 3.7 \
            --venv -v tests/unit/module_utils/datapower/
-
-      - name: Run sanity tests 
-        working-directory: ansible_collections/community/datapower
-        run: |
-          ansible-test sanity --test validate-modules config 
-          ansible-test sanity --test validate-modules files
-          ansible-test sanity --test validate-modules get_config
-          ansible-test sanity --test validate-modules list_objects
-          ansible-test sanity --test validate-modules action
-          ansible-test sanity --test validate-modules list_actions
-          ansible-test sanity --test validate-modules get_action_schema
-          ansible-test sanity --test validate-modules export_objects
-          ansible-test sanity --test validate-modules export_domains
-          ansible-test sanity --test validate-modules import_domains
-          ansible-test sanity --test validate-modules load_objects
-          ansible-test sanity --test validate-modules status
-          ansible-test sanity --test validate-modules list_status

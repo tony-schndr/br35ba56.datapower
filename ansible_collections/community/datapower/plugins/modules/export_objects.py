@@ -24,7 +24,7 @@ options:
         type: str
     objects:
         description: |
-            A JSON-formatted array of objects to export. 
+            A JSON-formatted array of objects to export.
             Each object must have a name and object class,
             but you can control the inclusion of referenced
             objects and files. If the object is a DataPower
@@ -41,7 +41,7 @@ options:
         description: Determines whether to export referenced files.
         required: false
         type: bool
-        default: false    
+        default: false
     all_files:
         description: |
             Determines whether to include all files
@@ -52,30 +52,30 @@ options:
     persisted:
         description: |
             Determines whether to export from
-            persisted or running configuration. 
+            persisted or running configuration.
         required: false
         type: bool
-        default: true      
+        default: true
     include_internal_files:
         description: |
             Determines whether to include internal files.
-            The inclusion of the internal files can reduce 
-            import errors when the export package is from 
-            an earlier firmware version. Therefore, when 
-            you export and import at the same firmware version, 
+            The inclusion of the internal files can reduce
+            import errors when the export package is from
+            an earlier firmware version. Therefore, when
+            you export and import at the same firmware version,
             these files are unnecessary.
         required: false
         type: bool
-        default: false 
+        default: false
 
-author: 
+author:
 - Anthony Schneider (@br35ba56)
 '''
 
 EXAMPLES = r'''
 - name: Export objects
   community.datapower.export_objects:
-    domain: default 
+    domain: default
     ref_objects: yes
     objects:
       - name: valcred
@@ -117,17 +117,17 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt
 
 
 def run_module():
-    #https://www.ibm.com/docs/en/datapower-gateways/10.0.x?topic=actions-export-action 
+    # https://www.ibm.com/docs/en/datapower-gateways/10.0.x?topic=actions-export-action
     module_args = dict(
-        domain = dict(type='str', required=True),
-        objects = dict(type='list', required=True, elements='dict'),
-        ref_objects = dict(type='bool', required=False, default=False),
-        ref_files = dict(type='bool', required=False, default=False),
-        all_files = dict(type='bool', required=False, default=False),
-        persisted = dict(type='bool', required=False, default=True),
-        include_internal_files = dict(type='bool', required=False, default=False)
+        domain=dict(type='str', required=True),
+        objects=dict(type='list', required=True, elements='dict'),
+        ref_objects=dict(type='bool', required=False, default=False),
+        ref_files=dict(type='bool', required=False, default=False),
+        all_files=dict(type='bool', required=False, default=False),
+        persisted=dict(type='bool', required=False, default=True),
+        include_internal_files=dict(type='bool', required=False, default=False)
     )
-      
+
     module = AnsibleModule(
         argument_spec=module_args,
         supports_check_mode=False
@@ -141,22 +141,23 @@ def run_module():
         obj['ref-objects'] = "on" if module.params['ref_objects'] else "off"
         obj['ref-files'] = "on" if module.params['ref_files'] else "off"
 
-    del params['ref_objects']  
-    del params['ref_files']   
+    del params['ref_objects']
+    del params['ref_files']
 
     parameters = map_module_args_to_datapower_keys(params)
     parameters = convert_bool_to_on_or_off(parameters)
     parameters['Format'] = 'JSON'
-    action_req = ActionQueueRequest(connection, module.params['domain'], action, parameters)
-    
+    action_req = ActionQueueRequest(
+        connection, module.params['domain'], action, parameters)
+
     try:
         response = action_req.post()
     except ConnectionError as e:
         response = to_text(e)
         result['changed'] = False
         module.fail_json(msg=response, **result)
-    
-    # TODO: what should be done if no objects are exported?  
+
+    # TODO: what should be done if no objects are exported?
     result['objects'] = response['result']['LoadConfiguration']
     result['changed'] = True
     module.exit_json(**result)

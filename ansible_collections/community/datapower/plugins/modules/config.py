@@ -13,9 +13,9 @@ short_description: Manage Configuration objects in DataPower Application Domains
 
 version_added: "1.0.0"
 
-description: Manage Configuration objects in DataPower Application Domains.  
+description: Manage Configuration objects in DataPower Application Domains.
     This will overwrite the object if it exists, or create a new one if it doesn't.
-    This module does not create child objects. If a parent object references a 
+    This module does not create child objects. If a parent object references a
     child object, that object must exist for the parent to be created successfully.
 
 options:
@@ -24,17 +24,17 @@ options:
         required: true
         type: str
     class_name:
-        description: 
+        description:
             - DataPower config object class name.  Valid class name can be determined via GET at URI /mgmt/config/ or the config_info module.
         required: false
         type: str
     name:
-        description: DataPower config object name.  
+        description: DataPower config object name.
         required: false
         type: str
     config:
         description: The REST payload of the configuration object being targeted.  One way to determine a valid payload is to create
-            the object in the GUI first, then retrieve it with a GET request or the get_config module. 
+            the object in the GUI first, then retrieve it with a GET request or the get_config module.
         required: True
         type: dict
     state:
@@ -45,7 +45,7 @@ options:
           - present
           - absent
 
-author: 
+author:
 - Anthony Schneider (@br35ba56)
 '''
 
@@ -118,15 +118,15 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower impo
 
 def run_module():
     module_args = dict(
-        domain = dict(type='str', required=True),
-        config = dict(type='dict', required=True),
-        class_name = dict(type='str', required=False),
-        name = dict(type='str', required=False),
-        state = dict(type='str', choices=['present', 'absent'], required=True)
+        domain=dict(type='str', required=True),
+        config=dict(type='dict', required=True),
+        class_name=dict(type='str', required=False),
+        name=dict(type='str', required=False),
+        state=dict(type='str', choices=['present', 'absent'], required=True)
     )
     module = AnsibleModule(
         argument_spec=module_args,
-        supports_check_mode=True 
+        supports_check_mode=True
     )
 
     connection = Connection(module._socket_path)
@@ -136,9 +136,10 @@ def run_module():
     config = module.params.get('config')
     state = module.params.get('state')
 
-    dp_obj = Config(domain=domain,class_name=class_name, name=name, config=config )
+    dp_obj = Config(domain=domain, class_name=class_name,
+                    name=name, config=config)
     dp_req = ConfigRequest(connection)
-    dp_req.set_path(domain, dp_obj.class_name, dp_obj.name) 
+    dp_req.set_path(domain, dp_obj.class_name, dp_obj.name)
     dp_req.set_body(dp_obj.config)
     result = dict()
 
@@ -152,7 +153,8 @@ def run_module():
     if module._diff:
         result['diff'] = dp_diff.get_change_list(dp_state_resp, dp_req.body)
 
-    request = get_request_func(dp_req, before=dp_state_resp, after=dp_req.body, state=state)
+    request = get_request_func(
+        dp_req, before=dp_state_resp, after=dp_req.body, state=state)
 
     if module.check_mode:
         if request:
@@ -188,7 +190,7 @@ def get_request_func(req, before, after, state):
         else:
             return req.delete
 
-    
+
 def main():
     run_module()
 

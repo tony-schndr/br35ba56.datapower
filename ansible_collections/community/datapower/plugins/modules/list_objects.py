@@ -21,8 +21,8 @@ options:
         default: default
         type: str
         required: false
-  
-author: 
+
+author:
 - Anthony Schneider (@br35ba56)
 '''
 
@@ -35,7 +35,7 @@ EXAMPLES = r'''
   community.datapower.list_objects:
     domain: foo
 '''
- 
+
 RETURN = r'''
 objects:
     description: List of configurable objects for a DataPower domain
@@ -66,9 +66,9 @@ objects:
 
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import (
-    ConnectionError, 
+    ConnectionError,
     Connection
-) 
+)
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     ListConfigObjectsRequest
@@ -77,16 +77,16 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
 
 def run_module():
     module_args = dict(
-        domain = dict(type='str', required=False, default='default')
+        domain=dict(type='str', required=False, default='default')
     )
 
     module = AnsibleModule(
         argument_spec=module_args,
-        supports_check_mode=True 
+        supports_check_mode=True
     )
-    
+
     connection = Connection(module._socket_path)
-    
+
     req = ListConfigObjectsRequest(connection, module.params['domain'])
 
     resp = req.get()

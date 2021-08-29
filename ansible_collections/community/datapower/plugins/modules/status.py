@@ -3,7 +3,6 @@
 # Copyright: (c) 2020, Anthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 from __future__ import (absolute_import, division, print_function)
-
 __metaclass__ = type
 
 DOCUMENTATION = r'''
@@ -22,11 +21,11 @@ options:
         required: true
         type: str
     name:
-        description: Name of the status 
+        description: Name of the status
         required: true
         type: str
 
-author: 
+author:
 - Anthony Schneider (@br35ba56)
 '''
 
@@ -76,17 +75,18 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
 
 def run_module():
     module_args = dict(
-        domain = dict(type='str', required=True),
-        name = dict(type='str', required=True)
+        domain=dict(type='str', required=True),
+        name=dict(type='str', required=True)
     )
-    
+
     module = AnsibleModule(
         argument_spec=module_args,
         supports_check_mode=True
     )
 
     connection = Connection(module._socket_path)
-    dp_req = StatusRequest(connection, module.params.get('domain'), module.params.get('name'))
+    dp_req = StatusRequest(connection, module.params.get(
+        'domain'), module.params.get('name'))
     result = {}
 
     try:

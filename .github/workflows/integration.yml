@@ -31,6 +31,9 @@ jobs:
         working-directory: ansible_collections/community/datapower
         run: |
           docker-compose up -d
+          sleep 30
+          ansible-test network-integration
+
       - name: Build package
         working-directory: ansible_collections/community/datapower
         run: |

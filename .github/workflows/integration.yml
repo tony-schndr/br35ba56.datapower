@@ -27,13 +27,14 @@ jobs:
           then 
             pip install -r ansible_collections/community/datapower/requirements.txt; 
           fi
+           
       - name: Integration Tests
-        working-directory: ansible_collections/community/datapower
+        working-directory: 
         run: |
-          chmod 777 dp/config dp/local dp/certs  
+          chmod 777 dp/config dp/local dp/certs 
           docker-compose up -d
           sleep 30
-          ansible-test network-integration
+          cd ansible_collections/community/datapower && ansible-test network-integration
 
       - name: Build package
         working-directory: ansible_collections/community/datapower

@@ -1,6 +1,6 @@
 name: Network Integration
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -31,5 +31,6 @@ jobs:
             >> ansible_collections/community/datapower/tests/integration/inventory.networking
           chmod 777 dp/config
           docker-compose up -d
+          # Delay to give container time to start.
           sleep 20
           cd ansible_collections/community/datapower && ansible-test network-integration

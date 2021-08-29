@@ -1,4 +1,4 @@
-name: Python package
+name: Network Integration
 
 on: [push]
 
@@ -33,8 +33,3 @@ jobs:
           docker-compose up -d
           sleep 30
           cd ansible_collections/community/datapower && ansible-test network-integration
-
-      - name: Build package
-        working-directory: ansible_collections/community/datapower
-        run: |
-          ansible-galaxy collection build --force

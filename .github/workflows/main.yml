@@ -1,4 +1,4 @@
-name: Python package
+name: Unit and Sanity Tests
 
 on: [push]
 
@@ -24,10 +24,7 @@ jobs:
           pip install ansible-bender==0.8.1
           pip install ansible-lint==5.0.11
           pip install voluptuous
-          if [ -f ansible_collections/community/datapower/requirements.txt ]; 
-          then 
-            pip install -r ansible_collections/community/datapower/requirements.txt; 
-          fi
+          pip install -r ansible_collections/community/datapower/requirements.txt;
       - name: Run unit tests
         working-directory: ansible_collections/community/datapower
         run: |
@@ -51,14 +48,3 @@ jobs:
           ansible-test sanity --test validate-modules load_objects
           ansible-test sanity --test validate-modules status
           ansible-test sanity --test validate-modules list_status
-      - name: Build package
-        working-directory: ansible_collections/community/datapower
-        run: |
-          git clone https://github.com/Br35Ba56/ansible-datapower-runtime.git
-          
-          
-
-      - name: Build package
-        working-directory: ansible_collections/community/datapower
-        run: |
-          ansible-galaxy collection build --force

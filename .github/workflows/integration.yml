@@ -23,13 +23,14 @@ jobs:
           pip install ansible-bender==0.8.1
           pip install ansible-lint==5.0.11
           pip install voluptuous
-          pip install -r ansible_collections/community/datapower/requirements.txt; 
-          
+          pip install -r ansible_collections/community/datapower/requirements.txt;
+
       - name: Integration Tests
         run: |
-          python --version
-          which python
+          # Inject interpreter path at runtime.
+          echo "ansible_python_interpreter=$(which python3)" \
+            >> ansible_collections/community/datapower/tests/integration/inventory.networking
           chmod 777 dp/config
           docker-compose up -d
-          sleep 30
+          sleep 15
           cd ansible_collections/community/datapower && ansible-test network-integration

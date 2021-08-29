@@ -23,12 +23,12 @@ jobs:
           pip install ansible-bender==0.8.1
           pip install ansible-lint==5.0.11
           pip install voluptuous
+          pip install -r ansible_collections/community/datapower/requirements.txt; 
           
       - name: Integration Tests
         run: |
-          pip install dictdiffer
-          pip --version
-          pip freeze
+          python --version
+          which python
           chmod 777 dp/config dp/local
           docker-compose up -d
           sleep 30

@@ -51,6 +51,12 @@ jobs:
           ansible-test sanity --test validate-modules load_objects
           ansible-test sanity --test validate-modules status
           ansible-test sanity --test validate-modules list_status
+      - name: Build package
+        working-directory: ansible_collections/community/datapower
+        run: |
+          git clone https://github.com/Br35Ba56/ansible-datapower-runtime.git
+          
+          
 
       - name: Build package
         working-directory: ansible_collections/community/datapower

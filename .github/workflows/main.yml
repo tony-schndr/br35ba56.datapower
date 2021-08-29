@@ -32,6 +32,7 @@ jobs:
         run: |
           ansible-test sanity --test validate-modules
           ansible-test sanity --test pep8 plugins/modules/
+          ansible-test sanity --test line-endings
 
       - name: Unit tests
         working-directory: ansible_collections/community/datapower

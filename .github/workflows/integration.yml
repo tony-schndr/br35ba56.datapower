@@ -31,7 +31,7 @@ jobs:
       - name: Integration Tests
         working-directory: 
         run: |
-          chmod 777 dp/config dp/local dp/certs 
+          chmod 777 dp/config dp/local
           docker-compose up -d
           sleep 30
           cd ansible_collections/community/datapower && ansible-test network-integration

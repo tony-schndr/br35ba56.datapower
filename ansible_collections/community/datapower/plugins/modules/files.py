@@ -103,12 +103,12 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt
 from ansible_collections.community.datapower.plugins.module_utils.datapower.filestore import (
     copy_file_to_tmp_directory,
     get_file_diff,
-    get_request_func,
     get_parent_dir
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     FileRequest,
-    DirectoryRequest
+    DirectoryRequest,
+    get_request_func
 )
 
 TOP_DIRS = ['local', 'cert', 'sharedcert']

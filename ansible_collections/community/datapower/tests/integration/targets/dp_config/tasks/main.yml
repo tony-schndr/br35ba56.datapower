@@ -1,113 +1,3 @@
----
-- name: Delete the foo domain
-  community.datapower.config:
-    domain: default 
-    state: absent
-    config: 
-      Domain:
-        mAdminState: enabled
-        name: foo
-
-- name: Create the foo domain
-  community.datapower.config:
-    domain: default 
-    state: present
-    config: 
-      Domain:
-        mAdminState: enabled
-        name: foo
-
-- name: Create the log target
-  community.datapower.config:
-    domain: foo
-    state: present
-    config:
-      LogTarget:
-        IdleTimeout: 15
-        LocalAddress: 0.0.0.0
-        LocalIdentifier: dp-1
-        LogEvents:
-          Class:
-            value: all
-          Priority: notice
-        LogPrecision: second
-        LongRetryInterval: 20
-        Priority: normal
-        RateLimit: 100
-        RemoteAddress: 192.168.168.88
-        RemotePort: 514
-        RetryAttempts: 1
-        RetryInterval: 1
-        Rotate: 3
-        SSLClientConfigType: proxy
-        Size: 500
-        SoapVersion: soap11
-        SyslogFacility: user
-        TimestampFormat: zulu
-        Type: syslog-tcp
-        UploadMethod: ftp
-        UseANSIColor: 'off'
-        mAdminState: enabled
-        name: syslog_LogTarget
-
-- name: Get before syslog_LogTarget
-  community.datapower.get_config:
-    domain: foo
-    class_name: LogTarget
-    name: syslog_LogTarget
-  register: before_syslog_LogTarget
-
-- name: Add event filters to log target
-  community.datapower.config:
-    domain: foo
-    state: present
-    config:
-      LogTarget:
-        IdleTimeout: 15
-        LocalAddress: 0.0.0.0
-        LocalIdentifier: dp-1
-        LogEventFilter:
-        - '0x080c00010'
-        - '0x08580005c'
-        - '0x85a0000a'
-        LogEvents:
-          Class:
-            value: all
-          Priority: notice
-        LogPrecision: second
-        LongRetryInterval: 20
-        Priority: normal
-        RateLimit: 100
-        RemoteAddress: 192.168.168.88
-        RemotePort: 514
-        RetryAttempts: 1
-        RetryInterval: 1
-        Rotate: 3
-        SSLClientConfigType: proxy
-        Size: 500
-        SoapVersion: soap11
-        SyslogFacility: user
-        TimestampFormat: zulu
-        Type: syslog-tcp
-        UploadMethod: ftp
-        UseANSIColor: 'off'
-        mAdminState: enabled
-        name: syslog_LogTarget
-  
-- name: Get after syslog_LogTarget
-  community.datapower.get_config:
-    domain: foo
-    class_name: LogTarget
-    name: syslog_LogTarget
-  register: after_syslog_LogTarget
-
-- name: Assert the param LogEventFilter did not exist and was added.
-  assert:
-    that:
-      - "{{ 'LogEventFilter' not in before_syslog_LogTarget['response']['LogTarget'] }}"
-      - "{{ 'LogEventFilter' in after_syslog_LogTarget['response']['LogTarget'] }}"
-  ignore_errors: no
-
 - name: Ensure WebGUI is enabled prior to test
   community.datapower.config:
     domain: default
@@ -128,7 +18,7 @@
     that:
       - "{{ before['response']['WebGUI']['mAdminState'] == 'enabled' }}"
 
-- name: Make a change to the WebGui
+- name: Disable the WebGUI object
   community.datapower.config:
     domain: default
     class_name: WebGUI
@@ -136,6 +26,7 @@
     state: present
     config:
       mAdminState: disabled
+  register: config_webgui_disabled
 
 - name: Get WebGUI
   community.datapower.get_config:
@@ -143,13 +34,14 @@
     class_name: WebGUI
   register: changed
 
-- name: Assert WebGui configuration was retrieved.
+- name: Assert config changed and task "Disable the WebGUI object" changed is true
   assert:
     that:
       - "{{ changed['response']['WebGUI']['mAdminState'] == 'disabled' }}"
       - "{{ changed != before  }}"
+      - config_webgui_disabled.changed == true
 
-- name: Make the same change to ensure task is idempotent.
+- name: Make same change as "Disable the WebGUI object"
   community.datapower.config:
     domain: default
     class_name: WebGUI
@@ -157,6 +49,7 @@
     state: present
     config:
       mAdminState: disabled
+  register: config_webgui_disabled_not_changed
 
 - name: Get WebGUI
   community.datapower.get_config:
@@ -164,17 +57,18 @@
     class_name: WebGUI
   register: unchanged
 
-- name: Assert state is unchanged
+- name: Assert state is unchanged and task 'Make same change as "Disable the WebGUI object"' changed is false
   assert:
     that:
       - "{{ changed == unchanged  }}"
+      - config_webgui_disabled_not_changed.changed == false
 
 - name: Delete SSL Profile
   community.datapower.config:
     domain: default
     state: absent
     config:
-      SSLClientProfile:        
+      SSLClientProfile:
         name: tls-client-profile
 
 - name: Delete Crypto ValCred
@@ -182,7 +76,7 @@
     domain: default
     state: absent
     config:
-      CryptoValCred:        
+      CryptoValCred:
         name: valcred
 
 - name: Create Test1 Crypto Certficiate
@@ -190,7 +84,7 @@
     domain: default
     state: present
     config:
-      CryptoCertificate:        
+      CryptoCertificate:
         name: Test1
         Filename: cert:///webgui-sscert.pem
 
@@ -199,7 +93,7 @@
     domain: default
     state: present
     config:
-      CryptoCertificate:        
+      CryptoCertificate:
         name: Test2
         Filename: cert:///webgui-sscert.pem
 
@@ -208,7 +102,7 @@
     domain: default
     state: present
     config:
-      CryptoValCred:        
+      CryptoValCred:
         name: valcred
 
 - name: Update a CryptoValCred Certificate list property to 1 item.
@@ -224,7 +118,7 @@
 
 - name: Get valcred to check its state was update.
   community.datapower.get_config:
-    domain: default 
+    domain: default
     class_name: CryptoValCred
     name: valcred
   register: valcred
@@ -235,7 +129,7 @@
       - "{{ valcred['response']['CryptoValCred']['Certificate']['value'] is defined }}"
       - "{{ valcred_result['response']['valcred'] == 'Configuration was updated.'  }}"
   ignore_errors: no
-      
+
 - name: Update a CryptoValCred Certificate list property to 2 items.
   community.datapower.config:
     domain: default

@@ -1,4 +1,7 @@
 from __future__ import absolute_import, division, print_function
+from ansible_collections.community.datapower.plugins.module_utils.datapower import (
+    dp_diff
+)
 __metaclass__ = type
 
 import random
@@ -8,13 +11,13 @@ from ansible.module_utils.connection import ConnectionError
 from ansible_collections.community.datapower.plugins.module_utils.datapower.classes import valid_objects
 
 PARAM_MAP = {
-    #Export mapping
+    # Export mapping
     'domains': 'Domain',
     'objects': 'Object',
     'format': 'Format',
     'ref_objects': 'ref-obj',
     'ref_files': 'ref-files',
-    'include_debug':'include-debug',
+    'include_debug': 'include-debug',
     'user_comment': 'UserComment',
     'all_files': 'AllFiles',
     'persisted': 'Persisted',
@@ -25,7 +28,8 @@ PARAM_MAP = {
     'rewrite_local_ip': 'RewriteLocalIP'
 }
 
-EXCLUDED_KEYS = ['domain',  'dest', 'export_path']
+EXCLUDED_KEYS = ['domain', 'dest', 'export_path']
+
 
 class Config():
     # domain and class_name are the bare minimum required to get a valid
@@ -54,7 +58,7 @@ class Config():
             self.config = {
                 self.class_name: config
             }
-    
+
     def set_options(self, options):
         self.options = options
 
@@ -70,7 +74,7 @@ class Config():
             raise ValueError('Invalid class_name or no class_name provided.')
 
     # Try to set name, the module allows for some flexibility
-    # it can be set by specifying it as name 
+    # it can be set by specifying it as name
     # or within the config dictionary
     def set_name(self, name=None, config=None):
         if not name:
@@ -83,10 +87,16 @@ class Config():
         else:
             self.name = name
 
+    def __eq__(self, o):
+        if isinstance(o, Config):
+            return not dp_diff.is_changed(self.config, o.config)
+        return False
 
 # This is hardcoded, the response is from DataPower v 10.0.1.0.
 # This should greatly improved by having it check at the beginning
 # of module execution
+
+
 def is_valid_class(class_name):
     return class_name in valid_objects
 
@@ -104,7 +114,7 @@ def get_remote_data(req):
 
 
 def convert_bool_to_on_or_off(parameters):
-    for k,v in parameters.items():
+    for k, v in parameters.items():
         if isinstance(v, bool):
             if v:
                 parameters[k] = 'on'
@@ -119,5 +129,6 @@ def map_module_args_to_datapower_keys(parameters):
 
 def get_random_file_name(extension=''):
     letters = string.ascii_lowercase
-    filename =  ''.join(random.choice(letters) for i in range(16)) + '.' + extension
+    filename = ''.join(random.choice(letters)
+                       for i in range(16)) + '.' + extension
     return filename

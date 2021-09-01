@@ -11,7 +11,8 @@ import pytest
 from ansible_collections.community.datapower.plugins.module_utils.datapower import filestore
 from ansible_collections.community.datapower.plugins.module_utils.datapower.files import LocalFile
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-    Request
+    Request,
+    get_request_func
 )
 
 
@@ -61,7 +62,7 @@ def test_get_files_from_filestore_single_file():
             }
         }
     }
-    
+
     files = filestore.get_files_from_filestore(filestore_resp)
     assert files == ['/mgmt/filestore/default/local/demo.txt']
 
@@ -121,7 +122,7 @@ def test_get_files_from_filestore_multiple_files():
             }
         }
     }
-    
+
     files = filestore.get_files_from_filestore(filestore_resp)
     assert files == [
         '/mgmt/filestore/default/local/demo.txt',
@@ -145,8 +146,8 @@ def test_get_request_func_files_equal():
     connection = Connection()
     req = Request(connection)
 
-    func = filestore.get_request_func(req, from_lf, to_lf, 'present')
-    assert func == None 
+    func = get_request_func(req, from_lf, to_lf, 'present')
+    assert func == None
 
 
 def test_get_request_func_files_not_equal():
@@ -158,7 +159,7 @@ def test_get_request_func_files_not_equal():
     connection = Connection()
     req = Request(connection)
 
-    func = filestore.get_request_func(req, from_lf, to_lf, 'present')
+    func = get_request_func(req, from_lf, to_lf, 'present')
     assert func.__name__ == 'put'
 
 
@@ -169,7 +170,7 @@ def test_get_request_func_file_does_not_exist_on_remote():
     connection = Connection()
     req = Request(connection)
 
-    func = filestore.get_request_func(req, None, to_lf, 'present')
+    func = get_request_func(req, None, to_lf, 'present')
     assert func.__name__ == 'post'
 
 
@@ -180,7 +181,7 @@ def test_get_request_func_delete_file_that_does_not_exist():
     connection = Connection()
     req = Request(connection)
 
-    func = filestore.get_request_func(req, None, to_lf, 'absent')
+    func = get_request_func(req, None, to_lf, 'absent')
     assert func == None
 
 
@@ -191,5 +192,5 @@ def test_get_request_func_delete_file_that_exists():
     connection = Connection()
     req = Request(connection)
 
-    func = filestore.get_request_func(req, from_lf, None, 'absent')
+    func = get_request_func(req, from_lf, None, 'absent')
     assert func.__name__ == 'delete'

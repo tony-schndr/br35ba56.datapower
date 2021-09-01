@@ -53,22 +53,6 @@ def get_files_from_filestore(filestore):
         return [file['href'] for file in filestore['filestore']['location']['file']]
 
 
-def get_request_func(req, before_file, after_file, state):
-    if state == 'present':
-        if before_file is None:
-            return req.post
-        else:
-            if before_file != after_file:
-                return req.put
-            else:
-                return None
-    else:
-        if before_file is None:
-            return None
-        else:
-            return req.delete
-
-
 def get_parent_dir(path):
     # Get the parent directory
     return posixpath.split(path)[0]

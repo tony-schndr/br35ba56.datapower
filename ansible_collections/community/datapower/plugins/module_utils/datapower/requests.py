@@ -323,3 +323,16 @@ class ListStatusObjectsRequest(Request):
 
     def get(self):
         return self._process_request(self.path, 'GET', None)
+
+
+def get_request_func(req, before, after, state):
+    if state == 'present':
+        if before is None:
+            return req.post
+        elif before != after:
+            return req.put
+    else:
+        if before is None:
+            return None
+        else:
+            return req.delete

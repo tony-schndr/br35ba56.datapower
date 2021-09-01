@@ -52,7 +52,7 @@ class TestConfig:
             'config': {
                 'Certificate' : [
                     {'name':'valcred'}
-                ]   
+                ]
             }
         }
 
@@ -83,4 +83,3 @@ class TestConfig:
             Config(**kwargs)
         except ValueError:
             assert True
-            

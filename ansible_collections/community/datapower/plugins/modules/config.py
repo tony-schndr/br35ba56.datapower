@@ -106,10 +106,12 @@ from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     Config,
     get_remote_data
+
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     ConfigRequest,
-    clean_dp_dict
+    clean_dp_dict,
+    get_request_func
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower import (
     dp_diff
@@ -136,25 +138,36 @@ def run_module():
     config = module.params.get('config')
     state = module.params.get('state')
 
-    dp_obj = Config(domain=domain, class_name=class_name,
-                    name=name, config=config)
-    dp_req = ConfigRequest(connection)
-    dp_req.set_path(domain, dp_obj.class_name, dp_obj.name)
-    dp_req.set_body(dp_obj.config)
+    after = Config(
+        domain=domain,
+        class_name=class_name,
+        name=name,
+        config=config
+    )
+    req = ConfigRequest(connection)
+    req.set_path(domain, after.class_name, after.name)
+    req.set_body(after.config)
     result = dict()
 
     try:
-        dp_state_resp = get_remote_data(dp_req)
+        dp_state_resp = get_remote_data(req)
         result['remote_state'] = clean_dp_dict(dp_state_resp)
     except ConnectionError as ce:
         result['changed'] = False
         module.fail_json(msg=to_text(ce), **result)
 
     if module._diff:
-        result['diff'] = dp_diff.get_change_list(dp_state_resp, dp_req.body)
-
+        result['diff'] = dp_diff.get_change_list(dp_state_resp, req.body)
+    if dp_state_resp:
+        before = Config(domain=None, config=dp_state_resp)
+    else:
+        before = None
     request = get_request_func(
-        dp_req, before=dp_state_resp, after=dp_req.body, state=state)
+        req,
+        before=before,
+        after=after,
+        state=state
+    )
 
     if module.check_mode:
         if request:
@@ -176,19 +189,6 @@ def run_module():
         result['changed'] = True
 
     module.exit_json(**result)
-
-
-def get_request_func(req, before, after, state):
-    if state == 'present':
-        if before is None:
-            return req.post
-        elif dp_diff.is_changed(before, after):
-            return req.put
-    else:
-        if before is None:
-            return None
-        else:
-            return req.delete
 
 
 def main():

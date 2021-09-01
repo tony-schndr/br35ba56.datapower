@@ -107,7 +107,11 @@ class DirectoryRequest(Request):
         super(DirectoryRequest, self).__init__(connection)
 
     def set_path(self, domain, dir_path):
-        self.path = self.join_path(domain, dir_path, base_path='/mgmt/filestore/')
+        self.path = self.join_path(
+            domain,
+            dir_path,
+            base_path='/mgmt/filestore/'
+        )
 
     def set_body(self, dir_path):
         # drop root directory
@@ -123,10 +127,8 @@ class DirectoryRequest(Request):
         method = 'POST'
         # Equates to /mgmt/filestore/<domain>/<top_directory>
         path = '/'.join(self.path.split('/')[0:5])
-        
         return self._process_request(path, method, self.body)
 
-    # PUT/POST have equivalent outcomes however have different implementions.
     def put(self):
         raise NotImplementedError('PUT for directories is not implemented')
 
@@ -162,7 +164,7 @@ class ListConfigObjectsRequest(Request):
 
     def set_path(self, domain='default'):
         self.path = self.join_path(base_path='/mgmt/config/')
-    
+
     def get(self):
         return self._process_request(self.path, 'GET', None)
 
@@ -173,8 +175,12 @@ class ListActionsRequest(Request):
         self.set_path(domain)
 
     def set_path(self, domain='default'):
-        self.path = self.join_path(domain, 'operations', base_path='/mgmt/actionqueue/')
-    
+        self.path = self.join_path(
+            domain,
+            'operations',
+            base_path='/mgmt/actionqueue/'
+        )
+
     def get(self):
         return self._process_request(self.path, 'GET', None)
 
@@ -183,9 +189,15 @@ class ConfigRequest(Request):
     def __init__(self, connection):
         super(ConfigRequest, self).__init__(connection)
         self.options = None
-    
-    def set_path(self, domain=None, class_name=None,  name=None, field=None):
-        self.path = self.join_path(domain, class_name, name, field, base_path='/mgmt/config/')
+
+    def set_path(self, domain=None, class_name=None, name=None, field=None):
+        self.path = self.join_path(
+            domain,
+            class_name,
+            name,
+            field,
+            base_path='/mgmt/config/'
+        )
 
     def set_options(self, recursive=False, depth=3, status=False):
         options = {}
@@ -196,7 +208,7 @@ class ConfigRequest(Request):
                 options['depth'] = depth
             else:
                 options['depth'] = 3
-        
+
         if status:
             options['state'] = 1
 
@@ -206,7 +218,7 @@ class ConfigRequest(Request):
         method = 'GET'
         if self.options:
             path = self.path + '?' + self.options
-        else: 
+        else:
             path = self.path
         return self._process_request(path, method, None)
 
@@ -256,12 +268,12 @@ class ActionQueueRequest(Request):
     def __init__(self, connection, domain, action_name, parameters=None):
         super(ActionQueueRequest, self).__init__(connection)
         self.path = ACTION_QUEUE_URI.format(domain)
-                
+
         if parameters:
-            self.body = { action_name : parameters }
+            self.body = {action_name: parameters}
         else:
-            self.body = { action_name : {} }
-            
+            self.body = {action_name: {}}
+
     def post(self):
         path = self.path
         body = self.body
@@ -274,9 +286,10 @@ class ActionQueueRequest(Request):
             start_time = time.time()
             while not self.is_completed(resp):
                 if (time.time() - start_time) > ACTION_QUEUE_TIMEOUT:
-                    raise ActionQueueTimeoutError('Could not retrieve status within defined time out' + path)
+                    raise ActionQueueTimeoutError(
+                        'Could not retrieve status within defined time out' + path)
                 time.sleep(2)
-                resp = self._process_request(path, 'GET', None)     
+                resp = self._process_request(path, 'GET', None)
         return resp
 
     def is_completed(self, resp):
@@ -293,7 +306,11 @@ class ActionQueueRequest(Request):
 class StatusRequest(Request):
     def __init__(self, connection, domain, status_name):
         super(StatusRequest, self).__init__(connection)
-        self.path = self.join_path(domain, status_name, base_path='/mgmt/status/')
+        self.path = self.join_path(
+            domain,
+            status_name,
+            base_path='/mgmt/status/'
+        )
 
     def get(self):
         return self._process_request(self.path, 'GET', None)

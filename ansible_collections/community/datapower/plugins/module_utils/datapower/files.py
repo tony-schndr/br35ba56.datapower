@@ -28,14 +28,14 @@ def get_file_md5(path, block_size=2**20):
 class LocalFile:
     def __init__(self, path: str, content: str = None):
         # set content if you are creating the file using a base64 encoded string from DataPower REST Mgmt Interface.
-        if os.path.isfile(path) and content == None:
+        if os.path.isfile(path) and content is None:
             self.md5 = get_file_md5(path)
         elif not os.path.isfile(path) and content:
             self.md5 = self.create_file_from_base64(path, content)
         elif os.path.isfile(path) and content:
             raise FileNotFoundError(
                 'content was provided and {path} already exists.'.format(path=path))
-        elif not os.path.isfile(path) and content == None:
+        elif not os.path.isfile(path) and content is None:
             raise Exception(
                 'no content provided and {path} does not exist'.format(path=path))
         else:

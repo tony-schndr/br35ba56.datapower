@@ -1,4 +1,4 @@
-valid_objects = [ 
+valid_objects = [
     'AAAPolicy',
     'Domain',
     'LDAPSearchParameters',

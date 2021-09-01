@@ -1,22 +1,10 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
-#
-# This file is part of Ansible
-#
-# Ansible is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# Ansible is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
-#
 
 from __future__ import absolute_import, division, print_function
+from ansible.plugins.httpapi import HttpApiBase
+from ansible.module_utils.six.moves.urllib.error import HTTPError, URLError
+from ansible.module_utils.connection import ConnectionError
+from ansible.module_utils._text import to_text
+import json
 
 __metaclass__ = type
 
@@ -28,13 +16,6 @@ description:
 - This HttpApi plugin provides methods to connect to IBM DataPower REST management interface.
 version_added: 1.0.0
 """
-
-import json
-
-from ansible.module_utils._text import to_text
-from ansible.module_utils.connection import ConnectionError
-from ansible.module_utils.six.moves.urllib.error import HTTPError, URLError
-from ansible.plugins.httpapi import HttpApiBase
 
 
 class HttpApi(HttpApiBase):
@@ -49,6 +30,7 @@ class HttpApi(HttpApiBase):
             path, data, headers=headers, method=method
         )
         return handle_response(response, response_data)
+
 
 def handle_response(response, response_data):
     try:

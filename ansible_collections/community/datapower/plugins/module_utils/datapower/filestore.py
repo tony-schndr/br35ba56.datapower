@@ -9,7 +9,8 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.file
 
 
 def copy_file_to_tmp_directory(module, tmpdir, src, dest, content):
-    random_string = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(16))
+    random_string = ''.join(random.choice(
+        string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(16))
     tmp_path = os.path.join(tmpdir, random_string, dest.lstrip('/'))
     if src and os.path.isfile(src):
         os.makedirs(os.path.split(tmp_path)[0])
@@ -18,7 +19,7 @@ def copy_file_to_tmp_directory(module, tmpdir, src, dest, content):
     elif not src and content:
         # Create file from content
         return LocalFile(path=tmp_path, content=content)
-    
+
 
 def get_file_diff(from_local_file, to_local_file, dest, state):
     if state == 'present':

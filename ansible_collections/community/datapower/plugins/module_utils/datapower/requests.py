@@ -331,8 +331,7 @@ def get_request_func(req, before, after, state):
             return req.post
         elif before != after:
             return req.put
+    elif before is None:
+        return None
     else:
-        if before is None:
-            return None
-        else:
-            return req.delete
+        return req.delete

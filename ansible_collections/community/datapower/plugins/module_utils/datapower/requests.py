@@ -165,9 +165,6 @@ class ListConfigObjectsRequest(Request):
     def set_path(self, domain='default'):
         self.path = self.join_path(base_path='/mgmt/config/')
 
-    def get(self):
-        return self._process_request(self.path, 'GET', None)
-
 
 class ListActionsRequest(Request):
     def __init__(self, connection, domain='default'):
@@ -180,9 +177,6 @@ class ListActionsRequest(Request):
             'operations',
             base_path='/mgmt/actionqueue/'
         )
-
-    def get(self):
-        return self._process_request(self.path, 'GET', None)
 
 
 class ConfigRequest(Request):
@@ -256,9 +250,6 @@ class ActionQueueSchemaRequest(Request):
         super(ActionQueueSchemaRequest, self).__init__(connection)
         self.path = ACTION_QUEUE_SCHEMA_URI.format(domain, action_name)
 
-    def get(self):
-        return self._process_request(self.path, 'GET', None)
-
 
 class ActionQueueTimeoutError(Exception):
     pass
@@ -312,17 +303,11 @@ class StatusRequest(Request):
             base_path='/mgmt/status/'
         )
 
-    def get(self):
-        return self._process_request(self.path, 'GET', None)
-
 
 class ListStatusObjectsRequest(Request):
     def __init__(self, connection):
         super(ListStatusObjectsRequest, self).__init__(connection)
         self.path = self.join_path(base_path='/mgmt/status/')
-
-    def get(self):
-        return self._process_request(self.path, 'GET', None)
 
 
 def get_request_func(req, before, after, state):

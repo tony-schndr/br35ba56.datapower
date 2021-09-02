@@ -13,6 +13,7 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
     DirectoryRequest,
     ActionQueueRequest,
     ActionQueueSchemaRequest,
+    get_request_func
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     Config
@@ -21,7 +22,7 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt
 
 class MockConnection():
     @staticmethod
-    def send_request(path,method,body):
+    def send_request(path, method, body):
         return path, method, body
 
 
@@ -31,21 +32,26 @@ class TestRequest:
         domain = 'default'
         top_directory = 'local'
         file_path = 'dir/subdir/get.js'
-        assert Request.join_path(domain, top_directory,file_path, base_path='/mgmt/filestore/') == '/mgmt/filestore/default/local/dir/subdir/get.js'
-        
+        assert Request.join_path(
+            domain,
+            top_directory,
+            file_path,
+            base_path='/mgmt/filestore/'
+        ) == '/mgmt/filestore/default/local/dir/subdir/get.js'
+
     def test_Request_join_path_no_base_path(self):
         domain = 'default'
         top_directory = 'local'
         file_path = 'dir/subdir/get.js'
         try:
-            Request.join_path(domain, top_directory,file_path)
+            Request.join_path(domain, top_directory, file_path)
             assert False
         except:
             assert True
 
 
 class TestFileRequest:
-    #Need a few more tests with potentially invalid input if handled incorrectly
+    # Need a few more tests with potentially invalid input if handled incorrectly
     connection = MockConnection()
 
     def test_FileRequest__init__(self):
@@ -56,9 +62,9 @@ class TestFileRequest:
         req.set_path(domain,  file_path)
         req.set_body(file_path, content)
         assert req.path == '/mgmt/filestore/default/local/dir/subdir/get.js'
-        assert req.body == {'file':{'name':'get.js', 'content': content}}
+        assert req.body == {'file': {'name': 'get.js', 'content': content}}
 
-    ''' Current test strategy doesn't work here.
+
     def test_FileRequest_create(self):
         domain = 'default'
         file_path = 'local/dir/subdir/get.js'
@@ -66,10 +72,12 @@ class TestFileRequest:
         req = FileRequest(self.connection)
         req.set_path(domain,file_path)
         req.set_body(file_path, content)
-        assert req.post()[0] == '/mgmt/actionqueue/default'
+        #raise Exception(req.post())
+        assert req.post()[0] == '/mgmt/filestore/default/local/dir/subdir'
         assert req.post()[1] == 'POST'
-        assert req.post()[2] == {'LoadConfiguration': {'file':{'name':'get.js', 'content': content}}}
-    '''
+        assert req.post()[2] == {'file': {'name': 'get.js', 'content': content}}
+
+
     def test_FileRequest_update(self):
         domain = 'default'
         file_path = 'local/dir/subdir/get.js'
@@ -79,8 +87,7 @@ class TestFileRequest:
         req.set_body(file_path, content)
         assert req.put()[0] == '/mgmt/filestore/default/local/dir/subdir/get.js'
         assert req.put()[1] == 'PUT'
-        #raise Exception(str(req.put()[2]))
-        assert req.put()[2] == {'file':{'name':'get.js', 'content': content}}
+        assert req.put()[2] == {'file': {'name': 'get.js', 'content': content}}
 
     def test_FileRequest_get(self):
         domain = 'default'
@@ -106,21 +113,20 @@ class TestFileRequest:
 
 
 class TestDirectoryRequest:
-    #Need a few more tests with potentially invalid input if handled incorrectly
+    # Need a few more tests with potentially invalid input if handled incorrectly
     connection = MockConnection()
 
     def test_DirectoryRequest__init__(self):
         domain = 'default'
         dir_path = 'local/dir/subdir/'
-        
+
         req = DirectoryRequest(self.connection)
         req.set_body(dir_path)
         req.set_path(domain, dir_path)
 
         assert req
         assert req.path == '/mgmt/filestore/default/local/dir/subdir'
-        assert req.body == {'directory':{'name': 'dir/subdir/'}}
-
+        assert req.body == {'directory': {'name': 'dir/subdir/'}}
 
     def test_DirectoryRequest_create(self):
         domain = 'default'
@@ -130,19 +136,18 @@ class TestDirectoryRequest:
         req.set_path(domain, dir_path)
         assert req.post()[0] == '/mgmt/filestore/default/local'
         assert req.post()[1] == 'POST'
-        assert req.post()[2] == {'directory':{'name': 'dir/subdir/'}}
-
+        assert req.post()[2] == {'directory': {'name': 'dir/subdir/'}}
 
     def test_DirectoryRequest_update(self):
         domain = 'default'
-        dir_path = 'local/dir/subdir/' 
+        dir_path = 'local/dir/subdir/'
         req = DirectoryRequest(self.connection)
         req.set_body(dir_path)
         req.set_path(domain, dir_path)
         try:
             req.put()
             assert False
-        except: #No put request for a directory, see class.
+        except:  # Put not implemented
             assert True
 
     def test_DirectoryRequest_get(self):
@@ -188,38 +193,39 @@ class TestConfigRequest:
             self.kwargs['name'],
         )
         dp_req.set_body(self.kwargs['config'])
-        assert dp_req.path ==  '/mgmt/config/default/CryptoValCred/valcred'
+        assert dp_req.path == '/mgmt/config/default/CryptoValCred/valcred'
         assert dp_req.body == {
-                "CryptoValCred": {
-                    "mAdminState": "enabled",
-                    "name": "valcred"
-                }
+            "CryptoValCred": {
+                "mAdminState": "enabled",
+                "name": "valcred"
             }
+        }
 
     def test_ConfigRequest_set_options_all_options(self):
         options = {
-            'recursive':True,
+            'recursive': True,
             'status': True,
             'depth': 3
         }
         dp_req = ConfigRequest(self.connection)
         dp_req.set_options(**options)
-        assert 'state=1' in dp_req.options and 'depth=3' in dp_req.options and 'view=recursive' in dp_req.options
-        
+        assert 'state=1' in dp_req.options \
+            and 'depth=3' in dp_req.options \
+            and 'view=recursive' in dp_req.options
+
     def test_ConfigRequest_set_options_only_recursive(self):
         options = {
-            'recursive':True
+            'recursive': True
         }
         dp_req = ConfigRequest(self.connection)
         dp_req.set_path(
             self.kwargs['domain'],
             self.kwargs['class_name'],
             self.kwargs['name'],
-            )
+        )
         dp_req.set_options(**options)
-        assert  'view=recursive' in dp_req.options
-        assert  'depth=3' in dp_req.options
-
+        assert 'view=recursive' in dp_req.options
+        assert 'depth=3' in dp_req.options
 
     def test_ConfigRequest_mod_args(self):
         task_args = {
@@ -237,23 +243,21 @@ class TestConfigRequest:
         dp_req = ConfigRequest(self.connection)
         dp_req.set_path(dp.domain, dp.class_name, dp.name)
         dp_req.set_body(dp.config)
-        assert dp_req.path ==  '/mgmt/config/default/CryptoValCred/valcred'
+        assert dp_req.path == '/mgmt/config/default/CryptoValCred/valcred'
         assert dp_req.body == {
-                "CryptoValCred": {
-                    "mAdminState": "enabled",
-                    "name": "valcred"
-                }
+            "CryptoValCred": {
+                "mAdminState": "enabled",
+                "name": "valcred"
             }
-
-
+        }
 
     def test_ConfigRequest_min(self):
         task_args = {
-            'domain':'snafu',
+            'domain': 'snafu',
             'config': {
-                'CryptoValCred' : {
-                    'name':'valcred',
-                    'mAdminState':'disabled'
+                'CryptoValCred': {
+                    'name': 'valcred',
+                    'mAdminState': 'disabled'
                 }
             }
         }
@@ -262,35 +266,35 @@ class TestConfigRequest:
         dp_req = ConfigRequest(self.connection)
         dp_req.set_path(dp.domain, dp.class_name, dp.name)
         dp_req.set_body(dp.config)
-        assert dp_req.path ==  '/mgmt/config/snafu/CryptoValCred/valcred'
+        assert dp_req.path == '/mgmt/config/snafu/CryptoValCred/valcred'
         assert dp_req.body == {
-                'CryptoValCred' : {
-                    'name':'valcred',
-                    'mAdminState':'disabled'
-                }
+            'CryptoValCred': {
+                'name': 'valcred',
+                'mAdminState': 'disabled'
             }
+        }
 
     def test_ManageConfigRequest_w_name(self):
         task_args = {
-            'domain':'snafu',
+            'domain': 'snafu',
             'config': {
-                'CryptoValCred' : {
-                    'name':'valcred'
+                'CryptoValCred': {
+                    'name': 'valcred'
                 }
             }
-        }        
+        }
         dp = Config(**task_args)
         dp_req = ConfigRequest(self.connection)
         dp_req.set_path(dp.domain, dp.class_name, dp.name)
         dp_req.set_body(dp.config)
-        assert dp_req.path ==  '/mgmt/config/snafu/CryptoValCred/valcred'
+        assert dp_req.path == '/mgmt/config/snafu/CryptoValCred/valcred'
 
     def test_ManageConfigRequest_invalid_class(self):
         task_args_w_invalid_class = {
-            'domain':'snafu',
+            'domain': 'snafu',
             'config': {
-                'ValidationCredential' : {
-                    'name':'valcred'
+                'ValidationCredential': {
+                    'name': 'valcred'
                 }
             }
         }
@@ -300,72 +304,26 @@ class TestConfigRequest:
             assert True
 
 
-'''
-    def test_DPGetConfigRequest_1(self):
-        task_args = {
-            'domain':'snafu',
-            'name': 'valcred',
-            'config': {
-                'CryptoValCred' : {
-                    'name':'valcred'
-                }
-            },
-            'overwrite': True,
-            'recursive':True,
-            'status': True,
-            'depth': 3
-        }
-
-        dp = Config(**task_args)
-        dp_req = ConfigRequest(self.connection, dp.domain, dp.class_name, dp.name)
-        assert dp_req.options == {
-            'view': 'recursive',
-            'state': 1,
-            'depth' : 3
-        }
-        assert 'state=1' in dp_req.path and 'depth=3' in dp_req.path and 'view=recursive' in dp_req.path
-        
-        dp_req.options.depth = None
-        dp_req = GetConfigRequest(dp_mgmt_conf)
-        assert dp_req.options == {
-            'view': 'recursive',
-            'state': 1,
-            'depth': 2
-        }
-
-        assert 'state=1' in dp_req.path and 'depth=2' in dp_req.path and 'view=recursive' in dp_req.path
-        dp_mgmt_conf.recursive = False
-
-        dp_req = DPGetConfigRequest(dp_mgmt_conf)
-        assert dp_req.options == {
-            'state': 1
-        }
-        assert 'state=1' in dp_req.path
-'''
-
-
 class TestActionRequest:
 
     connection = MockConnection()
 
-
     def test_DPActionQueueRequest_1(self):
         task_args = {
-            'domain':'default',
+            'domain': 'default',
             'action_name': 'SaveConfig',
             'parameters': None
         }
 
         req = ActionQueueRequest(self.connection, **task_args)
         assert req.path == '/mgmt/actionqueue/default'
-        assert req.body == {'SaveConfig' : {}}
-    
+        assert req.body == {'SaveConfig': {}}
 
     def test_ActionQueueRequest_2(self):
         task_args = {
-            'domain':'default',
+            'domain': 'default',
             'action_name': 'TraceRoute',
-            'parameters' : { 
+            'parameters': {
                 'RemoteHost': 'www.google.com'
             }
 
@@ -374,21 +332,21 @@ class TestActionRequest:
         req = ActionQueueRequest(self.connection, **task_args)
         assert req.path == '/mgmt/actionqueue/default'
         assert req.body == {
-                'TraceRoute' : {
-                    'RemoteHost': 'www.google.com'
-                }
+            'TraceRoute': {
+                'RemoteHost': 'www.google.com'
             }
-
+        }
 
     def test_ActionQueueSchemaRequest(self):
         task_args = {
-            'domain':'default',
+            'domain': 'default',
             'action_name': 'SaveConfig'
         }
 
-        req = ActionQueueSchemaRequest(self.connection, task_args['domain'], task_args['action_name'])
+        req = ActionQueueSchemaRequest(
+            self.connection, task_args['domain'], task_args['action_name'])
         assert req.path == '/mgmt/actionqueue/default/operations/SaveConfig?schema-format=datapower'
-        
+
 
 def test_action_transitions():
     resp = {
@@ -445,4 +403,53 @@ def test_action_transitions():
         "script-log": ""
     }
     assert req.is_completed(resp) == True
-    
+
+
+def test_get_request_func_returns_none_when_data_is_equal():
+    before = 'equal'
+    after = 'equal'
+    connection = MockConnection()
+    req = Request(connection)
+
+    func = get_request_func(req, before, after, 'present')
+    assert func == None
+
+
+def test_get_request_func_returns_put_when_data_is_not_equal():
+    before = 'equal'
+    after = 'not equal'
+    connection = MockConnection()
+    req = Request(connection)
+
+    func = get_request_func(req, before, after, 'present')
+    assert func.__name__ == 'put'
+
+
+def test_get_request_func_returns_post_when_data_does_not_exist_on_remote():
+    after = 'not equal'
+    before = None
+    connection = MockConnection()
+    req = Request(connection)
+
+    func = get_request_func(req, before, after, 'present')
+    assert func.__name__ == 'post'
+
+
+def test_get_request_func_returns_none_when_data_does_not_exist_on_remote():
+    after = 'not equal'
+    before = None
+    connection = MockConnection()
+    req = Request(connection)
+
+    func = get_request_func(req, before, after, 'absent')
+    assert func == None
+
+
+def test_get_request_func_returns_delete_when_data_exists_on_remote():
+    before = 'equal'
+    after = None
+    connection = MockConnection()
+    req = Request(connection)
+
+    func = get_request_func(req, before, after, 'absent')
+    assert func.__name__ == 'delete'

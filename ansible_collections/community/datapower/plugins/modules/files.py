@@ -145,67 +145,74 @@ def run_module():
     state = module.params['state']
     tmpdir = module.tmpdir
 
-    if (src and os.path.isfile(src)) or content:
-        after_local_file = copy_file_to_tmp_directory(
-            module, tmpdir, src, dest, content)
-        remote_after_file_parent_dir = get_parent_dir(dest)
-        file_req = FileRequest(connection)
-        file_req.set_path(domain, dest)
-        file_req.set_body(dest, after_local_file.get_base64())
-        dir_req = DirectoryRequest(connection)
-        dir_req.set_body(remote_after_file_parent_dir)
-        dir_req.set_path(domain, remote_after_file_parent_dir)
+    if src and not os.path.isfile(src):
+        module.fail_json(msg='File not found error')
 
-        try:
-            remote_parent_dir = get_remote_data(dir_req)
-        except ConnectionError as ce:
-            result['changed'] = False
-            module.fail_json(msg=to_text(ce), **result)
+    after_local_file = copy_file_to_tmp_directory(
+        module,
+        tmpdir,
+        src,
+        dest,
+        content
+    )
+    remote_after_file_parent_dir = get_parent_dir(dest)
+    file_req = FileRequest(connection)
+    file_req.set_path(domain, dest)
+    file_req.set_body(dest, after_local_file.get_base64())
+    dir_req = DirectoryRequest(connection)
+    dir_req.set_body(remote_after_file_parent_dir)
+    dir_req.set_path(domain, remote_after_file_parent_dir)
 
-        try:
-            remote_before_file = get_remote_data(file_req)
-            result['remote_before_file'] = remote_before_file
-        except ConnectionError as ce:
-            result['changed'] = False
-            module.fail_json(msg=to_text(ce), **result)
+    try:
+        remote_parent_dir = get_remote_data(dir_req)
+        remote_before_file = get_remote_data(file_req)
+        result['remote_before_file'] = remote_before_file
+    except ConnectionError as ce:
+        result['changed'] = False
+        module.fail_json(msg=to_text(ce), **result)
 
-        if remote_before_file:
-            before_local_file = copy_file_to_tmp_directory(
-                module, tmpdir, src=None, dest=remote_before_file['_links']['self']['href'], content=remote_before_file['file'])
-            result['before_local_file'] = str(before_local_file)
-        else:
-            before_local_file = None
+    if remote_before_file:
+        before_local_file = copy_file_to_tmp_directory(
+            module,
+            tmpdir,
+            src=None,
+            dest=remote_before_file['_links']['self']['href'],
+            content=remote_before_file['file']
+        )
+        result['before_local_file'] = str(before_local_file)
+    else:
+        before_local_file = None
+
+    if module._diff:
         diff = get_file_diff(before_local_file, after_local_file, dest, state)
+        result['diff'] = diff
 
-        if module._diff:
-            result['diff'] = diff
+    request = get_request_func(
+        file_req,
+        before_local_file,
+        after_local_file,
+        state
+    )
 
-        request = get_request_func(
-            file_req, before_local_file, after_local_file, state)
-
-        if module.check_mode:
-            if request is not None:
-                result['changed'] = True
-            else:
-                result['changed'] = False
-            module.exit_json(**result)
-
-        if request:
-            try:
-
-                if remote_parent_dir is None:
-                    result['create_dir_response'] = dir_req.post()
-                result['response'] = request()
-            except ConnectionError as ce:
-                result['changed'] = False
-                module.fail_json(msg=to_text(ce), **result)
+    if module.check_mode:
+        if request is not None:
             result['changed'] = True
         else:
             result['changed'] = False
         module.exit_json(**result)
 
+    if request:
+        try:
+            if remote_parent_dir is None:
+                result['create_dir_response'] = dir_req.post()
+            result['response'] = request()
+        except ConnectionError as ce:
+            result['changed'] = False
+            module.fail_json(msg=to_text(ce), **result)
+        result['changed'] = True
     else:
-        module.fail_json(msg='Directories are not supported.')
+        result['changed'] = False
+    module.exit_json(**result)
 
 
 def main():

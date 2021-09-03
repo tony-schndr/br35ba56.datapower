@@ -1,3 +1,5 @@
+'''
+
 from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
@@ -92,3 +94,5 @@ class TestLocalFile():
         file_path = './tests/unit/module_utils/test_data/copy/test/from/GetStat/new/getCPU.js'
         lf = LocalFile(file_path)
         assert lf.md5
+
+'''

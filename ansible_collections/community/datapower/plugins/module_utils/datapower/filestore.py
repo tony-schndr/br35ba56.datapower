@@ -12,13 +12,12 @@ def copy_file_to_tmp_directory(module, tmpdir, src, dest, content):
     random_string = ''.join(random.choice(
         string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(16))
     tmp_path = os.path.join(tmpdir, random_string, dest.lstrip('/'))
+    os.makedirs(os.path.split(tmp_path)[0])
+
     if src and os.path.isfile(src):
-        os.makedirs(os.path.split(tmp_path)[0])
         module.preserved_copy(src, tmp_path)
-        return LocalFile(path=tmp_path)
-    elif not src and content:
-        # Create file from content
-        return LocalFile(path=tmp_path, content=content)
+
+    return LocalFile(path=tmp_path, content=content)
 
 
 def get_file_diff(from_local_file, to_local_file, dest, state):
@@ -27,8 +26,8 @@ def get_file_diff(from_local_file, to_local_file, dest, state):
             return list(context_diff(
                 a=from_local_file.get_lines(),
                 b=to_local_file.get_lines(),
-                fromfile=os.path.join('before', dest),
-                tofile=os.path.join('after', dest),
+                fromfile='before: ' + dest,
+                tofile='after: ' + dest,
                 n=3
             ))
         elif to_local_file and from_local_file is None:
@@ -36,14 +35,13 @@ def get_file_diff(from_local_file, to_local_file, dest, state):
                 'before': None,
                 'after': dest
             }
+    elif from_local_file:
+        return {
+            'before': dest,
+            'after': None
+        }
     else:
-        if from_local_file:
-            return {
-                'before': dest,
-                'after': None
-            }
-        else:
-            return {'before': None, 'after': None}
+        return {'before': None, 'after': None}
 
 
 def get_files_from_filestore(filestore):

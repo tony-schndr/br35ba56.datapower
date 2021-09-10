@@ -1,149 +1,300 @@
-- name: Ensure WebGUI is enabled prior to test
+---
+# Set up
+- name: Delete the foo domain
   community.datapower.config:
     domain: default
-    class_name: WebGUI
-    name: WebGUI-Settings
+    state: absent
+    config:
+      Domain:
+        mAdminState: enabled
+        name: foo
+
+- name: Create the foo domain
+  community.datapower.config:
+    domain: default
     state: present
     config:
-      mAdminState: enabled
+      Domain:
+        mAdminState: enabled
+        name: foo
 
-- name: Get WebGUI
+### Adding an additional field to config test ###
+# setup test config
+- name: Create the log target
+  community.datapower.config:
+    domain: foo
+    state: present
+    config:
+      LogTarget:
+        IdleTimeout: 15
+        LocalAddress: 0.0.0.0
+        LocalIdentifier: dp-1
+        LogEvents:
+          Class:
+            value: all
+          Priority: notice
+        LogPrecision: second
+        LongRetryInterval: 20
+        Priority: normal
+        RateLimit: 100
+        RemoteAddress: 192.168.168.88
+        RemotePort: 514
+        RetryAttempts: 1
+        RetryInterval: 1
+        Rotate: 3
+        SSLClientConfigType: proxy
+        Size: 500
+        SoapVersion: soap11
+        SyslogFacility: user
+        TimestampFormat: zulu
+        Type: syslog-tcp
+        UploadMethod: ftp
+        UseANSIColor: 'off'
+        mAdminState: enabled
+        name: syslog_LogTarget
+
+- name: Get before syslog_LogTarget
   community.datapower.get_config:
-    domain: default
-    class_name: WebGUI
+    domain: foo
+    class_name: LogTarget
+    name: syslog_LogTarget
+  register: before_syslog_LogTarget
+
+# Add new field "LogEventFilter" to config.
+- name: Add event filters to log target
+  community.datapower.config:
+    domain: foo
+    state: present
+    config:
+      LogTarget:
+        IdleTimeout: 15
+        LocalAddress: 0.0.0.0
+        LocalIdentifier: dp-1
+        LogEventFilter:
+        - '0x080c00010'
+        - '0x08580005c'
+        - '0x85a0000a'
+        LogEvents:
+          Class:
+            value: all
+          Priority: notice
+        LogPrecision: second
+        LongRetryInterval: 20
+        Priority: normal
+        RateLimit: 100
+        RemoteAddress: 192.168.168.88
+        RemotePort: 514
+        RetryAttempts: 1
+        RetryInterval: 1
+        Rotate: 3
+        SSLClientConfigType: proxy
+        Size: 500
+        SoapVersion: soap11
+        SyslogFacility: user
+        TimestampFormat: zulu
+        Type: syslog-tcp
+        UploadMethod: ftp
+        UseANSIColor: 'off'
+        mAdminState: enabled
+        name: syslog_LogTarget
+
+- name: Get after syslog_LogTarget
+  community.datapower.get_config:
+    domain: foo
+    class_name: LogTarget
+    name: syslog_LogTarget
+  register: after_syslog_LogTarget
+
+- name: Assert the param LogEventFilter did not exist and was added.
+  assert:
+    that:
+      - "{{ 'LogEventFilter' not in before_syslog_LogTarget['response']['LogTarget'] }}"
+      - "{{ 'LogEventFilter' in after_syslog_LogTarget['response']['LogTarget'] }}"
+  ignore_errors: no
+
+### Change config, validate the data changed and changed variable is True. ###
+- name: Get LogTarget
+  community.datapower.get_config:
+    domain: foo
+    class_name: LogTarget
+    name: syslog_LogTarget
   register: before
 
-- name: Assert WebGui configuration was retrieved.
+- name: Assert LogTarget configuration was retrieved.
   assert:
     that:
-      - "{{ before['response']['WebGUI']['mAdminState'] == 'enabled' }}"
+      - "{{ before['response']['LogTarget']['mAdminState'] == 'enabled' }}"
 
-- name: Disable the WebGUI object
+- name: Disable the LogTarget object
   community.datapower.config:
-    domain: default
-    class_name: WebGUI
-    name: WebGUI-Settings
+    domain: foo
+    class_name: LogTarget
+    name: syslog_LogTarget
     state: present
     config:
       mAdminState: disabled
-  register: config_webgui_disabled
+  register: config_disabled
 
-- name: Get WebGUI
+- name: Get LogTarget
   community.datapower.get_config:
-    domain: default
-    class_name: WebGUI
+    domain: foo
+    class_name: LogTarget
+    name: syslog_LogTarget
   register: changed
 
-- name: Assert config changed and task "Disable the WebGUI object" changed is true
+- name: Assert config changed and task "Disable the LogTarget object" changed is true
   assert:
     that:
-      - "{{ changed['response']['WebGUI']['mAdminState'] == 'disabled' }}"
+      - "{{ changed['response']['LogTarget']['mAdminState'] == 'disabled' }}"
       - "{{ changed != before  }}"
-      - config_webgui_disabled.changed == true
+      - config_disabled.changed == true
 
-- name: Make same change as "Disable the WebGUI object"
+### Execute change again and confirm changed is false.  If state matches no change should be executed ###
+- name: Make same change as step "Disable the LogTarget object"
   community.datapower.config:
-    domain: default
-    class_name: WebGUI
-    name: WebGUI-Settings
+    domain: foo
+    class_name: LogTarget
+    name: syslog_LogTarget
     state: present
     config:
       mAdminState: disabled
-  register: config_webgui_disabled_not_changed
+  register: config_disabled_not_changed
 
-- name: Get WebGUI
+- name: Get LogTarget
   community.datapower.get_config:
-    domain: default
-    class_name: WebGUI
+    domain: foo
+    class_name: LogTarget
+    name: syslog_LogTarget
   register: unchanged
 
-- name: Assert state is unchanged and task 'Make same change as "Disable the WebGUI object"' changed is false
+- name: Assert state is unchanged and task 'Make same change as "Disable the LogTarget object"' changed is false
   assert:
     that:
       - "{{ changed == unchanged  }}"
-      - config_webgui_disabled_not_changed.changed == false
+      - config_disabled_not_changed.changed == false
 
-- name: Delete SSL Profile
+### Test list property updates ###
+- name: Delete syslog_LogTarget
   community.datapower.config:
-    domain: default
+    domain: foo
     state: absent
     config:
-      SSLClientProfile:
-        name: tls-client-profile
+      LogTarget:
+        name: syslog_LogTarget
 
-- name: Delete Crypto ValCred
+- name: Create syslog_LogTarget
   community.datapower.config:
-    domain: default
-    state: absent
-    config:
-      CryptoValCred:
-        name: valcred
-
-- name: Create Test1 Crypto Certficiate
-  community.datapower.config:
-    domain: default
+    domain: foo
     state: present
     config:
-      CryptoCertificate:
-        name: Test1
-        Filename: cert:///webgui-sscert.pem
+      LogTarget:
+        IdleTimeout: 15
+        LocalAddress: 0.0.0.0
+        LocalIdentifier: dp-1
+        LogEvents:
+          Class:
+            value: all
+          Priority: notice
+        LogPrecision: second
+        LongRetryInterval: 20
+        Priority: normal
+        RateLimit: 100
+        RemoteAddress: 192.168.168.88
+        RemotePort: 514
+        RetryAttempts: 1
+        RetryInterval: 1
+        Rotate: 3
+        SSLClientConfigType: proxy
+        Size: 500
+        SoapVersion: soap11
+        SyslogFacility: user
+        TimestampFormat: zulu
+        Type: syslog-tcp
+        UploadMethod: ftp
+        UseANSIColor: 'off'
+        mAdminState: enabled
+        name: syslog_LogTarget
 
-- name: Create Test2 Crypto Certficiate
+- name: Update syslog_LogTarget list property to 1 item.
   community.datapower.config:
-    domain: default
+    domain: foo
     state: present
     config:
-      CryptoCertificate:
-        name: Test2
-        Filename: cert:///webgui-sscert.pem
+      LogTarget:
+        name: syslog_LogTarget
+        LogEventFilter:
+        - '0x080c00010'
+  register: list_prop_update_result
 
-- name: Create Crypto ValCred
-  community.datapower.config:
-    domain: default
-    state: present
-    config:
-      CryptoValCred:
-        name: valcred
-
-- name: Update a CryptoValCred Certificate list property to 1 item.
-  community.datapower.config:
-    domain: default
-    state: present
-    config:
-      CryptoValCred:
-        Certificate:
-        - value: Test1
-        name: valcred
-  register: valcred_result
-
-- name: Get valcred to check its state was update.
+- name: Get LogTarget to check its state was update.
   community.datapower.get_config:
-    domain: default
-    class_name: CryptoValCred
-    name: valcred
-  register: valcred
+    domain: foo
+    class_name: LogTarget
+    name: syslog_LogTarget
+  register: syslog_LogTarget
 
-- name: Assert the CryptoValCred Certificate list was updated to 1 item.
+- name: Assert the list property was updated to 1 item.
   assert:
     that:
-      - "{{ valcred['response']['CryptoValCred']['Certificate']['value'] is defined }}"
-      - "{{ valcred_result['response']['valcred'] == 'Configuration was updated.'  }}"
+      - "{{ syslog_LogTarget['response']['LogTarget']['LogEventFilter'] is defined }}"
+      - "{{ list_prop_update_result['response']['syslog_LogTarget'] == 'Configuration was updated.'  }}"
   ignore_errors: no
 
-- name: Update a CryptoValCred Certificate list property to 2 items.
+- name: Update list property to 4 items.
   community.datapower.config:
-    domain: default
+    domain: foo
     state: present
     config:
-      CryptoValCred:
-        Certificate:
-        - value: Test2
-        - value: Test1
-        name: valcred
-  register: valcred_result
+      LogTarget:
+        name: syslog_LogTarget
+        LogEventFilter:
+        - '0x080c00010'
+        - '0x08580005c'
+        - '0x85a0000a'
+  register: list_prop_update_result
 
-- name: Assert the CryptoValCred Certificate list was updated to 2 items.
+- name: get updated config
+  community.datapower.get_config:
+    domain: foo
+    class_name: LogTarget
+    name: syslog_LogTarget
+  register: syslog_LogTarget
+
+- name: Assert the list property was updated to 3 items.
   assert:
     that:
-      - "{{ valcred['response']['CryptoValCred']['Certificate'] | length == 2 }}"
-      - "{{ valcred_result['response']['valcred'] == 'Configuration was updated.' }}"
+      - "{{ syslog_LogTarget['response']['LogTarget']['LogEventFilter'] | length == 3 }}"
+      - "{{ list_prop_update_result['response']['syslog_LogTarget'] == 'Configuration was updated.' }}"
+
+- name: Update list property to 0 items.
+  community.datapower.config:
+    domain: foo
+    state: present
+    config:
+      LogTarget:
+        name: syslog_LogTarget
+        LogEventFilter: {}
+  register: list_prop_update_result
+
+- name: get updated config
+  community.datapower.get_config:
+    domain: foo
+    class_name: LogTarget
+    name: syslog_LogTarget
+  register: syslog_LogTarget
+
+- name: Assert the list property was updated to 0 items.
+  assert:
+    that:
+      - "{{ 'LogEventFilter' not in syslog_LogTarget['response']['LogTarget'] }}"
+      - "{{ list_prop_update_result['response']['syslog_LogTarget'] == 'Configuration was updated.' }}"
+
+# Tear down
+- name: Delete the foo domain
+  community.datapower.config:
+    domain: default
+    state: absent
+    config:
+      Domain:
+        mAdminState: enabled
+        name: foo

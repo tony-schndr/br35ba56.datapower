@@ -1,65 +1,13 @@
 ---
-- name: Ensure WebGUI is enabled prior to test
-  community.datapower.config:
-    domain: default
-    class_name: WebGUI
-    name: WebGUI-Settings
-    state: present
-    config:
-      mAdminState: enabled
 
-- name: Get WebGUI
+- name: Get WebGUI with status information
   community.datapower.get_config:
     domain: default
     class_name: WebGUI
     status: true
-  register: web_gui_status
+  register: webgui_status
 
 - name: Assert state is defined in WebGUI body
   assert:
     that:
-      - "{{ web_gui_status['response']['WebGUI']['state'] is defined }}"
-
-- name: Get CryptoValCred Recursively
-  community.datapower.get_config:
-    domain: default
-    class_name: CryptoValCred
-    name: valcred
-    recursive: true
-  register: valcred_recursive
-
-- name: Assert _embedded.descendants is defined in response body
-  assert:
-    that:
-      - "{{ valcred_recursive['response']['_embedded']['descendants'] is defined }}"
-
-- name: Get CryptoValCred Recursively with state information
-  community.datapower.get_config:
-    domain: default
-    class_name: CryptoValCred
-    name: valcred
-    recursive: true
-    status: yes
-  register: valcred_recursive_state
-
-- name: Assert Get CryptoValCred Recursively with state information
-  assert:
-    that:
-      - "{{ valcred_recursive_state['response']['_embedded']['descendants'] is defined }}"
-      - "{{ valcred_recursive_state['response']['CryptoValCred']['state'] is defined }}"
-
-- name:  Get CryptoValCred Recursively, specifying depth, with state information.
-  community.datapower.get_config:
-    domain: default
-    class_name: CryptoValCred
-    name: valcred
-    recursive: true
-    depth: 2
-    status: yes
-  register: valcred_recursive_state_depth
-
-- name: Assert Get CryptoValCred Recursively, specifying depth, with state information.
-  assert:
-    that:
-      - "{{ valcred_recursive_state_depth['response']['_embedded']['descendants'] is defined }}"
-      - "{{ valcred_recursive_state_depth['response']['CryptoValCred']['state'] is defined }}"
+      - "{{ webgui_status['response']['WebGUI']['state'] is defined }}"

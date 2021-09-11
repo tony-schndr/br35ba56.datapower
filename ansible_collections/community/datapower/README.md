@@ -59,6 +59,7 @@ If done correctly this collection will be found when running playbooks.
 
 ## Using this collection
 This collection uses an httpapi plugin that utilizes the DataPower REST Management Interface.  The files `docker-compose.yml`,  `dp/Dockerfile` and files in the directory `dp/config` provide a runtime environment with the Web Management Interface and Rest Management Interface configured to listen on your local machine at https://localhost:9090 and https://localhost:5554.  If you are running this collection against some other environment you will need to ensure the DataPower Rest Management Interface is enabled, below are the instructions to do so.
+
 Log into the datapower CLI and execute the following to enable the Rest Management Interface on its default port.
 ```
 co; rest-mgmt; admin-state enabled; port 5554; exit;
@@ -118,6 +119,8 @@ The following example task configures a log target.
 ```
 
 # Contributing to this collection
+This collection leverages the REST management interface, learn more about how that interface works [here](https://www.ibm.com/support/pages/part-1-introduction-rest-management-interface-and-status-monitoring)
+
 ## Adding a new module
 
 All additional modules MUST include **Integration Tests** and pass **Sanity Tests**

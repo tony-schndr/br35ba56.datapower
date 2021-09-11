@@ -1,48 +1,80 @@
 # Ansible Collection - community.datapower
 
-The Ansible DataPower collection includes a variety of Ansible modules to automate the management of IBM DataPower Appliances.
+The Ansible DataPower collection includes a variety of modules to automate
+the management of IBM DataPower Appliances.
 
 
-### Modules
+## Modules
 Name | Description
 --- | ---
-[community.datapower.action]()|Execute actions against a domain
-[community.datapower.config]()|Manage configuration objects in a domain
-[community.datapower.export_domains]()|Export a domain(s)
-[community.datapower.export_objects]()|Export configuration objects from a domain.
-[community.datapower.files]()|Manage files within a domain's filestore.
-[community.datapower.get_action_schema]()|Get the schema of an action. 
+[community.datapower.files]()|Manage files within a domain's local/cert/sharedcert directory.
+[community.datapower.config]()|Manage configuration within a domain
 [community.datapower.get_config]()|Get object configuration from a domain.
-[community.datapower.import_domains]()|Import a Domain(s)
-[community.datapower.list_actions]()|List supported actions
-[community.datapower.list_objects]()|List config objects
-[community.datapower.list_status]()|List status types
-[community.datapower.load_objects]()|Import objects/files into a domain
+[community.datapower.list_objects]()|List config objects (use to find config names)
+[community.datapower.export_domains]()|Export a domain(s) in ZIP format.
+[community.datapower.import_domains]()|Import a domain(s)
+[community.datapower.export_objects]()|Export configuration from a domain (Output used "load_objects" module)
+[community.datapower.load_objects]()|Import configuration into a domain
+[community.datapower.action]()|Execute actions against a domain
+[community.datapower.get_action_schema]()|Get the schema of an action.
+[community.datapower.list_actions]()|List supported actions (use to find available actions)
 [community.datapower.status]()|Retrieve various statuses
+[community.datapower.list_status]()|List status types (use to determine name of status for status module)
+
 
 ## Installing this collection
-Download a release from this github repository or 
 
-This collection is uses the package dictdiffer for dictionary comparisons.  Therefore you must have the dictdiffer package installed on the server that will be executing these modules.  For example if your running these modules on the ansible-controller using the local network connection (As it would be for most networking modules by default), it will need to be installed on the ansible-controller.  If delegating play execution to another server, you would need the dictdiffer package installed on the delegated server.
+### Dependencies
+Python: 3.6, 3.7, 3.8, 3.9
+
+Docker - For a developer version of IBM DataPower runtime.
+
+### Python Modules
+Name | Version
+--- | ---
+[dictdiffer](https://github.com/inveniosoftware/dictdiffer)| latest
 
 ```bash
-pip3 install -r requirements.txt
+pip3 install -r ansible_collections/community/datapower/requirements.txt
 ```
 
-Install the DataPower collection with the Ansible Galaxy CLI:
-```
-ansible-galaxy collection install community-datapower-1.0.0.tar.gz
-```
+This collection is still in development and is not on ansible galaxy.  Follow the instructions [here](https://cn-ansibledoc.readthedocs.io/zh_CN/latest/user_guide/collections_using.html) to install.
 
+You will either build / install the collection manually using ansible galaxy.
+
+OR
+
+Make a directory for storing playbooks outside this repository, create a directory called collections inside the directory you create.  Then create a symlink using `ln -s collections/ansible_collections <path to repository>/ansible_collections`
+
+For Example
+ ```
+ansible-playbooks % tree
+.
+├── collections
+│   └── ansible_collections -> ../../ansible-datapower/ansible_collections
+├── inventory.networking
+└── play.yml
+ ```
+If done correctly this collection will be found when running playbooks.
 
 ## Using this collection
-This collection uses an httpapi plugin that utilizes the DataPower REST Management Interface, ensure the interface is configured, ref IBM DataPower Documentation
-
-Log into the datapower CLI and run:
+This collection uses an httpapi plugin that utilizes the DataPower REST Management Interface.  The files `docker-compose.yml`,  `dp/Dockerfile` and files in the directory `dp/config` provide a runtime environment with the Web Management Interface and Rest Management Interface configured to listen on your local machine at https://localhost:9090 and https://localhost:5554.  If you are running this collection against some other environment you will need to ensure the DataPower Rest Management Interface is enabled, below are the instructions to do so.
+Log into the datapower CLI and execute the following to enable the Rest Management Interface on its default port.
 ```
 co; rest-mgmt; admin-state enabled; port 5554; exit;
-write mem; 
+write mem;
 ```
+### Inventory Setup
+
+```
+ansible_connection=httpapi
+ansible_httpapi_use_ssl=yes
+ansible_httpapi_port=<rest management port, default is 5554>
+ansible_network_os=community.datapower.rest_mgmt
+ansible_user=< DataPower user >
+ansible_httpapi_password=< DataPower user password >
+```
+Review the inventory located at `ansible_collections/community/datapower/tests/integration/inventory.networking`.  You will need to add the variable `ansible_python_interpreter=<path to python3 interpreter>` to the bottom of the inventory file prior to running any plays or executing integration tests.  WARNING, `ansible_httpapi_validate_certs` is turned off, this is for development purposes only.  Ensure that it is set to on in non-development environments.
 
 # Using modules from this collection in your playbooks
 
@@ -86,74 +118,15 @@ The following example task configures a log target.
 ```
 
 # Contributing to this collection
-
-# Clone the playbook directory to assist with testing modules against playbooks.
-git clone https://github.com/Br35Ba56/ansible-datapower-playbooks.git
-
-cd ansible-datapower-playbooks
-
-mkdir -p collections/ansible_collections/community/
-
-cd collections/ansible_collections/community/
-
-git clone https://github.com/Br35Ba56/ansible-datapower.git
-
-mv ansible-datapower datapower
-```
-
-The path `collections/ansible_collection/community/datapower` is ansible default search path for installed collections, refer to 
-[Using Collections](https://docs.ansible.com/ansible/2.9/user_guide/collections_using.html)
- 
-```bash
-tree -L 5
-.
-├── action.yml
-├── collections
-│   └── ansible_collections
-│       └── community
-│           └── datapower
-│               ├── LICENSE
-│               ├── README.md
-│               ├── build.sh
-│               ├── deploy.yml
-│               ├── export.yml
-│               ├── galaxy.yml
-│               ├── get_latest.sh
-│               ├── install.sh
-│               ├── meta
-│               ├── plugins
-│               ├── requirements.txt
-│               ├── roles
-│               ├── scripts
-│               └── tests
-├── config.yml
-├── demo.txt
-├── demo2.txt
-├── directories.yml
-├── export.yml
-├── files.yml
-├── get_config.yml
-├── inventory
-│   └── dp_hosts.yml
-├── list_objects.yml
-├── lists.yml
-├── logtarget.yml
-├── requirements.txt
-└── test.yml
-```
-
-## DataPower Runtime
-DataPower runtime can be provided through docker.
-[Docker DataPower Runtime](https://github.com/Br35Ba56/ansible-datapower-runtime)
-
 ## Adding a new module
-If want to add a new module to this collection review and familiarize yourself with the existing modules in `plugins/modules/`.  Find a module to copy to keep the formatting and code style consistent throughout all modules.
 
-### Module tests
-All additional modules MUST include **Sanity Tests** and **Integration Tests**
+All additional modules MUST include **Integration Tests** and pass **Sanity Tests**
+
+DataPower actions (actions can be discovered using the list_action module) should/could have a module that specifically targets the action.  For an example of this review export_domains, export_objects, and load_objects modules.
 
 ### Module Utilities
-If your adding to `plugins/module_utils/datapower/` you MUST include **Unit Tests**.
+
+If your changing `plugins/module_utils/datapower/` add/update **Unit Tests**.
 
 ## Licensing
 

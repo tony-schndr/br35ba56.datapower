@@ -8,7 +8,7 @@ import random
 import string
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError
-from ansible_collections.community.datapower.plugins.module_utils.datapower.classes import valid_objects
+
 
 PARAM_MAP = {
     # Export mapping
@@ -66,9 +66,9 @@ class Config():
     # it can be set by specifying it as class_name
     # or within the config dictionary
     def set_class_name(self, class_name=None, config=None):
-        if class_name and is_valid_class(class_name):
+        if class_name:
             self.class_name = class_name
-        elif config and is_valid_class(list(config.keys())[0]):
+        elif config and len(list(config.keys())) == 1:
             self.class_name = list(config.keys())[0]
         else:
             raise ValueError('Invalid class_name or no class_name provided.')

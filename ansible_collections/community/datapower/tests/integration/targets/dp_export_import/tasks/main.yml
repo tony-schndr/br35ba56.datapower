@@ -26,6 +26,20 @@
     domain: default
     action: SaveConfig
 
+- name: Export non-existent config
+  community.datapower.export_config:
+    domain: snafu
+    ref_objects: yes
+    objects:
+      - name: valcred
+        class: CryptoValCred
+  register: null_export
+
+- name: Assert export.objects is None
+  assert:
+    that:
+      - "{{null_export.objects == None}}"
+
 - name: Create objects to export and load into other domains
   community.datapower.import_config:
     domain: snafu

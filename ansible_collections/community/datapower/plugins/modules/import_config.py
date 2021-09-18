@@ -260,7 +260,7 @@ def run_module():
 
     action = "LoadConfiguration"
     config = deepcopy(module.params.get('config'))
-    # Convert booleans in the domain dictionaries
+
     action_req = ActionQueueRequest(
         connection, module.params.get('domain'), action, config)
 

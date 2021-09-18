@@ -157,9 +157,8 @@ def run_module():
         result['changed'] = False
         module.fail_json(msg=response, **result)
 
-    # TODO: what should be done if no objects are exported?
-    result['objects'] = response['result']['LoadConfiguration']
-    result['changed'] = True
+    result['objects'] = response['result']['LoadConfiguration'] or None
+    result['changed'] = False
     module.exit_json(**result)
 
 

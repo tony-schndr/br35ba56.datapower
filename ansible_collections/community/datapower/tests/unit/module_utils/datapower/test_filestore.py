@@ -4,7 +4,7 @@ __metaclass__ = type
 
 from faker.factory import Factory
 
-from ansible_collections.community.datapower.plugins.module_utils.datapower import filestore
+from ansible_collections.community.datapower.plugins.module_utils.datapower import files
 
 def gen_lines():
     Faker = Factory.create
@@ -28,7 +28,7 @@ def test_get_file_diff_when_from_and_to_are_equal():
     to_lines = from_lines.copy()
     from_local_file = MockLocalFile(from_lines)
     to_local_file = MockLocalFile(to_lines)
-    assert filestore.get_file_diff(
+    assert files.get_file_diff(
         from_local_file,
         to_local_file,
         '/some/other/path/file.txt',
@@ -41,7 +41,7 @@ def test_get_file_diff_when_from_and_to_are_different():
     from_local_file = MockLocalFile(from_lines)
     to_local_file = MockLocalFile(to_lines)
 
-    assert filestore.get_file_diff(
+    assert files.get_file_diff(
         from_local_file,
         to_local_file,
         '/some/other/path/file.txt',
@@ -55,7 +55,7 @@ def test_get_file_diff_when_state_is_present_and_from_local_file_is_none():
     to_local_file = MockLocalFile(to_lines)
 
 
-    assert filestore.get_file_diff(
+    assert files.get_file_diff(
         from_local_file,
         to_local_file,
         '/some/other/path/file.txt',
@@ -68,7 +68,7 @@ def test_get_file_diff_when_state_is_absent_and_to_local_file_is_none():
     from_local_file = MockLocalFile(to_lines)
     to_local_file =  None
 
-    assert filestore.get_file_diff(
+    assert files.get_file_diff(
         from_local_file,
         to_local_file,
         '/some/other/path/file.txt',
@@ -80,7 +80,7 @@ def test_get_file_diff_when_state_is_absent_and_to_from_local_files_are_none():
     from_local_file = None
     to_local_file =  None
 
-    assert filestore.get_file_diff(
+    assert files.get_file_diff(
         from_local_file,
         to_local_file,
         '/some/other/path/file.txt',
@@ -130,8 +130,8 @@ def test_get_files_from_filestore_single_file():
         }
     }
 
-    files = filestore.get_files_from_filestore(filestore_resp)
-    assert files == ['/mgmt/filestore/default/local/demo.txt']
+    files_from_filestore = files.get_files_from_filestore(filestore_resp)
+    assert files_from_filestore == ['/mgmt/filestore/default/local/demo.txt']
 
 
 def test_get_files_from_filestore_multiple_files():
@@ -190,8 +190,8 @@ def test_get_files_from_filestore_multiple_files():
         }
     }
 
-    files = filestore.get_files_from_filestore(filestore_resp)
-    assert files == [
+    files_from_filestore = files.get_files_from_filestore(filestore_resp)
+    assert files_from_filestore == [
         '/mgmt/filestore/default/local/demo.txt',
         '/mgmt/filestore/default/local/demo2.txt',
         '/mgmt/filestore/default/local/demo3.txt',
@@ -200,5 +200,5 @@ def test_get_files_from_filestore_multiple_files():
 
 def test_get_parent_dir():
     path = '/some/test/path/file.txt'
-    assert filestore.get_parent_dir(path) == '/some/test/path'
+    assert files.get_parent_dir(path) == '/some/test/path'
 

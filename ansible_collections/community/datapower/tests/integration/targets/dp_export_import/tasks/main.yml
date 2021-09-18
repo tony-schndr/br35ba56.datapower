@@ -1,8 +1,8 @@
 - name: Delete the snafu/foo application domain
   community.datapower.config:
-    domain: default 
+    domain: default
     state: absent
-    config: 
+    config:
       Domain:
         mAdminState: enabled
         name: "{{ item }}"
@@ -11,9 +11,9 @@
     - foo
 
 - name: Create the snafu/foo application domain
-  community.datapower.load_objects:
-    domain: default 
-    objects: 
+  community.datapower.import_config:
+    domain: default
+    objects:
       Domain:
         mAdminState: enabled
         name: "{{ item }}"
@@ -25,10 +25,10 @@
   community.datapower.action:
     domain: default
     action: SaveConfig
-    
+
 - name: Create objects to export and load into other domains
-  community.datapower.load_objects:
-    domain: snafu 
+  community.datapower.import_config:
+    domain: snafu
     objects: "{{ lookup('file','{{ role_path }}/files/object-export.json') | from_json}}"
 
 - name: Save snafu after loading objects
@@ -37,18 +37,18 @@
     action: SaveConfig
 
 - name: Export objects
-  community.datapower.export_objects:
-    domain: snafu 
+  community.datapower.export_config:
+    domain: snafu
     ref_objects: yes
     objects:
       - name: valcred
         class: CryptoValCred
       - name: tls-client-profile
-        class: SSLClientProfile       
+        class: SSLClientProfile
   register: snafu_export
 
 - name: load objects
-  community.datapower.load_objects:
+  community.datapower.import_config:
     domain: foo
     objects: "{{snafu_export.objects}}"
 
@@ -58,14 +58,14 @@
     action: SaveConfig
 
 - name: Export objects from foo for validation
-  community.datapower.export_objects:
-    domain: foo 
+  community.datapower.export_config:
+    domain: foo
     ref_objects: yes
     objects:
       - name: valcred
         class: CryptoValCred
       - name: tls-client-profile
-        class: SSLClientProfile       
+        class: SSLClientProfile
   register: foo_export
 
 - name: Assert expected configuration is loaded in the foo domain.
@@ -76,22 +76,22 @@
 
 - name: Export all domains
   community.datapower.export_domains:
-    dest: ./work/   
+    dest: ./work/
   register: all_domains_export
 
 - name: Export foo domain from datapower config
   community.datapower.export_domains:
     dest: ./work/
     all_files: yes
-    domains: 
+    domains:
       - foo
   register: foo_domain_export
 
 - name: Delete the snafu/foo application domain to verify restoration from all_domains_export
   community.datapower.config:
-    domain: default 
+    domain: default
     state: absent
-    config: 
+    config:
       Domain:
         mAdminState: enabled
         name: "{{ item }}"
@@ -120,14 +120,14 @@
     - default
 
 - name: Export objects
-  community.datapower.export_objects:
-    domain: "{{ item }}" 
+  community.datapower.export_config:
+    domain: "{{ item }}"
     ref_objects: yes
     objects:
       - name: valcred
         class: CryptoValCred
       - name: tls-client-profile
-        class: SSLClientProfile       
+        class: SSLClientProfile
   register: object_exports
   with_items:
     - snafu
@@ -142,9 +142,9 @@
 
 - name: Delete the snafu/foo application domain to verify foo is restored from foo_export and snafu is not.
   community.datapower.config:
-    domain: default 
+    domain: default
     state: absent
-    config: 
+    config:
       Domain:
         mAdminState: enabled
         name: "{{ item }}"
@@ -172,19 +172,19 @@
     - foo
 
 - name: Export objects
-  community.datapower.export_objects:
+  community.datapower.export_config:
     domain: foo
     ref_objects: yes
     objects:
       - name: valcred
         class: CryptoValCred
       - name: tls-client-profile
-        class: SSLClientProfile       
+        class: SSLClientProfile
   register: foo_object_exports
 
 - name: Check that the foo import did not contain snafu domain
   community.datapower.get_config:
-    domain: default 
+    domain: default
     class_name: Domain
   register: domains
 
@@ -199,4 +199,3 @@
     that:
       - "{{ item.name != 'snafu'}}"
   with_items: "{{ domains.response.Domain }}"
-  

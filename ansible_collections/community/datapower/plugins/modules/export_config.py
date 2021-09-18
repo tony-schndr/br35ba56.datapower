@@ -8,14 +8,14 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: export_objects
+module: export_config
 
 short_description: |
-    Export configuration objects and files from a DataPower Application Domain.
+    Export configuration from a DataPower Application Domain.
 
 version_added: "1.0.0"
 
-description: Export configuration objects from a DataPower Application Domain.
+description: Export configuration from a DataPower Application Domain.
 
 options:
     domain:
@@ -74,7 +74,7 @@ author:
 
 EXAMPLES = r'''
 - name: Export objects
-  community.datapower.export_objects:
+  community.datapower.export_config:
     domain: default
     ref_objects: yes
     objects:
@@ -84,8 +84,8 @@ EXAMPLES = r'''
 
 RETURN = r'''
 
-objects:
-    description: Exported Objects.
+config:
+    description: Exported configuration.
     type: dict
     returned: on success
     sample:  {

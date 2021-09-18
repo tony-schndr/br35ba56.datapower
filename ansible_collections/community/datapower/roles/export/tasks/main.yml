@@ -1,5 +1,5 @@
 - name: Export Service
-  community.datapower.export_objects:
+  community.datapower.export_config:
     domain: "{{ domain }}"
     ref_objects: yes
     ref_files: yes
@@ -20,7 +20,5 @@
 - name: Write object export to file
   copy:
     dest: "{{export_directory}}/export.json"
-    content: "{{ json_export.objects }}"
-
-  
+    content: "{{ json_export.config }}"
 

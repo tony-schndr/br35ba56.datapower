@@ -16,7 +16,7 @@ version_added: "1.0.0"
 description: Execute actions on a DataPower Application Domain.
     Actions are dependent on platform, domain, and or firmware version.
     Actions available include but are not limited to quiesce, save config, reboot.
-    Please use export_domains, import_domains, export_objects, load_config
+    Please use export_domains, import_domains, export_config, import_config
     modules for Export / Import / LoadConfiguration actions.
 
 options:
@@ -87,14 +87,14 @@ display = Display()
 excluded_actions = {
     'Export': [
         'export_domains',
-        'export_objects'
+        'export_config'
     ],
     'Import': [
         'import_domains',
-        'load_objects'
+        'import_config'
     ],
     'LoadConfiguration': [
-        'load_objects'
+        'import_config'
     ]
 }
 

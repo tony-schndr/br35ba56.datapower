@@ -7,35 +7,34 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: load_objects
+module: import_config
 
-short_description: Import objects/files into a DataPower Application Domain.
+short_description: Import configuration into a DataPower Application Domain.
 
 version_added: "1.0.0"
 
-description: Import objects/files into a DataPower Application Domain.
+description: Import configuration into a DataPower Application Domain.
 
 options:
     domain:
         description: Domain to load objects into
         required: true
         type: str
-    objects:
+    config:
         description: |
-            Dictionary of Objects to import.
-            This dictionary can be built manually or
-            from export_objects module with the returned
-            objects variable.
+            Configuration to import.  Use the return from the export_config module.
         required: true
         type: dict
+        aliases:
+          - objects
 
 author:
 - Anthony Schneider (@br35ba56)
 '''
 
 EXAMPLES = r'''
-    - name: load objects
-      community.datapower.load_objects:
+    - name: load configuration
+      community.datapower.import_config:
         domain: snafu
         objects: {
                 "CryptoValCred": {
@@ -249,7 +248,7 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
 def run_module():
     module_args = dict(
         domain=dict(type='str', required=True),
-        objects=dict(type='dict', required=True)
+        config=dict(type='dict', required=True, aliases=['objects'])
     )
 
     module = AnsibleModule(
@@ -260,10 +259,10 @@ def run_module():
     result = {}
 
     action = "LoadConfiguration"
-    objects = deepcopy(module.params.get('objects'))
+    config = deepcopy(module.params.get('config'))
     # Convert booleans in the domain dictionaries
     action_req = ActionQueueRequest(
-        connection, module.params.get('domain'), action, objects)
+        connection, module.params.get('domain'), action, config)
 
     try:
         response = action_req.post()

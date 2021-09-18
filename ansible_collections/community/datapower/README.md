@@ -13,8 +13,8 @@ Name | Description
 [community.datapower.list_objects]()|List config objects (use to find config names)
 [community.datapower.export_domains]()|Export a domain(s) in ZIP format.
 [community.datapower.import_domains]()|Import a domain(s)
-[community.datapower.export_objects]()|Export configuration from a domain (Output used "load_objects" module)
-[community.datapower.load_objects]()|Import configuration into a domain
+[community.datapower.export_config]()|Export configuration from a domain (Output used in "import_config" module)
+[community.datapower.import_config]()|Import configuration into a domain
 [community.datapower.action]()|Execute actions against a domain
 [community.datapower.get_action_schema]()|Get the schema of an action.
 [community.datapower.list_actions]()|List supported actions (use to find available actions)
@@ -125,7 +125,7 @@ This collection leverages the REST management interface, learn more about how th
 
 All additional modules MUST include **Integration Tests** and pass **Sanity Tests**
 
-DataPower actions (actions can be discovered using the list_action module) should/could have a module that specifically targets the action.  For an example of this review export_domains, export_objects, and load_objects modules.
+DataPower actions (actions can be discovered using the list_action module) should/could have a module that specifically targets the action.  For an example of this review export_domains, export_config, and import_config modules.
 
 ### Module Utilities
 

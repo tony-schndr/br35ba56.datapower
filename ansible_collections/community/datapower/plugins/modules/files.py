@@ -132,6 +132,7 @@ def setup_file(module, dest, src=None, content=None):
 
     return local_file
 
+
 def build_reqs(connection, domain, dest, lf):
     parent_dir = get_parent_dir(dest)
     file_req = FileRequest(connection)
@@ -144,6 +145,7 @@ def build_reqs(connection, domain, dest, lf):
     dir_req.set_body(parent_dir)
     dir_req.set_path(domain, parent_dir)
     return dir_req, file_req
+
 
 def remote_state(module, dir_req, file_req):
     parent_dir_data = get_remote_data(dir_req)
@@ -160,6 +162,7 @@ def remote_state(module, dir_req, file_req):
     else:
         local_file = None
     return parent_dir_data, local_file
+
 
 def run_module():
     module_args = dict(
@@ -214,7 +217,7 @@ def run_module():
             result['response'] = request()
         except ConnectionError as ce:
             result['changed'] = False
-            result['request'] = {'path': file_req.path,'body': file_req.body}
+            result['request'] = {'path': file_req.path, 'body': file_req.body}
             module.fail_json(msg=to_text(ce), **result)
         result['changed'] = True
     else:

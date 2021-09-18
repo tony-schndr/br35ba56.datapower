@@ -8,6 +8,7 @@ import hashlib
 import posixpath
 from difflib import context_diff
 
+
 def copy_file_to_tmp_directory(module, tmpdir, src, dest, content):
     tmp_path = os.path.join(tmpdir, dest.lstrip('/'))
     os.makedirs(os.path.split(tmp_path)[0])
@@ -52,6 +53,7 @@ def get_files_from_filestore(filestore):
 def get_parent_dir(path):
     # Get the parent directory
     return posixpath.split(path)[0]
+
 
 def isBase64(s):
     try:

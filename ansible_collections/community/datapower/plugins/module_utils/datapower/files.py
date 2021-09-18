@@ -5,6 +5,54 @@ __metaclass__ = type
 import base64
 import os
 import hashlib
+import posixpath
+from difflib import context_diff
+
+
+def copy_file_to_tmp_directory(module, tmpdir, src, dest, content):
+    tmp_path = os.path.join(tmpdir, dest.lstrip('/'))
+    os.makedirs(os.path.split(tmp_path)[0])
+
+    if src and os.path.isfile(src):
+        module.preserved_copy(src, tmp_path)
+
+    return LocalFile(path=tmp_path, content=content)
+
+
+def get_file_diff(from_local_file, to_local_file, dest, state):
+    if state == 'present':
+        if from_local_file and to_local_file:
+            return list(context_diff(
+                a=from_local_file.get_lines(),
+                b=to_local_file.get_lines(),
+                fromfile='before: ' + dest,
+                tofile='after: ' + dest,
+                n=3
+            ))
+        elif to_local_file and from_local_file is None:
+            return {
+                'before': None,
+                'after': dest
+            }
+    elif from_local_file:
+        return {
+            'before': dest,
+            'after': None
+        }
+    else:
+        return {'before': None, 'after': None}
+
+
+def get_files_from_filestore(filestore):
+    if isinstance(filestore['filestore']['location']['file'], dict):
+        return [filestore['filestore']['location']['file']['href']]
+    else:
+        return [file['href'] for file in filestore['filestore']['location']['file']]
+
+
+def get_parent_dir(path):
+    # Get the parent directory
+    return posixpath.split(path)[0]
 
 
 def isBase64(s):
@@ -27,19 +75,14 @@ def get_file_md5(path, block_size=2**20):
 
 class LocalFile:
     def __init__(self, path: str, content: str = None):
-        # set content if you are creating the file using a base64 encoded string from DataPower REST Mgmt Interface.
-        if os.path.isfile(path) and content is None:
-            self.md5 = get_file_md5(path)
-        elif not os.path.isfile(path) and content:
+
+        if content:
             self.md5 = self.create_file_from_base64(path, content)
-        elif os.path.isfile(path) and content:
-            raise FileNotFoundError(
-                'content was provided and {path} already exists.'.format(path=path))
-        elif not os.path.isfile(path) and content is None:
-            raise Exception(
-                'no content provided and {path} does not exist'.format(path=path))
+        elif os.path.isfile(path):
+            self.md5 = get_file_md5(path)
         else:
-            raise NotImplementedError
+            raise Exception('No content provided and {path} is not a file'.format(path))
+
         self.path = path
 
     def create_file_from_base64(self, path, content):

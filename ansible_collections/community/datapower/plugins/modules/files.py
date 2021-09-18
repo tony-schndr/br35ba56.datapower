@@ -100,7 +100,7 @@ from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     get_remote_data
 )
-from ansible_collections.community.datapower.plugins.module_utils.datapower.filestore import (
+from ansible_collections.community.datapower.plugins.module_utils.datapower.files import (
     copy_file_to_tmp_directory,
     get_file_diff,
     get_parent_dir
@@ -112,6 +112,56 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
 )
 
 TOP_DIRS = ['local', 'cert', 'sharedcert']
+
+
+def setup_file(module, dest, src=None, content=None):
+    '''
+    create local file from src or content
+    if a local file cannot be created return None
+    '''
+    tmpdir = module.tmpdir
+    local_file = None
+    if src or content:
+        local_file = copy_file_to_tmp_directory(
+            module,
+            tmpdir,
+            src,
+            dest,
+            content
+        )
+
+    return local_file
+
+
+def build_reqs(connection, domain, dest, lf):
+    parent_dir = get_parent_dir(dest)
+    file_req = FileRequest(connection)
+    file_req.set_path(domain, dest)
+
+    if lf:
+        file_req.set_body(dest, lf.get_base64())
+
+    dir_req = DirectoryRequest(connection)
+    dir_req.set_body(parent_dir)
+    dir_req.set_path(domain, parent_dir)
+    return dir_req, file_req
+
+
+def remote_state(module, dir_req, file_req):
+    parent_dir_data = get_remote_data(dir_req)
+    file_data = get_remote_data(file_req)
+
+    if file_data:
+        local_file = copy_file_to_tmp_directory(
+            module,
+            module.tmpdir,
+            src=None,
+            dest=file_data['_links']['self']['href'],
+            content=file_data['file']
+        )
+    else:
+        local_file = None
+    return parent_dir_data, local_file
 
 
 def run_module():
@@ -129,12 +179,6 @@ def run_module():
         mutually_exclusive=[['content', 'src']]
     )
 
-    '''
-    if src is a directory, dest must also be directory
-    if src and dest are files the parent directory of dest is not created
-    and the task fails if it does not already exist.
-    '''
-
     connection = Connection(module._socket_path)
     result = {}
 
@@ -143,69 +187,42 @@ def run_module():
     content = module.params.get('content', None)
     dest = module.params['dest']
     state = module.params['state']
-    tmpdir = module.tmpdir
 
-    if (src and os.path.isfile(src)) or content:
-        after_local_file = copy_file_to_tmp_directory(
-            module, tmpdir, src, dest, content)
-        remote_after_file_parent_dir = get_parent_dir(dest)
-        file_req = FileRequest(connection)
-        file_req.set_path(domain, dest)
-        file_req.set_body(dest, after_local_file.get_base64())
-        dir_req = DirectoryRequest(connection)
-        dir_req.set_body(remote_after_file_parent_dir)
-        dir_req.set_path(domain, remote_after_file_parent_dir)
+    desired_file = setup_file(module, dest, src, content)
+    dir_req, file_req = build_reqs(connection, domain, dest, desired_file)
+    remote_dir, remote_file = remote_state(module, dir_req, file_req)
 
-        try:
-            remote_parent_dir = get_remote_data(dir_req)
-        except ConnectionError as ce:
-            result['changed'] = False
-            module.fail_json(msg=to_text(ce), **result)
+    if module._diff:
+        diff = get_file_diff(remote_file, desired_file, dest, state)
+        result['diff'] = diff
 
-        try:
-            remote_before_file = get_remote_data(file_req)
-            result['remote_before_file'] = remote_before_file
-        except ConnectionError as ce:
-            result['changed'] = False
-            module.fail_json(msg=to_text(ce), **result)
+    request = get_request_func(
+        file_req,
+        remote_file,
+        desired_file,
+        state
+    )
 
-        if remote_before_file:
-            before_local_file = copy_file_to_tmp_directory(
-                module, tmpdir, src=None, dest=remote_before_file['_links']['self']['href'], content=remote_before_file['file'])
-            result['before_local_file'] = str(before_local_file)
-        else:
-            before_local_file = None
-        diff = get_file_diff(before_local_file, after_local_file, dest, state)
-
-        if module._diff:
-            result['diff'] = diff
-
-        request = get_request_func(
-            file_req, before_local_file, after_local_file, state)
-
-        if module.check_mode:
-            if request is not None:
-                result['changed'] = True
-            else:
-                result['changed'] = False
-            module.exit_json(**result)
-
-        if request:
-            try:
-
-                if remote_parent_dir is None:
-                    result['create_dir_response'] = dir_req.post()
-                result['response'] = request()
-            except ConnectionError as ce:
-                result['changed'] = False
-                module.fail_json(msg=to_text(ce), **result)
+    if module.check_mode:
+        if request is not None:
             result['changed'] = True
         else:
             result['changed'] = False
         module.exit_json(**result)
 
+    if request:
+        try:
+            if remote_dir is None:
+                result['create_dir_response'] = dir_req.post()
+            result['response'] = request()
+        except ConnectionError as ce:
+            result['changed'] = False
+            result['request'] = {'path': file_req.path, 'body': file_req.body}
+            module.fail_json(msg=to_text(ce), **result)
+        result['changed'] = True
     else:
-        module.fail_json(msg='Directories are not supported.')
+        result['changed'] = False
+    module.exit_json(**result)
 
 
 def main():

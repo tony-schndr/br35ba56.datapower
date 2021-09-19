@@ -149,8 +149,8 @@ def run_module():
         config=config
     )
     req = ConfigRequest(connection)
-    req.set_path(domain, after.class_name, after.name)
-    req.set_body(after.config)
+    req.set_path(domain=domain, class_name=after.class_name, name=after.name)
+    req.set_body(body=after.config)
     result = {}
 
     try:

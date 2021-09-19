@@ -205,7 +205,7 @@ def run_module():
 
     connection = Connection(module._socket_path)
     dp_req = ConfigRequest(connection)
-    dp_req.set_path(domain, class_name, name, field)
+    dp_req.set_path(domain=domain, class_name=class_name, name=name, field=field)
     dp_req.set_options(recursive=recursive, depth=depth, status=status)
     result = {}
     result['options'] = dp_req.options

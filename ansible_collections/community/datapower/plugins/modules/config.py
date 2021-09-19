@@ -151,7 +151,7 @@ def run_module():
     req = ConfigRequest(connection)
     req.set_path(domain, after.class_name, after.name)
     req.set_body(after.config)
-    result = dict()
+    result = {}
 
     try:
         dp_state_resp = get_remote_data(req)

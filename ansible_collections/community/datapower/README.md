@@ -138,7 +138,6 @@ If your changing `plugins/module_utils/datapower/` add/update **Unit Tests**.
 ansible-test units --python 3.7  --coverage  --docker -v tests/unit/module_utils/datapower/
 ansible-test network-integration
 ansible-test sanity --python 3.7
-
 ```
 ## Licensing
 

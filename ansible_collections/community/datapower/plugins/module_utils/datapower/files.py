@@ -81,7 +81,7 @@ class LocalFile:
         elif os.path.isfile(path):
             self.md5 = get_file_md5(path)
         else:
-            raise Exception('No content provided and {path} is not a file'.format(path=path))
+            raise Exception(f'No content provided and {path} is not a file')
 
         self.path = path
 
@@ -102,7 +102,7 @@ class LocalFile:
         return base64.b64encode(data).decode()
 
     def get_lines(self):
-        with open(self.path, 'r') as fb:
+        with open(self.path, 'r', encoding='utf-8') as fb:
             lines = fb.readlines()
         return lines
 

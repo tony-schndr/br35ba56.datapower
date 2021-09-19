@@ -78,9 +78,7 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
 
 
 def run_module():
-    module_args = dict(
-    )
-
+    module_args = {}
     module = AnsibleModule(
         argument_spec=module_args,
         supports_check_mode=True

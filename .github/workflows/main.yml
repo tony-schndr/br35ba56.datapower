@@ -30,7 +30,7 @@ jobs:
       - name: Sanity tests
         working-directory: ansible_collections/community/datapower
         run: |
-          ansible-test sanity --python {{ matrix.python-version }}
+          ansible-test sanity --python ${{ matrix.python-version }}
 
       - name: Unit tests
         working-directory: ansible_collections/community/datapower

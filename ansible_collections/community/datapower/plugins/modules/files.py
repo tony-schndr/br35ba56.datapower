@@ -136,14 +136,14 @@ def setup_file(module, dest, src=None, content=None):
 def build_reqs(connection, domain, dest, lf):
     parent_dir = get_parent_dir(dest)
     file_req = FileRequest(connection)
-    file_req.set_path(domain, dest)
+    file_req.set_path(domain=domain, file_path=dest)
 
     if lf:
-        file_req.set_body(dest, lf.get_base64())
+        file_req.set_body(file_path=dest, content=lf.get_base64())
 
     dir_req = DirectoryRequest(connection)
-    dir_req.set_body(parent_dir)
-    dir_req.set_path(domain, parent_dir)
+    dir_req.set_body(dir_path=parent_dir)
+    dir_req.set_path(domain=domain, dir_path=parent_dir)
     return dir_req, file_req
 
 

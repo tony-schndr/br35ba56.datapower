@@ -68,11 +68,11 @@ class Request:
         data = json.loads(unescape(resp_str))
         return data
 
-    def set_body(self, body):
-        self.body = body
+    def set_body(self, **kwargs):
+        self.body = kwargs.get('body', None)
 
-    def set_path(self, path):
-        self.path = path
+    def set_path(self, **kwargs):
+        self.path = kwargs.get('path', None)
 
     @staticmethod
     def join_path(*args, base_path=None):
@@ -106,14 +106,17 @@ class DirectoryRequest(Request):
     def __init__(self, connection):
         super().__init__(connection)
 
-    def set_path(self, domain, dir_path):
+    def set_path(self, **kwargs):
+        domain = kwargs['domain']
+        dir_path = kwargs['dir_path']
         self.path = self.join_path(
             domain,
             dir_path,
             base_path='/mgmt/filestore/'
         )
 
-    def set_body(self, dir_path):
+    def set_body(self, **kwargs):
+        dir_path = kwargs['dir_path']
         # drop root directory
         if dir_path.split('/')[0] == 'local':
             dir_path = '/'.join(dir_path.split('/')[1:])
@@ -137,11 +140,15 @@ class FileRequest(Request):
     def __init__(self, connection):
         super().__init__(connection)
 
-    def set_path(self, domain, file_path):
+    def set_path(self, **kwargs):
+        domain = kwargs['domain']
+        file_path = kwargs['file_path']
         self.path = self.join_path(
             domain, file_path, base_path='/mgmt/filestore/')
 
-    def set_body(self, file_path, content):
+    def set_body(self, **kwargs):
+        file_path = kwargs['file_path']
+        content = kwargs['content']
         file_name = posixpath.split(file_path)[1]
         self.body = {
             'file': {
@@ -158,20 +165,23 @@ class FileRequest(Request):
 
 
 class ListConfigObjectsRequest(Request):
+    # FIXME: Why is domain being passed and not used?
     def __init__(self, connection, domain='default'):
         super().__init__(connection)
-        self.set_path(domain)
+        self.set_path(domain=domain)
 
-    def set_path(self, domain='default'):
+    def set_path(self, **kwargs):
+        domain = kwargs['domain']
         self.path = self.join_path(base_path='/mgmt/config/')
 
 
 class ListActionsRequest(Request):
     def __init__(self, connection, domain='default'):
         super().__init__(connection)
-        self.set_path(domain)
+        self.set_path(domain=domain)
 
-    def set_path(self, domain='default'):
+    def set_path(self, **kwargs):
+        domain = kwargs.get('domain', 'default')
         self.path = self.join_path(
             domain,
             'operations',
@@ -184,12 +194,12 @@ class ConfigRequest(Request):
         super().__init__(connection)
         self.options = None
 
-    def set_path(self, domain=None, class_name=None, name=None, field=None):
+    def set_path(self, **kwargs):
         self.path = self.join_path(
-            domain,
-            class_name,
-            name,
-            field,
+            kwargs.get('domain', None),
+            kwargs.get('class_name', None),
+            kwargs.get('name', None),
+            kwargs.get('field', None),
             base_path='/mgmt/config/'
         )
 

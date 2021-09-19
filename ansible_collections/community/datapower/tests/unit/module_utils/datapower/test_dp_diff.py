@@ -14,8 +14,9 @@ from ansible_collections.community.datapower.tests.unit.module_utils.test_data i
     dp_mgmt_test_data as test_data
 )
 
+
 def test_get_changes_valcred_1():
-    from_dict =  {
+    from_dict = {
         "CryptoValCred": {
             "CRLDPHandling": "ignore",
             "CertValidationMode": "legacy",
@@ -66,9 +67,10 @@ def test_get_changes_valcred_1():
     ]
 
     assert list(dp_diff.get_changes(from_dict, to_dict)) == changes
+
 
 def test_get_changes_integer():
-    from_dict =  {
+    from_dict = {
         "CryptoValCred": {
             "CRLDPHandling": "ignore",
             "CertValidationMode": "legacy",
@@ -119,12 +121,10 @@ def test_get_changes_integer():
     ]
 
     assert list(dp_diff.get_changes(from_dict, to_dict)) == changes
-
-
 
 
 def test_get_changes_valcred_array_to_array_with_diff_order_but_same_elements():
-    from_dict =  {
+    from_dict = {
         "CryptoValCred": {
             "CRLDPHandling": "ignore",
             "CertValidationMode": "legacy",
@@ -135,7 +135,7 @@ def test_get_changes_valcred_array_to_array_with_diff_order_but_same_elements():
             "UseCRL": "on",
             "mAdminState": "enabled",
             "name": "valcred",
-            "Certificate":[
+            "Certificate": [
                 {
                     "value": "Test1"
                 },
@@ -143,7 +143,6 @@ def test_get_changes_valcred_array_to_array_with_diff_order_but_same_elements():
                     "value": "Test2"
                 }
             ]
-            
         }
     }
 
@@ -158,7 +157,7 @@ def test_get_changes_valcred_array_to_array_with_diff_order_but_same_elements():
             "UseCRL": "on",
             "mAdminState": "enabled",
             "name": "valcred",
-            "Certificate":[
+            "Certificate": [
                 {
                     "value": "Test2"
                 },
@@ -185,60 +184,4 @@ def test_is_changed():
 
     assert dp_diff.is_changed(from_dict, to_dict)
     to_dict = test_data.AAA_Policy_from
-    assert dp_diff.is_changed(from_dict, to_dict) == False
-
-def test_get_patched_dict_valcred_2():
-
-    from_dict =  {
-        "CryptoValCred": {
-            "CRLDPHandling": "ignore",
-            "CertValidationMode": "legacy",
-            "CheckDates": "on",
-            "ExplicitPolicy": "off",
-            "InitialPolicySet": "2.5.29.32.0",
-            "RequireCRL": "off",
-            "UseCRL": "on",
-            "mAdminState": "enabled",
-            "name": "valcred"
-        }
-    }
-
-    to_dict = {
-        "CryptoValCred": {
-            "name": "valcred",
-            "mAdminState": "enabled",
-            "CheckDates": "on",
-            "ExplicitPolicy": "on",
-            "InitialPolicySet": "2.5.29.32.0",
-            "RequireCRL": "on",
-            "UseCRL": "on",
-            "Certificate": [
-                {
-                    "value": "Test1"
-                },
-                {
-                    "value": "Test2"
-                }
-            ]
-        }
-    }
-    patched ={
-        "CryptoValCred": {
-            "CheckDates": "on",
-            "ExplicitPolicy": "on",
-            "InitialPolicySet": "2.5.29.32.0",
-            "RequireCRL": "on",
-            "UseCRL": "on",
-            "mAdminState": "enabled",
-            "name": "valcred",
-            "Certificate": [
-                {
-                    "value": "Test1"
-                },
-                {
-                    "value": "Test2"
-                }
-            ]
-        }
-    }
-    assert dp_diff.get_patched_dict(from_dict, to_dict) == patched
+    assert not dp_diff.is_changed(from_dict, to_dict)

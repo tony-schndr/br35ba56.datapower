@@ -1,98 +1,205 @@
-'''
-
 from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-import re
-import os
+from faker.factory import Factory
 
-import pytest
+from ansible_collections.community.datapower.plugins.module_utils.datapower import files
 
 
-from ansible_collections.community.datapower.plugins.module_utils.datapower.files import (
-    LocalFile
-)
+def gen_lines():
+    Faker = Factory.create
+    fake = Faker()
+    lines = []
+    for i in range(5):
+        lines.append(fake.paragraph(
+            nb_sentences=5, variable_nb_sentences=False))
+    return lines
 
-class TestLocalFile():
 
-    def test_LocalFile_with_src(self):
-        file_path = './tests/unit/module_utils/test_data/copy/test/from/GetStat/new/getCPU.js'
-        try:
-            LocalFile(file_path)
-            created = True
-        except:
-            created = False
-        assert created == True
+class MockLocalFile():
+    def __init__(self, lines):
+        self.lines = lines
 
-    def test_LocalFile_with_src_and_content(self):
-        file_path = '/tmp/getMemory.js'
-        content = 'aGVsbG8gd29ybGQK'
-        try:
-            LocalFile(file_path, content)
-            created = True
-        except:
-            created = False
-        assert created == True
+    def get_lines(self):
+        return self.lines
 
-    def test_LocalFile_with_src_and_content_file_already_exists(self):
-        file_path = './tests/unit/module_utils/test_data/copy/test/from/GetStat/new/getCPU.js'
-        content = 'aGVsbG8gd29ybGQK'
-        try:
-            LocalFile(file_path, content)
-            assert False
-        except:
-            assert True
 
-    def test_LocalFile_with_good_file_path(self):
-        file_path = './tests/unit/module_utils/test_data/copy/test/from/GetStat/new/getCPU.js'
-        try:
-            LocalFile(file_path)
-            created = True
-        except:
-            created = False
-        assert created == True
+def test_get_file_diff_when_from_and_to_are_equal():
+    from_lines = gen_lines()
+    to_lines = from_lines.copy()
+    from_local_file = MockLocalFile(from_lines)
+    to_local_file = MockLocalFile(to_lines)
+    assert files.get_file_diff(
+        from_local_file,
+        to_local_file,
+        '/some/other/path/file.txt',
+        'present'
+    ) == []
 
-    def test_LocalFile_with_bad_file_path(self):
-        bad_file_path = './tests/unit/module_utils/test_data/copy/test/from/GetStat/new/not-a-file.txt'
-        try:
-            LocalFile(bad_file_path)
-            assert False
-        except:
-            assert True
 
-    def test_LocalFile_equal(self):
-        file_path_1 = './tests/unit/module_utils/test_data/files/test.js'
-        file_path_2 = './tests/unit/module_utils/test_data/files/same_file_as_test.js'
+def test_get_file_diff_when_from_and_to_are_different():
+    from_lines = gen_lines()
+    to_lines = gen_lines()
+    from_local_file = MockLocalFile(from_lines)
+    to_local_file = MockLocalFile(to_lines)
 
-        lf1 = LocalFile(file_path_1)
-        lf2 = LocalFile(file_path_2)
+    assert files.get_file_diff(
+        from_local_file,
+        to_local_file,
+        '/some/other/path/file.txt',
+        'present'
+    )[0:2] == ['*** before: /some/other/path/file.txt\n', '--- after: /some/other/path/file.txt\n']
 
-        assert lf1 == lf2
 
-    def test_LocalFile_not_equal(self):
-        file_path_1 = './tests/unit/module_utils/test_data/files/test.js'
-        file_path_2 = './tests/unit/module_utils/test_data/files/diff_from_test.js'
+def test_get_file_diff_when_state_is_present_and_from_local_file_is_none():
+    to_lines = gen_lines()
+    from_local_file = None
+    to_local_file = MockLocalFile(to_lines)
 
-        lf1 = LocalFile(file_path_1)
-        lf2 = LocalFile(file_path_2)
+    assert files.get_file_diff(
+        from_local_file,
+        to_local_file,
+        '/some/other/path/file.txt',
+        'present'
+    ) == {'before': None, 'after': '/some/other/path/file.txt'}
 
-        assert lf1 != lf2
 
-    def test_LocalFile_get_lines_returns_list_len_gr_zero(self):
-        file_path = './tests/unit/module_utils/test_data/copy/test/from/GetStat/new/getCPU.js'
-        lf = LocalFile(file_path)
-        assert len(lf.get_lines()) > 0
+def test_get_file_diff_when_state_is_absent_and_to_local_file_is_none():
+    to_lines = gen_lines()
+    from_local_file = MockLocalFile(to_lines)
+    to_local_file = None
 
-    def test_LocalFile_get_lines_returns_list_of_str(self):
-        file_path = './tests/unit/module_utils/test_data/copy/test/from/GetStat/new/getCPU.js'
-        lf = LocalFile(file_path)
-        for line in lf.get_lines():
-            assert isinstance(line, str)
+    assert files.get_file_diff(
+        from_local_file,
+        to_local_file,
+        '/some/other/path/file.txt',
+        'absent'
+    ) == {'before': '/some/other/path/file.txt', 'after': None}
 
-    def test_LocalFile_md5(self):
-        file_path = './tests/unit/module_utils/test_data/copy/test/from/GetStat/new/getCPU.js'
-        lf = LocalFile(file_path)
-        assert lf.md5
 
-'''
+def test_get_file_diff_when_state_is_absent_and_to_from_local_files_are_none():
+    from_local_file = None
+    to_local_file = None
+
+    assert files.get_file_diff(
+        from_local_file,
+        to_local_file,
+        '/some/other/path/file.txt',
+        'absent'
+    ) == {'before': None, 'after': None}
+
+
+def test_get_files_from_filestore_single_file():
+    filestore_resp = {
+        "_links": {
+            "self": {
+                "href": "/mgmt/filestore/default/local"
+            },
+            "doc": {
+                "href": "/mgmt/docs/filestore"
+            }
+        },
+        "filestore": {
+            "location": {
+                "name": "local:",
+                "file": {
+                    "name": "demo.txt",
+                    "size": 12,
+                    "modified": "2021-07-13 13:07:41",
+                    "href": "/mgmt/filestore/default/local/demo.txt"
+                },
+                "directory": [
+                    {
+                        "name": "local:/snafu",
+                        "href": "/mgmt/filestore/default/local/snafu"
+                    },
+                    {
+                        "name": "local:/subdir",
+                        "href": "/mgmt/filestore/default/local/subdir"
+                    },
+                    {
+                        "name": "local:/foo",
+                        "href": "/mgmt/filestore/default/local/foo"
+                    },
+                    {
+                        "name": "local:/local",
+                        "href": "/mgmt/filestore/default/local/local"
+                    }
+                ],
+                "href": "/mgmt/filestore/default/local"
+            }
+        }
+    }
+
+    files_from_filestore = files.get_files_from_filestore(filestore_resp)
+    assert files_from_filestore == ['/mgmt/filestore/default/local/demo.txt']
+
+
+def test_get_files_from_filestore_multiple_files():
+    filestore_resp = {
+        "_links": {
+            "self": {
+                "href": "/mgmt/filestore/default/local"
+            },
+            "doc": {
+                "href": "/mgmt/docs/filestore"
+            }
+        },
+        "filestore": {
+            "location": {
+                "name": "local:",
+                "file": [
+                    {
+                        "name": "demo.txt",
+                        "size": 12,
+                        "modified": "2021-07-13 13:07:41",
+                        "href": "/mgmt/filestore/default/local/demo.txt"
+                    },
+                    {
+                        "name": "demo2.txt",
+                        "size": 12,
+                        "modified": "2021-07-13 13:07:41",
+                        "href": "/mgmt/filestore/default/local/demo2.txt"
+                    },
+                    {
+                        "name": "demo3.txt",
+                        "size": 12,
+                        "modified": "2021-07-13 13:07:41",
+                        "href": "/mgmt/filestore/default/local/demo3.txt"
+                    }
+                ],
+                "directory": [
+                    {
+                        "name": "local:/snafu",
+                        "href": "/mgmt/filestore/default/local/snafu"
+                    },
+                    {
+                        "name": "local:/subdir",
+                        "href": "/mgmt/filestore/default/local/subdir"
+                    },
+                    {
+                        "name": "local:/foo",
+                        "href": "/mgmt/filestore/default/local/foo"
+                    },
+                    {
+                        "name": "local:/local",
+                        "href": "/mgmt/filestore/default/local/local"
+                    }
+                ],
+                "href": "/mgmt/filestore/default/local"
+            }
+        }
+    }
+
+    files_from_filestore = files.get_files_from_filestore(filestore_resp)
+    assert files_from_filestore == [
+        '/mgmt/filestore/default/local/demo.txt',
+        '/mgmt/filestore/default/local/demo2.txt',
+        '/mgmt/filestore/default/local/demo3.txt',
+    ]
+
+
+def test_get_parent_dir():
+    path = '/some/test/path/file.txt'
+    assert files.get_parent_dir(path) == '/some/test/path'

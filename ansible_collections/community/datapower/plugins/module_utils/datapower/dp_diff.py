@@ -2,16 +2,20 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-from dictdiffer import diff, patch
-# Helper functions for comparing dictionaries.
+from ansible.module_utils.six import raise_from
+
+try:
+    from dictdiffer import diff
+except ImportError as imp_exc:
+    DICTDIFFER_IMPORT_ERROR = imp_exc
+else:
+    DICTDIFFER_IMPORT_ERROR = None
+
+
+# Helper functions for comparing config dictionaries.
 
 # When using this to determine what will be changed on a DataPower the
 # from_dict should always be DataPower config, to_dict should always be ansible.
-
-
-def get_patched_dict(from_dict, to_dict):
-    result = diff(from_dict, to_dict)
-    return patch(result, from_dict)
 
 
 def is_changed(from_dict, to_dict):
@@ -24,32 +28,27 @@ def get_change_list(from_dict, to_dict):
     return list(get_changes(from_dict, to_dict))
 
 
-# Returns an iterator of dictionaries based off dictdiffer.diff
+# Returns an iterator of dictionaries derived from dictdiffer.diff
 def get_changes(from_dict, to_dict):
     for diff_ in diff(from_dict, to_dict):
         # DataPower REST MGMT interface does not care if a parameter is present
         # if a parameter is not present it will remain unchanged on DataPower
         # therefore we do not consider it when yielding diffs
-        if diff_[0] == 'remove':
-            continue
-        elif diff_[0] == 'change':
+        if diff_[0] == 'change':
             if check_if_dict_to_list_compare(diff_):
                 if check_if_dict_and_list_are_equal(diff_):
                     continue
-                else:
-                    yield _change_dict(diff_)
+                yield _change_dict(diff_)
             elif check_if_str_to_int_compare(diff_):
                 if check_if_str_and_int_equal(diff_):
                     continue
-                else:
-                    yield _change_dict(diff_)
+                yield _change_dict(diff_)
             else:
                 yield _change_dict(diff_)
         elif diff_[0] == 'add':
             yield _change_dict(diff_)
         else:
-            raise NotImplementedError(
-                'Only remove, change, and add are supported diff checks.')
+            continue
 
 
 def _change_dict(diff_):

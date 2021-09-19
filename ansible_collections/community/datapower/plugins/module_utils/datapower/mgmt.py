@@ -92,14 +92,6 @@ class Config():
             return not dp_diff.is_changed(self.config, o.config)
         return False
 
-# This is hardcoded, the response is from DataPower v 10.0.1.0.
-# This should greatly improved by having it check at the beginning
-# of module execution
-
-
-def is_valid_class(class_name):
-    return class_name in valid_objects
-
 
 def get_remote_data(req):
     try:

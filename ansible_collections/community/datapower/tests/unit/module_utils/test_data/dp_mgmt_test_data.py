@@ -731,7 +731,7 @@ valcred_cert_is_array = {
     "CryptoValCred": {
         "CRLDPHandling": "ignore",
         "CertValidationMode": "legacy",
-        "Certificate": 
+        "Certificate":
         [
             {
                 "value": "Test2"
@@ -741,7 +741,7 @@ valcred_cert_is_array = {
             },
             {
                 "value": "Test3"
-            }  
+            }
         ],
         "CheckDates": "on",
         "ExplicitPolicy": "on",
@@ -752,4 +752,3 @@ valcred_cert_is_array = {
         "name": "valcred"
     }
 }
-

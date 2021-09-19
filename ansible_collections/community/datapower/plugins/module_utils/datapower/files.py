@@ -81,7 +81,7 @@ class LocalFile:
         elif os.path.isfile(path):
             self.md5 = get_file_md5(path)
         else:
-            raise Exception('No content provided and {path} is not a file'.format(path))
+            raise Exception('No content provided and {path} is not a file'.format(path=path))
 
         self.path = path
 

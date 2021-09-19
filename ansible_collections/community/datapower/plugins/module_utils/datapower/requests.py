@@ -104,7 +104,7 @@ class Request:
 
 class DirectoryRequest(Request):
     def __init__(self, connection):
-        super(DirectoryRequest, self).__init__(connection)
+        super().__init__(connection)
 
     def set_path(self, domain, dir_path):
         self.path = self.join_path(
@@ -135,7 +135,7 @@ class DirectoryRequest(Request):
 
 class FileRequest(Request):
     def __init__(self, connection):
-        super(FileRequest, self).__init__(connection)
+        super().__init__(connection)
 
     def set_path(self, domain, file_path):
         self.path = self.join_path(
@@ -159,7 +159,7 @@ class FileRequest(Request):
 
 class ListConfigObjectsRequest(Request):
     def __init__(self, connection, domain='default'):
-        super(ListConfigObjectsRequest, self).__init__(connection)
+        super().__init__(connection)
         self.set_path(domain)
 
     def set_path(self, domain='default'):
@@ -168,7 +168,7 @@ class ListConfigObjectsRequest(Request):
 
 class ListActionsRequest(Request):
     def __init__(self, connection, domain='default'):
-        super(ListActionsRequest, self).__init__(connection)
+        super().__init__(connection)
         self.set_path(domain)
 
     def set_path(self, domain='default'):
@@ -181,7 +181,7 @@ class ListActionsRequest(Request):
 
 class ConfigRequest(Request):
     def __init__(self, connection):
-        super(ConfigRequest, self).__init__(connection)
+        super().__init__(connection)
         self.options = None
 
     def set_path(self, domain=None, class_name=None, name=None, field=None):
@@ -225,7 +225,7 @@ class ConfigRequest(Request):
 
 class ConfigInfoRequest(Request):
     def __init__(self, connection):
-        super(ConfigInfoRequest, self).__init__(connection)
+        super().__init__(connection)
 
     def config_info(self, domain='default', class_name=None):
         if class_name is None:
@@ -247,7 +247,7 @@ class ConfigInfoRequest(Request):
 
 class ActionQueueSchemaRequest(Request):
     def __init__(self, connection, domain, action_name):
-        super(ActionQueueSchemaRequest, self).__init__(connection)
+        super().__init__(connection)
         self.path = ACTION_QUEUE_SCHEMA_URI.format(domain, action_name)
 
 
@@ -257,7 +257,7 @@ class ActionQueueTimeoutError(Exception):
 
 class ActionQueueRequest(Request):
     def __init__(self, connection, domain, action_name, parameters=None):
-        super(ActionQueueRequest, self).__init__(connection)
+        super().__init__(connection)
         self.path = ACTION_QUEUE_URI.format(domain)
 
         if parameters:
@@ -290,13 +290,12 @@ class ActionQueueRequest(Request):
                     or v == 'processed' \
                     or v == 'processed-with-errors':
                 return True
-        else:
-            return False
+        return False
 
 
 class StatusRequest(Request):
     def __init__(self, connection, domain, status_name):
-        super(StatusRequest, self).__init__(connection)
+        super().__init__(connection)
         self.path = self.join_path(
             domain,
             status_name,
@@ -306,7 +305,7 @@ class StatusRequest(Request):
 
 class ListStatusObjectsRequest(Request):
     def __init__(self, connection):
-        super(ListStatusObjectsRequest, self).__init__(connection)
+        super().__init__(connection)
         self.path = self.join_path(base_path='/mgmt/status/')
 
 

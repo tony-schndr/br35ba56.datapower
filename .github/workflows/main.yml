@@ -24,14 +24,13 @@ jobs:
           pip install ansible-lint
           pip install voluptuous
           pip install pycodestyle
+          pip install yamllint
           pip install -r ansible_collections/community/datapower/requirements.txt;
 
       - name: Sanity tests
         working-directory: ansible_collections/community/datapower
         run: |
-          ansible-test sanity --test validate-modules
-          ansible-test sanity --test pep8 plugins/
-          ansible-test sanity --test line-endings
+          ansible-test sanity --python {{ matrix.python-version }}
 
       - name: Unit tests
         working-directory: ansible_collections/community/datapower

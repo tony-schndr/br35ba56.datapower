@@ -116,6 +116,7 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
 from ansible_collections.community.datapower.plugins.module_utils.datapower import (
     dp_diff
 )
+from ansible.module_utils.basic import missing_required_lib
 
 
 def run_module():
@@ -130,7 +131,10 @@ def run_module():
         argument_spec=module_args,
         supports_check_mode=True
     )
-
+    if dp_diff.DICTDIFFER_IMPORT_ERROR:
+        module.fail_json(
+            msg=missing_required_lib('another_library'),
+            exception=dp_diff.DICTDIFFER_IMPORT_ERROR)
     connection = Connection(module._socket_path)
     domain = module.params.get('domain')
     class_name = module.params.get('class_name')

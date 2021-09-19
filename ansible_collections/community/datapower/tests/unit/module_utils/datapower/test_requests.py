@@ -46,7 +46,7 @@ class TestRequest:
         try:
             Request.join_path(domain, top_directory, file_path)
             assert False
-        except:
+        except Exception:
             assert True
 
 
@@ -59,24 +59,23 @@ class TestFileRequest:
         file_path = 'local/dir/subdir/get.js'
         content = 'aGVsbG8gd29ybGQK'
         req = FileRequest(self.connection)
-        req.set_path(domain,  file_path)
+        req.set_path(domain, file_path)
         req.set_body(file_path, content)
         assert req.path == '/mgmt/filestore/default/local/dir/subdir/get.js'
         assert req.body == {'file': {'name': 'get.js', 'content': content}}
-
 
     def test_FileRequest_create(self):
         domain = 'default'
         file_path = 'local/dir/subdir/get.js'
         content = 'aGVsbG8gd29ybGQK'
         req = FileRequest(self.connection)
-        req.set_path(domain,file_path)
+        req.set_path(domain, file_path)
         req.set_body(file_path, content)
-        #raise Exception(req.post())
+
         assert req.post()[0] == '/mgmt/filestore/default/local/dir/subdir'
         assert req.post()[1] == 'POST'
-        assert req.post()[2] == {'file': {'name': 'get.js', 'content': content}}
-
+        assert req.post()[2] == {
+            'file': {'name': 'get.js', 'content': content}}
 
     def test_FileRequest_update(self):
         domain = 'default'
@@ -85,7 +84,8 @@ class TestFileRequest:
         req = FileRequest(self.connection)
         req.set_path(domain, file_path)
         req.set_body(file_path, content)
-        assert req.put()[0] == '/mgmt/filestore/default/local/dir/subdir/get.js'
+        assert req.put()[
+            0] == '/mgmt/filestore/default/local/dir/subdir/get.js'
         assert req.put()[1] == 'PUT'
         assert req.put()[2] == {'file': {'name': 'get.js', 'content': content}}
 
@@ -96,9 +96,10 @@ class TestFileRequest:
         req = FileRequest(self.connection)
         req.set_path(domain, file_path)
         req.set_body(file_path, content)
-        assert req.get()[0] == '/mgmt/filestore/default/local/dir/subdir/get.js'
+        assert req.get()[
+            0] == '/mgmt/filestore/default/local/dir/subdir/get.js'
         assert req.get()[1] == 'GET'
-        assert req.get()[2] == None
+        assert not req.get()[2]
 
     def test_FileRequest_delete(self):
         domain = 'default'
@@ -107,9 +108,10 @@ class TestFileRequest:
         req = FileRequest(self.connection)
         req.set_path(domain, file_path)
         req.set_body(file_path, content)
-        assert req.delete()[0] == '/mgmt/filestore/default/local/dir/subdir/get.js'
+        assert req.delete()[
+            0] == '/mgmt/filestore/default/local/dir/subdir/get.js'
         assert req.delete()[1] == 'DELETE'
-        assert req.delete()[2] == None
+        assert not req.delete()[2]
 
 
 class TestDirectoryRequest:
@@ -147,7 +149,7 @@ class TestDirectoryRequest:
         try:
             req.put()
             assert False
-        except:  # Put not implemented
+        except Exception:  # Put not implemented
             assert True
 
     def test_DirectoryRequest_get(self):
@@ -158,7 +160,7 @@ class TestDirectoryRequest:
         req.set_path(domain, dir_path)
         assert req.get()[0] == '/mgmt/filestore/default/local/dir/subdir'
         assert req.get()[1] == 'GET'
-        assert req.get()[2] == None
+        assert not req.get()[2]
 
     def test_DirectoryRequest_delete(self):
         domain = 'default'
@@ -168,7 +170,7 @@ class TestDirectoryRequest:
         req.set_path(domain, dir_path)
         assert req.delete()[0] == '/mgmt/filestore/default/local/dir/subdir'
         assert req.delete()[1] == 'DELETE'
-        assert req.delete()[2] == None
+        assert not req.delete()[2]
 
 
 class TestConfigRequest:
@@ -326,7 +328,6 @@ class TestActionRequest:
             'parameters': {
                 'RemoteHost': 'www.google.com'
             }
-
         }
 
         req = ActionQueueRequest(self.connection, **task_args)
@@ -367,7 +368,7 @@ def test_action_transitions():
     }
     connection = MockConnection
     req = ActionQueueRequest(connection, 'default', 'SaveConfig')
-    assert req.is_completed(resp) == False
+    assert not req.is_completed(resp)
     resp = {
         "_links": {
             "self": {
@@ -380,7 +381,7 @@ def test_action_transitions():
         "SaveConfig": "Operation completed.",
         "script-log": ""
     }
-    assert req.is_completed(resp) == True
+    assert req.is_completed(resp)
     resp = {
         "_links": {
             "self": {
@@ -389,7 +390,7 @@ def test_action_transitions():
         },
         "status": "completed"
     }
-    assert req.is_completed(resp) == True
+    assert req.is_completed(resp)
     resp = {
         "SaveConfig": "Operation completed.",
         "_links": {
@@ -402,7 +403,7 @@ def test_action_transitions():
         },
         "script-log": ""
     }
-    assert req.is_completed(resp) == True
+    assert req.is_completed(resp)
 
 
 def test_get_request_func_returns_none_when_data_is_equal():
@@ -412,7 +413,7 @@ def test_get_request_func_returns_none_when_data_is_equal():
     req = Request(connection)
 
     func = get_request_func(req, before, after, 'present')
-    assert func == None
+    assert not func
 
 
 def test_get_request_func_returns_put_when_data_is_not_equal():
@@ -442,7 +443,7 @@ def test_get_request_func_returns_none_when_data_does_not_exist_on_remote():
     req = Request(connection)
 
     func = get_request_func(req, before, after, 'absent')
-    assert func == None
+    assert not func
 
 
 def test_get_request_func_returns_delete_when_data_exists_on_remote():

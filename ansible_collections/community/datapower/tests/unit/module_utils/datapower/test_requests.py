@@ -113,7 +113,6 @@ class TestFileRequest:
         assert req.delete()[1] == 'DELETE'
         assert not req.delete()[2]
 
-
     def test_FileRequest_set_path_strips_leading_forward_path(self):
         domain = 'default'
         file_path = '/local/dir/subdir/get.js'

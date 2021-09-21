@@ -113,6 +113,19 @@ class TestFileRequest:
         assert req.delete()[1] == 'DELETE'
         assert not req.delete()[2]
 
+    def test_FileRequest_set_path_strips_leading_forward_path(self):
+        domain = 'default'
+        file_path = '/local/dir/subdir/get.js'
+        content = 'aGVsbG8gd29ybGQK'
+        req = FileRequest(self.connection)
+        req.set_path(domain=domain, file_path=file_path)
+        req.set_body(file_path=file_path, content=content)
+
+        assert req.post()[0] == '/mgmt/filestore/default/local/dir/subdir'
+        assert req.post()[1] == 'POST'
+        assert req.post()[2] == {
+            'file': {'name': 'get.js', 'content': content}}
+
 
 class TestDirectoryRequest:
     # Need a few more tests with potentially invalid input if handled incorrectly

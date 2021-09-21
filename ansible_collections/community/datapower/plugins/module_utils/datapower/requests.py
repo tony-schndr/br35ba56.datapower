@@ -142,7 +142,7 @@ class FileRequest(Request):
 
     def set_path(self, **kwargs):
         domain = kwargs['domain']
-        file_path = kwargs['file_path']
+        file_path = kwargs['file_path'].strip('/')
         self.path = self.join_path(
             domain, file_path, base_path='/mgmt/filestore/')
 

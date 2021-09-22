@@ -83,3 +83,16 @@ class TestConfig:
             Config(**kwargs)
         except ValueError:
             assert True
+
+    def test_DPConfig__init__class_name_and_name_and_class_name_in_config(self):
+        kwargs = {
+            'domain': 'snafu',
+            'class_name': 'Domain',
+            'config': {
+                'name': 'foo'
+            }
+        }
+
+        dp_config = Config(**kwargs)
+        assert dp_config.name == 'foo'
+        assert dp_config.class_name == 'Domain'

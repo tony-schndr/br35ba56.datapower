@@ -80,7 +80,7 @@ class Config():
         if not name:
             if self.class_name in config:
                 self.name = config.get(self.class_name).get('name')
-            elif 'name' in self.config:
+            elif 'name' in config:
                 self.name = config.get('name')
             else:
                 raise AttributeError('name attribute is required.')

@@ -83,10 +83,10 @@ jobs:
           - devel
 
     steps:
-#      - name: Check out code
-#        uses: actions/checkout@v2
-#        with:
-#          path: ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          path: ./
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -153,10 +153,10 @@ jobs:
             python: 3.9
 
     steps:
-#      - name: Check out code
-#        uses: actions/checkout@v2
-#        with:
-#          path: ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          path: ./
 
       - name: Set up Python
         uses: actions/setup-python@v2

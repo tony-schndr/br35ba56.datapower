@@ -120,7 +120,6 @@ jobs:
       # Install them like this
       - name: Install collection dependencies
         run: ansible-galaxy collection install ansible.netcommon ansible.utils -p .
-
       # Run the unit tests
       - name: Run unit test
         run: ansible-test units -v --color --docker --coverage --python ${{ matrix.python }}
@@ -189,8 +188,10 @@ jobs:
       # OPTIONAL If your integration test requires Python libraries or modules from other collections
       # Install them like this
       - name: Install collection dependencies
-        run: ansible-galaxy collection install ansible.netcommon -p .
-
+        run: |
+          ansible-galaxy collection install ansible.netcommon -p .
+          pip install -r ansible_collections/community/datapower/requirements.txt
+          
       - name: Inject Python Interpreter into inventory
         run: echo "ansible_python_interpreter=$(which python)" >> ansible_collections/community/datapower/tests/integration/inventory.networking
 

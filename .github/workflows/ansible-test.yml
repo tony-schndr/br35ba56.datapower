@@ -196,7 +196,7 @@ jobs:
         run: echo "ansible_python_interpreter=$(which python)" >> ansible_collections/community/datapower/tests/integration/inventory.networking
 
       - name: Start docker DataPower
-        run: docker-compose up -d 
+        run: chmod 777 dp/config && docker-compose up -d
 
       # Run the integration tests
       - name: Run integration test

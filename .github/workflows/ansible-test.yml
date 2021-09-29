@@ -52,8 +52,8 @@ jobs:
 
       - name: Check out code
         uses: actions/checkout@v2
-        with:
-          path: ./
+        #with:
+          #path: ./
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -103,8 +103,8 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
-        with:
-          path: ./
+        #with:
+        # path: ./
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -173,8 +173,8 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
-        with:
-          path: ./
+        #with:
+        #  path: ./
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -191,8 +191,11 @@ jobs:
       - name: Install collection dependencies
         run: ansible-galaxy collection install ansible.netcommon -p .
 
+      - name: Inject Python Interpreter into inventory
+        run: echo "ansible_python_interpreter=$(which python)" >> ansible_collections/community/datapower/tests/integration/inventory.networking
+
       - name: Start docker DataPower
-        run: docker-compose up -d
+        run: docker-compose up -d 
 
       # Run the integration tests
       - name: Run integration test

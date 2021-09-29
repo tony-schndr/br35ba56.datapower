@@ -19,11 +19,6 @@ env:
 
 jobs:
 
-###
-# Sanity tests (REQUIRED)
-#
-# https://docs.ansible.com/ansible/latest/dev_guide/testing_sanity.html
-
   sanity:
     name: Sanity (Ⓐ${{ matrix.ansible }})
     strategy:
@@ -47,14 +42,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      # ansible-test requires the collection to be in a directory in the form
-      # .../ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}/
-
       - name: Check out code
         uses: actions/checkout@v2
-        #with:
-          #path: ./
-
+        
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -103,8 +93,6 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
-        #with:
-        # path: ./
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -147,7 +135,7 @@ jobs:
 
   integration:
     runs-on: ubuntu-latest
-    name: I (Ⓐ${{ matrix.ansible }}+py${{ matrix.python }})
+    name: Network Integration (Ⓐ${{ matrix.ansible }}+py${{ matrix.python }})
     strategy:
       fail-fast: false
       matrix:
@@ -172,8 +160,6 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
-        #with:
-        #  path: ./
 
       - name: Set up Python
         uses: actions/setup-python@v2

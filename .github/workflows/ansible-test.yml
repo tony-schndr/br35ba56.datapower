@@ -191,9 +191,12 @@ jobs:
       - name: Install collection dependencies
         run: ansible-galaxy collection install ansible.netcommon -p .
 
+      - name: Start docker DataPower
+        run: docker-compose up -d
+
       # Run the integration tests
       - name: Run integration test
-        run: ansible-test integration -v --color --retry-on-error --continue-on-error --diff --python ${{ matrix.python }} --requirements --coverage
+        run: ansible-test network-integration -v --color --retry-on-error --continue-on-error --diff --python ${{ matrix.python }} --requirements --coverage
         working-directory: ./ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
 
         # ansible-test support producing code coverage date

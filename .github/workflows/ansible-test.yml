@@ -19,11 +19,6 @@ env:
 
 jobs:
 
-###
-# Sanity tests (REQUIRED)
-#
-# https://docs.ansible.com/ansible/latest/dev_guide/testing_sanity.html
-
   sanity:
     name: Sanity (Ⓐ${{ matrix.ansible }})
     strategy:
@@ -35,17 +30,21 @@ jobs:
           - stable-2.10
           - stable-2.11
           - devel
+        python:
+          - 3.6
+          - 3.7
+          - 3.8
+          - 3.9
+        exclude:
+          # Because ansible-test doesn't support python3.9 for Ansible 2.9
+          - ansible: stable-2.9
+            python: 3.9
     runs-on: ubuntu-latest
     steps:
 
-      # ansible-test requires the collection to be in a directory in the form
-      # .../ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}/
-
       - name: Check out code
         uses: actions/checkout@v2
-        with:
-          path: ./
-
+        
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -61,7 +60,7 @@ jobs:
       # The docker container has all the pinned dependencies that are required
       # and all python versions ansible supports.
       - name: Run sanity tests
-        run: ansible-test sanity --docker -v --color
+        run: ansible-test sanity --docker -v --color --python ${{ matrix.python }}
         working-directory: ./ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
 
 ###
@@ -81,12 +80,19 @@ jobs:
           - stable-2.10
           - stable-2.11
           - devel
-
+        python:
+          - 3.6
+          - 3.7
+          - 3.8
+          - 3.9
+        exclude:
+          # Because ansible-test doesn't support python3.9 for Ansible 2.9
+          - ansible: stable-2.9
+            python: 3.9
+            
     steps:
       - name: Check out code
         uses: actions/checkout@v2
-        with:
-          path: ./
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -102,10 +108,9 @@ jobs:
       # Install them like this
       - name: Install collection dependencies
         run: ansible-galaxy collection install ansible.netcommon ansible.utils -p .
-
       # Run the unit tests
       - name: Run unit test
-        run: ansible-test units -v --color --docker --coverage
+        run: ansible-test units -v --color --docker --coverage --python ${{ matrix.python }}
         working-directory: ./ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
 
         # ansible-test support producing code coverage date
@@ -130,7 +135,7 @@ jobs:
 
   integration:
     runs-on: ubuntu-latest
-    name: I (Ⓐ${{ matrix.ansible }}+py${{ matrix.python }})
+    name: Network Integration (Ⓐ${{ matrix.ansible }}+py${{ matrix.python }})
     strategy:
       fail-fast: false
       matrix:
@@ -140,9 +145,9 @@ jobs:
           - stable-2.11
           - devel
         python:
-          - 2.6
-          - 2.7
-          - 3.5
+          #- 2.6
+          #- 2.7
+          #- 3.5
           - 3.6
           - 3.7
           - 3.8
@@ -155,8 +160,6 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
-        with:
-          path: ./
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -171,11 +174,19 @@ jobs:
       # OPTIONAL If your integration test requires Python libraries or modules from other collections
       # Install them like this
       - name: Install collection dependencies
-        run: ansible-galaxy collection install ansible.netcommon -p .
+        run: |
+          ansible-galaxy collection install ansible.netcommon -p .
+          pip install -r ansible_collections/community/datapower/requirements.txt
+          
+      - name: Inject Python Interpreter into inventory
+        run: echo "ansible_python_interpreter=$(which python)" >> ansible_collections/community/datapower/tests/integration/inventory.networking
+
+      - name: Start docker DataPower
+        run: chmod 777 dp/config && docker-compose up -d && sleep 10 # Sleep to give the container time to start.
 
       # Run the integration tests
       - name: Run integration test
-        run: ansible-test integration -v --color --retry-on-error --continue-on-error --diff --python ${{ matrix.python }} --requirements --coverage
+        run: ansible-test network-integration -v --color --retry-on-error --continue-on-error --diff --requirements --coverage
         working-directory: ./ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
 
         # ansible-test support producing code coverage date

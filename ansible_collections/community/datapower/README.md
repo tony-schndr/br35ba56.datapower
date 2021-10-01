@@ -1,4 +1,6 @@
-# Ansible Collection - community.datapower
+# DataPower Collection for Ansible
+<!-- Add CI and code coverage badges here. Samples included below. -->
+[![CI](https://github.com/br35ba56/ansible-datapower/workflows/CI/badge.svg?event=push)](https://github.com/br35ba56/ansible-datapower/actions) [![Codecov](https://img.shields.io/codecov/c/github/br35ba56/ansible-datapower)](https://codecov.io/gh/br35ba56/ansible-datapower)
 
 The Ansible DataPower collection includes a variety of modules to automate
 the management of IBM DataPower Appliances.

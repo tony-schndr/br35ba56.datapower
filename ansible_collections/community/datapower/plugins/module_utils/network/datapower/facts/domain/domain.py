@@ -24,7 +24,6 @@ class DomainFacts(object):
     """
 
     def __init__(self, module, subspec='config', options='options'):
-        raise Exception()
         self._module = module
         self.argument_spec = DomainArgs.argument_spec
         spec = deepcopy(self.argument_spec)
@@ -58,11 +57,9 @@ class DomainFacts(object):
 
         if isinstance(data['Domain'], list):
             for resource in data['Domain']:
-                if resource['name'] != 'default':
-                    objs.append(resource)
+                objs.append(resource)
         else:
-            if data['Domain']['name'] != 'default':
-                objs.append(data['Domain'])
+            objs.append(data['Domain'])
 
         for obj in objs:
             clean_dp_dict(obj)
@@ -73,8 +70,7 @@ class DomainFacts(object):
         facts = {}
 
         if objs:
-            params = utils.validate_config(self.argument_spec, {'config': objs})
-            facts['domain'] = params['config']
+            facts['domain'] =  objs
 
         ansible_facts['ansible_network_resources'].update(facts)
 

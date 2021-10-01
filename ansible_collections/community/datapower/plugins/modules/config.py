@@ -123,8 +123,6 @@ def run_module():
     module_args = dict(
         domain=dict(type='str', required=True),
         config=dict(type='dict', required=True),
-        class_name=dict(type='str', required=False),
-        name=dict(type='str', required=False),
         state=dict(type='str', choices=['present', 'absent'], required=True)
     )
     module = AnsibleModule(

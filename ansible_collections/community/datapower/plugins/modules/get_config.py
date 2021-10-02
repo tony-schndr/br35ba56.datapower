@@ -216,7 +216,10 @@ def run_module():
         dp_resp = to_text(e)
     result = {}
     result['response'] = dp_resp
-
+    result['ansible_facts'] = {'ansible_network_resources' : {
+            domain : 'tiny boy'
+        }
+    }
     module.exit_json(**result)
 
 

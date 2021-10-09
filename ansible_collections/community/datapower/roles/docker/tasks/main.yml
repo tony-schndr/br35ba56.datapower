@@ -6,19 +6,18 @@
 - name: Copy config into build directory
   copy:
     src: files/2018/config
-    dest: /var/tmp/dp/
-    
+    dest: "{{ docker_build_dir }}"
   when: '"2018.1" in version'
 
-- name: Create tempdir to build image from
+- name: Create dir to build image from
   file:
     state: directory
-    path: /var/tmp/dp
-    
+    path: "{{ docker_build_dir }}"
+
 - name: Copy config into build directory
   copy:
     src: files/10/config
-    dest: /var/tmp/dp/
+    dest: "{{ docker_build_dir }}"
   when: '"10.0" in version'
 
 - name: Build the datapower image {{ version }}
@@ -26,11 +25,9 @@
     name: dp:{{ version }}
     source: build
     build:
-      path: /var/tmp/dp
+      path: "{{ docker_build_dir }}"
     state: present
     force_absent: yes
-  become: yes
-  become_user: root
 
 - name: Starting datapower {{ version }}
   docker_container:

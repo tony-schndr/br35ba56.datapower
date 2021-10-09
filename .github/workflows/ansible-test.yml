@@ -176,6 +176,7 @@ jobs:
       - name: Install collection dependencies
         run: |
           ansible-galaxy collection install ansible.netcommon -p .
+          ansible-galaxy collection install community.general -p .
           pip install -r ansible_collections/community/datapower/requirements.txt
           
       - name: Inject Python Interpreter into inventory

@@ -1,0 +1,43 @@
+- name: Set version in Dockerfile {{ version }}
+  template:
+    src: templates/Dockerfile.j2
+    dest: /var/tmp/dp/Dockerfile
+
+- name: Copy config into build directory
+  copy:
+    src: files/2018/config
+    dest: /var/tmp/dp/
+    
+  when: '"2018.1" in version'
+
+- name: Copy config into build directory
+  copy:
+    src: files/10/config
+    dest: /var/tmp/dp/
+  when: '"10.0" in version'
+
+- name: Build the datapower image {{ version }}
+  docker_image:
+    name: dp:{{ version }}
+    source: build
+    build:
+      path: /var/tmp/dp
+    state: present
+    force_absent: yes
+  become: yes
+  become_user: root
+
+- name: Starting datapower {{ version }}
+  docker_container:
+    image: dp:{{ version }}
+    name: dp
+    published_ports:
+      - 5554:5554
+      - 9090:9090
+    state:  started
+  register: start_container
+
+- name: "{{ head_start }} second pause, let the container boot" 
+  pause: 
+    seconds: "{{ head_start | int}}"
+  when: start_container.changed == True

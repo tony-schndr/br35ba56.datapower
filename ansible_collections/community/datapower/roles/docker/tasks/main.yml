@@ -10,6 +10,11 @@
     
   when: '"2018.1" in version'
 
+- name: Create tempdir to build image from
+  file:
+    state: directory
+    path: /var/tmp/dp
+    
 - name: Copy config into build directory
   copy:
     src: files/10/config

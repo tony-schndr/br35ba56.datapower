@@ -178,7 +178,7 @@ jobs:
           ansible-galaxy collection install ansible.netcommon -p .
           ansible-galaxy collection install community.docker -p .
           pip install -r ansible_collections/community/datapower/requirements.txt
-          
+          pip install requests
       - name: Inject Python Interpreter into inventory
         run: echo "ansible_python_interpreter=$(which python)" >> ansible_collections/community/datapower/tests/integration/inventory.networking
 

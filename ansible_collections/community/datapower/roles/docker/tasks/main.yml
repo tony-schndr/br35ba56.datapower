@@ -1,3 +1,8 @@
+- name: Create dir to build image from
+  file:
+    state: directory
+    path: "{{ docker_build_dir }}"
+
 - name: Set version in Dockerfile {{ version }}
   template:
     src: templates/Dockerfile.j2

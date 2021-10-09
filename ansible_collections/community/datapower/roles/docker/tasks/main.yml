@@ -1,7 +1,7 @@
 - name: Set version in Dockerfile {{ version }}
   template:
     src: templates/Dockerfile.j2
-    dest: /var/tmp/dp/Dockerfile
+    dest: "{{ docker_build_dir }}/dp/Dockerfile"
 
 - name: Copy config into build directory
   copy:

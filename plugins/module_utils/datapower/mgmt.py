@@ -116,8 +116,11 @@ def convert_bool_to_on_or_off(parameters):
 
 
 def map_module_args_to_datapower_keys(parameters):
-    return {PARAM_MAP[key]: value for key, value in parameters.items() if value and key not in EXCLUDED_KEYS}
-
+    new_dict = {}
+    for key, value in parameters.items():
+        if value and key not in EXCLUDED_KEYS:
+            new_dict[PARAM_MAP[key]] = value
+    return new_dict
 
 def get_random_file_name(extension=''):
     letters = string.ascii_lowercase

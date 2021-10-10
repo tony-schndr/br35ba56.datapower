@@ -46,7 +46,7 @@ def clean_dp_dict(dict_):
     _scrub(dict_, 'state')
 
 
-class Request:
+class Request(object):
     def __init__(self, connection):
         self.connection = connection
         self.body = None
@@ -107,7 +107,7 @@ class Request:
 
 class DirectoryRequest(Request):
     def __init__(self, connection):
-        super().__init__(connection)
+        super(DirectoryRequest, self).__init__(connection)
 
     def set_path(self, **kwargs):
         domain = kwargs['domain']
@@ -141,7 +141,7 @@ class DirectoryRequest(Request):
 
 class FileRequest(Request):
     def __init__(self, connection):
-        super().__init__(connection)
+        super(FileRequest, self).__init__(connection)
 
     def set_path(self, **kwargs):
         domain = kwargs['domain']
@@ -170,7 +170,7 @@ class FileRequest(Request):
 class ListConfigObjectsRequest(Request):
     # FIXME: Why is domain being passed and not used?
     def __init__(self, connection, domain='default'):
-        super().__init__(connection)
+        super(ListConfigObjectsRequest, self).__init__(connection)
         self.set_path(domain=domain)
 
     def set_path(self, **kwargs):
@@ -180,7 +180,7 @@ class ListConfigObjectsRequest(Request):
 
 class ListActionsRequest(Request):
     def __init__(self, connection, domain='default'):
-        super().__init__(connection)
+        super(ListActionsRequest, self).__init__(connection)
         self.set_path(domain=domain)
 
     def set_path(self, **kwargs):
@@ -194,7 +194,7 @@ class ListActionsRequest(Request):
 
 class ConfigRequest(Request):
     def __init__(self, connection):
-        super().__init__(connection)
+        super(ConfigRequest, self).__init__(connection)
         self.options = None
 
     def set_path(self, **kwargs):
@@ -238,7 +238,7 @@ class ConfigRequest(Request):
 
 class ConfigInfoRequest(Request):
     def __init__(self, connection):
-        super().__init__(connection)
+        super(ConfigInfoRequest, self).__init__(connection)
 
     def config_info(self, domain='default', class_name=None):
         if class_name is None:
@@ -260,7 +260,7 @@ class ConfigInfoRequest(Request):
 
 class ActionQueueSchemaRequest(Request):
     def __init__(self, connection, domain, action_name):
-        super().__init__(connection)
+        super(ActionQueueSchemaRequest, self).__init__(connection)
         self.path = ACTION_QUEUE_SCHEMA_URI.format(domain, action_name)
 
 
@@ -270,7 +270,7 @@ class ActionQueueTimeoutError(Exception):
 
 class ActionQueueRequest(Request):
     def __init__(self, connection, domain, action_name, parameters=None):
-        super().__init__(connection)
+        super(ActionQueueRequest, self).__init__(connection)
         self.path = ACTION_QUEUE_URI.format(domain)
 
         if parameters:
@@ -308,7 +308,7 @@ class ActionQueueRequest(Request):
 
 class StatusRequest(Request):
     def __init__(self, connection, domain, status_name):
-        super().__init__(connection)
+        super(StatusRequest, self).__init__(connection)
         self.path = self.join_path(
             domain,
             status_name,
@@ -318,7 +318,7 @@ class StatusRequest(Request):
 
 class ListStatusObjectsRequest(Request):
     def __init__(self, connection):
-        super().__init__(connection)
+        super(ListStatusObjectsRequest, self).__init__(connection)
         self.path = self.join_path(base_path='/mgmt/status/')
 
 

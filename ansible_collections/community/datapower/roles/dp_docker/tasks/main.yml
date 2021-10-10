@@ -43,3 +43,8 @@
   pause:
     seconds: "{{ head_start | int}}"
   when: start_container.changed == True
+
+- name: Remove build directory
+  file:
+    state: absent
+    path: "{{ docker_build_dir }}"

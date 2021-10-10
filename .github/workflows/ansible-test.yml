@@ -185,7 +185,7 @@ jobs:
           pip install requests
           pip install docker
 
-      - name: Inject Python Interpreter into inventory
+      - name: Inject variables into inventory
         run: |
           echo "ansible_python_interpreter=$(which python)" >> ansible_collections/community/datapower/tests/integration/inventory.networking
           echo "dp_version=${{ matrix.datapower }}" >> ansible_collections/community/datapower/tests/integration/inventory.networking

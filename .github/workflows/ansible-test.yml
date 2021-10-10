@@ -15,7 +15,7 @@ on:
     - cron: '0 6 * * *'
 env:
   NAMESPACE: community
-  COLLECTION_NAME: datapower 
+  COLLECTION_NAME: datapower
 
 jobs:
 
@@ -44,7 +44,7 @@ jobs:
 
       - name: Check out code
         uses: actions/checkout@v2
-        
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -89,7 +89,7 @@ jobs:
           # Because ansible-test doesn't support python3.9 for Ansible 2.9
           - ansible: stable-2.9
             python: 3.9
-            
+
     steps:
       - name: Check out code
         uses: actions/checkout@v2
@@ -152,6 +152,10 @@ jobs:
           - 3.7
           - 3.8
           - 3.9
+        datapower:
+          - 2018.4.1.17
+          - 10.0.1.4
+          - 10.0.3.0
         exclude:
           # Because ansible-test doesn't support python3.9 for Ansible 2.9
           - ansible: stable-2.9
@@ -180,8 +184,11 @@ jobs:
           pip install -r ansible_collections/community/datapower/requirements.txt
           pip install requests
           pip install docker
+
       - name: Inject Python Interpreter into inventory
-        run: echo "ansible_python_interpreter=$(which python)" >> ansible_collections/community/datapower/tests/integration/inventory.networking
+        run: |
+          echo "ansible_python_interpreter=$(which python)" >> ansible_collections/community/datapower/tests/integration/inventory.networking
+          echo "dp_version=${{ matrix.datapower }}" >> ansible_collections/community/datapower/tests/integration/inventory.networking
 
       # Run the integration tests
       - name: Run integration test

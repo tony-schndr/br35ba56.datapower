@@ -1,6 +1,8 @@
 ---
 - include_role:
     name: docker
+  vars:
+    version: "{{ dp_version }}"
 
 - name: Delete the snafu/foo application domain
   community.datapower.config:

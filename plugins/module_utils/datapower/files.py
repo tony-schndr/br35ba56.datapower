@@ -74,14 +74,14 @@ def get_file_md5(path, block_size=2**20):
 
 
 class LocalFile:
-    def __init__(self, path: str, content: str = None):
+    def __init__(self, path, content=None):
 
         if content:
             self.md5 = self.create_file_from_base64(path, content)
         elif os.path.isfile(path):
             self.md5 = get_file_md5(path)
         else:
-            raise Exception(f'No content provided and {path} is not a file')
+            raise Exception('No content provided and {path} is not a file'.format(path=path))
 
         self.path = path
 

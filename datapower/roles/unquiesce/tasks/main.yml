@@ -1,9 +1,0 @@
-- name: Unqueiscing  "{{ dp_group }}" DataPowers 
-  community.datapower.action:
-    domain: default
-    action: UnquiesceDP
-  when:  dp_group  in group_names
-
-- name: Pause for 30 seconds
-  pause:
-    seconds: 30

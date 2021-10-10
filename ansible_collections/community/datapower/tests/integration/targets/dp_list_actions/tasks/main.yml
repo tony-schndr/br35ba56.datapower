@@ -1,4 +1,9 @@
 ---
+- include_role:
+    name: dp_docker
+  vars:
+    version: "{{ dp_version }}"
+
 - name: List all supported actions for the provided domain
   community.datapower.list_actions:
     domain: default
@@ -8,4 +13,3 @@
   assert:
     that:
       - "{{ result['actions'] | length != 0 }}"
-    

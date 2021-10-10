@@ -1,4 +1,9 @@
 ---
+- include_role:
+    name: dp_docker
+  vars:
+    version: "{{ dp_version }}"
+
 # Set up
 - name: Delete the foo domain
   community.datapower.config:

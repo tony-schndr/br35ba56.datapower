@@ -75,13 +75,16 @@ class Request:
         self.path = kwargs.get('path', None)
 
     @staticmethod
-    def join_path(*args, base_path=None):
+    def join_path(*args, **kwargs):
         ''' Join the path to form the full URI
         args -- list to join with base path, composes the right half of the URI
-        base_path -- string representing the base uri of the rest mgmt interface call, ie /mgmt/config/
+        kwargs:
+            base_path -- string representing the base uri of the rest mgmt interface call, ie /mgmt/config/
         '''
+        base_path = kwargs.get('base_path', None)
         if not base_path:
             raise ValueError(NO_BASE_PATH_ERROR)
+
         path = '/'.join([arg for arg in args if arg is not None]).rstrip('/')
         return posixpath.join(base_path, path)
 

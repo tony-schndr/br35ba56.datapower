@@ -122,6 +122,7 @@ def map_module_args_to_datapower_keys(parameters):
             new_dict[PARAM_MAP[key]] = value
     return new_dict
 
+
 def get_random_file_name(extension=''):
     letters = string.ascii_lowercase
     filename = ''.join(random.choice(letters)

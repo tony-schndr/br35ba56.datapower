@@ -14,11 +14,6 @@
     dest: "{{ docker_build_dir }}"
   when: '"2018.1" in version'
 
-- name: Create dir to build image from
-  file:
-    state: directory
-    path: "{{ docker_build_dir }}"
-
 - name: Copy config into build directory
   copy:
     src: files/10/config
@@ -44,7 +39,7 @@
     state:  started
   register: start_container
 
-- name: "{{ head_start }} second pause, let the container boot" 
-  pause: 
+- name: "{{ head_start }} second pause, let the container boot"
+  pause:
     seconds: "{{ head_start | int}}"
   when: start_container.changed == True

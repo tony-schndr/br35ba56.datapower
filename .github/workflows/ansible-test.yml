@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 name: CI
+=======
+name: Unit / Sanity
+>>>>>>> origin/main
 on:
   # Run CI against all pushes (direct commits, also merged PRs), Pull Requests
   push:
@@ -37,6 +41,11 @@ jobs:
 
       - name: Check out code
         uses: actions/checkout@v2
+<<<<<<< HEAD
+=======
+        with:
+          path: ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
+>>>>>>> origin/main
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -86,6 +95,8 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
+        with:
+          path: ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -101,7 +112,7 @@ jobs:
       # Install them like this
       - name: Install collection dependencies
         run: ansible-galaxy collection install ansible.netcommon ansible.utils -p .
-      # Run the unit tests
+
       - name: Run unit test
         run: ansible-test units -v --color --docker --coverage --python ${{ matrix.python }}
         working-directory: ./ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
@@ -115,6 +126,7 @@ jobs:
       - uses: codecov/codecov-action@v1
         with:
           fail_ci_if_error: false
+<<<<<<< HEAD
 
 ###
 # Integration tests (RECOMMENDED)
@@ -191,3 +203,5 @@ jobs:
       - uses: codecov/codecov-action@v1
         with:
           fail_ci_if_error: false
+=======
+>>>>>>> origin/main

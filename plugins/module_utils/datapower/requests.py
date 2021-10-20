@@ -6,6 +6,7 @@ import json
 import time
 import posixpath
 from xml.sax.saxutils import unescape
+from ansible.module_utils._text import to_text
 from ansible.module_utils.six.moves.urllib.parse import urlencode
 
 MGMT_CONFIG_METADATA_URI = '/mgmt/metadata/{0}/{1}'
@@ -266,6 +267,15 @@ class ActionQueueTimeoutError(Exception):
 
 
 class ActionQueueRequest(Request):
+    
+    task_completed_messages = [
+        'Operation completed.',
+        'completed',
+        'processed',
+        'processed-with-errors'
+    ]
+
+    
     def __init__(self, connection, domain, action_name, parameters=None):
         super().__init__(connection)
         self.path = ACTION_QUEUE_URI.format(domain)
@@ -293,12 +303,10 @@ class ActionQueueRequest(Request):
                 resp = self._process_request(path, 'GET', None)
         return resp
 
+
     def is_completed(self, resp):
-        for k, v in resp.items():
-            if v == 'Operation completed.' \
-                    or v == 'completed' \
-                    or v == 'processed' \
-                    or v == 'processed-with-errors':
+        for message in self.task_completed_messages:
+            if message in to_text(resp):
                 return True
         return False
 

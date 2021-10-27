@@ -1,0 +1,234 @@
+---
+- include_role:
+    name: dp_docker
+  vars:
+    version: "{{ dp_version }}"
+
+- name: SETUP - Delete the snafu/foo application domain
+  community.datapower.config:
+    domain: default
+    state: absent
+    config:
+      Domain:
+        mAdminState: enabled
+        name: "{{ item }}"
+  with_items:
+    - snafu
+    - foo
+
+- name: SETUP - Create the snafu/foo application domain
+  community.datapower.config:
+    domain: default
+    state: present
+    config:
+      Domain:
+        mAdminState: enabled
+        name: "{{ item }}"
+  with_items:
+    - snafu
+    - foo
+
+- name: SETUP - Save default domain
+  community.datapower.action:
+    domain: default
+    action: SaveConfig
+
+- name: Create some dummy config to check if it was restored.
+  community.datapower.config:
+    domain: "{{item}}"
+    state: present
+    config:
+      LogTarget:
+        IdleTimeout: 15
+        LocalAddress: 0.0.0.0
+        LocalIdentifier: dp-1
+        LogEvents:
+          Class:
+            value: all
+          Priority: notice
+        LogPrecision: second
+        LongRetryInterval: 20
+        Priority: normal
+        RateLimit: 100
+        RemoteAddress: 192.168.168.88
+        RemotePort: 514
+        RetryAttempts: 1
+        RetryInterval: 1
+        Rotate: 3
+        SSLClientConfigType: proxy
+        Size: 500
+        SoapVersion: soap11
+        SyslogFacility: user
+        TimestampFormat: zulu
+        Type: syslog-tcp
+        UploadMethod: ftp
+        UseANSIColor: 'off'
+        mAdminState: enabled
+        name: syslog_LogTarget
+  with_items: 
+    - foo
+    - snafu
+
+- name: Create a dummy file 
+  community.datapower.files:
+    domain: "{{item}}"
+    content: "aGVsbG8gd29ybGQK"
+    dest: local/demo.txt
+    state: present
+  with_items: 
+    - foo
+    - snafu
+
+- name: Export all domains
+  community.datapower.backup_domains:
+    dest: ./work/
+  register: all_domains_export
+
+- name: Export foo domain from datapower config
+  community.datapower.backup_domains:
+    dest: ./work/
+    all_files: yes
+    domains:
+      - foo
+  register: foo_domain_export
+
+- name: Delete the snafu/foo application domain to verify restoration from all_domains_export
+  community.datapower.config:
+    domain: default
+    state: absent
+    config:
+      Domain:
+        mAdminState: enabled
+        name: "{{ item }}"
+  with_items:
+    - snafu
+    - foo
+
+- name: Save default domain after deleting foo/snafu
+  community.datapower.action:
+    domain: default
+    action: SaveConfig
+
+- name: Import the all_domains_export
+  community.datapower.restore_domains:
+    overwrite_objects: yes
+    overwrite_files: yes
+    export_path: "{{all_domains_export.path}}"
+
+- name: Save all domains
+  community.datapower.action:
+    domain: "{{ item }}"
+    action: SaveConfig
+  with_items:
+    - snafu
+    - foo
+    - default
+
+
+- name: Get configuration to verify service was imported
+  community.datapower.get_config:
+    domain: "{{ item }}"
+    class_name: LogTarget
+    name: syslog_LogTarget
+  register: service_state
+  with_items:
+    - foo
+    - snafu
+
+- name: Assert service was imported into foo and snafu
+  assert:
+    that:
+      - "{{'LogTarget' in item.response }}"
+  with_items: "{{service_state.results}}"
+
+- name: Create dummy file, should not take action as the file was just restored
+  community.datapower.files:
+    domain: "{{item}}"
+    content: "aGVsbG8gd29ybGQK"
+    dest: local/demo.txt
+    state: present
+  register: file_not_created
+  with_items: 
+    - foo
+    - snafu
+
+- name: Assert create dummy file did not change anything, the file was restored from backup
+  assert:
+    that:
+      - item.changed == false 
+  with_items: "{{file_not_created.results}}"
+
+
+- name: Delete the snafu/foo application domain to verify foo is restored from foo_export and snafu is not.
+  community.datapower.config:
+    domain: default
+    state: absent
+    config:
+      Domain:
+        mAdminState: enabled
+        name: "{{ item }}"
+  with_items:
+    - snafu
+    - foo
+
+- name: Save default domain after deleting foo/snafu
+  community.datapower.action:
+    domain:  default
+    action: SaveConfig
+
+- name: Import the foo_export
+  community.datapower.restore_domains:
+    overwrite_objects: yes
+    overwrite_files: yes
+    export_path: "{{foo_domain_export.path}}"
+
+- name: Save default/foo domain after importing foo domain.
+  community.datapower.action:
+    domain:  "{{ item }}"
+    action: SaveConfig
+  with_items:
+    - default
+    - foo
+
+- name: Get configuration to verify service was imported
+  community.datapower.get_config:
+    domain: "{{ item }}"
+    class_name: LogTarget
+    name: syslog_LogTarget
+  register: service_state
+  with_items:
+    - foo
+
+- name: Assert service was imported into foo and snafu
+  assert:
+    that:
+      - "{{'LogTarget' in item.response }}"
+  with_items: "{{service_state.results}}"
+
+- name: Create dummy file, should not take action as the file was just restored
+  community.datapower.files:
+    domain: "{{item}}"
+    content: "aGVsbG8gd29ybGQK"
+    dest: local/demo.txt
+    state: present
+  register: file_not_created
+  with_items: 
+    - foo
+    
+- name: Assert create dummy file did not change anything, the file was restored from backup
+  assert:
+    that:
+      - item.changed == false 
+  with_items: "{{file_not_created.results}}"
+- name: Get configuration to verify snafu domain was not restored
+  community.datapower.get_config:
+    domain: default
+    class_name: Domain
+  register: domain
+
+
+- name: Assert snafu domain does not exist
+  assert:
+    that:
+      - "{{'snafu' not in item.name}}"
+  with_items: "{{domain.response.Domain}}"

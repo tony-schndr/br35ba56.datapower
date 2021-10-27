@@ -267,7 +267,6 @@ class ActionQueueTimeoutError(Exception):
 
 
 class ActionQueueRequest(Request):
-    
     task_completed_messages = [
         'Operation completed.',
         'completed',
@@ -275,7 +274,6 @@ class ActionQueueRequest(Request):
         'processed-with-errors'
     ]
 
-    
     def __init__(self, connection, domain, action_name, parameters=None):
         super().__init__(connection)
         self.path = ACTION_QUEUE_URI.format(domain)
@@ -302,7 +300,6 @@ class ActionQueueRequest(Request):
                 time.sleep(2)
                 resp = self._process_request(path, 'GET', None)
         return resp
-
 
     def is_completed(self, resp):
         for message in self.task_completed_messages:

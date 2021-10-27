@@ -17,9 +17,10 @@
     - foo
 
 - name: Create the snafu/foo application domain
-  community.datapower.import_config:
+  community.datapower.config:
     domain: default
-    objects:
+    state: present
+    config:
       Domain:
         mAdminState: enabled
         name: "{{ item }}"
@@ -32,75 +33,65 @@
     domain: default
     action: SaveConfig
 
-- name: Export non-existent config
-  community.datapower.export_config:
+- name: Import a service export
+  community.datapower.import_zip:
+    domain: snafu
+    export_path: "{{ role_path }}/files/GetStat_MPG_and_LogCategory.zip"
+
+- name: Export service
+  community.datapower.export_zip:
     domain: snafu
     ref_objects: yes
+    ref_files: yes
+    dest: /var/tmp
     objects:
-      - name: valcred
-        class: CryptoValCred
-  register: null_export
+      - name: GetStat_MPG
+        class: MultiProtocolGateway
+  register: GetStat_export
 
-- name: Assert export.objects is None
+- name: Assert service is exported
   assert:
     that:
-      - "{{null_export.objects == None}}"
+      - "{{GetStat_export.response.status == 'completed'}}"
 
-- name: Create objects to export and load into other domains
-  community.datapower.import_config:
-    domain: snafu
-    objects: "{{ lookup('file','{{ role_path }}/files/object-export.json') | from_json}}"
-
-- name: Save snafu after loading objects
+- name: Save snafu after installing service
   community.datapower.action:
     domain: snafu
     action: SaveConfig
 
-- name: Export objects
-  community.datapower.export_config:
-    domain: snafu
-    ref_objects: yes
-    objects:
-      - name: valcred
-        class: CryptoValCred
-      - name: tls-client-profile
-        class: SSLClientProfile
-  register: snafu_export
-
-- name: load objects
-  community.datapower.import_config:
+- name: Import a service export
+  community.datapower.import_zip:
     domain: foo
-    objects: "{{snafu_export.objects}}"
+    export_path: "{{ GetStat_export.path }}"
 
-- name: Save foo after loading objects
+- name: Save snafu after installing service
   community.datapower.action:
     domain: foo
     action: SaveConfig
 
-- name: Export objects from foo for validation
-  community.datapower.export_config:
-    domain: foo
-    ref_objects: yes
-    objects:
-      - name: valcred
-        class: CryptoValCred
-      - name: tls-client-profile
-        class: SSLClientProfile
-  register: foo_export
+- name: Get configuration to verify service was imported
+  community.datapower.get_config:
+    domain: "{{ item }}"
+    name: 'GetStat_MPG'
+    class_name: MultiProtocolGateway
+  register: service_state
+  with_items:
+    - foo
+    - snafu
 
-- name: Assert expected configuration is loaded in the foo domain.
+- name: Assert service was imported into foo and snafu
   assert:
     that:
-      - "{{'SSLClientProfile' in foo_export.objects}}"
-      - "{{'CryptoValCred' in foo_export.objects}}"
+      - "{{'MultiProtocolGateway' in item.response }}"
+  with_items: "{{service_state.results}}"
 
 - name: Export all domains
-  community.datapower.export_domains:
+  community.datapower.backup_domains:
     dest: ./work/
   register: all_domains_export
 
 - name: Export foo domain from datapower config
-  community.datapower.export_domains:
+  community.datapower.backup_domains:
     dest: ./work/
     all_files: yes
     domains:
@@ -125,7 +116,7 @@
     action: SaveConfig
 
 - name: Import the all_domains_export
-  community.datapower.import_domains:
+  community.datapower.restore_domains:
     overwrite_objects: yes
     overwrite_files: yes
     export_path: "{{all_domains_export.path}}"
@@ -139,26 +130,21 @@
     - foo
     - default
 
-- name: Export objects
-  community.datapower.export_config:
+- name: Get configuration to verify service was imported
+  community.datapower.get_config:
     domain: "{{ item }}"
-    ref_objects: yes
-    objects:
-      - name: valcred
-        class: CryptoValCred
-      - name: tls-client-profile
-        class: SSLClientProfile
-  register: object_exports
+    name: 'GetStat_MPG'
+    class_name: MultiProtocolGateway
+  register: service_state
   with_items:
-    - snafu
     - foo
+    - snafu
 
-- name: Assert expected configuration is restored in foo/snafu domains.
+- name: Assert service was imported into foo and snafu
   assert:
     that:
-      - "{{'SSLClientProfile' in item.objects }}"
-      - "{{'CryptoValCred' in item.objects }}"
-  with_items: "{{ object_exports.results }}"
+      - "{{'MultiProtocolGateway' in item.response }}"
+  with_items: "{{service_state.results}}"
 
 - name: Delete the snafu/foo application domain to verify foo is restored from foo_export and snafu is not.
   community.datapower.config:
@@ -178,7 +164,7 @@
     action: SaveConfig
 
 - name: Import the foo_export
-  community.datapower.import_domains:
+  community.datapower.restore_domains:
     overwrite_objects: yes
     overwrite_files: yes
     export_path: "{{foo_domain_export.path}}"
@@ -191,31 +177,31 @@
     - default
     - foo
 
-- name: Export objects
-  community.datapower.export_config:
-    domain: foo
-    ref_objects: yes
-    objects:
-      - name: valcred
-        class: CryptoValCred
-      - name: tls-client-profile
-        class: SSLClientProfile
-  register: foo_object_exports
+- name: Get configuration to verify service was imported
+  community.datapower.get_config:
+    domain: "{{ item }}"
+    name: 'GetStat_MPG'
+    class_name: MultiProtocolGateway
+  register: service_state
+  with_items:
+    - foo
 
-- name: Check that the foo import did not contain snafu domain
+- name: Assert foo domain was restored.
+  assert:
+    that:
+      - "{{'MultiProtocolGateway' in item.response }}"
+  with_items: "{{service_state.results}}"
+
+
+- name: Get configuration to verify snafu domain was not restored
   community.datapower.get_config:
     domain: default
     class_name: Domain
-  register: domains
+  register: domain
 
-- name: Assert expected configuration is restored in foo domains.
+
+- name: Assert snafu domain does not exist
   assert:
     that:
-      - "{{'SSLClientProfile' in foo_object_exports.objects }}"
-      - "{{'CryptoValCred' in foo_object_exports.objects }}"
-
-- name: Assert snafu domain did not get restored
-  assert:
-    that:
-      - "{{ item.name != 'snafu'}}"
-  with_items: "{{ domains.response.Domain }}"
+      - "{{'snafu' not in item.name}}"
+  with_items: "{{domain.response.Domain}}"

@@ -62,7 +62,7 @@ options:
             persisted or running configuration.
         required: false
         type: bool
-        default: true
+        default: false
     include_internal_files:
         description: |
             Determines whether to include internal files.
@@ -153,7 +153,7 @@ def run_module():
         include_debug=dict(type='bool', required=False),
         user_comment=dict(type='str', required=False),
         all_files=dict(type='bool', required=False, default=False),
-        persisted=dict(type='bool', required=False, default=True),
+        persisted=dict(type='bool', required=False, default=False),
         include_internal_files=dict(type='bool', required=False, default=False),
         deployment_policy=dict(type='str', required=False),
     )

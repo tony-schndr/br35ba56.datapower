@@ -1,0 +1,49 @@
+---
+- include_role:
+    name: dp_docker
+  vars:
+    version: "{{ dp_version }}"
+
+# Set up
+- name: Delete the foo domain
+  community.datapower.config:
+    domain: default
+    state: absent
+    config:
+      Domain:
+        name: foo
+
+- name: Create the foo domain
+  community.datapower.config:
+    domain: default
+    state: present
+    config:
+      Domain:
+        name: foo
+
+- name: create demo.txt at local
+  community.datapower.files:
+    domain: foo
+    src: "{{ role_path }}/files/demo.txt"
+    dest: local/demo.txt
+    state: present
+  register: create_result
+
+- name: Validate create demo.txt at local
+  assert:
+    that:
+      - "{{ create_result['changed'] == True }}"
+      - "{{ create_result['response']['result'] == 'File was created.' }}"
+
+- name: fetch /local/demo.txt
+  community.datapower.fetch_file:
+    domain: foo
+    src: /local/demo.txt
+    dest: /var/tmp/local/
+  register: update_result
+
+- name: Validate update local/local/demo.txt
+  assert:
+    that:
+      - "{{ update_result['path'] == '/var/tmp/local/demo.txt' }}"
+      # - "{{ update_result['response']['result'] == 'File was updated.' }}"

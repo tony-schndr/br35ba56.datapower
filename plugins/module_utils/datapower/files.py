@@ -73,28 +73,29 @@ def get_file_md5(path, block_size=2**20):
     return md5
 
 
+def create_file_from_base64(path, content):
+    md5 = hashlib.md5()
+    if not os.path.exists(os.path.dirname(path)) and os.path.dirname(path) != '':
+        os.makedirs(os.path.dirname(path))
+
+    with open(path, 'wb') as f:
+        data = base64.b64decode(content)
+        f.write(data)
+        md5.update(data)
+    return path, md5
+
+
 class LocalFile:
     def __init__(self, path: str, content: str = None):
 
         if content:
-            self.md5 = self.create_file_from_base64(path, content)
+            self.md5 = create_file_from_base64(path, content)[1]
         elif os.path.isfile(path):
             self.md5 = get_file_md5(path)
         else:
             raise Exception(f'No content provided and {path} is not a file')
 
         self.path = path
-
-    def create_file_from_base64(self, path, content):
-        md5 = hashlib.md5()
-        if not os.path.exists(os.path.dirname(path)) and os.path.dirname(path) != '':
-            os.makedirs(os.path.dirname(path))
-
-        with open(path, 'wb') as f:
-            data = base64.b64decode(content)
-            f.write(data)
-            md5.update(data)
-        return md5
 
     def get_base64(self):
         with open(self.path, 'rb') as fb:

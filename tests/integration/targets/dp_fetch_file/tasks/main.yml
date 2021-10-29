@@ -35,15 +35,24 @@
       - "{{ create_result['changed'] == True }}"
       - "{{ create_result['response']['result'] == 'File was created.' }}"
 
+- name: Get a temporary directory to download demo.txt into
+  ansible.builtin.tempfile:
+    state: directory
+  register: tempdir
+
 - name: fetch /local/demo.txt
   community.datapower.fetch_file:
     domain: foo
     src: /local/demo.txt
-    dest: /var/tmp/local/
+    dest: "{{tempdir.path}}"
   register: update_result
+
+- name: get stats on file just created.
+  stat:
+    path: "{{update_result.path}}"
+  register: fetched_stat
 
 - name: Validate update local/local/demo.txt
   assert:
     that:
-      - "{{ update_result['path'] == '/var/tmp/local/demo.txt' }}"
-      # - "{{ update_result['response']['result'] == 'File was updated.' }}"
+      - fetched_stat.stat.exists

@@ -40,6 +40,24 @@
     state: directory
   register: tempdir
 
+- name: fetch /local/demo.txt in check mode
+  community.datapower.fetch_file:
+    domain: foo
+    src: /local/demo.txt
+    dest: "{{tempdir.path}}"
+  register: update_result
+  check_mode: true
+
+- name: Get stats to ensure previous task didn't create the file
+  stat:
+    path: "{{update_result.path}}"
+  register: fetched_stat
+
+- name: Validate update /local/demo.txt
+  assert:
+    that:
+      - fetched_stat.stat.exists == False
+
 - name: fetch /local/demo.txt
   community.datapower.fetch_file:
     domain: foo
@@ -52,7 +70,19 @@
     path: "{{update_result.path}}"
   register: fetched_stat
 
-- name: Validate update local/local/demo.txt
+- name: Validate update /local/demo.txt
   assert:
     that:
       - fetched_stat.stat.exists
+
+- name: fetch /local/demo.txt again for idempotency check
+  community.datapower.fetch_file:
+    domain: foo
+    src: /local/demo.txt
+    dest: "{{tempdir.path}}"
+  register: update_result
+
+- name: Validate idempotency 
+  assert:
+    that:
+      - update_result.changed == False

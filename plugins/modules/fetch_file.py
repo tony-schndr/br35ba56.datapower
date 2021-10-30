@@ -55,6 +55,7 @@ md5:
 
 import posixpath
 import os
+import filecmp
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.connection import (
     ConnectionError,
@@ -65,7 +66,8 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
     FileRequest
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.files import (
-    create_file_from_base64
+    create_file_from_base64,
+    copy_file_to_tmp_directory,
 )
 
 
@@ -80,7 +82,7 @@ def run_module():
     )
     connection = Connection(module._socket_path)
     result = {}
-
+    result['changed'] = False
     domain = module.params.get('domain')
     src = module.params.get('src')
     dest = module.params.get('dest')
@@ -90,7 +92,7 @@ def run_module():
     if os.path.isdir(dest):
         full_path = posixpath.join(dest, file_name)
     else:
-        module.fail_json(msg='dest should be an existing directory')
+        module.fail_json(msg='No such directory {dest}'.format(dest=dest))
 
     dp_req = FileRequest(connection)
     dp_req.set_path(domain=domain, file_path=src)
@@ -98,11 +100,27 @@ def run_module():
     try:
         dp_resp = dp_req.get()
     except ConnectionError as e:
-        module.fail_json(msg=to_text(e))
+        if 'Resource not found.' in to_text(e):
+            msg = 'No such file {src}'.format(src=src)
+        else:
+            msg = to_text(e)
+        module.fail_json(msg=msg)
 
-    path, md5 = create_file_from_base64(full_path, dp_resp['file'])
-    result['path'] = path
-    result['md5'] = md5.hexdigest()
+    tmp_path = posixpath.join(module.tmpdir, file_name)
+
+    create_file_from_base64(tmp_path, dp_resp['file'])
+
+    if os.path.exists(full_path) and os.path.isfile(full_path):
+        if not filecmp.cmp(tmp_path, full_path):
+            if not module.check_mode:
+                module.preserved_copy(tmp_path, full_path)
+            result['changed'] = True
+    else:
+        if not module.check_mode:
+            module.preserved_copy(tmp_path, full_path)
+        result['changed'] = True
+
+    result['path'] = full_path
 
     module.exit_json(**result)
 

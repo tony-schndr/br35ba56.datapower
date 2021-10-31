@@ -1,9 +1,10 @@
 
 from __future__ import absolute_import, division, print_function
 from ansible.plugins.httpapi import HttpApiBase
-from ansible.module_utils.six.moves.urllib.error import HTTPError, URLError
+from ansible.module_utils.six.moves.urllib.error import HTTPError
 from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils._text import to_text
+from xml.sax.saxutils import unescape
 import json
 
 __metaclass__ = type
@@ -31,10 +32,27 @@ class HttpApi(HttpApiBase):
         )
         return handle_response(response, response_data)
 
+    def get_resource_or_none(self, path):
+        try:
+            res = self.send_request(path, 'GET', None)
+        except ConnectionError as ce:
+            err = to_text(ce)
+            if 'Resource not found' in err:
+                return None
+            else:
+                raise ce
+
+        return res
+
 
 def handle_response(response, response_data):
+
     try:
-        response_data = json.loads(response_data.read())
+        # DataPower will sometimes return xml encoded strings, unescape
+        # For example &amp is found in strings in AccessProfile and
+        # ConfigDeploymentPolicy objects.
+        response_data = json.loads(unescape(response_data.read().decode()))
+
     except ValueError:
         response_data = response_data.read()
 

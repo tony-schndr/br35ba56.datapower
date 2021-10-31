@@ -1,6 +1,5 @@
 #!/usr/bin/python
 
-# Copyright: (c) 2020, Anthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
@@ -204,14 +203,14 @@ def run_module():
     status = module.params.get('status')
 
     connection = Connection(module._socket_path)
-    dp_req = ConfigRequest(connection)
+    dp_req = ConfigRequest()
     dp_req.set_path(domain=domain, class_name=class_name, name=name, field=field)
     dp_req.set_options(recursive=recursive, depth=depth, status=status)
     result = {}
     result['options'] = dp_req.options
 
     try:
-        dp_resp = dp_req.get()
+        dp_resp = connection.send_request(**dp_req.get())
     except ConnectionError as e:
         dp_resp = to_text(e)
     result = {}

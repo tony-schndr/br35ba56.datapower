@@ -133,11 +133,8 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     convert_bool_to_on_or_off,
     map_module_args_to_datapower_keys,
-    get_random_file_name
-)
-from ansible_collections.community.datapower.plugins.module_utils.datapower.files import (
-    isBase64,
-    LocalFile
+    get_random_file_name,
+    create_file_from_base64
 )
 
 
@@ -200,8 +197,10 @@ def run_module():
     dest = module.params['dest']
     path = os.path.join(dest, filename)
 
-    if isBase64(response['result']['file']):
-        LocalFile(path, response['result']['file'])
+    try:
+        create_file_from_base64(path, response['result']['file'])
+    except (IOError, OSError) as e:
+        module.fail_json(msg='Error while writing file to disk: {0}'.format(e))
 
     del response['result']['file']
     result['response'] = response

@@ -103,16 +103,13 @@ response:
         "status": "completed"
     }
 '''
-
+import base64
 from copy import deepcopy
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     ActionQueueRequest
-)
-from ansible_collections.community.datapower.plugins.module_utils.datapower.files import (
-    LocalFile
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     convert_bool_to_on_or_off,
@@ -149,8 +146,13 @@ def run_module():
 
     params['Format'] = 'ZIP'
 
-    export_path = module.params['export_path']
-    params['InputFile'] = LocalFile(export_path).get_base64()
+    try:
+        with open(module.params['export_path'], 'rb') as f:
+            data = f.read()
+    except (IOError, OSError) as e:
+        module.fail_json(msg='Error while reading export zip file from disk: {0}'.format(e))
+    params['InputFile'] = base64.b64encode(data).decode()
+
     action_req = ActionQueueRequest(connection, 'default', action, params)
 
     try:

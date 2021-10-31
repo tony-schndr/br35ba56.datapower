@@ -46,11 +46,6 @@ path:
     type: str
     returned: always
     sample: /var/tmp/error-report.txt.gz
-md5:
-    description: md5 hexdigest
-    type: str
-    returned: always
-    sample: e59ff97941044f85df5297e1c302d260
 '''
 
 import posixpath
@@ -65,9 +60,8 @@ from ansible.module_utils._text import to_text
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     FileRequest
 )
-from ansible_collections.community.datapower.plugins.module_utils.datapower.files import (
+from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     create_file_from_base64,
-    copy_file_to_tmp_directory,
 )
 
 
@@ -94,11 +88,11 @@ def run_module():
     else:
         module.fail_json(msg='No such directory {dest}'.format(dest=dest))
 
-    dp_req = FileRequest(connection)
+    dp_req = FileRequest()
     dp_req.set_path(domain=domain, file_path=src)
 
     try:
-        dp_resp = dp_req.get()
+        dp_resp = connection.send_request(**dp_req.get())
     except ConnectionError as e:
         if 'Resource not found.' in to_text(e):
             msg = 'No such file {src}'.format(src=src)
@@ -110,11 +104,13 @@ def run_module():
 
     create_file_from_base64(tmp_path, dp_resp['file'])
 
-    if os.path.exists(full_path) and os.path.isfile(full_path):
+    if os.path.isfile(full_path):
         if not filecmp.cmp(tmp_path, full_path):
             if not module.check_mode:
                 module.preserved_copy(tmp_path, full_path)
             result['changed'] = True
+    elif os.path.isdir(full_path):
+        module.fail_json(msg='{full_path}: Is a directory'.format(full_path=full_path))
     else:
         if not module.check_mode:
             module.preserved_copy(tmp_path, full_path)

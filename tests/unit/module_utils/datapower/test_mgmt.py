@@ -7,92 +7,169 @@ import os
 
 import pytest
 
-
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
-    Config
+    normalize_config_data
 )
 
 
-def test_get_top_dir():
-    pass
-
-
-class TestConfig:
-
-    def test_DPConfig__init__min_args_required(self):
-        kwargs = {
-            'domain': 'default',
-            'class_name': 'CryptoValCred',
-            'name': 'test',
-            'config': None
+raw_out_list = {
+    "_links": {
+        "self": {
+            "href": "/mgmt/config/default/CryptoCertificate"
+        },
+        "doc": {
+            "href": "/mgmt/docs/config/CryptoCertificate"
         }
-
-        dp_config = Config(**kwargs)
-        assert dp_config
-
-    def test_DPConfig__init__class_name_and_name_in_config(self):
-        kwargs = {
-            'domain': 'snafu',
-            'config': {
-                'CryptoValCred': {
-                    'name': 'valcred'
+    },
+    "CryptoCertificate": [
+        {
+            "name": "ansible",
+            "_links": {
+                "self": {
+                    "href": "/mgmt/config/default/CryptoCertificate/ansible"
+                },
+                "doc": {
+                    "href": "/mgmt/docs/config/CryptoCertificate"
                 }
-            }
-        }
-
-        dp_config = Config(**kwargs)
-        assert dp_config.name == 'valcred'
-        assert dp_config.class_name == 'CryptoValCred'
-
-    def test_DPConfig__init__set_config(self):
-        kwargs = {
-            'domain': 'snafu',
-            'class_name': 'CryptoValCred',
-            'name': 'valcred',
-            'config': {
-                'Certificate': [
-                    {'name': 'valcred'}
-                ]
-            }
-        }
-
-        dp_config = Config(**kwargs)
-        assert dp_config.name == 'valcred'
-        assert dp_config.class_name == 'CryptoValCred'
-        assert dp_config.config == {
-            'CryptoValCred': {
-                'name': 'valcred',
-                'Certificate': [
-                        {
-                            'name': 'valcred'
-                        }
-                ]
-            }
-        }
-
-    def test_DPConfig_invalid_class(self):
-        kwargs = {
-            'domain': 'snafu',
-            'config': {
-                'ValidationCredential': {
-                    'name': 'valcred'
+            },
+            "mAdminState": "enabled",
+            "Filename": "cert:///ansible-sscert.pem",
+            "PasswordAlias": "off",
+            "IgnoreExpiration": "off"
+        },
+        {
+            "name": "boo",
+            "_links": {
+                "self": {
+                    "href": "/mgmt/config/default/CryptoCertificate/boo"
+                },
+                "doc": {
+                    "href": "/mgmt/docs/config/CryptoCertificate"
                 }
+            },
+            "mAdminState": "enabled",
+            "Filename": "cert:///datapowerguru.com_exp_20311021015228Z.pem",
+            "PasswordAlias": "off",
+            "IgnoreExpiration": "off"
+        },
+        {
+            "name": "datapowerguru.com_exp_20311021015228Z",
+            "_links": {
+                "self": {
+                    "href": "/mgmt/config/default/CryptoCertificate/datapowerguru.com_exp_20311021015228Z"
+                },
+                "doc": {
+                    "href": "/mgmt/docs/config/CryptoCertificate"
+                }
+            },
+            "mAdminState": "enabled",
+            "Filename": "cert:///datapowerguru.com_exp_20311021015228Z.pem",
+            "PasswordAlias": "off",
+            "IgnoreExpiration": "off"
+        },
+        {
+            "name": "test",
+            "_links": {
+                "self": {
+                    "href": "/mgmt/config/default/CryptoCertificate/test"
+                },
+                "doc": {
+                    "href": "/mgmt/docs/config/CryptoCertificate"
+                }
+            },
+            "mAdminState": "enabled",
+            "Filename": "cert:///webgui-sscert.pem",
+            "PasswordAlias": "off",
+            "IgnoreExpiration": "off"
+        }
+    ]
+}
+
+
+raw_out_dict = {
+    "_links": {
+        "self": {
+            "href": "/mgmt/config/default/CryptoCertificate"
+        },
+        "doc": {
+            "href": "/mgmt/docs/config/CryptoCertificate"
+        }
+    },
+    "CryptoCertificate": {
+        "name": "ansible",
+        "_links": {
+            "self": {
+                "href": "/mgmt/config/default/CryptoCertificate/ansible"
+            },
+            "doc": {
+                "href": "/mgmt/docs/config/CryptoCertificate"
+            }
+        },
+        "mAdminState": "enabled",
+        "Filename": "cert:///ansible-sscert.pem",
+        "PasswordAlias": "off",
+        "IgnoreExpiration": "off"
+    }
+}
+
+
+raw_out_no_config_retreived = {
+    "_links": {
+        "self": {
+            "href": "/mgmt/config/snafu/CryptoCertificate"
+        },
+        "doc": {
+            "href": "/mgmt/docs/config/CryptoCertificate"
+        }
+    },
+    "result": "No configuration retrieved."
+}
+
+
+def test_normalize_config_data_list():
+    assert normalize_config_data(raw_out_list) == [
+        {
+            'CryptoCertificate': {
+                'name': 'ansible',
+                'mAdminState': 'enabled',
+                'Filename': 'cert:///ansible-sscert.pem',
+                'PasswordAlias': 'off',
+                'IgnoreExpiration': 'off'
+            }
+        },
+        {
+            'CryptoCertificate': {
+                'name': 'boo',
+                'mAdminState': 'enabled',
+                'Filename': 'cert:///datapowerguru.com_exp_20311021015228Z.pem',
+                'PasswordAlias': 'off',
+                'IgnoreExpiration': 'off'
+            }
+        },
+        {
+            'CryptoCertificate': {
+                'name': 'datapowerguru.com_exp_20311021015228Z',
+                'mAdminState': 'enabled',
+                'Filename': 'cert:///datapowerguru.com_exp_20311021015228Z.pem',
+                'PasswordAlias': 'off',
+                'IgnoreExpiration': 'off'}
+        },
+        {
+            'CryptoCertificate': {
+                'name': 'test',
+                'mAdminState': 'enabled',
+                'Filename': 'cert:///webgui-sscert.pem',
+                'PasswordAlias': 'off',
+                'IgnoreExpiration': 'off'
             }
         }
-        try:
-            Config(**kwargs)
-        except ValueError:
-            assert True
+    ]
 
-    def test_DPConfig__init__only_name_in_config(self):
-        kwargs = {
-            'domain': 'snafu',
-            'class_name': 'Domain',
-            'config': {
-                'name': 'foo'
-            }
-        }
 
-        dp_config = Config(**kwargs)
-        assert dp_config.name == 'foo'
-        assert dp_config.class_name == 'Domain'
+def test_normalize_config_data_dict():
+    assert normalize_config_data(raw_out_dict) == [{"CryptoCertificate": {
+        "name": "ansible", "mAdminState": "enabled", "Filename": "cert:///ansible-sscert.pem", "PasswordAlias": "off", "IgnoreExpiration": "off"}}]
+
+
+def test_normalize_config_data_no_config_retrieved():
+    assert normalize_config_data(raw_out_no_config_retreived) is None

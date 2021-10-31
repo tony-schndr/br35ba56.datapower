@@ -48,29 +48,29 @@
   register: update_result
   check_mode: true
 
-- name: Get stats to ensure previous task didn't create the file
+- name: Grab stats for previous fetch in check mode
   stat:
     path: "{{update_result.path}}"
   register: fetched_stat
 
-- name: Validate update /local/demo.txt
+- name: Validate check mode did not create the file
   assert:
     that:
       - fetched_stat.stat.exists == False
 
-- name: fetch /local/demo.txt
+- name: fetch /local/demo.txt for real this time.
   community.datapower.fetch_file:
     domain: foo
     src: /local/demo.txt
     dest: "{{tempdir.path}}"
   register: update_result
 
-- name: get stats on file just created.
+- name: Grab stats for previous fetch
   stat:
     path: "{{update_result.path}}"
   register: fetched_stat
 
-- name: Validate update /local/demo.txt
+- name: Validate /local/demo.txt exists
   assert:
     that:
       - fetched_stat.stat.exists
@@ -82,7 +82,7 @@
     dest: "{{tempdir.path}}"
   register: update_result
 
-- name: Validate idempotency 
+- name: Validate idempotency
   assert:
     that:
       - update_result.changed == False

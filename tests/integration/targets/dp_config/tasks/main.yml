@@ -131,12 +131,12 @@
 
 - name: Disable the LogTarget object
   community.datapower.config:
-    domain: foo
-    class_name: LogTarget
-    name: syslog_LogTarget
+    domain: foo    
     state: present
     config:
-      mAdminState: disabled
+      LogTarget:
+        name: syslog_LogTarget
+        mAdminState: disabled
   register: config_disabled
 
 - name: Get LogTarget
@@ -157,11 +157,11 @@
 - name: Make same change as step "Disable the LogTarget object"
   community.datapower.config:
     domain: foo
-    class_name: LogTarget
-    name: syslog_LogTarget
     state: present
     config:
-      mAdminState: disabled
+      LogTarget:
+        name: syslog_LogTarget
+        mAdminState: disabled
   register: config_disabled_not_changed
 
 - name: Get LogTarget

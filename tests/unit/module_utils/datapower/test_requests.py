@@ -16,7 +16,8 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
     get_request_func
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
-    Config
+    class_name_from_config,
+    name_from_config
 )
 
 
@@ -51,14 +52,11 @@ class TestRequest:
 
 
 class TestFileRequest:
-    # Need a few more tests with potentially invalid input if handled incorrectly
-    connection = MockConnection()
-
     def test_FileRequest__init__(self):
         domain = 'default'
         file_path = 'local/dir/subdir/get.js'
         content = 'aGVsbG8gd29ybGQK'
-        req = FileRequest(self.connection)
+        req = FileRequest()
         req.set_path(domain=domain, file_path=file_path)
         req.set_body(file_path=file_path, content=content)
         assert req.path == '/mgmt/filestore/default/local/dir/subdir/get.js'
@@ -68,74 +66,74 @@ class TestFileRequest:
         domain = 'default'
         file_path = 'local/dir/subdir/get.js'
         content = 'aGVsbG8gd29ybGQK'
-        req = FileRequest(self.connection)
+        req = FileRequest()
         req.set_path(domain=domain, file_path=file_path)
         req.set_body(file_path=file_path, content=content)
 
-        assert req.post()[0] == '/mgmt/filestore/default/local/dir/subdir'
-        assert req.post()[1] == 'POST'
-        assert req.post()[2] == {
+        assert req.post()['path'] == '/mgmt/filestore/default/local/dir/subdir'
+        assert req.post()['method'] == 'POST'
+        assert req.post()['data'] == {
             'file': {'name': 'get.js', 'content': content}}
 
     def test_FileRequest_update(self):
         domain = 'default'
         file_path = 'local/dir/subdir/get.js'
         content = 'aGVsbG8gd29ybGQK'
-        req = FileRequest(self.connection)
+        req = FileRequest()
         req.set_path(domain=domain, file_path=file_path)
         req.set_body(file_path=file_path, content=content)
         assert req.put()[
-            0] == '/mgmt/filestore/default/local/dir/subdir/get.js'
-        assert req.put()[1] == 'PUT'
-        assert req.put()[2] == {'file': {'name': 'get.js', 'content': content}}
+            'path'] == '/mgmt/filestore/default/local/dir/subdir/get.js'
+        assert req.put()['method'] == 'PUT'
+        assert req.put()['data'] == {
+            'file': {'name': 'get.js', 'content': content}}
 
     def test_FileRequest_get(self):
         domain = 'default'
         file_path = 'local/dir/subdir/get.js'
         content = 'aGVsbG8gd29ybGQK'
-        req = FileRequest(self.connection)
+        req = FileRequest()
         req.set_path(domain=domain, file_path=file_path)
         req.set_body(file_path=file_path, content=content)
         assert req.get()[
-            0] == '/mgmt/filestore/default/local/dir/subdir/get.js'
-        assert req.get()[1] == 'GET'
-        assert not req.get()[2]
+            'path'] == '/mgmt/filestore/default/local/dir/subdir/get.js'
+        assert req.get()['method'] == 'GET'
+        assert not req.get()['data']
 
     def test_FileRequest_delete(self):
         domain = 'default'
         file_path = 'local/dir/subdir/get.js'
         content = 'aGVsbG8gd29ybGQK'
-        req = FileRequest(self.connection)
+        req = FileRequest()
         req.set_path(domain=domain, file_path=file_path)
         req.set_body(file_path=file_path, content=content)
         assert req.delete()[
-            0] == '/mgmt/filestore/default/local/dir/subdir/get.js'
-        assert req.delete()[1] == 'DELETE'
-        assert not req.delete()[2]
+            'path'] == '/mgmt/filestore/default/local/dir/subdir/get.js'
+        assert req.delete()['method'] == 'DELETE'
+        assert not req.delete()['data']
 
     def test_FileRequest_set_path_strips_leading_forward_path(self):
         domain = 'default'
         file_path = '/local/dir/subdir/get.js'
         content = 'aGVsbG8gd29ybGQK'
-        req = FileRequest(self.connection)
+        req = FileRequest()
         req.set_path(domain=domain, file_path=file_path)
         req.set_body(file_path=file_path, content=content)
 
-        assert req.post()[0] == '/mgmt/filestore/default/local/dir/subdir'
-        assert req.post()[1] == 'POST'
-        assert req.post()[2] == {
+        assert req.post()['path'] == '/mgmt/filestore/default/local/dir/subdir'
+        assert req.post()['method'] == 'POST'
+        assert req.post()['data'] == {
             'file': {'name': 'get.js', 'content': content}}
 
 
 class TestDirectoryRequest:
     # Need a few more tests with potentially invalid input if handled incorrectly
-    connection = MockConnection()
 
     def test_DirectoryRequest__init__(self):
         domain = 'default'
         dir_path = 'local/dir/subdir/'
 
-        req = DirectoryRequest(self.connection)
+        req = DirectoryRequest()
         req.set_body(dir_path=dir_path)
         req.set_path(domain=domain, dir_path=dir_path)
 
@@ -146,17 +144,17 @@ class TestDirectoryRequest:
     def test_DirectoryRequest_create(self):
         domain = 'default'
         dir_path = 'local/dir/subdir/'
-        req = DirectoryRequest(self.connection)
+        req = DirectoryRequest()
         req.set_body(dir_path=dir_path)
         req.set_path(domain=domain, dir_path=dir_path)
-        assert req.post()[0] == '/mgmt/filestore/default/local'
-        assert req.post()[1] == 'POST'
-        assert req.post()[2] == {'directory': {'name': 'dir/subdir/'}}
+        assert req.post()['path'] == '/mgmt/filestore/default/local'
+        assert req.post()['method'] == 'POST'
+        assert req.post()['data'] == {'directory': {'name': 'dir/subdir/'}}
 
     def test_DirectoryRequest_update(self):
         domain = 'default'
         dir_path = 'local/dir/subdir/'
-        req = DirectoryRequest(self.connection)
+        req = DirectoryRequest()
         req.set_body(dir_path=dir_path)
         req.set_path(domain=domain, dir_path=dir_path)
         try:
@@ -168,26 +166,27 @@ class TestDirectoryRequest:
     def test_DirectoryRequest_get(self):
         domain = 'default'
         dir_path = 'local/dir/subdir/'
-        req = DirectoryRequest(self.connection)
+        req = DirectoryRequest()
         req.set_body(dir_path=dir_path)
         req.set_path(domain=domain, dir_path=dir_path)
-        assert req.get()[0] == '/mgmt/filestore/default/local/dir/subdir'
-        assert req.get()[1] == 'GET'
-        assert not req.get()[2]
+        assert req.get()['path'] == '/mgmt/filestore/default/local/dir/subdir'
+        assert req.get()['method'] == 'GET'
+        assert not req.get()['data']
 
     def test_DirectoryRequest_delete(self):
         domain = 'default'
         dir_path = 'local/dir/subdir/'
-        req = DirectoryRequest(self.connection)
+        req = DirectoryRequest()
         req.set_body(dir_path=dir_path)
         req.set_path(domain=domain, dir_path=dir_path)
-        assert req.delete()[0] == '/mgmt/filestore/default/local/dir/subdir'
-        assert req.delete()[1] == 'DELETE'
-        assert not req.delete()[2]
+        assert req.delete()[
+            'path'] == '/mgmt/filestore/default/local/dir/subdir'
+        assert req.delete()['method'] == 'DELETE'
+        assert not req.delete()['data']
 
 
 class TestConfigRequest:
-    connection = MockConnection()
+
     kwargs = {
         "domain": "default",
         "name": 'valcred',
@@ -201,7 +200,7 @@ class TestConfigRequest:
     }
 
     def test_ConfigRequest__init__(self):
-        dp_req = ConfigRequest(self.connection)
+        dp_req = ConfigRequest()
         dp_req.set_path(
             domain=self.kwargs['domain'],
             class_name=self.kwargs['class_name'],
@@ -222,7 +221,7 @@ class TestConfigRequest:
             'status': True,
             'depth': 3
         }
-        dp_req = ConfigRequest(self.connection)
+        dp_req = ConfigRequest()
         dp_req.set_options(**options)
         assert 'state=1' in dp_req.options \
             and 'depth=3' in dp_req.options \
@@ -232,7 +231,7 @@ class TestConfigRequest:
         options = {
             'recursive': True
         }
-        dp_req = ConfigRequest(self.connection)
+        dp_req = ConfigRequest()
         dp_req.set_path(
             domain=self.kwargs['domain'],
             class_name=self.kwargs['class_name'],
@@ -244,7 +243,6 @@ class TestConfigRequest:
 
     def test_ConfigRequest_mod_args(self):
         task_args = {
-            "class_name": None,
             "config": {
                 "CryptoValCred": {
                     "mAdminState": "enabled",
@@ -252,12 +250,15 @@ class TestConfigRequest:
                 }
             },
             "domain": "default",
-            "name": None,
         }
-        dp = Config(**task_args)
-        dp_req = ConfigRequest(self.connection)
-        dp_req.set_path(domain=dp.domain, class_name=dp.class_name, name=dp.name)
-        dp_req.set_body(body=dp.config)
+        domain = task_args['domain']
+        config = task_args['config']
+        class_name = class_name_from_config(task_args['config'])
+        name = name_from_config(task_args['config'], class_name)
+        dp_req = ConfigRequest()
+        dp_req.set_path(domain=domain, class_name=class_name, name=name)
+        dp_req.set_body(body=config)
+
         assert dp_req.path == '/mgmt/config/default/CryptoValCred/valcred'
         assert dp_req.body == {
             "CryptoValCred": {
@@ -277,10 +278,14 @@ class TestConfigRequest:
             }
         }
 
-        dp = Config(**task_args)
-        dp_req = ConfigRequest(self.connection)
-        dp_req.set_path(domain=dp.domain, class_name=dp.class_name, name=dp.name)
-        dp_req.set_body(body=dp.config)
+        domain = task_args['domain']
+        config = task_args['config']
+        class_name = class_name_from_config(task_args['config'])
+        name = name_from_config(task_args['config'], class_name)
+        dp_req = ConfigRequest()
+        dp_req.set_path(domain=domain, class_name=class_name, name=name)
+        dp_req.set_body(body=config)
+
         assert dp_req.path == '/mgmt/config/snafu/CryptoValCred/valcred'
         assert dp_req.body == {
             'CryptoValCred': {
@@ -298,25 +303,15 @@ class TestConfigRequest:
                 }
             }
         }
-        dp = Config(**task_args)
-        dp_req = ConfigRequest(self.connection)
-        dp_req.set_path(domain=dp.domain, class_name=dp.class_name, name=dp.name)
-        dp_req.set_body(body=dp.config)
-        assert dp_req.path == '/mgmt/config/snafu/CryptoValCred/valcred'
+        domain = task_args['domain']
+        config = task_args['config']
+        class_name = class_name_from_config(task_args['config'])
+        name = name_from_config(task_args['config'], class_name)
 
-    def test_ManageConfigRequest_invalid_class(self):
-        task_args_w_invalid_class = {
-            'domain': 'snafu',
-            'config': {
-                'ValidationCredential': {
-                    'name': 'valcred'
-                }
-            }
-        }
-        try:
-            Config(**task_args_w_invalid_class)
-        except ValueError:
-            assert True
+        dp_req = ConfigRequest()
+        dp_req.set_path(domain=domain, class_name=class_name, name=name)
+        dp_req.set_body(body=config)
+        assert dp_req.path == '/mgmt/config/snafu/CryptoValCred/valcred'
 
 
 class TestActionRequest:

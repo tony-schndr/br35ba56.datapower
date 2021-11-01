@@ -1,0 +1,168 @@
+---
+- include_role:
+    name: dp_docker
+  vars:
+    version: "{{ dp_version }}"
+
+- name: SETUP - Delete the snafu/foo application domain
+  community.datapower.config:
+    domain: default
+    state: absent
+    config:
+      Domain:
+        mAdminState: enabled
+        name: "{{ item }}"
+  with_items:
+    - snafu
+    - foo
+
+- name: SETUP - Create the snafu/foo application domain
+  community.datapower.config:
+    domain: default
+    state: present
+    config:
+      Domain:
+        mAdminState: enabled
+        name: "{{ item }}"
+  with_items:
+    - snafu
+    - foo
+
+- name: SETUP - Save default domain
+  community.datapower.action:
+    domain: default
+    action: SaveConfig
+
+- name: Create temp directory for working with cert / key
+  ansible.builtin.tempfile:
+    state: directory
+    prefix: dp_tmp
+  register: tmp_dir
+
+- name: Generate an OpenSSL private key
+  openssl_privatekey:
+    path: "{{ tmp_dir.path }}/{{ server_hostname }}_privkey.pem"
+    size: "{{ key_size }}"
+    type: "{{ key_type }}"
+    backup: yes
+
+- name: Generate an OpenSSL Certificate Signing Request with Subject information
+  openssl_csr:
+    path: "{{ tmp_dir.path }}/{{ server_hostname }}.csr"
+    privatekey_path: "{{ tmp_dir.path }}/{{ server_hostname }}_privkey.pem"
+    country_name: "{{ country_name }}"
+    organization_name: "{{ organization_name }}"
+    email_address: "{{ email_address }}"
+    common_name: "{{ server_hostname }}"
+
+- name: Generate a Self Signed OpenSSL certificate
+  openssl_certificate:
+    path: "{{ tmp_dir.path }}/{{ server_hostname }}_cert.pem"
+    privatekey_path: "{{ tmp_dir.path }}/{{ server_hostname }}_privkey.pem"
+    csr_path: "{{ tmp_dir.path }}/{{ server_hostname }}.csr"
+    provider: selfsigned
+
+- name: Create x509 certificate in sharedcert directory
+  community.datapower.x509_certificate:
+    domain: foo
+    state: present
+    cert_dir: sharedcert
+    src: "{{ tmp_dir.path }}/{{ server_hostname }}_cert.pem"
+  register: create_check
+
+- name: Create x509 certificate, check for idempotency
+  community.datapower.x509_certificate:
+    domain: foo
+    state: present
+    cert_dir: sharedcert
+    src: "{{ tmp_dir.path }}/{{ server_hostname }}_cert.pem"
+  register: idempotency_check
+
+- name: Assert create_check is changed and idempotency_check is not
+  assert:
+    that:
+      - idempotency_check.changed == False
+      - create_check.changed == True
+
+- name: Create x509 certificate in cert directory
+  community.datapower.x509_certificate:
+    domain: foo
+    state: present
+    cert_dir: cert
+    src: "{{ tmp_dir.path }}/{{ server_hostname }}_cert.pem"
+  register: create_check
+
+- name: Create x509 certificate, check for idempotency
+  community.datapower.x509_certificate:
+    domain: foo
+    state: present
+    cert_dir: cert
+    src: "{{ tmp_dir.path }}/{{ server_hostname }}_cert.pem"
+  register: idempotency_check
+
+- name: Assert create_check is changed and idempotency_check is not
+  assert:
+    that:
+      - idempotency_check.changed == False
+      - create_check.changed == True
+
+- name: Remove sharedcert if present.
+  community.datapower.x509_certificate:
+    domain: foo
+    state: absent
+    cert_dir: sharedcert
+    obj_name: name-the-object-this
+    file_name: name-the-file-this
+    src: "{{ tmp_dir.path }}/{{ server_hostname }}_cert.pem"
+
+- name: Create cert specifying obj/file names
+  community.datapower.x509_certificate:
+    domain: foo
+    state: present
+    cert_dir: sharedcert
+    obj_name: name-the-object-this
+    file_name: name-the-file-this
+    src: "{{ tmp_dir.path }}/{{ server_hostname }}_cert.pem"
+  register: create_check
+
+- name: Create cert specifying obj/file names, check for idempotency
+  community.datapower.x509_certificate:
+    domain: foo
+    state: present
+    cert_dir: sharedcert
+    obj_name: name-the-object-this
+    file_name: name-the-file-this
+    src: "{{ tmp_dir.path }}/{{ server_hostname }}_cert.pem"
+  register: idempotency_check
+
+- name: Assert create_check is changed and idempotency_check is not
+  assert:
+    that:
+      - idempotency_check.changed == False
+      - create_check.changed == True
+
+- name: Create cert specifying obj/file names
+  community.datapower.x509_certificate:
+    domain: foo
+    state: present
+    cert_dir: cert
+    obj_name: name-the-object-this
+    file_name: name-the-file-this
+    src: "{{ tmp_dir.path }}/{{ server_hostname }}_cert.pem"
+  register: create_check
+
+- name: Create cert specifying obj/file names, check for idempotency
+  community.datapower.x509_certificate:
+    domain: foo
+    state: present
+    cert_dir: cert
+    obj_name: name-the-object-this
+    file_name: name-the-file-this
+    src: "{{ tmp_dir.path }}/{{ server_hostname }}_cert.pem"
+  register: idempotency_check
+
+- name: Assert create_check is changed and idempotency_check is not
+  assert:
+    that:
+      - idempotency_check.changed == False
+      - create_check.changed == True

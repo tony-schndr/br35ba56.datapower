@@ -47,6 +47,17 @@ def clean_dp_dict(dict_):
     _scrub(dict_, 'state')
 
 
+def join_path(*args, base_path=None):
+    ''' Join the path to form the full URI
+    args -- list to join with base path, composes the right half of the URI
+    base_path -- string representing the base uri of the rest mgmt interface call, ie /mgmt/config/
+    '''
+    if not base_path:
+        raise ValueError(NO_BASE_PATH_ERROR)
+    path = '/'.join([arg for arg in args if arg is not None]).rstrip('/')
+    return posixpath.join(base_path, path)
+
+
 class Request:
     def __init__(self, connection):
         self.connection = connection
@@ -104,13 +115,14 @@ class Request:
 
 
 class DirectoryRequest(Request):
-    def __init__(self, connection):
-        super().__init__(connection)
+    # Override super init till all request classes are finished.
+    def __init__(self):
+        pass
 
     def set_path(self, **kwargs):
         domain = kwargs['domain']
-        dir_path = kwargs['dir_path']
-        self.path = self.join_path(
+        dir_path = kwargs['dir_path'].strip('/')
+        self.path = join_path(
             domain,
             dir_path,
             base_path='/mgmt/filestore/'
@@ -131,21 +143,28 @@ class DirectoryRequest(Request):
         method = 'POST'
         # Equates to /mgmt/filestore/<domain>/<top_directory>
         path = '/'.join(self.path.split('/')[0:5])
-        return self._process_request(path, method, self.body)
+        return {'path': path, 'method': method, 'data': self.body}
 
     def put(self):
         raise NotImplementedError('PUT for directories is not implemented')
 
+    def get(self):
+        method = 'GET'
+        return {'path': self.path, 'method': method, 'data': None}
+
+    def delete(self):
+        method = 'DELETE'
+        return {'path': self.path, 'method': method, 'data': None}
+
 
 class FileRequest(Request):
-    def __init__(self, connection):
-        super().__init__(connection)
+    def __init__(self):
+        pass
 
     def set_path(self, **kwargs):
         domain = kwargs['domain']
         file_path = kwargs['file_path'].strip('/')
-        self.path = self.join_path(
-            domain, file_path, base_path='/mgmt/filestore/')
+        self.path = join_path(domain, file_path, base_path='/mgmt/filestore/')
 
     def set_body(self, **kwargs):
         file_path = kwargs['file_path']
@@ -158,11 +177,23 @@ class FileRequest(Request):
             }
         }
 
-    # path for creating files is always targeted at the parent directory
     def post(self):
         method = 'POST'
         path = posixpath.split(self.path)[0]
-        return self._process_request(path, method, self.body)
+        return {'path': path, 'method': method, 'data': self.body}
+
+    # The rest should be inherited from parent class.
+    def put(self):
+        method = 'PUT'
+        return {'path': self.path, 'method': method, 'data': self.body}
+
+    def get(self):
+        method = 'GET'
+        return {'path': self.path, 'method': method, 'data': None}
+
+    def delete(self):
+        method = 'DELETE'
+        return {'path': self.path, 'method': method, 'data': None}
 
 
 class ListConfigObjectsRequest(Request):
@@ -173,7 +204,7 @@ class ListConfigObjectsRequest(Request):
 
     def set_path(self, **kwargs):
         domain = kwargs['domain']
-        self.path = self.join_path(base_path='/mgmt/config/')
+        self.path = join_path(base_path='/mgmt/config/')
 
 
 class ListActionsRequest(Request):
@@ -183,7 +214,7 @@ class ListActionsRequest(Request):
 
     def set_path(self, **kwargs):
         domain = kwargs.get('domain', 'default')
-        self.path = self.join_path(
+        self.path = join_path(
             domain,
             'operations',
             base_path='/mgmt/actionqueue/'
@@ -191,12 +222,11 @@ class ListActionsRequest(Request):
 
 
 class ConfigRequest(Request):
-    def __init__(self, connection):
-        super().__init__(connection)
+    def __init__(self):
         self.options = None
 
     def set_path(self, **kwargs):
-        self.path = self.join_path(
+        self.path = join_path(
             kwargs.get('domain', None),
             kwargs.get('class_name', None),
             kwargs.get('name', None),
@@ -225,13 +255,21 @@ class ConfigRequest(Request):
             path = self.path + '?' + self.options
         else:
             path = self.path
-        return self._process_request(path, method, None)
+        return {'path': path, 'method': method, 'data': None}
 
     def post(self):
         method = 'POST'
         # Equates to /mgmt/filestore/<domain>/<class_name>
         path = '/'.join(self.path.split('/')[0:5])
-        return self._process_request(path, method, self.body)
+        return {'path': path, 'method': method, 'data': self.body}
+
+    def put(self):
+        method = 'PUT'
+        return {'path': self.path, 'method': method, 'data': self.body}
+
+    def delete(self):
+        method = 'DELETE'
+        return {'path': self.path, 'method': method, 'data': None}
 
 
 class ConfigInfoRequest(Request):
@@ -267,7 +305,6 @@ class ActionQueueTimeoutError(Exception):
 
 
 class ActionQueueRequest(Request):
-    
     task_completed_messages = [
         'Operation completed.',
         'completed',
@@ -275,7 +312,6 @@ class ActionQueueRequest(Request):
         'processed-with-errors'
     ]
 
-    
     def __init__(self, connection, domain, action_name, parameters=None):
         super().__init__(connection)
         self.path = ACTION_QUEUE_URI.format(domain)
@@ -303,7 +339,6 @@ class ActionQueueRequest(Request):
                 resp = self._process_request(path, 'GET', None)
         return resp
 
-
     def is_completed(self, resp):
         for message in self.task_completed_messages:
             if message in to_text(resp):
@@ -314,7 +349,7 @@ class ActionQueueRequest(Request):
 class StatusRequest(Request):
     def __init__(self, connection, domain, status_name):
         super().__init__(connection)
-        self.path = self.join_path(
+        self.path = join_path(
             domain,
             status_name,
             base_path='/mgmt/status/'
@@ -324,7 +359,7 @@ class StatusRequest(Request):
 class ListStatusObjectsRequest(Request):
     def __init__(self, connection):
         super().__init__(connection)
-        self.path = self.join_path(base_path='/mgmt/status/')
+        self.path = join_path(base_path='/mgmt/status/')
 
 
 def get_request_func(req, before, after, state):

@@ -52,6 +52,10 @@ jobs:
       - name: Install ansible-base (${{ matrix.ansible }})
         run: pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz --disable-pip-version-check
 
+      - name: Install collection dependencies
+        run: |
+          ansible-galaxy collection install ansible.netcommon ansible.utils -p .
+          ansible-galaxy collection install community.crypto -p .
       # run ansible-test sanity inside of Docker.
       # The docker container has all the pinned dependencies that are required
       # and all python versions ansible supports.
@@ -105,8 +109,9 @@ jobs:
       # OPTIONAL If your unit test requires Python libraries from other collections
       # Install them like this
       - name: Install collection dependencies
-        run: ansible-galaxy collection install ansible.netcommon ansible.utils -p .
-
+        run: |
+          ansible-galaxy collection install ansible.netcommon ansible.utils -p .
+          ansible-galaxy collection install community.crypto -p .
       - name: Run unit test
         run: ansible-test units -v --color --docker --coverage --python ${{ matrix.python }}
         working-directory: ./ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}

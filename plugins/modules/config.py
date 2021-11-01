@@ -1,6 +1,5 @@
 #!/usr/bin/python
 
-# Copyright: (c) 2020, Anthony Schneider tonyschndr@gmail.com
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
@@ -22,15 +21,6 @@ options:
     domain:
         description: Target domain
         required: true
-        type: str
-    class_name:
-        description:
-            - DataPower config object class name.  Valid class name can be determined via GET at URI /mgmt/config/ or the config_info module.
-        required: false
-        type: str
-    name:
-        description: DataPower config object name.
-        required: false
         type: str
     config:
         description: The REST payload of the configuration object being targeted.  One way to determine a valid payload is to create
@@ -104,15 +94,9 @@ from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
-    Config,
-    get_remote_data
+    ensure_config
+)
 
-)
-from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
-    ConfigRequest,
-    clean_dp_dict,
-    get_request_func
-)
 from ansible_collections.community.datapower.plugins.module_utils.datapower import (
     dp_diff
 )
@@ -123,8 +107,6 @@ def run_module():
     module_args = dict(
         domain=dict(type='str', required=True),
         config=dict(type='dict', required=True),
-        class_name=dict(type='str', required=False),
-        name=dict(type='str', required=False),
         state=dict(type='str', choices=['present', 'absent'], required=True)
     )
     module = AnsibleModule(
@@ -133,64 +115,14 @@ def run_module():
     )
     if dp_diff.DICTDIFFER_IMPORT_ERROR:
         module.fail_json(
-            msg=missing_required_lib('another_library'),
+            msg=missing_required_lib('dictdiffer'),
             exception=dp_diff.DICTDIFFER_IMPORT_ERROR)
-    connection = Connection(module._socket_path)
+
     domain = module.params.get('domain')
-    class_name = module.params.get('class_name')
-    name = module.params.get('name')
     config = module.params.get('config')
     state = module.params.get('state')
 
-    after = Config(
-        domain=domain,
-        class_name=class_name,
-        name=name,
-        config=config
-    )
-    req = ConfigRequest(connection)
-    req.set_path(domain=domain, class_name=after.class_name, name=after.name)
-    req.set_body(body=after.config)
-    result = {}
-
-    try:
-        dp_state_resp = get_remote_data(req)
-        result['remote_state'] = clean_dp_dict(dp_state_resp)
-    except ConnectionError as ce:
-        result['changed'] = False
-        module.fail_json(msg=to_text(ce), **result)
-
-    if module._diff:
-        result['diff'] = dp_diff.get_change_list(dp_state_resp, req.body)
-    if dp_state_resp:
-        before = Config(domain=None, config=dp_state_resp)
-    else:
-        before = None
-    request = get_request_func(
-        req,
-        before=before,
-        after=after,
-        state=state
-    )
-
-    if module.check_mode:
-        if request:
-            result['changed'] = True
-        else:
-            result['changed'] = False
-        module.exit_json(**result)
-
-    if request:
-        try:
-            response = request()
-        except ConnectionError as e:
-            err = to_text(e)
-            result['error'] = err
-            result['changed'] = False
-            module.fail_json(msg=to_text(e), **result)
-
-        result['response'] = response
-        result['changed'] = True
+    result = ensure_config(module, domain, config, state)
 
     module.exit_json(**result)
 

@@ -62,13 +62,6 @@
     csr_path: "{{ tmp_dir.path }}/{{ server_hostname }}.csr"
     provider: selfsigned
 
-- name: Remove sharedcert if present.
-  community.datapower.x509_certificate:
-    domain: foo
-    state: absent
-    cert_dir: sharedcert
-    src: "{{ tmp_dir.path }}/{{ server_hostname }}_cert.pem"
-
 - name: Create x509 certificate in sharedcert directory
   community.datapower.x509_certificate:
     domain: foo
@@ -113,28 +106,63 @@
       - idempotency_check.changed == False
       - create_check.changed == True
 
-# - name: Create cert specifying obj/file names
-#   community.datapower.x509_certificate:
-#     domain: foo
-#     state: present
-#     cert_dir: sharedcert
-#     obj_name: name-the-object-this
-#     file_name: name-the-cert-this
-#     src: "/var/tmp/datapowerguru.com_cert.pem"
+- name: Remove sharedcert if present.
+  community.datapower.x509_certificate:
+    domain: foo
+    state: absent
+    cert_dir: sharedcert
+    obj_name: name-the-object-this
+    file_name: name-the-file-this
+    src: "{{ tmp_dir.path }}/{{ server_hostname }}_cert.pem"
 
+- name: Create cert specifying obj/file names
+  community.datapower.x509_certificate:
+    domain: foo
+    state: present
+    cert_dir: sharedcert
+    obj_name: name-the-object-this
+    file_name: name-the-file-this
+    src: "{{ tmp_dir.path }}/{{ server_hostname }}_cert.pem"
+  register: create_check
 
-# - name: Create x509 certificate
-#   community.datapower.x509_certificate:
-#     domain: foo
-#     state: present
-#     cert_dir: cert
-#     src: "/var/tmp/datapowerguru.com_cert.pem"
+- name: Create cert specifying obj/file names, check for idempotency
+  community.datapower.x509_certificate:
+    domain: foo
+    state: present
+    cert_dir: sharedcert
+    obj_name: name-the-object-this
+    file_name: name-the-file-this
+    src: "{{ tmp_dir.path }}/{{ server_hostname }}_cert.pem"
+  register: idempotency_check
 
-# - name:  Create x509 certificate, check for idempotency
-#   community.datapower.x509_certificate:
-#     domain: foo
-#     state: present
-#     cert_dir: cert
-#     obj_name: name-of-the-crypto-certificate
-#     file_name: name-of-the-certificate-file
-#     src: "/var/tmp/datapowerguru.com_cert.pem"
+- name: Assert create_check is changed and idempotency_check is not
+  assert:
+    that:
+      - idempotency_check.changed == False
+      - create_check.changed == True
+
+- name: Create cert specifying obj/file names
+  community.datapower.x509_certificate:
+    domain: foo
+    state: present
+    cert_dir: cert
+    obj_name: name-the-object-this
+    file_name: name-the-file-this
+    src: "{{ tmp_dir.path }}/{{ server_hostname }}_cert.pem"
+  register: create_check
+
+- name: Create cert specifying obj/file names, check for idempotency
+  community.datapower.x509_certificate:
+    domain: foo
+    state: present
+    cert_dir: cert
+    obj_name: name-the-object-this
+    file_name: name-the-file-this
+    src: "{{ tmp_dir.path }}/{{ server_hostname }}_cert.pem"
+  register: idempotency_check
+
+- name: Assert create_check is changed and idempotency_check is not
+  assert:
+    that:
+      - idempotency_check.changed == False
+      - create_check.changed == True

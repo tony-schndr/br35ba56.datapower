@@ -185,7 +185,6 @@ def ensure_directory(module, domain, dir_path, state='present'):
         result['diff'] = {}
         return result
 
-
     connection = Connection(module._socket_path)
     dir_req = DirectoryRequest()
     dir_req.set_body(dir_path=dir_path)
@@ -221,8 +220,9 @@ def ensure_file(module, domain, file_path, data, state):
     result['changed'] = False
     connection = Connection(module._socket_path)
     parent_dir = posixpath.split(file_path)[0]
-    top_dir = file_path.split('/')[0] or parent_dir # Handles the case where the parent dir is also the root directory.
+    top_dir = file_path.split('/')[0] or parent_dir  # Handles the case where the parent dir is also the root directory.
     diff = None
+
     # Ensure the parent directory is present before uploading file
     # If file state is 'absent' do nothing.
     if state != 'absent':

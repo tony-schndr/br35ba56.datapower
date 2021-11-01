@@ -1,6 +1,9 @@
 
 from __future__ import absolute_import, division, print_function
 from ansible.plugins.httpapi import HttpApiBase
+from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
+    clean_dp_dict
+)
 from ansible.module_utils.six.moves.urllib.error import HTTPError
 from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils._text import to_text
@@ -23,6 +26,7 @@ class HttpApi(HttpApiBase):
     def send_request(self, path, method, data):
         if data:
             data = json.dumps(data)
+            clean_dp_dict(data)
         headers = {
             "Content-Type": "application/json",
             "Accept": "application/json"
@@ -41,7 +45,6 @@ class HttpApi(HttpApiBase):
                 return None
             else:
                 raise ce
-
         return res
 
 

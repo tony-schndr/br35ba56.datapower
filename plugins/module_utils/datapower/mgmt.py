@@ -63,12 +63,19 @@ def create_file_from_base64(path, content):
     return path, md5
 
 
-def file_diff(full_path, from_data, to_data):
-    from_file_str = from_data.decode('utf-8')
-    to_file_str = to_data.decode('utf-8')
+def file_diff(from_data, to_data, full_path):
+    if isinstance(from_data, bytes):
+        from_str = from_data.decode('utf-8')
+    else:
+        from_str = from_data
 
-    from_lines = from_file_str.split('\n')
-    to_lines = to_file_str.split('\n')
+    if isinstance(to_data, bytes):
+        to_str = to_data.decode('utf-8')
+    else:
+        to_str = to_data
+
+    from_lines = from_str.split('\n')
+    to_lines = to_str.split('\n')
 
     return list(
         context_diff(
@@ -79,18 +86,6 @@ def file_diff(full_path, from_data, to_data):
             n=3
         )
     )
-
-
-def get_remote_data(req):
-    try:
-        res = req.get()
-    except ConnectionError as ce:
-        err = to_text(ce)
-        if 'Resource not found' in err:
-            return None
-        else:
-            raise ce
-    return res
 
 
 def convert_bool_to_on_or_off(parameters):
@@ -164,8 +159,10 @@ def ensure_config(module, domain, config, state):
     if request:
         try:
             response = connection.send_request(**request())
+            result['config'] = connection.get_resource_or_none(req.path)
         except ConnectionError as e:
             err = to_text(e)
+            result['request'] = request()
             result['error'] = err
             result['changed'] = False
             module.fail_json(msg=to_text(e), **result)
@@ -179,17 +176,17 @@ def ensure_config(module, domain, config, state):
 def ensure_directory(module, domain, dir_path, state='present'):
     # Directory is a top_dir, nothing to ensure.
     diff = None
+    result = {}
+    result['changed'] = False
+
     if len(dir_path.split('/')) == 1:
         result = {}
-        result['changed'] = False
         result['path'] = dir_path
         result['diff'] = {}
         return result
 
-    connection = Connection(module._socket_path)
-    result = {}
-    result['changed'] = False
 
+    connection = Connection(module._socket_path)
     dir_req = DirectoryRequest()
     dir_req.set_body(dir_path=dir_path)
     dir_req.set_path(domain=domain, dir_path=dir_path)
@@ -224,10 +221,10 @@ def ensure_file(module, domain, file_path, data, state):
     result['changed'] = False
     connection = Connection(module._socket_path)
     parent_dir = posixpath.split(file_path)[0]
-    top_dir = file_path.split('/')[0]
+    top_dir = file_path.split('/')[0] or parent_dir # Handles the case where the parent dir is also the root directory.
     diff = None
     # Ensure the parent directory is present before uploading file
-    # Can't confuse states between file/directory
+    # If file state is 'absent' do nothing.
     if state != 'absent':
         result['directory'] = ensure_directory(module, domain, parent_dir)
 
@@ -247,12 +244,12 @@ def ensure_file(module, domain, file_path, data, state):
         result['response'] = file_create_resp
     elif has_file(files, file_path) and state == 'present':
         # Compare the files, can't compare cert/sharedcert.
-        if top_dir != 'sharedcert' or top_dir != 'cert':
+        if 'sharecert' not in top_dir and 'cert' not in top_dir:
             resp = connection.get_resource_or_none(file_req.path)
             from_data = base64.b64decode(resp['file'])
 
             try:
-                diff = file_diff(file_path, from_data, data)
+                diff = file_diff(from_data, data, file_path,)
             except UnicodeDecodeError as e:
                 # File seems to be binary
                 diff = 'Not possible to compare a binary file.'
@@ -270,18 +267,19 @@ def ensure_file(module, domain, file_path, data, state):
 
         # The requested file already exists in cert/shared cert
         # Not updating a file as there is no way to restore/backout
-        # unless you have the original cert/key
+        # unless you have the original cert/key or secure backups.
         elif has_file(files, file_path):
             result['path'] = file_path
             result['msg'] = 'Files are in cert / sharedcert directories, not overwiting existing crypto files.'
             return result
         else:
-            raise Exception("Not sure when/if this would be hit, expecting the first two conditions to handle all cases.")
+            raise NotImplementedError("This condition was not expected, this is likely a bug.")
     elif not has_file(files, file_path) and state == 'absent':
         diff = {'before': None, 'after': None}
     elif has_file(files, file_path) and state == 'absent':
         diff = {'before': file_path, 'after': None}
         delete_resp = connection.send_request(**file_req.delete())
+        result['changed'] = True
         result['response'] = delete_resp
 
     if module._diff:
@@ -291,7 +289,7 @@ def ensure_file(module, domain, file_path, data, state):
 
 
 def build_file_request(domain, file_path, data):
-    top_dir = file_path.split('/')[0]
+    top_dir = file_path.split('/')[0] or posixpath.split(file_path)[0]
 
     if isBase64(data):
         data_base64 = data
@@ -300,7 +298,7 @@ def build_file_request(domain, file_path, data):
 
     file_req = FileRequest()
     # sharedcert is global and can only be used through the default domain.
-    if top_dir == 'sharedcert':
+    if 'sharedcert' in top_dir:
         file_req.set_path(domain='default', file_path=file_path)
     else:
         file_req.set_path(domain=domain, file_path=file_path)
@@ -354,6 +352,12 @@ def normalize_config_data(data):
         configs.append(data)
 
     return configs
+
+
+def clean_dp_dict(dict_):
+    _scrub(dict_, '_links')
+    _scrub(dict_, 'href')
+    _scrub(dict_, 'state')
 
 
 def _scrub(obj, bad_key):

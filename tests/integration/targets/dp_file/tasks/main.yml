@@ -28,6 +28,21 @@
     dest: local/demo.txt
     state: absent
 
+- name: Check mode - create demo.txt at local
+  community.datapower.files:
+    domain: foo
+    src: "{{ role_path }}/files/demo.txt"
+    dest: local/demo.txt
+    state: present
+  register: result
+  check_mode: yes
+
+- name: Check mode - Validate create demo.txt at local
+  assert:
+    that:
+      # if reponse is not present then datapower wasn't called.
+      - "{{'response' not in result}}"
+
 - name: create demo.txt at local
   community.datapower.files:
     domain: foo
@@ -56,15 +71,6 @@
     that:
       - "{{ update_result['changed'] == True }}"
       - "{{ update_result['response']['result'] == 'File was updated.' }}"
-
-#Same Test just with subdirectory
-- name: Delete local/subdir/demo.txt if needed
-  community.datapower.files:
-    domain: foo
-    src: "{{ role_path }}/files/demo.txt"
-    #content: "aGVsbG8gd29ybGQK"
-    dest: local/subdir/demo.txt
-    state: absent
 
 - name: create demo.txt at local/subdir/demo.txt
   community.datapower.files:

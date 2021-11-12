@@ -136,6 +136,7 @@ def ensure_config(module, domain, config, state):
     before = connection.get_resource_or_none(req.path)
 
     diff = dp_diff.get_change_list(before, config)
+    result['before'] = before
     if module._diff:
         result['diff'] = diff
 
@@ -146,10 +147,11 @@ def ensure_config(module, domain, config, state):
             request = req.post
         elif len(diff) > 0:
             request = req.put
-    elif before is None:
-        request = None
-    else:
-        request = req.delete
+    elif state == 'absent':
+        if before is None:
+            request = None
+        else:
+            request = req.delete
 
     if module.check_mode:
         if request:
@@ -196,14 +198,16 @@ def ensure_directory(module, domain, dir_path, state='present'):
         diff = {}
         result['response'] = None
     elif dir_state is None and state == 'present':
-        resp = connection.send_request(**dir_req.post())
-        result['response'] = resp
+        if not module.check_mode:
+            resp = connection.send_request(**dir_req.post())
+            result['response'] = resp
         result['changed'] = True
         diff = {'before': None, 'after': dir_path}
         result['path'] = dir_path
     elif dir_state and state == 'absent':
-        resp = connection.send_request(**dir_req.delete())
-        result['response'] = resp
+        if not module.check_mode:
+            resp = connection.send_request(**dir_req.delete())
+            result['response'] = resp
         diff = {'before': dir_path, 'after': None}
         result['changed'] = True
     elif dir_state is None and state == 'absent':
@@ -237,11 +241,13 @@ def ensure_file(module, domain, file_path, data, state):
     file_req = build_file_request(domain, file_path, data)
 
     if not has_file(files, file_path) and state == 'present':
-        file_create_resp = connection.send_request(**file_req.post())
+        if not module.check_mode:
+            file_create_resp = connection.send_request(**file_req.post())
+            result['response'] = file_create_resp
+            result['path'] = file_create_resp['_links']['location']['href']
         result['diff'] = {'before': None, 'after': file_path}
         result['changed'] = True
-        result['path'] = file_create_resp['_links']['location']['href']
-        result['response'] = file_create_resp
+
     elif has_file(files, file_path) and state == 'present':
         # Compare the files, can't compare cert/sharedcert.
         if 'sharecert' not in top_dir and 'cert' not in top_dir:
@@ -261,8 +267,9 @@ def ensure_file(module, domain, file_path, data, state):
             from_md5 = hashlib.md5()
             from_md5.update(from_data)
             if to_md5.hexdigest() != from_md5.hexdigest():
-                update_resp = connection.send_request(**file_req.put())
-                result['response'] = update_resp
+                if not module.check_mode:
+                    update_resp = connection.send_request(**file_req.put())
+                    result['response'] = update_resp
                 result['changed'] = True
 
         # The requested file already exists in cert/shared cert

@@ -7,7 +7,7 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: fetch_file
+module: fetch
 
 short_description: Download a file from DataPower file system
 
@@ -34,7 +34,7 @@ author:
 
 EXAMPLES = r'''
 - name: Download a file from the /temporary/ directory
-  community.datapower.fetch_file:
+  community.datapower.fetch:
     domain: default
     path: /temporary/error-report.txt.gz
     dest: /var/tmp/

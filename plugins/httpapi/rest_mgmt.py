@@ -23,6 +23,11 @@ version_added: 1.0.0
 
 
 class HttpApi(HttpApiBase):
+    info_reqs = [
+
+
+    ]
+
     def send_request(self, path, method, data):
         if data:
             data = json.dumps(data)
@@ -35,6 +40,32 @@ class HttpApi(HttpApiBase):
             path, data, headers=headers, method=method
         )
         return handle_response(response, response_data)
+
+    def info(self):
+        results = {}
+        results['action'] = self.mgmt_action_info()
+        results['config'] = self.mgmt_config_info()
+        results['status'] = self.mgmt_status_info()
+        return results
+
+    def mgmt_config_info(self):
+        path = '/mgmt/config/'
+        response = self.send_request(path, 'GET', None)
+        config = [key for key in response['_links'].keys() if key != 'self']
+        return config
+
+    def mgmt_status_info(self):
+        path = '/mgmt/status/'
+        response = self.send_request(path, 'GET', None)
+        statuses = [key for key in response['_links'].keys() if key != 'self']
+        return statuses
+
+    def mgmt_action_info(self):
+        path = '/mgmt/actionqueue/default/operations'
+        response = self.send_request(path, 'GET', None)
+        values = list(response['_links'].keys())
+        values.remove('self')
+        return values
 
     def get_resource_or_none(self, path):
         try:

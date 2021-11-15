@@ -12,16 +12,14 @@ Name | Description
 [community.datapower.files]()|Manage files within a domain's local/cert/sharedcert directory.
 [community.datapower.config]()|Manage configuration within a domain
 [community.datapower.get_config]()|Get object configuration from a domain.
-[community.datapower.list_objects]()|List config objects (use to find config names)
 [community.datapower.export_domains]()|Export a domain(s) in ZIP format.
 [community.datapower.import_domains]()|Import a domain(s)
 [community.datapower.export_config]()|Export configuration from a domain (Output used in "import_config" module)
 [community.datapower.import_config]()|Import configuration into a domain
 [community.datapower.action]()|Execute actions against a domain
 [community.datapower.get_action_schema]()|Get the schema of an action.
-[community.datapower.list_actions]()|List supported actions (use to find available actions)
 [community.datapower.status]()|Retrieve various statuses
-[community.datapower.list_status]()|List status types (use to determine name of status for status module)
+[community.datapower.mgmt_info]()|Retrieve info on available mgmt endpoints such as status, action, config.
 
 
 ## Installing this collection

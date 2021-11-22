@@ -7,7 +7,7 @@
 - name: SETUP - Delete the snafu/foo application domain
   community.datapower.config:
     domain: default
-    state: absent
+    state: deleted
     config:
       Domain:
         mAdminState: enabled
@@ -19,7 +19,7 @@
 - name: SETUP - Create the snafu/foo application domain
   community.datapower.config:
     domain: default
-    state: present
+    state: merged
     config:
       Domain:
         mAdminState: enabled
@@ -36,7 +36,7 @@
 - name: Create some dummy config to check if it was restored.
   community.datapower.config:
     domain: "{{item}}"
-    state: present
+    state: merged
     config:
       LogTarget:
         IdleTimeout: 15
@@ -65,17 +65,17 @@
         UseANSIColor: 'off'
         mAdminState: enabled
         name: syslog_LogTarget
-  with_items: 
+  with_items:
     - foo
     - snafu
 
-- name: Create a dummy file 
+- name: Create a dummy file
   community.datapower.files:
     domain: "{{item}}"
     content: "aGVsbG8gd29ybGQK"
     dest: local/demo.txt
     state: present
-  with_items: 
+  with_items:
     - foo
     - snafu
 
@@ -95,7 +95,7 @@
 - name: Delete the snafu/foo application domain to verify restoration from all_domains_export
   community.datapower.config:
     domain: default
-    state: absent
+    state: deleted
     config:
       Domain:
         mAdminState: enabled
@@ -148,21 +148,21 @@
     dest: local/demo.txt
     state: present
   register: file_not_created
-  with_items: 
+  with_items:
     - foo
     - snafu
 
 - name: Assert create dummy file did not change anything, the file was restored from backup
   assert:
     that:
-      - item.changed == false 
+      - item.changed == false
   with_items: "{{file_not_created.results}}"
 
 
 - name: Delete the snafu/foo application domain to verify foo is restored from foo_export and snafu is not.
   community.datapower.config:
     domain: default
-    state: absent
+    state: deleted
     config:
       Domain:
         mAdminState: enabled
@@ -212,13 +212,13 @@
     dest: local/demo.txt
     state: present
   register: file_not_created
-  with_items: 
+  with_items:
     - foo
-    
+
 - name: Assert create dummy file did not change anything, the file was restored from backup
   assert:
     that:
-      - item.changed == false 
+      - item.changed == false
   with_items: "{{file_not_created.results}}"
 - name: Get configuration to verify snafu domain was not restored
   community.datapower.get_config:

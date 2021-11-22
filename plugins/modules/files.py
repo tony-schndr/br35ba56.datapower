@@ -88,13 +88,7 @@ response:
     }
 '''
 
-import os
 
-from ansible.module_utils._text import to_text
-from ansible.module_utils.connection import (
-    ConnectionError,
-    Connection
-)
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     ensure_file

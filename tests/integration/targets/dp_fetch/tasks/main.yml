@@ -8,7 +8,7 @@
 - name: Delete the foo domain
   community.datapower.config:
     domain: default
-    state: absent
+    state: deleted
     config:
       Domain:
         name: foo
@@ -16,7 +16,7 @@
 - name: Create the foo domain
   community.datapower.config:
     domain: default
-    state: present
+    state: merged
     config:
       Domain:
         name: foo

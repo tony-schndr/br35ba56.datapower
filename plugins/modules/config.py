@@ -28,12 +28,13 @@ options:
         required: True
         type: dict
     state:
-        description: Wether to create/modify or delete.
+        description: Merge, replace, or delete configuration
         required: True
         type: str
         choices:
-          - present
-          - absent
+          - merged
+          - replaced
+          - deleted
 
 author:
 - Anthony Schneider (@br35ba56)
@@ -46,7 +47,7 @@ EXAMPLES = r'''
 - name: Modify the valcred Certificate list
   community.datapower.config:
     domain: default
-    state: present
+    state: merged
     config:
       CryptoValCred:
         CRLDPHandling: ignore
@@ -64,7 +65,7 @@ EXAMPLES = r'''
 # You can also just pass the paramters to the object by defining class_name and name.
 - name: Disable the valcred
   community.datapower.config:
-    state: present
+    state: merged
     domain: default
     class_name: CryptoValCred
     name: valcred
@@ -97,26 +98,17 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt
     ensure_config
 )
 
-from ansible_collections.community.datapower.plugins.module_utils.datapower import (
-    dp_diff
-)
-from ansible.module_utils.basic import missing_required_lib
-
 
 def run_module():
     module_args = dict(
         domain=dict(type='str', required=True),
         config=dict(type='dict', required=True),
-        state=dict(type='str', choices=['present', 'absent'], required=True)
+        state=dict(type='str', choices=['merged', 'replaced', 'deleted'], required=True)
     )
     module = AnsibleModule(
         argument_spec=module_args,
         supports_check_mode=True
     )
-    if dp_diff.DICTDIFFER_IMPORT_ERROR:
-        module.fail_json(
-            msg=missing_required_lib('dictdiffer'),
-            exception=dp_diff.DICTDIFFER_IMPORT_ERROR)
 
     domain = module.params.get('domain')
     config = module.params.get('config')

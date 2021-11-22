@@ -7,7 +7,7 @@
 - name: Delete the foo domain
   community.datapower.config:
     domain: default
-    state: absent
+    state: deleted
     config:
       Domain:
         mAdminState: enabled
@@ -16,7 +16,7 @@
 - name: Create the foo domain
   community.datapower.config:
     domain: default
-    state: present
+    state: merged
     config:
       Domain:
         mAdminState: enabled
@@ -27,7 +27,7 @@
 - name: Create the log target
   community.datapower.config:
     domain: foo
-    state: present
+    state: merged
     config:
       LogTarget:
         IdleTimeout: 15
@@ -68,7 +68,7 @@
 - name: Add event filters to log target
   community.datapower.config:
     domain: foo
-    state: present
+    state: merged
     config:
       LogTarget:
         IdleTimeout: 15
@@ -131,8 +131,8 @@
 
 - name: Disable the LogTarget object
   community.datapower.config:
-    domain: foo    
-    state: present
+    domain: foo
+    state: merged
     config:
       LogTarget:
         name: syslog_LogTarget
@@ -157,7 +157,7 @@
 - name: Make same change as step "Disable the LogTarget object"
   community.datapower.config:
     domain: foo
-    state: present
+    state: merged
     config:
       LogTarget:
         name: syslog_LogTarget
@@ -181,7 +181,7 @@
 - name: Delete syslog_LogTarget
   community.datapower.config:
     domain: foo
-    state: absent
+    state: deleted
     config:
       LogTarget:
         name: syslog_LogTarget
@@ -189,7 +189,7 @@
 - name: Create syslog_LogTarget
   community.datapower.config:
     domain: foo
-    state: present
+    state: merged
     config:
       LogTarget:
         IdleTimeout: 15
@@ -222,7 +222,7 @@
 - name: Update syslog_LogTarget list property to 1 item.
   community.datapower.config:
     domain: foo
-    state: present
+    state: merged
     config:
       LogTarget:
         name: syslog_LogTarget
@@ -247,7 +247,7 @@
 - name: Update list property to 4 items.
   community.datapower.config:
     domain: foo
-    state: present
+    state: merged
     config:
       LogTarget:
         name: syslog_LogTarget
@@ -273,7 +273,7 @@
 - name: Update list property to 0 items.
   community.datapower.config:
     domain: foo
-    state: present
+    state: replaced
     config:
       LogTarget:
         name: syslog_LogTarget
@@ -297,7 +297,7 @@
 - name: Delete the foo domain
   community.datapower.config:
     domain: default
-    state: absent
+    state: deleted
     config:
       Domain:
         mAdminState: enabled

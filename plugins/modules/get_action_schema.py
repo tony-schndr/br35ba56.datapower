@@ -33,7 +33,7 @@ author:
 
 EXAMPLES = r'''
 - name: Get an actions schema
-  community.datapower.get_action_schema:
+  br35ba56.datapower.get_action_schema:
     domain: default
     action: QuiesceDP
 '''
@@ -122,7 +122,7 @@ from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
 
-from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
+from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.requests import (
     ActionQueueSchemaRequest
 )
 

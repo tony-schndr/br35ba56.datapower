@@ -5,7 +5,7 @@ __metaclass__ = type
 import re
 import pytest
 
-from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
+from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.requests import (
     Request,
     ConfigRequest,
     FileRequest,
@@ -15,7 +15,7 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
     get_request_func,
     join_path
 )
-from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
+from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.mgmt import (
     class_name_from_config,
     name_from_config
 )

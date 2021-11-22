@@ -1,7 +1,7 @@
 
 from __future__ import absolute_import, division, print_function
 from ansible.plugins.httpapi import HttpApiBase
-from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
+from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.mgmt import (
     clean_dp_dict
 )
 from ansible.module_utils.six.moves.urllib.error import HTTPError

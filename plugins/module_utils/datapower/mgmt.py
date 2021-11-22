@@ -17,7 +17,7 @@ from ansible_collections.ansible.netcommon.plugins.module_utils.network.common.u
     dict_merge
 )
 
-from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
+from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.requests import (
     ConfigRequest,
     DirectoryRequest,
     FileRequest,

@@ -70,7 +70,7 @@ author:
 
 EXAMPLES = r'''
 - name: Import the full_export
-  community.datapower.restore_domains:
+  br35ba56.datapower.restore_domains:
     overwrite_objects: yes
     overwrite_files: yes
     export_path: "{{full_export.export}}"
@@ -108,10 +108,10 @@ from copy import deepcopy
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
+from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.requests import (
     ActionQueueRequest
 )
-from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
+from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.mgmt import (
     convert_bool_to_on_or_off,
     map_module_args_to_datapower_keys
 )

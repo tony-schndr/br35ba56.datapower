@@ -45,7 +45,7 @@ author:
 EXAMPLES = r'''
 ---
 - name: Modify the valcred Certificate list
-  community.datapower.config:
+  br35ba56.datapower.config:
     domain: default
     state: merged
     config:
@@ -64,7 +64,7 @@ EXAMPLES = r'''
 
 # You can also just pass the paramters to the object by defining class_name and name.
 - name: Disable the valcred
-  community.datapower.config:
+  br35ba56.datapower.config:
     state: merged
     domain: default
     class_name: CryptoValCred
@@ -94,7 +94,7 @@ response:
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
+from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.mgmt import (
     ensure_config
 )
 

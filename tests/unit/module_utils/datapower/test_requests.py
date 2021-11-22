@@ -3,7 +3,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 import re
-
 import pytest
 
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
@@ -13,7 +12,8 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
     DirectoryRequest,
     ActionQueueRequest,
     ActionQueueSchemaRequest,
-    get_request_func
+    get_request_func,
+    join_path
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     class_name_from_config,
@@ -33,7 +33,7 @@ class TestRequest:
         domain = 'default'
         top_directory = 'local'
         file_path = 'dir/subdir/get.js'
-        assert Request.join_path(
+        assert join_path(
             domain,
             top_directory,
             file_path,

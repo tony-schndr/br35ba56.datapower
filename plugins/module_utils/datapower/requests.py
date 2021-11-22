@@ -47,12 +47,15 @@ def clean_dp_dict(dict_):
     _scrub(dict_, 'state')
 
 
-def join_path(*args, base_path=None):
+def join_path(*args, **kwargs):
     ''' Join the path to form the full URI
     args -- list to join with base path, composes the right half of the URI
+    keyword args:
     base_path -- string representing the base uri of the rest mgmt interface call, ie /mgmt/config/
     '''
-    if not base_path:
+    if 'base_path' in kwargs:
+        base_path = kwargs.get('base_path')
+    else:
         raise ValueError(NO_BASE_PATH_ERROR)
     path = '/'.join([arg for arg in args if arg is not None]).rstrip('/')
     return posixpath.join(base_path, path)
@@ -85,17 +88,6 @@ class Request:
 
     def set_path(self, **kwargs):
         self.path = kwargs.get('path', None)
-
-    @staticmethod
-    def join_path(*args, base_path=None):
-        ''' Join the path to form the full URI
-        args -- list to join with base path, composes the right half of the URI
-        base_path -- string representing the base uri of the rest mgmt interface call, ie /mgmt/config/
-        '''
-        if not base_path:
-            raise ValueError(NO_BASE_PATH_ERROR)
-        path = '/'.join([arg for arg in args if arg is not None]).rstrip('/')
-        return posixpath.join(base_path, path)
 
     def put(self):
         method = 'PUT'
@@ -296,7 +288,7 @@ class ConfigInfoRequest(Request):
 
 class ActionQueueSchemaRequest(Request):
     def __init__(self, connection, domain, action_name):
-        super().__init__(connection)
+        super(ActionQueueSchemaRequest, self).__init__(connection)
         self.path = ACTION_QUEUE_SCHEMA_URI.format(domain, action_name)
 
 
@@ -313,7 +305,7 @@ class ActionQueueRequest(Request):
     ]
 
     def __init__(self, connection, domain, action_name, parameters=None):
-        super().__init__(connection)
+        super(ActionQueueRequest, self).__init__(connection)
         self.path = ACTION_QUEUE_URI.format(domain)
 
         if parameters:

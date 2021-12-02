@@ -67,8 +67,8 @@ jobs:
 
       - name: Inject variables into inventory
         run: |
-          echo "ansible_python_interpreter=$(which python)" >> ansible_collections/br35ba56/datapower/tests/integration/inventory.networking
-          echo "dp_version=${{ matrix.datapower }}" >> ansible_collections/br35ba56/datapower/tests/integration/inventory.networking
+          echo "ansible_python_interpreter=$(which python)" >> ansible_collections/community/datapower/tests/integration/inventory.networking
+          echo "dp_version=${{ matrix.datapower }}" >> ansible_collections/community/datapower/tests/integration/inventory.networking
 
       # Run the integration tests
       - name: Run integration test

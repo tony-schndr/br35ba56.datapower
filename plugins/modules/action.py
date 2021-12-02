@@ -40,19 +40,19 @@ author:
 
 EXAMPLES = r'''
 - name: Save a domains configuration
-  br35ba56.datapower.action:
+  community.datapower.action:
     domain: default
     action: SaveConfig
 
 - name: Quiesce DataPower
-  br35ba56.datapower.action:
+  community.datapower.action:
     domain: default
     action: QuiesceDP
     parameters:
       timeout: 60
 
 - name: UnQuiesce DataPower
-  br35ba56.datapower.action:
+  community.datapower.action:
     domain: default
     action: UnquiesceDP
 '''
@@ -75,7 +75,7 @@ response:
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.requests import (
+from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     ActionQueueRequest
 )
 

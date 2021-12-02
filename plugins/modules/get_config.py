@@ -52,12 +52,12 @@ author:
 EXAMPLES = r'''
 # Get a datapower object.  Determine object_class by ...
 - name: Get a tls profile
-  br35ba56.datapower.get_config:
+  community.datapower.get_config:
     domain: default
     class_name: SSLClientProfile
 
 - name: Get a tls profile
-  br35ba56.datapower.get_config:
+  community.datapower.get_config:
     domain: default
     class_name: SSLClientProfile
     status: True
@@ -161,7 +161,7 @@ response:
 
 '''
 
-from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.requests import (
+from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     ConfigRequest
 )
 from ansible.module_utils.basic import AnsibleModule

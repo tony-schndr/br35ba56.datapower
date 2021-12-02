@@ -54,14 +54,14 @@ author:
 EXAMPLES = r'''
 ---
 - name: Upload a local file called example.txt to local/subdir
-  br35ba56.datapower.files:
+  community.datapower.files:
     domain: default
     src: example.txt
     dest: local/subdir/example.txt
     state: present
 
 - name: Create a local/subdir/example.txt from base64 content.
-  br35ba56.datapower.files:
+  community.datapower.files:
     domain: default
     content: "aGVsbG8gd29ybGQK"
     dest: local/subdir/example.txt
@@ -90,7 +90,7 @@ response:
 
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.mgmt import (
+from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     ensure_file
 )
 

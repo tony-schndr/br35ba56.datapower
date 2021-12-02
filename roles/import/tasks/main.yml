@@ -1,12 +1,12 @@
 - name: Deploying package to "{{ dp_group }}" DataPowers
-  br35ba56.datapower.import_config:
+  community.datapower.import_config:
     domain: "{{ domain }}"
     objects: "{{ package_json }}"
   when:  dp_group  in group_names
 
 
 - name: Save domain configuration
-  br35ba56.datapower.action:
+  community.datapower.action:
     domain: "{{ domain }}"
     action: SaveConfig
   when:  dp_group  in group_names

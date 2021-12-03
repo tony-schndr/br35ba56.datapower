@@ -13,9 +13,116 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt
     normalize_config_data
 )
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import file_diff
+from ansible.module_utils.common.dict_transformations import (
+    recursive_diff
+)
+
+
+def test_dict_diff_with_no_diff():
+    to_dict = {
+        'string': 'bar',
+        'number': 4,
+        'dict': {
+            'a': 'z',
+            'b': 'y'
+        },
+        'foo_list': [
+            1,
+            2,
+            3,
+            4
+        ]
+    }
+    from_dict = {
+        'string': 'bar',
+        'number': 4,
+        'dict': {
+            'a': 'z',
+            'b': 'y'
+        },
+        'foo_list': [
+            1,
+            2,
+            3,
+            4
+        ]
+    }
+    assert recursive_diff(to_dict, from_dict) is None
+
+
+def test_dict_diff_with_diff():
+    from_dict = {
+        'string': 'foo',
+        'number': 4,
+        'dict': {
+            'a': 'z',
+            'c': 'x'
+        },
+        'foo_list': [
+            1,
+            2,
+        ]
+    }
+    to_dict = {
+        'string': 'bar',
+        'number': '4',
+        'dict': {
+            'a': 'z',
+            'b': 'y'
+        },
+        'foo_list': [
+            1,
+            2,
+            3,
+            4
+        ]
+    }
+    assert recursive_diff(from_dict, to_dict) == ({'string': 'foo', 'dict': {'c': 'x'}, 'foo_list': [
+        1, 2], 'number': 4}, {'string': 'bar', 'dict': {'b': 'y'}, 'foo_list': [1, 2, 3, 4], 'number': '4'})
+
+
+def test_diff_between_dict_and_list():
+    from_dict = {
+        'CryptoValCred': {
+            'name': 'PKIX-CertAuthorityRootCA_ValCred',
+            'mAdminState': 'enabled',
+            'Certificate': {'value': 'cert_1'},
+            'CertValidationMode': 'pkix',
+            'UseCRL': 'on',
+            'RequireCRL': 'off',
+            'CRLDPHandling': 'ignore',
+            'InitialPolicySet': '2.5.29.32.0',
+            'ExplicitPolicy': 'off',
+            'CheckDates': 'on'
+        }
+    }
+    to_dict = {
+        'CryptoValCred': {
+            'CRLDPHandling': 'ignore',
+            'CertValidationMode': 'pkix',
+            'Certificate': [
+                {'value': 'cert_1'},
+                {'value': 'cert_2'},
+                {'value': 'cert_3'}
+            ],
+            'CheckDates': 'on',
+            'ExplicitPolicy': 'off',
+            'InitialPolicySet': '2.5.29.32.0',
+            'RequireCRL': 'off',
+            'UseCRL': 'on',
+            'mAdminState': 'enabled',
+            'name': 'PKIX-CertAuthorityRootCA_ValCred'
+        }
+    }
+    diff = recursive_diff(from_dict, to_dict)
+    assert diff == ({'CryptoValCred': {'Certificate': {'value': 'cert_1'}}}, {'CryptoValCred': {
+                    'Certificate': [{'value': 'cert_1'}, {'value': 'cert_2'}, {'value': 'cert_3'}]}})
 
 
 def get_multiline_str():
+    '''
+    Helper function to create a multiline string for testing.
+    '''
     Faker = Factory.create
     fake = Faker()
     s = ''

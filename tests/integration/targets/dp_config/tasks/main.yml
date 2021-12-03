@@ -22,7 +22,7 @@
         mAdminState: enabled
         name: foo
 
-### Adding an additional field to config test ###
+## Adding an additional field to config test ###
 # setup test config
 - name: Create the log target
   community.datapower.config:
@@ -116,7 +116,7 @@
       - "{{ 'LogEventFilter' in after_syslog_LogTarget['response']['LogTarget'] }}"
   ignore_errors: no
 
-### Change config, validate the data changed and changed variable is True. ###
+## Change config, validate the data changed and changed variable is True. ###
 - name: Get LogTarget
   community.datapower.get_config:
     domain: foo
@@ -177,7 +177,7 @@
       - "{{ changed == unchanged  }}"
       - config_disabled_not_changed.changed == false
 
-### Test list property updates ###
+## Test list property updates ###
 - name: Delete syslog_LogTarget
   community.datapower.config:
     domain: foo

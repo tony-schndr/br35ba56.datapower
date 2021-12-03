@@ -13,10 +13,11 @@ from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError, Connection
 
 from ansible_collections.ansible.netcommon.plugins.module_utils.network.common.utils import (
-    dict_diff,
     dict_merge
 )
-
+from ansible.module_utils.common.dict_transformations import (
+    recursive_diff
+)
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     ConfigRequest,
     DirectoryRequest,
@@ -135,17 +136,16 @@ def ensure_config(module, domain, config, state):
     connection = Connection(module._socket_path)
     class_name = class_name_from_config(config)
     name = name_from_config(config, class_name)
-
+    clean_dp_dict(config)  # Remove keys that aren't valid for configuration. (href, links, self, etc...)
     req = ConfigRequest()
     req.path = join_path(domain, class_name, name, base_path='/mgmt/config/')
 
     before = connection.get_resource_or_none(req.path)
     if before is not None:
         clean_dp_dict(before)
-        diff = dict_diff(before, config)
+        diff = recursive_diff(before, config)
     else:
         diff = config
-
     result['before'] = before
 
     if module._diff:
@@ -157,14 +157,14 @@ def ensure_config(module, domain, config, state):
         if before is None:
             req.body = config
             request = req.post
-        elif diff:
+        elif diff and len(list(diff[1][class_name])) > 0:
             req.body = dict_merge(before, config)
             request = req.put
     elif state == 'replaced':
         if before is None:
             req.body = config
             request = req.post
-        elif diff:
+        elif diff and len(list(diff[1][class_name])) > 0:
             req.body = config
             request = req.put
     elif state == 'deleted':
@@ -181,7 +181,8 @@ def ensure_config(module, domain, config, state):
     if request:
         try:
             response = connection.send_request(**request())
-            result['config'] = clean_dp_dict(connection.get_resource_or_none(req.path))
+            result['config'] = connection.get_resource_or_none(req.path)
+            clean_dp_dict(result['config'])
         except ConnectionError as e:
             err = to_text(e)
             result['request'] = request()

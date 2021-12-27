@@ -105,8 +105,10 @@ class HttpApi(HttpApiBase):
                 raise ce
         return res
 
+
 class ActionQueueTimeoutError(Exception):
     pass
+
 
 def handle_response(response, response_data):
 

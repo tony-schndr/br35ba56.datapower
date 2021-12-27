@@ -69,7 +69,6 @@ def run_module():
 
     connection = Connection(module._socket_path)
     result = {}
-    export_path = module.params.get('export_path', None) # TODO: NOT USED
     domain = module.params.get('domain')
     action = "Import"
     params = deepcopy(module.params)

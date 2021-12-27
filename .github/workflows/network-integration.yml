@@ -24,8 +24,7 @@ jobs:
           - stable-2.11
           #- devel
         python:
-          - 2.6
-          - 2.7
+          # - 2.7 integration issues between DataPower rest mgmt interface fand python
           - 3.5
           - 3.6
           - 3.7
@@ -70,7 +69,7 @@ jobs:
         run: |
           docker run -d --name datapower tonyschndr/datapower:${{ matrix.datapower }}
           HOST_IP=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' datapower)
-          sed -i "s/{{HOST_IP}}/$HOST_IP/g" tests/integration/inventory.networking
+          sed -i "s/{{HOST_IP}}/$HOST_IP/g" ansible_collections/community/datapower/tests/integration/inventory.networking
 
       # Run the integration tests
       - name: Run integration test

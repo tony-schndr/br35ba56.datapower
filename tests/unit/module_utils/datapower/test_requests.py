@@ -325,7 +325,7 @@ class TestActionRequest:
             'parameters': None
         }
 
-        req = ActionQueueRequest(self.connection, **task_args)
+        req = ActionQueueRequest(**task_args)
         assert req.path == '/mgmt/actionqueue/default'
         assert req.body == {'SaveConfig': {}}
 
@@ -338,7 +338,7 @@ class TestActionRequest:
             }
         }
 
-        req = ActionQueueRequest(self.connection, **task_args)
+        req = ActionQueueRequest(**task_args)
         assert req.path == '/mgmt/actionqueue/default'
         assert req.body == {
             'TraceRoute': {
@@ -351,67 +351,9 @@ class TestActionRequest:
             'domain': 'default',
             'action_name': 'SaveConfig'
         }
-
-        req = ActionQueueSchemaRequest(
-            self.connection, task_args['domain'], task_args['action_name'])
+        connection = MockConnection()
+        req = ActionQueueSchemaRequest(connection, task_args['domain'], task_args['action_name'])
         assert req.path == '/mgmt/actionqueue/default/operations/SaveConfig?schema-format=datapower'
-
-
-def test_action_transitions():
-    resp = {
-        "_links": {
-            "self": {
-                "href": "/mgmt/actionqueue/snafu"
-            },
-            "doc": {
-                "href": "/mgmt/docs/actionqueue"
-            },
-            "location": {
-                "href": "/mgmt/actionqueue/snafu/pending/ResetThisDomain-20201215T210541Z-10"
-            }
-        },
-        "ResetThisDomain": {
-            "status": "Action request accepted."
-        }
-    }
-    connection = MockConnection
-    req = ActionQueueRequest(connection, 'default', 'SaveConfig')
-    assert not req.is_completed(resp)
-    resp = {
-        "_links": {
-            "self": {
-                "href": "/mgmt/actionqueue/snafu"
-            },
-            "doc": {
-                "href": "/mgmt/docs/actionqueue"
-            }
-        },
-        "SaveConfig": "Operation completed.",
-        "script-log": ""
-    }
-    assert req.is_completed(resp)
-    resp = {
-        "_links": {
-            "self": {
-                "href": "/mgmt/actionqueue/snafu/pending/ResetThisDomain-20201215T212048Z-11"
-            }
-        },
-        "status": "completed"
-    }
-    assert req.is_completed(resp)
-    resp = {
-        "SaveConfig": "Operation completed.",
-        "_links": {
-            "doc": {
-                "href": "/mgmt/docs/actionqueue"
-            },
-            "self": {
-                "href": "/mgmt/actionqueue/snafu"
-            }
-        },
-        "script-log": ""
-    }
-    assert req.is_completed(resp)
 
 
 def test_get_request_func_returns_none_when_data_is_equal():

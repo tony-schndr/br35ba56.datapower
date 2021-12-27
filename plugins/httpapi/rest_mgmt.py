@@ -1,8 +1,8 @@
-
 from __future__ import absolute_import, division, print_function
 from ansible.plugins.httpapi import HttpApiBase
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
-    clean_dp_dict
+    clean_dp_dict,
+    is_action_completed
 )
 from ansible.module_utils.six.moves.urllib.error import HTTPError
 from ansible.module_utils.connection import ConnectionError
@@ -23,12 +23,6 @@ version_added: 1.0.0
 """
 
 ACTION_QUEUE_TIMEOUT = 300
-TASK_COMPLETED_MESSAGES = [
-    'Operation completed.',
-    'completed',
-    'processed',
-    'processed-with-errors'
-]
 
 
 class HttpApi(HttpApiBase):
@@ -56,24 +50,18 @@ class HttpApi(HttpApiBase):
     def execute_action(self, path, body):
         method = 'POST'
         resp = self.send_request(path, method, body)
-        if self.is_completed(resp):
+        if is_action_completed(resp):
             return resp
         else:
             path = resp['_links']['location']['href']
             start_time = time.time()
-            while not self.is_completed(resp):
+            while not is_action_completed(resp):
                 if (time.time() - start_time) > ACTION_QUEUE_TIMEOUT:
                     raise ActionQueueTimeoutError(
                         'Could not retrieve status within defined time out' + path)
                 time.sleep(2)
                 resp = self.send_request(path, 'GET', None)
         return resp
-
-    def is_completed(self, resp):
-        for message in TASK_COMPLETED_MESSAGES:
-            if message in to_text(resp):
-                return True
-        return False
 
     def mgmt_config_info(self):
         path = '/mgmt/config/'

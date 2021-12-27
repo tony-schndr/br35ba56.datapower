@@ -7,11 +7,14 @@ import os
 
 import pytest
 from faker.factory import Factory
-
-
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
-    normalize_config_data
+    normalize_config_data,
+    is_action_completed
 )
+from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
+    ActionQueueRequest
+)
+ActionQueueRequest
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import file_diff
 from ansible.module_utils.common.dict_transformations import (
     recursive_diff
@@ -313,6 +316,62 @@ def test_normalize_config_data_dict():
 def test_normalize_config_data_no_config_retrieved():
     assert normalize_config_data(raw_out_no_config_retreived) is None
 
+
+def test_action_transitions():
+    resp = {
+        "_links": {
+            "self": {
+                "href": "/mgmt/actionqueue/snafu"
+            },
+            "doc": {
+                "href": "/mgmt/docs/actionqueue"
+            },
+            "location": {
+                "href": "/mgmt/actionqueue/snafu/pending/ResetThisDomain-20201215T210541Z-10"
+            }
+        },
+        "ResetThisDomain": {
+            "status": "Action request accepted."
+        }
+    }
+
+    req = ActionQueueRequest('default', 'SaveConfig')
+    assert not is_action_completed(resp)
+    resp = {
+        "_links": {
+            "self": {
+                "href": "/mgmt/actionqueue/snafu"
+            },
+            "doc": {
+                "href": "/mgmt/docs/actionqueue"
+            }
+        },
+        "SaveConfig": "Operation completed.",
+        "script-log": ""
+    }
+    assert is_action_completed(resp)
+    resp = {
+        "_links": {
+            "self": {
+                "href": "/mgmt/actionqueue/snafu/pending/ResetThisDomain-20201215T212048Z-11"
+            }
+        },
+        "status": "completed"
+    }
+    assert is_action_completed(resp)
+    resp = {
+        "SaveConfig": "Operation completed.",
+        "_links": {
+            "doc": {
+                "href": "/mgmt/docs/actionqueue"
+            },
+            "self": {
+                "href": "/mgmt/actionqueue/snafu"
+            }
+        },
+        "script-log": ""
+    }
+    assert is_action_completed(resp)
 
 # def test_get_files_from_filestore_single_file():
 #     filestore_resp = {

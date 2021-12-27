@@ -43,8 +43,20 @@ PARAM_MAP = {
     'overwrite_files': 'OverwriteFiles',
     'rewrite_local_ip': 'RewriteLocalIP'
 }
-
 EXCLUDED_KEYS = ['domain', 'dest', 'export_path']
+TASK_COMPLETED_MESSAGES = [
+    'Operation completed.',
+    'completed',
+    'processed',
+    'processed-with-errors'
+]
+
+
+def is_action_completed(resp):
+    for message in TASK_COMPLETED_MESSAGES:
+        if message in to_text(resp):
+            return True
+    return False
 
 
 def isBase64(s):

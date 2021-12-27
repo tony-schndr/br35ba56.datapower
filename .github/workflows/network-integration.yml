@@ -66,14 +66,20 @@ jobs:
           pip install requests
           pip install docker
 
-      - name: Inject variables into inventory
+      - name: Setup test env
         run: |
-          echo "ansible_python_interpreter=$(which python)" >> ansible_collections/community/datapower/tests/integration/inventory.networking
-          echo "dp_version=${{ matrix.datapower }}" >> ansible_collections/community/datapower/tests/integration/inventory.networking
+          docker run -d --name datapower tonyschndr/datapower:${{ matrix.datapower }}
+          HOST_IP=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' datapower)
+          sed -i "s/{{HOST_IP}}/$HOST_IP/g" tests/integration/inventory.networking
 
       # Run the integration tests
       - name: Run integration test
-        run: ansible-test network-integration -v --color --retry-on-error --continue-on-error --diff --requirements --coverage
+        run: |
+          ansible-test network-integration -v \
+            --color --retry-on-error \
+            --continue-on-error --diff \
+            --requirements --coverage \
+            --docker --python ${{ matrix.python }}
         working-directory: ./ansible_collections/${{env.NAMESPACE}}/${{env.COLLECTION_NAME}}
 
         # ansible-test support producing code coverage date

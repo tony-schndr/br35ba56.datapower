@@ -183,11 +183,11 @@ def run_module():
             objects.append(obj_dict)
         parameters['Object'] = objects
 
-    action_req = ActionQueueRequest(connection, domain, action, parameters)
+    action_req = ActionQueueRequest(domain, action, parameters)
     filename = get_random_file_name('zip')
 
     try:
-        response = action_req.post()
+        response = connection.execute_action(**action_req.post())
     except ConnectionError as e:
         response = to_text(e)
         result['changed'] = False

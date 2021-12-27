@@ -120,10 +120,10 @@ def run_module():
         module.fail_json(msg=warning_message, **result)
 
     parameters = module.params.get('parameters')
-    dp_req = ActionQueueRequest(connection, domain, action, parameters)
+    dp_req = ActionQueueRequest(domain, action, parameters)
 
     try:
-        response = dp_req.post()
+        response = connection.execute_action(**dp_req.post())
     except ConnectionError as e:
         response = to_text(e)
         result['changed'] = False

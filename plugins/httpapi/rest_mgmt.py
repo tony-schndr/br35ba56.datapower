@@ -9,6 +9,7 @@ from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils._text import to_text
 from xml.sax.saxutils import unescape
 import json
+import time
 
 __metaclass__ = type
 
@@ -21,12 +22,16 @@ description:
 version_added: 1.0.0
 """
 
+ACTION_QUEUE_TIMEOUT = 300
+TASK_COMPLETED_MESSAGES = [
+    'Operation completed.',
+    'completed',
+    'processed',
+    'processed-with-errors'
+]
+
 
 class HttpApi(HttpApiBase):
-    info_reqs = [
-
-
-    ]
 
     def send_request(self, path, method, data):
         if data:
@@ -47,6 +52,28 @@ class HttpApi(HttpApiBase):
         results['config'] = self.mgmt_config_info()
         results['status'] = self.mgmt_status_info()
         return results
+
+    def execute_action(self, path, body):
+        method = 'POST'
+        resp = self.send_request(path, method, body)
+        if self.is_completed(resp):
+            return resp
+        else:
+            path = resp['_links']['location']['href']
+            start_time = time.time()
+            while not self.is_completed(resp):
+                if (time.time() - start_time) > ACTION_QUEUE_TIMEOUT:
+                    raise ActionQueueTimeoutError(
+                        'Could not retrieve status within defined time out' + path)
+                time.sleep(2)
+                resp = self.send_request(path, 'GET', None)
+        return resp
+
+    def is_completed(self, resp):
+        for message in TASK_COMPLETED_MESSAGES:
+            if message in to_text(resp):
+                return True
+        return False
 
     def mgmt_config_info(self):
         path = '/mgmt/config/'
@@ -78,6 +105,8 @@ class HttpApi(HttpApiBase):
                 raise ce
         return res
 
+class ActionQueueTimeoutError(Exception):
+    pass
 
 def handle_response(response, response_data):
 

@@ -69,7 +69,7 @@ def run_module():
 
     connection = Connection(module._socket_path)
     result = {}
-    export_path = module.params.get('export_path', None)
+    export_path = module.params.get('export_path', None) # TODO: NOT USED
     domain = module.params.get('domain')
     action = "Import"
     params = deepcopy(module.params)
@@ -85,10 +85,10 @@ def run_module():
         module.fail_json(msg='Error while reading export zip file from disk: {0}'.format(e))
 
     params['InputFile'] = base64.b64encode(data).decode()
-    action_req = ActionQueueRequest(connection, domain, action, params)
+    action_req = ActionQueueRequest(domain, action, params)
 
     try:
-        response = action_req.post()
+        response = connection.execute_action(**action_req.post())
     except ConnectionError as e:
         response = to_text(e)
         result['changed'] = False

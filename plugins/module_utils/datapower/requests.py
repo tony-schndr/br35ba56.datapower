@@ -3,10 +3,10 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 import json
-import time
 import posixpath
 from xml.sax.saxutils import unescape
 from ansible.module_utils._text import to_text
+from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils.six.moves.urllib.parse import urlencode
 
 MGMT_CONFIG_METADATA_URI = '/mgmt/metadata/{0}/{1}'
@@ -14,7 +14,6 @@ MGMT_CONFIG_URI = '/mgmt/config/'
 ACTION_QUEUE_URI = '/mgmt/actionqueue/{0}'
 ACTION_QUEUE_SCHEMA_URI = '/mgmt/actionqueue/{0}/operations/{1}?schema-format=datapower'
 ACTION_QUEUE_OPERATIONS_URI = '/mgmt/actionqueue/{0}/operations'
-ACTION_QUEUE_TIMEOUT = 300
 NO_BASE_PATH_ERROR = 'Base path was not provided. ie /mgmt/config/'
 
 
@@ -189,13 +188,10 @@ class FileRequest(Request):
 
 
 class ListConfigObjectsRequest(Request):
-    # FIXME: Why is domain being passed and not used?
     def __init__(self, connection, domain='default'):
         super().__init__(connection)
-        self.set_path(domain=domain)
 
     def set_path(self, **kwargs):
-        domain = kwargs['domain']
         self.path = join_path(base_path='/mgmt/config/')
 
 
@@ -297,15 +293,7 @@ class ActionQueueTimeoutError(Exception):
 
 
 class ActionQueueRequest(Request):
-    task_completed_messages = [
-        'Operation completed.',
-        'completed',
-        'processed',
-        'processed-with-errors'
-    ]
-
-    def __init__(self, connection, domain, action_name, parameters=None):
-        super(ActionQueueRequest, self).__init__(connection)
+    def __init__(self, domain, action_name, parameters=None):
         self.path = ACTION_QUEUE_URI.format(domain)
 
         if parameters:
@@ -316,26 +304,7 @@ class ActionQueueRequest(Request):
     def post(self):
         path = self.path
         body = self.body
-        method = 'POST'
-        resp = self._process_request(path, method, body)
-        if self.is_completed(resp):
-            return resp
-        else:
-            path = resp['_links']['location']['href']
-            start_time = time.time()
-            while not self.is_completed(resp):
-                if (time.time() - start_time) > ACTION_QUEUE_TIMEOUT:
-                    raise ActionQueueTimeoutError(
-                        'Could not retrieve status within defined time out' + path)
-                time.sleep(2)
-                resp = self._process_request(path, 'GET', None)
-        return resp
-
-    def is_completed(self, resp):
-        for message in self.task_completed_messages:
-            if message in to_text(resp):
-                return True
-        return False
+        return {'path': path, 'body': body}
 
 
 class StatusRequest(Request):

@@ -103,6 +103,7 @@ path:
 '''
 
 import os
+from collections import OrderedDict
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
@@ -159,11 +160,11 @@ def run_module():
             domains.append(domain_dict)
         parameters['Domain'] = domains
 
-    action_req = ActionQueueRequest(connection, 'default', action, parameters)
+    action_req = ActionQueueRequest('default', action, parameters)
     filename = get_random_file_name('zip')
 
     try:
-        response = action_req.post()
+        response = connection.execute_action(**action_req.post())
     except ConnectionError as e:
         response = to_text(e)
         result['changed'] = False

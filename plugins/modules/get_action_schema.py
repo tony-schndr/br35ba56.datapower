@@ -139,12 +139,11 @@ def run_module():
     )
     connection = Connection(module._socket_path)
 
-    dp_req = ActionQueueSchemaRequest(
-        connection, module.params.get('domain'), module.params.get('action'))
+    dp_req = ActionQueueSchemaRequest(module.params.get('domain'), module.params.get('action'))
 
     result = {}
     try:
-        response = dp_req.get()
+        response = connection.send_request(**dp_req.get())
     except ConnectionError as e:
         response = to_text(e)
         module.fail_json(msg=response, **result)

@@ -12,7 +12,6 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
     DirectoryRequest,
     ActionQueueRequest,
     ActionQueueSchemaRequest,
-    get_request_func,
     join_path
 )
 from ansible_collections.community.datapower.plugins.httpapi.rest_mgmt import is_action_completed
@@ -318,8 +317,6 @@ class TestConfigRequest:
 
 class TestActionRequest:
 
-    connection = MockConnection()
-
     def test_DPActionQueueRequest_1(self):
         task_args = {
             'domain': 'default',
@@ -353,59 +350,8 @@ class TestActionRequest:
             'domain': 'default',
             'action_name': 'SaveConfig'
         }
-        connection = MockConnection()
-        req = ActionQueueSchemaRequest(connection, task_args['domain'], task_args['action_name'])
+        req = ActionQueueSchemaRequest(task_args['domain'], task_args['action_name'])
         assert req.path == '/mgmt/actionqueue/default/operations/SaveConfig?schema-format=datapower'
-
-
-def test_get_request_func_returns_none_when_data_is_equal():
-    before = 'equal'
-    after = 'equal'
-    connection = MockConnection()
-    req = Request(connection)
-
-    func = get_request_func(req, before, after, 'present')
-    assert not func
-
-
-def test_get_request_func_returns_put_when_data_is_not_equal():
-    before = 'equal'
-    after = 'not equal'
-    connection = MockConnection()
-    req = Request(connection)
-
-    func = get_request_func(req, before, after, 'present')
-    assert func.__name__ == 'put'
-
-
-def test_get_request_func_returns_post_when_data_does_not_exist_on_remote():
-    after = 'not equal'
-    before = None
-    connection = MockConnection()
-    req = Request(connection)
-
-    func = get_request_func(req, before, after, 'present')
-    assert func.__name__ == 'post'
-
-
-def test_get_request_func_returns_none_when_data_does_not_exist_on_remote():
-    after = 'not equal'
-    before = None
-    connection = MockConnection()
-    req = Request(connection)
-
-    func = get_request_func(req, before, after, 'absent')
-    assert not func
-
-
-def test_get_request_func_returns_delete_when_data_exists_on_remote():
-    before = 'equal'
-    after = None
-    connection = MockConnection()
-    req = Request(connection)
-
-    func = get_request_func(req, before, after, 'absent')
-    assert func.__name__ == 'delete'
 
 
 def test_action_transitions():
@@ -425,8 +371,6 @@ def test_action_transitions():
             "status": "Action request accepted."
         }
     }
-
-    req = ActionQueueRequest('default', 'SaveConfig')
     assert not is_action_completed(resp)
     resp = {
         "_links": {

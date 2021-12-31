@@ -61,26 +61,10 @@ def join_path(*args, **kwargs):
 
 
 class Request:
-    def __init__(self, connection):
-        self.connection = connection
+    def __init__(self):
         self.body = None
         self.path = None
         self.method = None
-
-    def _process_request(self, path, method, body=None):
-        if body:
-            _scrub(body, '_links')
-            _scrub(body, 'href')
-            _scrub(body, 'state')
-        try:
-            resp = self.connection.send_request(path, method, body)
-        except ConnectionError:
-            raise
-        resp_str = json.dumps(resp)
-        # DataPower will sometimes return xml encoded strings, unescape
-        # ie. &amp is found in strings in AccessProfile and ConfigDeploymentPolicy objects.
-        data = json.loads(unescape(resp_str))
-        return data
 
     def set_body(self, **kwargs):
         self.body = kwargs.get('body', None)
@@ -88,21 +72,9 @@ class Request:
     def set_path(self, **kwargs):
         self.path = kwargs.get('path', None)
 
-    def put(self):
-        method = 'PUT'
-        return self._process_request(self.path, method, self.body)
-
     def get(self):
         method = 'GET'
-        return self._process_request(self.path, method, None)
-
-    def delete(self):
-        method = 'DELETE'
-        return self._process_request(self.path, method, None)
-
-    def post(self):
-        method = 'POST'
-        return self._process_request(self.path, method, self.body)
+        return {'method': method, 'path': self.path, 'data': None}
 
 
 class DirectoryRequest(Request):
@@ -187,28 +159,6 @@ class FileRequest(Request):
         return {'path': self.path, 'method': method, 'data': None}
 
 
-class ListConfigObjectsRequest(Request):
-    def __init__(self, connection, domain='default'):
-        super().__init__(connection)
-
-    def set_path(self, **kwargs):
-        self.path = join_path(base_path='/mgmt/config/')
-
-
-class ListActionsRequest(Request):
-    def __init__(self, connection, domain='default'):
-        super().__init__(connection)
-        self.set_path(domain=domain)
-
-    def set_path(self, **kwargs):
-        domain = kwargs.get('domain', 'default')
-        self.path = join_path(
-            domain,
-            'operations',
-            base_path='/mgmt/actionqueue/'
-        )
-
-
 class ConfigRequest(Request):
     def __init__(self):
         self.options = None
@@ -283,13 +233,9 @@ class ConfigInfoRequest(Request):
 
 
 class ActionQueueSchemaRequest(Request):
-    def __init__(self, connection, domain, action_name):
-        super(ActionQueueSchemaRequest, self).__init__(connection)
+    def __init__(self, domain, action_name):
+        super(ActionQueueSchemaRequest, self).__init__()
         self.path = ACTION_QUEUE_SCHEMA_URI.format(domain, action_name)
-
-
-class ActionQueueTimeoutError(Exception):
-    pass
 
 
 class ActionQueueRequest(Request):
@@ -308,28 +254,10 @@ class ActionQueueRequest(Request):
 
 
 class StatusRequest(Request):
-    def __init__(self, connection, domain, status_name):
-        super().__init__(connection)
+    def __init__(self, domain, status_name):
+        super().__init__()
         self.path = join_path(
             domain,
             status_name,
             base_path='/mgmt/status/'
         )
-
-
-class ListStatusObjectsRequest(Request):
-    def __init__(self, connection):
-        super().__init__(connection)
-        self.path = join_path(base_path='/mgmt/status/')
-
-
-def get_request_func(req, before, after, state):
-    if state == 'present':
-        if before is None:
-            return req.post
-        elif before != after:
-            return req.put
-    elif before is None:
-        return None
-    else:
-        return req.delete

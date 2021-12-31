@@ -13,7 +13,6 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt
 from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
     ActionQueueRequest
 )
-ActionQueueRequest
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import file_diff
 from ansible.module_utils.common.dict_transformations import (
     recursive_diff

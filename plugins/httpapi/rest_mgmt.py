@@ -2,7 +2,6 @@ from __future__ import absolute_import, division, print_function
 from ansible.plugins.httpapi import HttpApiBase
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     clean_dp_dict,
-    is_action_completed
 )
 from ansible.module_utils.six.moves.urllib.error import HTTPError
 from ansible.module_utils.connection import ConnectionError
@@ -23,6 +22,12 @@ version_added: 1.0.0
 """
 
 ACTION_QUEUE_TIMEOUT = 300
+TASK_COMPLETED_MESSAGES = [
+    'Operation completed.',
+    'completed',
+    'processed',
+    'processed-with-errors'
+]
 
 
 class HttpApi(HttpApiBase):
@@ -96,6 +101,13 @@ class HttpApi(HttpApiBase):
 
 class ActionQueueTimeoutError(Exception):
     pass
+
+
+def is_action_completed(resp):
+    for message in TASK_COMPLETED_MESSAGES:
+        if message in to_text(resp):
+            return True
+    return False
 
 
 def handle_response(response, response_data):

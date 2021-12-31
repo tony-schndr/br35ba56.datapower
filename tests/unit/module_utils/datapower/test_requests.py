@@ -15,6 +15,8 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
     get_request_func,
     join_path
 )
+from ansible_collections.community.datapower.plugins.httpapi.rest_mgmt import is_action_completed
+
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     class_name_from_config,
     name_from_config
@@ -404,3 +406,60 @@ def test_get_request_func_returns_delete_when_data_exists_on_remote():
 
     func = get_request_func(req, before, after, 'absent')
     assert func.__name__ == 'delete'
+
+
+def test_action_transitions():
+    resp = {
+        "_links": {
+            "self": {
+                "href": "/mgmt/actionqueue/snafu"
+            },
+            "doc": {
+                "href": "/mgmt/docs/actionqueue"
+            },
+            "location": {
+                "href": "/mgmt/actionqueue/snafu/pending/ResetThisDomain-20201215T210541Z-10"
+            }
+        },
+        "ResetThisDomain": {
+            "status": "Action request accepted."
+        }
+    }
+
+    req = ActionQueueRequest('default', 'SaveConfig')
+    assert not is_action_completed(resp)
+    resp = {
+        "_links": {
+            "self": {
+                "href": "/mgmt/actionqueue/snafu"
+            },
+            "doc": {
+                "href": "/mgmt/docs/actionqueue"
+            }
+        },
+        "SaveConfig": "Operation completed.",
+        "script-log": ""
+    }
+    assert is_action_completed(resp)
+    resp = {
+        "_links": {
+            "self": {
+                "href": "/mgmt/actionqueue/snafu/pending/ResetThisDomain-20201215T212048Z-11"
+            }
+        },
+        "status": "completed"
+    }
+    assert is_action_completed(resp)
+    resp = {
+        "SaveConfig": "Operation completed.",
+        "_links": {
+            "doc": {
+                "href": "/mgmt/docs/actionqueue"
+            },
+            "self": {
+                "href": "/mgmt/actionqueue/snafu"
+            }
+        },
+        "script-log": ""
+    }
+    assert is_action_completed(resp)

@@ -9,6 +9,9 @@ from ansible.module_utils._text import to_text
 from xml.sax.saxutils import unescape
 import json
 import time
+from collections import OrderedDict
+from ansible.utils.display import Display
+
 
 __metaclass__ = type
 
@@ -29,13 +32,16 @@ TASK_COMPLETED_MESSAGES = [
     'processed-with-errors'
 ]
 
+display = Display()
+
 
 class HttpApi(HttpApiBase):
 
     def send_request(self, path, method, data):
+
         if data:
-            data = json.dumps(data)
             clean_dp_dict(data)
+            data = json.dumps(data)
         headers = {
             "Content-Type": "application/json",
             "Accept": "application/json"
@@ -54,6 +60,8 @@ class HttpApi(HttpApiBase):
 
     def execute_action(self, path, body):
         method = 'POST'
+
+        body = reorder_name_key(body)
         resp = self.send_request(path, method, body)
         if is_action_completed(resp):
             return resp
@@ -103,13 +111,6 @@ class ActionQueueTimeoutError(Exception):
     pass
 
 
-def is_action_completed(resp):
-    for message in TASK_COMPLETED_MESSAGES:
-        if message in to_text(resp):
-            return True
-    return False
-
-
 def handle_response(response, response_data):
 
     try:
@@ -135,3 +136,50 @@ def handle_response(response, response_data):
         raise ConnectionError(to_text(response), code=response.code)
 
     return response_data
+
+
+def is_action_completed(resp):
+    for message in TASK_COMPLETED_MESSAGES:
+        if message in to_text(resp):
+            return True
+    return False
+
+
+def reorder_name_key(data):
+    '''
+    Recursively reorder the dictionary so the name key is always first.
+    This is needed to workaround DataPower Rest MGMT Interface bug where
+    the REST command will fail if the 'name' key is not the first key in
+    the JSON body.  The bug has been found in the /mgmt/actionqueue endpoint
+    for Export and LoadConfiguration.
+
+    '''
+    better_data = OrderedDict()
+
+    def traverse(data, better_data):
+        '''
+        Recursively traverse a dictionary data structure and build an equivalent OrderedDict along the way.
+        '''
+        if 'name' in data:
+            better_data['name'] = data['name']
+
+        for k, v in data.items():
+            if isinstance(v, dict):
+                better_data[k] = OrderedDict()
+                traverse(v, better_data[k])
+            elif isinstance(v, list):
+                better_data[k] = list()
+                index = 0
+                for elem in v:
+                    if isinstance(elem, dict):
+                        better_data[k].append(OrderedDict())
+                        traverse(elem, better_data[k][index])
+                    else:  # Don't need to traverse more as we assume everything in the list if of the same type.
+                        better_data[k].append(elem)
+                    index += 1
+            else:
+                if k != 'name':
+                    better_data[k] = v
+
+    traverse(data, better_data)
+    return better_data

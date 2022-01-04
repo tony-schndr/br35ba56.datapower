@@ -14,7 +14,6 @@ from ansible_collections.community.datapower.plugins.module_utils.datapower.requ
     ActionQueueSchemaRequest,
     join_path
 )
-from ansible_collections.community.datapower.plugins.httpapi.rest_mgmt import is_action_completed
 
 from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
     class_name_from_config,
@@ -352,58 +351,3 @@ class TestActionRequest:
         }
         req = ActionQueueSchemaRequest(task_args['domain'], task_args['action_name'])
         assert req.path == '/mgmt/actionqueue/default/operations/SaveConfig?schema-format=datapower'
-
-
-def test_action_transitions():
-    resp = {
-        "_links": {
-            "self": {
-                "href": "/mgmt/actionqueue/snafu"
-            },
-            "doc": {
-                "href": "/mgmt/docs/actionqueue"
-            },
-            "location": {
-                "href": "/mgmt/actionqueue/snafu/pending/ResetThisDomain-20201215T210541Z-10"
-            }
-        },
-        "ResetThisDomain": {
-            "status": "Action request accepted."
-        }
-    }
-    assert not is_action_completed(resp)
-    resp = {
-        "_links": {
-            "self": {
-                "href": "/mgmt/actionqueue/snafu"
-            },
-            "doc": {
-                "href": "/mgmt/docs/actionqueue"
-            }
-        },
-        "SaveConfig": "Operation completed.",
-        "script-log": ""
-    }
-    assert is_action_completed(resp)
-    resp = {
-        "_links": {
-            "self": {
-                "href": "/mgmt/actionqueue/snafu/pending/ResetThisDomain-20201215T212048Z-11"
-            }
-        },
-        "status": "completed"
-    }
-    assert is_action_completed(resp)
-    resp = {
-        "SaveConfig": "Operation completed.",
-        "_links": {
-            "doc": {
-                "href": "/mgmt/docs/actionqueue"
-            },
-            "self": {
-                "href": "/mgmt/actionqueue/snafu"
-            }
-        },
-        "script-log": ""
-    }
-    assert is_action_completed(resp)

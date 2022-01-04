@@ -34,7 +34,7 @@ def test_validate_data_name_key_is_first():
     pass
 
 
-def test_reorder_name_key_export_with_one_domain_element():
+def test_reorder_name_key_export_with_one_domain_dict():
     data = {"Export": {
         "Domain": [
             {"include-debug": None, "name": "all-domains",
@@ -45,7 +45,7 @@ def test_reorder_name_key_export_with_one_domain_element():
     validate_data_name_key_is_first(modified_data)
 
 
-def test_reorder_name_key_export_with_multiple_domain_elements():
+def test_reorder_name_key_export_with_multiple_domain_dicts():
     data = {"Export": {"Domain": [
         {"include-debug": None, "name": "foo", "ref-files": True, "ref-objects": False},
         {"include-debug": None, "name": "bar", "ref-files": True, "ref-objects": False},
@@ -54,6 +54,21 @@ def test_reorder_name_key_export_with_multiple_domain_elements():
 
     modified_data = reorder_name_key(data)
     validate_data_name_key_is_first(modified_data)
+
+
+def test_reorder_name_key_export_with_multiple_domain_strings():
+    data = {"foo": {
+        "bar": [
+            "data1",
+            "data2",
+            "data3"
+        ],
+        "name": "snafu"}
+    }
+
+    modified_data = reorder_name_key(data)
+    validate_data_name_key_is_first(modified_data)
+    assert modified_data['foo']['bar'] == data['foo']['bar']
 
 
 def test_action_is_action_completed():

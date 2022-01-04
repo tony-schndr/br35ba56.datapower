@@ -17,35 +17,6 @@ ACTION_QUEUE_OPERATIONS_URI = '/mgmt/actionqueue/{0}/operations'
 NO_BASE_PATH_ERROR = 'Base path was not provided. ie /mgmt/config/'
 
 
-def _scrub(obj, bad_key):
-    """
-    Removes specified key from the dictionary in place.
-    :param obj: dict, dictionary from DataPowers get object config rest call
-    :param bad_key: str, key to remove from the dictionary
-    """
-    if isinstance(obj, dict):
-        for key in list(obj.keys()):
-            if key == bad_key:
-                del obj[key]
-            else:
-                _scrub(obj[key], bad_key)
-    elif isinstance(obj, list):
-        for i in reversed(range(len(obj))):
-            if obj[i] == bad_key:
-                del obj[i]
-            else:
-                _scrub(obj[i], bad_key)
-    else:
-        # neither a dict nor a list, do nothing
-        pass
-
-
-def clean_dp_dict(dict_):
-    _scrub(dict_, '_links')
-    _scrub(dict_, 'href')
-    _scrub(dict_, 'state')
-
-
 def join_path(*args, **kwargs):
     ''' Join the path to form the full URI
     args -- list to join with base path, composes the right half of the URI

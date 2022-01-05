@@ -46,23 +46,23 @@ jobs:
       - name: Create rst files from modules
         run: ansible-doc-extractor ./docs plugins/modules/*.py
 
-      - name: Create rst files from httpapi
-        run: ansible-doc-extractor ./docs/lookup plugins/httpapi/rest_mgmt.py
+#       - name: Create rst files from httpapi
+#         run: ansible-doc-extractor ./docs/lookup plugins/httpapi/rest_mgmt.py
 
       - name: Create collection index document
         run: |
           echo "# Datapower Ansible Collection Documentation" > docs/index.md
           echo "## Modules" >> docs/index.md
           find plugins/modules -type f -name '*.py' -exec bash -c 'echo "- [$(basename "{}" ".py")]($(basename {} .py).html)"' \; >> docs/index.md
-          echo "## httpapi" >> docs/index.md
-          find plugins/httapi -type f -name '*.py' -exec bash -c 'echo "- [$(basename "{}" ".py")](httpapi/$(basename {} .py).html)"' \; >> docs/index.md
+          # echo "## httpapi" >> docs/index.md
+          # find plugins/httapi -type f -name '*.py' -exec bash -c 'echo "- [$(basename "{}" ".py")](httpapi/$(basename {} .py).html)"' \; >> docs/index.md
 
       - name: Create module html documents from rst files
         run: |
           find ./docs -type f -name '*.rst' -maxdepth 1 -exec bash -c 'rstdoc {} "docs/$(basename "{}" ".rst").html" rst_html' \;
-      - name: Create httpapi html documents from rst files
-        run: |
-          find ./docs/lookup -type f -name '*.rst' -maxdepth 1 -exec bash -c 'rstdoc {} "docs/httpapi/$(basename "{}" ".rst").html" rst_html' \;
+#       - name: Create httpapi html documents from rst files
+#         run: |
+#           find ./docs/lookup -type f -name '*.rst' -maxdepth 1 -exec bash -c 'rstdoc {} "docs/httpapi/$(basename "{}" ".rst").html" rst_html' \;
 
       - name: Remove intermediary rst docs
         run: find docs/ -name '*.rst' -delete

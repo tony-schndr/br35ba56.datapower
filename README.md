@@ -1,147 +1,191 @@
 # DataPower Collection for Ansible
-<!-- Add CI and code coverage badges here. Samples included below. -->
-[![CI](https://github.com/br35ba56/ansible-datapower/workflows/CI/badge.svg?event=push)](https://github.com/br35ba56/ansible-datapower/actions) 
+[![CI](https://github.com/br35ba56/ansible-datapower/workflows/CI/badge.svg?event=push)](https://github.com/br35ba56/ansible-datapower/actions)
 [![Network Integration](https://github.com/Br35Ba56/ansible-datapower/actions/workflows/network-integration.yml/badge.svg)](https://github.com/Br35Ba56/ansible-datapower/actions/workflows/network-integration.yml)
 [![Codecov](https://img.shields.io/codecov/c/github/br35ba56/ansible-datapower)](https://codecov.io/gh/br35ba56/ansible-datapower)
 
-The Ansible DataPower collection includes a variety of modules to automate
-the management of IBM DataPower Appliances.
+The Ansible DataPower collection includes a variety of modules to automate IBM DataPower Appliances.
 
 
-## Modules
-Name | Description
---- | ---
-[br35ba56.datapower.files]()|Manage files within a domain's local/cert/sharedcert directory.
-[br35ba56.datapower.config]()|Manage configuration within a domain
-[br35ba56.datapower.get_config]()|Get object configuration from a domain.
-[br35ba56.datapower.export_domains]()|Export a domain(s) in ZIP format.
-[br35ba56.datapower.import_domains]()|Import a domain(s)
-[br35ba56.datapower.export_config]()|Export configuration from a domain (Output used in "import_config" module)
-[br35ba56.datapower.import_config]()|Import configuration into a domain
-[br35ba56.datapower.action]()|Execute actions against a domain
-[br35ba56.datapower.get_action_schema]()|Get the schema of an action.
-[br35ba56.datapower.status]()|Retrieve various statuses
-[br35ba56.datapower.mgmt_info]()|Retrieve info on available mgmt endpoints such as status, action, config.
+## Code of Conduct
+
+We follow the [Ansible Code of Conduct](https://docs.ansible.com/ansible/devel/community/code_of_conduct.html) in all our interactions within this project.
+
+If you encounter abusive behavior, please refer to the [policy violations](https://docs.ansible.com/ansible/devel/community/code_of_conduct.html#policy-violations) section of the Code for information on how to raise a complaint.
 
 
-## Installing this collection
+## Contributing to this collection
 
-### Dependencies
-Python: 3.6, 3.7, 3.8, 3.9
+<!--Describe how the community can contribute to your collection. At a minimum, fill up and include the CONTRIBUTING.md file containing how and where users can create issues to report problems or request features for this collection. List contribution requirements, including preferred workflows and necessary testing, so you can benefit from community PRs. If you are following general Ansible contributor guidelines, you can link to - [Ansible Community Guide](https://docs.ansible.com/ansible/devel/community/index.html). List the current maintainers (contributors with write or higher access to the repository). The following can be included:-->
 
-Docker - For a developer version of IBM DataPower runtime.
+The content of this collection is made by people like you, a community of individuals collaborating on making the world better through developing automation software.
 
-### Python Modules
-Name | Version
---- | ---
-[dictdiffer](https://github.com/inveniosoftware/dictdiffer)| latest
+We are actively accepting new contributors.
 
-```bash
-pip3 install -r ansible_collections/br35ba56/datapower/requirements.txt
-```
+Any kind of contribution is very welcome.
 
-This collection is still in development and is not on ansible galaxy.  Follow the instructions [here](https://cn-ansibledoc.readthedocs.io/zh_CN/latest/user_guide/collections_using.html) to install.
+You don't know how to start? Refer to our [contribution guide](CONTRIBUTING.md)!
 
-You will either build / install the collection manually using ansible galaxy.
+We use the following guidelines:
 
-OR
+* [CONTRIBUTING.md](CONTRIBUTING.md)
+* [REVIEW_CHECKLIST.md](REVIEW_CHECKLIST.md)
+* [Ansible Community Guide](https://docs.ansible.com/ansible/latest/community/index.html)
+* [Ansible Development Guide](https://docs.ansible.com/ansible/devel/dev_guide/index.html)
+* [Ansible Collection Development Guide](https://docs.ansible.com/ansible/devel/dev_guide/developing_collections.html#contributing-to-collections)
 
-Make a directory for storing playbooks outside this repository, create a directory called collections inside the directory you create.  Then create a symlink using `ln -s collections/ansible_collections <path to repository>/ansible_collections`
+<!--
+## Collection maintenance
 
-For Example
- ```
-ansible-playbooks % tree
-.
-├── collections
-│   └── ansible_collections -> ../../ansible-datapower/ansible_collections
-├── inventory.networking
-└── play.yml
- ```
-If done correctly this collection will be found when running playbooks.
+The current maintainers are listed in the [MAINTAINERS](MAINTAINERS) file. If you have questions or need help, feel free to mention them in the proposals.
 
-## Using this collection
-This collection uses an httpapi plugin that utilizes the DataPower REST Management Interface.  The files `docker-compose.yml`,  `dp/Dockerfile` and files in the directory `dp/config` provide a runtime environment with the Web Management Interface and Rest Management Interface configured to listen on your local machine at https://localhost:9090 and https://localhost:5554.  If you are running this collection against some other environment you will need to ensure the DataPower Rest Management Interface is enabled, below are the instructions to do so.
+To learn how to maintain / become a maintainer of this collection, refer to the [Maintainer guidelines](MAINTAINING.md).
 
-Log into the datapower CLI and execute the following to enable the Rest Management Interface on its default port.
+-->
+
+## Governance
+
+<!--Describe how the collection is governed. Here can be the following text:-->
+
+
+
+The process of decision making in this collection is based on discussing and finding consensus among participants.
+
+Every voice is important. If you have something on your mind, create an issue or dedicated discussion and let's discuss it!
+
+## Tested with Ansible
+2.9, 2.10, 2.11
+
+<!-- List any external resources the collection depends on, for example minimum versions of an OS, libraries, or utilities. Do not list other Ansible collections here. -->
+
+### Supported connections
+
+The ansible datapower collection supports `httpapi` connections.
+
+Ensure the DataPower's REST Mgmt Interface is enabled by logging into the DataPower CLI and executing the following:
 ```
 co; rest-mgmt; admin-state enabled; port 5554; exit;
 write mem;
 ```
-### Inventory Setup
 
+Then define the following variables in an inventory file.
 ```
 ansible_connection=httpapi
 ansible_httpapi_use_ssl=yes
 ansible_httpapi_port=<rest management port, default is 5554>
 ansible_network_os=br35ba56.datapower.rest_mgmt
-ansible_user=< DataPower user >
-ansible_httpapi_password=< DataPower user password >
+ansible_user=<DataPower user>
+ansible_httpapi_password=<DataPower user password>
 ```
-Review the inventory located at `ansible_collections/br35ba56/datapower/tests/integration/inventory.networking`.  You will need to add the variable `ansible_python_interpreter=<path to python3 interpreter>` to the bottom of the inventory file prior to running any plays or executing integration tests.  WARNING, `ansible_httpapi_validate_certs` is turned off, this is for development purposes only.  Ensure that it is set to on in non-development environments.
 
-# Using modules from this collection in your playbooks
 
-You can call modules by their Fully Qualified Collection Namespace (FQCN), such as `br35ba56.datapower.config`.
-The following example task configures a log target.
 
+## Included content
+Please see the module and plugin collection [here](https://br35ba56.github.io/ansible-datapower/).
+Since the github pages documenation is rough around the edges for now, you could also use `ansible-doc` to retrieve module documentation.
+
+```
+ansible-doc plugin module br35ba56.datapower.config
+```
+## Using this collection
+
+<!--Include some quick examples that cover the most common use cases for your collection content. It can include the following examples of installation and upgrade (change NAMESPACE.COLLECTION_NAME correspondingly):-->
+
+```yaml=
+- name: Save the DataPower 'default' domain.
+  br35ba56.datapower.action:
+    domain: default
+    action: SaveConfig
+```
+
+```yaml=
+- name: Export all domains and write it to local directory 'work/'
+  br35ba56.datapower.backup_domains:
+    dest: ./work/
+  register: all_domains_export
+```
+
+```yaml=
+- name: Restore a domain from a domain backup.
+  br35ba56.datapower.restore_domains:
+    overwrite_objects: yes
+    overwrite_files: yes
+    export_path: "{{all_domains_export.path}}"
+```
+```yaml=
+- name: Export the GetStat_MPG service from the snafu domain
+  br35ba56.datapower.export_zip:
+    domain: snafu
+    ref_objects: yes
+    ref_files: yes
+    dest: /var/tmp
+    objects:
+      - name: GetStat_MPG
+        class: MultiProtocolGateway
+  register: GetStat_export
+```
+```yaml=
+- name: Import the service exported from snafu domain into foo domain
+  br35ba56.datapower.import_zip:
+    domain: foo
+    export_path: "{{ GetStat_export.path }}"
+```
+### Installing the Collection from Ansible Galaxy
+
+Before using this collection, you need to install it with the Ansible Galaxy command-line tool.
+
+From Ansible Galaxy:
+
+```bash
+ansible-galaxy collection install br35ba56.datapower
+```
+Directly from GitHub repository:
+```bash
+ansible-galaxy collection install git+https://github.com/Br35Ba56/ansible-datapower.git
+```
+
+You can also include it in a `requirements.yml` file and install it with `ansible-galaxy collection install -r requirements.yml`, using the format:
 ```yaml
 ---
-- name: Configure a log target
-    br35ba56.datapower.config:
-    domain: default
-    state: present
-    config:
-        LogTarget:
-        IdleTimeout: 15
-        LocalAddress: 0.0.0.0
-        LocalIdentifier: dp-1
-        LogEvents:
-            Class:
-            value: all
-            Priority: notice
-        LogPrecision: second
-        LongRetryInterval: 20
-        Priority: normal
-        RateLimit: 100
-        RemoteAddress: 192.168.1.88
-        RemotePort: 514
-        RetryAttempts: 1
-        RetryInterval: 1
-        Rotate: 3
-        SSLClientConfigType: proxy
-        Size: 500
-        SoapVersion: soap11
-        SyslogFacility: user
-        TimestampFormat: zulu
-        Type: syslog-tcp
-        UploadMethod: ftp
-        UseANSIColor: 'off'
-        mAdminState: enabled
-        name: syslog_LogTarget
+collections:
+  - name: br35ba56.datapower
 ```
 
-# Contributing to this collection
-This collection leverages the REST management interface, learn more about how that interface works [here](https://www.ibm.com/support/pages/part-1-introduction-rest-management-interface-and-status-monitoring)
-
-## Adding a new module
-
-All additional modules MUST include **Integration Tests** and pass **Sanity Tests**
-
-DataPower actions (actions can be discovered using the list_action module) should/could have a module that specifically targets the action.  For an example of this review export_domains, export_config, and import_config modules.
-
-### Module Utilities
-
-If your changing `plugins/module_utils/datapower/` add/update **Unit Tests**.
-
-
-### Testing reference
-
+Note that if you install the collection from Ansible Galaxy, it will not be upgraded automatically when you upgrade the `ansible` package. To upgrade the collection to the latest available version, run the following command:
+```bash
+ansible-galaxy collection install community.datapower --upgrade
 ```
-ansible-test units --python 3.7  --coverage  --docker -v tests/unit/module_utils/datapower/
-ansible-test network-integration
-ansible-test sanity --python 3.7
+
+You can also install a specific version of the collection, for example, if you need to downgrade when something is broken in the latest version (please report an issue in this repository). Use the following syntax to install version `1.0.1`:
+
+```bash
+ansible-galaxy collection install br35ba56.datapower:==1.0.1
 ```
+
+See [Ansible Using collections](https://docs.ansible.com/ansible/devel/user_guide/collections_using.html) for more details.
+
+## Release notes
+
+See the [changelog](https://github.com/ansible-collections/REPONAMEHERE/tree/main/CHANGELOG.rst).
+
+## Roadmap
+
+<!-- Optional. Include the roadmap for this collection, and the proposed release/versioning strategy so users can anticipate the upgrade/update cycle. -->
+
+## More information
+
+<!-- List out where the user can find additional information, such as working group meeting times, slack/IRC channels, or documentation for the product this collection automates. At a minimum, link to: -->
+
+- [Ansible Collection overview](https://github.com/ansible-collections/overview)
+- [Ansible User guide](https://docs.ansible.com/ansible/devel/user_guide/index.html)
+- [Ansible Developer guide](https://docs.ansible.com/ansible/devel/dev_guide/index.html)
+- [Ansible Collections Checklist](https://github.com/ansible-collections/overview/blob/master/collection_requirements.rst)
+- [Ansible Community code of conduct](https://docs.ansible.com/ansible/devel/community/code_of_conduct.html)
+- [The Bullhorn (the Ansible Contributor newsletter)](https://us19.campaign-archive.com/home/?u=56d874e027110e35dea0e03c1&id=d6635f5420)
+- [Changes impacting Contributors](https://github.com/ansible-collections/overview/issues/45)
+
 ## Licensing
+
+<!-- Include the appropriate license information here and a pointer to the full licensing details. If the collection contains modules migrated from the ansible/ansible repo, you must use the same license that existed in the ansible/ansible repo. See the GNU license example below. -->
 
 GNU General Public License v3.0 or later.
 

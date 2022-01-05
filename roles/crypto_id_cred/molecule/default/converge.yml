@@ -1,0 +1,13 @@
+---
+- name: Converge
+  connection: local
+  hosts: all
+
+  tasks:
+    - name: Execute role
+      include_role:
+        name: crypto_id_cred
+      vars:
+        cert_path:  "{{ certificate_path }}"
+        key_path:  "{{ private_key_path }}"
+        crypto_id_cred_name: "datapowerguru_idcred"

@@ -1,0 +1,60 @@
+---
+- name: Configure Standalone Gateway Peer
+  br35ba56.datapower.config:
+    domain: "{{ domain_name }}"
+    state: merged
+    config:
+      GatewayPeering:
+        ClusterAutoConfig: 'on'
+        EnablePeerGroup: "{{ gateway_peering_enable_group_mode }}"
+        LocalAddress: "{{ gateway_peering_local_address }}"
+        EnableSSL: "{{ gateway_peering_enable_ssl }}"
+        LocalDirectory: local:///
+        LocalPort: "{{ gateway_peering_local_port }}"
+        MaxMemory: 0
+        MonitorPort: 26380
+        PersistenceLocation: memory
+        PrimaryCount: 1
+        Priority: 100
+        mAdminState: enabled
+        name: "{{ gateway_peering_name }}"
+  when: gateway_peering_enable_group_mode == 'off'
+  notify: "Save target Domain"
+
+- name: Configure Clustered Gateway Peer
+  br35ba56.datapower.config:
+    domain: "{{ domain_name }}"
+    state: merged
+    config:
+      GatewayPeering:
+        ClusterAutoConfig: 'on'
+        EnablePeerGroup: "{{ gateway_peering_enable_group_mode }}"
+        LocalAddress: "{{ gateway_peering_local_address }}"
+        Peers: "{{ gw_peer_host_aliases }}"
+        EnableSSL: "{{ gateway_peering_enable_ssl }}"
+        Valcred:
+          value: '{{gateway_peering_valcred}}'
+        Idcred:
+          value: '{{gateway_peering_idcred}}'
+        LocalDirectory: local:///
+        LocalPort: "{{ gateway_peering_local_port }}"
+        MaxMemory: 0
+        MonitorPort: 26380
+        PersistenceLocation: memory
+        PrimaryCount: 1
+        Priority: 100
+        mAdminState: enabled
+        name: "{{ gateway_peering_name }}"
+  notify: "Save target Domain"
+  when: gateway_peering_enable_group_mode == 'on'
+
+- name: Wait for Gateway Peering object to come up.
+  br35ba56.datapower.get_config:
+    class_name: GatewayPeering
+    name: '{{ gateway_peering_name }}'
+    domain: "{{ domain_name }}"
+    status: yes
+  register: result
+  until: "'up' in result.response.GatewayPeering.state.opstate"
+  delay: 10
+  retries: 10

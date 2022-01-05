@@ -1,0 +1,102 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+
+platforms:
+  - name: dp-1
+    image: tonyschndr/datapower:10.0.1.4
+    pre_build_image: true
+    privileged: true
+    ports:
+      - 16380
+      - 26380
+    published_ports:
+      - 0.0.0.0:9090:9090
+      - 0.0.0.0:5554:5554
+    command: ""
+    groups:
+      - datapower
+      - primary
+
+  - name: dp-2
+    image: tonyschndr/datapower:10.0.1.4
+    ports:
+      - 16380
+      - 26380
+    pre_build_image: true
+    privileged: true
+    command: ""
+    groups:
+      - datapower
+      - secondary
+
+  - name: dp-3
+    image: tonyschndr/datapower:10.0.1.4
+    ports:
+      - 16380
+      - 26380
+    pre_build_image: true
+    privileged: true
+    command: ""
+    groups:
+      - datapower
+      - secondary
+
+provisioner:
+  name: ansible
+  connection_options:
+    ansible_connection: httpapi
+    ansible_httpapi_use_ssl: yes
+    ansible_network_os: br35ba56.datapower.rest_mgmt
+    ansible_httpapi_validate_certs: False
+    ansible_user: admin
+    ansible_httpapi_port: 5554
+    ansible_password: admin
+    ansible_command_timeout: 120
+  inventory:
+    group_vars:
+      all:
+        private_key_path:  "~/datapowerguru.com_privkey.pem"
+        certificate_path:  "~/datapowerguru.com_cert.pem"
+        csr_path: "~/datapowerguru.com.csr"
+        gateway_peering_valcred: datapowerguru_valcred
+        gateway_peering_idcred: datapowerguru_idcred
+        gateway_peering_enable_group_mode: 'on'
+        gateway_peering_name: gateway-peer
+        domain_name: foo
+    host_vars:
+      dp-1:
+        ansible_host: 172.17.0.2
+        gw_peer_host_aliases:
+          - dp-2
+          - dp-3
+        host_aliases:
+          - name: dp-2
+            IPAddress: 172.17.0.3
+          - name: dp-3
+            IPAddress: 172.17.0.4
+      dp-2:
+        ansible_host: 172.17.0.3
+        gw_peer_host_aliases:
+          - dp-1
+          - dp-3
+        host_aliases:
+          - name: dp-1
+            IPAddress: 172.17.0.2
+          - name: dp-3
+            IPAddress: 172.17.0.4
+      dp-3:
+        ansible_host: 172.17.0.4
+        gw_peer_host_aliases:
+          - dp-1
+          - dp-2
+        host_aliases:
+          - name: dp-1
+            IPAddress: 172.17.0.2
+          - name: dp-2
+            IPAddress: 172.17.0.2
+
+verifier:
+  name: ansible

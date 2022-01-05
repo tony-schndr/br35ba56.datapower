@@ -1,0 +1,38 @@
+---
+- name: Perpare
+  connection: local
+  hosts: all
+  vars:
+    server_hostname: datapowerguru.com
+    key_size: 4096
+    passphrase: # Set if you want passphrase
+    key_type: RSA # Others include DSA, ECC, Ed25519, Ed448, X25519, X448
+    country_name: KE
+    email_address: admin@datapowerguru.com
+    organization_name: DP Guru
+
+  handlers:
+    - name: Save default domain
+      br35ba56.datapower.action:
+        domain: default
+        action: SaveConfig
+      listen: "Save default Domain"
+
+  tasks:
+    - name: Create host aliases.
+      br35ba56.datapower.config:
+        domain: default
+        state: merged
+        config:
+          HostAlias: "{{ item }}"
+      with_items: "{{ host_aliases }}"
+      notify: "Save default Domain"
+
+    - name: Create the foo domain
+      br35ba56.datapower.config:
+        domain: default
+        state: merged
+        config:
+          Domain:
+            name: "{{ domain_name }}"
+      notify: "Save default Domain"

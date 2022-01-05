@@ -1,0 +1,20 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  vars:
+    gateway_peering_name: gateway-peer
+
+  tasks:
+
+  - name: Get status of gateway peering
+    br35ba56.datapower.get_config:
+      class_name: GatewayPeering
+      name: '{{ gateway_peering_name }}'
+      domain: "{{ domain_name }}"
+      status: yes
+    register: result
+
+  - name: Check the Gateway Peer is in an up state
+    assert:
+      that: "'up' in result.response.GatewayPeering.state.opstate"

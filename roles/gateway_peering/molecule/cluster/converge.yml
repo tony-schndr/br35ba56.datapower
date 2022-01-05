@@ -1,0 +1,35 @@
+---
+- name: Converge
+  connection: local
+  hosts: all
+
+  tasks:
+    - name: Execute role
+      include_role:
+        name: crypto_id_cred
+      vars:
+        cert_path:  "{{ certificate_path }}"
+        key_path:  "{{ private_key_path }}"
+        crypto_id_cred_name: "datapowerguru_idcred"
+
+    - name: Create valcred
+      br35ba56.datapower.config:
+        domain: "{{ domain_name }}"
+        state: merged
+        config:
+          CryptoValCred:
+            CRLDPHandling: ignore
+            Certificate:
+              value: datapowerguru.com_cert
+            CertValidationMode: legacy
+            CheckDates: 'on'
+            ExplicitPolicy: 'off'
+            InitialPolicySet: 2.5.29.32.0
+            RequireCRL: 'off'
+            UseCRL: 'on'
+            mAdminState: enabled
+            name: datapowerguru_valcred
+
+    - name: Execute role
+      include_role:
+        role: gateway_peering

@@ -1,0 +1,67 @@
+---
+- name: Prepare local cert/key and wait for image to boot.
+  connection: local
+  hosts: all
+  vars:
+    server_hostname: datapowerguru.com
+    key_size: 4096
+    passphrase: # Set if you want passphrase
+    key_type: RSA # Others include DSA, ECC, Ed25519, Ed448, X25519, X448
+    country_name: KE
+    email_address: admin@datapowerguru.com
+    organization_name: DP Guru
+  handlers:
+    - name: Save default domain
+      br35ba56.datapower.action:
+        domain: default
+        action: SaveConfig
+      listen: "Save default Domain"
+
+  tasks:
+    - name: Generate an OpenSSL private key
+      openssl_privatekey:
+        path: "{{ private_key_path }}"
+        size: "{{ key_size }}"
+        type: "{{ key_type }}"
+        backup: yes
+      run_once: yes
+
+    - name: Generate an OpenSSL Certificate Signing Request with Subject information
+      openssl_csr:
+        path: "{{ csr_path }}"
+        privatekey_path: "{{ private_key_path }}"
+        country_name: "{{ country_name }}"
+        organization_name: "{{ organization_name }}"
+        email_address: "{{ email_address }}"
+        common_name: "{{ server_hostname }}"
+      run_once: yes
+
+    - name: Generate a Self Signed OpenSSL certificate
+      openssl_certificate:
+        path: "{{ certificate_path }}"
+        privatekey_path: "{{ private_key_path }}"
+        csr_path: "~/{{ server_hostname }}.csr"
+        provider: selfsigned
+      run_once: yes
+
+    - name: Pause for a moment to allow container to start.
+      pause:
+        seconds: 10
+
+    - name: Create host aliases.
+      br35ba56.datapower.config:
+        domain: default
+        state: merged
+        config:
+          HostAlias: "{{ item }}"
+      with_items: "{{ host_aliases }}"
+      notify: "Save default Domain"
+
+    - name: Create the foo domain
+      br35ba56.datapower.config:
+        domain: default
+        state: merged
+        config:
+          Domain:
+            name: "{{ domain_name }}"
+      notify: "Save default Domain"

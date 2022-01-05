@@ -1,0 +1,18 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  gather_facts: false
+
+  tasks:
+  - name: Get id cred
+    br35ba56.datapower.get_config:
+      class_name: CryptoIdentCred
+      domain: "{{ domain_name }}"
+      status: yes
+    register: id_cred
+
+  - name: Check the ID Cred is in an up state
+    assert:
+      that: "'up' in id_cred.response.CryptoIdentCred.state.opstate"

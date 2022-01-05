@@ -35,7 +35,7 @@ jobs:
         run: ansible-galaxy collection install community-datapower-*.tar.gz
 
       - name: Install ansible-doc-extractor
-        run: pip install wheel setuptools ansible-doc-extractor --upgrade
+        run: pip install wheel setuptools git+https://github.com/xlab-steampunk/ansible-doc-extractor.git --upgrade
 
       - name: Install rstdoc
         run: pip install -v rstdoc

@@ -7,13 +7,13 @@ import os
 
 import pytest
 from faker.factory import Factory
-from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
+from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.mgmt import (
     normalize_config_data,
 )
-from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
+from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.requests import (
     ActionQueueRequest
 )
-from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import file_diff
+from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.mgmt import file_diff
 from ansible.module_utils.common.dict_transformations import (
     recursive_diff
 )

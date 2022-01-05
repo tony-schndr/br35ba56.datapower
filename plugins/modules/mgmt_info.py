@@ -22,7 +22,7 @@ author:
 
 EXAMPLES = r'''
 - name: Grab mgmt action/status/config info
-  community.datapower.mgmt_info:
+  br35ba56.datapower.mgmt_info:
 '''
 
 RETURN = r'''

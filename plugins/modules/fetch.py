@@ -34,7 +34,7 @@ author:
 
 EXAMPLES = r'''
 - name: Download a file from the /temporary/ directory
-  community.datapower.fetch:
+  br35ba56.datapower.fetch:
     domain: default
     path: /temporary/error-report.txt.gz
     dest: /var/tmp/
@@ -57,10 +57,10 @@ from ansible.module_utils.connection import (
     Connection
 )
 from ansible.module_utils._text import to_text
-from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
+from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.requests import (
     FileRequest
 )
-from ansible_collections.community.datapower.plugins.module_utils.datapower.mgmt import (
+from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.mgmt import (
     create_file_from_base64,
 )
 

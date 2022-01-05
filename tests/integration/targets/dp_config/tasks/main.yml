@@ -1,6 +1,6 @@
 ---
 - name: Delete the foo domain
-  community.datapower.config:
+  br35ba56.datapower.config:
     domain: default
     state: deleted
     config:
@@ -9,7 +9,7 @@
         name: foo
 
 - name: Create the foo domain
-  community.datapower.config:
+  br35ba56.datapower.config:
     domain: default
     state: merged
     config:
@@ -20,7 +20,7 @@
 ## Adding an additional field to config test ###
 # setup test config
 - name: Create the log target
-  community.datapower.config:
+  br35ba56.datapower.config:
     domain: foo
     state: merged
     config:
@@ -53,7 +53,7 @@
         name: syslog_LogTarget
 
 - name: Get before syslog_LogTarget
-  community.datapower.get_config:
+  br35ba56.datapower.get_config:
     domain: foo
     class_name: LogTarget
     name: syslog_LogTarget
@@ -61,7 +61,7 @@
 
 # Add new field "LogEventFilter" to config.
 - name: Add event filters to log target
-  community.datapower.config:
+  br35ba56.datapower.config:
     domain: foo
     state: merged
     config:
@@ -98,7 +98,7 @@
         name: syslog_LogTarget
 
 - name: Get after syslog_LogTarget
-  community.datapower.get_config:
+  br35ba56.datapower.get_config:
     domain: foo
     class_name: LogTarget
     name: syslog_LogTarget
@@ -113,7 +113,7 @@
 
 ## Change config, validate the data changed and changed variable is True. ###
 - name: Get LogTarget
-  community.datapower.get_config:
+  br35ba56.datapower.get_config:
     domain: foo
     class_name: LogTarget
     name: syslog_LogTarget
@@ -125,7 +125,7 @@
       - "{{ before['response']['LogTarget']['mAdminState'] == 'enabled' }}"
 
 - name: Disable the LogTarget object
-  community.datapower.config:
+  br35ba56.datapower.config:
     domain: foo
     state: merged
     config:
@@ -135,7 +135,7 @@
   register: config_disabled
 
 - name: Get LogTarget
-  community.datapower.get_config:
+  br35ba56.datapower.get_config:
     domain: foo
     class_name: LogTarget
     name: syslog_LogTarget
@@ -150,7 +150,7 @@
 
 ### Execute change again and confirm changed is false.  If state matches no change should be executed ###
 - name: Make same change as step "Disable the LogTarget object"
-  community.datapower.config:
+  br35ba56.datapower.config:
     domain: foo
     state: merged
     config:
@@ -160,7 +160,7 @@
   register: config_disabled_not_changed
 
 - name: Get LogTarget
-  community.datapower.get_config:
+  br35ba56.datapower.get_config:
     domain: foo
     class_name: LogTarget
     name: syslog_LogTarget
@@ -174,7 +174,7 @@
 
 ## Test list property updates ###
 - name: Delete syslog_LogTarget
-  community.datapower.config:
+  br35ba56.datapower.config:
     domain: foo
     state: deleted
     config:
@@ -182,7 +182,7 @@
         name: syslog_LogTarget
 
 - name: Create syslog_LogTarget
-  community.datapower.config:
+  br35ba56.datapower.config:
     domain: foo
     state: merged
     config:
@@ -215,7 +215,7 @@
         name: syslog_LogTarget
 
 - name: Update syslog_LogTarget list property to 1 item.
-  community.datapower.config:
+  br35ba56.datapower.config:
     domain: foo
     state: merged
     config:
@@ -226,7 +226,7 @@
   register: list_prop_update_result
 
 - name: Get LogTarget to check its state was update.
-  community.datapower.get_config:
+  br35ba56.datapower.get_config:
     domain: foo
     class_name: LogTarget
     name: syslog_LogTarget
@@ -240,7 +240,7 @@
   ignore_errors: no
 
 - name: Update list property to 4 items.
-  community.datapower.config:
+  br35ba56.datapower.config:
     domain: foo
     state: merged
     config:
@@ -253,7 +253,7 @@
   register: list_prop_update_result
 
 - name: get updated config
-  community.datapower.get_config:
+  br35ba56.datapower.get_config:
     domain: foo
     class_name: LogTarget
     name: syslog_LogTarget
@@ -266,7 +266,7 @@
       - "{{ list_prop_update_result['response']['syslog_LogTarget'] == 'Configuration was updated.' }}"
 
 - name: Update list property to 0 items.
-  community.datapower.config:
+  br35ba56.datapower.config:
     domain: foo
     state: replaced
     config:
@@ -276,7 +276,7 @@
   register: list_prop_update_result
 
 - name: get updated config
-  community.datapower.get_config:
+  br35ba56.datapower.get_config:
     domain: foo
     class_name: LogTarget
     name: syslog_LogTarget
@@ -290,7 +290,7 @@
 
 # Tear down
 - name: Delete the foo domain
-  community.datapower.config:
+  br35ba56.datapower.config:
     domain: default
     state: deleted
     config:

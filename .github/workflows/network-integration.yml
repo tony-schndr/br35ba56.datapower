@@ -11,7 +11,7 @@ on:
   schedule:
     - cron: '0 6 * * *'
 env:
-  NAMESPACE: community
+  NAMESPACE: br35ba56
   COLLECTION_NAME: datapower
 
 jobs:
@@ -62,9 +62,7 @@ jobs:
       - name: Install collection dependencies
         run: |
           ansible-galaxy collection install ansible.netcommon -p .
-          ansible-galaxy collection install community.docker -p .
-          ansible-galaxy collection install community.crypto -p .
-          pip install -r ansible_collections/community/datapower/requirements.txt
+          pip install -r ansible_collections/br35ba56/datapower/requirements.txt
           pip install requests
           pip install docker
 
@@ -72,7 +70,7 @@ jobs:
         run: |
           docker run -d --name datapower tonyschndr/datapower:${{ matrix.datapower }}
           HOST_IP=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' datapower)
-          sed -i "s/{{HOST_IP}}/$HOST_IP/g" ansible_collections/community/datapower/tests/integration/inventory.networking
+          sed -i "s/{{HOST_IP}}/$HOST_IP/g" ansible_collections/br35ba56/datapower/tests/integration/inventory.networking
 
       # Run the integration tests
       - name: Run integration test

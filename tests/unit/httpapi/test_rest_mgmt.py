@@ -7,7 +7,7 @@ import pytest
 import json
 from collections import OrderedDict
 
-from ansible_collections.community.datapower.plugins.httpapi.rest_mgmt import (
+from ansible_collections.br35ba56.datapower.plugins.httpapi.rest_mgmt import (
     is_action_completed,
     reorder_name_key
 )

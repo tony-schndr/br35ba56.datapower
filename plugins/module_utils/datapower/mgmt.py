@@ -18,7 +18,7 @@ from ansible_collections.ansible.netcommon.plugins.module_utils.network.common.u
 from ansible.module_utils.common.dict_transformations import (
     recursive_diff
 )
-from ansible_collections.community.datapower.plugins.module_utils.datapower.requests import (
+from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.requests import (
     ConfigRequest,
     DirectoryRequest,
     FileRequest,

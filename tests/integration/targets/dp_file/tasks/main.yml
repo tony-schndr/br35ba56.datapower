@@ -1,7 +1,7 @@
 ---
 # Set up
 - name: Delete the foo domain
-  community.datapower.config:
+  br35ba56.datapower.config:
     domain: default
     state: deleted
     config:
@@ -9,7 +9,7 @@
         name: foo
 
 - name: Create the foo domain
-  community.datapower.config:
+  br35ba56.datapower.config:
     domain: default
     state: merged
     config:
@@ -17,14 +17,14 @@
         name: foo
 
 - name: Delete if needed
-  community.datapower.files:
+  br35ba56.datapower.files:
     domain: foo
     src: "{{ role_path }}/files/demo.txt"
     dest: local/demo.txt
     state: absent
 
 - name: Check mode - create demo.txt at local
-  community.datapower.files:
+  br35ba56.datapower.files:
     domain: foo
     src: "{{ role_path }}/files/demo.txt"
     dest: local/demo.txt
@@ -39,7 +39,7 @@
       - "{{'response' not in result}}"
 
 - name: create demo.txt at local
-  community.datapower.files:
+  br35ba56.datapower.files:
     domain: foo
     src: "{{ role_path }}/files/demo.txt"
     dest: local/demo.txt
@@ -53,7 +53,7 @@
       - "{{ create_result['response']['result'] == 'File was created.' }}"
 
 - name: Update demo.txt at local
-  community.datapower.files:
+  br35ba56.datapower.files:
     domain: foo
     src: "{{ role_path }}/files/demo2.txt"
     #content: "aGVsbG8gd29ybGQK"
@@ -68,7 +68,7 @@
       - "{{ update_result['response']['result'] == 'File was updated.' }}"
 
 - name: create demo.txt at local/subdir/demo.txt
-  community.datapower.files:
+  br35ba56.datapower.files:
     domain: foo
     src: "{{ role_path }}/files/demo.txt"
     #content: "aGVsbG8gd29ybGQK"
@@ -83,7 +83,7 @@
       - "{{ create_result['response']['result'] == 'File was created.' }}"
 
 - name: Update demo.txt at local/subdir/demo.txt
-  community.datapower.files:
+  br35ba56.datapower.files:
     domain: foo
     src: "{{ role_path }}/files/demo2.txt"
     ##content: "aGVsbG8gd29ybGQK"
@@ -99,7 +99,7 @@
 
 
 - name: Delete local/local/demo.txt #Tests ability to create subdirectory named as the top_directory
-  community.datapower.files:
+  br35ba56.datapower.files:
     domain: foo
     #src: demo.txt
     content: "aGVsbG8gd29ybGQK"
@@ -108,7 +108,7 @@
   register: create_result
 
 - name: create local/local/demo.txt #Tests ability to create subdirectory named as the top_directory
-  community.datapower.files:
+  br35ba56.datapower.files:
     domain: foo
     src: "{{ role_path }}/files/demo.txt"
     #content: "aGVsbG8gd29ybGQK"
@@ -124,7 +124,7 @@
 
  #Tests ability to update subdirectory named as the top_directory
 - name: update local/local/demo.txt
-  community.datapower.files:
+  br35ba56.datapower.files:
     domain: foo
     content: "aGVsbG8gd29ybGQK"
     dest: local/local/demo.txt
@@ -139,7 +139,7 @@
 
 # tear down
 - name: Delete the foo domain
-  community.datapower.config:
+  br35ba56.datapower.config:
     domain: default
     state: deleted
     config:

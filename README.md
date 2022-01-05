@@ -11,17 +11,17 @@ the management of IBM DataPower Appliances.
 ## Modules
 Name | Description
 --- | ---
-[community.datapower.files]()|Manage files within a domain's local/cert/sharedcert directory.
-[community.datapower.config]()|Manage configuration within a domain
-[community.datapower.get_config]()|Get object configuration from a domain.
-[community.datapower.export_domains]()|Export a domain(s) in ZIP format.
-[community.datapower.import_domains]()|Import a domain(s)
-[community.datapower.export_config]()|Export configuration from a domain (Output used in "import_config" module)
-[community.datapower.import_config]()|Import configuration into a domain
-[community.datapower.action]()|Execute actions against a domain
-[community.datapower.get_action_schema]()|Get the schema of an action.
-[community.datapower.status]()|Retrieve various statuses
-[community.datapower.mgmt_info]()|Retrieve info on available mgmt endpoints such as status, action, config.
+[br35ba56.datapower.files]()|Manage files within a domain's local/cert/sharedcert directory.
+[br35ba56.datapower.config]()|Manage configuration within a domain
+[br35ba56.datapower.get_config]()|Get object configuration from a domain.
+[br35ba56.datapower.export_domains]()|Export a domain(s) in ZIP format.
+[br35ba56.datapower.import_domains]()|Import a domain(s)
+[br35ba56.datapower.export_config]()|Export configuration from a domain (Output used in "import_config" module)
+[br35ba56.datapower.import_config]()|Import configuration into a domain
+[br35ba56.datapower.action]()|Execute actions against a domain
+[br35ba56.datapower.get_action_schema]()|Get the schema of an action.
+[br35ba56.datapower.status]()|Retrieve various statuses
+[br35ba56.datapower.mgmt_info]()|Retrieve info on available mgmt endpoints such as status, action, config.
 
 
 ## Installing this collection
@@ -37,7 +37,7 @@ Name | Version
 [dictdiffer](https://github.com/inveniosoftware/dictdiffer)| latest
 
 ```bash
-pip3 install -r ansible_collections/community/datapower/requirements.txt
+pip3 install -r ansible_collections/br35ba56/datapower/requirements.txt
 ```
 
 This collection is still in development and is not on ansible galaxy.  Follow the instructions [here](https://cn-ansibledoc.readthedocs.io/zh_CN/latest/user_guide/collections_using.html) to install.
@@ -73,21 +73,21 @@ write mem;
 ansible_connection=httpapi
 ansible_httpapi_use_ssl=yes
 ansible_httpapi_port=<rest management port, default is 5554>
-ansible_network_os=community.datapower.rest_mgmt
+ansible_network_os=br35ba56.datapower.rest_mgmt
 ansible_user=< DataPower user >
 ansible_httpapi_password=< DataPower user password >
 ```
-Review the inventory located at `ansible_collections/community/datapower/tests/integration/inventory.networking`.  You will need to add the variable `ansible_python_interpreter=<path to python3 interpreter>` to the bottom of the inventory file prior to running any plays or executing integration tests.  WARNING, `ansible_httpapi_validate_certs` is turned off, this is for development purposes only.  Ensure that it is set to on in non-development environments.
+Review the inventory located at `ansible_collections/br35ba56/datapower/tests/integration/inventory.networking`.  You will need to add the variable `ansible_python_interpreter=<path to python3 interpreter>` to the bottom of the inventory file prior to running any plays or executing integration tests.  WARNING, `ansible_httpapi_validate_certs` is turned off, this is for development purposes only.  Ensure that it is set to on in non-development environments.
 
 # Using modules from this collection in your playbooks
 
-You can call modules by their Fully Qualified Collection Namespace (FQCN), such as `community.datapower.config`.
+You can call modules by their Fully Qualified Collection Namespace (FQCN), such as `br35ba56.datapower.config`.
 The following example task configures a log target.
 
 ```yaml
 ---
 - name: Configure a log target
-    community.datapower.config:
+    br35ba56.datapower.config:
     domain: default
     state: present
     config:

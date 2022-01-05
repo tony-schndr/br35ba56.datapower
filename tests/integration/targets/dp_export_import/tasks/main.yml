@@ -1,6 +1,6 @@
 ---
 - name: SETUP - Delete the snafu/foo application domain
-  community.datapower.config:
+  br35ba56.datapower.config:
     domain: default
     state: deleted
     config:
@@ -12,7 +12,7 @@
     - foo
 
 - name: SETUP - Create the snafu/foo application domain
-  community.datapower.config:
+  br35ba56.datapower.config:
     domain: default
     state: merged
     config:
@@ -24,22 +24,22 @@
     - foo
 
 - name: SETUP - Save default domain
-  community.datapower.action:
+  br35ba56.datapower.action:
     domain: default
     action: SaveConfig
 
 - name: Import a service into to snafu domain
-  community.datapower.import_zip:
+  br35ba56.datapower.import_zip:
     domain: snafu
     export_path: "{{ role_path }}/files/GetStat_MPG_and_LogCategory.zip"
 
 - name: Save snafu after installing service
-  community.datapower.action:
+  br35ba56.datapower.action:
     domain: snafu
     action: SaveConfig
 
 - name: Export service from snafu domain
-  community.datapower.export_zip:
+  br35ba56.datapower.export_zip:
     domain: snafu
     ref_objects: yes
     ref_files: yes
@@ -55,17 +55,17 @@
       - "{{GetStat_export.response.status == 'completed'}}"
 
 - name: Import the service exported from snafu domain into foo domain
-  community.datapower.import_zip:
+  br35ba56.datapower.import_zip:
     domain: foo
     export_path: "{{ GetStat_export.path }}"
 
 - name: Save snafu after installing service
-  community.datapower.action:
+  br35ba56.datapower.action:
     domain: foo
     action: SaveConfig
 
 - name: Get configuration to verify service was imported
-  community.datapower.get_config:
+  br35ba56.datapower.get_config:
     domain: "{{ item }}"
     name: 'GetStat_MPG'
     class_name: MultiProtocolGateway

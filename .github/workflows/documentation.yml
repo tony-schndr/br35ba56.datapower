@@ -1,5 +1,3 @@
-# Borrowed from https://github.com/ansible-collections/community.datapower/blob/master/.github/workflows/documentation.yml
-
 name: documentation
 
 on:
@@ -12,13 +10,13 @@ jobs:
     runs-on: ubuntu-20.04
     defaults:
       run:
-        working-directory: ansible_collections/community/datapower
+        working-directory: ansible_collections/br35ba56/datapower
     steps:
 
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          path:  ansible_collections/community/datapower
+          path:  ansible_collections/br35ba56/datapower
 
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
@@ -32,7 +30,7 @@ jobs:
         run: ansible-galaxy collection build .
 
       - name: Install collection
-        run: ansible-galaxy collection install community-datapower-*.tar.gz
+        run: ansible-galaxy collection install br35ba56-datapower-*.tar.gz
 
       - name: Install ansible-doc-extractor
         run: pip install wheel setuptools git+https://github.com/xlab-steampunk/ansible-doc-extractor.git --upgrade
@@ -73,6 +71,6 @@ jobs:
         uses: crazy-max/ghaction-github-pages@v1
         with:
           target_branch: gh-pages
-          build_dir: ansible_collections/community/datapower/docs
+          build_dir: ansible_collections/br35ba56/datapower/docs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

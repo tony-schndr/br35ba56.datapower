@@ -1,7 +1,7 @@
 ---
 # Set up
 - name: Delete the foo domain
-  community.datapower.config:
+  br35ba56.datapower.config:
     domain: default
     state: deleted
     config:
@@ -9,7 +9,7 @@
         name: foo
 
 - name: Create the foo domain
-  community.datapower.config:
+  br35ba56.datapower.config:
     domain: default
     state: merged
     config:
@@ -17,7 +17,7 @@
         name: foo
 
 - name: create demo.txt at local
-  community.datapower.files:
+  br35ba56.datapower.files:
     domain: foo
     src: "{{ role_path }}/files/demo.txt"
     dest: local/demo.txt
@@ -36,7 +36,7 @@
   register: tempdir
 
 - name: fetch /local/demo.txt in check mode
-  community.datapower.fetch:
+  br35ba56.datapower.fetch:
     domain: foo
     src: /local/demo.txt
     dest: "{{tempdir.path}}"
@@ -54,7 +54,7 @@
       - fetched_stat.stat.exists == False
 
 - name: fetch /local/demo.txt for real this time.
-  community.datapower.fetch:
+  br35ba56.datapower.fetch:
     domain: foo
     src: /local/demo.txt
     dest: "{{tempdir.path}}"
@@ -71,7 +71,7 @@
       - fetched_stat.stat.exists
 
 - name: fetch /local/demo.txt again for idempotency check
-  community.datapower.fetch:
+  br35ba56.datapower.fetch:
     domain: foo
     src: /local/demo.txt
     dest: "{{tempdir.path}}"

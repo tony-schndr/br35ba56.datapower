@@ -55,7 +55,7 @@ jobs:
           echo "## Modules" >> docs/index.md
           find plugins/modules -type f -name '*.py' -exec bash -c 'echo "- [$(basename "{}" ".py")]($(basename {} .py).html)"' \; >> docs/index.md
           echo "## httpapi" >> docs/index.md
-          find plugins/httapi -type f -name '*.py' -exec bash -c 'echo "- [$(basename "{}" ".py")](httpapi/$(basename {} .py).html)"' \; >> docs/index.md
+          find plugins/httpapi -type f -name '*.py' -exec bash -c 'echo "- [$(basename "{}" ".py")](httpapi/$(basename {} .py).html)"' \; >> docs/index.md
 
       - name: Create module html documents from rst files
         run: |

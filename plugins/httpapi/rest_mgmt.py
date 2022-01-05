@@ -17,7 +17,7 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 author: Anthony Schneider
-name: datapower
+name: rest_mgmt
 short_description: HttpApi Plugin for IBM DataPower
 description:
 - This HttpApi plugin provides methods to connect to IBM DataPower REST management interface.

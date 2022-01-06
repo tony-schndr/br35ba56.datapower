@@ -82,5 +82,5 @@ jobs:
         run: ansible-galaxy collection install br35ba56-datapower-*.tar.gz
 
       - name: Run molecule test for ${{ matrix.datapower_role }}
-        run: molecule test --all
+        run: molecule test
         working-directory: ansible_collections/br35ba56/datapower/roles/${{ matrix.datapower_role }}

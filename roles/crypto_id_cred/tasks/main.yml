@@ -1,30 +1,30 @@
 ---
-- name: Upload Cert file # No private key module for this yet
+- name: Upload certificate file to DataPower cert directory
   br35ba56.datapower.files:
     state: present
     src: "{{ cert_path }}"
     dest: "/cert/{{ cert_path | basename }}"
-    domain: foo
+    domain: "{{ domain_name }}"
 
-- name: Create certificate
+- name: Create CryptoCertificate object
   br35ba56.datapower.config:
-    domain: foo
+    domain: "{{ domain_name }}"
     state: merged
     config:
       CryptoCertificate:
         name: "{{ cert_path | basename | replace('.pem', '') }}"
         Filename: "cert:///{{ cert_path | basename }}"
 
-- name: Upload Key file # No private key module for this yet
+- name: Upload Private Key file to DataPower cert directory
   br35ba56.datapower.files:
     state: present
     src: "{{ key_path }}"
     dest: "/cert/{{ key_path | basename }}"
-    domain: foo
+    domain: "{{ domain_name }}"
 
 - name: Create Crypto Config
   br35ba56.datapower.config:
-    domain: foo
+    domain: "{{ domain_name }}"
     state: merged
     config:
       CryptoKey:
@@ -34,7 +34,7 @@
 - name: Create Crypto Identification Credentials
   br35ba56.datapower.config:
     state: merged
-    domain: foo
+    domain: "{{ domain_name }}"
     config:
       CryptoIdentCred:
         Certificate:

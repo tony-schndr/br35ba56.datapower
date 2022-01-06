@@ -2,7 +2,7 @@
 [![CI](https://github.com/br35ba56/ansible-datapower/workflows/CI/badge.svg?event=push)](https://github.com/br35ba56/ansible-datapower/actions)
 [![Network Integration](https://github.com/Br35Ba56/ansible-datapower/actions/workflows/network-integration.yml/badge.svg)](https://github.com/Br35Ba56/ansible-datapower/actions/workflows/network-integration.yml)
 [![Codecov](https://img.shields.io/codecov/c/github/br35ba56/ansible-datapower)](https://codecov.io/gh/br35ba56/ansible-datapower)
-
+[![Roles](https://github.com/Br35Ba56/ansible-datapower/actions/workflows/test-roles.yml/badge.svg)](https://github.com/Br35Ba56/ansible-datapower/actions/workflows/test-roles.yml)
 The Ansible DataPower collection includes a variety of modules to automate IBM DataPower Appliances.
 
 

@@ -79,13 +79,13 @@ class HttpApi(HttpApiBase):
     def mgmt_config_info(self):
         path = '/mgmt/config/'
         response = self.send_request(path, 'GET', None)
-        config = [key for key in response['_links'].keys() if key != 'self']
+        config = [k for k in response['_links'].keys() if k != 'self']
         return config
 
     def mgmt_status_info(self):
         path = '/mgmt/status/'
         response = self.send_request(path, 'GET', None)
-        statuses = [key for key in response['_links'].keys() if key != 'self']
+        statuses = [k for k in response['_links'].keys() if k != 'self']
         return statuses
 
     def mgmt_action_info(self):

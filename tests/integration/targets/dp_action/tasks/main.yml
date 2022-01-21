@@ -3,3 +3,17 @@
   br35ba56.datapower.action:
     domain: default
     action: SaveConfig
+
+- name: Execute action that has its own dedicated module
+  br35ba56.datapower.action:
+    domain: default
+    action: Export
+  ignore_errors: yes
+  register: export_action_result
+
+- name: Assert action failed as Export has its own dedicated module
+  assert:
+    that:
+      - "{{ 'Export' in export_action_result.msg }}"
+      - "{{ 'export_domains' in export_action_result.msg }}"
+      - "{{ 'export_config' in export_action_result.msg }}"

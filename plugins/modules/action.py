@@ -75,6 +75,9 @@ response:
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
+from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.utils import (
+    clean_dp_dict
+)
 from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.requests import (
     ActionQueueRequest
 )
@@ -124,6 +127,7 @@ def run_module():
 
     try:
         response = connection.execute_action(**dp_req.post())
+        clean_dp_dict(response)
     except ConnectionError as e:
         response = to_text(e)
         result['changed'] = False

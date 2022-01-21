@@ -46,6 +46,10 @@ PARAM_MAP = {
 EXCLUDED_KEYS = ['domain', 'dest', 'export_path']
 
 
+class InvalidConfigDataException(Exception):
+    pass
+
+
 def isBase64(s):
     try:
         return base64.b64encode(base64.b64decode(s)).decode() == s
@@ -119,14 +123,14 @@ def class_name_from_config(config):
     if len(list(config.keys())) == 1:
         return list(config.keys())[0]
     else:
-        raise Exception('Invalid configuration, expected to find json keypath class_name')
+        raise InvalidConfigDataException('Invalid configuration, expected to find json keypath class_name')
 
 
 def name_from_config(config, class_name):
     if class_name in config:
         if 'name' in config[class_name]:
             return config[class_name]['name']
-    raise Exception('Invalid configuration, expected to find json keypath class_name.name')
+    raise InvalidConfigDataException('Invalid configuration, expected to find json keypath class_name.name')
 
 
 def ensure_config(module, domain, config, state):

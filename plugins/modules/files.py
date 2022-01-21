@@ -90,7 +90,7 @@ response:
 
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.mgmt import (
+from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.utils import (
     ensure_file
 )
 

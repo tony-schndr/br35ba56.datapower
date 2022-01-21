@@ -1,18 +1,4 @@
 from __future__ import absolute_import, division, print_function
-from ansible.plugins.httpapi import HttpApiBase
-from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.mgmt import (
-    clean_dp_dict,
-)
-from ansible.module_utils.six.moves.urllib.error import HTTPError
-from ansible.module_utils.connection import ConnectionError
-from ansible.module_utils._text import to_text
-from xml.sax.saxutils import unescape
-import json
-import time
-from collections import OrderedDict
-from ansible.utils.display import Display
-
-
 __metaclass__ = type
 
 DOCUMENTATION = """
@@ -24,6 +10,18 @@ description:
 version_added: 1.0.0
 """
 
+from ansible.plugins.httpapi import HttpApiBase
+from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.utils import (
+    clean_dp_dict,
+)
+from ansible.module_utils.six.moves.urllib.error import HTTPError
+from ansible.module_utils.connection import ConnectionError
+from ansible.module_utils._text import to_text
+from xml.sax.saxutils import unescape
+import json
+import time
+from collections import OrderedDict
+from ansible.utils.display import Display
 ACTION_QUEUE_TIMEOUT = 300
 TASK_COMPLETED_MESSAGES = [
     'Operation completed.',

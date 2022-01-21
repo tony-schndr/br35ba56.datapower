@@ -51,7 +51,7 @@ from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.reque
     ActionQueueRequest
 )
 
-from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.mgmt import (
+from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.utils import (
     convert_bool_to_on_or_off
 )
 

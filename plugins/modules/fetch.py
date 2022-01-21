@@ -60,7 +60,7 @@ from ansible.module_utils._text import to_text
 from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.requests import (
     FileRequest
 )
-from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.mgmt import (
+from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.utils import (
     create_file_from_base64,
 )
 

@@ -130,7 +130,7 @@ from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.requests import (
     ActionQueueRequest,
 )
-from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.mgmt import (
+from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.utils import (
     convert_bool_to_on_or_off,
     map_module_args_to_datapower_keys,
     get_random_file_name,

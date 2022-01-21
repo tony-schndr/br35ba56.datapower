@@ -1,0 +1,9 @@
+---
+- name: Get the schema of the action to determine correct parameters
+  br35ba56.datapower.action_info:
+    action: SaveConfig
+  register: action_info
+
+- name: Assert SaveConfig schema has been returned
+  assert:
+    that: "{{ 'schema' in action_info and 'SaveConfig' in action_info.schema }}"

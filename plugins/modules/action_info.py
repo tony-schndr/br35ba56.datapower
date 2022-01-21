@@ -6,7 +6,7 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: get_action_schema
+module: action_info
 
 short_description: Get the schema of an action.  Use the schema to help
     determine the parameters required for the action module parameter field.
@@ -17,10 +17,6 @@ description: Get the schema of an action.  Use the schema to help
     determine the parameters required for the action module parameter field.
 
 options:
-    domain:
-        description: The domain to retrieve the schema from.
-        required: true
-        type: str
     action:
         description: The action to get the schema for.
         required: true
@@ -32,23 +28,13 @@ author:
 '''
 
 EXAMPLES = r'''
-- name: Get an actions schema
-  br35ba56.datapower.get_action_schema:
-    domain: default
+- name: Return information about a particular action
+  br35ba56.datapower.action_info:
     action: QuiesceDP
 '''
 
 RETURN = r'''
-request:
-    description: The request that was sent to DataPower
-    type: dict
-    returned: always
-    sample: {
-        "body": null,
-        "method": "GET",
-        "path": "/mgmt/actionqueue/default/operations/QuiesceDP?schema-format=datapower"
-    }
-response:
+schema:
     description: The response from DataPower
     type: dict
     returned: on success
@@ -106,14 +92,6 @@ response:
                     }
                 }
             }
-        },
-        "_links": {
-            "doc": {
-                "href": "/mgmt/docs/actionqueue"
-            },
-            "self": {
-                "href": "/mgmt/actionqueue/default/operations/QuiesceDP"
-            }
         }
     }
 '''
@@ -122,6 +100,7 @@ from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import ConnectionError, Connection
 from ansible.module_utils.basic import AnsibleModule
 
+from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.utils import clean_dp_dict
 from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.requests import (
     ActionQueueSchemaRequest
 )
@@ -129,7 +108,6 @@ from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.reque
 
 def run_module():
     module_args = dict(
-        domain=dict(type='str', required=True),
         action=dict(type='str', required=True)
     )
 
@@ -139,16 +117,17 @@ def run_module():
     )
     connection = Connection(module._socket_path)
 
-    dp_req = ActionQueueSchemaRequest(module.params.get('domain'), module.params.get('action'))
+    dp_req = ActionQueueSchemaRequest('default', module.params.get('action'))
 
     result = {}
     try:
         response = connection.send_request(**dp_req.get())
+        clean_dp_dict(response)
     except ConnectionError as e:
         response = to_text(e)
         module.fail_json(msg=response, **result)
 
-    result['response'] = response
+    result['schema'] = response
     module.exit_json(**result)
 
 

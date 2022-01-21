@@ -81,3 +81,27 @@
   assert:
     that:
       - update_result.changed == False
+
+- name: fetch /local/demo.txt with bad dest path
+  br35ba56.datapower.fetch:
+    domain: foo
+    src: /local/demo.txt
+    dest: /bad/path
+  ignore_errors: yes
+  register: fetch_failure
+
+- name: assert no such directory error
+  assert:
+    that: "{{ 'No such directory' in fetch_failure.msg }}"
+
+- name: fetch /local/demo.txt with bad dest path
+  br35ba56.datapower.fetch:
+    domain: foo
+    src: /local/bad/path/demo.txt
+    dest: "{{tempdir.path}}"
+  ignore_errors: yes
+  register: fetch_failure
+
+- name: assert no such directory error
+  assert:
+    that: "{{ 'No such file' in fetch_failure.msg }}"

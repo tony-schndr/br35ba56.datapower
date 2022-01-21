@@ -15,7 +15,7 @@ from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.reque
     join_path
 )
 
-from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.mgmt import (
+from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.utils import (
     class_name_from_config,
     name_from_config
 )

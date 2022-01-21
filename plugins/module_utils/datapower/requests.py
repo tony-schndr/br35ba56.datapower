@@ -6,7 +6,6 @@ import json
 import posixpath
 from xml.sax.saxutils import unescape
 from ansible.module_utils._text import to_text
-from ansible.module_utils.connection import ConnectionError
 from ansible.module_utils.six.moves.urllib.parse import urlencode
 
 MGMT_CONFIG_METADATA_URI = '/mgmt/metadata/{0}/{1}'
@@ -179,28 +178,6 @@ class ConfigRequest(Request):
     def delete(self):
         method = 'DELETE'
         return {'path': self.path, 'method': method, 'data': None}
-
-
-class ConfigInfoRequest(Request):
-    def __init__(self, connection):
-        super().__init__(connection)
-
-    def config_info(self, domain='default', class_name=None):
-        if class_name is None:
-            path = MGMT_CONFIG_URI
-        else:
-            path = MGMT_CONFIG_METADATA_URI.format(domain, class_name)
-        metadata = self.process_request(path, 'GET', body=None)
-        if metadata['_links']['self']['href'] == MGMT_CONFIG_URI:
-            metadata = list(metadata['_links'].keys())
-            metadata.sort()
-            metadata.remove('self')
-            return metadata
-
-        props = metadata['object']['properties']['property']
-        types = self.get_types(props)
-
-        return {'metadata': metadata, 'types': types}
 
 
 class ActionQueueSchemaRequest(Request):

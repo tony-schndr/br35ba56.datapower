@@ -1,12 +1,11 @@
-[![CI](https://github.com/Br35Ba56/datapower-gateway-peering/actions/workflows/ci.yml/badge.svg)](https://github.com/Br35Ba56/datapower-gateway-peering/actions/workflows/ci.yml)
-# Ansible Role - datapower_gateway_peering
+# Ansible Role - dp_gateway_peering
 
 Configure Gateway Peering objects on IBM DataPowers.
 
 Requirements
 ------------
 
-[Ansible Community DataPower Collection](https://github.com/Br35Ba56/ansible-datapower)
+[Ansible Community DataPower Collection](https://github.com/tony-schndr/ansible-datapower)
 
 Role Variables
 --------------
@@ -37,7 +36,7 @@ Example Playbook
 ```yaml
 - name: Execute role
   include_role:
-    name: br35ba56.datapower_gateway_peering
+    name: dp_gateway_peering
 
 ```
 

@@ -6,7 +6,7 @@
   tasks:
     - name: Execute role
       include_role:
-        name: crypto_id_cred
+        name: dp_crypto_id_cred
       vars:
         cert_path:  "{{ certificate_path }}"
         key_path:  "{{ private_key_path }}"
@@ -32,4 +32,4 @@
 
     - name: Execute role
       include_role:
-        role: gateway_peering
+        role: dp_gateway_peering

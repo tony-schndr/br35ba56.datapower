@@ -1,0 +1,214 @@
+---
+- name: Setup - Delete the foo domain
+  br35ba56.datapower.config:
+    domain: default
+    state: deleted
+    config:
+      Domain:
+        name: foo
+
+- name: Setup - Create the foo domain
+  br35ba56.datapower.config:
+    domain: default
+    state: merged
+    config:
+      Domain:
+        name: foo
+
+- name: Setup - Create temp dir to download files into
+  ansible.builtin.tempfile:
+    state: directory
+  register: tempdir
+
+- name: Check mode - Create local/demo.txt
+  br35ba56.datapower.files:
+    domain: foo
+    src: "{{ role_path }}/files/demo.txt"
+    dest: local/demo.txt
+    state: present
+  register: result
+  check_mode: yes
+
+- name: Check mode - Validate - local/demo.txt
+  assert:
+    that:
+      - "{{ result['changed'] == True }}"
+      # if reponse is not present then datapower wasn't called.
+      - "{{'response' not in result}}"
+
+- name: Create text file from src test - local/demo.txt
+  br35ba56.datapower.files:
+    domain: foo
+    src: "{{ role_path }}/files/demo.txt"
+    dest: local/demo.txt
+    state: present
+  register: create_result
+
+- name: Create text file from src - Validate - local/demo.txt
+  assert:
+    that:
+      - "{{ create_result['changed'] == True }}"
+      - "{{ create_result['response']['result'] == 'File was created.' }}"
+
+- name: Create text file from src - Idempotency - local/demo.txt
+  br35ba56.datapower.files:
+    domain: foo
+    src: "{{ role_path }}/files/demo.txt"
+    dest: local/demo.txt
+    state: present
+  register: idempotent_create_result
+
+- name: Create text file from src - Validate Idempotency - local/demo.txt
+  assert:
+    that:
+      - "{{ idempotent_create_result['changed'] == False }}"
+
+- name: Update text file from src test - local/demo.txt
+  br35ba56.datapower.files:
+    domain: foo
+    src: "{{ role_path }}/files/demo2.txt"
+    dest: local/demo.txt
+    state: present
+  register: update_result
+
+- name: Update text file from src test - Validate - local/demo.txt
+  assert:
+    that:
+      - "{{ update_result['changed'] == True }}"
+      - "{{ update_result['response']['result'] == 'File was updated.' }}"
+
+
+- name: File integrity test - Compare /local/demo.txt to "{{ role_path }}/files/demo2.txt"
+  br35ba56.datapower.fetch:
+    domain: foo
+    src: /local/demo.txt
+    dest: "{{ tempdir.path }}"
+  register: fetch_result
+
+- name: File integrity test - stat "{{ role_path }}/files/demo2.txt"
+  stat:
+    path: "{{ role_path }}/files/demo2.txt"
+  register: original_file_stat
+
+- name: File integrity test - stat "{{ fetch_result.path }}"
+  stat:
+    path: "{{ fetch_result.path }}"
+  register: fetched_file_stat
+
+- name: File integrity test - Assert "{{ role_path }}/files/demo2.txt" and "{{ fetch_result.path }}" are equivalent
+  assert:
+    that:
+      - fetched_file_stat.stat.checksum == original_file_stat.stat.checksum
+
+- name: File deletion test - Delete local/demo.txt
+  br35ba56.datapower.files:
+    domain: foo
+    dest: local/demo.txt
+    state: absent
+  register: delete_result
+
+- name: File deletion test - Validate local/demo.txt deleted
+  assert:
+    that:
+      - "{{ delete_result['changed'] == True }}"
+      - "{{ delete_result['response']['result'] == 'File was deleted.' }}"
+
+- name: File within subdirectory test - local/subdir/demo.txt
+  br35ba56.datapower.files:
+    domain: foo
+    src: "{{ role_path }}/files/demo.txt"
+    dest: local/subdir/demo.txt
+    state: present
+  register: create_result
+
+- name: File within subdirectory - Validate - local/subdir/demo.tt
+  assert:
+    that:
+      - "{{ create_result['changed'] == True }}"
+      - "{{ create_result['response']['result'] == 'File was created.' }}"
+
+- name: File within subdirectory - Update local/subdir/demo.txt
+  br35ba56.datapower.files:
+    domain: foo
+    src: "{{ role_path }}/files/demo2.txt"
+    dest: local/subdir/demo.txt
+    state: present
+  register: update_result
+
+- name: File within subdirectory - Validate - Update local/subdir/demo.txt
+  assert:
+    that:
+      - "{{ update_result['changed'] == True }}"
+      - "{{ update_result['response']['result'] == 'File was updated.' }}"
+
+- name: File within subdirectory - idempotency - Update local/subdir/demo.txt"
+  br35ba56.datapower.files:
+    domain: foo
+    src: "{{ role_path }}/files/demo2.txt"
+    dest: local/subdir/demo.txt
+    state: present
+  register: update_result
+
+- name: File within subdirectory - Validate idempotency - Update local/subdir/demo.txt
+  assert:
+    that:
+      - "{{ update_result['changed'] == False }}"
+
+- name: File within subdirectory named after top_dir - Create local/local/demo.txt
+  br35ba56.datapower.files:
+    domain: foo
+    src: "{{ role_path }}/files/demo.txt"
+    dest: local/local/demo.txt
+    state: present
+  register: create_result
+
+- name: File within subdirectory named after top_dir - Validate - Create local/local/demo.txt
+  assert:
+    that:
+      - "{{ create_result['changed'] == True }}"
+      - "{{ create_result['response']['result'] == 'File was created.' }}"
+
+- name: File within subdirectory named after top_dir - Update local/local/demo.txt
+  br35ba56.datapower.files:
+    domain: foo
+    src: "{{ role_path }}/files/demo2.txt"
+    dest: local/local/demo.txt
+    state: present
+  register: update_result
+
+- name: File within subdirectory named after top_dir - Validate - Update local/local/demo.txt
+  assert:
+    that:
+      - "{{ update_result['changed'] == True }}"
+      - "{{ update_result['response']['result'] == 'File was updated.' }}"
+
+- name: File integrity test - Compare /local/local/demo.txt to "{{ role_path }}/files/demo2.txt"
+  br35ba56.datapower.fetch:
+    domain: foo
+    src: /local/local/demo.txt
+    dest: "{{ tempdir.path }}"
+  register: fetch_result
+
+- name: File integrity test - stat "{{ role_path }}/files/demo2.txt"
+  stat:
+    path: "{{ role_path }}/files/demo2.txt"
+  register: original_file_stat
+
+- name: File integrity test - stat "{{ fetch_result.path }}"
+  stat:
+    path: "{{ fetch_result.path }}"
+  register: fetched_file_stat
+
+- name: File integrity test - Assert "{{ role_path }}/files/demo2.txt" and "{{ fetch_result.path }}" are equivalent
+  assert:
+    that:
+      - fetched_file_stat.stat.checksum == original_file_stat.stat.checksum
+
+# tear down
+- name: Delete the foo domain
+  br35ba56.datapower.config:
+    domain: default
+    state: deleted
+    config:
+      Domain:
+        name: foo

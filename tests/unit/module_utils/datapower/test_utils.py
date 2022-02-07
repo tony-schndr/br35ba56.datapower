@@ -190,7 +190,7 @@ def get_multiline_str():
     s = ''
     for i in range(5):
         s += fake.paragraph(nb_sentences=1, variable_nb_sentences=False) + '\n'
-    return s.encode('utf-8')
+    return s.encode()
 
 
 def test_get_file_diff_when_from_and_to_are_equal():
@@ -199,7 +199,7 @@ def test_get_file_diff_when_from_and_to_are_equal():
         from_data,
         from_data,
         '/some/other/path/file.txt',
-    ) == []
+    )[2] == []
 
 
 def test_get_file_diff_when_from_and_to_are_different():
@@ -210,18 +210,7 @@ def test_get_file_diff_when_from_and_to_are_different():
         from_data,
         to_data,
         '/some/other/path/file.txt',
-    )[0:2] == ['*** before: /some/other/path/file.txt\n', '--- after: /some/other/path/file.txt\n']
-
-
-def test_get_file_diff_when_from_and_to_are_different_with_strings_decoded():
-    from_data = get_multiline_str()
-    to_data = get_multiline_str()
-
-    assert file_diff(
-        from_data.decode('utf-8'),
-        to_data.decode('utf-8'),
-        '/some/other/path/file.txt',
-    )[0:2] == ['*** before: /some/other/path/file.txt\n', '--- after: /some/other/path/file.txt\n']
+    )[2][0:2] == ['*** before: /some/other/path/file.txt\n', '--- after: /some/other/path/file.txt\n']
 
 
 raw_out_list = {

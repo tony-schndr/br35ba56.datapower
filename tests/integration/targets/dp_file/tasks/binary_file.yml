@@ -1,0 +1,77 @@
+---
+- name: Setup - Delete the foo domain
+  br35ba56.datapower.config:
+    domain: default
+    state: deleted
+    config:
+      Domain:
+        name: foo
+
+- name: Setup - Create the foo domain
+  br35ba56.datapower.config:
+    domain: default
+    state: merged
+    config:
+      Domain:
+        name: foo
+
+- name: Setup - Create temp dir to download files into
+  ansible.builtin.tempfile:
+    state: directory
+  register: tempdir
+
+- name: Binary file test - Create binary file local/hello-world
+  br35ba56.datapower.files:
+    domain: foo
+    src: "{{ role_path }}/files/hello-world"
+    dest: local/hello-world
+    state: present
+  register: create_result
+
+- name: Binary file test - fetch /local/hello-world compare it to "{{ role_path }}/files/hello-world"
+  br35ba56.datapower.fetch:
+    domain: foo
+    src: /local/hello-world
+    dest: "{{ tempdir.path }}"
+  register: fetch_result
+
+- name: Binary file test - stat "{{ role_path }}/files/hello-world"
+  stat:
+    path: "{{ role_path }}/files/hello-world"
+  register: original_file_stat
+
+- name: Binary file test - stat "{{ fetch_result.path }}"
+  stat:
+    path: "{{ fetch_result.path }}"
+  register: fetched_file_stat
+
+- name: Binary file test - check that "{{ role_path }}/files/hello-world" and "{{ fetch_result.path }}" are equivalent
+  assert:
+    that:
+      - fetched_file_stat.stat.checksum == original_file_stat.stat.checksum
+
+- name: Binary file test - Check idempotency binary file at local/hello-world
+  br35ba56.datapower.files:
+    domain: foo
+    src: "{{ role_path }}/files/hello-world"
+    dest: local/hello-world
+    state: present
+  register: idempotent_result
+
+- name: Binary file test - Validate idempotency
+  assert:
+    that:
+      - "{{ idempotent_result['changed'] == False }}"
+
+- name: Binary file test - Update binary file local/hello-world
+  br35ba56.datapower.files:
+    domain: foo
+    src: "{{ role_path }}/files/hello-galaxy"
+    dest: local/hello-world
+    state: present
+  register: update_result
+
+- name: Binary file test - Validate idempotency
+  assert:
+    that:
+      - "{{ update_result['changed'] == True }}"

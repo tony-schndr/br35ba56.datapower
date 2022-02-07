@@ -20,6 +20,7 @@ from ansible.module_utils._text import to_text
 from xml.sax.saxutils import unescape
 import json
 import time
+import base64
 from collections import OrderedDict
 from ansible.utils.display import Display
 ACTION_QUEUE_TIMEOUT = 300
@@ -103,6 +104,18 @@ class HttpApi(HttpApiBase):
             else:
                 raise ce
         return res
+
+    def get_file_or_none(self, path):
+        try:
+            res = self.send_request(path, 'GET', None)
+        except ConnectionError as ce:
+            err = to_text(ce)
+            if 'Resource not found' in err:
+                return None
+            else:
+                raise ce
+        data = base64.b64decode(res['file'])
+        return data
 
 
 class ActionQueueTimeoutError(Exception):

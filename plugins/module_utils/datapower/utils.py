@@ -1,4 +1,5 @@
 from __future__ import absolute_import, division, print_function
+from re import I
 __metaclass__ = type
 
 import random
@@ -9,7 +10,7 @@ import hashlib
 import os
 from difflib import context_diff
 from copy import deepcopy
-from ansible.module_utils._text import to_text
+from ansible.module_utils.common.text.converters import to_text, to_bytes, to_native
 from ansible.module_utils.connection import ConnectionError, Connection
 
 from ansible_collections.ansible.netcommon.plugins.module_utils.network.common.utils import (
@@ -24,6 +25,14 @@ from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.reque
     FileRequest,
     join_path
 )
+CERT_SHARECERT_OVERWRITE_WARNING = '''
+    The requested file already exists in cert/shared cert, it is risky to overwrite
+    these files as there is no way to restore them to the original copy
+    unless you have the original cert/key on the local file system OR you have
+    secure backups and are able to perform a secure restore.
+
+    If you really want to overwrite this file, delete it and upload the desired file.
+'''
 
 
 PARAM_MAP = {
@@ -50,7 +59,7 @@ class InvalidConfigDataException(Exception):
     pass
 
 
-def isBase64(s):
+def is_base64(s):
     try:
         return base64.b64encode(base64.b64decode(s)).decode() == s
     except Exception:
@@ -67,31 +76,6 @@ def create_file_from_base64(path, content):
         f.write(data)
         md5.update(data)
     return path, md5
-
-
-def file_diff(from_data, to_data, full_path):
-    if isinstance(from_data, bytes):
-        from_str = from_data.decode('utf-8')
-    else:
-        from_str = from_data
-
-    if isinstance(to_data, bytes):
-        to_str = to_data.decode('utf-8')
-    else:
-        to_str = to_data
-
-    from_lines = from_str.split('\n')
-    to_lines = to_str.split('\n')
-
-    return list(
-        context_diff(
-            a=from_lines,
-            b=to_lines,
-            fromfile='before: ' + full_path,
-            tofile='after: ' + full_path,
-            n=3
-        )
-    )
 
 
 def convert_bool_to_on_or_off(parameters):
@@ -243,6 +227,35 @@ def ensure_directory(module, domain, dir_path, state='present'):
     return result
 
 
+def diff_file_strings(from_str, to_str, full_path):
+
+    from_lines = from_str.split('\n')
+    to_lines = to_str.split('\n')
+
+    diffs = list(
+        context_diff(
+            a=from_lines,
+            b=to_lines,
+            fromfile='before: ' + full_path,
+            tofile='after: ' + full_path,
+            n=3
+        )
+    )
+    return diffs
+
+
+def file_diff(from_data, to_data, full_path):
+    from_str = to_text(from_data)
+    to_str = to_text(to_data)
+    diffs = diff_file_strings(from_str, to_str, full_path)
+    to_md5 = hashlib.md5()
+    to_md5.update(to_bytes(to_str))
+    from_md5 = hashlib.md5()
+    from_md5.update(to_bytes(from_str))
+
+    return to_md5.hexdigest(), from_md5.hexdigest(), diffs
+
+
 def ensure_file(module, domain, file_path, data, state):
     result = {}
     result['changed'] = False
@@ -269,39 +282,29 @@ def ensure_file(module, domain, file_path, data, state):
             file_create_resp = connection.send_request(**file_req.post())
             result['response'] = file_create_resp
             result['path'] = file_create_resp['_links']['location']['href']
-        result['diff'] = {'before': None, 'after': file_path}
+        diff = {'before': None, 'after': file_path}
         result['changed'] = True
 
     elif has_file(files, file_path) and state == 'present':
-        # Compare the files, can't compare cert/sharedcert.
+        # Cannot compare file content in cert/sharedcert directories.
         if 'sharecert' not in top_dir and 'cert' not in top_dir:
-            resp = connection.get_resource_or_none(file_req.path)
-            from_data = base64.b64decode(resp['file'])
+            from_data = connection.get_file_or_none(file_req.path)
 
-            try:
-                diff = file_diff(from_data, data, file_path,)
-            except UnicodeDecodeError as e:
-                # File seems to be binary
-                diff = 'Not possible to compare a binary file.'
+            to_md5, from_md5, diff = file_diff(from_data, data, file_path)
 
-            # Compare md5, if data is different update the file
-            to_md5 = hashlib.md5()
-            to_md5.update(data)
-
-            from_md5 = hashlib.md5()
-            from_md5.update(from_data)
-            if to_md5.hexdigest() != from_md5.hexdigest():
+            if to_md5 != from_md5:
                 if not module.check_mode:
                     update_resp = connection.send_request(**file_req.put())
                     result['response'] = update_resp
                 result['changed'] = True
 
-        # The requested file already exists in cert/shared cert
-        # Not updating a file as there is no way to restore/backout
-        # unless you have the original cert/key or secure backups.
+        # The requested file already exists in cert/shared cert, it is risky to overwrite
+        # these files as there is no way to restore them to the original copy
+        # unless you have the original cert/key on the local file system OR you have
+        # secure backups and are able to perform a secure restore.
         elif has_file(files, file_path):
             result['path'] = file_path
-            result['msg'] = 'Files are in cert / sharedcert directories, not overwiting existing crypto files.'
+            result['msg'] = CERT_SHARECERT_OVERWRITE_WARNING
             return result
         else:
             raise NotImplementedError("This condition was not expected, this is likely a bug.")
@@ -322,18 +325,19 @@ def ensure_file(module, domain, file_path, data, state):
 def build_file_request(domain, file_path, data):
     top_dir = file_path.split('/')[0] or posixpath.split(file_path)[0]
 
-    if isBase64(data):
-        data_base64 = data
-    else:
-        data_base64 = base64.b64encode(data).decode()
-
     file_req = FileRequest()
     # sharedcert is global and can only be used through the default domain.
     if 'sharedcert' in top_dir:
         file_req.set_path(domain='default', file_path=file_path)
     else:
         file_req.set_path(domain=domain, file_path=file_path)
-    file_req.set_body(file_path=file_path, content=data_base64)
+
+    if data is not None:
+        if is_base64(data):
+            data_base64 = data
+        else:
+            data_base64 = base64.b64encode(data).decode()
+        file_req.set_body(file_path=file_path, content=data_base64)
     return file_req
 
 

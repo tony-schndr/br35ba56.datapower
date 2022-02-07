@@ -1,0 +1,81 @@
+---
+# Set up
+- name: Delete the foo domain
+  br35ba56.datapower.config:
+    domain: default
+    state: deleted
+    config:
+      Domain:
+        name: foo
+
+- name: Create the foo domain
+  br35ba56.datapower.config:
+    domain: default
+    state: merged
+    config:
+      Domain:
+        name: foo
+
+- name: Check mode - Create local/demo.txt
+  br35ba56.datapower.files:
+    domain: foo
+    content: SGVsbG8gV29ybGQK
+    dest: local/demo.txt
+    state: present
+  register: result
+  check_mode: yes
+
+- name: Check mode - Validate - Create local/demo.txt
+  assert:
+    that:
+      - "{{ result['changed'] == True }}"
+      # if reponse is not present then datapower wasn't called.
+      - "{{'response' not in result}}"
+
+- name: Create text file from content - local/demo.txt
+  br35ba56.datapower.files:
+    domain: foo
+    content: SGVsbG8gV29ybGQK
+    dest: local/demo.txt
+    state: present
+  register: create_result
+
+- name: Create text file from content - Validate - local/demo.txt
+  assert:
+    that:
+      - "{{ create_result['changed'] == True }}"
+      - "{{ create_result['response']['result'] == 'File was created.' }}"
+
+- name: Create text file from content - idempotency - local/demo.txt
+  br35ba56.datapower.files:
+    domain: foo
+    content: SGVsbG8gV29ybGQK
+    dest: local/demo.txt
+    state: present
+  register: idempotent_result
+
+- name: Create text file fron content - Validate idempotency - local/demo.txt
+  assert:
+    that:
+      - "{{ idempotent_result['changed'] == False }}"
+
+- name: Create text file from equivalent src - local/demo.txt
+  br35ba56.datapower.files:
+    domain: foo
+    src: "{{ role_path }}/files/demo.txt"
+    dest: local/demo.txt
+    state: present
+  register: create_result
+
+- name: Create text file from equivalent src - Validate - local/demo.txt
+  assert:
+    that:
+      - "{{ create_result['changed'] == False }}"
+
+- name: Delete the foo domain
+  br35ba56.datapower.config:
+    domain: default
+    state: deleted
+    config:
+      Domain:
+        name: foo

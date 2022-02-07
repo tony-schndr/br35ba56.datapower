@@ -91,14 +91,16 @@ response:
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.utils import (
-    ensure_file
+    ensure_file,
+    is_base64
 )
+import base64
 
 
 def run_module():
     module_args = dict(
         domain=dict(type='str', required=True),
-        content=dict(type='str', required=False),
+        content=dict(type='str', required=False, no_log=True),
         src=dict(type='path', required=False),
         dest=dict(type='path', required=True),
         state=dict(type='str', required=True, choices=['absent', 'present'])
@@ -107,9 +109,6 @@ def run_module():
     module = AnsibleModule(
         argument_spec=module_args,
         supports_check_mode=True,
-        required_one_of=(
-            ['src', 'content'],
-        ),
         mutually_exclusive=(
             ['src', 'content'],
         ),
@@ -119,14 +118,20 @@ def run_module():
     dest = module.params['dest']
     state = module.params['state']
 
-    if module.params['content'] is not None:
-        data = module.params['content'].encode('utf-8')
-    else:
-        try:
-            with open(module.params['src'], 'rb') as f:
-                data = f.read()
-        except (IOError, OSError) as e:
-            module.fail_json(msg='Error while reading file from disk: {0}'.format(e))
+    data = None
+
+    if state != 'absent':
+        if module.params['content'] is not None:
+            if is_base64(module.params['content']):
+                data = base64.b64decode(module.params['content'])
+            else:
+                module.fail_josn(msg='Module parameter "content" must be base64 encoded.')
+        else:
+            try:
+                with open(module.params['src'], 'rb') as f:
+                    data = f.read()
+            except (IOError, OSError) as e:
+                module.fail_json(msg='Error while reading file from disk: {0}'.format(e))
 
     result = ensure_file(module, domain, dest, data, state)
 

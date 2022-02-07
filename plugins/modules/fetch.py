@@ -107,13 +107,13 @@ def run_module():
     if os.path.isfile(full_path):
         if not filecmp.cmp(tmp_path, full_path):
             if not module.check_mode:
-                module.preserved_copy(tmp_path, full_path)
+                module.atomic_move(tmp_path, full_path)
             result['changed'] = True
     elif os.path.isdir(full_path):
         module.fail_json(msg='{full_path}: Is a directory'.format(full_path=full_path))
     else:
         if not module.check_mode:
-            module.preserved_copy(tmp_path, full_path)
+            module.atomic_move(tmp_path, full_path)
         result['changed'] = True
 
     result['path'] = full_path

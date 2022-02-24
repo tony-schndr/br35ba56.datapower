@@ -10,7 +10,8 @@ The Ansible DataPower collection includes a variety of modules to automate IBM D
 ## Tested with Ansible
 2.9, 2.10, 2.11
 
-<!-- List any external resources the collection depends on, for example minimum versions of an OS, libraries, or utilities. Do not list other Ansible collections here. -->
+## Tested with Python >=3.5
+**Does not work with python 2.7 due to known bug when encoding/decoding file content.**
 
 ### Supported connections
 

@@ -1,0 +1,48 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+prerun: false
+lint: |
+    yamllint .
+    flake8
+
+platforms:
+  - name: dp-1
+    image: tonyschndr/datapower:10.0.1.4
+    pre_build_image: true
+    privileged: true
+    ports:
+      - 16380
+      - 26380
+    published_ports:
+      - 0.0.0.0:9090:9090
+      - 0.0.0.0:5554:5554
+    command: ""
+    groups:
+      - datapower
+
+provisioner:
+  name: ansible
+  connection_options:
+    ansible_connection: httpapi
+    ansible_httpapi_use_ssl: yes
+    ansible_network_os: br35ba56.datapower.rest_mgmt
+    ansible_httpapi_validate_certs: False
+    ansible_user: admin
+    ansible_httpapi_port: 5554
+    ansible_password: admin
+    ansible_command_timeout: 60
+  inventory:
+    group_vars:
+      all:
+        passphrase: '$ecureP@ss'
+        private_key_path:  "~/datapowerguru.com_privkey.pem"
+        domain_name: foo
+    host_vars:
+      dp-1:
+        ansible_host: 172.17.0.2
+        ansible_httpapi_port: 5554
+verifier:
+  name: ansible

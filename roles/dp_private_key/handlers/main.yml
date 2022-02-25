@@ -1,0 +1,12 @@
+---
+- name: Save default domain
+  br35ba56.datapower.action:
+    domain: default
+    action: SaveConfig
+  listen: "Save default Domain"
+
+- name: Save target domain
+  br35ba56.datapower.action:
+    domain: "{{ domain_name }}"
+    action: SaveConfig
+  listen: "Save target Domain"

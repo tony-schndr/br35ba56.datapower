@@ -1,0 +1,36 @@
+---
+- name: Pepare
+  connection: local
+  hosts: all
+  vars:
+    server_hostname: datapowerguru.com
+    key_size: 4096
+    key_type: RSA
+
+  handlers:
+    - name: Save default domain
+      br35ba56.datapower.action:
+        domain: default
+        action: SaveConfig
+      listen: "Save default Domain"
+
+  tasks:
+    - name: Generate an OpenSSL private key
+      openssl_privatekey:
+        select_crypto_backend: auto
+        path: "{{ private_key_path }}"
+        size: "{{ key_size }}"
+        type: "{{ key_type }}"
+        passphrase: "{{ passphrase }}"
+        cipher: auto
+      run_once: yes
+
+    - name: Create the foo domain
+      br35ba56.datapower.config:
+        domain: default
+        state: merged
+        config:
+          Domain:
+            name: "{{ domain_name }}"
+      register: domains
+      notify: "Save default Domain"

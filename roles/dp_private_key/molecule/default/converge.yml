@@ -1,0 +1,11 @@
+---
+- name: Converge
+  connection: local
+  hosts: all
+
+  tasks:
+    - name: Execute role
+      include_role:
+        name: dp_private_key
+      vars:
+        key_path:  "{{ private_key_path }}"

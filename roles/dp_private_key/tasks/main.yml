@@ -7,15 +7,11 @@
     domain: "{{ domain_name }}"
 
 - name: Create password alias object
-  br35ba56.datapower.config:
+  br35ba56.datapower.password_map:
     domain: "{{ domain_name }}"
-    state: merged
-    config:
-      PasswordAlias:
-        name: "{{ password_alias_name }}"
-        mAdminState: enabled
-        Password: "{{ password }}"
-  no_log: true
+    state: present
+    name: "{{ password_alias_name }}"
+    password: "{{ password }}"
   when: password | length != 0
 
 - name: Create Crypto Key object

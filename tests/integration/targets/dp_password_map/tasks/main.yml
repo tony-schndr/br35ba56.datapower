@@ -1,0 +1,84 @@
+---
+- name: Setup - Delete the foo domain
+  br35ba56.datapower.config:
+    domain: default
+    state: deleted
+    config:
+      Domain:
+        name: foo
+
+- name: Setup - Create the foo domain
+  br35ba56.datapower.config:
+    domain: default
+    state: merged
+    config:
+      Domain:
+        name: foo
+
+- name: Password map alias test - Create a password map
+  br35ba56.datapower.password_map:
+    domain: foo
+    name: test_password_map
+    password: $ecureP@$$
+    state: present
+  register: create_pw_map
+
+- name: Assert pw map was created
+  assert:
+    that:
+      - create_pw_map.changed == True
+      - "{{ create_pw_map.response.test_password_map == 'Configuration was created.'}}"
+
+- name: Idempotency check - Password map alias test - Create a password map
+  br35ba56.datapower.password_map:
+    domain: foo
+    name: test_password_map
+    password: $ecureP@$$
+    state: present
+  register: idempotent_create_pw_map
+
+- name: Assert nothing was changed
+  assert:
+    that:
+      - idempotent_create_pw_map.changed != True
+
+- name: Password map alias test - Update a password map
+  br35ba56.datapower.password_map:
+    domain: foo
+    name: test_password_map
+    password: $ecureP@$$word
+    state: overriden
+  register: update_pw_map
+
+- name: Assert password map is updated
+  assert:
+    that:
+      - update_pw_map.changed == True
+      - "{{ update_pw_map.response.test_password_map == 'Configuration was updated.'}}"
+
+- name: Password map alias test - Delete a password map
+  br35ba56.datapower.password_map:
+    domain: foo
+    name: test_password_map
+    password: $ecureP@$$
+    state: absent
+  register: deleted_pw_map
+
+- name: Assert password map is deleted
+  assert:
+    that:
+      - deleted_pw_map.changed == True
+      - "{{ deleted_pw_map.response.test_password_map == 'Configuration was deleted.'}}"
+
+- name: Idempotency check - Password map alias test - Delete a password map
+  br35ba56.datapower.password_map:
+    domain: foo
+    name: test_password_map
+    password: $ecureP@$$
+    state: absent
+  register: idempotent_delete_pw_map
+
+- name: Assert nothing was changed
+  assert:
+    that:
+      - idempotent_delete_pw_map.changed != True

@@ -3,20 +3,13 @@ dependency:
   name: galaxy
 driver:
   name: docker
-
-lint: |
-    yamllint .
-    ansible-lint
-    flake8
+prerun: false
 
 platforms:
   - name: dp-1
     image: tonyschndr/datapower:10.0.1.4
     pre_build_image: true
     privileged: true
-    ports:
-      - 16380
-      - 26380
     published_ports:
       - 0.0.0.0:9090:9090
       - 0.0.0.0:5554:5554

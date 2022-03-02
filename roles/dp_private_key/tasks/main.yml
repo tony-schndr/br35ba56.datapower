@@ -13,7 +13,6 @@
     name: "{{ password_alias_name }}"
     password: "{{ password }}"
   when: password | length != 0
-  notify: "Save target Domain"
 
 - name: Create Crypto Key object
   br35ba56.datapower.config:
@@ -24,7 +23,6 @@
         name: "{{ key_name }}"
         Filename: "{{ key_dest | regex_replace('^/', '') | regex_replace ('/', ':///' )}}"
   when: password | length == 0
-  notify: "Save target Domain"
 
 - name: Create Crypto Key object
   br35ba56.datapower.config:
@@ -38,4 +36,3 @@
         Alias:
           value: "{{ password_alias_name }}"
   when: password | length != 0
-  notify: "Save target Domain"

@@ -4,10 +4,27 @@
   hosts: all
 
   tasks:
+
+    - name: Upload cert and create cert object
+      include_role:
+        name: dp_certificate
+      vars:
+        cert_src: "{{ certificate_path }}"
+        cert_dest: "cert/{{ certificate_path | basename }}"
+        cert_name: "{{ certificate_path | basename | replace('.pem', '') }}"
+
+    - name: Upload key and create key object
+      include_role:
+        name: dp_private_key
+      vars:
+        key_src:  "{{ private_key_path }}"
+        key_dest:  "/cert/{{ private_key_path | basename }}"
+        key_name: "{{ private_key_path | basename | replace('.pem', '') }}"
+
     - name: Execute role
       include_role:
         name: dp_crypto_id_cred
       vars:
-        cert_path:  "{{ certificate_path }}"
-        key_path:  "{{ private_key_path }}"
+        cert_name: "datapowerguru.com_cert"
+        key_name:  "datapowerguru.com_privkey"
         crypto_id_cred_name: "datapowerguru_idcred"

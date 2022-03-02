@@ -8,4 +8,6 @@
       include_role:
         name: dp_private_key
       vars:
-        key_path:  "{{ private_key_path }}"
+        key_src:  "{{ private_key_path }}"
+        key_dest:  "/cert/{{ private_key_path | basename }}"
+        key_name: "{{ private_key_path | basename | replace('.pem', '') }}"

@@ -2,8 +2,8 @@
 - name: Upload Private Key file to DataPower cert directory
   br35ba56.datapower.files:
     state: present
-    src: "{{ key_path }}"
-    dest: "/cert/{{ key_path | basename }}"
+    src: "{{ key_src }}"
+    dest: "{{ key_dest }}"
     domain: "{{ domain_name }}"
 
 - name: Create password alias object
@@ -13,6 +13,7 @@
     name: "{{ password_alias_name }}"
     password: "{{ password }}"
   when: password | length != 0
+  notify: "Save target Domain"
 
 - name: Create Crypto Key object
   br35ba56.datapower.config:
@@ -20,9 +21,10 @@
     state: merged
     config:
       CryptoKey:
-        name: "{{ key_path | basename | replace('.pem', '') }}"
-        Filename: "cert:///{{ key_path | basename }}"
+        name: "{{ key_name }}"
+        Filename: "{{ key_dest | regex_replace('^/', '') | regex_replace ('/', ':///' )}}"
   when: password | length == 0
+  notify: "Save target Domain"
 
 - name: Create Crypto Key object
   br35ba56.datapower.config:
@@ -30,9 +32,10 @@
     state: merged
     config:
       CryptoKey:
-        name: "{{ key_path | basename | replace('.pem', '') }}"
-        Filename: "cert:///{{ key_path | basename }}"
+        name: "{{ key_name }}"
+        Filename: "{{ key_dest | regex_replace('^/', '') | regex_replace ('/', ':///' )}}"
         PasswordAlias: "on"
         Alias:
           value: "{{ password_alias_name }}"
   when: password | length != 0
+  notify: "Save target Domain"

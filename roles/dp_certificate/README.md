@@ -1,4 +1,4 @@
-# Ansible Role - dp_private_key
+# Ansible Role - dp_certificate
 =========
 
 Create x509 Certificates on IBM DataPowers.

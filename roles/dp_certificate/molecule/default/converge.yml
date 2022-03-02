@@ -1,0 +1,13 @@
+---
+- name: Converge
+  connection: local
+  hosts: all
+
+  tasks:
+    - name: Execute role
+      include_role:
+        name: dp_certificate
+      vars:
+        cert_src: "{{ certificate_path }}"
+        cert_dest: "cert/{{ certificate_path | basename }}"
+        cert_name: "{{ certificate_path | basename | replace('.pem', '') }}"

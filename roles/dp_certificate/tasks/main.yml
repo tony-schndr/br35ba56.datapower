@@ -1,0 +1,20 @@
+
+---
+- name: Upload certificate file to DataPower cert directory
+  br35ba56.datapower.files:
+    state: present
+    src: "{{ cert_src}}"
+    dest: "{{ cert_dest }}"
+    domain: "{{ domain_name }}"
+  notify: "Save target Domain"
+
+- name: Create CryptoCertificate object
+  br35ba56.datapower.config:
+    domain: "{{ domain_name }}"
+    state: merged
+    config:
+      CryptoCertificate:
+        mAdminState: enabled
+        name: "{{ cert_name }}"
+        Filename: "{{ cert_dest | regex_replace('^/', '') | regex_replace ('/', ':///' )}}"
+  notify: "Save target Domain"

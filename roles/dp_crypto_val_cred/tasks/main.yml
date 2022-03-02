@@ -1,0 +1,17 @@
+---
+- name: Create Crypto Val Cred
+  br35ba56.datapower.config:
+    state: merged
+    domain: "{{ domain_name }}"
+    config:
+      CryptoValCred:
+        name: "{{ valcred_name }}"
+        mAdminState: enabled
+        Certificate: "{{ certificates }}"
+        CertValidationMode: "{{cert_validation_mode }}"
+        UseCRL: "{{ use_crl }}"
+        RequireCRL: "{{ require_crl }}"
+        CRLDPHandling: "{{ crl_dp_handling }}"
+        InitialPolicySet: 2.5.29.32.0
+        ExplicitPolicy: 'off'
+        CheckDates: "{{ check_dates }}"

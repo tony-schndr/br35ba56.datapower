@@ -1,0 +1,25 @@
+---
+- name: Converge
+  connection: local
+  hosts: all
+
+  tasks:
+
+    - name: Upload cert and create cert object
+      include_role:
+        name: dp_certificate
+      vars:
+        cert_src: "{{ item.certificate_path }}"
+        cert_dest: "cert/{{ item.certificate_path | basename }}"
+        cert_name: "{{ item.certificate_path | basename | replace('.pem', '') }}"
+      with_items: "{{ cert_auths }}"
+
+    - name: Execute role
+      include_role:
+        name: dp_crypto_val_cred
+      vars:
+        valcred_name: dp_guru_val_cred
+        certificates:
+          - value: datapowerguru.com
+          - value: datapowerguru.com-1
+          - value: datapowerguru.com-2

@@ -11,10 +11,15 @@ Requirements
 Role Variables
 --------------
 ```yaml
+# Domain to create Crypto Certificate in
 domain_name: "foo"
-cert_src: path/to/datapowerguru.com.pem
-cert_dest: "/cert/datapowerguru.com.pem"
+# The name of the certificate object.
 cert_name: "datapowerguru.com"
+# Local path to the certificate
+cert_src: path/to/datapowerguru.com.pem
+# Remote path to where the certificate should be uploaded to.
+# For security reasons this should be in the /cert/ or /sharedcert/ directory.
+cert_dest: "/cert/datapowerguru.com.pem"
 ```
 
 Dependencies

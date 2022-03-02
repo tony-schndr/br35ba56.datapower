@@ -11,7 +11,7 @@ Requirements
 Role Variables
 --------------
 ```yaml
-# Domain to upload / create private key (Crypto Key) object in.
+# Domain to upload / create private key (Crypto Key) object in
 domain_name: datapower_domain_name
 # Local path to the private key
 key_src: path/to/private_key.pem

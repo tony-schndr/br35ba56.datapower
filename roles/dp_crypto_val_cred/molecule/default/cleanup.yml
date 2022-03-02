@@ -1,0 +1,19 @@
+---
+- name: Cleanup locally generated cert / key / csr
+  connection: local
+  hosts: all
+
+  tasks:
+    - name: cleanup cert
+      file:
+        state: absent
+        path: "{{ item.csr_path }}"
+      with_items: "{{ cert_auths }}"
+      run_once: yes
+
+    - name: cleanup cert
+      file:
+        state: absent
+        path: "{{ item.certificate_path }}"
+      with_items: "{{ cert_auths }}"
+      run_once: yes

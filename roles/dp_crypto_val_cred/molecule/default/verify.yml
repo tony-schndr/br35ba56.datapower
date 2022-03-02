@@ -1,0 +1,18 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  gather_facts: false
+
+  tasks:
+  - name: Get Crypto Validation Credential
+    br35ba56.datapower.get_config:
+      class_name: CryptoValCred
+      domain: "{{ domain_name }}"
+      status: yes
+    register: val_cred
+
+  - name: Check the Crypto Validation Credential is in an up state
+    assert:
+      that: "'up' in val_cred.response.CryptoValCred.state.opstate"

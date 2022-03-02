@@ -11,10 +11,14 @@ Requires certificate and key pair files uploaded to DataPower and associated obj
 Role Variables
 --------------
 ```yaml
+# Domain to create Crypto Identity Credential object in.
 domain_name: datapower_domain_name
-cert_name: crypto_certificate_object_name
-key_name: crypto_key_object_name
+# The name of the Crypto Identity Credential Object
 crypto_id_cred_name: crypto_id_cred_name
+# The name of the Crypto Certificate object to be referenced by the Crypto Identity Credential
+cert_name: crypto_certificate_object_name
+# The name of the Crypto Key object to be referenced by the Crypto Identity Credential
+key_name: crypto_key_object_name
 ```
 
 Dependencies

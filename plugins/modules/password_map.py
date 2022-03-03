@@ -96,7 +96,7 @@ def run_module():
         domain=dict(type='str', required=True),
         name=dict(type='str', required=True),
         password=dict(type='str', required=True, no_log=True),
-        state=dict(type='str', choices=['absent', 'present', 'overriden'])
+        state=dict(type='str', required=True, choices=['absent', 'present', 'overriden'])
     )
 
     module = AnsibleModule(

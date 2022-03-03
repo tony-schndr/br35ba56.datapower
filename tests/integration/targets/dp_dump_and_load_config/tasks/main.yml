@@ -1,0 +1,76 @@
+- name: Delete the snafu/foo application domain
+  br35ba56.datapower.config:
+    domain: default
+    state: deleted
+    config:
+      Domain:
+        mAdminState: enabled
+        name: "{{ item }}"
+  with_items:
+    - snafu
+    - foo
+
+- name: Create the foo domain
+  br35ba56.datapower.config:
+    domain: default
+    state: merged
+    config:
+      Domain:
+        mAdminState: enabled
+        name: "{{ item }}"
+  with_items:
+    - snafu
+    - foo
+
+- name: Save default domain
+  br35ba56.datapower.action:
+    domain: default
+    action: SaveConfig
+
+- name: Create objects to export and load into other domains
+  br35ba56.datapower.load_config:
+    domain: snafu
+    config: "{{ lookup('file','{{ role_path }}/files/object-export.json') | from_json}}"
+
+- name: Save snafu after loading objects
+  br35ba56.datapower.action:
+    domain: snafu
+    action: SaveConfig
+
+- name: Export objects
+  br35ba56.datapower.dump_config:
+    domain: snafu
+    ref_objects: yes
+    objects:
+      - name: valcred
+        class: CryptoValCred
+      - name: tls-client-profile
+        class: SSLClientProfile
+  register: snafu_export
+
+- name: load objects
+  br35ba56.datapower.load_config:
+    domain: foo
+    config: "{{snafu_export.config}}"
+
+- name: Save foo after loading objects
+  br35ba56.datapower.action:
+    domain: foo
+    action: SaveConfig
+
+- name: Export objects from foo for validation
+  br35ba56.datapower.dump_config:
+    domain: foo
+    ref_objects: yes
+    objects:
+      - name: valcred
+        class: CryptoValCred
+      - name: tls-client-profile
+        class: SSLClientProfile
+  register: foo_export
+
+- name: Assert expected configuration is loaded in the foo domain.
+  assert:
+    that:
+      - "{{'SSLClientProfile' in foo_export.config }}"
+      - "{{'CryptoValCred' in foo_export.config }}"

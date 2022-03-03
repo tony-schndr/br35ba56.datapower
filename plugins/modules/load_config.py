@@ -261,9 +261,9 @@ def run_module():
     result = {}
 
     action = "LoadConfiguration"
-    objects = deepcopy(module.params.get('objects'))
+    config = deepcopy(module.params.get('config'))
     # Convert booleans in the domain dictionaries
-    action_req = ActionQueueRequest(module.params.get('domain'), action, objects)
+    action_req = ActionQueueRequest(module.params.get('domain'), action, config)
 
     try:
         response = connection.execute_action(**action_req.post())

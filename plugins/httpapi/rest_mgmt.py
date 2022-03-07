@@ -1,13 +1,15 @@
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 DOCUMENTATION = """
-author: Anthony Schneider
 name: rest_mgmt
 short_description: HttpApi Plugin for IBM DataPower
 description:
 - This HttpApi plugin provides methods to connect to IBM DataPower REST management interface.
 version_added: 1.0.0
+author:
+- Anthony Schneider (@tony-schndr)
 """
 
 from ansible.plugins.httpapi import HttpApiBase

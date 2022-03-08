@@ -87,14 +87,15 @@ from ansible_collections.br35ba56.datapower.plugins.module_utils.datapower.reque
 excluded_actions = {
     'Export': [
         'export_domains',
+        'export_zip',
         'export_config'
     ],
     'Import': [
         'import_domains',
-        'import_config'
+        'import_zip'
     ],
     'LoadConfiguration': [
-        'import_config'
+        'load_config'
     ]
 }
 

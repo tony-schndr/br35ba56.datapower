@@ -8,7 +8,7 @@ __metaclass__ = type
 
 DOCUMENTATION = r'''
 ---
-module: dump_config
+module: export_config
 
 short_description: |
     Export configuration objects and files from a DataPower Application Domain.
@@ -74,7 +74,7 @@ author:
 
 EXAMPLES = r'''
 - name: Export objects
-  community.datapower.dump_config:
+  community.datapower.export_config:
     domain: default
     ref_objects: yes
     objects:

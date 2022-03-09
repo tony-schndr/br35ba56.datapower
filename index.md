@@ -1,0 +1,19 @@
+# Datapower Ansible Collection Documentation
+## Modules
+- [load_config](load_config.html)
+- [action_info](action_info.html)
+- [fetch](fetch.html)
+- [get_config](get_config.html)
+- [config](config.html)
+- [export_config](export_config.html)
+- [action](action.html)
+- [mgmt_info](mgmt_info.html)
+- [backup_domains](backup_domains.html)
+- [import_zip](import_zip.html)
+- [password_map](password_map.html)
+- [status](status.html)
+- [files](files.html)
+- [export_zip](export_zip.html)
+- [restore_domains](restore_domains.html)
+## httpapi
+- [rest_mgmt](httpapi/rest_mgmt.html)

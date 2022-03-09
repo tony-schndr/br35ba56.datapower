@@ -96,7 +96,7 @@ ansible-galaxy collection install br35ba56.datapower
 ```
 Directly from GitHub repository:
 ```bash
-ansible-galaxy collection install git+https://github.com/Br35Ba56/ansible-datapower.git
+ansible-galaxy collection install git+https://github.com/tony-schndr/br35ba56.datapower.git
 ```
 
 You can also include it in a `requirements.yml` file and install it with `ansible-galaxy collection install -r requirements.yml`, using the format:
